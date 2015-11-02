@@ -1,1 +1,34 @@
 # Linked Ideas
+
+The application is to lay out some ideas in the computer, allowing you to connect them, reorder them and classify them with color codes
+
+On the other hand, the connexions between ideas can have text on its own as a way to 'explain' the connexion of ideas.
+
+## Feature Roadmap
+
+- [ ] click in 'canvas' and type a concept, press 'enter' and present it on screen
+- [ ] save and load files
+- [ ] add color to concepts
+- [ ] allow moving concepts
+- [ ] edit a concept
+- [ ] delete a concept
+- [ ] create a link between 2 concepts with description text
+- [ ] edit link description text
+- [ ] delete link between concepts
+- [ ] add color to concepts
+- [ ] moving in canvas
+- [ ] panning in canvas
+- [ ] zooming in canvas
+- [ ] select a group of concepts (and their links)
+- [ ] keyboard shortcuts
+- [ ] automatically reorganize concepts and links
+- [ ] undo capabilities
+
+### Click on 'canvas' and type a concept, press 'enter' and present it on screen
+
+- [x] draw canvas
+- [x] accept click
+- [ ] create text field and focus on it
+- [ ] accept 'escape' key to cancel
+- [ ] accept enter and just render as text
+- [ ] accept entering multiple concepts

@@ -8,7 +8,9 @@
 
 import Cocoa
 
-class Document: NSDocument {
+class Document: NSDocument, CanvasViewDelegate {
+  
+  @IBOutlet weak var canvas: CanvasView!
   
   override init() {
     super.init()
@@ -18,6 +20,7 @@ class Document: NSDocument {
   override func windowControllerDidLoadNib(aController: NSWindowController) {
     super.windowControllerDidLoadNib(aController)
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
+    canvas.delegate = self
   }
   
   override class func autosavesInPlace() -> Bool {
@@ -41,6 +44,13 @@ class Document: NSDocument {
     // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
     // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
     throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+  }
+  
+  // MARK: - CanvasViewDelegate
+  
+  func singleClick(event: NSEvent) {
+    let point = canvas.convertPoint(event.locationInWindow, fromView: nil)
+    print("single click in (\(point.x), \(point.y))")
   }
   
 }
