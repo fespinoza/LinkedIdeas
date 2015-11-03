@@ -15,7 +15,6 @@
 		9B2F1DB51BE7CFE80090CC18 /* LinkedIdeasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1DB41BE7CFE80090CC18 /* LinkedIdeasTests.swift */; };
 		9B2F1DC01BE7CFE80090CC18 /* LinkedIdeasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1DBF1BE7CFE80090CC18 /* LinkedIdeasUITests.swift */; };
 		9B2F1DCE1BE7D3990090CC18 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1DCD1BE7D3990090CC18 /* CanvasView.swift */; };
-		9B2F1DD01BE7D4A10090CC18 /* CanvasViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1DCF1BE7D4A10090CC18 /* CanvasViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +49,6 @@
 		9B2F1DBF1BE7CFE80090CC18 /* LinkedIdeasUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedIdeasUITests.swift; sourceTree = "<group>"; };
 		9B2F1DC11BE7CFE80090CC18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B2F1DCD1BE7D3990090CC18 /* CanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
-		9B2F1DCF1BE7D4A10090CC18 /* CanvasViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +106,6 @@
 				9B2F1DA81BE7CFE80090CC18 /* MainMenu.xib */,
 				9B2F1DAB1BE7CFE80090CC18 /* Info.plist */,
 				9B2F1DCD1BE7D3990090CC18 /* CanvasView.swift */,
-				9B2F1DCF1BE7D4A10090CC18 /* CanvasViewDelegate.swift */,
 			);
 			path = LinkedIdeas;
 			sourceTree = "<group>";
@@ -263,7 +260,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B2F1DA21BE7CFE70090CC18 /* Document.swift in Sources */,
-				9B2F1DD01BE7D4A10090CC18 /* CanvasViewDelegate.swift in Sources */,
 				9B2F1DA01BE7CFE70090CC18 /* AppDelegate.swift in Sources */,
 				9B2F1DCE1BE7D3990090CC18 /* CanvasView.swift in Sources */,
 			);
@@ -495,6 +491,7 @@
 				9B2F1DC61BE7CFE80090CC18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9B2F1DC71BE7CFE80090CC18 /* Build configuration list for PBXNativeTarget "LinkedIdeasTests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +500,7 @@
 				9B2F1DC91BE7CFE80090CC18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9B2F1DCA1BE7CFE80090CC18 /* Build configuration list for PBXNativeTarget "LinkedIdeasUITests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +509,7 @@
 				9B2F1DCC1BE7CFE80090CC18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

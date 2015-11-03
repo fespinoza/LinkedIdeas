@@ -8,9 +8,19 @@
 
 import Cocoa
 
+protocol CanvasViewDelegate {
+  // mouse events
+  func singleClick(event:NSEvent)
+}
+
 class CanvasView: NSView {
   
   var delegate: CanvasViewDelegate?
+  var concepts = [Concept]() {
+    didSet {
+      needsDisplay = true
+    }
+  }
   
   override func drawRect(dirtyRect: NSRect) {
     super.drawRect(dirtyRect)
@@ -18,6 +28,10 @@ class CanvasView: NSView {
     // Drawing code here.
     NSColor.whiteColor().set()
     NSBezierPath(rect: bounds).fill()
+    
+    for concept in concepts {
+      concept.draw()
+    }
   }
  
   override func mouseDown(theEvent: NSEvent) {

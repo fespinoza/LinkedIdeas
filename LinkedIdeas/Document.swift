@@ -8,6 +8,19 @@
 
 import Cocoa
 
+struct Concept {
+  let stringValue = "Hello World!"
+  var point: NSPoint
+  
+  func draw() {
+    let rect = stringValue.sizeWithAttributes(nil)
+    let x = self.point.x - rect.width / 2.0
+    let y = self.point.y - rect.height / 2.0
+    let point = NSPoint(x: x, y: y)
+    stringValue.drawAtPoint(point, withAttributes: nil)
+  }
+}
+
 class Document: NSDocument, CanvasViewDelegate {
   
   @IBOutlet weak var canvas: CanvasView!
@@ -51,6 +64,7 @@ class Document: NSDocument, CanvasViewDelegate {
   func singleClick(event: NSEvent) {
     let point = canvas.convertPoint(event.locationInWindow, fromView: nil)
     print("single click in (\(point.x), \(point.y))")
+    canvas.concepts.append(Concept(point: point))
   }
   
 }
