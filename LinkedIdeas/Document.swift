@@ -11,13 +11,16 @@ import Cocoa
 struct Concept {
   let stringValue = "Hello World!"
   var point: NSPoint
+  var rect: NSRect {
+    let size = stringValue.sizeWithAttributes(nil)
+    let x = self.point.x - size.width / 2.0
+    let y = self.point.y - size.height / 2.0
+    let point = NSPoint(x: x, y: y)
+    return NSRect(origin: point, size: size)
+  }
   
   func draw() {
-    let rect = stringValue.sizeWithAttributes(nil)
-    let x = self.point.x - rect.width / 2.0
-    let y = self.point.y - rect.height / 2.0
-    let point = NSPoint(x: x, y: y)
-    stringValue.drawAtPoint(point, withAttributes: nil)
+    stringValue.drawAtPoint(rect.origin, withAttributes: nil)
   }
 }
 
