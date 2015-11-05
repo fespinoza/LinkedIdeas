@@ -30,7 +30,10 @@ class CanvasView: NSView {
     NSBezierPath(rect: bounds).fill()
     
     for concept in concepts {
-      concept.draw()
+      let textField = NSTextField(frame: concept.rect)
+      textField.stringValue = concept.stringValue
+      textField.editable = true
+      addSubview(textField)
     }
   }
  
