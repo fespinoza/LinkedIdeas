@@ -29,7 +29,7 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 - [x] draw canvas
 - [x] accept click
 - [x] draw a string in a certain position on click
-- [ ] create text field and focus on it
-- [ ] accept 'escape' key to cancel
+- [x] create text field and focus on it
+- [ ] accept 'escape' key to cancel, deleting the concept
 - [ ] accept enter and just render as text
 - [ ] accept entering multiple concepts

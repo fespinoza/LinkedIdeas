@@ -30,13 +30,18 @@ class CanvasView: NSView {
     NSBezierPath(rect: bounds).fill()
     
     for concept in concepts {
-      let textField = NSTextField(frame: concept.rect)
-      textField.stringValue = concept.stringValue
-      textField.editable = true
-      addSubview(textField)
+      if !concept.added {
+        concept.added = true
+        let textField = NSTextField(frame: concept.rect)
+        textField.placeholderString = concept.stringValue
+        textField.enabled = true
+        textField.editable = true
+        addSubview(textField)
+        textField.becomeFirstResponder()
+      }
     }
   }
- 
+  
   override func mouseDown(theEvent: NSEvent) {
     delegate?.singleClick(theEvent)
   }
