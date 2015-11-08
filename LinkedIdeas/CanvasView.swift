@@ -31,13 +31,11 @@ class CanvasView: NSView {
     
     for concept in concepts {
       if !concept.added {
+        Swift.print("add concept view")
+        let conceptView = ConceptView(frame: concept.rect)
+        conceptView.concept = concept
         concept.added = true
-        let textField = NSTextField(frame: concept.rect)
-        textField.placeholderString = concept.stringValue
-        textField.enabled = true
-        textField.editable = true
-        addSubview(textField)
-        textField.becomeFirstResponder()
+        addSubview(conceptView)
       }
     }
   }
@@ -45,4 +43,5 @@ class CanvasView: NSView {
   override func mouseDown(theEvent: NSEvent) {
     delegate?.singleClick(theEvent)
   }
+  
 }
