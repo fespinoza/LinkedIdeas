@@ -44,4 +44,9 @@ class CanvasView: NSView {
     delegate?.singleClick(theEvent)
   }
   
+
+extension NSView {
+  func sprint(message: String) {
+    Swift.print(message)
+  }
 }
