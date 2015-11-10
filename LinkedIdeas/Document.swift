@@ -8,29 +8,6 @@
 
 import Cocoa
 
-class Concept {
-  let stringValue = "Hello World!"
-  var point: NSPoint
-  var added: Bool = false
-  var rect: NSRect {
-    let offset: CGFloat = 20.0
-    let size = stringValue.sizeWithAttributes(nil)
-    let x = self.point.x - size.width / 2.0 - offset
-    let y = self.point.y - size.height / 2.0 - offset
-    let point = NSPoint(x: x, y: y)
-    let bigSize = NSSize(width: size.width + offset, height: size.height + offset)
-    return NSRect(origin: point, size: bigSize)
-  }
-  
-  init(point: NSPoint) {
-    self.point = point
-  }
-  
-  func draw() {
-    stringValue.drawAtPoint(rect.origin, withAttributes: nil)
-  }
-}
-
 class Document: NSDocument, CanvasViewDelegate {
   
   @IBOutlet weak var canvas: CanvasView!

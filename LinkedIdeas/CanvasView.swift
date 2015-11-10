@@ -13,11 +13,12 @@ protocol CanvasViewDelegate {
   func singleClick(event:NSEvent)
 }
 
-class CanvasView: NSView {
+class CanvasView: NSControl {
   
   var delegate: CanvasViewDelegate?
   var concepts = [Concept]() {
     didSet {
+      sprint("concepts length: \(concepts.count)")
       needsDisplay = true
     }
   }
@@ -35,7 +36,11 @@ class CanvasView: NSView {
         let conceptView = ConceptView(frame: concept.rect)
         conceptView.concept = concept
         concept.added = true
+        concept.editing = true
         addSubview(conceptView)
+        conceptView.canvas = self
+      } else {
+        concept.editing = false
       }
     }
   }
@@ -44,4 +49,22 @@ class CanvasView: NSView {
     delegate?.singleClick(theEvent)
   }
   
+  
+  func removeConcept(concept: Concept) {
+    sprint("removing concept \(concept.identifier)")
+    let index = concepts.indexOf({ $0.identifier == concept.identifier })
+    if let index = index {
+      sprint("remove concept")
+      concepts.removeAtIndex(index)
+    } else {
+      sprint("concept not found")
+    }
+  }
+  
+}
+
+extension NSView {
+  func sprint(message: String) {
+    Swift.print(message)
+  }
 }
