@@ -6,13 +6,14 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 
 ## Feature Roadmap
 
-- [ ] click in 'canvas' and type a concept, press 'enter' and present it on screen
+- [x] click in 'canvas' and type a concept, press 'enter' and present it on screen
 - [ ] save and load files
 - [ ] add color to concepts
 - [ ] allow moving concepts
 - [ ] edit a concept
 - [ ] delete a concept
 - [ ] create a link between 2 concepts with description text
+- [ ] resize concepts
 - [ ] edit link description text
 - [ ] delete link between concepts
 - [ ] add color to concepts
