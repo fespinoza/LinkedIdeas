@@ -43,8 +43,8 @@ class ConceptView: NSControl, NSTextFieldDelegate {
     
     if renderedConcept {
       if editMode {
-//        textField?.hidden = false
-//        textField?.becomeFirstResponder()
+        textField?.hidden = false
+        textField?.editable = true
       } else {
         renderConcept()
       }
@@ -65,7 +65,10 @@ class ConceptView: NSControl, NSTextFieldDelegate {
   }
   
   func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
-    sprint("end editing \(fieldEditor.string)")
+    if let concept = concept, textField = textField {
+      concept.stringValue = textField.stringValue
+    }
+    sprint("end editing \(concept?.stringValue)")
     afterEditing()
     return true
   }
@@ -100,7 +103,6 @@ class ConceptView: NSControl, NSTextFieldDelegate {
     textField?.editable = false
     textField?.bordered = false
     textField?.resignFirstResponder()
-//    textField?.removeFromSuperview()
     textField?.hidden = true
     editMode = false
     canvas?.becomeFirstResponder()
@@ -118,7 +120,7 @@ class ConceptView: NSControl, NSTextFieldDelegate {
   
   func beforeEditing() {
     textField?.editable = true
-    textField?.bordered = true
+    textField?.hidden = false
   }
   
   override func keyDown(theEvent: NSEvent) {

@@ -32,5 +32,7 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 - [x] create text field and focus on it
 - [x] when editing a concept, 'escape key' to cancel and delete the concept
 - [x] accept enter and just render as text
-- [ ] when clicking a concept make it editable
+- [x] when clicking a concept make it editable
+
+#### Optional
 - [ ] when pressing 'enter' and the concept is blank, remove the concept
