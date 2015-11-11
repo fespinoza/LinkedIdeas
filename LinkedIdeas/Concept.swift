@@ -8,12 +8,12 @@
 
 import Foundation
 
-class Concept {
+class Concept: NSObject, NSCoding {
   var stringValue: String = "Insert Concpet"
   var point: NSPoint
   var added: Bool = false
   var editing: Bool = false
-  var identifier = random()
+  var identifier: Int
   var rect: NSRect {
     let offset: CGFloat = 20.0
     let size = stringValue.sizeWithAttributes(nil)
@@ -26,6 +26,26 @@ class Concept {
   
   init(point: NSPoint) {
     self.point = point
+    self.identifier = random()
+  }
+  
+  let stringValueKey = "stringValueKey"
+  let pointKey = "pointKey"
+  let identifierKey = "identifierKey"
+  
+  required init?(coder aDecoder: NSCoder) {
+    point = aDecoder.decodePointForKey(pointKey)
+    identifier = aDecoder.decodeIntegerForKey(identifierKey)
+    let string = aDecoder.decodeObjectForKey(stringValueKey) as? String
+    if let string = string {
+      stringValue = string
+    }
+  }
+  
+  func encodeWithCoder(aCoder: NSCoder) {
+    aCoder.encodePoint(point, forKey: pointKey)
+    aCoder.encodeObject(stringValue, forKey: stringValueKey)
+    aCoder.encodeInteger(identifier, forKey: identifierKey)
   }
   
   func draw() {
