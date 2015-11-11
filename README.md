@@ -39,4 +39,7 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 ### Save and load files
 
 - [x] make Concept: NSCoding compatible
+- [x] serialize root elements
+- [x] deserialize elements
+- [ ] render deserialized elements correctly on canvas
 
