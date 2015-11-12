@@ -32,20 +32,18 @@ class CanvasView: NSControl {
     
     for concept in concepts {
       if !concept.added {
-        Swift.print("add concept view")
+        sprint("add concept view")
         let conceptView = ConceptView(frame: concept.rect)
         conceptView.concept = concept
         concept.added = true
-        concept.editing = true
         addSubview(conceptView)
         conceptView.canvas = self
-      } else {
-        concept.editing = false
       }
     }
   }
   
   override func mouseDown(theEvent: NSEvent) {
+    sprint("canvasView: mouse down")
     delegate?.singleClick(theEvent)
   }
   
