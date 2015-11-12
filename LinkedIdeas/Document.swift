@@ -49,6 +49,7 @@ class Document: NSDocument, CanvasViewDelegate {
     // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
     // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
     readConcepts = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [Concept]
+    print(readConcepts)
   }
   
   // MARK: - CanvasViewDelegate
@@ -56,7 +57,9 @@ class Document: NSDocument, CanvasViewDelegate {
   func singleClick(event: NSEvent) {
     let point = canvas.convertPoint(event.locationInWindow, fromView: nil)
     print("single click in (\(point.x), \(point.y))")
-    canvas.concepts.append(Concept(point: point))
+    let concept = Concept(point: point)
+    concept.editing = true
+    canvas.concepts.append(concept)
   }
   
 }
