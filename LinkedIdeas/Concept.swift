@@ -45,6 +45,12 @@ class Concept: NSObject, NSCoding {
     }
   }
   
+  override var description: String {
+    get {
+      return "[\(identifier)] '\(stringValue)' \(editing) \(point)"
+    }
+  }
+  
   func encodeWithCoder(aCoder: NSCoder) {
     aCoder.encodePoint(point, forKey: pointKey)
     aCoder.encodeObject(stringValue, forKey: stringValueKey)
