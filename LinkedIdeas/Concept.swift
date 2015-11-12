@@ -32,10 +32,13 @@ class Concept: NSObject, NSCoding {
   let stringValueKey = "stringValueKey"
   let pointKey = "pointKey"
   let identifierKey = "identifierKey"
+  let editingKey = "editingKey"
   
   required init?(coder aDecoder: NSCoder) {
     point = aDecoder.decodePointForKey(pointKey)
     identifier = aDecoder.decodeIntegerForKey(identifierKey)
+    editing = aDecoder.decodeBoolForKey(editingKey)
+    print("concept editing=\(editing)")
     let string = aDecoder.decodeObjectForKey(stringValueKey) as? String
     if let string = string {
       stringValue = string
@@ -46,6 +49,7 @@ class Concept: NSObject, NSCoding {
     aCoder.encodePoint(point, forKey: pointKey)
     aCoder.encodeObject(stringValue, forKey: stringValueKey)
     aCoder.encodeInteger(identifier, forKey: identifierKey)
+    aCoder.encodeBool(editing, forKey: editingKey)
   }
   
   func draw() {
