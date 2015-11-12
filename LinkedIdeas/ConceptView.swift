@@ -15,11 +15,6 @@ class ConceptView: NSControl, NSTextFieldDelegate {
       needsDisplay = true
     }
   }
-  var editMode = true {
-    didSet {
-      needsDisplay = true
-    }
-  }
   var renderedConcept = false
   var textField: NSTextField?
   weak var canvas: CanvasView?
@@ -28,34 +23,61 @@ class ConceptView: NSControl, NSTextFieldDelegate {
     super.drawRect(dirtyRect)
     sprint("draw rect")
     
-    if let concept = concept where !renderedConcept {
-      Swift.print("concept view \(concept.identifier)")
-      let textField = NSTextField(frame: bounds)
-      textField.placeholderString = concept.stringValue
-      textField.enabled = true
-      textField.editable = true
-      addSubview(textField)
-      textField.becomeFirstResponder()
-      renderedConcept = true
-      textField.delegate = self
-      self.textField = textField
-    }
-    
-    if renderedConcept {
-      if editMode {
-        textField?.hidden = false
-        textField?.editable = true
+    if let concept = concept {
+      if !renderedConcept {
+        sprint("adding text field")
+        
+        let textField = NSTextField(frame: bounds)
+        textField.placeholderString = concept.stringValue
+        textField.enabled = true
+        textField.editable = true
+        textField.delegate = self
+        
+        addSubview(textField)
+        textField.becomeFirstResponder()
+        
+        self.textField = textField
+        renderedConcept = true
+        
+        if !concept.editing {
+          sprint("concept not editing")
+          disableTextField()
+          justRenderConcept()
+        }
       } else {
-        renderConcept()
+        if concept.editing {
+          sprint("edit concept")
+          enableTextField()
+        } else {
+          sprint("just render it")
+          renderConcept()
+        }
       }
+    }
+  }
+  
+  func enableTextField() {
+    if let textField = textField {
+      textField.hidden = false
+      textField.editable = true
+    }
+  }
+  
+  func disableTextField() {
+    if let textField = textField {
+      textField.hidden = true
+      textField.editable = false
     }
   }
   
   // MARK: - NSTextFieldDelegate
   
   override func mouseDown(theEvent: NSEvent) {
+    if let concept = concept {
+      concept.editing = true
+      needsDisplay = true
+    }
     sprint("conceptView: mouse down \(concept?.identifier)")
-    editMode = true
   }
   
   func control(control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
@@ -100,17 +122,22 @@ class ConceptView: NSControl, NSTextFieldDelegate {
   }
   
   func afterEditing() {
-    textField?.editable = false
-    textField?.bordered = false
+    sprint("after editing")
+    disableTextField()
     textField?.resignFirstResponder()
-    textField?.hidden = true
-    editMode = false
     canvas?.becomeFirstResponder()
+    concept?.editing = false
   }
   
   func renderConcept() {
     if let concept = concept, textField = textField {
       concept.stringValue = textField.stringValue
+      justRenderConcept()
+    }
+  }
+  
+  func justRenderConcept() {
+    if let concept = concept {
       let attrs = [
         NSForegroundColorAttributeName: NSColor.blackColor()
       ]
@@ -119,8 +146,9 @@ class ConceptView: NSControl, NSTextFieldDelegate {
   }
   
   func beforeEditing() {
-    textField?.editable = true
-    textField?.hidden = false
+    sprint("before editing")
+    enableTextField()
+    concept?.editing = true
   }
   
   override func keyDown(theEvent: NSEvent) {
@@ -128,6 +156,8 @@ class ConceptView: NSControl, NSTextFieldDelegate {
   }
   
   override func sprint(message: String) {
-    super.sprint("ConceptView \(concept?.identifier): \(message)")
+    if let concept = concept {
+      super.sprint("ConceptView [\(concept)]: \(message)")
+    }
   }
 }
