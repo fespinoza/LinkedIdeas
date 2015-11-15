@@ -13,7 +13,7 @@ protocol CanvasViewDelegate {
   func singleClick(event:NSEvent)
 }
 
-class CanvasView: NSControl {
+class CanvasView: NSView {
   
   var delegate: CanvasViewDelegate?
   var concepts = [Concept]() {
@@ -21,6 +21,18 @@ class CanvasView: NSControl {
       sprint("concepts length: \(concepts.count)")
       needsDisplay = true
     }
+  }
+  
+  override func accessibilityRole() -> String? {
+    return NSAccessibilityLayoutAreaRole
+  }
+  
+  override func accessibilityTitle() -> String? {
+    return "ACanvasView"
+  }
+  
+  override func accessibilityIsIgnored() -> Bool {
+    return false
   }
   
   override func drawRect(dirtyRect: NSRect) {
@@ -32,20 +44,18 @@ class CanvasView: NSControl {
     
     for concept in concepts {
       if !concept.added {
-        Swift.print("add concept view")
+        sprint("add concept view")
         let conceptView = ConceptView(frame: concept.rect)
         conceptView.concept = concept
         concept.added = true
-        concept.editing = true
         addSubview(conceptView)
         conceptView.canvas = self
-      } else {
-        concept.editing = false
       }
     }
   }
   
   override func mouseDown(theEvent: NSEvent) {
+    sprint("canvasView: mouse down")
     delegate?.singleClick(theEvent)
   }
   

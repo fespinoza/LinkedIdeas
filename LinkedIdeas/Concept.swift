@@ -8,12 +8,14 @@
 
 import Foundation
 
-class Concept {
-  var stringValue: String = "Insert Concpet"
+class Concept: NSObject, NSCoding {
+  static let placeholderString = "Insert Concept"
+  
+  var stringValue: String = Concept.placeholderString
   var point: NSPoint
   var added: Bool = false
   var editing: Bool = false
-  var identifier = random()
+  var identifier: Int
   var rect: NSRect {
     let offset: CGFloat = 20.0
     let size = stringValue.sizeWithAttributes(nil)
@@ -26,6 +28,36 @@ class Concept {
   
   init(point: NSPoint) {
     self.point = point
+    self.identifier = random()
+  }
+  
+  let stringValueKey = "stringValueKey"
+  let pointKey = "pointKey"
+  let identifierKey = "identifierKey"
+  let editingKey = "editingKey"
+  
+  required init?(coder aDecoder: NSCoder) {
+    point = aDecoder.decodePointForKey(pointKey)
+    identifier = aDecoder.decodeIntegerForKey(identifierKey)
+    editing = aDecoder.decodeBoolForKey(editingKey)
+    print("concept editing=\(editing)")
+    let string = aDecoder.decodeObjectForKey(stringValueKey) as? String
+    if let string = string {
+      stringValue = string
+    }
+  }
+  
+  override var description: String {
+    get {
+      return "[\(identifier)] '\(stringValue)' \(editing) \(point)"
+    }
+  }
+  
+  func encodeWithCoder(aCoder: NSCoder) {
+    aCoder.encodePoint(point, forKey: pointKey)
+    aCoder.encodeObject(stringValue, forKey: stringValueKey)
+    aCoder.encodeInteger(identifier, forKey: identifierKey)
+    aCoder.encodeBool(editing, forKey: editingKey)
   }
   
   func draw() {
