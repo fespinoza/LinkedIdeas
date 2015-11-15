@@ -13,7 +13,7 @@ protocol CanvasViewDelegate {
   func singleClick(event:NSEvent)
 }
 
-class CanvasView: NSControl {
+class CanvasView: NSView {
   
   var delegate: CanvasViewDelegate?
   var concepts = [Concept]() {

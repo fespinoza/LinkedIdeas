@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ConceptView: NSControl, NSTextFieldDelegate {
+class ConceptView: NSView, NSTextFieldDelegate {
   
   var concept: Concept? {
     didSet {
