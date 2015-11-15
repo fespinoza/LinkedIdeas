@@ -19,6 +19,21 @@ class ConceptView: NSControl, NSTextFieldDelegate {
   var textField: NSTextField?
   weak var canvas: CanvasView?
   
+  override func accessibilityRole() -> String? {
+    return NSAccessibilityLayoutItemRole
+  }
+  
+  override func accessibilityTitle() -> String? {
+    if let concept = concept {
+      return "AConceptView \(concept.identifier)"
+    }
+    return "AConceptView blank"
+  }
+  
+  override func accessibilityIsIgnored() -> Bool {
+    return false
+  }
+  
   override func drawRect(dirtyRect: NSRect) {
     super.drawRect(dirtyRect)
     sprint("draw rect")

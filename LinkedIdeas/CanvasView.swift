@@ -23,6 +23,18 @@ class CanvasView: NSControl {
     }
   }
   
+  override func accessibilityRole() -> String? {
+    return NSAccessibilityLayoutAreaRole
+  }
+  
+  override func accessibilityTitle() -> String? {
+    return "ACanvasView"
+  }
+  
+  override func accessibilityIsIgnored() -> Bool {
+    return false
+  }
+  
   override func drawRect(dirtyRect: NSRect) {
     super.drawRect(dirtyRect)
     
