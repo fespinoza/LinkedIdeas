@@ -9,7 +9,9 @@
 import Foundation
 
 class Concept: NSObject, NSCoding {
-  var stringValue: String = "Insert Concpet"
+  static let placeholderString = "Insert Concept"
+  
+  var stringValue: String = Concept.placeholderString
   var point: NSPoint
   var added: Bool = false
   var editing: Bool = false
