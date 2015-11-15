@@ -43,7 +43,11 @@ class ConceptView: NSView, NSTextFieldDelegate {
         sprint("adding text field")
         
         let textField = NSTextField(frame: bounds)
-        textField.placeholderString = concept.stringValue
+        if concept.stringValue == Concept.placeholderString {
+          textField.placeholderString = concept.stringValue
+        } else {
+          textField.stringValue = concept.stringValue
+        }
         textField.enabled = true
         textField.editable = true
         textField.delegate = self
@@ -65,7 +69,7 @@ class ConceptView: NSView, NSTextFieldDelegate {
           enableTextField()
         } else {
           sprint("just render it")
-          renderConcept()
+          justRenderConcept()
         }
       }
     }
@@ -85,7 +89,7 @@ class ConceptView: NSView, NSTextFieldDelegate {
     }
   }
   
-  // MARK: - NSTextFieldDelegate
+  // MARK: - Mouse events
   
   override func mouseDown(theEvent: NSEvent) {
     if let concept = concept {
@@ -94,6 +98,8 @@ class ConceptView: NSView, NSTextFieldDelegate {
     }
     sprint("conceptView: mouse down \(concept?.identifier)")
   }
+  
+  // MARK: - NSTextFieldDelegate
   
   func control(control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
     sprint("begin editing \(fieldEditor.string) \(concept?.identifier)")
@@ -153,10 +159,12 @@ class ConceptView: NSView, NSTextFieldDelegate {
   
   func justRenderConcept() {
     if let concept = concept {
-      let attrs = [
-        NSForegroundColorAttributeName: NSColor.blackColor()
-      ]
-      concept.stringValue.drawInRect(bounds, withAttributes: attrs)
+      if concept.stringValue != "" {
+        let attrs = [
+          NSForegroundColorAttributeName: NSColor.blackColor()
+        ]
+        concept.stringValue.drawInRect(bounds, withAttributes: attrs)
+      }
     }
   }
   
@@ -166,9 +174,13 @@ class ConceptView: NSView, NSTextFieldDelegate {
     concept?.editing = true
   }
   
+  // MARK: - Keyboard Events
+  
   override func keyDown(theEvent: NSEvent) {
     sprint("key down \(theEvent.characters)")
   }
+  
+  // MARK: - NSView Extensions
   
   override func sprint(message: String) {
     if let concept = concept {

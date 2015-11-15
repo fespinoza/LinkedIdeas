@@ -7,12 +7,12 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 ## Feature Roadmap
 
 - [x] click in 'canvas' and type a concept, press 'enter' and present it on screen
-- [ ] save and load files
-- [ ] add color to concepts
-- [ ] allow moving concepts
-- [ ] edit a concept
-- [ ] delete a concept
+- [x] edit a concept
+- [x] delete a concept
+- [x] save and load files
 - [ ] create a link between 2 concepts with description text
+- [ ] allow moving concepts
+- [ ] add color to concepts
 - [ ] resize concepts
 - [ ] edit link description text
 - [ ] delete link between concepts
@@ -41,5 +41,4 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 - [x] make Concept: NSCoding compatible
 - [x] serialize root elements
 - [x] deserialize elements
-- [ ] render deserialized elements correctly on canvas
-
+- [x] render deserialized elements correctly on canvas
