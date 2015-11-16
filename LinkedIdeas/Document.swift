@@ -8,10 +8,19 @@
 
 import Cocoa
 
+enum Mode: String {
+  case Concepts = "concepts"
+  case Links = "links"
+}
+
 class Document: NSDocument, CanvasViewDelegate {
   
   @IBOutlet weak var canvas: CanvasView!
+  @IBOutlet weak var conceptMode: NSButton!
+  @IBOutlet weak var linkMode: NSButton!
+  
   var readConcepts: [Concept]?
+  var editionMode = Mode.Concepts
   
   override init() {
     super.init()
@@ -62,4 +71,12 @@ class Document: NSDocument, CanvasViewDelegate {
     canvas.concepts.append(concept)
   }
   
+  @IBAction func changeMode(sender: NSButton) {
+    if sender == conceptMode {
+      editionMode = .Concepts
+    } else {
+      editionMode = .Links
+    }
+    print("Document: currentMode \(editionMode.rawValue)")
+  }
 }
