@@ -16,6 +16,7 @@ protocol CanvasViewDelegate {
 class CanvasView: NSView {
   
   var delegate: CanvasViewDelegate?
+  var mode: Mode?
   var concepts = [Concept]() {
     didSet {
       sprint("concepts length: \(concepts.count)")
@@ -56,9 +57,22 @@ class CanvasView: NSView {
   
   override func mouseDown(theEvent: NSEvent) {
     sprint("canvasView: mouse down")
-    delegate?.singleClick(theEvent)
+    if mode == Mode.Concepts {
+      delegate?.singleClick(theEvent)
+    }
   }
   
+  override func mouseDragged(theEvent: NSEvent) {
+    if mode == Mode.Links {
+      sprint("mouse dragged")
+    }
+  }
+  
+  override func mouseUp(theEvent: NSEvent) {
+    if mode == Mode.Links {
+      sprint("mouse up")
+    }
+  }
   
   func removeConcept(concept: Concept) {
     sprint("removing concept \(concept.identifier)")

@@ -46,6 +46,7 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 ### Create a link between 2 concepts with description text
 
 - [x] add selector _concept mode_ and _link mode_
+- [x] do not add a new concept on click while on _link mode_
 - [ ] call corresponding actions on drag link
 - [ ] call corresponding actions on drag end
 - [ ] show line when dragging the link

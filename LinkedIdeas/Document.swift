@@ -34,6 +34,7 @@ class Document: NSDocument, CanvasViewDelegate {
     if let readConcepts = readConcepts {
       canvas.concepts = readConcepts
     }
+    canvas.mode = editionMode
   }
   
   override class func autosavesInPlace() -> Bool {
@@ -77,6 +78,7 @@ class Document: NSDocument, CanvasViewDelegate {
     } else {
       editionMode = .Links
     }
+    canvas.mode = editionMode
     print("Document: currentMode \(editionMode.rawValue)")
   }
 }
