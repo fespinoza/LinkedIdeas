@@ -23,6 +23,16 @@ class CanvasView: NSView {
       needsDisplay = true
     }
   }
+  var arrowStart: NSPoint? {
+    didSet {
+      needsDisplay = true
+    }
+  }
+  var arrowEnd: NSPoint? {
+    didSet {
+      needsDisplay = true
+    }
+  }
   
   override func accessibilityRole() -> String? {
     return NSAccessibilityLayoutAreaRole
@@ -43,14 +53,29 @@ class CanvasView: NSView {
     NSColor.whiteColor().set()
     NSBezierPath(rect: bounds).fill()
     
-    for concept in concepts {
-      if !concept.added {
-        sprint("add concept view")
-        let conceptView = ConceptView(frame: concept.rect)
-        conceptView.concept = concept
-        concept.added = true
-        addSubview(conceptView)
-        conceptView.canvas = self
+    if mode == Mode.Links {
+      sprint("link mode")
+      if let arrowStart = arrowStart, arrowEnd = arrowEnd {
+        sprint("render arrow")
+        NSColor.blackColor().set()
+        let path = NSBezierPath()
+        path.moveToPoint(arrowStart)
+        path.lineToPoint(arrowEnd)
+        path.stroke()
+      }
+    }
+    
+    if mode == Mode.Concepts {
+      sprint("concept mode")
+      for concept in concepts {
+        if !concept.added {
+          sprint("add concept view")
+          let conceptView = ConceptView(frame: concept.rect)
+          conceptView.concept = concept
+          concept.added = true
+          addSubview(conceptView)
+          conceptView.canvas = self
+        }
       }
     }
   }
@@ -59,18 +84,23 @@ class CanvasView: NSView {
     sprint("canvasView: mouse down")
     if mode == Mode.Concepts {
       delegate?.singleClick(theEvent)
+    } else {
+      arrowStart = convertPoint(theEvent.locationInWindow, fromView: nil)
     }
   }
   
   override func mouseDragged(theEvent: NSEvent) {
     if mode == Mode.Links {
       sprint("mouse dragged")
+      arrowEnd = convertPoint(theEvent.locationInWindow, fromView: nil)
     }
   }
   
   override func mouseUp(theEvent: NSEvent) {
     if mode == Mode.Links {
       sprint("mouse up")
+      arrowStart = nil
+      arrowEnd = nil
     }
   }
   
