@@ -69,7 +69,12 @@ class ConceptView: NSView, NSTextFieldDelegate {
           enableTextField()
         } else {
           sprint("just render it")
-          justRenderConcept()
+          if concept.isEmpty() {
+            deleteConcept()
+          } else {
+            disableTextField()
+            justRenderConcept()
+          }
         }
       }
     }
@@ -137,6 +142,10 @@ class ConceptView: NSView, NSTextFieldDelegate {
   
   override func cancelOperation(sender: AnyObject?) {
     sprint("custom cancel operation")
+    deleteConcept()
+  }
+  
+  func deleteConcept() {
     afterEditing()
     canvas?.removeConcept(concept!)
     removeFromSuperview()
