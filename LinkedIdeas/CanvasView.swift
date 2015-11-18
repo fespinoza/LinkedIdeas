@@ -54,7 +54,6 @@ class CanvasView: NSView {
     NSBezierPath(rect: bounds).fill()
     
     if mode == Mode.Links {
-      sprint("link mode")
       if let arrowStart = arrowStart, arrowEnd = arrowEnd {
         sprint("render arrow")
         NSColor.blackColor().set()
@@ -66,7 +65,6 @@ class CanvasView: NSView {
     }
     
     if mode == Mode.Concepts {
-      sprint("concept mode")
       for concept in concepts {
         if !concept.added {
           sprint("add concept view")
@@ -82,6 +80,10 @@ class CanvasView: NSView {
   
   override func mouseDown(theEvent: NSEvent) {
     sprint("canvasView: mouse down")
+    for concept in concepts {
+      concept.editing = false
+    }
+    
     if mode == Mode.Concepts {
       delegate?.singleClick(theEvent)
     } else {
