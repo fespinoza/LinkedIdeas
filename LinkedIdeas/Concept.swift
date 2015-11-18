@@ -60,6 +60,10 @@ class Concept: NSObject, NSCoding {
     aCoder.encodeBool(editing, forKey: editingKey)
   }
   
+  func isEmpty() -> Bool {
+    return stringValue == "" || stringValue == Concept.placeholderString
+  }
+  
   func draw() {
     stringValue.drawAtPoint(rect.origin, withAttributes: nil)
   }
