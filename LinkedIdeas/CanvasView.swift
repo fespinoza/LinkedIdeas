@@ -89,6 +89,9 @@ class CanvasView: NSView {
       delegate?.singleClick(theEvent)
     } else {
       arrowStart = convertPoint(theEvent.locationInWindow, fromView: nil)
+    }
+  }
+  
   func mouseDownFromConcept(theEvent: NSEvent) {
     Swift.print("canvasView: mouse down from concept")
     if mode == Mode.Links {
