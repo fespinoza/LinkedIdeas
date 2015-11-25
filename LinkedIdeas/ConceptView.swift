@@ -58,6 +58,11 @@ class ConceptView: NSView, NSTextFieldDelegate {
         self.textField = textField
         renderedConcept = true
         
+        let trackingArea = NSTrackingArea(
+          rect: bounds, options: [.MouseEnteredAndExited, .ActiveInKeyWindow], owner: self, userInfo: nil
+        )
+        addTrackingArea(trackingArea)
+        
         if !concept.editing {
           sprint("concept not editing")
           disableTextField()
@@ -102,6 +107,15 @@ class ConceptView: NSView, NSTextFieldDelegate {
       needsDisplay = true
     }
     sprint("conceptView: mouse down \(concept?.identifier)")
+    canvas?.mouseDownFromConcept(theEvent)
+  }
+  
+  override func mouseEntered(theEvent: NSEvent) {
+    canvas?.targetConceptString = concept?.stringValue
+  }
+  
+  override func mouseExited(theEvent: NSEvent) {
+    canvas?.targetConceptString = nil
   }
   
   // MARK: - NSTextFieldDelegate

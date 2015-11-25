@@ -19,6 +19,7 @@ class Document: NSDocument, CanvasViewDelegate {
   @IBOutlet weak var conceptMode: NSButton!
   @IBOutlet weak var linkMode: NSButton!
   
+  @IBOutlet var ultraWindow: NSWindow!
   var readConcepts: [Concept]?
   var editionMode = Mode.Concepts
   
@@ -35,6 +36,7 @@ class Document: NSDocument, CanvasViewDelegate {
       canvas.concepts = readConcepts
     }
     canvas.mode = editionMode
+    ultraWindow.acceptsMouseMovedEvents = true
   }
   
   override class func autosavesInPlace() -> Bool {

@@ -33,6 +33,7 @@ class CanvasView: NSView {
       needsDisplay = true
     }
   }
+  var targetConceptString: String?
   
   override func accessibilityRole() -> String? {
     return NSAccessibilityLayoutAreaRole
@@ -88,6 +89,10 @@ class CanvasView: NSView {
       delegate?.singleClick(theEvent)
     } else {
       arrowStart = convertPoint(theEvent.locationInWindow, fromView: nil)
+  func mouseDownFromConcept(theEvent: NSEvent) {
+    Swift.print("canvasView: mouse down from concept")
+    if mode == Mode.Links {
+       arrowStart = convertPoint(theEvent.locationInWindow, fromView: nil)
     }
   }
   
@@ -101,8 +106,12 @@ class CanvasView: NSView {
   override func mouseUp(theEvent: NSEvent) {
     if mode == Mode.Links {
       sprint("mouse up")
-      arrowStart = nil
-      arrowEnd = nil
+      if let targetConceptString = targetConceptString {
+        sprint("create link to \(targetConceptString)")
+      } else {
+        arrowStart = nil
+        arrowEnd = nil
+      }
     }
   }
   
