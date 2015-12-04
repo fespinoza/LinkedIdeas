@@ -19,6 +19,8 @@ class ConceptView: NSView, NSTextFieldDelegate {
   var textField: NSTextField?
   weak var canvas: CanvasView?
   
+  // MARK: - Accessibility
+  
   override func accessibilityRole() -> String? {
     return NSAccessibilityLayoutItemRole
   }
@@ -33,6 +35,8 @@ class ConceptView: NSView, NSTextFieldDelegate {
   override func accessibilityIsIgnored() -> Bool {
     return false
   }
+  
+  // MARK: - NSView defaults
   
   override func drawRect(dirtyRect: NSRect) {
     super.drawRect(dirtyRect)
@@ -83,7 +87,14 @@ class ConceptView: NSView, NSTextFieldDelegate {
         }
       }
     }
+    
+    drawBorderForRect(bounds)
+    drawCenteredDotAtPoint(bounds.center)
+    let point = convertPoint((concept?.point)!, fromView: nil)
+    drawCenteredDotAtPoint(point, color: NSColor.redColor())
   }
+  
+  // MARK: - TextField events
   
   func enableTextField() {
     if let textField = textField {
@@ -102,20 +113,28 @@ class ConceptView: NSView, NSTextFieldDelegate {
   // MARK: - Mouse events
   
   override func mouseDown(theEvent: NSEvent) {
-    if let concept = concept {
-      concept.editing = true
-      needsDisplay = true
+    if canvas?.mode == .Concepts {
+      if let concept = concept {
+        concept.editing = true
+        needsDisplay = true
+      }
     }
     sprint("conceptView: mouse down \(concept?.identifier)")
     canvas?.mouseDownFromConcept(theEvent)
+    canvas?.originConceptIdentifier = concept?.identifier
   }
   
   override func mouseEntered(theEvent: NSEvent) {
-    canvas?.targetConceptString = concept?.stringValue
+    canvas?.targetConceptIdentifier = concept?.identifier
   }
   
   override func mouseExited(theEvent: NSEvent) {
-    canvas?.targetConceptString = nil
+    canvas?.targetConceptIdentifier = nil
+  }
+  
+  override func mouseUp(theEvent: NSEvent) {
+    canvas?.mouseUp(theEvent)
+    canvas?.originConceptIdentifier = nil
   }
   
   // MARK: - NSTextFieldDelegate
@@ -159,10 +178,18 @@ class ConceptView: NSView, NSTextFieldDelegate {
     deleteConcept()
   }
   
+  // MARK: - Concept functions
+  
   func deleteConcept() {
     afterEditing()
     canvas?.removeConcept(concept!)
     removeFromSuperview()
+  }
+  
+  func beforeEditing() {
+    sprint("before editing")
+    enableTextField()
+    concept?.editing = true
   }
   
   func afterEditing() {
@@ -191,12 +218,6 @@ class ConceptView: NSView, NSTextFieldDelegate {
     }
   }
   
-  func beforeEditing() {
-    sprint("before editing")
-    enableTextField()
-    concept?.editing = true
-  }
-  
   // MARK: - Keyboard Events
   
   override func keyDown(theEvent: NSEvent) {
@@ -206,8 +227,8 @@ class ConceptView: NSView, NSTextFieldDelegate {
   // MARK: - NSView Extensions
   
   override func sprint(message: String) {
-    if let concept = concept {
-      super.sprint("ConceptView [\(concept)]: \(message)")
-    }
+   // if let concept = concept {
+   //   super.sprint("ConceptView [\(concept)]: \(message)")
+   // }
   }
 }
