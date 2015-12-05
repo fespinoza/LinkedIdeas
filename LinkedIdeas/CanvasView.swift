@@ -16,30 +16,13 @@ protocol CanvasViewDelegate {
 }
 
 class CanvasView: NSView {
-  
   var delegate: CanvasViewDelegate?
   var mode: Mode?
-  var concepts = [Concept]() {
-    didSet {
-      sprint("concepts length: \(concepts.count)")
-      needsDisplay = true
-    }
-  }
-  var links = [Link]() {
-    didSet {
-      needsDisplay = true
-    }
-  }
-  var arrowStart: NSPoint? {
-    didSet {
-      needsDisplay = true
-    }
-  }
-  var arrowEnd: NSPoint? {
-    didSet {
-      needsDisplay = true
-    }
-  }
+  var concepts = [Concept]() { didSet { needsDisplay = true } }
+  var links = [Link]() { didSet { needsDisplay = true } }
+  var arrowStart: NSPoint? { didSet { needsDisplay = true } }
+  var arrowEnd: NSPoint? { didSet { needsDisplay = true } }
+  var clicks = [NSPoint]() { didSet { needsDisplay = true } }
   var originConceptIdentifier: Int?
   var targetConceptIdentifier: Int?
   
@@ -74,6 +57,8 @@ class CanvasView: NSView {
     if mode == Mode.Concepts {
       for concept in concepts { addConceptView(concept) }
     }
+    
+    for point in clicks { drawCenteredDotAtPoint(point, color: NSColor.cyanColor()) }
   }
   
   // MARK: - Drawing Functions
@@ -93,6 +78,9 @@ class CanvasView: NSView {
   
   override func mouseDown(theEvent: NSEvent) {
     sprint("canvasView: mouse down")
+    let point = convertPoint(theEvent.locationInWindow, fromView: nil)
+    clicks.append(point)
+    
     for concept in concepts {
       concept.editing = false
     }
