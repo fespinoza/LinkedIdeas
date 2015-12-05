@@ -14,6 +14,11 @@ extension NSRect {
     size = NSSize(width:  abs(p2.x - p1.x), height: abs(p2.y - p1.y))
   }
   
+  init(center: NSPoint, size: NSSize) {
+    origin = NSMakePoint(center.x - size.width / 2, center.y - size.height / 2)
+    self.size = size
+  }
+  
   var bottomLeftPoint: NSPoint { return origin }
   var bottomRightPoint: NSPoint { return NSMakePoint(origin.x + size.width, origin.y) }
   var topRightPoint: NSPoint { return NSMakePoint(origin.x + size.width, origin.y + size.height) }
