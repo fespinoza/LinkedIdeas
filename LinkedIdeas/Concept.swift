@@ -16,25 +16,24 @@ class Concept: NSObject, NSCoding {
   var added: Bool = false
   var editing: Bool = false
   var identifier: Int
+  let offset: CGFloat = 20.0
   var rect: NSRect {
-    let offset: CGFloat = 20.0
     let size = stringValue.sizeWithAttributes(nil)
-    let x = self.point.x - size.width / 2.0 - offset
-    let y = self.point.y - size.height / 2.0 - offset
-    let point = NSPoint(x: x, y: y)
-    let bigSize = NSSize(width: size.width + offset, height: size.height + offset)
-    return NSRect(origin: point, size: bigSize)
+    let bigSize = NSMakeSize(size.width + offset, size.height + offset)
+    return NSRect(center: point, size: bigSize)
+  }
+  let stringValueKey = "stringValueKey"
+  let pointKey = "pointKey"
+  let identifierKey = "identifierKey"
+  let editingKey = "editingKey"
+  override var description: String {
+    return "[\(identifier)] '\(stringValue)' \(editing) \(point)"
   }
   
   init(point: NSPoint) {
     self.point = point
     self.identifier = random()
   }
-  
-  let stringValueKey = "stringValueKey"
-  let pointKey = "pointKey"
-  let identifierKey = "identifierKey"
-  let editingKey = "editingKey"
   
   required init?(coder aDecoder: NSCoder) {
     point = aDecoder.decodePointForKey(pointKey)
@@ -44,12 +43,6 @@ class Concept: NSObject, NSCoding {
     let string = aDecoder.decodeObjectForKey(stringValueKey) as? String
     if let string = string {
       stringValue = string
-    }
-  }
-  
-  override var description: String {
-    get {
-      return "[\(identifier)] '\(stringValue)' \(editing) \(point)"
     }
   }
   
