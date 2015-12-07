@@ -37,6 +37,7 @@ class ConceptView: NSView, NSTextFieldDelegate {
   func initTextField() {
     textField.placeholderString = Concept.placeholderString
     textField.frame = NSRect(center: bounds.center, size: textFieldSize())
+    textField.alignment = .Center
     textField.delegate = self
     addSubview(textField)
   }
