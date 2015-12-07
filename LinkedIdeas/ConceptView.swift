@@ -9,7 +9,7 @@
 import Cocoa
 
 class ConceptView: NSView, NSTextFieldDelegate {
-  let concept: Concept
+  var concept: Concept { didSet { needsDisplay = true } }
   var added = false
   let textField: NSTextField
   
@@ -128,7 +128,6 @@ class ConceptView: NSView, NSTextFieldDelegate {
     sprint("insertNewLine")
     disableTextField()
     concept.editing = false
-    needsDisplay = true
   }
   
   override func cancelOperation(sender: AnyObject?) {
@@ -141,7 +140,6 @@ class ConceptView: NSView, NSTextFieldDelegate {
   override func mouseDown(theEvent: NSEvent) {
     sprint("mouse down")
     concept.editing = true
-    needsDisplay = true
   }
   
   override func sprint(message: String) {
@@ -173,7 +171,6 @@ class ConceptView: NSView, NSTextFieldDelegate {
     if canvas?.mode == .Concepts {
       if let concept = concept {
         concept.editing = true
-        needsDisplay = true
       }
     }
     sprint("conceptView: mouse down \(concept?.identifier)")
