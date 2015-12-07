@@ -11,8 +11,6 @@ import Cocoa
 protocol CanvasViewDelegate {
   // mouse events
   func singleClick(event:NSEvent)
-  
-  func createLink(originIdentifier: Int, _ targetIdentifier: Int)
 }
 
 class CanvasView: NSView {
@@ -128,7 +126,6 @@ class CanvasView: NSView {
   }
   
   func createLink(originIdentifier: Int, _ targetIdentifier: Int) {
-    delegate?.createLink(originIdentifier, targetIdentifier)
     let origin = concepts.filter({ element in element.identifier == originIdentifier }).first
     let target = concepts.filter({ element in element.identifier == targetIdentifier }).first
     if let origin = origin, target = target {
@@ -151,13 +148,22 @@ class CanvasView: NSView {
   
   func addConceptView(concept: Concept) {
     if !concept.added {
-      sprint("add concept view")
-      let conceptView = ConceptView(frame: concept.rect)
-      conceptView.concept = concept
+      sprint("add concept \(concept.identifier)")
+      let conceptView = ConceptView(
+        frame: conceptRectWithOffset(concept),
+        concept: concept
+      )
       concept.added = true
       addSubview(conceptView)
-      conceptView.canvas = self
     }
+  }
+  
+  let offsetX: CGFloat = 80.0
+  let offsetY: CGFloat = 40.0
+  func conceptRectWithOffset(concept: Concept) -> NSRect {
+    let size = concept.stringValue.sizeWithAttributes(nil)
+    let bigSize = NSMakeSize(size.width + offsetX, size.height + offsetY)
+    return NSRect(center: concept.point, size: bigSize)
   }
   
   func removeConcept(concept: Concept) {
