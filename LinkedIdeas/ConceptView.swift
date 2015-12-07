@@ -11,6 +11,7 @@ import Cocoa
 class ConceptView: NSView, NSTextFieldDelegate {
   var concept: Concept { didSet { needsDisplay = true } }
   var added = false
+  var canvas: CanvasView
   let textField: NSTextField
   
   var hoverTrackingArea: NSTrackingArea {
@@ -22,9 +23,10 @@ class ConceptView: NSView, NSTextFieldDelegate {
     )   
   }
   
-  init(frame frameRect: NSRect, concept: Concept) {
+  init(frame frameRect: NSRect, concept: Concept, canvas: CanvasView) {
     self.concept = concept
     textField = NSTextField()
+    self.canvas = canvas
     
     super.init(frame: frameRect)
 
@@ -140,6 +142,7 @@ class ConceptView: NSView, NSTextFieldDelegate {
   override func mouseDown(theEvent: NSEvent) {
     sprint("mouse down")
     concept.editing = true
+    if canvas.mode == .Concepts { concept.editing = true }
   }
   
   override func sprint(message: String) {
