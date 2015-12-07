@@ -96,7 +96,8 @@ class ConceptView: NSView, NSTextFieldDelegate {
   func debugDrawing() {
     drawBorderForRect(bounds)
     drawCenteredDotAtPoint(bounds.center)
-    drawCenteredDotAtPoint(concept.point, color: NSColor.redColor())
+    let conceptPoint = convertPoint(concept.point, fromView: nil)
+    drawCenteredDotAtPoint(conceptPoint, color: NSColor.redColor())
   }
 
   // MARK: - accessibility
