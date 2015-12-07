@@ -151,7 +151,8 @@ class CanvasView: NSView {
       sprint("add concept \(concept.identifier)")
       let conceptView = ConceptView(
         frame: conceptRectWithOffset(concept),
-        concept: concept
+        concept: concept,
+        canvas: self
       )
       concept.added = true
       addSubview(conceptView)
