@@ -63,6 +63,11 @@ class ConceptView: NSView, NSTextFieldDelegate {
     } else {
       drawConceptString()
     }
+    
+    if !added {
+      textField.becomeFirstResponder()
+      added = true
+    }
 
     debugDrawing()
   }
@@ -71,13 +76,13 @@ class ConceptView: NSView, NSTextFieldDelegate {
   
   func enableTextField() {
     sprint("enable text field")
-    textField.enabled = true
+    textField.editable = true
     textField.hidden = false
   }
 
   func disableTextField() {
     sprint("disable text field")
-    textField.enabled = false
+    textField.editable = false
     textField.hidden = true
   }
   
@@ -121,6 +126,11 @@ class ConceptView: NSView, NSTextFieldDelegate {
     }
   }
   
+  func control(control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
+    sprint("begin editing")
+    return true
+  }
+  
   func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
     concept.stringValue = textField.stringValue
     sprint("end editing \(concept.stringValue)")
@@ -142,7 +152,6 @@ class ConceptView: NSView, NSTextFieldDelegate {
   
   override func mouseDown(theEvent: NSEvent) {
     sprint("mouse down")
-    concept.editing = true
     if canvas.mode == .Concepts { concept.editing = true }
   }
   
