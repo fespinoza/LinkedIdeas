@@ -74,10 +74,6 @@ class Document: NSDocument, CanvasViewDelegate {
     canvas.concepts.append(concept)
   }
   
-  func createLink(originIdentifier: Int, _ targetIdentifier: Int) {
-    
-  }
-  
   @IBAction func changeMode(sender: NSButton) {
     if sender == conceptMode {
       editionMode = .Concepts
