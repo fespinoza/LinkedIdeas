@@ -11,16 +11,13 @@ import Foundation
 class Concept: NSObject, NSCoding {
   static let placeholderString = "Insert Concept"
   
-  var stringValue: String = Concept.placeholderString
+  var stringValue: String = ""
   var point: NSPoint
   var added: Bool = false
   var editing: Bool = false
   var identifier: Int
-  let offset: CGFloat = 20.0
   var rect: NSRect {
-    let size = stringValue.sizeWithAttributes(nil)
-    let bigSize = NSMakeSize(size.width + offset, size.height + offset)
-    return NSRect(center: point, size: bigSize)
+    return NSRect(center: point, size: stringValue.sizeWithAttributes(nil))
   }
   let stringValueKey = "stringValueKey"
   let pointKey = "pointKey"
