@@ -10,7 +10,12 @@ import Cocoa
 
 extension NSView {
   var area: CGFloat { return 8 }
-   
+  
+  func debugDrawing() {
+    drawBorderForRect(bounds)
+    drawCenteredDotAtPoint(bounds.center)
+  }
+  
   func drawDotAtPoint(point: NSPoint) {
     NSColor.redColor().set()
     var x: CGFloat = point.x
