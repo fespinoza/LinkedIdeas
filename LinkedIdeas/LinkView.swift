@@ -12,10 +12,12 @@ class LinkView: NSView {
   let link: Link
   let editing: Bool
   var textField: NSTextField?
+  let canvas: CanvasView
   
-  init(frame frameRect: NSRect, link: Link) {
+  init(frame frameRect: NSRect, link: Link, canvas: CanvasView) {
     self.link = link
     self.editing = true
+    self.canvas = canvas
     super.init(frame: frameRect)
   }
 
@@ -26,8 +28,7 @@ class LinkView: NSView {
   override func drawRect(dirtyRect: NSRect) {
     super.drawRect(dirtyRect)
     drawArrow()
-    drawBorderForRect(bounds)
-    drawCenteredDotAtPoint(bounds.center)
+    // debugDrawing()
     // if editing { drawTextField() }
   }
   
@@ -37,20 +38,11 @@ class LinkView: NSView {
     NSColor.redColor().set()
     let path = NSBezierPath()
     
-    let origin = convertPoint(link.originPoint, fromView: nil)
-    let target = convertPoint(link.targetPoint, fromView: nil)
-    sprint(origin.description())
-    sprint(target.description())
+    let origin = convertPoint(link.originPoint, fromView: canvas)
+    let target = convertPoint(link.targetPoint, fromView: canvas)
+    
     path.moveToPoint(origin)
     path.lineToPoint(target)
-    drawCenteredDotAtPoint(origin, color: NSColor.redColor())
-    drawCenteredDotAtPoint(target, color: NSColor.cyanColor())
-    
-    // check how draw arrow defines coordinates
-    
-    // LinkedIdeas.LinkView: (0.0, 0.0) [174.90625, 139.21875]
-    // LinkedIdeas.LinkView: (-20.0, 119.21875)
-    // LinkedIdeas.LinkView: (154.90625, -20.0)
     
     path.stroke()
   }
