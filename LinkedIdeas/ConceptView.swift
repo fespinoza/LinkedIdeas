@@ -69,7 +69,7 @@ class ConceptView: NSView, NSTextFieldDelegate {
       added = true
     }
 
-    debugDrawing()
+   //debugDrawing()
   }
   
   // MARK: - drawing
