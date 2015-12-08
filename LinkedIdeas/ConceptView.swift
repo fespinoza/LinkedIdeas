@@ -31,7 +31,7 @@ class ConceptView: NSView, NSTextFieldDelegate {
     super.init(frame: frameRect)
 
     initTextField()
-    //addTrackingArea(hoverTrackingArea)
+    addTrackingArea(hoverTrackingArea)
   }
   
   func initTextField() {
@@ -148,63 +148,38 @@ class ConceptView: NSView, NSTextFieldDelegate {
     removeFromSuperview()
   }
   
+  
   // MARK: - Mouse events
+  
+  override func mouseEntered(theEvent: NSEvent) {
+    canvas.targetConceptIdentifier = concept.identifier
+  }
+  
+  override func mouseExited(theEvent: NSEvent) {
+    canvas.targetConceptIdentifier = nil
+  }
   
   override func mouseDown(theEvent: NSEvent) {
     sprint("mouse down")
-    if canvas.mode == .Concepts { concept.editing = true }
+    canvas.mouseDownFromConcept(theEvent)
+    canvas.originConceptIdentifier = concept.identifier
+    if canvas.mode == Mode.Concepts { concept.editing = true }
   }
+  
+  override func mouseUp(theEvent: NSEvent) {
+    canvas.mouseUp(theEvent)
+    canvas.originConceptIdentifier = nil
+  }
+  
+  // MARK: - Others
   
   override func sprint(message: String) {
     Swift.print("ConceptView [\(concept.identifier)]: \(message)")
   }
+  
+  
 }
-
 /*
-
-  // MARK: - TextField events
-  
-  func enableTextField() {
-    if let textField = textField {
-      textField.hidden = false
-      textField.editable = true
-    }
-  }
-  
-  func disableTextField() {
-    if let textField = textField {
-      textField.hidden = true
-      textField.editable = false
-    }
-  }
-  
-  // MARK: - Mouse events
-  
-  override func mouseDown(theEvent: NSEvent) {
-    if canvas?.mode == .Concepts {
-      if let concept = concept {
-        concept.editing = true
-      }
-    }
-    sprint("conceptView: mouse down \(concept?.identifier)")
-    canvas?.mouseDownFromConcept(theEvent)
-    canvas?.originConceptIdentifier = concept?.identifier
-  }
-  
-  override func mouseEntered(theEvent: NSEvent) {
-    canvas?.targetConceptIdentifier = concept?.identifier
-  }
-  
-  override func mouseExited(theEvent: NSEvent) {
-    canvas?.targetConceptIdentifier = nil
-  }
-  
-  override func mouseUp(theEvent: NSEvent) {
-    canvas?.mouseUp(theEvent)
-    canvas?.originConceptIdentifier = nil
-  }
-  
-
   // MARK: - Concept functions
   
   func deleteConcept() {
