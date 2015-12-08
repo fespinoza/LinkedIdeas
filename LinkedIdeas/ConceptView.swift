@@ -58,6 +58,9 @@ class ConceptView: NSView, NSTextFieldDelegate {
     super.drawRect(dirtyRect)
     sprint("drawRect")
     
+    NSColor.yellowColor().set()
+    NSRectFill(bounds)
+    
     if concept.editing {
       enableTextField()
     } else {
