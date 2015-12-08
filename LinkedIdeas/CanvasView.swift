@@ -56,7 +56,7 @@ class CanvasView: NSView {
       for concept in concepts { addConceptView(concept) }
     }
     
-    for point in clicks { drawCenteredDotAtPoint(point, color: NSColor.cyanColor()) }
+    // for point in clicks { drawCenteredDotAtPoint(point, color: NSColor.cyanColor()) }
   }
   
   // MARK: - Drawing Functions
@@ -138,7 +138,7 @@ class CanvasView: NSView {
   func addLinkView(link: Link) {
     if !link.added {
       sprint("add link view")
-      let linkView = LinkView(frame: link.rect, link: link)
+      let linkView = LinkView(frame: link.rect, link: link, canvas: self)
       addSubview(linkView)
       link.added = true
     }
@@ -149,8 +149,9 @@ class CanvasView: NSView {
   func addConceptView(concept: Concept) {
     if !concept.added {
       sprint("add concept \(concept.identifier)")
+      let conceptRect = conceptRectWithOffset(concept)
       let conceptView = ConceptView(
-        frame: conceptRectWithOffset(concept),
+        frame: conceptRect,
         concept: concept,
         canvas: self
       )
