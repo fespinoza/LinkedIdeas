@@ -47,8 +47,8 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 
 - [x] add selector _concept mode_ and _link mode_
 - [x] do not add a new concept on click while on _link mode_
-- [ ] call corresponding actions on drag link
-- [ ] call corresponding actions on drag end
+- [x] call corresponding actions on drag link
+- [x] call corresponding actions on drag end
 - [x] show line when dragging the link
 - [ ] show a text field when mouse is released
 - [ ] store links in file
