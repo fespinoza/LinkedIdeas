@@ -58,9 +58,6 @@ class ConceptView: NSView, NSTextFieldDelegate {
     super.drawRect(dirtyRect)
     sprint("drawRect")
     
-    NSColor.yellowColor().set()
-    NSRectFill(bounds)
-    
     if concept.editing {
       enableTextField()
     } else {
@@ -71,8 +68,6 @@ class ConceptView: NSView, NSTextFieldDelegate {
       textField.becomeFirstResponder()
       added = true
     }
-    
-    drawBorderForRect(bounds)
   }
   
   // MARK: - drawing
