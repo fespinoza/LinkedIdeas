@@ -11,7 +11,7 @@ import Foundation
 class Link {
   var origin: Concept
   var target: Concept
-  var stringValue: String?
+  var stringValue: String = ""
   var originPoint: NSPoint { return origin.point }
   var targetPoint: NSPoint { return target.point }
   var rect: NSRect { return NSRect(p1: originPoint, p2: targetPoint) }
@@ -24,10 +24,6 @@ class Link {
   }
   
   func description() -> String {
-    if let stringValue = stringValue {
-      return "\(origin.stringValue) \(stringValue) \(target.stringValue)"
-    } else {
-      return "\(origin.stringValue) - \(target.stringValue)"
-    }
+    return "\(origin.stringValue) \(stringValue) \(target.stringValue)"
   }
 }
