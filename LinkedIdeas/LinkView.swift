@@ -8,19 +8,23 @@
 
 import Cocoa
 
-class LinkView: NSView {
+class LinkView: NSView, NSTextFieldDelegate {
   let link: Link
-  let editing: Bool
-  var textField: NSTextField?
+  var editing: Bool
+  var added: Bool
+  var textField: NSTextField
   let canvas: CanvasView
   
   init(frame frameRect: NSRect, link: Link, canvas: CanvasView) {
     self.link = link
+    self.added = false
     self.editing = true
     self.canvas = canvas
+    self.textField = NSTextField()
     super.init(frame: frameRect)
+    initTextField()
   }
-
+  
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -28,11 +32,31 @@ class LinkView: NSView {
   override func drawRect(dirtyRect: NSRect) {
     super.drawRect(dirtyRect)
     drawArrow()
-    // debugDrawing()
-    // if editing { drawTextField() }
+    
+    if editing {
+      drawTextField()
+    } else {
+      drawStringValue()
+    }
+    
+    if !added {
+      textField.becomeFirstResponder()
+      added = true
+    }
+    
+    //    debugDrawing()
   }
   
   // MARK: - Drawing methods
+  
+  func drawStringValue() {
+    sprint("draw Concept")
+    let stringSize = link.stringValue.sizeWithAttributes(nil)
+    let stringRect = NSRect(center: bounds.center, size: stringSize)
+    NSColor.whiteColor().set()
+    NSRectFill(stringRect)
+    link.stringValue.drawInRect(stringRect, withAttributes: nil)
+  }
   
   func drawArrow() {
     NSColor.redColor().set()
@@ -48,48 +72,63 @@ class LinkView: NSView {
   }
   
   func drawTextField() {
-    if (textField == nil) { initTextField() }
     toggleTextField()
-  }
-  
-  func drawLinkText() {
-    if !editing {
-      if let string = link.stringValue {
-        let attrs = [
-          NSForegroundColorAttributeName: NSColor.blackColor()
-        ]
-        string.drawInRect(textFieldRect(), withAttributes: attrs)
-      }
-    }
-  }
-  
-  // MARK: - View Logic Methods
-  
-  func middlePoint() -> NSPoint {
-    let x = (link.originPoint.x + link.targetPoint.x) / 2.0
-    let y = (link.originPoint.y + link.targetPoint.y) / 2.0
-    let point = NSPoint(x: x, y: y)
-    return convertPoint(point, fromView: nil)
   }
   
   // MARK: - TextFieldLogic
   
   func initTextField() {
-    let textField = NSTextField(frame: textFieldRect())
+    textField.frame = textFieldRect()
     textField.placeholderString = "name"
-    textField.enabled = true
-    textField.editable = true
-    self.textField = textField
+    textField.delegate = self
     addSubview(textField)
-    textField.becomeFirstResponder()
   }
   
   func textFieldRect() -> NSRect {
-    let size = NSSize(width: 20.0, height: 10.0)
-    var middlePointFixed = self.middlePoint()
-    middlePointFixed.x -= size.width / 2.0
-    middlePointFixed.y -= size.height / 2.0
-    return NSRect(origin: middlePointFixed, size: size)
+    let size = NSSize(width: 30.0, height: 20.0)
+    return NSRect(center: bounds.center, size: size)
+  }
+  
+  // MARK: - NSTextFieldDelegate
+  
+  func control(control: NSControl, textView: NSTextView, doCommandBySelector commandSelector: Selector) -> Bool {
+    switch commandSelector {
+    case "insertNewline:":
+      insertNewline(control)
+      return true
+    case "cancelOperation:":
+      cancelOperation(control)
+      return true
+    default:
+      return false
+    }
+  }
+  
+  func control(control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
+    sprint("begin editing")
+    return true
+  }
+  
+  func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
+    link.stringValue = textField.stringValue
+    sprint("end editing \(link.stringValue)")
+    return true
+  }
+  
+  override func insertNewline(sender: AnyObject?) {
+    sprint("insertNewLine")
+    disableTextField()
+    editing = false
+    needsDisplay = true
+  }
+  
+  override func cancelOperation(sender: AnyObject?) {
+    sprint("cancelOperation")
+    removeFromSuperview()
+  }
+  
+  override func keyDown(theEvent: NSEvent) {
+    sprint("key down")
   }
   
   // MARK: - TextField events
@@ -103,45 +142,27 @@ class LinkView: NSView {
   }
   
   func enableTextField() {
-    if let textField = textField {
-      textField.hidden = false
-      textField.editable = true
-    }
+    textField.hidden = false
+    textField.editable = true
   }
   
   func disableTextField() {
-    if let textField = textField {
-      textField.hidden = true
-      textField.editable = false
-    }
+    textField.hidden = true
+    textField.editable = false
+  }
+  
+  // MARK: - Mouse Events
+  
+  override func mouseDown(theEvent: NSEvent) {
+    sprint("clicking on link")
+    editing = true
+    enableTextField()
+    textField.becomeFirstResponder()
   }
   
   // MARK: - others
   
   func desc() -> String {
     return "\(bounds.origin.description()) [\(bounds.size.width), \(bounds.size.height)]"
-  }
-}
-
-extension NSView {
-  func drawBounds() {
-    NSColor.blueColor().set()
-    let path = NSBezierPath()
-    let p1 = bounds.origin
-    let p2 = NSPoint(x: bounds.origin.x + bounds.size.width, y: bounds.origin.y)
-    let p3 = NSPoint(x: bounds.origin.x + bounds.size.width, y: bounds.origin.y + bounds.size.height)
-    let p4 = NSPoint(x: bounds.origin.x, y: bounds.origin.y + bounds.size.height)
-    path.moveToPoint(p1)
-    path.lineToPoint(p2)
-    path.lineToPoint(p3)
-    path.lineToPoint(p4)
-    path.lineToPoint(p1)
-    path.stroke()
-  }
-}
-
-extension NSPoint {
-  func description() -> String {
-    return "(\(x), \(y))"
   }
 }
