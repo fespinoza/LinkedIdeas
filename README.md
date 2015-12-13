@@ -50,13 +50,13 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 - [x] call corresponding actions on drag link
 - [x] call corresponding actions on drag end
 - [x] show line when dragging the link
-- [ ] show a text field when mouse is released
+- [x] show a text field when mouse is released
+- [x] enter will render the text
+- [ ] click links to edit its text
 - [ ] store links in file
 - [ ] load links from file
-- [ ] click links to edit its text
 - [ ] click link to select it
 - [ ] press delete key when selected link to delete it
-- [ ] enter will render the text
 
 ### Pending
 
@@ -64,3 +64,5 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 - [ ] improve unit testing to components
 - [ ] click with position in UI testing
 - [ ] improve UI testing
+- [ ] highlight of selected elements
+- [ ] refactoring text field editable based view
