@@ -68,6 +68,8 @@ class ConceptView: NSView, NSTextFieldDelegate {
       textField.becomeFirstResponder()
       added = true
     }
+    
+    //    debugDrawing()
   }
   
   // MARK: - drawing
@@ -88,6 +90,8 @@ class ConceptView: NSView, NSTextFieldDelegate {
     sprint("draw Concept")
     let stringSize = concept.stringValue.sizeWithAttributes(nil)
     let stringRect = NSRect(center: bounds.center, size: stringSize)
+    NSColor.cyanColor().set()
+    NSRectFill(stringRect)
     concept.stringValue.drawInRect(stringRect, withAttributes: nil)
   }
   
