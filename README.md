@@ -52,7 +52,7 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 - [x] show line when dragging the link
 - [x] show a text field when mouse is released
 - [x] enter will render the text
-- [ ] click links to edit its text
+- [x] click links to edit its text
 - [ ] store links in file
 - [ ] load links from file
 - [ ] click link to select it

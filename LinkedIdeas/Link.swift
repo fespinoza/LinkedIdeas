@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Link {
+class Link: NSObject, NSCoding {
   var origin: Concept
   var target: Concept
   var stringValue: String = ""
@@ -23,7 +23,17 @@ class Link {
     self.added  = false
   }
   
-  func description() -> String {
-    return "\(origin.stringValue) \(stringValue) \(target.stringValue)"
+  let stringValueKey = "StringValueKey"
+  required init?(coder aDecoder: NSCoder) {
+    origin = Concept(coder: aDecoder)!
+    target = Concept(coder: aDecoder)!
+    stringValue = aDecoder.decodeObjectForKey(stringValueKey) as! String
+    added = false
+  }
+  
+  func encodeWithCoder(aCoder: NSCoder) {
+    aCoder.encodeObject(stringValue, forKey: stringValueKey)
+    origin.encodeWithCoder(aCoder)
+    target.encodeWithCoder(aCoder)
   }
 }
