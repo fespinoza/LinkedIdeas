@@ -44,8 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRect+PointHelpers.swift"; sourceTree = "<group>"; };
-		9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+Debugging.swift"; sourceTree = "<group>"; };
+		9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSRect+PointHelpers.swift"; path = "../NSRect+PointHelpers.swift"; sourceTree = "<group>"; };
+		9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+Debugging.swift"; path = "../NSView+Debugging.swift"; sourceTree = "<group>"; };
 		9B2F1D9C1BE7CFE70090CC18 /* LinkedIdeas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkedIdeas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B2F1DA11BE7CFE70090CC18 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -97,8 +97,6 @@
 		9B2F1D931BE7CFE70090CC18 = {
 			isa = PBXGroup;
 			children = (
-				9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */,
-				9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */,
 				9B2F1D9E1BE7CFE70090CC18 /* LinkedIdeas */,
 				9B2F1DB31BE7CFE80090CC18 /* LinkedIdeasTests */,
 				9B2F1DBE1BE7CFE80090CC18 /* LinkedIdeasUITests */,
@@ -119,6 +117,8 @@
 		9B2F1D9E1BE7CFE70090CC18 /* LinkedIdeas */ = {
 			isa = PBXGroup;
 			children = (
+				9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */,
+				9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */,
 				9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */,
 				9B2F1DA11BE7CFE70090CC18 /* Document.swift */,
 				9B2F1DA31BE7CFE70090CC18 /* Document.xib */,

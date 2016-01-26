@@ -57,6 +57,7 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 - [ ] load links from file
 - [ ] click link to select it
 - [ ] press delete key when selected link to delete it
+- [ ] add arrow mark
 
 ### Pending
 

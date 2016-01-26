@@ -49,12 +49,13 @@ class CanvasView: NSView {
     
     if mode == Mode.Links {
       drawCreationLinkArrow()
-      for link in links { addLinkView(link) }
+      //      for link in links { addLinkView(link) }
     }
     
-    if mode == Mode.Concepts {
-      for concept in concepts { addConceptView(concept) }
-    }
+    //    if mode == Mode.Concepts {
+    for link in links { addLinkView(link) }
+    for concept in concepts { addConceptView(concept) }
+    //    }
     
     // for point in clicks { drawCenteredDotAtPoint(point, color: NSColor.cyanColor()) }
   }
