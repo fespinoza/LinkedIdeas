@@ -62,6 +62,7 @@ class ConceptView: NSView, NSTextFieldDelegate {
       enableTextField()
     } else {
       drawConceptString()
+      disableTextField()
     }
     
     if !added {
