@@ -73,6 +73,8 @@ class Document: NSDocument, CanvasViewDelegate {
     // Insert code here to write your document to data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning nil.
     // You can also choose to override fileWrapperOfType:error:, writeToURL:ofType:error:, or writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
     print("saving to a file")
+    documentData.writeConcepts = canvas.concepts
+    documentData.writeLinks = canvas.links
     return NSKeyedArchiver.archivedDataWithRootObject(documentData)
   }
   
