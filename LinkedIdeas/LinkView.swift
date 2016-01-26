@@ -18,7 +18,7 @@ class LinkView: NSView, NSTextFieldDelegate {
   init(frame frameRect: NSRect, link: Link, canvas: CanvasView) {
     self.link = link
     self.added = false
-    self.editing = true
+    self.editing = link.editing
     self.canvas = canvas
     self.textField = NSTextField()
     super.init(frame: frameRect)
@@ -37,6 +37,7 @@ class LinkView: NSView, NSTextFieldDelegate {
       drawTextField()
     } else {
       drawStringValue()
+      disableTextField()
     }
     
     if !added {

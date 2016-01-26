@@ -16,6 +16,7 @@ class Link: NSObject, NSCoding {
   var targetPoint: NSPoint { return target.point }
   var rect: NSRect { return NSRect(p1: originPoint, p2: targetPoint) }
   var added: Bool
+  var editing: Bool
   override var description: String {
     return "'\(origin.stringValue)' \(stringValue) '\(target.stringValue)'"
   }
@@ -24,6 +25,7 @@ class Link: NSObject, NSCoding {
     self.origin = origin
     self.target = target
     self.added  = false
+    self.editing = false
   }
   
   let stringValueKey = "StringValueKey"
@@ -35,6 +37,7 @@ class Link: NSObject, NSCoding {
     origin = aDecoder.decodeObjectForKey(originKey) as! Concept
     target = aDecoder.decodeObjectForKey(targetKey) as! Concept
     added = false
+    editing = false
   }
   
   func encodeWithCoder(aCoder: NSCoder) {

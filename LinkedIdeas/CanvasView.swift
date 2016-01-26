@@ -131,6 +131,7 @@ class CanvasView: NSView {
     if let origin = origin, target = target {
       sprint("add link")
       let link = Link(origin: origin, target: target)
+      link.editing = true
       links.append(link)
     }
   }
