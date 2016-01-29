@@ -53,11 +53,8 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 - [x] show a text field when mouse is released
 - [x] enter will render the text
 - [x] click links to edit its text
-- [ ] store links in file
-- [ ] load links from file
-- [ ] click link to select it
-- [ ] press delete key when selected link to delete it
-- [ ] add arrow mark
+- [x] store links in file
+- [x] load links from file
 
 ### Pending
 
@@ -67,3 +64,6 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 - [ ] improve UI testing
 - [ ] highlight of selected elements
 - [ ] refactoring text field editable based view
+- [ ] click link to select it
+- [ ] press delete key when selected link to delete it
+- [ ] add arrow mark
