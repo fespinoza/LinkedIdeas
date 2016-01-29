@@ -9,115 +9,114 @@
 import Cocoa
 
 class ConceptView: NSView, NSTextFieldDelegate {
+  var concept: Concept { didSet { needsDisplay = true } }
+  var added = false
+  var canvas: CanvasView
+  let textField: NSTextField
   
-  var concept: Concept? {
-    didSet {
-      needsDisplay = true
+  var hoverTrackingArea: NSTrackingArea {
+    return NSTrackingArea(
+      rect: bounds,
+      options: [.MouseEnteredAndExited, .ActiveInKeyWindow],
+      owner: self,
+      userInfo: nil
+    )
+  }
+  
+  init(frame frameRect: NSRect, concept: Concept, canvas: CanvasView) {
+    self.concept = concept
+    textField = NSTextField()
+    self.canvas = canvas
+    
+    super.init(frame: frameRect)
+    
+    initTextField()
+    addTrackingArea(hoverTrackingArea)
+  }
+  
+  func initTextField() {
+    textField.placeholderString = Concept.placeholderString
+    textField.frame = NSRect(center: bounds.center, size: textFieldSize())
+    textField.alignment = .Center
+    textField.delegate = self
+    addSubview(textField)
+  }
+  
+  func textFieldSize() -> NSSize {
+    if concept.stringValue == "" {
+      return NSMakeSize(80, 30)
+    } else {
+      return concept.stringValue.sizeWithAttributes(nil)
     }
   }
-  var renderedConcept = false
-  var textField: NSTextField?
-  weak var canvas: CanvasView?
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  override func drawRect(dirtyRect: NSRect) {
+    super.drawRect(dirtyRect)
+    sprint("drawRect")
+    
+    if concept.editing {
+      enableTextField()
+    } else {
+      drawConceptString()
+      disableTextField()
+    }
+    
+    if !added {
+      textField.becomeFirstResponder()
+      added = true
+    }
+    
+    // debugDrawing()
+  }
+  
+  // MARK: - drawing
+  
+  func enableTextField() {
+    sprint("enable text field")
+    textField.editable = true
+    textField.hidden = false
+  }
+  
+  func disableTextField() {
+    sprint("disable text field")
+    textField.editable = false
+    textField.hidden = true
+  }
+  
+  func drawConceptString() {
+    sprint("draw Concept")
+    let stringSize = concept.stringValue.sizeWithAttributes(nil)
+    let stringRect = NSRect(center: bounds.center, size: stringSize)
+    NSColor.cyanColor().set()
+    NSRectFill(stringRect)
+    concept.stringValue.drawInRect(stringRect, withAttributes: nil)
+  }
+  
+  override func debugDrawing() {
+    super.debugDrawing()
+    let conceptPoint = convertPoint(concept.point, fromView: canvas)
+    drawCenteredDotAtPoint(conceptPoint, color: NSColor.redColor())
+  }
+  
+  // MARK: - accessibility
   
   override func accessibilityRole() -> String? {
     return NSAccessibilityLayoutItemRole
   }
   
   override func accessibilityTitle() -> String? {
-    if let concept = concept {
-      return "AConceptView \(concept.identifier)"
-    }
-    return "AConceptView blank"
+    return "AConceptView \(concept.identifier)"
   }
   
-  override func accessibilityIsIgnored() -> Bool {
-    return false
-  }
-  
-  override func drawRect(dirtyRect: NSRect) {
-    super.drawRect(dirtyRect)
-    sprint("draw rect")
-    
-    if let concept = concept {
-      if !renderedConcept {
-        sprint("adding text field")
-        
-        let textField = NSTextField(frame: bounds)
-        if concept.stringValue == Concept.placeholderString {
-          textField.placeholderString = concept.stringValue
-        } else {
-          textField.stringValue = concept.stringValue
-        }
-        textField.enabled = true
-        textField.editable = true
-        textField.delegate = self
-        
-        addSubview(textField)
-        textField.becomeFirstResponder()
-        
-        self.textField = textField
-        renderedConcept = true
-        
-        if !concept.editing {
-          sprint("concept not editing")
-          disableTextField()
-          justRenderConcept()
-        }
-      } else {
-        if concept.editing {
-          sprint("edit concept")
-          enableTextField()
-        } else {
-          sprint("just render it")
-          justRenderConcept()
-        }
-      }
-    }
-  }
-  
-  func enableTextField() {
-    if let textField = textField {
-      textField.hidden = false
-      textField.editable = true
-    }
-  }
-  
-  func disableTextField() {
-    if let textField = textField {
-      textField.hidden = true
-      textField.editable = false
-    }
-  }
-  
-  // MARK: - Mouse events
-  
-  override func mouseDown(theEvent: NSEvent) {
-    if let concept = concept {
-      concept.editing = true
-      needsDisplay = true
-    }
-    sprint("conceptView: mouse down \(concept?.identifier)")
-  }
+  override func accessibilityIsIgnored() -> Bool { return false }
   
   // MARK: - NSTextFieldDelegate
   
-  func control(control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
-    sprint("begin editing \(fieldEditor.string) \(concept?.identifier)")
-    beforeEditing()
-    return true
-  }
-  
-  func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
-    if let concept = concept, textField = textField {
-      concept.stringValue = textField.stringValue
-    }
-    sprint("end editing \(concept?.stringValue)")
-    afterEditing()
-    return true
-  }
-  
   func control(control: NSControl, textView: NSTextView, doCommandBySelector commandSelector: Selector) -> Bool {
-    sprint("do command \(commandSelector.description)")
     switch commandSelector {
     case "insertNewline:":
       insertNewline(control)
@@ -130,61 +129,62 @@ class ConceptView: NSView, NSTextFieldDelegate {
     }
   }
   
+  func control(control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
+    sprint("begin editing")
+    return true
+  }
+  
+  func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
+    concept.stringValue = textField.stringValue
+    sprint("end editing \(concept.stringValue)")
+    return true
+  }
+  
   override func insertNewline(sender: AnyObject?) {
-    sprint("insert new line")
-    afterEditing()
+    sprint("insertNewLine")
+    disableTextField()
+    concept.editing = false
   }
   
   override func cancelOperation(sender: AnyObject?) {
-    sprint("custom cancel operation")
-    afterEditing()
-    canvas?.removeConcept(concept!)
+    sprint("cancelOperation")
     removeFromSuperview()
   }
   
-  func afterEditing() {
-    sprint("after editing")
-    disableTextField()
-    textField?.resignFirstResponder()
-    canvas?.becomeFirstResponder()
-    concept?.editing = false
-  }
-  
-  func renderConcept() {
-    if let concept = concept, textField = textField {
-      concept.stringValue = textField.stringValue
-      justRenderConcept()
-    }
-  }
-  
-  func justRenderConcept() {
-    if let concept = concept {
-      if concept.stringValue != "" {
-        let attrs = [
-          NSForegroundColorAttributeName: NSColor.blackColor()
-        ]
-        concept.stringValue.drawInRect(bounds, withAttributes: attrs)
-      }
-    }
-  }
-  
-  func beforeEditing() {
-    sprint("before editing")
-    enableTextField()
-    concept?.editing = true
-  }
-  
-  // MARK: - Keyboard Events
-  
   override func keyDown(theEvent: NSEvent) {
-    sprint("key down \(theEvent.characters)")
+    sprint("key down")
   }
   
-  // MARK: - NSView Extensions
+  // MARK: - Mouse events
+  
+  override func mouseEntered(theEvent: NSEvent) {
+    canvas.targetConceptIdentifier = concept.identifier
+  }
+  
+  override func mouseExited(theEvent: NSEvent) {
+    canvas.targetConceptIdentifier = nil
+  }
+  
+  override func mouseDown(theEvent: NSEvent) {
+    sprint("mouse down")
+    canvas.mouseDownFromConcept(theEvent)
+    canvas.originConceptIdentifier = concept.identifier
+    if canvas.mode == Mode.Concepts {
+      concept.editing = true
+      enableTextField()
+      textField.becomeFirstResponder()
+    }
+  }
+  
+  override func mouseUp(theEvent: NSEvent) {
+    canvas.mouseUp(theEvent)
+    canvas.originConceptIdentifier = nil
+  }
+  
+  // MARK: - Others
   
   override func sprint(message: String) {
-    if let concept = concept {
-      super.sprint("ConceptView [\(concept)]: \(message)")
-    }
+    Swift.print("ConceptView [\(concept.identifier)]: \(message)")
   }
+  
 }

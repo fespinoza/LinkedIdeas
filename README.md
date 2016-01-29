@@ -42,3 +42,30 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 - [x] serialize root elements
 - [x] deserialize elements
 - [x] render deserialized elements correctly on canvas
+
+### Create a link between 2 concepts with description text
+
+- [x] add selector _concept mode_ and _link mode_
+- [x] do not add a new concept on click while on _link mode_
+- [x] call corresponding actions on drag link
+- [x] call corresponding actions on drag end
+- [x] show line when dragging the link
+- [x] show a text field when mouse is released
+- [x] enter will render the text
+- [x] click links to edit its text
+- [x] store links in file
+- [x] load links from file
+
+## feature flag logging with tags
+
+### Pending
+
+- [ ] handle click outside of ConceptView
+- [ ] improve unit testing to components
+- [ ] click with position in UI testing
+- [ ] improve UI testing
+- [ ] highlight of selected elements
+- [ ] refactoring text field editable based view
+- [ ] click link to select it
+- [ ] press delete key when selected link to delete it
+- [ ] add arrow mark

@@ -14,14 +14,17 @@ protocol CanvasViewDelegate {
 }
 
 class CanvasView: NSView {
-  
   var delegate: CanvasViewDelegate?
-  var concepts = [Concept]() {
-    didSet {
-      sprint("concepts length: \(concepts.count)")
-      needsDisplay = true
-    }
-  }
+  var mode: Mode?
+  var concepts = [Concept]() { didSet { needsDisplay = true } }
+  var links = [Link]() { didSet { needsDisplay = true } }
+  var arrowStart: NSPoint? { didSet { needsDisplay = true } }
+  var arrowEnd: NSPoint? { didSet { needsDisplay = true } }
+  var clicks = [NSPoint]() { didSet { needsDisplay = true } }
+  var originConceptIdentifier: Int?
+  var targetConceptIdentifier: Int?
+  
+  // MARK: - accessibility
   
   override func accessibilityRole() -> String? {
     return NSAccessibilityLayoutAreaRole
@@ -35,6 +38,8 @@ class CanvasView: NSView {
     return false
   }
   
+  // MARK: - NSView defaults
+  
   override func drawRect(dirtyRect: NSRect) {
     super.drawRect(dirtyRect)
     
@@ -42,23 +47,124 @@ class CanvasView: NSView {
     NSColor.whiteColor().set()
     NSBezierPath(rect: bounds).fill()
     
-    for concept in concepts {
-      if !concept.added {
-        sprint("add concept view")
-        let conceptView = ConceptView(frame: concept.rect)
-        conceptView.concept = concept
-        concept.added = true
-        addSubview(conceptView)
-        conceptView.canvas = self
-      }
+    if mode == Mode.Links {
+      drawCreationLinkArrow()
+      //      for link in links { addLinkView(link) }
+    }
+    
+    //    if mode == Mode.Concepts {
+    for link in links { addLinkView(link) }
+    for concept in concepts { addConceptView(concept) }
+    //    }
+    
+    // for point in clicks { drawCenteredDotAtPoint(point, color: NSColor.cyanColor()) }
+  }
+  
+  // MARK: - Drawing Functions
+  
+  func drawCreationLinkArrow() {
+    if let arrowStart = arrowStart, arrowEnd = arrowEnd {
+      sprint("render arrow")
+      NSColor.blackColor().set()
+      let path = NSBezierPath()
+      path.moveToPoint(arrowStart)
+      path.lineToPoint(arrowEnd)
+      path.stroke()
     }
   }
   
+  // MARK: - Mouse Events
+  
   override func mouseDown(theEvent: NSEvent) {
     sprint("canvasView: mouse down")
-    delegate?.singleClick(theEvent)
+    let point = convertPoint(theEvent.locationInWindow, fromView: nil)
+    clicks.append(point)
+    
+    for concept in concepts {
+      concept.editing = false
+    }
+    
+    if mode == Mode.Concepts {
+      delegate?.singleClick(theEvent)
+    } else {
+      arrowStart = convertPoint(theEvent.locationInWindow, fromView: nil)
+    }
   }
   
+  func mouseDownFromConcept(theEvent: NSEvent) {
+    if mode == Mode.Links {
+      arrowStart = convertPoint(theEvent.locationInWindow, fromView: nil)
+    }
+  }
+  
+  override func mouseDragged(theEvent: NSEvent) {
+    if mode == Mode.Links {
+      sprint("mouse dragged")
+      arrowEnd = convertPoint(theEvent.locationInWindow, fromView: nil)
+    }
+  }
+  
+  override func mouseUp(theEvent: NSEvent) {
+    if mode == Mode.Links {
+      sprint("mouse up")
+      if let targetConceptIdentifier = targetConceptIdentifier, originConceptIdentifier = originConceptIdentifier where originConceptIdentifier != targetConceptIdentifier {
+        sprint("calling creating link")
+        createLink(originConceptIdentifier, targetConceptIdentifier)
+      }
+      removeArrow()
+    }
+  }
+  
+  // MARK: - Link Functions
+  
+  func removeArrow() {
+    arrowStart = nil
+    arrowEnd = nil
+  }
+  
+  func createLink(originIdentifier: Int, _ targetIdentifier: Int) {
+    let origin = concepts.filter({ element in element.identifier == originIdentifier }).first
+    let target = concepts.filter({ element in element.identifier == targetIdentifier }).first
+    if let origin = origin, target = target {
+      sprint("add link")
+      let link = Link(origin: origin, target: target)
+      link.editing = true
+      links.append(link)
+    }
+  }
+  
+  func addLinkView(link: Link) {
+    if !link.added {
+      sprint("add link view")
+      let linkView = LinkView(frame: link.rect, link: link, canvas: self)
+      addSubview(linkView)
+      link.added = true
+    }
+  }
+  
+  // MARK: - Concept functions
+  
+  func addConceptView(concept: Concept) {
+    if !concept.added {
+      sprint("add concept \(concept.identifier)")
+      let conceptRect = conceptRectWithOffset(concept)
+      let conceptView = ConceptView(
+        frame: conceptRect,
+        concept: concept,
+        canvas: self
+      )
+      concept.added = true
+      addSubview(conceptView)
+    }
+  }
+  
+  let offsetX: CGFloat = 80.0
+  let offsetY: CGFloat = 40.0
+  func conceptRectWithOffset(concept: Concept) -> NSRect {
+    let size = concept.stringValue.sizeWithAttributes(nil)
+    let bigSize = NSMakeSize(size.width + offsetX, size.height + offsetY)
+    return NSRect(center: concept.point, size: bigSize)
+  }
   
   func removeConcept(concept: Concept) {
     sprint("removing concept \(concept.identifier)")
@@ -75,6 +181,6 @@ class CanvasView: NSView {
 
 extension NSView {
   func sprint(message: String) {
-    Swift.print(message)
+    Swift.print("\(self.className): \(message)")
   }
 }
