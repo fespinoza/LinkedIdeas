@@ -107,15 +107,11 @@ class CanvasView: NSView {
   override func mouseUp(theEvent: NSEvent) {
     if mode == Mode.Links {
       sprint("mouse up")
-      if let targetConceptIdentifier = targetConceptIdentifier, originConceptIdentifier = originConceptIdentifier {
-        if originConceptIdentifier != targetConceptIdentifier {
-          sprint("calling creating link")
-          createLink(originConceptIdentifier, targetConceptIdentifier)
-        }
-        removeArrow()
-      } else {
-        removeArrow()
+      if let targetConceptIdentifier = targetConceptIdentifier, originConceptIdentifier = originConceptIdentifier where originConceptIdentifier != targetConceptIdentifier {
+        sprint("calling creating link")
+        createLink(originConceptIdentifier, targetConceptIdentifier)
       }
+      removeArrow()
     }
   }
   

@@ -56,6 +56,8 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 - [x] store links in file
 - [x] load links from file
 
+## feature flag logging with tags
+
 ### Pending
 
 - [ ] handle click outside of ConceptView
