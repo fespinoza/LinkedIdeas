@@ -10,7 +10,7 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 - [x] edit a concept
 - [x] delete a concept
 - [x] save and load files
-- [ ] create a link between 2 concepts with description text
+- [x] create a link between 2 concepts with description text
 - [ ] allow moving concepts
 - [ ] add color to concepts
 - [ ] resize concepts
@@ -56,7 +56,21 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 - [x] store links in file
 - [x] load links from file
 
+## select concepts
+
+- [ ] select concept when clicking on it
+- [ ] when selected, pressing 'enter' will make the concept editable
+- [ ] double click on concept will make it editable
+- [ ] when selected, pressing 'delete' will remove the concept
+
+- [ ] select link when clicking on it
+- [ ] when selected, pressing 'enter' will make the link editable
+- [ ] double click on link will make it editable
+- [ ] when selected, pressing 'delete' will remove the link
+
 ## feature flag logging with tags
+
+## allow move concepts
 
 ### Pending
 
