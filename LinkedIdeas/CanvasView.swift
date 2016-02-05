@@ -49,15 +49,10 @@ class CanvasView: NSView {
     
     if mode == Mode.Links {
       drawCreationLinkArrow()
-      //      for link in links { addLinkView(link) }
     }
     
-    //    if mode == Mode.Concepts {
     for link in links { addLinkView(link) }
     for concept in concepts { addConceptView(concept) }
-    //    }
-    
-    // for point in clicks { drawCenteredDotAtPoint(point, color: NSColor.cyanColor()) }
   }
   
   // MARK: - Drawing Functions
@@ -98,6 +93,7 @@ class CanvasView: NSView {
   }
   
   override func mouseDragged(theEvent: NSEvent) {
+    
     if mode == Mode.Links {
       sprint("mouse dragged")
       arrowEnd = convertPoint(theEvent.locationInWindow, fromView: nil)
