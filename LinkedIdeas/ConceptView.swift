@@ -169,7 +169,8 @@ class ConceptView: NSView, NSTextFieldDelegate {
     sprint("mouse down")
     canvas.mouseDownFromConcept(theEvent)
     canvas.originConceptIdentifier = concept.identifier
-    if canvas.mode == Mode.Concepts {
+    
+    if canvas.mode == Mode.Concepts && theEvent.clickCount == 2 {
       concept.editing = true
       enableTextField()
       textField.becomeFirstResponder()
