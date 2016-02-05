@@ -94,7 +94,15 @@ class ElementViewTests: XCTestCase {
   }
   
   func testWhenEditingPressingEnterWillMakeItNotEditable() {
-    XCTFail("implement me")
+    // given
+    element.editing = true
+    let elementView = ElementView(frame: frame, element: element, canvas: canvasView)
+    let textField = elementView.textField
+    elementView.drawRect(frame)
+    
+    textField.becomeFirstResponder()
+    textField.keyDown(<#T##theEvent: NSEvent##NSEvent#>)
+    
   }
   
   func testWhenSelectedPressingDeleteWillRemoveTheElementView() {
