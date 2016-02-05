@@ -109,7 +109,7 @@ class ConceptView: NSView, NSTextFieldDelegate {
   }
   
   override func accessibilityTitle() -> String? {
-    return "AConceptView \(concept.identifier)"
+    return "AConceptView-\(concept.stringValue)"
   }
   
   override func accessibilityIsIgnored() -> Bool { return false }
