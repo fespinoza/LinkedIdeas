@@ -177,7 +177,16 @@ class ConceptView: NSView, NSTextFieldDelegate {
     }
   }
   
+  override func mouseDragged(theEvent: NSEvent) {
+    sprint("mouse dragged")
+    
+    concept.point = canvas.convertPoint(theEvent.locationInWindow, fromView: nil)
+    frame = canvas.conceptRectWithOffset(concept)
+  }
+  
   override func mouseUp(theEvent: NSEvent) {
+    sprint("mouseUp")
+    
     canvas.mouseUp(theEvent)
     canvas.originConceptIdentifier = nil
   }
