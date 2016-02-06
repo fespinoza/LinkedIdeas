@@ -10,7 +10,6 @@ import Cocoa
 
 class LinkView: NSView, NSTextFieldDelegate {
   let link: Link
-  var editing: Bool
   var added: Bool
   var textField: NSTextField
   let canvas: CanvasView
@@ -18,7 +17,6 @@ class LinkView: NSView, NSTextFieldDelegate {
   init(frame frameRect: NSRect, link: Link, canvas: CanvasView) {
     self.link = link
     self.added = false
-    self.editing = link.editing
     self.canvas = canvas
     self.textField = NSTextField()
     super.init(frame: frameRect)
@@ -33,7 +31,7 @@ class LinkView: NSView, NSTextFieldDelegate {
     super.drawRect(dirtyRect)
     drawArrow()
     
-    if editing {
+    if link.editing {
       drawTextField()
     } else {
       drawStringValue()
@@ -44,8 +42,6 @@ class LinkView: NSView, NSTextFieldDelegate {
       textField.becomeFirstResponder()
       added = true
     }
-    
-    //    debugDrawing()
   }
   
   // MARK: - Drawing methods
@@ -119,7 +115,7 @@ class LinkView: NSView, NSTextFieldDelegate {
   override func insertNewline(sender: AnyObject?) {
     sprint("insertNewLine")
     disableTextField()
-    editing = false
+    link.editing = false
     needsDisplay = true
   }
   
@@ -135,7 +131,7 @@ class LinkView: NSView, NSTextFieldDelegate {
   // MARK: - TextField events
   
   func toggleTextField() {
-    if editing {
+    if link.editing {
       enableTextField()
     } else {
       disableTextField()
@@ -156,9 +152,12 @@ class LinkView: NSView, NSTextFieldDelegate {
   
   override func mouseDown(theEvent: NSEvent) {
     sprint("clicking on link")
-    editing = true
-    enableTextField()
-    textField.becomeFirstResponder()
+    
+    if theEvent.clickCount == 2 {
+      link.editing = true
+      enableTextField()
+      textField.becomeFirstResponder()
+    }
   }
   
   // MARK: - others
