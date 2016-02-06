@@ -144,6 +144,16 @@ class CanvasView: NSView {
     let concept = conceptView.concept
     concept.point = convertPoint(theEvent.locationInWindow, fromView: nil)
     conceptView.frame = conceptRectWithOffset(concept)
+    
+    // modify link views
+    let affectedLinks = links.filter { return $0.origin == concept || $0.target == concept }
+    let affectedLinkViews = subviews
+      .filter { return ($0 as? LinkView) != nil }
+      .filter { return affectedLinks.contains(($0 as! LinkView).link) }
+    
+    for linkView in (affectedLinkViews as! [LinkView]) {
+      linkView.frame = linkView.link.rect
+    }
   }
   
   // MARK: - Concept functions
