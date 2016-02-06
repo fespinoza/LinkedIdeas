@@ -69,8 +69,6 @@ class ConceptView: NSView, NSTextFieldDelegate {
       textField.becomeFirstResponder()
       added = true
     }
-    
-    // debugDrawing()
   }
   
   // MARK: - drawing
@@ -179,9 +177,10 @@ class ConceptView: NSView, NSTextFieldDelegate {
   
   override func mouseDragged(theEvent: NSEvent) {
     sprint("mouse dragged")
-    
-    concept.point = canvas.convertPoint(theEvent.locationInWindow, fromView: nil)
-    frame = canvas.conceptRectWithOffset(concept)
+    if canvas.mode == Mode.Concepts {
+      canvas.moveConceptView(self, theEvent: theEvent)
+    }
+    canvas.mouseDragged(theEvent)
   }
   
   override func mouseUp(theEvent: NSEvent) {

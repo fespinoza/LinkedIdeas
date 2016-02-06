@@ -138,6 +138,14 @@ class CanvasView: NSView {
     }
   }
   
+  // MARK: - Dragging
+  
+  func moveConceptView(conceptView: ConceptView, theEvent: NSEvent) {
+    let concept = conceptView.concept
+    concept.point = convertPoint(theEvent.locationInWindow, fromView: nil)
+    conceptView.frame = conceptRectWithOffset(concept)
+  }
+  
   // MARK: - Concept functions
   
   func addConceptView(concept: Concept) {
