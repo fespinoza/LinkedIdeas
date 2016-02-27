@@ -27,4 +27,22 @@ extension NSRect {
   
   var maxX: CGFloat { return origin.x + size.width }
   var maxY: CGFloat { return origin.x + size.width }
+  
+  var lines: [FiniteLine] {
+    var result: [FiniteLine] = []
+    
+    result.append(FiniteLine(p1: bottomLeftPoint, p2: bottomRightPoint))
+    result.append(FiniteLine(p1: bottomRightPoint, p2: topRightPoint))
+    result.append(FiniteLine(p1: topRightPoint, p2: topLeftPoint))
+    result.append(FiniteLine(p1: topLeftPoint, p2: bottomLeftPoint))
+    
+    return result
+  }
+  
+  func intersectionTo(point: NSPoint) -> [NSPoint] {
+    let secondLine = FiniteLine(p1: center, p2: point)
+    return lines.map {
+      $0.intersectionPointWith(secondLine)
+    }.filter { $0 != nil }.map { $0! }
+  }
 }

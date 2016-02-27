@@ -42,6 +42,7 @@ class LinkView: NSView, NSTextFieldDelegate {
       textField.becomeFirstResponder()
       added = true
     }
+//    debugDrawing()
   }
   
   // MARK: - Drawing methods
@@ -56,16 +57,28 @@ class LinkView: NSView, NSTextFieldDelegate {
   }
   
   func drawArrow() {
-    NSColor.redColor().set()
-    let path = NSBezierPath()
     
     let origin = convertPoint(link.originPoint, fromView: canvas)
     let target = convertPoint(link.targetPoint, fromView: canvas)
+    drawCenteredDotAtPoint(origin, color: NSColor.purpleColor())
+    drawCenteredDotAtPoint(target, color: NSColor.purpleColor())
     
-    path.moveToPoint(origin)
-    path.lineToPoint(target)
+    let arrow = Arrow(p1: origin, p2: target).bezierPath()
+    arrow.fill()
     
-    path.stroke()
+    //    let originRect = canvas.conceptRectWithOffset(link.origin)
+    //    let targetRect = canvas.conceptRectWithOffset(link.target)
+    //    
+    //    if var fixedOrigin = originRect.intersectionTo(origin).first, fixedTarget = targetRect.intersectionTo(target).first {
+    //      NSColor.redColor().set()
+    //      fixedOrigin = convertPoint(fixedOrigin, fromView: canvas)
+    //      fixedTarget = convertPoint(fixedTarget, fromView: canvas)
+    //      let arrow = Arrow(p1: fixedOrigin, p2: fixedTarget).bezierPath()
+    //      arrow.fill()
+    //    } else {
+    //      sprint(":(")
+    //    }
+    
   }
   
   func drawTextField() {

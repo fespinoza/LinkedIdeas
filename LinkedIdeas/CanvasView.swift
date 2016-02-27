@@ -172,8 +172,8 @@ class CanvasView: NSView {
     }
   }
   
-  let offsetX: CGFloat = 80.0
-  let offsetY: CGFloat = 40.0
+  let offsetX: CGFloat = 150.0
+  let offsetY: CGFloat = 80.0
   func conceptRectWithOffset(concept: Concept) -> NSRect {
     let size = concept.stringValue.sizeWithAttributes(nil)
     let bigSize = NSMakeSize(size.width + offsetX, size.height + offsetY)
