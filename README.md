@@ -11,13 +11,12 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 - [x] delete a concept
 - [x] save and load files
 - [x] create a link between 2 concepts with description text
-- [ ] allow moving concepts
+- [x] allow moving concepts
 - [ ] add color to concepts
 - [ ] resize concepts
-- [ ] edit link description text
+- [x] edit link description text
 - [ ] delete link between concepts
 - [ ] add color to concepts
-- [ ] moving in canvas
 - [ ] panning in canvas
 - [ ] zooming in canvas
 - [ ] select a group of concepts (and their links)
@@ -82,4 +81,4 @@ On the other hand, the connexions between ideas can have text on its own as a wa
 - [ ] refactoring text field editable based view
 - [ ] click link to select it
 - [ ] press delete key when selected link to delete it
-- [ ] add arrow mark
+- [x] add arrow mark
