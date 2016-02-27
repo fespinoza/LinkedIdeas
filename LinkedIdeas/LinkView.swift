@@ -10,7 +10,6 @@ import Cocoa
 
 class LinkView: NSView, NSTextFieldDelegate {
   let link: Link
-  var editing: Bool
   var added: Bool
   var textField: NSTextField
   let canvas: CanvasView
@@ -18,7 +17,6 @@ class LinkView: NSView, NSTextFieldDelegate {
   init(frame frameRect: NSRect, link: Link, canvas: CanvasView) {
     self.link = link
     self.added = false
-    self.editing = link.editing
     self.canvas = canvas
     self.textField = NSTextField()
     super.init(frame: frameRect)
@@ -33,7 +31,7 @@ class LinkView: NSView, NSTextFieldDelegate {
     super.drawRect(dirtyRect)
     drawArrow()
     
-    if editing {
+    if link.editing {
       drawTextField()
     } else {
       drawStringValue()
@@ -44,8 +42,7 @@ class LinkView: NSView, NSTextFieldDelegate {
       textField.becomeFirstResponder()
       added = true
     }
-    
-    //    debugDrawing()
+//    debugDrawing()
   }
   
   // MARK: - Drawing methods
@@ -60,16 +57,28 @@ class LinkView: NSView, NSTextFieldDelegate {
   }
   
   func drawArrow() {
-    NSColor.redColor().set()
-    let path = NSBezierPath()
     
     let origin = convertPoint(link.originPoint, fromView: canvas)
     let target = convertPoint(link.targetPoint, fromView: canvas)
+    drawCenteredDotAtPoint(origin, color: NSColor.purpleColor())
+    drawCenteredDotAtPoint(target, color: NSColor.purpleColor())
     
-    path.moveToPoint(origin)
-    path.lineToPoint(target)
+    let arrow = Arrow(p1: origin, p2: target).bezierPath()
+    arrow.fill()
     
-    path.stroke()
+    //    let originRect = canvas.conceptRectWithOffset(link.origin)
+    //    let targetRect = canvas.conceptRectWithOffset(link.target)
+    //    
+    //    if var fixedOrigin = originRect.intersectionTo(origin).first, fixedTarget = targetRect.intersectionTo(target).first {
+    //      NSColor.redColor().set()
+    //      fixedOrigin = convertPoint(fixedOrigin, fromView: canvas)
+    //      fixedTarget = convertPoint(fixedTarget, fromView: canvas)
+    //      let arrow = Arrow(p1: fixedOrigin, p2: fixedTarget).bezierPath()
+    //      arrow.fill()
+    //    } else {
+    //      sprint(":(")
+    //    }
+    
   }
   
   func drawTextField() {
@@ -119,7 +128,7 @@ class LinkView: NSView, NSTextFieldDelegate {
   override func insertNewline(sender: AnyObject?) {
     sprint("insertNewLine")
     disableTextField()
-    editing = false
+    link.editing = false
     needsDisplay = true
   }
   
@@ -135,7 +144,7 @@ class LinkView: NSView, NSTextFieldDelegate {
   // MARK: - TextField events
   
   func toggleTextField() {
-    if editing {
+    if link.editing {
       enableTextField()
     } else {
       disableTextField()
@@ -156,9 +165,12 @@ class LinkView: NSView, NSTextFieldDelegate {
   
   override func mouseDown(theEvent: NSEvent) {
     sprint("clicking on link")
-    editing = true
-    enableTextField()
-    textField.becomeFirstResponder()
+    
+    if theEvent.clickCount == 2 {
+      link.editing = true
+      enableTextField()
+      textField.becomeFirstResponder()
+    }
   }
   
   // MARK: - others

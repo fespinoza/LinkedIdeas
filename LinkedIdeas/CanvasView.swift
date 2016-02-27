@@ -49,15 +49,10 @@ class CanvasView: NSView {
     
     if mode == Mode.Links {
       drawCreationLinkArrow()
-      //      for link in links { addLinkView(link) }
     }
     
-    //    if mode == Mode.Concepts {
     for link in links { addLinkView(link) }
     for concept in concepts { addConceptView(concept) }
-    //    }
-    
-    // for point in clicks { drawCenteredDotAtPoint(point, color: NSColor.cyanColor()) }
   }
   
   // MARK: - Drawing Functions
@@ -98,6 +93,7 @@ class CanvasView: NSView {
   }
   
   override func mouseDragged(theEvent: NSEvent) {
+    
     if mode == Mode.Links {
       sprint("mouse dragged")
       arrowEnd = convertPoint(theEvent.locationInWindow, fromView: nil)
@@ -142,6 +138,24 @@ class CanvasView: NSView {
     }
   }
   
+  // MARK: - Dragging
+  
+  func moveConceptView(conceptView: ConceptView, theEvent: NSEvent) {
+    let concept = conceptView.concept
+    concept.point = convertPoint(theEvent.locationInWindow, fromView: nil)
+    conceptView.frame = conceptRectWithOffset(concept)
+    
+    // modify link views
+    let affectedLinks = links.filter { return $0.origin == concept || $0.target == concept }
+    let affectedLinkViews = subviews
+      .filter { return ($0 as? LinkView) != nil }
+      .filter { return affectedLinks.contains(($0 as! LinkView).link) }
+    
+    for linkView in (affectedLinkViews as! [LinkView]) {
+      linkView.frame = linkView.link.rect
+    }
+  }
+  
   // MARK: - Concept functions
   
   func addConceptView(concept: Concept) {
@@ -158,8 +172,8 @@ class CanvasView: NSView {
     }
   }
   
-  let offsetX: CGFloat = 80.0
-  let offsetY: CGFloat = 40.0
+  let offsetX: CGFloat = 150.0
+  let offsetY: CGFloat = 80.0
   func conceptRectWithOffset(concept: Concept) -> NSRect {
     let size = concept.stringValue.sizeWithAttributes(nil)
     let bigSize = NSMakeSize(size.width + offsetX, size.height + offsetY)

@@ -47,4 +47,36 @@ class LinkedIdeasUITests: XCTestCase {
     
   }
   
+  
+  func testAddingAConcept() {
+    let app = XCUIApplication()
+    
+    let window = app.windows["Untitled"]
+    window.click()
+    
+    let canvas = window.layoutAreas["canvas"]
+    canvas.click()
+    window.textFields["Insert Concept"].typeText("foo\r")
+    
+    XCTAssert(canvas.layoutItems["AConceptView-foo"].exists)
+  }
+  
+  func testEditingAConcept() {
+    let app = XCUIApplication()
+    
+    let window = app.windows["Untitled"]
+    window.click()
+    
+    let canvas = window.layoutAreas["canvas"]
+    canvas.click()
+    window.textFields["Insert Concept"].typeText("foo\r")
+    
+    canvas.layoutItems["AConceptView-foo"].doubleClick()
+    window.textFields["foo"].typeText("bar\r")
+    
+    XCTAssertTrue(canvas.layoutItems["AConceptView-foobar"].exists)
+    XCTAssertFalse(canvas.layoutItems["AConceptView-foo"].exists)
+  }
+  
+  
 }

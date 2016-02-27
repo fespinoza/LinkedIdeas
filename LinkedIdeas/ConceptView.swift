@@ -69,8 +69,6 @@ class ConceptView: NSView, NSTextFieldDelegate {
       textField.becomeFirstResponder()
       added = true
     }
-    
-    // debugDrawing()
   }
   
   // MARK: - drawing
@@ -109,7 +107,7 @@ class ConceptView: NSView, NSTextFieldDelegate {
   }
   
   override func accessibilityTitle() -> String? {
-    return "AConceptView \(concept.identifier)"
+    return "AConceptView-\(concept.stringValue)"
   }
   
   override func accessibilityIsIgnored() -> Bool { return false }
@@ -169,14 +167,25 @@ class ConceptView: NSView, NSTextFieldDelegate {
     sprint("mouse down")
     canvas.mouseDownFromConcept(theEvent)
     canvas.originConceptIdentifier = concept.identifier
-    if canvas.mode == Mode.Concepts {
+    
+    if canvas.mode == Mode.Concepts && theEvent.clickCount == 2 {
       concept.editing = true
       enableTextField()
       textField.becomeFirstResponder()
     }
   }
   
+  override func mouseDragged(theEvent: NSEvent) {
+    sprint("mouse dragged")
+    if canvas.mode == Mode.Concepts {
+      canvas.moveConceptView(self, theEvent: theEvent)
+    }
+    canvas.mouseDragged(theEvent)
+  }
+  
   override func mouseUp(theEvent: NSEvent) {
+    sprint("mouseUp")
+    
     canvas.mouseUp(theEvent)
     canvas.originConceptIdentifier = nil
   }
