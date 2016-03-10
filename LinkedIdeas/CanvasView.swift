@@ -72,17 +72,15 @@ class CanvasView: NSView, Canvas {
     
   }
   
-  // MARK - ClickableView
-  //  func click(point: NSPoint) {}
-  func doubleClick(point: NSPoint) {}
-  
   // MARK - CanvasConceptsActions
   func deselectConcepts() {}
   func removeNonSavedConcepts() {}
   func createConceptAt(point: NSPoint) {
+    Swift.print("createConceptAtPoint \(point)")
     newConcept = Concept(point: point)
     newConcept?.isEditable = true
     newConceptView = ConceptView(concept: newConcept!, canvas: self)
+    addSubview(newConceptView!)
   }
   func markConceptsAsNotEditable() {}
 }

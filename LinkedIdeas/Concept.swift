@@ -75,7 +75,7 @@ class Concept: Element, VisualElement {
   // element
   var identifier: String
   var stringValue: String
-  var minimalRect: NSRect { return NSMakeRect(0, 0, 120, 60) }
+  var minimalRect: NSRect { return NSRect(center: point, size: NSMakeSize(60, 20)) }
   // visual element
   var isEditable: Bool = false
   
