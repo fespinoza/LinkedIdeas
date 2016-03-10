@@ -60,13 +60,23 @@ class ConceptView: NSView, StringEditableView, CanvasElement {
   
   init(concept: Concept, canvas: Canvas) {
     self.concept = concept
-    self.textField = NSTextField(frame: NSRect(origin: concept.point, size: defaultTextFieldSize))
+    self.textField = NSTextField(frame: NSRect(origin: NSMakePoint(0, 0), size: defaultTextFieldSize))
     self.canvas = canvas
+    
     super.init(frame: concept.minimalRect)
+    
+    addSubview(textField)
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  // MARK: - NSView
+  override func drawRect(dirtyRect: NSRect) {
+    //    NSColor.blackColor().set()
+    //    NSRectFill(bounds)
+    toggleTextFieldEditMode()
   }
   
   // MARK: - string editable view

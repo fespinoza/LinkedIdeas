@@ -26,4 +26,17 @@ class ConceptViewTests: XCTestCase {
     XCTAssertEqual(conceptView.editingString(), false)
     XCTAssertEqual(concept.stringValue, "foo bar 123")
   }
+  
+  func testTextFieldBounds() {
+    // given
+    let canvas = TestCanvas()
+    let concept = Concept(point: NSMakePoint(20, 30))
+    
+    // when
+    let conceptView = ConceptView(concept: concept, canvas: canvas)
+    let relativeCenterPointForConceptView = conceptView.convertPoint(conceptView.bounds.center, fromView: nil)
+    
+    // then
+    XCTAssertEqual(conceptView.textField.bounds.center, relativeCenterPointForConceptView)
+  }
 }
