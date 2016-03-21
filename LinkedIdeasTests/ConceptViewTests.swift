@@ -54,6 +54,8 @@ class TestCanvas: Canvas {
     }
   }
   
+  func unselectConcepts() {}
+  
   func createConceptAt(point: NSPoint) {
     newConcept = Concept(point: point)
     newConcept?.isEditable = true
@@ -133,6 +135,7 @@ class ConceptViewTests: XCTestCase {
     let conceptView2 = canvas.conceptViews[concept2.identifier]!
     
     // when
+    canvas.click(NSMakePoint(20, 30))
     conceptView2.click(NSMakePoint(20, 30))
     
     // then

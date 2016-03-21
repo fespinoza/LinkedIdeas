@@ -18,6 +18,7 @@ protocol CanvasConceptsActions {
   func removeNonSavedConcepts()
   func createConceptAt(point: NSPoint)
   func markConceptsAsNotEditable()
+  func unselectConcepts()
   
   func drawConceptViews()
   func drawConceptView(concept: Concept)
@@ -43,6 +44,7 @@ typealias Canvas = protocol<BasicCanvas, ClickableView, CanvasConceptsActions>
 extension ClickableView where Self: CanvasConceptsActions {
   func click(point: NSPoint) {
     markConceptsAsNotEditable()
+    unselectConcepts()
     createConceptAt(point)
   }
   
@@ -117,12 +119,17 @@ class CanvasView: NSView, Canvas {
     for concept in concepts { concept.isEditable = false }
   }
   
+  func unselectConcepts() {
+    for concept in concepts { concept.isSelected = false }
+  }
+  
   func clickOnConceptView(conceptView: ConceptView, point: NSPoint) {
     let selectedConcept = conceptView.concept
     for concept in concepts {
       if (concept.identifier != selectedConcept.identifier) {
         concept.isSelected = false
         concept.isEditable = false
+        conceptViews[concept.identifier]!.needsDisplay = true
       }
     }
   }
