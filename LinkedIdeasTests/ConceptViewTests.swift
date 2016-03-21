@@ -142,6 +142,8 @@ class ConceptViewTests: XCTestCase {
     XCTAssertEqual(concept1.isEditable, false)
     XCTAssertEqual(concept1.isSelected, false)
     XCTAssertEqual(concept2.isSelected, true)
+    XCTAssertNil(canvas.newConcept)
+    XCTAssertNil(canvas.newConceptView)
   }
   
   func testDoubleClickOnConceptView() {

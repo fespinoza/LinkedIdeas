@@ -132,6 +132,13 @@ class CanvasView: NSView, Canvas {
         conceptViews[concept.identifier]!.needsDisplay = true
       }
     }
+    cleanNewConcept()
+  }
+  
+  func cleanNewConcept() {
+    newConceptView?.removeFromSuperview()
+    newConceptView = nil
+    newConcept = nil
   }
 }
 
