@@ -70,7 +70,6 @@ class CanvasView: NSView, Canvas {
   
   // MARK - BasicCanvas
   func addConceptView(concept: Concept) {
-    Swift.print("add concept \(concept)")
   }
   
   func saveConcept(concept: ConceptView) {
@@ -103,7 +102,6 @@ class CanvasView: NSView, Canvas {
   func removeNonSavedConcepts() {}
   
   func createConceptAt(point: NSPoint) {
-    Swift.print("createConceptAtPoint \(point)")
     let _newConcept = Concept(point: point)
     _newConcept.isEditable = true
     let _newConceptView = ConceptView(concept: _newConcept, canvas: self)
@@ -116,7 +114,6 @@ class CanvasView: NSView, Canvas {
   }
   
   func markConceptsAsNotEditable() {
-    Swift.print(">>>> make concepts non editable \(concepts)")
     for concept in concepts { concept.isEditable = false }
   }
   

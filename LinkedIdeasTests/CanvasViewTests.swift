@@ -49,10 +49,8 @@ class CanvasViewTests: XCTestCase {
     XCTAssertEqual(canvas.newConceptView!.editingString(), true)
     XCTAssertEqual(canvas.subviews.count, 3)
     XCTAssertEqual(canvas.concepts.count, 2)
-    print("\(concept1.identifier)")
-    print("\(canvas.conceptViews[concept1.identifier]!.editingString())")
-    XCTAssertEqual(canvas.conceptViews[concept1.identifier]!.editingString(), false)
-    XCTAssertEqual(canvas.conceptViews[concept2.identifier]!.editingString(), false)
+    XCTAssertEqual(concept1.isEditable, false)
+    XCTAssertEqual(concept2.isEditable, false)
   }
   
   func testSavingAConcept() {
