@@ -68,6 +68,7 @@ protocol Element {
 
 protocol VisualElement {
   var isEditable: Bool { get set }
+  var isSelected: Bool { get set }
 }
 
 class Concept: Element, VisualElement {
@@ -78,6 +79,7 @@ class Concept: Element, VisualElement {
   var minimalRect: NSRect { return NSRect(center: point, size: NSMakeSize(60, 20)) }
   // visual element
   var isEditable: Bool = false
+  var isSelected: Bool = false
   
   init(point: NSPoint) {
     self.point = point

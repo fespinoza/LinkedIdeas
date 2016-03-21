@@ -18,6 +18,9 @@ protocol CanvasConceptsActions {
   func removeNonSavedConcepts()
   func createConceptAt(point: NSPoint)
   func markConceptsAsNotEditable()
+  
+  func drawConceptViews()
+  func drawConceptView(concept: Concept)
 }
 
 protocol BasicCanvas {
@@ -55,6 +58,7 @@ class CanvasView: NSView, Canvas {
   override func drawRect(dirtyRect: NSRect) {
     NSColor.whiteColor().set()
     NSRectFill(bounds)
+    drawConceptViews()
   }
   
   // MARK - MouseEvents
@@ -69,20 +73,51 @@ class CanvasView: NSView, Canvas {
   }
   
   func saveConcept(concept: ConceptView) {
+    let _newConcept = concept.concept
+    let _newConceptView = concept
     
+    newConcept = nil
+    newConceptView = nil
+    
+    concepts.append(_newConcept)
+    conceptViews[_newConcept.identifier] = _newConceptView
   }
   
   // MARK - CanvasConceptsActions
+  func drawConceptViews() {
+    for concept in concepts { drawConceptView(concept) }
+  }
+  
+  func drawConceptView(concept: Concept) {
+    if let conceptView = conceptViews[concept.identifier] {
+      conceptView.needsDisplay = true
+    } else {
+      let conceptView = ConceptView(concept: concept, canvas: self)
+      conceptViews[concept.identifier] = conceptView
+      addSubview(conceptView)
+    }
+  }
+  
   func deselectConcepts() {}
   func removeNonSavedConcepts() {}
+  
   func createConceptAt(point: NSPoint) {
     Swift.print("createConceptAtPoint \(point)")
-    newConcept = Concept(point: point)
-    newConcept?.isEditable = true
-    newConceptView = ConceptView(concept: newConcept!, canvas: self)
-    addSubview(newConceptView!)
+    let _newConcept = Concept(point: point)
+    _newConcept.isEditable = true
+    let _newConceptView = ConceptView(concept: _newConcept, canvas: self)
+    
+    newConceptView?.removeFromSuperview()
+    
+    newConcept = _newConcept
+    newConceptView = _newConceptView
+    addSubview(_newConceptView)
   }
-  func markConceptsAsNotEditable() {}
+  
+  func markConceptsAsNotEditable() {
+    Swift.print(">>>> make concepts non editable \(concepts)")
+    for concept in concepts { concept.isEditable = false }
+  }
 }
 
 //protocol CanvasViewDelegate {

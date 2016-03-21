@@ -11,11 +11,15 @@ import Cocoa
 protocol StringEditableView {
   var textField: NSTextField { get }
   var textFieldSize: NSSize { get }
+  var isTextFieldFocused: Bool { get set }
   
   func editingString() -> Bool
   func toggleTextFieldEditMode()
   func enableTextField()
   func disableTextField()
+  func focusTextField()
+  
+  func drawString()
   
   func typeText(string: String)
   func pressEnterKey()
@@ -29,6 +33,7 @@ extension StringEditableView {
   func enableTextField() {
     textField.hidden = false
     textField.enabled = true
+    focusTextField()
   }
   
   func disableTextField() {
@@ -49,22 +54,26 @@ protocol ConceptViewProtocol {
   var concept: Concept { get }
 }
 
-class ConceptView: NSView, StringEditableView, CanvasElement {
+class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElement, ClickableView {
   var concept: Concept { didSet { toggleTextFieldEditMode() } }
   var textField: NSTextField
   var textFieldSize: NSSize { return textField.bounds.size }
   // MARK: - Canvas
   var canvas: Canvas
+  // Extras
+  var isTextFieldFocused: Bool = false
   
   private let defaultTextFieldSize = NSMakeSize(60, 20)
   
   init(concept: Concept, canvas: Canvas) {
+    let textFieldRect = NSRect(origin: NSMakePoint(0, 0), size: defaultTextFieldSize)
     self.concept = concept
-    self.textField = NSTextField(frame: NSRect(origin: NSMakePoint(0, 0), size: defaultTextFieldSize))
+    self.textField = NSTextField(frame: textFieldRect)
     self.canvas = canvas
     
     super.init(frame: concept.minimalRect)
     
+    textField.delegate = self
     addSubview(textField)
   }
   
@@ -74,9 +83,47 @@ class ConceptView: NSView, StringEditableView, CanvasElement {
   
   // MARK: - NSView
   override func drawRect(dirtyRect: NSRect) {
-    //    NSColor.blackColor().set()
-    //    NSRectFill(bounds)
-    toggleTextFieldEditMode()
+    if concept.isSelected {
+      NSColor.greenColor().set()
+      NSRectFill(bounds)
+      toggleTextFieldEditMode()
+    }
+    if !concept.isEditable { drawString() }
+  }
+  
+  // MARK: - Mouse events
+  
+  override func mouseDown(theEvent: NSEvent) {
+    let point = convertPoint(theEvent.locationInWindow, fromView: nil)
+    if (theEvent.clickCount == 2) {
+      doubleClick(point)
+    } else {
+      click(point)
+    }
+  }
+  
+  // MARK: - NSTextFieldDelegate
+  
+  func control(control: NSControl, textView: NSTextView, doCommandBySelector commandSelector: Selector) -> Bool {
+    switch commandSelector {
+    case "insertNewline:":
+      pressEnterKey()
+      return true
+    default:
+      return false
+    }
+  }
+  
+  // MARK: - ClickableView
+  func click(point: NSPoint) {
+    concept.isSelected = !concept.isSelected
+    needsDisplay = true
+  }
+  
+  func doubleClick(point: NSPoint) {
+    concept.isEditable = true
+    isTextFieldFocused = false
+    needsDisplay = true
   }
   
   // MARK: - string editable view
@@ -88,11 +135,26 @@ class ConceptView: NSView, StringEditableView, CanvasElement {
     }
   }
   
+  func focusTextField() {
+    if !isTextFieldFocused {
+      textField.becomeFirstResponder()
+      isTextFieldFocused = true
+    }
+  }
+  
   func pressEnterKey() {
     disableTextField()
     concept.isEditable = false
     concept.stringValue = textField.stringValue
     canvas.saveConcept(self)
+  }
+  
+  // draw concept string
+  func drawString() {
+    let stringSize = concept.stringValue.sizeWithAttributes(nil)
+    let stringRect = NSRect(center: bounds.center, size: stringSize)
+    NSColor.blackColor().set()
+    concept.stringValue.drawInRect(stringRect, withAttributes: nil)
   }
 }
 
@@ -181,13 +243,7 @@ class ConceptView: NSView, StringEditableView, CanvasElement {
 //    NSRectFill(stringRect)
 //    concept.stringValue.drawInRect(stringRect, withAttributes: nil)
 //  }
-//  
-//  override func debugDrawing() {
-//    super.debugDrawing()
-//    let conceptPoint = convertPoint(concept.point, fromView: canvas)
-//    drawCenteredDotAtPoint(conceptPoint, color: NSColor.redColor())
-//  }
-//  
+//
 //  // MARK: - accessibility
 //  
 //  override func accessibilityRole() -> String? {
@@ -277,11 +333,5 @@ class ConceptView: NSView, StringEditableView, CanvasElement {
 //    canvas.mouseUp(theEvent)
 //    canvas.originConceptIdentifier = nil
 //  }
-//  
-//  // MARK: - Others
-//  
-//  override func sprint(message: String) {
-//    Swift.print("ConceptView [\(concept.identifier)]: \(message)")
-//  }
-//  
+//
 //}
