@@ -59,6 +59,8 @@ class TestCanvas: Canvas {
     newConcept?.isEditable = true
     newConceptView = ConceptView(concept: newConcept!, canvas: self)
   }
+  
+  func clickOnConceptView(conceptView: ConceptView, point: NSPoint) {}
 }
 
 class ConceptViewTests: XCTestCase {
@@ -120,7 +122,23 @@ class ConceptViewTests: XCTestCase {
   }
   
   func testClickOnConceptViewWhenThereIsAnotherOnEditMode() {
-    XCTFail("implement me next")
+    // given
+    let concept1 = Concept(point: NSMakePoint(1, 20))
+    let concept2 = Concept(point: NSMakePoint(100, 200))
+    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
+    concept1.isEditable = true
+    canvas.concepts.append(concept1)
+    canvas.concepts.append(concept2)
+    canvas.drawConceptViews()
+    let conceptView2 = canvas.conceptViews[concept2.identifier]!
+    
+    // when
+    conceptView2.click(NSMakePoint(20, 30))
+    
+    // then
+    XCTAssertEqual(concept1.isEditable, false)
+    XCTAssertEqual(concept1.isSelected, false)
+    XCTAssertEqual(concept2.isSelected, true)
   }
   
   func testDoubleClickOnConceptView() {

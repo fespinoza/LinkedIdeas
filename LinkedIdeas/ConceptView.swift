@@ -120,6 +120,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   func click(point: NSPoint) {
     concept.isSelected = !concept.isSelected
     needsDisplay = true
+    canvas.clickOnConceptView(self, point: point)
   }
   
   func doubleClick(point: NSPoint) {

@@ -21,6 +21,7 @@ protocol CanvasConceptsActions {
   
   func drawConceptViews()
   func drawConceptView(concept: Concept)
+  func clickOnConceptView(conceptView: ConceptView, point: NSPoint)
 }
 
 protocol BasicCanvas {
@@ -117,6 +118,16 @@ class CanvasView: NSView, Canvas {
   func markConceptsAsNotEditable() {
     Swift.print(">>>> make concepts non editable \(concepts)")
     for concept in concepts { concept.isEditable = false }
+  }
+  
+  func clickOnConceptView(conceptView: ConceptView, point: NSPoint) {
+    let selectedConcept = conceptView.concept
+    for concept in concepts {
+      if (concept.identifier != selectedConcept.identifier) {
+        concept.isSelected = false
+        concept.isEditable = false
+      }
+    }
   }
 }
 
