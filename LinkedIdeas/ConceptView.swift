@@ -85,9 +85,11 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   override func drawRect(dirtyRect: NSRect) {
     if concept.isSelected {
       NSColor.greenColor().set()
-      NSRectFill(bounds)
-      toggleTextFieldEditMode()
+    } else {
+      NSColor.lightGrayColor().set()
     }
+    NSRectFill(bounds)
+    toggleTextFieldEditMode()
     if !concept.isEditable { drawString() }
   }
   
