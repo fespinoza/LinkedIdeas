@@ -127,6 +127,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     concept.isEditable = true
     isTextFieldFocused = false
     needsDisplay = true
+    canvas.clickOnConceptView(self, point: point)
   }
   
   // MARK: - string editable view

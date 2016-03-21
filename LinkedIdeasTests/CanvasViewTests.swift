@@ -41,9 +41,7 @@ class CanvasViewTests: XCTestCase {
     canvas.drawConceptViews()
     
     // when
-    //    canvas.drawRect(canvas.bounds)
     canvas.click(NSMakePoint(20, 60))
-    //    canvas.drawRect(canvas.bounds)
     
     // then
     XCTAssertEqual(canvas.newConceptView!.editingString(), true)
