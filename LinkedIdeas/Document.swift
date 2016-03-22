@@ -52,7 +52,6 @@ class Document: NSDocument {
   override func windowControllerDidLoadNib(aController: NSWindowController) {
     super.windowControllerDidLoadNib(aController)
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
-    //    canvas.delegate = self
     //    if let readConcepts = documentData.readConcepts { canvas.concepts = readConcepts }
     //    if let readLinks = documentData.readLinks { canvas.links = readLinks }
     //    canvas.mode = editionMode
@@ -82,16 +81,6 @@ class Document: NSDocument {
     // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
     // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
     documentData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! DocumentData
-  }
-  
-  // MARK: - CanvasViewDelegate
-  
-  func singleClick(event: NSEvent) {
-    let point = canvas.convertPoint(event.locationInWindow, fromView: nil)
-    print("single click in (\(point.x), \(point.y))")
-    let concept = Concept(point: point)
-    concept.isEditable = true
-    canvas.concepts.append(concept)
   }
   
   @IBAction func changeMode(sender: NSButton) {

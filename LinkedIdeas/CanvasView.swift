@@ -51,17 +51,11 @@ extension ClickableView where Self: CanvasConceptsActions {
   func doubleClick(point: NSPoint) {}
 }
 
-protocol CanvasViewDelegate {
-  func contains(concept: Concept) -> Bool
-  func saveConcept(concept: Concept)
-}
-
 class CanvasView: NSView, Canvas {
   var newConcept: Concept? = nil
   var newConceptView: ConceptView? = nil
   var concepts: [Concept] = [Concept]()
   var conceptViews: [String: ConceptView] = [String: ConceptView]()
-  var delegate: CanvasViewDelegate?
   
   // MARK - NSView
   override func drawRect(dirtyRect: NSRect) {
@@ -89,8 +83,6 @@ class CanvasView: NSView, Canvas {
     
     concepts.append(_newConcept)
     conceptViews[_newConcept.identifier] = _newConceptView
-    
-    delegate?.saveConcept(_newConcept)
   }
   
   // MARK - CanvasConceptsActions
