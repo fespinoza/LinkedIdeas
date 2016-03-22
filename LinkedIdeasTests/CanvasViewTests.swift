@@ -70,6 +70,18 @@ class CanvasViewTests: XCTestCase {
   }
   
   func testInitializingCanvasViewFromReadingADocument() {
-      XCTFail("implement me")
+    // given
+    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
+    let concepts = [
+      Concept(stringValue: "C1", point: NSMakePoint(20, 30)),
+      Concept(stringValue: "C2", point: NSMakePoint(20, 30)),
+    ]
+    canvas.concepts = concepts
+    
+    // when
+    canvas.drawRect(canvas.bounds)
+    
+    // then
+    XCTAssertEqual(canvas.conceptViews.count, 2)
   }
 }
