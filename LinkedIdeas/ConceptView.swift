@@ -108,7 +108,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   
   func control(control: NSControl, textView: NSTextView, doCommandBySelector commandSelector: Selector) -> Bool {
     switch commandSelector {
-    case "insertNewline:":
+    case #selector(NSResponder.insertNewline(_:)):
       pressEnterKey()
       return true
     default:
