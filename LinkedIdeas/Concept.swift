@@ -71,7 +71,7 @@ protocol VisualElement {
   var isSelected: Bool { get set }
 }
 
-class Concept: Element, VisualElement {
+class Concept: Element, VisualElement, Equatable {
   var point: NSPoint
   // element
   var identifier: String
@@ -86,4 +86,8 @@ class Concept: Element, VisualElement {
     self.identifier = "\(random())-concept"
     self.stringValue = ""
   }
+}
+
+@warn_unused_result func ==(_ lhs: Concept, _ rhs: Concept) -> Bool {
+  return lhs.identifier == rhs.identifier
 }
