@@ -9,6 +9,18 @@
 import XCTest
 @testable import LinkedIdeas
 
+class TestCanvasViewDelegate: CanvasViewDelegate {
+  var concepts: [Concept] = [Concept]()
+  
+  func contains(concept: Concept) -> Bool {
+    return concepts.contains(concept)
+  }
+  
+  func saveConcept(concept: Concept) {
+    concepts.append(concept)
+  }
+}
+
 class CanvasViewTests: XCTestCase {
   func testClickOnEmptyCanvas() {
     // given
@@ -56,8 +68,10 @@ class CanvasViewTests: XCTestCase {
     let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
     let concept = Concept(point: NSMakePoint(100, 200))
     let conceptView = ConceptView(concept: concept, canvas: canvas)
+    let canvasDelegate = TestCanvasViewDelegate()
     canvas.newConcept = concept
     canvas.newConceptView = conceptView
+    canvas.delegate = canvasDelegate
     
     // when
     canvas.saveConcept(conceptView)
@@ -67,5 +81,10 @@ class CanvasViewTests: XCTestCase {
     XCTAssertNil(canvas.newConceptView)
     XCTAssertEqual(canvas.concepts.first!.identifier, concept.identifier)
     XCTAssertEqual(canvas.conceptViews[concept.identifier]!, conceptView)
+    XCTAssert(canvasDelegate.contains(concept))
+  }
+  
+  func testInitializingCanvasViewFromReadingADocument() {
+      XCTFail("implement me")
   }
 }
