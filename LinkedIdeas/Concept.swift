@@ -20,9 +20,7 @@ import Foundation
 //    return NSRect(center: point, size: stringValue.sizeWithAttributes(nil))
 //  }
 
-//  override var description: String {
-//    return "[\(identifier)] '\(stringValue)' \(editing) \(point)"
-//  }
+
 //
 //  init(point: NSPoint) {
 //    self.point = point
@@ -83,6 +81,10 @@ class Concept: NSObject, NSCoding, Element, VisualElement {
   let pointKey = "pointKey"
   let identifierKey = "identifierKey"
   let isEditableKey = "isEditableKey"
+  
+  override var description: String {
+    return "[\(identifier)] '\(stringValue)' \(isEditable) \(point)"
+  }
   
   convenience init(point: NSPoint) {
     self.init(stringValue: "", point: point)
