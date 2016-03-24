@@ -112,8 +112,16 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     }
   }
   
-  // MARK: - NSTextFieldDelegate
+  override func mouseDragged(theEvent: NSEvent) {
+    dragTo(theEvent.locationInWindow)
+  }
   
+  override func mouseUp(theEvent: NSEvent) {
+    dragTo(theEvent.locationInWindow)
+  }
+
+  // MARK: - NSTextFieldDelegate
+
   func control(control: NSControl, textView: NSTextView, doCommandBySelector commandSelector: Selector) -> Bool {
     switch commandSelector {
     case #selector(NSResponder.insertNewline(_:)):
@@ -167,6 +175,12 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     let stringRect = NSRect(center: bounds.center, size: stringSize)
     NSColor.blackColor().set()
     concept.stringValue.drawInRect(stringRect, withAttributes: nil)
+  }
+
+  // MARK - Dragable element
+  func dragTo(point: NSPoint) {
+    concept.point = point
+    frame = concept.minimalRect
   }
 }
 
