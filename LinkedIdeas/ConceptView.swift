@@ -12,15 +12,15 @@ protocol StringEditableView {
   var textField: NSTextField { get }
   var textFieldSize: NSSize { get }
   var isTextFieldFocused: Bool { get set }
-  
+
   func editingString() -> Bool
   func toggleTextFieldEditMode()
   func enableTextField()
   func disableTextField()
   func focusTextField()
-  
+
   func drawString()
-  
+
   func typeText(string: String)
   func pressEnterKey()
 }
@@ -29,58 +29,66 @@ extension StringEditableView {
   func editingString() -> Bool {
     return !textField.hidden
   }
-  
+
   func enableTextField() {
     textField.hidden = false
     textField.enabled = true
     focusTextField()
   }
-  
+
   func disableTextField() {
     textField.hidden = true
     textField.enabled = false
   }
-  
+
   func typeText(string: String) {
     textField.stringValue = string
   }
 }
 
 protocol CanvasElement {
-  var canvas: Canvas { get }
+  var canvas: CanvasView { get }
 }
 
 protocol ConceptViewProtocol {
   var concept: Concept { get }
 }
 
-class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElement, ClickableView {
+protocol DraggableElement {
+  func dragTo(point: NSPoint)
+}
+
+class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElement, ClickableView, DraggableElement {
   var concept: Concept { didSet { toggleTextFieldEditMode() } }
   var textField: NSTextField
   var textFieldSize: NSSize { return textField.bounds.size }
   // MARK: - Canvas
-  var canvas: Canvas
+  var canvas: CanvasView
   // Extras
   var isTextFieldFocused: Bool = false
-  
+
   private let defaultTextFieldSize = NSMakeSize(60, 20)
-  
-  init(concept: Concept, canvas: Canvas) {
+
+  init(concept: Concept, canvas: CanvasView) {
     let textFieldRect = NSRect(origin: NSMakePoint(0, 0), size: defaultTextFieldSize)
     self.concept = concept
     self.textField = NSTextField(frame: textFieldRect)
     self.canvas = canvas
-    
+
     super.init(frame: concept.minimalRect)
-    
+
     textField.delegate = self
     addSubview(textField)
   }
   
+  override var description: String {
+    return "\(bounds) \(frame) \(concept.description)"
+  }
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   // MARK: - NSView
   override func drawRect(dirtyRect: NSRect) {
     if concept.isSelected {
@@ -92,9 +100,9 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     toggleTextFieldEditMode()
     if !concept.isEditable { drawString() }
   }
-  
+
   // MARK: - Mouse events
-  
+
   override func mouseDown(theEvent: NSEvent) {
     let point = convertPoint(theEvent.locationInWindow, fromView: nil)
     if (theEvent.clickCount == 2) {
@@ -115,21 +123,21 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
       return false
     }
   }
-  
+
   // MARK: - ClickableView
   func click(point: NSPoint) {
     concept.isSelected = !concept.isSelected
     needsDisplay = true
     canvas.clickOnConceptView(self, point: point)
   }
-  
+
   func doubleClick(point: NSPoint) {
     concept.isEditable = true
     isTextFieldFocused = false
     needsDisplay = true
     canvas.clickOnConceptView(self, point: point)
   }
-  
+
   // MARK: - string editable view
   func toggleTextFieldEditMode() {
     if concept.isEditable {
@@ -138,21 +146,21 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
       disableTextField()
     }
   }
-  
+
   func focusTextField() {
     if !isTextFieldFocused {
       textField.becomeFirstResponder()
       isTextFieldFocused = true
     }
   }
-  
+
   func pressEnterKey() {
     disableTextField()
     concept.isEditable = false
     concept.stringValue = textField.stringValue
     canvas.saveConcept(self)
   }
-  
+
   // draw concept string
   func drawString() {
     let stringSize = concept.stringValue.sizeWithAttributes(nil)
@@ -167,7 +175,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
 //  var added = false
 //  var canvas: CanvasView
 //  let textField: NSTextField
-//  
+//
 //  var hoverTrackingArea: NSTrackingArea {
 //    return NSTrackingArea(
 //      rect: bounds,
@@ -176,18 +184,18 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
 //      userInfo: nil
 //    )
 //  }
-//  
+//
 //  init(frame frameRect: NSRect, concept: Concept, canvas: CanvasView) {
 //    self.concept = concept
 //    textField = NSTextField()
 //    self.canvas = canvas
-//    
+//
 //    super.init(frame: frameRect)
-//    
+//
 //    initTextField()
 //    addTrackingArea(hoverTrackingArea)
 //  }
-//  
+//
 //  func initTextField() {
 //    textField.placeholderString = Concept.placeholderString
 //    textField.frame = NSRect(center: bounds.center, size: textFieldSize())
@@ -195,7 +203,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
 //    textField.delegate = self
 //    addSubview(textField)
 //  }
-//  
+//
 //  func textFieldSize() -> NSSize {
 //    if concept.stringValue == "" {
 //      return NSMakeSize(80, 30)
@@ -203,42 +211,42 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
 //      return concept.stringValue.sizeWithAttributes(nil)
 //    }
 //  }
-//  
+//
 //  required init?(coder: NSCoder) {
 //    fatalError("init(coder:) has not been implemented")
 //  }
-//  
+//
 //  override func drawRect(dirtyRect: NSRect) {
 //    super.drawRect(dirtyRect)
 //    sprint("drawRect")
-//    
+//
 //    if concept.editing {
 //      enableTextField()
 //    } else {
 //      drawConceptString()
 //      disableTextField()
 //    }
-//    
+//
 //    if !added {
 //      textField.becomeFirstResponder()
 //      added = true
 //    }
 //  }
-//  
+//
 //  // MARK: - drawing
-//  
+//
 //  func enableTextField() {
 //    sprint("enable text field")
 //    textField.editable = true
 //    textField.hidden = false
 //  }
-//  
+//
 //  func disableTextField() {
 //    sprint("disable text field")
 //    textField.editable = false
 //    textField.hidden = true
 //  }
-//  
+//
 //  func drawConceptString() {
 //    sprint("draw Concept")
 //    let stringSize = concept.stringValue.sizeWithAttributes(nil)
@@ -249,19 +257,19 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
 //  }
 //
 //  // MARK: - accessibility
-//  
+//
 //  override func accessibilityRole() -> String? {
 //    return NSAccessibilityLayoutItemRole
 //  }
-//  
+//
 //  override func accessibilityTitle() -> String? {
 //    return "AConceptView-\(concept.stringValue)"
 //  }
-//  
+//
 //  override func accessibilityIsIgnored() -> Bool { return false }
-//  
+//
 //  // MARK: - NSTextFieldDelegate
-//  
+//
 //  func control(control: NSControl, textView: NSTextView, doCommandBySelector commandSelector: Selector) -> Bool {
 //    switch commandSelector {
 //    case "insertNewline:":
@@ -274,55 +282,55 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
 //      return false
 //    }
 //  }
-//  
+//
 //  func control(control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
 //    sprint("begin editing")
 //    return true
 //  }
-//  
+//
 //  func control(control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
 //    concept.stringValue = textField.stringValue
 //    sprint("end editing \(concept.stringValue)")
 //    return true
 //  }
-//  
+//
 //  override func insertNewline(sender: AnyObject?) {
 //    sprint("insertNewLine")
 //    disableTextField()
 //    concept.editing = false
 //  }
-//  
+//
 //  override func cancelOperation(sender: AnyObject?) {
 //    sprint("cancelOperation")
 //    removeFromSuperview()
 //  }
-//  
+//
 //  override func keyDown(theEvent: NSEvent) {
 //    sprint("key down")
 //  }
 //
 //  // MARK: - Mouse events
-//  
+//
 //  override func mouseEntered(theEvent: NSEvent) {
 //    canvas.targetConceptIdentifier = concept.identifier
 //  }
-//  
+//
 //  override func mouseExited(theEvent: NSEvent) {
 //    canvas.targetConceptIdentifier = nil
 //  }
-//  
+//
 //  override func mouseDown(theEvent: NSEvent) {
 //    sprint("mouse down")
 //    canvas.mouseDownFromConcept(theEvent)
 //    canvas.originConceptIdentifier = concept.identifier
-//    
+//
 //    if canvas.mode == Mode.Concepts && theEvent.clickCount == 2 {
 //      concept.editing = true
 //      enableTextField()
 //      textField.becomeFirstResponder()
 //    }
 //  }
-//  
+//
 //  override func mouseDragged(theEvent: NSEvent) {
 //    sprint("mouse dragged")
 //    if canvas.mode == Mode.Concepts {
@@ -330,10 +338,10 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
 //    }
 //    canvas.mouseDragged(theEvent)
 //  }
-//  
+//
 //  override func mouseUp(theEvent: NSEvent) {
 //    sprint("mouseUp")
-//    
+//
 //    canvas.mouseUp(theEvent)
 //    canvas.originConceptIdentifier = nil
 //  }
