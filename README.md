@@ -1,84 +1,56 @@
 # Linked Ideas
 
-The application is to lay out some ideas in the computer, allowing you to connect them, reorder them and classify them with color codes
+The application is to lay out some ideas in the computer, allowing you to
+connect them, reorder them and classify them with color codes
 
-On the other hand, the connexions between ideas can have text on its own as a way to 'explain' the connexion of ideas.
+On the other hand, the connexions between ideas can have text on its own as a
+way to 'explain' the connexion of ideas.
 
 ## Feature Roadmap
 
-- [x] click in 'canvas' and type a concept, press 'enter' and present it on screen
-- [x] edit a concept
-- [x] delete a concept
-- [x] save and load files
-- [x] create a link between 2 concepts with description text
-- [x] allow moving concepts
-- [ ] add color to concepts
-- [ ] resize concepts
-- [x] edit link description text
-- [ ] delete link between concepts
-- [ ] add color to concepts
-- [ ] panning in canvas
-- [ ] zooming in canvas
-- [ ] select a group of concepts (and their links)
-- [ ] keyboard shortcuts
-- [ ] automatically reorganize concepts and links
-- [ ] undo capabilities
+- [x] adding/editing a concept
+- [x] read/write from files
+- [x] moving concepts
+- [x] selecting concepts
+- [ ] adding links between concepts
+- [ ] delete concepts/links
+- [ ] undo/redo actions for concepts and links
+- [ ] add editable text to links
+- [ ] add color to concepts/links
+- [ ] add editable curvature to links
+- [ ] zooming canvas
+- [ ] panning canvas
+- [ ] save canvas dimensions in document
 
-### Click on 'canvas' and type a concept, press 'enter' and present it on screen
+## Feature Details
 
-- [x] draw canvas
-- [x] accept click
-- [x] draw a string in a certain position on click
-- [x] create text field and focus on it
-- [x] when editing a concept, 'escape key' to cancel and delete the concept
-- [x] accept enter and just render as text
-- [x] when clicking a concept make it editable
-- [ ] \(optional\) when pressing 'enter' and the concept is blank, remove the concept
+### Adding/Editing concepts
 
-### Save and load files
+#### Cases
 
-- [x] make Concept: NSCoding compatible
-- [x] serialize root elements
-- [x] deserialize elements
-- [x] render deserialized elements correctly on canvas
+- [x] clicking the canvas adds a new concept, also:
+  - [x] deselect all concepts
+  - [x] disable the editing mode of all concepts
+  - [x] remove any unsaved concept
+- [x] entering text and pressing "enter" saves the concept **undoable**
+- [x] concepts can be saved in files
+- [x] concepts can be read from files
+- [x] concepts can be (de)selected by single click on them
+- [x] concepts can be edited by double clicking on them, and when this happens: **undoable**
+  - [x] deselect all other concepts
+  - [x] disable the editing mode of all other concepts
+- [x] concepts can be moved by drag and drop them within the canvas **undoable**
 
-### Create a link between 2 concepts with description text
+#### Pending
 
-- [x] add selector _concept mode_ and _link mode_
-- [x] do not add a new concept on click while on _link mode_
-- [x] call corresponding actions on drag link
-- [x] call corresponding actions on drag end
-- [x] show line when dragging the link
-- [x] show a text field when mouse is released
-- [x] enter will render the text
-- [x] click links to edit its text
-- [x] store links in file
-- [x] load links from file
+- selecting a concept and then pressing "delete" key will remove that concept
+  from the view and the file
+- cancelling a concept creation by pressing "ESCAPE" key
+- disable edit mode by pressing "ESCAPE" key
+- support for multi-line concept creation with "SHIFT+ENTER"
 
-## select concepts
+#### Room for Improvement
 
-- [ ] select concept when clicking on it
-- [ ] when selected, pressing 'enter' will make the concept editable
-- [ ] double click on concept will make it editable
-- [ ] when selected, pressing 'delete' will remove the concept
-
-- [ ] select link when clicking on it
-- [ ] when selected, pressing 'enter' will make the link editable
-- [ ] double click on link will make it editable
-- [ ] when selected, pressing 'delete' will remove the link
-
-## feature flag logging with tags
-
-## allow move concepts
-
-### Pending
-
-- [ ] handle click outside of ConceptView
-- [ ] improve unit testing to components
-- [ ] click with position in UI testing
-- [ ] improve UI testing
-- [ ] highlight of selected elements
-- [ ] refactoring text field editable based view
-- [ ] click link to select it
-- [ ] press delete key when selected link to delete it
-- [x] add arrow mark
+- who holds the reference to the data, canvas or document
+- sizing of ConceptView
+- styling of ConceptView
