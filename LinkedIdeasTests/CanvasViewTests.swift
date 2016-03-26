@@ -84,4 +84,59 @@ class CanvasViewTests: XCTestCase {
     // then
     XCTAssertEqual(canvas.conceptViews.count, 2)
   }
+  
+  func testSelectTargetConceptView() {
+    // given
+    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
+    let concept2 = Concept(stringValue: "C2", point: NSMakePoint(220, 230))
+    canvas.concepts = [concept2]
+    let conceptView2 = ConceptView(concept: concept2, canvas: canvas)
+    canvas.conceptViews = [concept2.identifier: conceptView2]
+    
+    // when
+    canvas.mode = .Links
+    let result = canvas.selectTargetConceptView(concept2.point)
+    
+    // then
+    XCTAssertEqual(result, conceptView2)
+  }
+  
+  func testSelectTargetConceptViewWhenNoConceptIsFound() {
+    // given
+    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
+    let concept2 = Concept(stringValue: "C2", point: NSMakePoint(220, 230))
+    canvas.concepts = [concept2]
+    let conceptView2 = ConceptView(concept: concept2, canvas: canvas)
+    canvas.conceptViews = [concept2.identifier: conceptView2]
+    
+    // when
+    canvas.mode = .Links
+    let result = canvas.selectTargetConceptView(NSMakePoint(0, 100))
+    
+    // then
+    XCTAssertNil(result)
+  }
+  
+  func testCreatingALinkBetweenTwoConcepts() {
+    // given
+    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
+    let concept1 = Concept(stringValue: "C1", point: NSMakePoint(20, 30))
+    let concept2 = Concept(stringValue: "C2", point: NSMakePoint(220, 230))
+    canvas.concepts = [concept1, concept2]
+    let conceptView1 = ConceptView(concept: concept1, canvas: canvas)
+    let conceptView2 = ConceptView(concept: concept2, canvas: canvas)
+    canvas.conceptViews = [
+      concept1.identifier: conceptView1,
+      concept2.identifier: conceptView2
+    ]
+    
+    // when
+    canvas.drawRect(canvas.bounds)
+    canvas.mode = Mode.Links
+    canvas.releaseMouseFromConceptView(conceptView1, point: concept2.point)
+    
+    // then
+    XCTAssertEqual(canvas.links.count, 1)
+    XCTAssertEqual(canvas.linkViews.count, 1)
+  }
 }

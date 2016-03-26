@@ -113,11 +113,14 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   }
 
   override func mouseDragged(theEvent: NSEvent) {
+    Swift.print("mouse dragged: \(theEvent.locationInWindow)")
     dragTo(theEvent.locationInWindow)
   }
 
   override func mouseUp(theEvent: NSEvent) {
+    Swift.print("mouse up: \(theEvent.locationInWindow)")
     dragTo(theEvent.locationInWindow)
+    canvas.releaseMouseFromConceptView(self, point: theEvent.locationInWindow)
   }
 
   // MARK: - NSTextFieldDelegate
