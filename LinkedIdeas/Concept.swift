@@ -8,18 +8,7 @@
 
 import Foundation
 
-protocol Element {
-  var identifier: String { get }
-  var stringValue: String { get  set }
-  var minimalRect: NSRect { get }
-}
-
-protocol VisualElement {
-  var isEditable: Bool { get set }
-  var isSelected: Bool { get set }
-}
-
-class Concept: NSObject, NSCoding, Element, VisualElement {
+class Concept: NSObject, NSCoding, Element, VisualElement, StringElement {
   var point: NSPoint
   // element
   var identifier: String
