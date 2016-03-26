@@ -54,7 +54,7 @@ class Document: NSDocument {
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
     if let readConcepts = documentData.readConcepts { canvas.concepts = readConcepts }
     //    if let readLinks = documentData.readLinks { canvas.links = readLinks }
-    //    canvas.mode = editionMode
+    canvas.mode = editionMode
     ultraWindow.acceptsMouseMovedEvents = true
   }
 
@@ -89,6 +89,6 @@ class Document: NSDocument {
     } else {
       editionMode = .Links
     }
-    //    canvas.mode = editionMode
+    canvas.mode = editionMode
   }
 }

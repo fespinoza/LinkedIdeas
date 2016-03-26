@@ -56,6 +56,7 @@ class CanvasView: NSView, Canvas {
   var newConceptView: ConceptView? = nil
   var concepts: [Concept] = [Concept]()
   var conceptViews: [String: ConceptView] = [String: ConceptView]()
+  var mode: Mode = Mode.Concepts
 
   // MARK - NSView
   override func drawRect(dirtyRect: NSRect) {
