@@ -121,4 +121,22 @@ class ConceptViewTests: XCTestCase {
     XCTAssert(originalFrame != afterDragFrame)
     XCTAssertEqual(afterDragFrame.center, dragToPointInWindow)
   }
+  
+  func testDraggingAConceptViewWhenLinksModeDoesNotChangePosition() {
+    // given
+    let canvas = CanvasView(frame: NSMakeRect(20, 20, 600, 400))
+    let concept = Concept(point: NSMakePoint(200, 300))
+    let conceptView = ConceptView(concept: concept, canvas: canvas)
+    let originalFrame = conceptView.frame
+    let dragToPointInWindow = NSMakePoint(450, 100)
+    canvas.mode = Mode.Links
+    
+    // when
+    conceptView.click(NSMakePoint(200, 300))
+    conceptView.dragTo(dragToPointInWindow)
+    let afterDragFrame = conceptView.frame
+    
+    // then
+    XCTAssertEqual(originalFrame, afterDragFrame)
+  }
 }
