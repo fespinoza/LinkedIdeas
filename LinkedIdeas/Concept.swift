@@ -14,7 +14,18 @@ class Concept: NSObject, NSCoding, Element, VisualElement, StringElement {
   // element
   var identifier: String
   var stringValue: String
-  var minimalRect: NSRect { return NSRect(center: point, size: NSMakeSize(60, 20)) }
+  
+  private let padding: CGFloat = 10
+  var minimalRect: NSRect {
+    if stringValue != "" {
+      var size = stringValue.sizeWithAttributes(nil)
+      size.width  += padding
+      size.height += padding
+      return NSRect(center: point, size: size)
+    } else {
+      return NSRect(center: point, size: NSMakeSize(60, 20))
+    }
+  }
   // visual element
   var isEditable: Bool = false
   var isSelected: Bool = false
