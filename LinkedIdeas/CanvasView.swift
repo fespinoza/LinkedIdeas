@@ -26,6 +26,7 @@ protocol CanvasConceptsActions {
   func dragFromConceptView(conceptView: ConceptView, point: NSPoint)
   func releaseMouseFromConceptView(conceptView: ConceptView, point: NSPoint)
   func updateLinkViewsFor(concept: Concept)
+  func isConceptSaved(concept: Concept) -> Bool
 }
 
 protocol CanvasLinkActions {
@@ -206,6 +207,10 @@ class CanvasView: NSView, Canvas {
       return $0.origin.identifier == concept.identifier || $0.target.identifier == concept.identifier
     }
     for link in conceptLinks { linkViewFor(link).frame = link.minimalRect }
+  }
+  
+  func isConceptSaved(concept: Concept) -> Bool {
+    return concept != newConcept
   }
   
   // MARK: - CanvasLinkActions

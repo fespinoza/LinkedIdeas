@@ -139,4 +139,42 @@ class ConceptViewTests: XCTestCase {
     // then
     XCTAssertEqual(originalFrame, afterDragFrame)
   }
+  
+  func testPressintEscapeWhenEditingAConceptAlreadySaved() {
+    // given
+    let concept = Concept(stringValue: "foo", point: NSMakePoint(200, 300))
+    concept.isEditable = true
+    let conceptView = ConceptView(concept: concept, canvas: canvas)
+    canvas.concepts = [concept]
+    canvas.conceptViews = [concept.identifier: conceptView]
+    
+    // when
+    conceptView.typeText("another text")
+    conceptView.cancelEdition()
+    canvas.drawRect(canvas.bounds)
+    
+    // then
+    XCTAssertEqual(concept.stringValue, "foo")
+    XCTAssertEqual(concept.isEditable, false)
+    XCTAssertEqual(conceptView.editingString(), false)
+  }
+  
+  func testPressintEscapeWhenEditingANewConcept() {
+    // given
+    let concept = Concept(stringValue: "foo", point: NSMakePoint(200, 300))
+    concept.isEditable = true
+    let conceptView = ConceptView(concept: concept, canvas: canvas)
+    canvas.newConcept = concept
+    canvas.newConceptView = conceptView
+    
+    // when
+    conceptView.typeText("another text")
+    conceptView.cancelEdition()
+    canvas.drawRect(canvas.bounds)
+    
+    // then
+    XCTAssertNil(canvas.newConcept)
+    XCTAssertNil(canvas.newConceptView)
+    XCTAssertEqual(canvas.subviews.count, 0)
+  }
 }

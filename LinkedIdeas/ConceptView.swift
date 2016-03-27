@@ -23,6 +23,7 @@ protocol StringEditableView {
 
   func typeText(string: String)
   func pressEnterKey()
+  func cancelEdition()
 }
 
 extension StringEditableView {
@@ -141,6 +142,9 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     case #selector(NSResponder.insertNewline(_:)):
       pressEnterKey()
       return true
+    case #selector(NSResponder.cancelOperation(_:)):
+      cancelEdition()
+      return true
     default:
       return false
     }
@@ -181,6 +185,15 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     concept.isEditable = false
     concept.stringValue = textField.stringValue
     canvas.saveConcept(self)
+  }
+  
+  func cancelEdition() {
+    if (canvas.isConceptSaved(concept)) {
+      disableTextField()
+      concept.isEditable = false
+    } else {
+      canvas.cleanNewConcept()
+    }
   }
 
   // draw concept string

@@ -23,6 +23,10 @@ way to 'explain' the connexion of ideas.
 - [ ] zooming canvas
 - [ ] panning canvas
 - [ ] save canvas dimensions in document
+- [ ] export document as image
+- [ ] autosave document
+- [ ] support for timemachine
+- [ ] support for icloud documents
 
 ## Feature Details
 
@@ -49,10 +53,7 @@ way to 'explain' the connexion of ideas.
   from the view and the file
 - cancelling a concept creation by pressing "ESCAPE" key
 - disable edit mode by pressing "ESCAPE" key
-- support for multi-line concept creation with "SHIFT+ENTER"
 
 #### Room for Improvement
 
 - who holds the reference to the data, canvas or document
-- sizing of ConceptView
-- styling of ConceptView
