@@ -90,13 +90,19 @@ class CanvasViewTests: XCTestCase {
       Concept(stringValue: "C1", point: NSMakePoint(20, 30)),
       Concept(stringValue: "C2", point: NSMakePoint(20, 30)),
     ]
+    let links = [
+      Link(origin: concepts[0], target: concepts[1])
+    ]
     canvas.concepts = concepts
+    canvas.links = links
     
     // when
     canvas.drawRect(canvas.bounds)
     
     // then
     XCTAssertEqual(canvas.conceptViews.count, 2)
+    XCTAssertEqual(canvas.linkViews.count, 1)
+    XCTAssertEqual(canvas.subviews.count, 3)
   }
   
   func testSelectTargetConceptView() {

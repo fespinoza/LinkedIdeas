@@ -30,6 +30,9 @@ protocol CanvasConceptsActions {
 protocol CanvasLinkActions {
   func showConstructionArrow()
   func removeConstructionArrow()
+  
+  func drawLinkViews()
+  func drawLinkView(link: Link)
 
   func selectTargetConceptView(point: NSPoint, fromConcept originConcept: Concept) -> ConceptView?
   func createLinkBetweenConceptsViews(originConceptView: ConceptView, targetConceptView: ConceptView)
@@ -79,6 +82,7 @@ class CanvasView: NSView, Canvas {
     NSColor.whiteColor().set()
     NSRectFill(bounds)
     drawConceptViews()
+    drawLinkViews()
     
     if (mode == .Links) { showConstructionArrow() }
   }
@@ -190,6 +194,20 @@ class CanvasView: NSView, Canvas {
   
   // MARK: - CanvasLinkActions
   
+  func drawLinkViews() {
+    for link in links { drawLinkView(link) }
+  }
+  
+  func drawLinkView(link: Link) {
+    if let linkView = linkViews[link.identifier] {
+      linkView.needsDisplay = true
+    } else {
+      let linkView = LinkView(link: link, canvas: self)
+      addSubview(linkView)
+      linkViews[link.identifier] = linkView
+    }
+  }
+  
   func showConstructionArrow() {
     if let arrowOriginPoint = arrowOriginPoint, arrowTargetPoint = arrowTargetPoint {
       NSColor.blueColor().set()
@@ -215,11 +233,10 @@ class CanvasView: NSView, Canvas {
   
   func createLinkBetweenConceptsViews(originConceptView: ConceptView, targetConceptView: ConceptView) {
     let link = Link(origin: originConceptView.concept, target: targetConceptView.concept)
-    let linkView = LinkView(link: link, canvas: self)
-    
-    addSubview(linkView)
-    
     links.append(link)
-    linkViews[link.identifier] = linkView
+    
+    
+    drawLinkView(link)
+  }
   }
 }
