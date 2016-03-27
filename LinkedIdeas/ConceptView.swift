@@ -128,7 +128,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   override func mouseUp(theEvent: NSEvent) {
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
     dragTo(point)
-    canvas.releaseMouseFromConceptView(self, point: theEvent.locationInWindow)
+    canvas.releaseMouseFromConceptView(self, point: point)
   }
 
   // MARK: - NSTextFieldDelegate
