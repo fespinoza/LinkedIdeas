@@ -89,7 +89,7 @@ class ConceptViewTests: XCTestCase {
 
   func testDoubleClickOnConceptView() {
     // given
-    let concept = Concept(point: NSMakePoint(20, 30))
+    let concept = Concept(stringValue: "old value", point: NSMakePoint(20, 30))
     let conceptView = ConceptView(concept: concept, canvas: canvas)
 
     // when
@@ -98,6 +98,7 @@ class ConceptViewTests: XCTestCase {
     // then
     XCTAssertEqual(concept.isEditable, true)
     XCTAssertEqual(conceptView.editingString(), true)
+    XCTAssertEqual(conceptView.textField.stringValue, "old value")
   }
 
   func testDraggingAConceptView() {

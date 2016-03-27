@@ -161,6 +161,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     concept.isEditable = true
     isTextFieldFocused = false
     needsDisplay = true
+    textField.stringValue = concept.stringValue
     canvas.clickOnConceptView(self, point: point)
   }
 
