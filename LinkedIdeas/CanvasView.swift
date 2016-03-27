@@ -44,6 +44,8 @@ protocol BasicCanvas {
 
   func addConceptView(concept: Concept)
   func saveConcept(concept: ConceptView)
+  
+  func pointInCanvasCoordinates(point: NSPoint) -> NSPoint
 }
 
 // Protocol compositions
@@ -83,7 +85,7 @@ class CanvasView: NSView, Canvas {
   // MARK: - MouseEvents
   
   override func mouseDown(theEvent: NSEvent) {
-    let clickedPoint = convertPoint(theEvent.locationInWindow, fromView: nil)
+    let clickedPoint = pointInCanvasCoordinates(theEvent.locationInWindow)
     click(clickedPoint)
   }
 
@@ -101,6 +103,10 @@ class CanvasView: NSView, Canvas {
 
     concepts.append(_newConcept)
     conceptViews[_newConcept.identifier] = _newConceptView
+  }
+  
+  func pointInCanvasCoordinates(point: NSPoint) -> NSPoint {
+    return convertPoint(point, fromView: nil)
   }
 
   // MARK: - CanvasConceptsActions

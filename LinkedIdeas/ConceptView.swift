@@ -48,6 +48,14 @@ extension StringEditableView {
 
 protocol CanvasElement {
   var canvas: CanvasView { get }
+  
+  func pointInCanvasCoordinates(point: NSPoint) -> NSPoint
+}
+
+extension CanvasElement {
+  func pointInCanvasCoordinates(point: NSPoint) -> NSPoint {
+    return canvas.pointInCanvasCoordinates(point)
+  }
 }
 
 protocol ConceptViewProtocol {
@@ -104,7 +112,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   // MARK: - Mouse events
 
   override func mouseDown(theEvent: NSEvent) {
-    let point = convertPoint(theEvent.locationInWindow, fromView: nil)
+    let point = pointInCanvasCoordinates(theEvent.locationInWindow)
     if (theEvent.clickCount == 2) {
       doubleClick(point)
     } else {
@@ -113,11 +121,13 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   }
 
   override func mouseDragged(theEvent: NSEvent) {
-    dragTo(theEvent.locationInWindow)
+    let point = pointInCanvasCoordinates(theEvent.locationInWindow)
+    dragTo(point)
   }
 
   override func mouseUp(theEvent: NSEvent) {
-    dragTo(theEvent.locationInWindow)
+    let point = pointInCanvasCoordinates(theEvent.locationInWindow)
+    dragTo(point)
     canvas.releaseMouseFromConceptView(self, point: theEvent.locationInWindow)
   }
 

@@ -9,6 +9,7 @@
 import Foundation
 
 class Concept: NSObject, NSCoding, Element, VisualElement, StringElement {
+  // NOTE: the point value is relative to the canvas coordinate system
   var point: NSPoint
   // element
   var identifier: String

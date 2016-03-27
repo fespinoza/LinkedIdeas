@@ -36,9 +36,7 @@ class LinkView: NSView, CanvasElement, ArrowDrawable {
   
   // MARK: - ArrowDrawable
   func constructArrow() -> Arrow {
-    let originPoint = canvas.convertPoint(link.originPoint, toView: nil)
-    let targetPoint = canvas.convertPoint(link.targetPoint, toView: nil)
-    return Arrow(p1: originPoint, p2: targetPoint)
+    return Arrow(p1: link.originPoint, p2: link.targetPoint)
   }
   
   func drawArrow() {
