@@ -205,7 +205,7 @@ class CanvasView: NSView, Canvas {
     let conceptLinks = links.filter {
       return $0.origin.identifier == concept.identifier || $0.target.identifier == concept.identifier
     }
-    for link in conceptLinks { linkViewFor(link).needsDisplay = true }
+    for link in conceptLinks { linkViewFor(link).frame = link.minimalRect }
   }
   
   // MARK: - CanvasLinkActions
