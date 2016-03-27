@@ -31,7 +31,7 @@ protocol CanvasLinkActions {
   func showConstructionArrow()
   func removeConstructionArrow()
 
-  func selectTargetConceptView(point: NSPoint) -> ConceptView?
+  func selectTargetConceptView(point: NSPoint, fromConcept originConcept: Concept) -> ConceptView?
   func createLinkBetweenConceptsViews(originConceptView: ConceptView, targetConceptView: ConceptView)
 }
 
@@ -175,7 +175,7 @@ class CanvasView: NSView, Canvas {
   }
   
   func releaseMouseFromConceptView(conceptView: ConceptView, point: NSPoint) {
-    if let targetedConceptView = selectTargetConceptView(point) {
+    if let targetedConceptView = selectTargetConceptView(point, fromConcept: conceptView.concept) {
       createLinkBetweenConceptsViews(conceptView, targetConceptView: targetedConceptView)
     }
     
@@ -203,9 +203,9 @@ class CanvasView: NSView, Canvas {
     arrowTargetPoint = nil
   }
   
-  func selectTargetConceptView(point: NSPoint) -> ConceptView? {
+  func selectTargetConceptView(point: NSPoint, fromConcept originConcept: Concept) -> ConceptView? {
     for (_, conceptView) in conceptViews {
-      if (mode == .Links && CGRectContainsPoint(conceptView.frame, point)) {
+      if (mode == .Links && conceptView.concept != originConcept && CGRectContainsPoint(conceptView.frame, point)) {
         return conceptView
       }
     }

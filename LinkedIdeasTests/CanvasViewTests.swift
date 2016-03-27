@@ -101,17 +101,33 @@ class CanvasViewTests: XCTestCase {
   
   func testSelectTargetConceptView() {
     // given
+    let concept1 = Concept(stringValue: "C1", point: NSMakePoint(120, 130))
     let concept2 = Concept(stringValue: "C2", point: NSMakePoint(220, 230))
-    canvas.concepts = [concept2]
-    let conceptView2 = ConceptView(concept: concept2, canvas: canvas)
-    canvas.conceptViews = [concept2.identifier: conceptView2]
+    canvas.concepts = [concept1, concept2]
+    canvas.drawConceptViews()
+    let conceptView2 = canvas.conceptViewFor(concept2)
     
     // when
     canvas.mode = .Links
-    let result = canvas.selectTargetConceptView(concept2.point)
+    let result = canvas.selectTargetConceptView(concept2.point, fromConcept: concept1)
     
     // then
     XCTAssertEqual(result, conceptView2)
+  }
+  
+  func testSelectTargetConceptViewInSameConcept() {
+    // given
+    let concept1 = Concept(stringValue: "C1", point: NSMakePoint(120, 130))
+    let concept2 = Concept(stringValue: "C2", point: NSMakePoint(220, 230))
+    canvas.concepts = [concept1, concept2]
+    canvas.drawConceptViews()
+    
+    // when
+    canvas.mode = .Links
+    let result = canvas.selectTargetConceptView(concept1.point, fromConcept: concept1)
+    
+    // then
+    XCTAssertNil(result)
   }
   
   func testSelectTargetConceptViewWhenNoConceptIsFound() {
@@ -123,7 +139,7 @@ class CanvasViewTests: XCTestCase {
     
     // when
     canvas.mode = .Links
-    let result = canvas.selectTargetConceptView(NSMakePoint(0, 100))
+    let result = canvas.selectTargetConceptView(NSMakePoint(0, 100), fromConcept: concept2)
     
     // then
     XCTAssertNil(result)
