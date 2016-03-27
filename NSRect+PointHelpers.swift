@@ -45,4 +45,8 @@ extension NSRect {
       $0.intersectionPointWith(secondLine)
     }.filter { $0 != nil }.map { $0! }
   }
+  
+  func firstIntersectionTo(point: NSPoint) -> NSPoint? {
+    return intersectionTo(point).first
+  }
 }
