@@ -36,7 +36,19 @@ class LinkView: NSView, CanvasElement, ArrowDrawable {
   
   // MARK: - ArrowDrawable
   func constructArrow() -> Arrow {
-    return Arrow(p1: link.originPoint, p2: link.targetPoint)
+    let originPoint = link.originPoint
+    let targetPoint = link.targetPoint
+    
+    let originRect = canvas.conceptViewFor(link.origin).frame
+    let targetRect = canvas.conceptViewFor(link.target).frame
+    
+    let intersectionPointWithOrigin = originRect.firstIntersectionTo(targetPoint)!
+    let intersectionPointWithTarget = targetRect.firstIntersectionTo(originPoint)!
+    
+    let intersectionPointWithOriginInLinkViewCoordinates = convertPoint(intersectionPointWithOrigin, fromView: canvas)
+    let intersectionPointWithTargetInLinkViewCoordinates = convertPoint(intersectionPointWithTarget, fromView: canvas)
+    
+    return Arrow(p1: intersectionPointWithOriginInLinkViewCoordinates, p2: intersectionPointWithTargetInLinkViewCoordinates)
   }
   
   func drawArrow() {
