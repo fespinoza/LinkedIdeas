@@ -15,6 +15,8 @@ class Link: NSObject, NSCoding, Element {
   var originPoint: NSPoint { return origin.point }
   var targetPoint: NSPoint { return target.point }
   
+  private let padding: CGFloat = 20
+  
   override var description: String {
     return "'\(origin.stringValue)' '\(target.stringValue)'"
   }
@@ -22,7 +24,15 @@ class Link: NSObject, NSCoding, Element {
   // Element
   var identifier: String
   var minimalRect: NSRect {
-    return NSRect(p1: originPoint, p2: targetPoint)
+    var minX = min(originPoint.x, targetPoint.x)
+    if (abs(originPoint.x - targetPoint.x) <= padding) { minX -= padding / 2 }
+    var minY = min(originPoint.y, targetPoint.y)
+    if (abs(originPoint.y - targetPoint.y) <= padding) { minY -= padding / 2 }
+    let maxX = max(originPoint.x, targetPoint.x)
+    let maxY = max(originPoint.y, targetPoint.y)
+    let width = max(maxX - minX, padding)
+    let height = max(maxY - minY, padding)
+    return NSMakeRect(minX, minY, width, height)
   }
   
   init(origin: Concept, target: Concept) {
