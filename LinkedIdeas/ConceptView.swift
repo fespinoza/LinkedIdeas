@@ -48,6 +48,14 @@ extension StringEditableView {
 
 protocol CanvasElement {
   var canvas: CanvasView { get }
+  
+  func pointInCanvasCoordinates(point: NSPoint) -> NSPoint
+}
+
+extension CanvasElement {
+  func pointInCanvasCoordinates(point: NSPoint) -> NSPoint {
+    return canvas.pointInCanvasCoordinates(point)
+  }
 }
 
 protocol ConceptViewProtocol {
@@ -93,10 +101,9 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   override func drawRect(dirtyRect: NSRect) {
     if concept.isSelected {
       NSColor.greenColor().set()
-    } else {
-      NSColor.lightGrayColor().set()
+      NSRectFill(bounds)
     }
-    NSRectFill(bounds)
+    
     toggleTextFieldEditMode()
     if !concept.isEditable { drawString() }
   }
@@ -104,7 +111,8 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   // MARK: - Mouse events
 
   override func mouseDown(theEvent: NSEvent) {
-    let point = convertPoint(theEvent.locationInWindow, fromView: nil)
+    sprint("mouse down")
+    let point = pointInCanvasCoordinates(theEvent.locationInWindow)
     if (theEvent.clickCount == 2) {
       doubleClick(point)
     } else {
@@ -113,16 +121,22 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   }
 
   override func mouseDragged(theEvent: NSEvent) {
-    dragTo(theEvent.locationInWindow)
+    sprint("mouse drag")
+    let point = pointInCanvasCoordinates(theEvent.locationInWindow)
+    dragTo(point)
   }
 
   override func mouseUp(theEvent: NSEvent) {
-    dragTo(theEvent.locationInWindow)
+    sprint("mouse up")
+    let point = pointInCanvasCoordinates(theEvent.locationInWindow)
+    dragTo(point)
+    canvas.releaseMouseFromConceptView(self, point: point)
   }
 
   // MARK: - NSTextFieldDelegate
 
   func control(control: NSControl, textView: NSTextView, doCommandBySelector commandSelector: Selector) -> Bool {
+    sprint("use selector \(commandSelector)")
     switch commandSelector {
     case #selector(NSResponder.insertNewline(_:)):
       pressEnterKey()
@@ -177,9 +191,18 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     concept.stringValue.drawInRect(stringRect, withAttributes: nil)
   }
 
-  // MARK - Dragable element
+  // MARK: - Dragable element
   func dragTo(point: NSPoint) {
-    concept.point = point
-    frame = concept.minimalRect
+    sprint("drag")
+    if (canvas.mode == .Concepts) {
+      concept.point = point
+      frame = concept.minimalRect
+    }
+    canvas.dragFromConceptView(self, point: point)
+  }
+  
+  // MARK: - Debugging
+  func sprint(message: String) {
+    Swift.print("[ConceptView][\(concept.identifier)][\(concept.stringValue)]: \(message)")
   }
 }

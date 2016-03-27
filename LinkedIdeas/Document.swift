@@ -53,8 +53,8 @@ class Document: NSDocument {
     super.windowControllerDidLoadNib(aController)
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
     if let readConcepts = documentData.readConcepts { canvas.concepts = readConcepts }
-    //    if let readLinks = documentData.readLinks { canvas.links = readLinks }
-    //    canvas.mode = editionMode
+    if let readLinks = documentData.readLinks { canvas.links = readLinks }
+    canvas.mode = editionMode
     ultraWindow.acceptsMouseMovedEvents = true
   }
 
@@ -72,7 +72,7 @@ class Document: NSDocument {
     // Insert code here to write your document to data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning nil.
     // You can also choose to override fileWrapperOfType:error:, writeToURL:ofType:error:, or writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
     documentData.writeConcepts = canvas.concepts
-    //    documentData.writeLinks = canvas.links
+    documentData.writeLinks = canvas.links
     return NSKeyedArchiver.archivedDataWithRootObject(documentData)
   }
 
@@ -89,6 +89,6 @@ class Document: NSDocument {
     } else {
       editionMode = .Links
     }
-    //    canvas.mode = editionMode
+    canvas.mode = editionMode
   }
 }

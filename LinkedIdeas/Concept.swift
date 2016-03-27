@@ -8,18 +8,8 @@
 
 import Foundation
 
-protocol Element {
-  var identifier: String { get }
-  var stringValue: String { get  set }
-  var minimalRect: NSRect { get }
-}
-
-protocol VisualElement {
-  var isEditable: Bool { get set }
-  var isSelected: Bool { get set }
-}
-
-class Concept: NSObject, NSCoding, Element, VisualElement {
+class Concept: NSObject, NSCoding, Element, VisualElement, StringElement {
+  // NOTE: the point value is relative to the canvas coordinate system
   var point: NSPoint
   // element
   var identifier: String
@@ -45,7 +35,7 @@ class Concept: NSObject, NSCoding, Element, VisualElement {
 
   init(stringValue: String, point: NSPoint) {
     self.point = point
-    self.identifier = "\(random())-concept"
+    self.identifier = "\(random()*10000)-concept"
     self.stringValue = stringValue
   }
 
