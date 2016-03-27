@@ -158,6 +158,7 @@ class CanvasView: NSView, Canvas {
   }
 
   func clickOnConceptView(conceptView: ConceptView, point: NSPoint) {
+    sprint("click on conceptView \(conceptView.concept.identifier) to \(point)")
     let selectedConcept = conceptView.concept
     for concept in concepts {
       if (concept.identifier != selectedConcept.identifier) {
@@ -173,6 +174,7 @@ class CanvasView: NSView, Canvas {
   var arrowTargetPoint: NSPoint?
   
   func dragFromConceptView(conceptView: ConceptView, point: NSPoint) {
+    sprint("drag from conceptView \(conceptView.concept.identifier) to \(point)")
     arrowOriginPoint = conceptView.concept.point
     arrowTargetPoint = point
     needsDisplay = true
@@ -235,8 +237,13 @@ class CanvasView: NSView, Canvas {
     let link = Link(origin: originConceptView.concept, target: targetConceptView.concept)
     links.append(link)
     
+    sprint("create link \(link)")
     
     drawLinkView(link)
   }
+  
+  // MARK: - Debugging
+  func sprint(message: String) {
+    Swift.print("[CanvasView]: \(message)")
   }
 }

@@ -112,6 +112,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   // MARK: - Mouse events
 
   override func mouseDown(theEvent: NSEvent) {
+    sprint("mouse down")
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
     if (theEvent.clickCount == 2) {
       doubleClick(point)
@@ -121,11 +122,13 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   }
 
   override func mouseDragged(theEvent: NSEvent) {
+    sprint("mouse drag")
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
     dragTo(point)
   }
 
   override func mouseUp(theEvent: NSEvent) {
+    sprint("mouse up")
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
     dragTo(point)
     canvas.releaseMouseFromConceptView(self, point: point)
@@ -134,6 +137,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   // MARK: - NSTextFieldDelegate
 
   func control(control: NSControl, textView: NSTextView, doCommandBySelector commandSelector: Selector) -> Bool {
+    sprint("use selector \(commandSelector)")
     switch commandSelector {
     case #selector(NSResponder.insertNewline(_:)):
       pressEnterKey()
@@ -190,10 +194,16 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
 
   // MARK: - Dragable element
   func dragTo(point: NSPoint) {
+    sprint("drag")
     if (canvas.mode == .Concepts) {
       concept.point = point
       frame = concept.minimalRect
     }
     canvas.dragFromConceptView(self, point: point)
+  }
+  
+  // MARK: - Debugging
+  func sprint(message: String) {
+    Swift.print("[ConceptView][\(concept.identifier)][\(concept.stringValue)]: \(message)")
   }
 }
