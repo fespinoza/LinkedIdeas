@@ -35,7 +35,7 @@ class Concept: NSObject, NSCoding, Element, VisualElement, StringElement {
 
   init(stringValue: String, point: NSPoint) {
     self.point = point
-    self.identifier = "\(random())-concept"
+    self.identifier = "\(random()*10000)-concept"
     self.stringValue = stringValue
   }
 

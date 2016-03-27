@@ -28,7 +28,7 @@ class Link: NSObject, NSCoding, Element {
   init(origin: Concept, target: Concept) {
     self.origin = origin
     self.target = target
-    self.identifier = "\(random())-link"
+    self.identifier = "\(random()*10000)-link"
   }
   
   let identifierKey = "identifierKey"
