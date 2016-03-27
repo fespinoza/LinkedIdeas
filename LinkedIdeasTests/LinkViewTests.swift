@@ -29,8 +29,6 @@ class LinkViewTests: XCTestCase {
     // given
     canvas.concepts = [concept1, concept2]
     canvas.drawConceptViews()
-    let conceptView1 = canvas.conceptViewFor(concept1)
-    let conceptView2 = canvas.conceptViewFor(concept2)
     let link = Link(origin: concept1, target: concept2)
     let linkView = LinkView(link: link, canvas: canvas)
     let concept1PointInLinkViewCoordinates = NSMakePoint(40, 30)
