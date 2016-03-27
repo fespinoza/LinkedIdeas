@@ -25,6 +25,7 @@ protocol CanvasConceptsActions {
   func clickOnConceptView(conceptView: ConceptView, point: NSPoint)
   func dragFromConceptView(conceptView: ConceptView, point: NSPoint)
   func releaseMouseFromConceptView(conceptView: ConceptView, point: NSPoint)
+  func updateLinkViewsFor(concept: Concept)
 }
 
 protocol CanvasLinkActions {
@@ -50,6 +51,7 @@ protocol BasicCanvas {
   
   func pointInCanvasCoordinates(point: NSPoint) -> NSPoint
   func conceptViewFor(concept: Concept) -> ConceptView
+  func linkViewFor(link: Link) -> LinkView
 }
 
 // Protocol compositions
@@ -117,6 +119,10 @@ class CanvasView: NSView, Canvas {
   func conceptViewFor(concept: Concept) -> ConceptView {
     return conceptViews[concept.identifier]!
   }
+  
+  func linkViewFor(link: Link) -> LinkView {
+    return linkViews[link.identifier]!
+  }
 
   // MARK: - CanvasConceptsActions
   
@@ -177,6 +183,7 @@ class CanvasView: NSView, Canvas {
     sprint("drag from conceptView \(conceptView.concept.identifier) to \(point)")
     arrowOriginPoint = conceptView.concept.point
     arrowTargetPoint = point
+    updateLinkViewsFor(conceptView.concept)
     needsDisplay = true
   }
   
@@ -194,6 +201,13 @@ class CanvasView: NSView, Canvas {
     newConcept = nil
   }
   
+  func updateLinkViewsFor(concept: Concept) {
+    let conceptLinks = links.filter {
+      return $0.origin.identifier == concept.identifier || $0.target.identifier == concept.identifier
+    }
+    for link in conceptLinks { linkViewFor(link).needsDisplay = true }
+  }
+  
   // MARK: - CanvasLinkActions
   
   func drawLinkViews() {
@@ -204,6 +218,7 @@ class CanvasView: NSView, Canvas {
     if let linkView = linkViews[link.identifier] {
       linkView.needsDisplay = true
     } else {
+      sprint("draw new link view for \(link)")
       let linkView = LinkView(link: link, canvas: self)
       addSubview(linkView)
       linkViews[link.identifier] = linkView
