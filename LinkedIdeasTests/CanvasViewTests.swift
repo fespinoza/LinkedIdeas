@@ -28,6 +28,24 @@ class CanvasViewTests: XCTestCase {
     XCTAssertEqual(newConceptView!.textFieldSize, NSMakeSize(60, 20))
   }
   
+  func testCreatingAConcept() {
+    // when
+    let pointInCanvas = NSMakePoint(100, 200)
+    canvas.click(pointInCanvas)
+    canvas.newConceptView?.typeText("foo bar")
+    canvas.newConceptView?.pressEnterKey()
+    
+    // then
+    XCTAssertNil(canvas.newConcept)
+    XCTAssertNil(canvas.newConceptView)
+    XCTAssertEqual(canvas.concepts.count, 1)
+    
+    let concept = canvas.concepts.first!
+    let conceptView = canvas.conceptViews[concept.identifier]!
+    XCTAssertEqual(concept.point, pointInCanvas)
+    XCTAssertEqual(conceptView.frame.center, pointInCanvas)
+  }
+  
   func testClickingOnCanvasWhenOtherConceptIsEditable() {
     // given
     let concept1 = Concept(point: NSMakePoint(1, 20))
