@@ -10,9 +10,10 @@ import XCTest
 @testable import LinkedIdeas
 
 class ConceptViewTests: XCTestCase {
+  let canvas = CanvasView(frame: NSMakeRect(20, 20, 600, 400))
+  
   func testSavingAConcept() {
     // given
-    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
     let concept = Concept(point: NSMakePoint(20, 30))
     let conceptView = ConceptView(concept: concept, canvas: canvas)
 
@@ -30,7 +31,6 @@ class ConceptViewTests: XCTestCase {
 
   func testTextFieldBounds() {
     // given
-    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
     let concept = Concept(point: NSMakePoint(20, 30))
 
     // when
@@ -42,7 +42,6 @@ class ConceptViewTests: XCTestCase {
 
   func testTextFieldBecomesFirstResponder() {
     // given
-    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
     let concept = Concept(point: NSMakePoint(20, 30))
     concept.isEditable = true
 
@@ -56,7 +55,6 @@ class ConceptViewTests: XCTestCase {
 
   func testClickOnConceptView() {
     // given
-    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
     let concept = Concept(point: NSMakePoint(20, 30))
     let conceptView = ConceptView(concept: concept, canvas: canvas)
 
@@ -71,7 +69,6 @@ class ConceptViewTests: XCTestCase {
     // given
     let concept1 = Concept(point: NSMakePoint(1, 20))
     let concept2 = Concept(point: NSMakePoint(100, 200))
-    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
     concept1.isEditable = true
     canvas.concepts.append(concept1)
     canvas.concepts.append(concept2)
@@ -92,7 +89,6 @@ class ConceptViewTests: XCTestCase {
 
   func testDoubleClickOnConceptView() {
     // given
-    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
     let concept = Concept(point: NSMakePoint(20, 30))
     let conceptView = ConceptView(concept: concept, canvas: canvas)
 
@@ -106,7 +102,6 @@ class ConceptViewTests: XCTestCase {
 
   func testDraggingAConceptView() {
     // given
-    let canvas = CanvasView(frame: NSMakeRect(20, 20, 600, 400))
     let concept = Concept(point: NSMakePoint(200, 300))
     let conceptView = ConceptView(concept: concept, canvas: canvas)
     let originalFrame = conceptView.frame
@@ -124,7 +119,6 @@ class ConceptViewTests: XCTestCase {
   
   func testDraggingAConceptViewWhenLinksModeDoesNotChangePosition() {
     // given
-    let canvas = CanvasView(frame: NSMakeRect(20, 20, 600, 400))
     let concept = Concept(point: NSMakePoint(200, 300))
     let conceptView = ConceptView(concept: concept, canvas: canvas)
     let originalFrame = conceptView.frame

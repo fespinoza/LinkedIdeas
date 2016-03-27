@@ -38,7 +38,6 @@ class LinkView: NSView, CanvasElement, ArrowDrawable {
   func constructArrow() -> Arrow {
     let originPoint = canvas.convertPoint(link.originPoint, toView: nil)
     let targetPoint = canvas.convertPoint(link.targetPoint, toView: nil)
-    Swift.print("draw arrow between \(originPoint) and \(targetPoint)")
     return Arrow(p1: originPoint, p2: targetPoint)
   }
   

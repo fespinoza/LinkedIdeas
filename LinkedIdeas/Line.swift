@@ -48,7 +48,6 @@ struct Line: PointInterceptable {
   // it does not considate the same lines: the answer is all the points
   func intersectionPointWith(line: Line) -> NSPoint? {
     if (isParallelTo(line)) {
-      Swift.print("parallel case")
       return nil
     }
     

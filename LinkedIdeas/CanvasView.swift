@@ -70,7 +70,8 @@ class CanvasView: NSView, Canvas {
   var links: [Link] = [Link]()
   var linkViews: [String: LinkView] = [String: LinkView]()
 
-  // MARK - NSView
+  // MARK: - NSView
+  
   override func drawRect(dirtyRect: NSRect) {
     NSColor.whiteColor().set()
     NSRectFill(bounds)
@@ -79,13 +80,15 @@ class CanvasView: NSView, Canvas {
     if (mode == .Links) { showConstructionArrow() }
   }
 
-  // MARK - MouseEvents
+  // MARK: - MouseEvents
+  
   override func mouseDown(theEvent: NSEvent) {
     let clickedPoint = convertPoint(theEvent.locationInWindow, fromView: nil)
     click(clickedPoint)
   }
 
-  // MARK - BasicCanvas
+  // MARK: - BasicCanvas
+  
   func addConceptView(concept: Concept) {
   }
 
@@ -100,7 +103,7 @@ class CanvasView: NSView, Canvas {
     conceptViews[_newConcept.identifier] = _newConceptView
   }
 
-  // MARK - CanvasConceptsActions
+  // MARK: - CanvasConceptsActions
   func drawConceptViews() {
     for concept in concepts { drawConceptView(concept) }
   }
@@ -174,6 +177,7 @@ class CanvasView: NSView, Canvas {
   }
   
   // MARK: - CanvasLinkActions
+  
   func showConstructionArrow() {
     if let arrowOriginPoint = arrowOriginPoint, arrowTargetPoint = arrowTargetPoint {
       NSColor.blueColor().set()
@@ -198,7 +202,6 @@ class CanvasView: NSView, Canvas {
   }
   
   func createLinkBetweenConceptsViews(originConceptView: ConceptView, targetConceptView: ConceptView) {
-    Swift.print(">>>>> create link between concepts")
     let link = Link(origin: originConceptView.concept, target: targetConceptView.concept)
     let linkView = LinkView(link: link, canvas: self)
     

@@ -10,10 +10,9 @@ import XCTest
 @testable import LinkedIdeas
 
 class CanvasViewTests: XCTestCase {
+  let canvas = CanvasView(frame: NSMakeRect(20, 20, 600, 400))
+  
   func testClickOnEmptyCanvas() {
-    // given
-    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
-    
     // when
     let clickedPoint = NSMakePoint(20, 60)
     canvas.click(clickedPoint)
@@ -33,7 +32,6 @@ class CanvasViewTests: XCTestCase {
     // given
     let concept1 = Concept(point: NSMakePoint(1, 20))
     let concept2 = Concept(point: NSMakePoint(100, 200))
-    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
     concept1.isEditable = true
     concept2.isEditable = true
     canvas.concepts.append(concept1)
@@ -53,7 +51,6 @@ class CanvasViewTests: XCTestCase {
   
   func testSavingAConcept() {
     // given
-    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
     let concept = Concept(point: NSMakePoint(100, 200))
     let conceptView = ConceptView(concept: concept, canvas: canvas)
     canvas.newConcept = concept
@@ -71,7 +68,6 @@ class CanvasViewTests: XCTestCase {
   
   func testInitializingCanvasViewFromReadingADocument() {
     // given
-    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
     let concepts = [
       Concept(stringValue: "C1", point: NSMakePoint(20, 30)),
       Concept(stringValue: "C2", point: NSMakePoint(20, 30)),
@@ -87,7 +83,6 @@ class CanvasViewTests: XCTestCase {
   
   func testSelectTargetConceptView() {
     // given
-    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
     let concept2 = Concept(stringValue: "C2", point: NSMakePoint(220, 230))
     canvas.concepts = [concept2]
     let conceptView2 = ConceptView(concept: concept2, canvas: canvas)
@@ -103,7 +98,6 @@ class CanvasViewTests: XCTestCase {
   
   func testSelectTargetConceptViewWhenNoConceptIsFound() {
     // given
-    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
     let concept2 = Concept(stringValue: "C2", point: NSMakePoint(220, 230))
     canvas.concepts = [concept2]
     let conceptView2 = ConceptView(concept: concept2, canvas: canvas)
@@ -119,7 +113,6 @@ class CanvasViewTests: XCTestCase {
   
   func testCreatingALinkBetweenTwoConcepts() {
     // given
-    let canvas = CanvasView(frame: NSMakeRect(0, 0, 600, 400))
     let concept1 = Concept(stringValue: "C1", point: NSMakePoint(20, 30))
     let concept2 = Concept(stringValue: "C2", point: NSMakePoint(220, 230))
     canvas.concepts = [concept1, concept2]
