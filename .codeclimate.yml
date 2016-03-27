@@ -1,0 +1,11 @@
+---
+engines:
+  tailor:
+    enabled: true
+  markdownlint:
+    enabled: true
+  fixme:
+    enabled: true
+ratings:
+  paths: []
+exclude_paths: []

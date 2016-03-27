@@ -1,5 +1,7 @@
 # Linked Ideas
 
+[![Code Climate](https://codeclimate.com/github/fespinoza/linked-ideas-osx/badges/gpa.svg)](https://codeclimate.com/github/fespinoza/linked-ideas-osx)
+
 The application is to lay out some ideas in the computer, allowing you to
 connect them, reorder them and classify them with color codes
 
