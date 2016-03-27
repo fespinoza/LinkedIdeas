@@ -41,7 +41,7 @@ class CanvasViewTests: XCTestCase {
     XCTAssertEqual(canvas.concepts.count, 1)
     
     let concept = canvas.concepts.first!
-    let conceptView = canvas.conceptViews[concept.identifier]!
+    let conceptView = canvas.conceptViewFor(concept)
     XCTAssertEqual(concept.point, pointInCanvas)
     XCTAssertEqual(conceptView.frame.center, pointInCanvas)
   }
@@ -81,7 +81,7 @@ class CanvasViewTests: XCTestCase {
     XCTAssertNil(canvas.newConcept)
     XCTAssertNil(canvas.newConceptView)
     XCTAssertEqual(canvas.concepts.first!.identifier, concept.identifier)
-    XCTAssertEqual(canvas.conceptViews[concept.identifier]!, conceptView)
+    XCTAssertEqual(canvas.conceptViewFor(concept), conceptView)
   }
   
   func testInitializingCanvasViewFromReadingADocument() {

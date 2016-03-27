@@ -46,6 +46,7 @@ protocol BasicCanvas {
   func saveConcept(concept: ConceptView)
   
   func pointInCanvasCoordinates(point: NSPoint) -> NSPoint
+  func conceptViewFor(concept: Concept) -> ConceptView
 }
 
 // Protocol compositions
@@ -108,8 +109,13 @@ class CanvasView: NSView, Canvas {
   func pointInCanvasCoordinates(point: NSPoint) -> NSPoint {
     return convertPoint(point, fromView: nil)
   }
+  
+  func conceptViewFor(concept: Concept) -> ConceptView {
+    return conceptViews[concept.identifier]!
+  }
 
   // MARK: - CanvasConceptsActions
+  
   func drawConceptViews() {
     for concept in concepts { drawConceptView(concept) }
   }
@@ -153,7 +159,7 @@ class CanvasView: NSView, Canvas {
       if (concept.identifier != selectedConcept.identifier) {
         concept.isSelected = false
         concept.isEditable = false
-        conceptViews[concept.identifier]!.needsDisplay = true
+        conceptViewFor(concept).needsDisplay = true
       }
     }
     cleanNewConcept()

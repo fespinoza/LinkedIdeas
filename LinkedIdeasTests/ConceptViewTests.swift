@@ -73,7 +73,7 @@ class ConceptViewTests: XCTestCase {
     canvas.concepts.append(concept1)
     canvas.concepts.append(concept2)
     canvas.drawConceptViews()
-    let conceptView2 = canvas.conceptViews[concept2.identifier]!
+    let conceptView2 = canvas.conceptViewFor(concept2)
 
     // when
     canvas.click(NSMakePoint(20, 30))
