@@ -64,10 +64,12 @@ extension ClickableView where Self: CanvasConceptsActions {
   func click(point: NSPoint) {
     markConceptsAsNotEditable()
     unselectConcepts()
-    createConceptAt(point)
   }
 
-  func doubleClick(point: NSPoint) {}
+  func doubleClick(point: NSPoint) {
+    click(point)
+    createConceptAt(point)
+  }
 }
 
 class CanvasView: NSView, Canvas {
@@ -94,7 +96,11 @@ class CanvasView: NSView, Canvas {
   
   override func mouseDown(theEvent: NSEvent) {
     let clickedPoint = pointInCanvasCoordinates(theEvent.locationInWindow)
-    click(clickedPoint)
+    if (theEvent.clickCount == 2) {
+      doubleClick(clickedPoint)
+    } else {
+      click(clickedPoint)
+    }
   }
 
   // MARK: - BasicCanvas
