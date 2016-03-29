@@ -61,6 +61,8 @@ extension CanvasElement {
 
 protocol ConceptViewProtocol {
   var concept: Concept { get }
+  
+  func updateFrameToMatchConcept()
 }
 
 protocol DraggableElement {
@@ -154,6 +156,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   func click(point: NSPoint) {
     concept.isSelected = !concept.isSelected
     needsDisplay = true
+    updateFrameToMatchConcept()
     canvas.clickOnConceptView(self, point: point)
   }
 
@@ -185,6 +188,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     disableTextField()
     concept.isEditable = false
     concept.stringValue = textField.stringValue
+    updateFrameToMatchConcept()
     canvas.saveConcept(self)
   }
   
@@ -192,6 +196,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     if (canvas.isConceptSaved(concept)) {
       disableTextField()
       concept.isEditable = false
+      updateFrameToMatchConcept()
     } else {
       canvas.cleanNewConcept()
     }
@@ -210,9 +215,14 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     sprint("drag")
     if (canvas.mode == .Concepts) {
       concept.point = point
-      frame = concept.minimalRect
+      updateFrameToMatchConcept()
     }
     canvas.dragFromConceptView(self, point: point)
+  }
+  
+  // MARK: - ConceptViewProtocol
+  func updateFrameToMatchConcept() {
+    frame = concept.minimalRect
   }
   
   // MARK: - Debugging
