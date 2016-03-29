@@ -57,3 +57,15 @@ way to 'explain' the connexion of ideas.
 #### Room for Improvement
 
 - who holds the reference to the data, canvas or document
+- app indicator of not saved
+- dismiss construction arrow on click
+- no concept creation on link mode
+- construction line not on same worker
+- BUG: LinkArrow when there is no intersection point with conceptViews
+- BUG: dragging fails many times when concepts has already many links
+- document icon
+- multi element dragging
+- attributed strings on concepts
+- control + dragging to create straight links
+- aligment of concepts
+- center text
