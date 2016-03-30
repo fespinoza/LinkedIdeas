@@ -14,7 +14,7 @@ way to 'explain' the connexion of ideas.
 - [x] read/write from files
 - [x] moving concepts
 - [x] selecting concepts
-- [ ] adding links between concepts
+- [x] adding links between concepts
 - [ ] delete concepts/links
 - [ ] undo/redo actions for concepts and links
 - [ ] add editable text to links
@@ -54,10 +54,10 @@ way to 'explain' the connexion of ideas.
 - cancelling a concept creation by pressing "ESCAPE" key
 - disable edit mode by pressing "ESCAPE" key
 
-#### Room for Improvement
+#### A worlf of ideas
 
-- who holds the reference to the data, canvas or document
-- app indicator of not saved
+- improve who holds the reference to the data, canvas or document
+- add app indicator of not saved
 - dismiss construction arrow on click
 - no concept creation on link mode
 - construction line not on same worker
@@ -69,3 +69,6 @@ way to 'explain' the connexion of ideas.
 - control + dragging to create straight links
 - aligment of concepts
 - center text
+- copy/paste/duplicate concepts/links
+- moving/select mode
+- fix size of text field when editing a concept
