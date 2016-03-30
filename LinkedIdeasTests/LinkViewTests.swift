@@ -11,8 +11,8 @@ import XCTest
 
 class LinkViewTests: XCTestCase {
   let canvas = CanvasView(frame: NSMakeRect(20, 20, 600, 400))
-  let concept1 = Concept(stringValue: "foo", point: NSMakePoint(100, 200))
-  let concept2 = Concept(stringValue: "bar", point: NSMakePoint(300, 300))
+  let concept1 = Concept(point: NSMakePoint(100, 200))
+  let concept2 = Concept(point: NSMakePoint(300, 300))
   
   func testCreateALinkView() {
     // given

@@ -26,6 +26,7 @@ protocol CanvasConceptsActions {
   func dragFromConceptView(conceptView: ConceptView, point: NSPoint)
   func releaseMouseFromConceptView(conceptView: ConceptView, point: NSPoint)
   func updateLinkViewsFor(concept: Concept)
+  func isConceptSaved(concept: Concept) -> Bool
 }
 
 protocol CanvasLinkActions {
@@ -66,7 +67,9 @@ extension ClickableView where Self: CanvasConceptsActions {
     createConceptAt(point)
   }
 
-  func doubleClick(point: NSPoint) {}
+  func doubleClick(point: NSPoint) {
+    click(point)
+  }
 }
 
 class CanvasView: NSView, Canvas {
@@ -93,7 +96,11 @@ class CanvasView: NSView, Canvas {
   
   override func mouseDown(theEvent: NSEvent) {
     let clickedPoint = pointInCanvasCoordinates(theEvent.locationInWindow)
-    click(clickedPoint)
+    if (theEvent.clickCount == 2) {
+      doubleClick(clickedPoint)
+    } else {
+      click(clickedPoint)
+    }
   }
 
   // MARK: - BasicCanvas
@@ -206,6 +213,10 @@ class CanvasView: NSView, Canvas {
       return $0.origin.identifier == concept.identifier || $0.target.identifier == concept.identifier
     }
     for link in conceptLinks { linkViewFor(link).frame = link.minimalRect }
+  }
+  
+  func isConceptSaved(concept: Concept) -> Bool {
+    return concept != newConcept
   }
   
   // MARK: - CanvasLinkActions

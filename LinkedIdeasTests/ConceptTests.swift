@@ -18,4 +18,31 @@ class ConceptTests: XCTestCase {
     // then
     XCTAssertEqual(concept.minimalRect, NSRect(center: point, size: NSMakeSize(60, 20)))
   }
+  
+  func testMinimalRectWithStringValue() {
+    // given
+    let point = NSPoint(x: 60, y: 400)
+    let stringValue = "everything is..."
+    let concept = Concept(stringValue: stringValue, point: point)
+    var stringSize = stringValue.sizeWithAttributes(nil)
+    stringSize.width  += 10
+    stringSize.height += 10
+    
+    // then
+    XCTAssert(concept.minimalRect.size.width > 60)
+    XCTAssertEqual(concept.minimalRect, NSRect(center: point, size: stringSize))
+  }
+  
+  func testMinimalRectWithMultiLineStringValue() {
+    // given
+    let point = NSPoint(x: 60, y: 400)
+    let stringValue = "everything is...\nAWESOME!"
+    let concept = Concept(stringValue: stringValue, point: point)
+    var stringSize = stringValue.sizeWithAttributes(nil)
+    stringSize.width  += 10
+    stringSize.height += 10
+    
+    // then
+    XCTAssertEqual(concept.minimalRect, NSRect(center: point, size: stringSize))
+  }
 }

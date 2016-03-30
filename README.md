@@ -14,7 +14,7 @@ way to 'explain' the connexion of ideas.
 - [x] read/write from files
 - [x] moving concepts
 - [x] selecting concepts
-- [ ] adding links between concepts
+- [x] adding links between concepts
 - [ ] delete concepts/links
 - [ ] undo/redo actions for concepts and links
 - [ ] add editable text to links
@@ -23,6 +23,10 @@ way to 'explain' the connexion of ideas.
 - [ ] zooming canvas
 - [ ] panning canvas
 - [ ] save canvas dimensions in document
+- [ ] export document as image
+- [ ] autosave document
+- [ ] support for timemachine
+- [ ] support for icloud documents
 
 ## Feature Details
 
@@ -49,10 +53,22 @@ way to 'explain' the connexion of ideas.
   from the view and the file
 - cancelling a concept creation by pressing "ESCAPE" key
 - disable edit mode by pressing "ESCAPE" key
-- support for multi-line concept creation with "SHIFT+ENTER"
 
-#### Room for Improvement
+#### A worlf of ideas
 
-- who holds the reference to the data, canvas or document
-- sizing of ConceptView
-- styling of ConceptView
+- improve who holds the reference to the data, canvas or document
+- add app indicator of not saved
+- dismiss construction arrow on click
+- no concept creation on link mode
+- construction line not on same worker
+- BUG: LinkArrow when there is no intersection point with conceptViews
+- BUG: dragging fails many times when concepts has already many links
+- document icon
+- multi element dragging
+- attributed strings on concepts
+- control + dragging to create straight links
+- aligment of concepts
+- center text
+- copy/paste/duplicate concepts/links
+- moving/select mode
+- fix size of text field when editing a concept

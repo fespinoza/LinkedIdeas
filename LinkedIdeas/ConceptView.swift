@@ -23,6 +23,7 @@ protocol StringEditableView {
 
   func typeText(string: String)
   func pressEnterKey()
+  func cancelEdition()
 }
 
 extension StringEditableView {
@@ -60,6 +61,8 @@ extension CanvasElement {
 
 protocol ConceptViewProtocol {
   var concept: Concept { get }
+  
+  func updateFrameToMatchConcept()
 }
 
 protocol DraggableElement {
@@ -141,6 +144,9 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     case #selector(NSResponder.insertNewline(_:)):
       pressEnterKey()
       return true
+    case #selector(NSResponder.cancelOperation(_:)):
+      cancelEdition()
+      return true
     default:
       return false
     }
@@ -150,6 +156,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   func click(point: NSPoint) {
     concept.isSelected = !concept.isSelected
     needsDisplay = true
+    updateFrameToMatchConcept()
     canvas.clickOnConceptView(self, point: point)
   }
 
@@ -157,6 +164,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     concept.isEditable = true
     isTextFieldFocused = false
     needsDisplay = true
+    textField.stringValue = concept.stringValue
     canvas.clickOnConceptView(self, point: point)
   }
 
@@ -180,7 +188,18 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     disableTextField()
     concept.isEditable = false
     concept.stringValue = textField.stringValue
+    updateFrameToMatchConcept()
     canvas.saveConcept(self)
+  }
+  
+  func cancelEdition() {
+    if (canvas.isConceptSaved(concept)) {
+      disableTextField()
+      concept.isEditable = false
+      updateFrameToMatchConcept()
+    } else {
+      canvas.cleanNewConcept()
+    }
   }
 
   // draw concept string
@@ -196,9 +215,14 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     sprint("drag")
     if (canvas.mode == .Concepts) {
       concept.point = point
-      frame = concept.minimalRect
+      updateFrameToMatchConcept()
     }
     canvas.dragFromConceptView(self, point: point)
+  }
+  
+  // MARK: - ConceptViewProtocol
+  func updateFrameToMatchConcept() {
+    frame = concept.minimalRect
   }
   
   // MARK: - Debugging

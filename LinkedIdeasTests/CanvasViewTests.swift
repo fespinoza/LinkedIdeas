@@ -12,10 +12,10 @@ import XCTest
 class CanvasViewTests: XCTestCase {
   let canvas = CanvasView(frame: NSMakeRect(20, 20, 600, 400))
   
-  func testClickOnEmptyCanvas() {
+  func testDoubleClickOnEmptyCanvas() {
     // when
     let clickedPoint = NSMakePoint(20, 60)
-    canvas.click(clickedPoint)
+    canvas.doubleClick(clickedPoint)
     
     // then
     let newConcept: Concept? = canvas.newConcept
@@ -31,7 +31,7 @@ class CanvasViewTests: XCTestCase {
   func testCreatingAConcept() {
     // when
     let pointInCanvas = NSMakePoint(100, 200)
-    canvas.click(pointInCanvas)
+    canvas.doubleClick(pointInCanvas)
     canvas.newConceptView?.typeText("foo bar")
     canvas.newConceptView?.pressEnterKey()
     
@@ -46,7 +46,7 @@ class CanvasViewTests: XCTestCase {
     XCTAssertEqual(conceptView.frame.center, pointInCanvas)
   }
   
-  func testClickingOnCanvasWhenOtherConceptIsEditable() {
+  func testDoubleClickingOnCanvasWhenOtherConceptIsEditable() {
     // given
     let concept1 = Concept(point: NSMakePoint(1, 20))
     let concept2 = Concept(point: NSMakePoint(100, 200))
@@ -57,7 +57,7 @@ class CanvasViewTests: XCTestCase {
     canvas.drawConceptViews()
     
     // when
-    canvas.click(NSMakePoint(20, 60))
+    canvas.doubleClick(NSMakePoint(20, 60))
     
     // then
     XCTAssertEqual(canvas.newConceptView!.editingString(), true)
