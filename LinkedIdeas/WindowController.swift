@@ -38,6 +38,22 @@ class WindowController: NSWindowController {
   }
   
   
+  // MARK: - Keyboard Events
+  override func keyDown(theEvent: NSEvent) {
+    switch theEvent.keyCode {
+    case 18:
+      canvas.mode = .Select
+      selectMode.cell?.state = 1
+    case 19:
+      canvas.mode = .Concepts
+      conceptMode.cell?.state = 1
+    case 20:
+      canvas.mode = .Links
+      linkMode.cell?.state = 1
+    default: break
+    }
+  }
+  
   @IBAction func changeMode(sender: NSButton) {
     switch sender {
     case conceptMode:

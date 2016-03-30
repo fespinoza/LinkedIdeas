@@ -9,6 +9,7 @@
 import Cocoa
 
 enum Mode: String {
+  case Select = "select"
   case Concepts = "concepts"
   case Links = "links"
 }
