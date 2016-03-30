@@ -64,11 +64,11 @@ extension ClickableView where Self: CanvasConceptsActions {
   func click(point: NSPoint) {
     markConceptsAsNotEditable()
     unselectConcepts()
+    createConceptAt(point)
   }
 
   func doubleClick(point: NSPoint) {
     click(point)
-    createConceptAt(point)
   }
 }
 
