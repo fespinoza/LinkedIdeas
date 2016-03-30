@@ -35,37 +35,27 @@ class DocumentData: NSObject, NSCoding {
 }
 
 class Document: NSDocument {
-
-  @IBOutlet weak var canvas: CanvasView!
-  @IBOutlet weak var conceptMode: NSButton!
-  @IBOutlet weak var linkMode: NSButton!
-
-  @IBOutlet var ultraWindow: NSWindow!
   var documentData = DocumentData()
-  var editionMode = Mode.Concepts
-
+  
   override init() {
     super.init()
     // Add your subclass-specific initialization here.
   }
-
+  
+  var canvas: CanvasView!
+  
   override func windowControllerDidLoadNib(aController: NSWindowController) {
     super.windowControllerDidLoadNib(aController)
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
-    if let readConcepts = documentData.readConcepts { canvas.concepts = readConcepts }
-    if let readLinks = documentData.readLinks { canvas.links = readLinks }
-    canvas.mode = editionMode
-    ultraWindow.acceptsMouseMovedEvents = true
   }
 
   override class func autosavesInPlace() -> Bool {
     return true
   }
 
-  override var windowNibName: String? {
-    // Returns the nib file name of the document
-    // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this property and override -makeWindowControllers instead.
-    return "Document"
+  override func makeWindowControllers() {
+    let windowController = WindowController(windowNibName: "Document")
+    addWindowController(windowController)
   }
 
   override func dataOfType(typeName: String) throws -> NSData {
@@ -81,14 +71,5 @@ class Document: NSDocument {
     // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
     // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
     documentData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! DocumentData
-  }
-
-  @IBAction func changeMode(sender: NSButton) {
-    if sender == conceptMode {
-      editionMode = .Concepts
-    } else {
-      editionMode = .Links
-    }
-    canvas.mode = editionMode
   }
 }

@@ -5,11 +5,12 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="Document" customModule="LinkedIdeas" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="WindowController" customModule="LinkedIdeas" customModuleProvider="target">
             <connections>
-                <outlet property="canvas" destination="TBv-Q1-CwE" id="B0a-cm-nHk"/>
-                <outlet property="conceptMode" destination="M5U-qj-cKy" id="EY8-jw-2RD"/>
-                <outlet property="linkMode" destination="i7N-v3-T0p" id="SKK-z1-mfR"/>
+                <outlet property="canvas" destination="TBv-Q1-CwE" id="hL5-Wd-5Lv"/>
+                <outlet property="conceptMode" destination="M5U-qj-cKy" id="Qgn-Fn-Oau"/>
+                <outlet property="linkMode" destination="i7N-v3-T0p" id="HHb-Me-GvD"/>
+                <outlet property="selectMode" destination="7v6-GU-e5B" id="WKz-LA-ejA"/>
                 <outlet property="ultraWindow" destination="xOd-HO-29H" id="y0s-jg-cSM"/>
                 <outlet property="window" destination="xOd-HO-29H" id="faa-lW-Akj"/>
             </connections>
@@ -30,14 +31,14 @@
                         <rect key="frame" x="20" y="20" width="707" height="445"/>
                         <accessibility description="canvas view" identifier="canvas"/>
                     </customView>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="M5U-qj-cKy">
-                        <rect key="frame" x="69" y="480" width="80" height="18"/>
-                        <buttonCell key="cell" type="radio" title="Concepts" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="zDM-p1-BMN">
+                    <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="M5U-qj-cKy">
+                        <rect key="frame" x="139" y="480" width="80" height="18"/>
+                        <buttonCell key="cell" type="radio" title="Concepts" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="zDM-p1-BMN">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="changeMode:" target="-2" id="vv4-FT-zF9"/>
+                            <action selector="changeMode:" target="-2" id="Tzb-KH-5Vv"/>
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V2K-jY-9vr">
@@ -48,8 +49,18 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="i7N-v3-T0p">
-                        <rect key="frame" x="164" y="480" width="54" height="18"/>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="7v6-GU-e5B">
+                        <rect key="frame" x="62" y="480" width="61" height="18"/>
+                        <buttonCell key="cell" type="radio" title="Select" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="AX3-PE-uyz">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="changeMode:" target="-2" id="bS3-pg-OHb"/>
+                        </connections>
+                    </button>
+                    <button tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="i7N-v3-T0p">
+                        <rect key="frame" x="235" y="480" width="54" height="18"/>
                         <buttonCell key="cell" type="radio" title="Links" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="BP9-Qq-X3c">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
@@ -60,16 +71,18 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="i7N-v3-T0p" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="20" id="05y-fB-cSn"/>
-                    <constraint firstItem="i7N-v3-T0p" firstAttribute="leading" secondItem="M5U-qj-cKy" secondAttribute="trailing" constant="18" id="Gev-qG-VLb"/>
-                    <constraint firstItem="V2K-jY-9vr" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="19" id="Rks-0d-sQT"/>
-                    <constraint firstAttribute="bottom" secondItem="TBv-Q1-CwE" secondAttribute="bottom" constant="20" id="S9f-lF-Gwo"/>
-                    <constraint firstAttribute="trailing" secondItem="TBv-Q1-CwE" secondAttribute="trailing" constant="20" id="UhE-wA-0LK"/>
-                    <constraint firstItem="M5U-qj-cKy" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="20" id="XYG-xP-r1z"/>
-                    <constraint firstItem="V2K-jY-9vr" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" constant="20" id="YDM-rw-oGK"/>
-                    <constraint firstItem="TBv-Q1-CwE" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" constant="20" id="cjI-xV-H1r"/>
-                    <constraint firstItem="TBv-Q1-CwE" firstAttribute="top" secondItem="V2K-jY-9vr" secondAttribute="bottom" constant="16" id="eBr-CK-V67"/>
-                    <constraint firstItem="M5U-qj-cKy" firstAttribute="leading" secondItem="V2K-jY-9vr" secondAttribute="trailing" constant="22" id="md8-13-aWb"/>
+                    <constraint firstItem="TBv-Q1-CwE" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" constant="20" id="0sY-y7-lfG"/>
+                    <constraint firstItem="7v6-GU-e5B" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="20" id="BFO-0a-jRe"/>
+                    <constraint firstItem="M5U-qj-cKy" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="20" id="I13-XB-rhJ"/>
+                    <constraint firstItem="i7N-v3-T0p" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="20" id="L8i-1R-Hed"/>
+                    <constraint firstItem="M5U-qj-cKy" firstAttribute="leading" secondItem="7v6-GU-e5B" secondAttribute="trailing" constant="19" id="LFY-Nk-QAZ"/>
+                    <constraint firstItem="7v6-GU-e5B" firstAttribute="leading" secondItem="V2K-jY-9vr" secondAttribute="trailing" constant="15" id="Rl6-4G-sDr"/>
+                    <constraint firstItem="TBv-Q1-CwE" firstAttribute="top" secondItem="7v6-GU-e5B" secondAttribute="bottom" constant="16" id="Tec-6m-Wuj"/>
+                    <constraint firstItem="V2K-jY-9vr" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="19" id="VdR-4f-Dx5"/>
+                    <constraint firstItem="V2K-jY-9vr" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" constant="20" id="Xs2-x5-ZsW"/>
+                    <constraint firstAttribute="bottom" secondItem="TBv-Q1-CwE" secondAttribute="bottom" constant="20" id="fiK-ua-qHD"/>
+                    <constraint firstAttribute="trailing" secondItem="TBv-Q1-CwE" secondAttribute="trailing" constant="20" id="l9h-OU-fXG"/>
+                    <constraint firstItem="i7N-v3-T0p" firstAttribute="leading" secondItem="M5U-qj-cKy" secondAttribute="trailing" constant="19" id="zBp-2Z-IRE"/>
                 </constraints>
             </view>
             <connections>
