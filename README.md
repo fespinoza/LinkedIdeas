@@ -15,10 +15,11 @@ way to 'explain' the connexion of ideas.
 - [x] moving concepts
 - [x] selecting concepts
 - [x] adding links between concepts
+- [ ] refactor: document ownership of data
 - [ ] delete concepts/links
 - [ ] undo/redo actions for concepts and links
 - [ ] add editable text to links
-- [ ] add color to concepts/links
+- [ ] use formatted strings for concepts/links
 - [ ] add editable curvature to links
 - [ ] zooming canvas
 - [ ] panning canvas
@@ -47,19 +48,10 @@ way to 'explain' the connexion of ideas.
   - [x] disable the editing mode of all other concepts
 - [x] concepts can be moved by drag and drop them within the canvas **undoable**
 
-#### Pending
+#### A world of ideas
 
-- selecting a concept and then pressing "delete" key will remove that concept
-  from the view and the file
-- cancelling a concept creation by pressing "ESCAPE" key
-- disable edit mode by pressing "ESCAPE" key
-
-#### A worlf of ideas
-
-- improve who holds the reference to the data, canvas or document
 - add app indicator of not saved
 - dismiss construction arrow on click
-- no concept creation on link mode
 - construction line not on same worker
 - BUG: LinkArrow when there is no intersection point with conceptViews
 - BUG: dragging fails many times when concepts has already many links
@@ -70,5 +62,5 @@ way to 'explain' the connexion of ideas.
 - aligment of concepts
 - center text
 - copy/paste/duplicate concepts/links
-- moving/select mode
 - fix size of text field when editing a concept
+- improve who holds the reference to the data, canvas or document

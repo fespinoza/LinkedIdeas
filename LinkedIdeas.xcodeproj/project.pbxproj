@@ -32,6 +32,7 @@
 		9BF058F91C921F7D00274A62 /* CanvasViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF058F71C921F7D00274A62 /* CanvasViewTests.swift */; };
 		9BF058FA1C921F7D00274A62 /* ConceptViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF058F81C921F7D00274A62 /* ConceptViewTests.swift */; };
 		9BF058FC1C9220F200274A62 /* ConceptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF058FB1C9220F200274A62 /* ConceptTests.swift */; };
+		9BF15C391CAC69A500C95041 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF15C381CAC69A500C95041 /* WindowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		9BF058F71C921F7D00274A62 /* CanvasViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewTests.swift; sourceTree = "<group>"; };
 		9BF058F81C921F7D00274A62 /* ConceptViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConceptViewTests.swift; sourceTree = "<group>"; };
 		9BF058FB1C9220F200274A62 /* ConceptTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConceptTests.swift; sourceTree = "<group>"; };
+		9BF15C381CAC69A500C95041 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */,
 				9B2F1DA11BE7CFE70090CC18 /* Document.swift */,
 				9B2F1DA31BE7CFE70090CC18 /* Document.xib */,
+				9BF15C381CAC69A500C95041 /* WindowController.swift */,
 				9B2F1DA61BE7CFE70090CC18 /* Assets.xcassets */,
 				9B2F1DA81BE7CFE80090CC18 /* MainMenu.xib */,
 				9B2F1DAB1BE7CFE80090CC18 /* Info.plist */,
@@ -307,6 +310,7 @@
 				9BD2BF391C7F8B4100E8A303 /* PointInterceptable.swift in Sources */,
 				9BB8FC891CA6B889008CD6A2 /* Element.swift in Sources */,
 				9B2F1DCE1BE7D3990090CC18 /* CanvasView.swift in Sources */,
+				9BF15C391CAC69A500C95041 /* WindowController.swift in Sources */,
 				9BD2C14E1BEE6F9F00CD3C2F /* ConceptView.swift in Sources */,
 				9BD2BF3B1C7F8B5500E8A303 /* Line.swift in Sources */,
 				9BDDE7391BEF9157000AAD44 /* Concept.swift in Sources */,

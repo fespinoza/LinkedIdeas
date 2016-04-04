@@ -59,25 +59,12 @@ protocol BasicCanvas {
 
 typealias Canvas = protocol<BasicCanvas, ClickableView, CanvasConceptsActions, CanvasLinkActions>
 
-// Protocol conditional extension
-extension ClickableView where Self: CanvasConceptsActions {
-  func click(point: NSPoint) {
-    markConceptsAsNotEditable()
-    unselectConcepts()
-    createConceptAt(point)
-  }
-
-  func doubleClick(point: NSPoint) {
-    click(point)
-  }
-}
-
 class CanvasView: NSView, Canvas {
   var newConcept: Concept? = nil
   var newConceptView: ConceptView? = nil
   var concepts: [Concept] = [Concept]()
   var conceptViews: [String: ConceptView] = [String: ConceptView]()
-  var mode: Mode = Mode.Concepts
+  var mode: Mode = .Select
   var links: [Link] = [Link]()
   var linkViews: [String: LinkView] = [String: LinkView]()
 
@@ -129,6 +116,18 @@ class CanvasView: NSView, Canvas {
   
   func linkViewFor(link: Link) -> LinkView {
     return linkViews[link.identifier]!
+  }
+  
+  // MARK: - ClickableView
+  
+  func click(point: NSPoint) {
+    if mode == .Concepts { createConceptAt(point) }
+    doubleClick(point)
+  }
+  
+  func doubleClick(point: NSPoint) {
+    markConceptsAsNotEditable()
+    unselectConcepts()
   }
 
   // MARK: - CanvasConceptsActions
