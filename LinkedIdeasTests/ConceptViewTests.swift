@@ -101,8 +101,9 @@ class ConceptViewTests: XCTestCase {
     XCTAssertEqual(conceptView.textField.stringValue, "old value")
   }
 
-  func testDraggingAConceptView() {
+  func testDraggingAConceptViewOnSelectMode() {
     // given
+    canvas.mode = .Select
     let conceptPointInCanvas = NSMakePoint(200, 300)
     
     let concept = Concept(point: conceptPointInCanvas)
@@ -122,6 +123,29 @@ class ConceptViewTests: XCTestCase {
     // then
     XCTAssert(originalFrame != afterDragFrame)
     XCTAssertEqual(afterDragFrame.center, dragToPointInCanvas)
+  }
+  
+  func testDraggingAConceptViewInAnotherModeDoesNotMoveConceptView() {
+    // given
+    canvas.mode = .Concepts
+    let conceptPointInCanvas = NSMakePoint(200, 300)
+    
+    let concept = Concept(point: conceptPointInCanvas)
+    let conceptView = ConceptView(concept: concept, canvas: canvas)
+    
+    let originalFrame = conceptView.frame
+    
+    let dragToPointInWindow = NSMakePoint(250, 150)
+    let dragToPointInCanvas = canvas.pointInCanvasCoordinates(dragToPointInWindow)
+    
+    // when
+    conceptView.click(conceptPointInCanvas)
+    conceptView.dragTo(dragToPointInCanvas)
+    
+    let afterDragFrame = conceptView.frame
+    
+    // then
+    XCTAssertEqual(originalFrame, afterDragFrame)
   }
   
   func testDraggingAConceptViewWhenLinksModeDoesNotChangePosition() {

@@ -213,7 +213,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   // MARK: - Dragable element
   func dragTo(point: NSPoint) {
     sprint("drag")
-    if (canvas.mode == .Concepts) {
+    if (canvas.mode == .Select) {
       concept.point = point
       updateFrameToMatchConcept()
     }
