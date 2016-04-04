@@ -52,7 +52,6 @@ way to 'explain' the connexion of ideas.
 
 - add app indicator of not saved
 - dismiss construction arrow on click
-- no concept creation on link mode
 - construction line not on same worker
 - BUG: LinkArrow when there is no intersection point with conceptViews
 - BUG: dragging fails many times when concepts has already many links
@@ -63,6 +62,5 @@ way to 'explain' the connexion of ideas.
 - aligment of concepts
 - center text
 - copy/paste/duplicate concepts/links
-- moving/select mode
 - fix size of text field when editing a concept
 - improve who holds the reference to the data, canvas or document
