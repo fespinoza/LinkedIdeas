@@ -44,11 +44,6 @@ class Document: NSDocument {
   }
   
   var canvas: CanvasView!
-  
-  override func windowControllerDidLoadNib(aController: NSWindowController) {
-    super.windowControllerDidLoadNib(aController)
-    // Add any code here that needs to be executed once the windowController has loaded the document's window.
-  }
 
   override class func autosavesInPlace() -> Bool {
     return true
@@ -62,6 +57,7 @@ class Document: NSDocument {
   override func dataOfType(typeName: String) throws -> NSData {
     // Insert code here to write your document to data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning nil.
     // You can also choose to override fileWrapperOfType:error:, writeToURL:ofType:error:, or writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
+    Swift.print("saving document..")
     documentData.writeConcepts = canvas.concepts
     documentData.writeLinks = canvas.links
     return NSKeyedArchiver.archivedDataWithRootObject(documentData)
