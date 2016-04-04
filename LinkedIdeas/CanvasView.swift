@@ -64,7 +64,7 @@ class CanvasView: NSView, Canvas {
   var newConceptView: ConceptView? = nil
   var concepts: [Concept] = [Concept]()
   var conceptViews: [String: ConceptView] = [String: ConceptView]()
-  var mode: Mode = Mode.Concepts
+  var mode: Mode = .Select
   var links: [Link] = [Link]()
   var linkViews: [String: LinkView] = [String: LinkView]()
 

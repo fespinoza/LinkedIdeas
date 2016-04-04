@@ -15,6 +15,7 @@ way to 'explain' the connexion of ideas.
 - [x] moving concepts
 - [x] selecting concepts
 - [x] adding links between concepts
+- [ ] refactor: document ownership of data
 - [ ] delete concepts/links
 - [ ] undo/redo actions for concepts and links
 - [ ] add editable text to links
