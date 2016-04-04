@@ -12,10 +12,38 @@ import XCTest
 class CanvasViewTests: XCTestCase {
   let canvas = CanvasView(frame: NSMakeRect(20, 20, 600, 400))
   
-  func testDoubleClickOnEmptyCanvas() {
+  // MARK: - Initialization
+  
+  func testInitializingCanvasViewFromReadingADocument() {
+    // given
+    let concepts = [
+      Concept(stringValue: "C1", point: NSMakePoint(20, 30)),
+      Concept(stringValue: "C2", point: NSMakePoint(20, 30)),
+      ]
+    let links = [
+      Link(origin: concepts[0], target: concepts[1])
+    ]
+    canvas.concepts = concepts
+    canvas.links = links
+    
+    // when
+    canvas.drawRect(canvas.bounds)
+    
+    // then
+    XCTAssertEqual(canvas.conceptViews.count, 2)
+    XCTAssertEqual(canvas.linkViews.count, 1)
+    XCTAssertEqual(canvas.subviews.count, 3)
+  }
+  
+  // MARK: - Concept Mode
+  
+  func testClickOnEmptyCanvas() {
+    // given
+    canvas.mode = .Concepts
+    
     // when
     let clickedPoint = NSMakePoint(20, 60)
-    canvas.doubleClick(clickedPoint)
+    canvas.click(clickedPoint)
     
     // then
     let newConcept: Concept? = canvas.newConcept
@@ -29,9 +57,12 @@ class CanvasViewTests: XCTestCase {
   }
   
   func testCreatingAConcept() {
+    // given
+    canvas.mode = .Concepts
+    
     // when
     let pointInCanvas = NSMakePoint(100, 200)
-    canvas.doubleClick(pointInCanvas)
+    canvas.click(pointInCanvas)
     canvas.newConceptView?.typeText("foo bar")
     canvas.newConceptView?.pressEnterKey()
     
@@ -54,10 +85,11 @@ class CanvasViewTests: XCTestCase {
     concept2.isEditable = true
     canvas.concepts.append(concept1)
     canvas.concepts.append(concept2)
+    canvas.mode = .Concepts
     canvas.drawConceptViews()
     
     // when
-    canvas.doubleClick(NSMakePoint(20, 60))
+    canvas.click(NSMakePoint(20, 60))
     
     // then
     XCTAssertEqual(canvas.newConceptView!.editingString(), true)
@@ -71,6 +103,7 @@ class CanvasViewTests: XCTestCase {
     // given
     let concept = Concept(point: NSMakePoint(100, 200))
     let conceptView = ConceptView(concept: concept, canvas: canvas)
+    canvas.mode = .Concepts
     canvas.newConcept = concept
     canvas.newConceptView = conceptView
     
@@ -84,26 +117,7 @@ class CanvasViewTests: XCTestCase {
     XCTAssertEqual(canvas.conceptViewFor(concept), conceptView)
   }
   
-  func testInitializingCanvasViewFromReadingADocument() {
-    // given
-    let concepts = [
-      Concept(stringValue: "C1", point: NSMakePoint(20, 30)),
-      Concept(stringValue: "C2", point: NSMakePoint(20, 30)),
-    ]
-    let links = [
-      Link(origin: concepts[0], target: concepts[1])
-    ]
-    canvas.concepts = concepts
-    canvas.links = links
-    
-    // when
-    canvas.drawRect(canvas.bounds)
-    
-    // then
-    XCTAssertEqual(canvas.conceptViews.count, 2)
-    XCTAssertEqual(canvas.linkViews.count, 1)
-    XCTAssertEqual(canvas.subviews.count, 3)
-  }
+  // MARK: - Link Mode
   
   func testSelectTargetConceptView() {
     // given
@@ -165,11 +179,23 @@ class CanvasViewTests: XCTestCase {
     
     // when
     canvas.drawRect(canvas.bounds)
-    canvas.mode = Mode.Links
+    canvas.mode = .Links
     canvas.releaseMouseFromConceptView(conceptView1, point: concept2.point)
     
     // then
     XCTAssertEqual(canvas.links.count, 1)
     XCTAssertEqual(canvas.linkViews.count, 1)
+  }
+  
+  func testClickOnEmptyCanvasOnLinkMode() {
+    // given
+    canvas.mode = .Links
+    
+    // when
+    canvas.click(NSMakePoint(20, 60))
+    
+    // then
+    XCTAssertNil(canvas.newConcept)
+    XCTAssertNil(canvas.newConceptView)
   }
 }
