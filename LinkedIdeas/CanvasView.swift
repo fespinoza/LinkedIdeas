@@ -26,6 +26,7 @@ protocol CanvasConceptsActions {
   func dragFromConceptView(conceptView: ConceptView, point: NSPoint)
   func releaseMouseFromConceptView(conceptView: ConceptView, point: NSPoint)
   func updateLinkViewsFor(concept: Concept)
+  func conceptLinksFor(concept: Concept) -> [Link]
   func isConceptSaved(concept: Concept) -> Bool
   func removeConceptView(conceptView: ConceptView)
 }
@@ -36,9 +37,10 @@ protocol CanvasLinkActions {
   
   func drawLinkViews()
   func drawLinkView(link: Link)
-
+  
   func selectTargetConceptView(point: NSPoint, fromConcept originConcept: Concept) -> ConceptView?
   func createLinkBetweenConceptsViews(originConceptView: ConceptView, targetConceptView: ConceptView)
+  func removeLinkView(linkView: LinkView)
 }
 
 protocol BasicCanvas {
@@ -209,10 +211,9 @@ class CanvasView: NSView, Canvas {
   }
   
   func updateLinkViewsFor(concept: Concept) {
-    let conceptLinks = links.filter {
-      return $0.origin.identifier == concept.identifier || $0.target.identifier == concept.identifier
+    for link in conceptLinksFor(concept) {
+      linkViewFor(link).frame = link.minimalRect
     }
-    for link in conceptLinks { linkViewFor(link).frame = link.minimalRect }
   }
   
   func isConceptSaved(concept: Concept) -> Bool {
@@ -225,6 +226,17 @@ class CanvasView: NSView, Canvas {
     concepts.removeAtIndex(concepts.indexOf(concept)!)
     conceptViews.removeValueForKey(concept.identifier)
     conceptView.removeFromSuperview()
+    
+    for link in conceptLinksFor(concept) {
+      removeLinkView(linkViewFor(link))
+    }
+  }
+  
+  func conceptLinksFor(concept: Concept) -> [Link] {
+    return links.filter {
+      return $0.origin.identifier == concept.identifier ||
+        $0.target.identifier == concept.identifier
+    }
   }
   
   // MARK: - CanvasLinkActions
@@ -274,6 +286,14 @@ class CanvasView: NSView, Canvas {
     sprint("create link \(link)")
     
     drawLinkView(link)
+  }
+
+  func removeLinkView(linkView: LinkView) {
+    let link = linkView.link
+    
+    links.removeAtIndex(links.indexOf(link)!)
+    linkViews.removeValueForKey(link.identifier)
+    linkView.removeFromSuperview()
   }
   
   // MARK: - Debugging
