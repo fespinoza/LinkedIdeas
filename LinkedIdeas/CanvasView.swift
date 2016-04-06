@@ -27,6 +27,7 @@ protocol CanvasConceptsActions {
   func releaseMouseFromConceptView(conceptView: ConceptView, point: NSPoint)
   func updateLinkViewsFor(concept: Concept)
   func isConceptSaved(concept: Concept) -> Bool
+  func removeConceptView(conceptView: ConceptView)
 }
 
 protocol CanvasLinkActions {
@@ -216,6 +217,14 @@ class CanvasView: NSView, Canvas {
   
   func isConceptSaved(concept: Concept) -> Bool {
     return concept != newConcept
+  }
+  
+  func removeConceptView(conceptView: ConceptView) {
+    let concept = conceptView.concept
+    
+    concepts.removeAtIndex(concepts.indexOf(concept)!)
+    conceptViews.removeValueForKey(concept.identifier)
+    conceptView.removeFromSuperview()
   }
   
   // MARK: - CanvasLinkActions

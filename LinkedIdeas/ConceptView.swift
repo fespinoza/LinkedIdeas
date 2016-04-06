@@ -23,6 +23,7 @@ protocol StringEditableView {
 
   func typeText(string: String)
   func pressEnterKey()
+  func pressDeleteKey()
   func cancelEdition()
 }
 
@@ -77,6 +78,8 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   var canvas: CanvasView
   // Extras
   var isTextFieldFocused: Bool = false
+  
+  override var acceptsFirstResponder: Bool { return true }
 
   private let defaultTextFieldSize = NSMakeSize(60, 20)
 
@@ -135,6 +138,13 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     dragTo(point)
     canvas.releaseMouseFromConceptView(self, point: point)
   }
+  
+  // MARK: - Keyboard Events
+  
+  let deleteKeyCode: UInt16 = 51
+  override func keyDown(theEvent: NSEvent) {
+    if (theEvent.keyCode == deleteKeyCode) { pressDeleteKey() }
+  }
 
   // MARK: - NSTextFieldDelegate
 
@@ -153,11 +163,13 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   }
 
   // MARK: - ClickableView
+  
   func click(point: NSPoint) {
     concept.isSelected = !concept.isSelected
     needsDisplay = true
     updateFrameToMatchConcept()
     canvas.clickOnConceptView(self, point: point)
+    becomeFirstResponder()
   }
 
   func doubleClick(point: NSPoint) {
@@ -168,7 +180,8 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     canvas.clickOnConceptView(self, point: point)
   }
 
-  // MARK: - string editable view
+  // MARK: - StringEditableView
+  
   func toggleTextFieldEditMode() {
     if concept.isEditable {
       enableTextField()
@@ -200,6 +213,10 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     } else {
       canvas.cleanNewConcept()
     }
+  }
+  
+  func pressDeleteKey() {
+    canvas.removeConceptView(self)
   }
 
   // draw concept string
