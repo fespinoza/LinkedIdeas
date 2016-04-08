@@ -8,68 +8,6 @@
 
 import Cocoa
 
-protocol StringEditableView {
-  var textField: NSTextField { get }
-  var textFieldSize: NSSize { get }
-  var isTextFieldFocused: Bool { get set }
-
-  func editingString() -> Bool
-  func toggleTextFieldEditMode()
-  func enableTextField()
-  func disableTextField()
-  func focusTextField()
-
-  func drawString()
-
-  func typeText(string: String)
-  func pressEnterKey()
-  func pressDeleteKey()
-  func cancelEdition()
-}
-
-extension StringEditableView {
-  func editingString() -> Bool {
-    return !textField.hidden
-  }
-
-  func enableTextField() {
-    textField.hidden = false
-    textField.enabled = true
-    focusTextField()
-  }
-
-  func disableTextField() {
-    textField.hidden = true
-    textField.enabled = false
-  }
-
-  func typeText(string: String) {
-    textField.stringValue = string
-  }
-}
-
-protocol CanvasElement {
-  var canvas: CanvasView { get }
-  
-  func pointInCanvasCoordinates(point: NSPoint) -> NSPoint
-}
-
-extension CanvasElement {
-  func pointInCanvasCoordinates(point: NSPoint) -> NSPoint {
-    return canvas.pointInCanvasCoordinates(point)
-  }
-}
-
-protocol ConceptViewProtocol {
-  var concept: Concept { get }
-  
-  func updateFrameToMatchConcept()
-}
-
-protocol DraggableElement {
-  func dragTo(point: NSPoint)
-}
-
 class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElement, ClickableView, DraggableElement {
   var concept: Concept { didSet { toggleTextFieldEditMode() } }
   var textField: NSTextField

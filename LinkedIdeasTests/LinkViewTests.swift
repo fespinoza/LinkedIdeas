@@ -46,4 +46,15 @@ class LinkViewTests: XCTestCase {
     XCTAssert(CGRectContainsPoint(linkViewBoundsInCanvasCoordinates, arrow.p2))
   }
   
+  func testSelectALinkByClickingOnIt() {
+    // given
+    let link = Link(origin: concept1, target: concept2)
+    let linkView = LinkView(link: link, canvas: canvas)
+    
+    // when
+    linkView.click(NSMakePoint(20, 30))
+    
+    // then
+    XCTAssertEqual(link.isSelected, true)
+  }
 }

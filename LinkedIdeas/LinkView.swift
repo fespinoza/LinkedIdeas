@@ -11,9 +11,14 @@ import Cocoa
 protocol ArrowDrawable {
   func constructArrow() -> Arrow
   func drawArrow()
+  func drawArrowBorder()
 }
 
-class LinkView: NSView, CanvasElement, ArrowDrawable {
+protocol LinkViewActions {
+  func selectLink()
+}
+
+class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewActions {
   // own
   var link: Link
   
@@ -32,9 +37,11 @@ class LinkView: NSView, CanvasElement, ArrowDrawable {
   
   override func drawRect(dirtyRect: NSRect) {
     drawArrow()
+    if (link.isSelected) { drawArrowBorder() }
   }
   
   // MARK: - ArrowDrawable
+  
   func constructArrow() -> Arrow {
     let originPoint = link.originPoint
     let targetPoint = link.targetPoint
@@ -55,5 +62,33 @@ class LinkView: NSView, CanvasElement, ArrowDrawable {
     let arrowPath = constructArrow().bezierPath()
     NSColor.grayColor().set()
     arrowPath.fill()
+  }
+  
+  func drawArrowBorder() {
+    let arrowPath = constructArrow().bezierPath()
+    NSColor.blackColor().set()
+    arrowPath.stroke()
+  }
+  
+  // MARK: - Mouse Events
+  
+  override func mouseDown(theEvent: NSEvent) {
+    click(theEvent.locationInWindow)
+  }
+  
+  // MARK: - ClickableView
+  
+  func click(point: NSPoint) {
+    selectLink()
+  }
+  
+  func doubleClick(point: NSPoint) {}
+  
+  // MARK: - LinkViewActions
+  
+  func selectLink() {
+    link.isSelected = true
+    becomeFirstResponder()
+    needsDisplay = true
   }
 }

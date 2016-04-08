@@ -8,60 +8,6 @@
 
 import Cocoa
 
-protocol ClickableView {
-  func click(point: NSPoint)
-  func doubleClick(point: NSPoint)
-}
-
-protocol CanvasConceptsActions {
-  func deselectConcepts()
-  func removeNonSavedConcepts()
-  func createConceptAt(point: NSPoint)
-  func markConceptsAsNotEditable()
-  func unselectConcepts()
-
-  func drawConceptViews()
-  func drawConceptView(concept: Concept)
-  func clickOnConceptView(conceptView: ConceptView, point: NSPoint)
-  func dragFromConceptView(conceptView: ConceptView, point: NSPoint)
-  func releaseMouseFromConceptView(conceptView: ConceptView, point: NSPoint)
-  func updateLinkViewsFor(concept: Concept)
-  func conceptLinksFor(concept: Concept) -> [Link]
-  func isConceptSaved(concept: Concept) -> Bool
-  func removeConceptView(conceptView: ConceptView)
-}
-
-protocol CanvasLinkActions {
-  func showConstructionArrow()
-  func removeConstructionArrow()
-  
-  func drawLinkViews()
-  func drawLinkView(link: Link)
-  
-  func selectTargetConceptView(point: NSPoint, fromConcept originConcept: Concept) -> ConceptView?
-  func createLinkBetweenConceptsViews(originConceptView: ConceptView, targetConceptView: ConceptView)
-  func removeLinkView(linkView: LinkView)
-}
-
-protocol BasicCanvas {
-  var newConcept: Concept? { get }
-  var newConceptView: ConceptView? { get }
-
-  var concepts: [Concept] { get set }
-  var conceptViews: [String: ConceptView] { get set }
-
-  func addConceptView(concept: Concept)
-  func saveConcept(concept: ConceptView)
-  
-  func pointInCanvasCoordinates(point: NSPoint) -> NSPoint
-  func conceptViewFor(concept: Concept) -> ConceptView
-  func linkViewFor(link: Link) -> LinkView
-}
-
-// Protocol compositions
-
-typealias Canvas = protocol<BasicCanvas, ClickableView, CanvasConceptsActions, CanvasLinkActions>
-
 class CanvasView: NSView, Canvas {
   var newConcept: Concept? = nil
   var newConceptView: ConceptView? = nil

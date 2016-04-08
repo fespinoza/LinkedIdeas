@@ -8,12 +8,16 @@
 
 import Foundation
 
-class Link: NSObject, NSCoding, Element {
+class Link: NSObject, NSCoding, Element, VisualElement {
   // own attributes
   var origin: Concept
   var target: Concept
   var originPoint: NSPoint { return origin.point }
   var targetPoint: NSPoint { return target.point }
+  
+  // MARK: - VisualElement
+  var isEditable: Bool = false
+  var isSelected: Bool = false
   
   private let padding: CGFloat = 20
   
