@@ -103,6 +103,7 @@ protocol CanvasLinkActions {
   func selectTargetConceptView(point: NSPoint, fromConcept originConcept: Concept) -> ConceptView?
   func createLinkBetweenConceptsViews(originConceptView: ConceptView, targetConceptView: ConceptView)
   func removeLinkView(linkView: LinkView)
+  func unselectLinks()
 }
 
 protocol BasicCanvas {

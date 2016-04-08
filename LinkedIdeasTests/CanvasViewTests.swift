@@ -198,4 +198,27 @@ class CanvasViewTests: XCTestCase {
     XCTAssertNil(canvas.newConcept)
     XCTAssertNil(canvas.newConceptView)
   }
+  
+  func testClickingOnCanvasDeselectsConceptsAndLinks() {
+    // given
+    let concepts = [
+      Concept(stringValue: "C1", point: NSMakePoint(20, 30)),
+      Concept(stringValue: "C2", point: NSMakePoint(20, 30)),
+      ]
+    let links = [
+      Link(origin: concepts[0], target: concepts[1])
+    ]
+    canvas.concepts = concepts
+    canvas.links = links
+    links.first!.isSelected = true
+    concepts.first!.isSelected = true
+    
+    // when
+    canvas.drawRect(canvas.bounds)
+    canvas.click(NSMakePoint(20, 50))
+    
+    // then
+    XCTAssertEqual(links.first!.isSelected, false)
+    XCTAssertEqual(concepts.first!.isSelected, false)
+  }
 }

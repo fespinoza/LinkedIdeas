@@ -16,6 +16,8 @@ class CanvasView: NSView, Canvas {
   var mode: Mode = .Select
   var links: [Link] = [Link]()
   var linkViews: [String: LinkView] = [String: LinkView]()
+  
+  override var acceptsFirstResponder: Bool { return true }
 
   // MARK: - NSView
   
@@ -70,6 +72,7 @@ class CanvasView: NSView, Canvas {
   // MARK: - ClickableView
   
   func click(point: NSPoint) {
+    sprint("click at \(point)")
     if mode == .Concepts { createConceptAt(point) }
     doubleClick(point)
   }
@@ -77,6 +80,8 @@ class CanvasView: NSView, Canvas {
   func doubleClick(point: NSPoint) {
     markConceptsAsNotEditable()
     unselectConcepts()
+    unselectLinks()
+    becomeFirstResponder()
   }
 
   // MARK: - CanvasConceptsActions
@@ -112,10 +117,12 @@ class CanvasView: NSView, Canvas {
 
   func markConceptsAsNotEditable() {
     for concept in concepts { concept.isEditable = false }
+    drawConceptViews()
   }
 
   func unselectConcepts() {
     for concept in concepts { concept.isSelected = false }
+    drawConceptViews()
   }
 
   func clickOnConceptView(conceptView: ConceptView, point: NSPoint) {
@@ -240,6 +247,11 @@ class CanvasView: NSView, Canvas {
     links.removeAtIndex(links.indexOf(link)!)
     linkViews.removeValueForKey(link.identifier)
     linkView.removeFromSuperview()
+  }
+  
+  func unselectLinks() {
+    for link in links { link.isSelected = false }
+    drawLinkViews()
   }
   
   // MARK: - Debugging
