@@ -79,6 +79,8 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
   // MARK: - ClickableView
   
   func click(point: NSPoint) {
+    canvas.unselectConcepts()
+    canvas.unselectLinks()
     selectLink()
   }
   
