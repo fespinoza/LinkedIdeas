@@ -145,7 +145,7 @@ class ConceptViewTests: XCTestCase {
     let afterDragFrame = conceptView.frame
     
     // then
-    XCTAssertEqual(originalFrame, afterDragFrame)
+    XCTAssertEqual(originalFrame.center, afterDragFrame.center)
   }
   
   func testDraggingAConceptViewWhenLinksModeDoesNotChangePosition() {
@@ -162,7 +162,7 @@ class ConceptViewTests: XCTestCase {
     let afterDragFrame = conceptView.frame
     
     // then
-    XCTAssertEqual(originalFrame, afterDragFrame)
+    XCTAssertEqual(originalFrame.center, afterDragFrame.center)
   }
   
   func testPressintEscapeWhenEditingAConceptAlreadySaved() {

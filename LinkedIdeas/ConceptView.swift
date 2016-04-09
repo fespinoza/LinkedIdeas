@@ -10,7 +10,7 @@ import Cocoa
 
 class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElement, ClickableView, DraggableElement, HoveringView {
   var concept: Concept { didSet { toggleTextFieldEditMode() } }
-  var textField: NSTextField
+  var textField: ResizingTextField
   var textFieldSize: NSSize { return textField.bounds.size }
   // MARK: - Canvas
   var canvas: CanvasView
@@ -29,7 +29,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   init(concept: Concept, canvas: CanvasView) {
     let textFieldRect = NSRect(origin: NSMakePoint(0, 0), size: defaultTextFieldSize)
     self.concept = concept
-    self.textField = NSTextField(frame: textFieldRect)
+    self.textField = ResizingTextField(frame: textFieldRect)
     self.canvas = canvas
 
     super.init(frame: concept.minimalRect)
@@ -137,6 +137,8 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     isTextFieldFocused = false
     needsDisplay = true
     textField.stringValue = concept.stringValue
+    updateFrameToMatchConcept()
+    textField.setFrameSize(textField.intrinsicContentSize)
     canvas.clickOnConceptView(self, point: point)
   }
 
@@ -188,6 +190,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   }
 
   // MARK: - Dragable element
+  
   func dragTo(point: NSPoint) {
     sprint("drag")
     if (canvas.mode == .Select) {
@@ -198,7 +201,9 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   }
   
   // MARK: - ConceptViewProtocol
+  
   func updateFrameToMatchConcept() {
-    frame = concept.minimalRect
+    textField.stringValue = concept.stringValue
+    frame = NSRect(center: concept.point, size: textField.intrinsicContentSize)
   }
 }

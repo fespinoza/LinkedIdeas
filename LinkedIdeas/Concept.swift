@@ -15,12 +15,12 @@ class Concept: NSObject, NSCoding, Element, VisualElement, StringElement {
   var identifier: String
   var stringValue: String
   
-  private let padding: CGFloat = 10
+  static let padding: CGFloat = 10
   var minimalRect: NSRect {
     if stringValue != "" {
       var size = stringValue.sizeWithAttributes(nil)
-      size.width  += padding
-      size.height += padding
+      size.width  += Concept.padding
+      size.height += Concept.padding
       return NSRect(center: point, size: size)
     } else {
       return NSRect(center: point, size: NSMakeSize(60, 20))
