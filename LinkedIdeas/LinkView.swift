@@ -93,7 +93,11 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
   let deleteKeyCode: UInt16 = 51
   override func keyDown(theEvent: NSEvent) {
     sprint("keyDown \(theEvent.keyCode)")
-    if (theEvent.keyCode == deleteKeyCode) { pressDeleteKey() }
+    if (theEvent.keyCode == deleteKeyCode) {
+      pressDeleteKey()
+    } else {
+      super.keyDown(theEvent)
+    }
   }
   
   // MARK: - ClickableView

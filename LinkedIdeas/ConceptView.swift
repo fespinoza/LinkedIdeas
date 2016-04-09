@@ -81,7 +81,11 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   
   let deleteKeyCode: UInt16 = 51
   override func keyDown(theEvent: NSEvent) {
-    if (theEvent.keyCode == deleteKeyCode) { pressDeleteKey() }
+    if (theEvent.keyCode == deleteKeyCode) {
+      pressDeleteKey()
+    } else {
+      super.keyDown(theEvent)
+    }
   }
 
   // MARK: - NSTextFieldDelegate
