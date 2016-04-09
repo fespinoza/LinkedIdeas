@@ -202,4 +202,30 @@ class ConceptViewTests: XCTestCase {
     XCTAssertNil(canvas.newConceptView)
     XCTAssertEqual(canvas.subviews.count, 0)
   }
+  
+  func testDeletingAConcept() {
+    // given
+    let concept1 = Concept(stringValue: "foo", point: NSMakePoint(200, 300))
+    let concept2 = Concept(stringValue: "bar", point: NSMakePoint(100, 450))
+    let concept3 = Concept(stringValue: "baz", point: NSMakePoint(300, 200))
+    let link1 = Link(origin: concept1, target: concept2)
+    let link2 = Link(origin: concept3, target: concept1)
+    let link3 = Link(origin: concept3, target: concept2)
+    canvas.concepts = [concept1, concept2, concept3]
+    canvas.links = [link1, link2, link3]
+    canvas.drawConceptViews()
+    canvas.drawLinkViews()
+    let conceptView1 = canvas.conceptViewFor(concept1)
+    
+    // when
+    concept1.isSelected = true
+    conceptView1.pressDeleteKey()
+    
+    // then
+    XCTAssertEqual(canvas.concepts, [concept2, concept3])
+    XCTAssertEqual(canvas.conceptViews.count, 2)
+    XCTAssertEqual(canvas.links, [link3])
+    XCTAssertEqual(canvas.linkViews.count, 1)
+    XCTAssertEqual(canvas.subviews.count, 3)
+  }
 }

@@ -8,57 +8,6 @@
 
 import Cocoa
 
-protocol ClickableView {
-  func click(point: NSPoint)
-  func doubleClick(point: NSPoint)
-}
-
-protocol CanvasConceptsActions {
-  func deselectConcepts()
-  func removeNonSavedConcepts()
-  func createConceptAt(point: NSPoint)
-  func markConceptsAsNotEditable()
-  func unselectConcepts()
-
-  func drawConceptViews()
-  func drawConceptView(concept: Concept)
-  func clickOnConceptView(conceptView: ConceptView, point: NSPoint)
-  func dragFromConceptView(conceptView: ConceptView, point: NSPoint)
-  func releaseMouseFromConceptView(conceptView: ConceptView, point: NSPoint)
-  func updateLinkViewsFor(concept: Concept)
-  func isConceptSaved(concept: Concept) -> Bool
-}
-
-protocol CanvasLinkActions {
-  func showConstructionArrow()
-  func removeConstructionArrow()
-  
-  func drawLinkViews()
-  func drawLinkView(link: Link)
-
-  func selectTargetConceptView(point: NSPoint, fromConcept originConcept: Concept) -> ConceptView?
-  func createLinkBetweenConceptsViews(originConceptView: ConceptView, targetConceptView: ConceptView)
-}
-
-protocol BasicCanvas {
-  var newConcept: Concept? { get }
-  var newConceptView: ConceptView? { get }
-
-  var concepts: [Concept] { get set }
-  var conceptViews: [String: ConceptView] { get set }
-
-  func addConceptView(concept: Concept)
-  func saveConcept(concept: ConceptView)
-  
-  func pointInCanvasCoordinates(point: NSPoint) -> NSPoint
-  func conceptViewFor(concept: Concept) -> ConceptView
-  func linkViewFor(link: Link) -> LinkView
-}
-
-// Protocol compositions
-
-typealias Canvas = protocol<BasicCanvas, ClickableView, CanvasConceptsActions, CanvasLinkActions>
-
 class CanvasView: NSView, Canvas {
   var newConcept: Concept? = nil
   var newConceptView: ConceptView? = nil
@@ -67,6 +16,13 @@ class CanvasView: NSView, Canvas {
   var mode: Mode = .Select
   var links: [Link] = [Link]()
   var linkViews: [String: LinkView] = [String: LinkView]()
+  
+  // MARK: - NSResponder
+  override var acceptsFirstResponder: Bool { return true }
+  
+  override var description: String {
+    return "[CanvasView]"
+  }
 
   // MARK: - NSView
   
@@ -121,6 +77,7 @@ class CanvasView: NSView, Canvas {
   // MARK: - ClickableView
   
   func click(point: NSPoint) {
+    sprint("click at \(point)")
     if mode == .Concepts { createConceptAt(point) }
     doubleClick(point)
   }
@@ -128,6 +85,8 @@ class CanvasView: NSView, Canvas {
   func doubleClick(point: NSPoint) {
     markConceptsAsNotEditable()
     unselectConcepts()
+    unselectLinks()
+    becomeFirstResponder()
   }
 
   // MARK: - CanvasConceptsActions
@@ -163,10 +122,12 @@ class CanvasView: NSView, Canvas {
 
   func markConceptsAsNotEditable() {
     for concept in concepts { concept.isEditable = false }
+    drawConceptViews()
   }
 
   func unselectConcepts() {
     for concept in concepts { concept.isSelected = false }
+    drawConceptViews()
   }
 
   func clickOnConceptView(conceptView: ConceptView, point: NSPoint) {
@@ -208,14 +169,32 @@ class CanvasView: NSView, Canvas {
   }
   
   func updateLinkViewsFor(concept: Concept) {
-    let conceptLinks = links.filter {
-      return $0.origin.identifier == concept.identifier || $0.target.identifier == concept.identifier
+    for link in conceptLinksFor(concept) {
+      linkViewFor(link).frame = link.minimalRect
     }
-    for link in conceptLinks { linkViewFor(link).frame = link.minimalRect }
   }
   
   func isConceptSaved(concept: Concept) -> Bool {
     return concept != newConcept
+  }
+  
+  func removeConceptView(conceptView: ConceptView) {
+    let concept = conceptView.concept
+    
+    concepts.removeAtIndex(concepts.indexOf(concept)!)
+    conceptViews.removeValueForKey(concept.identifier)
+    conceptView.removeFromSuperview()
+    
+    for link in conceptLinksFor(concept) {
+      removeLinkView(linkViewFor(link))
+    }
+  }
+  
+  func conceptLinksFor(concept: Concept) -> [Link] {
+    return links.filter {
+      return $0.origin.identifier == concept.identifier ||
+        $0.target.identifier == concept.identifier
+    }
   }
   
   // MARK: - CanvasLinkActions
@@ -266,9 +245,17 @@ class CanvasView: NSView, Canvas {
     
     drawLinkView(link)
   }
+
+  func removeLinkView(linkView: LinkView) {
+    let link = linkView.link
+    
+    links.removeAtIndex(links.indexOf(link)!)
+    linkViews.removeValueForKey(link.identifier)
+    linkView.removeFromSuperview()
+  }
   
-  // MARK: - Debugging
-  func sprint(message: String) {
-    Swift.print("[CanvasView]: \(message)")
+  func unselectLinks() {
+    for link in links { link.isSelected = false }
+    drawLinkViews()
   }
 }

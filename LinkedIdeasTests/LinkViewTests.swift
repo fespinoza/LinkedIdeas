@@ -46,4 +46,44 @@ class LinkViewTests: XCTestCase {
     XCTAssert(CGRectContainsPoint(linkViewBoundsInCanvasCoordinates, arrow.p2))
   }
   
+  func testSelectALinkByClickingOnIt() {
+    // given
+    let link1 = Link(origin: concept1, target: concept2)
+    let link2 = Link(origin: concept2, target: concept1)
+    canvas.concepts = [concept1, concept2]
+    canvas.links = [link1, link2]
+    canvas.drawConceptViews()
+    canvas.drawLinkViews()
+    let linkView = canvas.linkViewFor(link1)
+    concept1.isSelected = true
+    link2.isSelected = true
+    
+    // when
+    linkView.click(NSMakePoint(20, 30))
+    
+    // then
+    XCTAssertEqual(canvas.subviews.count, 4)
+    XCTAssertEqual(link1.isSelected, true)
+    XCTAssertEqual(concept1.isSelected, false)
+    XCTAssertEqual(link2.isSelected, false)
+  }
+  
+  func testDeletingALink() {
+    // given
+    let link = Link(origin: concept1, target: concept2)
+    canvas.concepts = [concept1, concept2]
+    canvas.links = [link]
+    canvas.drawConceptViews()
+    canvas.drawLinkViews()
+    let linkView = canvas.linkViewFor(link)
+    
+    // when
+    link.isSelected = true
+    linkView.pressDeleteKey()
+    
+    // then
+    XCTAssertEqual(canvas.links.count, 0)
+    XCTAssertEqual(canvas.linkViews.count, 0)
+    XCTAssertEqual(canvas.subviews.count, 2)
+  }
 }

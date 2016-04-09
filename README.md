@@ -15,11 +15,11 @@ way to 'explain' the connexion of ideas.
 - [x] moving concepts
 - [x] selecting concepts
 - [x] adding links between concepts
-- [ ] refactor: document ownership of data
-- [ ] delete concepts/links
+- [x] delete concepts/links
+- [ ] improvements: resizable TextFields
+- [ ] use formatted strings for concepts/links
 - [ ] undo/redo actions for concepts and links
 - [ ] add editable text to links
-- [ ] use formatted strings for concepts/links
 - [ ] add editable curvature to links
 - [ ] zooming canvas
 - [ ] panning canvas
@@ -55,7 +55,6 @@ way to 'explain' the connexion of ideas.
 - construction line not on same worker
 - BUG: LinkArrow when there is no intersection point with conceptViews
 - BUG: dragging fails many times when concepts has already many links
-- document icon
 - multi element dragging
 - attributed strings on concepts
 - control + dragging to create straight links
