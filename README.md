@@ -15,7 +15,7 @@ way to 'explain' the connexion of ideas.
 - [x] moving concepts
 - [x] selecting concepts
 - [x] adding links between concepts
-- [ ] delete concepts/links
+- [x] delete concepts/links
 - [ ] improvements: resizable TextFields
 - [ ] use formatted strings for concepts/links
 - [ ] undo/redo actions for concepts and links
