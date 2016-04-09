@@ -35,6 +35,12 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
     fatalError("init(coder:) has not been implemented")
   }
   
+  // MARK: - NSResponder
+  
+  override var acceptsFirstResponder: Bool { return true }
+  
+  // MARK: - NSView
+  
   override func drawRect(dirtyRect: NSRect) {
     drawArrow()
     if (link.isSelected) { drawArrowBorder() }
@@ -76,6 +82,14 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
     click(theEvent.locationInWindow)
   }
   
+  // MARK: - Keyboard Events
+  
+  let deleteKeyCode: UInt16 = 51
+  override func keyDown(theEvent: NSEvent) {
+    sprint("keyDown \(theEvent.keyCode)")
+    if (theEvent.keyCode == deleteKeyCode) { pressDeleteKey() }
+  }
+  
   // MARK: - ClickableView
   
   func click(point: NSPoint) {
@@ -92,5 +106,15 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
     link.isSelected = true
     becomeFirstResponder()
     needsDisplay = true
+  }
+  
+  func pressDeleteKey() {
+    canvas.removeLinkView(self)
+  }
+  
+  // MARK: - Debugging
+  
+  func sprint(message: String) {
+    Swift.print("[LinkView][\(link.identifier)]: \(message)")
   }
 }
