@@ -17,7 +17,12 @@ class CanvasView: NSView, Canvas {
   var links: [Link] = [Link]()
   var linkViews: [String: LinkView] = [String: LinkView]()
   
+  // MARK: - NSResponder
   override var acceptsFirstResponder: Bool { return true }
+  
+  override var description: String {
+    return "[CanvasView]"
+  }
 
   // MARK: - NSView
   
@@ -252,10 +257,5 @@ class CanvasView: NSView, Canvas {
   func unselectLinks() {
     for link in links { link.isSelected = false }
     drawLinkViews()
-  }
-  
-  // MARK: - Debugging
-  func sprint(message: String) {
-    Swift.print("[CanvasView]: \(message)")
   }
 }

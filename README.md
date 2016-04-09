@@ -16,9 +16,10 @@ way to 'explain' the connexion of ideas.
 - [x] selecting concepts
 - [x] adding links between concepts
 - [ ] delete concepts/links
+- [ ] improvements: resizable TextFields
+- [ ] use formatted strings for concepts/links
 - [ ] undo/redo actions for concepts and links
 - [ ] add editable text to links
-- [ ] use formatted strings for concepts/links
 - [ ] add editable curvature to links
 - [ ] zooming canvas
 - [ ] panning canvas

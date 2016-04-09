@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElement, ClickableView, DraggableElement {
+class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElement, ClickableView, DraggableElement, HoveringView {
   var concept: Concept { didSet { toggleTextFieldEditMode() } }
   var textField: NSTextField
   var textFieldSize: NSSize { return textField.bounds.size }
@@ -18,6 +18,11 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   var isTextFieldFocused: Bool = false
   
   override var acceptsFirstResponder: Bool { return true }
+  
+  // MARK: - HoveringView
+  var isHoveringView: Bool = false {
+    didSet { needsDisplay = true }
+  }
 
   private let defaultTextFieldSize = NSMakeSize(60, 20)
 
@@ -28,13 +33,14 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     self.canvas = canvas
 
     super.init(frame: concept.minimalRect)
-
+    
+    enableTrackingArea()
     textField.delegate = self
     addSubview(textField)
   }
 
   override var description: String {
-    return "\(bounds) \(frame) \(concept.description)"
+    return "[ConceptView][\(concept.identifier)][\(concept.stringValue)]"
   }
 
   required init?(coder: NSCoder) {
@@ -42,6 +48,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   }
 
   // MARK: - NSView
+  
   override func drawRect(dirtyRect: NSRect) {
     if concept.isSelected {
       NSColor.greenColor().set()
@@ -50,6 +57,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     
     toggleTextFieldEditMode()
     if !concept.isEditable { drawString() }
+    drawHoveringState()
   }
 
   // MARK: - Mouse events
@@ -75,6 +83,16 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
     dragTo(point)
     canvas.releaseMouseFromConceptView(self, point: point)
+  }
+  
+  override func mouseEntered(theEvent: NSEvent) {
+    sprint("mouse entered")
+    isHoveringView = true
+  }
+  
+  override func mouseExited(theEvent: NSEvent) {
+    sprint("mouse exited")
+    isHoveringView = false
   }
   
   // MARK: - Keyboard Events
@@ -182,10 +200,5 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   // MARK: - ConceptViewProtocol
   func updateFrameToMatchConcept() {
     frame = concept.minimalRect
-  }
-  
-  // MARK: - Debugging
-  func sprint(message: String) {
-    Swift.print("[ConceptView][\(concept.identifier)][\(concept.stringValue)]: \(message)")
   }
 }

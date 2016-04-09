@@ -124,3 +124,51 @@ protocol BasicCanvas {
 // Protocol compositions
 
 typealias Canvas = protocol<BasicCanvas, ClickableView, CanvasConceptsActions, CanvasLinkActions>
+
+// MARK: LinkView
+
+protocol ArrowDrawable {
+  func constructArrow() -> Arrow
+  func drawArrow()
+  func drawArrowBorder()
+}
+
+protocol LinkViewActions {
+  func selectLink()
+}
+
+protocol HoveringView {
+  var isHoveringView: Bool { get set }
+}
+
+extension HoveringView where Self: NSView {
+  var hoverDebug: Bool { return false }
+  
+  var hoverTrackingArea: NSTrackingArea {
+    return NSTrackingArea(
+      rect: bounds,
+      options: [.MouseEnteredAndExited, .ActiveInKeyWindow],
+      owner: self,
+      userInfo: nil
+    )
+  }
+  
+  func drawHoveringState() {
+    if (isHoveringView) {
+      NSColor.blueColor().set()
+      NSBezierPath(rect: bounds).stroke()
+    }
+  }
+  
+  func enableTrackingArea() {
+    if (hoverDebug) {
+      addTrackingArea(hoverTrackingArea)
+    }
+  }
+}
+
+extension NSView {
+  func sprint(message: String) {
+    Swift.print("\(description): \(message)")
+  }
+}

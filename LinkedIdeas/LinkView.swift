@@ -8,27 +8,28 @@
 
 import Cocoa
 
-protocol ArrowDrawable {
-  func constructArrow() -> Arrow
-  func drawArrow()
-  func drawArrowBorder()
-}
-
-protocol LinkViewActions {
-  func selectLink()
-}
-
-class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewActions {
+class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewActions, HoveringView {
   // own
   var link: Link
+  var arrowPath: NSBezierPath { return constructArrow().bezierPath() }
+  
+  // MARK: - HoveringView
+  var isHoveringView: Bool = false {
+    didSet { needsDisplay = true }
+  }
   
   // CanvasElement
   var canvas: CanvasView
+  
+  override var description: String {
+    return "[LinkView][\(link.identifier)]"
+  }
   
   init(link: Link, canvas: CanvasView) {
     self.link = link
     self.canvas = canvas
     super.init(frame: link.minimalRect)
+    enableTrackingArea()
   }
   
   required init?(coder: NSCoder) {
@@ -44,6 +45,7 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
   override func drawRect(dirtyRect: NSRect) {
     drawArrow()
     if (link.isSelected) { drawArrowBorder() }
+    drawHoveringState()
   }
   
   // MARK: - ArrowDrawable
@@ -65,13 +67,11 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
   }
   
   func drawArrow() {
-    let arrowPath = constructArrow().bezierPath()
     NSColor.grayColor().set()
     arrowPath.fill()
   }
   
   func drawArrowBorder() {
-    let arrowPath = constructArrow().bezierPath()
     NSColor.blackColor().set()
     arrowPath.stroke()
   }
@@ -80,12 +80,19 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
   
   override func mouseDown(theEvent: NSEvent) {
     let point = convertPoint(theEvent.locationInWindow, fromView: nil)
-    let arrowPath = constructArrow().bezierPath()
     if arrowPath.containsPoint(point) {
       click(point)
     } else {
       canvas.mouseDown(theEvent)
     }
+  }
+  
+  override func mouseEntered(theEvent: NSEvent) {
+    isHoveringView = true
+  }
+  
+  override func mouseExited(theEvent: NSEvent) {
+    isHoveringView = false
   }
   
   // MARK: - Keyboard Events
@@ -120,11 +127,5 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
   
   func pressDeleteKey() {
     canvas.removeLinkView(self)
-  }
-  
-  // MARK: - Debugging
-  
-  func sprint(message: String) {
-    Swift.print("[LinkView][\(link.identifier)]: \(message)")
   }
 }
