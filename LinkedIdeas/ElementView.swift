@@ -9,7 +9,7 @@
 import Cocoa
 
 protocol StringEditableView {
-  var textField: NSTextField { get }
+  var textField: ResizingTextField { get }
   var textFieldSize: NSSize { get }
   var isTextFieldFocused: Bool { get set }
   
