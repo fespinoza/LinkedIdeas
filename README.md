@@ -10,13 +10,13 @@ way to 'explain' the connexion of ideas.
 
 ## Feature Roadmap
 
-- [x] #4 adding/editing a concept
-- [x] #4 read/write from files
-- [x] #4 moving concepts
-- [x] #4 selecting concepts
-- [x] #6 adding links between concepts
-- [x] #9 delete concepts/links
-- [x] #10 improvements: resizable TextFields
+- [x] adding/editing a concept [#4](https://github.com/fespinoza/linked-ideas-osx/pull/4)
+- [x] read/write from files [#4](https://github.com/fespinoza/linked-ideas-osx/pull/4)
+- [x] moving concepts [#4](https://github.com/fespinoza/linked-ideas-osx/pull/4)
+- [x] selecting concepts [#4](https://github.com/fespinoza/linked-ideas-osx/pull/4)
+- [x] adding links between concepts [#6](https://github.com/fespinoza/linked-ideas-osx/pull/6)
+- [x] delete concepts/links [#9](https://github.com/fespinoza/linked-ideas-osx/pull/9)
+- [x] improvements: resizable TextFields [#10](https://github.com/fespinoza/linked-ideas-osx/pull/10)
 - [ ] use formatted strings for concepts/links
 - [ ] undo/redo actions for concepts and links
 - [ ] add editable text to links
