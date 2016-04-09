@@ -79,7 +79,13 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
   // MARK: - Mouse Events
   
   override func mouseDown(theEvent: NSEvent) {
-    click(theEvent.locationInWindow)
+    let point = convertPoint(theEvent.locationInWindow, fromView: nil)
+    let arrowPath = constructArrow().bezierPath()
+    if arrowPath.containsPoint(point) {
+      click(point)
+    } else {
+      canvas.mouseDown(theEvent)
+    }
   }
   
   // MARK: - Keyboard Events
