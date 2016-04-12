@@ -42,4 +42,4 @@ way to 'explain' the connexion of ideas.
 - copy/paste/duplicate concepts/links
 - improve who holds the reference to the data, canvas or document
 - autosave document
-- support for timemachine
+- refactor conceptView/linkView use a delegate to decouple from Canvas

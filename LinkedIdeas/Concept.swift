@@ -8,17 +8,19 @@
 
 import Foundation
 
-class Concept: NSObject, NSCoding, Element, VisualElement, StringElement {
+class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringElement {
   // NOTE: the point value is relative to the canvas coordinate system
   var point: NSPoint
   // element
   var identifier: String
-  var stringValue: String
+  // MARK: - AttributedStringElement
+  var attributedStringValue: NSAttributedString
+  var stringValue: String { return attributedStringValue.string }
   
   static let padding: CGFloat = 10
   var minimalRect: NSRect {
     if stringValue != "" {
-      var size = stringValue.sizeWithAttributes(nil)
+      var size = attributedStringValue.size()
       size.width  += Concept.padding
       size.height += Concept.padding
       return NSRect(center: point, size: size)
@@ -31,7 +33,7 @@ class Concept: NSObject, NSCoding, Element, VisualElement, StringElement {
   var isSelected: Bool = false
 
   // NSCoding
-  let stringValueKey = "stringValueKey"
+  let attributedStringValueKey = "stringValueKey"
   let pointKey = "pointKey"
   let identifierKey = "identifierKey"
   let isEditableKey = "isEditableKey"
@@ -43,11 +45,15 @@ class Concept: NSObject, NSCoding, Element, VisualElement, StringElement {
   convenience init(point: NSPoint) {
     self.init(stringValue: "", point: point)
   }
+  
+  convenience init(stringValue: String, point: NSPoint) {
+    self.init(attributedStringValue: NSAttributedString(string: stringValue), point: point)
+  }
 
-  init(stringValue: String, point: NSPoint) {
+  init(attributedStringValue: NSAttributedString, point: NSPoint) {
     self.point = point
     self.identifier = "\(NSUUID().UUIDString)-concept"
-    self.stringValue = stringValue
+    self.attributedStringValue = attributedStringValue
   }
 
   // MARK: - NSCoding
@@ -56,12 +62,12 @@ class Concept: NSObject, NSCoding, Element, VisualElement, StringElement {
     point       = aDecoder.decodePointForKey(pointKey)
     identifier  = aDecoder.decodeObjectForKey(identifierKey) as! String
     isEditable  = aDecoder.decodeBoolForKey(isEditableKey)
-    stringValue = aDecoder.decodeObjectForKey(stringValueKey) as! String
+    attributedStringValue = aDecoder.decodeObjectForKey(attributedStringValueKey) as! NSAttributedString
   }
 
   func encodeWithCoder(aCoder: NSCoder) {
     aCoder.encodePoint(point, forKey: pointKey)
-    aCoder.encodeObject(stringValue, forKey: stringValueKey)
+    aCoder.encodeObject(attributedStringValue, forKey: attributedStringValueKey)
     aCoder.encodeObject(identifier, forKey: identifierKey)
     aCoder.encodeBool(isEditable, forKey: isEditableKey)
   }

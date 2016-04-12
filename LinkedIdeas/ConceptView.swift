@@ -37,6 +37,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     enableTrackingArea()
     textField.delegate = self
     addSubview(textField)
+    textField.allowsEditingTextAttributes = true
   }
 
   override var description: String {
@@ -136,7 +137,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     concept.isEditable = true
     isTextFieldFocused = false
     needsDisplay = true
-    textField.stringValue = concept.stringValue
+    textField.attributedStringValue = concept.attributedStringValue
     updateFrameToMatchConcept()
     textField.setFrameSize(textField.intrinsicContentSize)
     canvas.clickOnConceptView(self, point: point)
@@ -162,7 +163,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   func pressEnterKey() {
     disableTextField()
     concept.isEditable = false
-    concept.stringValue = textField.stringValue
+    concept.attributedStringValue = textField.attributedStringValue
     updateFrameToMatchConcept()
     canvas.saveConcept(self)
   }
@@ -183,10 +184,10 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
 
   // draw concept string
   func drawString() {
-    let stringSize = concept.stringValue.sizeWithAttributes(nil)
+    let stringSize = concept.attributedStringValue.size()
     let stringRect = NSRect(center: bounds.center, size: stringSize)
     NSColor.blackColor().set()
-    concept.stringValue.drawInRect(stringRect, withAttributes: nil)
+    concept.attributedStringValue.drawInRect(stringRect)
   }
 
   // MARK: - Dragable element
@@ -203,7 +204,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   // MARK: - ConceptViewProtocol
   
   func updateFrameToMatchConcept() {
-    textField.stringValue = concept.stringValue
+    textField.attributedStringValue = concept.attributedStringValue
     frame = NSRect(center: concept.point, size: textField.intrinsicContentSize)
   }
 }

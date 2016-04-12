@@ -13,8 +13,9 @@ protocol Element {
   var minimalRect: NSRect { get }
 }
 
-protocol StringElement {
-  var stringValue: String { get  set }
+protocol AttributedStringElement {
+  var attributedStringValue: NSAttributedString { get  set }
+  var stringValue: String { get }
 }
 
 protocol VisualElement {
