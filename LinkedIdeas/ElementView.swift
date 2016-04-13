@@ -142,7 +142,7 @@ protocol HoveringView {
 }
 
 extension HoveringView where Self: NSView {
-  var hoverDebug: Bool { return false }
+  var hoverDebug: Bool { return true }
   
   var hoverTrackingArea: NSTrackingArea {
     return NSTrackingArea(

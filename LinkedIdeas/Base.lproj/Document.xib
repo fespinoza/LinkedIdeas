@@ -69,6 +69,10 @@
                             <action selector="changeMode:" target="-2" id="Kmn-Kc-uJH"/>
                         </connections>
                     </button>
+                    <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kkw-ZO-qgk">
+                        <rect key="frame" x="683" y="474" width="44" height="23"/>
+                        <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </colorWell>
                 </subviews>
                 <constraints>
                     <constraint firstItem="TBv-Q1-CwE" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" constant="20" id="0sY-y7-lfG"/>

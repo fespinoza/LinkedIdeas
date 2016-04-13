@@ -16,6 +16,8 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   var canvas: CanvasView
   // Extras
   var isTextFieldFocused: Bool = false
+  // Mouse events
+  var dragInitiated: Bool = false
   
   override var acceptsFirstResponder: Bool { return true }
   
@@ -77,12 +79,14 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     sprint("mouse drag")
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
     dragTo(point)
+    dragInitiated = true
   }
 
   override func mouseUp(theEvent: NSEvent) {
     sprint("mouse up")
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
-    dragTo(point)
+    if dragInitiated { dragTo(point) }
+    dragInitiated = false
     canvas.releaseMouseFromConceptView(self, point: point)
   }
   
@@ -193,7 +197,6 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   // MARK: - Dragable element
   
   func dragTo(point: NSPoint) {
-    sprint("drag")
     if (canvas.mode == .Select) {
       concept.point = point
       updateFrameToMatchConcept()
