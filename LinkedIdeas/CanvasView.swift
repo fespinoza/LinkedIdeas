@@ -141,6 +141,7 @@ class CanvasView: NSView, Canvas {
       }
     }
     cleanNewConcept()
+    (window?.windowController as? WindowController)?.clickOnConceptView(conceptView)
   }
   
   var arrowOriginPoint: NSPoint?
