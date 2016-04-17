@@ -19,11 +19,14 @@ way to 'explain' the connexion of ideas.
 - [x] improvements: resizable TextFields [#10](https://github.com/fespinoza/linked-ideas-osx/pull/10)
 - [x] use formatted strings for concepts [#11](https://github.com/fespinoza/linked-ideas-osx/pull/11)
 - [ ] undo/redo actions for concepts and links
+- [ ] multiple select concepts (move them)
+- [ ] align concepts
 - [ ] add editable text to links
 - [ ] add editable curvature to links
 - [ ] zooming canvas
 - [ ] panning canvas
 - [ ] save canvas dimensions in document
+- [ ] reorder concepts in canvas
 - [ ] export document as image
 - [ ] support for icloud documents
 
