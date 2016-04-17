@@ -16,6 +16,8 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   var canvas: CanvasView
   // Extras
   var isTextFieldFocused: Bool = false
+  // Mouse events
+  var dragInitiated: Bool = false
   
   override var acceptsFirstResponder: Bool { return true }
   
@@ -37,6 +39,8 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     enableTrackingArea()
     textField.delegate = self
     addSubview(textField)
+    textField.allowsEditingTextAttributes = true
+    textField.conceptView = self
   }
 
   override var description: String {
@@ -50,14 +54,19 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   // MARK: - NSView
   
   override func drawRect(dirtyRect: NSRect) {
-    if concept.isSelected {
-      NSColor.greenColor().set()
-      NSRectFill(bounds)
-    }
-    
+    drawSelectedMark()
     toggleTextFieldEditMode()
     if !concept.isEditable { drawString() }
     drawHoveringState()
+  }
+  
+  func drawSelectedMark() {
+    if concept.isSelected {
+      let bezierPath = NSBezierPath(rect: bounds)
+      NSColor.redColor().set()
+      bezierPath.lineWidth = 3
+      bezierPath.stroke()
+    }
   }
 
   // MARK: - Mouse events
@@ -76,12 +85,14 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     sprint("mouse drag")
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
     dragTo(point)
+    dragInitiated = true
   }
 
   override func mouseUp(theEvent: NSEvent) {
     sprint("mouse up")
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
-    dragTo(point)
+    if dragInitiated { dragTo(point) }
+    dragInitiated = false
     canvas.releaseMouseFromConceptView(self, point: point)
   }
   
@@ -99,6 +110,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   
   let deleteKeyCode: UInt16 = 51
   override func keyDown(theEvent: NSEvent) {
+    sprint("key down")
     if (theEvent.keyCode == deleteKeyCode) {
       pressDeleteKey()
     } else {
@@ -121,12 +133,19 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
       return false
     }
   }
+  
+  func textDidChange(notification: NSNotification) {
+    sprint("text did chage")
+    updateFrameToMatchConcept()
+  }
+
 
   // MARK: - ClickableView
   
   func click(point: NSPoint) {
     concept.isSelected = !concept.isSelected
     needsDisplay = true
+    textField.attributedStringValue = concept.attributedStringValue
     updateFrameToMatchConcept()
     canvas.clickOnConceptView(self, point: point)
     becomeFirstResponder()
@@ -136,7 +155,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     concept.isEditable = true
     isTextFieldFocused = false
     needsDisplay = true
-    textField.stringValue = concept.stringValue
+    textField.attributedStringValue = concept.attributedStringValue
     updateFrameToMatchConcept()
     textField.setFrameSize(textField.intrinsicContentSize)
     canvas.clickOnConceptView(self, point: point)
@@ -162,7 +181,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   func pressEnterKey() {
     disableTextField()
     concept.isEditable = false
-    concept.stringValue = textField.stringValue
+    concept.attributedStringValue = textField.attributedStringValue
     updateFrameToMatchConcept()
     canvas.saveConcept(self)
   }
@@ -183,16 +202,15 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
 
   // draw concept string
   func drawString() {
-    let stringSize = concept.stringValue.sizeWithAttributes(nil)
+    let stringSize = concept.attributedStringValue.size()
     let stringRect = NSRect(center: bounds.center, size: stringSize)
     NSColor.blackColor().set()
-    concept.stringValue.drawInRect(stringRect, withAttributes: nil)
+    concept.attributedStringValue.drawInRect(stringRect)
   }
 
   // MARK: - Dragable element
   
   func dragTo(point: NSPoint) {
-    sprint("drag")
     if (canvas.mode == .Select) {
       concept.point = point
       updateFrameToMatchConcept()
@@ -203,7 +221,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   // MARK: - ConceptViewProtocol
   
   func updateFrameToMatchConcept() {
-    textField.stringValue = concept.stringValue
+    sprint("update frame to match concept")
     frame = NSRect(center: concept.point, size: textField.intrinsicContentSize)
   }
 }

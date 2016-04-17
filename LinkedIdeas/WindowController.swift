@@ -10,10 +10,16 @@ import Cocoa
 
 class WindowController: NSWindowController {
   @IBOutlet var ultraWindow: NSWindow!
+  
   @IBOutlet weak var canvas: CanvasView!
   @IBOutlet weak var selectMode: NSButton!
   @IBOutlet weak var conceptMode: NSButton!
   @IBOutlet weak var linkMode: NSButton!
+  
+  @IBOutlet weak var fontSizeField: NSTextField!
+  @IBOutlet weak var fontSizeStepper: NSStepper!
+  @IBOutlet weak var fontColor: NSColorWell!
+  
   var editionMode = Mode.Concepts
   
   convenience init() {
