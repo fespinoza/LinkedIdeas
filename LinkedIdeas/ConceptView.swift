@@ -40,6 +40,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     textField.delegate = self
     addSubview(textField)
     textField.allowsEditingTextAttributes = true
+    textField.conceptView = self
   }
 
   override var description: String {
@@ -53,14 +54,19 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   // MARK: - NSView
   
   override func drawRect(dirtyRect: NSRect) {
-    if concept.isSelected {
-      NSColor.greenColor().set()
-      NSRectFill(bounds)
-    }
-    
+    drawSelectedMark()
     toggleTextFieldEditMode()
     if !concept.isEditable { drawString() }
     drawHoveringState()
+  }
+  
+  func drawSelectedMark() {
+    if concept.isSelected {
+      let bezierPath = NSBezierPath(rect: bounds)
+      NSColor.redColor().set()
+      bezierPath.lineWidth = 3
+      bezierPath.stroke()
+    }
   }
 
   // MARK: - Mouse events
@@ -104,6 +110,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   
   let deleteKeyCode: UInt16 = 51
   override func keyDown(theEvent: NSEvent) {
+    sprint("key down")
     if (theEvent.keyCode == deleteKeyCode) {
       pressDeleteKey()
     } else {
@@ -126,12 +133,19 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
       return false
     }
   }
+  
+  func textDidChange(notification: NSNotification) {
+    sprint("text did chage")
+    updateFrameToMatchConcept()
+  }
+
 
   // MARK: - ClickableView
   
   func click(point: NSPoint) {
     concept.isSelected = !concept.isSelected
     needsDisplay = true
+    textField.attributedStringValue = concept.attributedStringValue
     updateFrameToMatchConcept()
     canvas.clickOnConceptView(self, point: point)
     becomeFirstResponder()
@@ -207,7 +221,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   // MARK: - ConceptViewProtocol
   
   func updateFrameToMatchConcept() {
-    textField.attributedStringValue = concept.attributedStringValue
+    sprint("update frame to match concept")
     frame = NSRect(center: concept.point, size: textField.intrinsicContentSize)
   }
 }

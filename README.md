@@ -43,3 +43,4 @@ way to 'explain' the connexion of ideas.
 - improve who holds the reference to the data, canvas or document
 - autosave document
 - refactor conceptView/linkView use a delegate to decouple from Canvas
+- fix link views to be outside canvas
