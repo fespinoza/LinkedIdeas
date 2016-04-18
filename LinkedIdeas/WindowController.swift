@@ -72,4 +72,14 @@ class WindowController: NSWindowController {
     Swift.print(editionMode)
     canvas.mode = editionMode
   }
+  
+  @IBAction func selectColor(sender: AnyObject) {
+    let newColor = colorSelector.color
+    let selectedLinks = canvas.links.filter { $0.isSelected }
+    for link in selectedLinks {
+      link.color = newColor
+      canvas.linkViewFor(link).needsDisplay = true
+    }
+  }
+  
 }
