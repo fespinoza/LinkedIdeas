@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="WindowController" customModule="LinkedIdeas" customModuleProvider="target">
             <connections>
                 <outlet property="canvas" destination="TBv-Q1-CwE" id="hL5-Wd-5Lv"/>
+                <outlet property="colorSelector" destination="T1A-TJ-gzE" id="pbo-WW-Yk7"/>
                 <outlet property="conceptMode" destination="M5U-qj-cKy" id="Qgn-Fn-Oau"/>
                 <outlet property="linkMode" destination="i7N-v3-T0p" id="HHb-Me-GvD"/>
                 <outlet property="selectMode" destination="7v6-GU-e5B" id="WKz-LA-ejA"/>
@@ -69,6 +70,18 @@
                             <action selector="changeMode:" target="-2" id="Kmn-Kc-uJH"/>
                         </connections>
                     </button>
+                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="T1A-TJ-gzE">
+                        <rect key="frame" x="683" y="477" width="44" height="23"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="uI8-T4-lLV"/>
+                            <constraint firstAttribute="height" constant="23" id="yFj-mR-vfh"/>
+                        </constraints>
+                        <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <action selector="selectColor:" target="-2" id="nKR-Om-31b"/>
+                            <binding destination="-2" name="value" keyPath="selectedColor" id="72z-ns-Kqh"/>
+                        </connections>
+                    </colorWell>
                 </subviews>
                 <constraints>
                     <constraint firstItem="TBv-Q1-CwE" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" constant="20" id="0sY-y7-lfG"/>
@@ -79,8 +92,10 @@
                     <constraint firstItem="M5U-qj-cKy" firstAttribute="leading" secondItem="7v6-GU-e5B" secondAttribute="trailing" constant="19" id="LFY-Nk-QAZ"/>
                     <constraint firstItem="TBv-Q1-CwE" firstAttribute="top" secondItem="7v6-GU-e5B" secondAttribute="bottom" constant="16" id="Tec-6m-Wuj"/>
                     <constraint firstAttribute="bottom" secondItem="TBv-Q1-CwE" secondAttribute="bottom" constant="20" id="fiK-ua-qHD"/>
+                    <constraint firstAttribute="trailing" secondItem="T1A-TJ-gzE" secondAttribute="trailing" constant="20" id="g5H-fM-D2a"/>
                     <constraint firstItem="7v6-GU-e5B" firstAttribute="leading" secondItem="V2K-jY-9vr" secondAttribute="trailing" constant="15" id="h91-sU-sJe"/>
                     <constraint firstItem="V2K-jY-9vr" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="20" id="haX-pE-WMQ"/>
+                    <constraint firstItem="T1A-TJ-gzE" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="17" id="hj4-fp-0mp"/>
                     <constraint firstAttribute="trailing" secondItem="TBv-Q1-CwE" secondAttribute="trailing" constant="20" id="l9h-OU-fXG"/>
                     <constraint firstItem="i7N-v3-T0p" firstAttribute="leading" secondItem="M5U-qj-cKy" secondAttribute="trailing" constant="19" id="zBp-2Z-IRE"/>
                 </constraints>
@@ -88,7 +103,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-x8E"/>
             </connections>
-            <point key="canvasLocation" x="324.5" y="323.5"/>
+            <point key="canvasLocation" x="273.5" y="229.5"/>
         </window>
         <colorWell id="kkw-ZO-qgk">
             <rect key="frame" x="0.0" y="0.0" width="44" height="23"/>
@@ -96,5 +111,6 @@
             <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <point key="canvasLocation" x="873" y="242.5"/>
         </colorWell>
+        <userDefaultsController representsSharedInstance="YES" id="W5v-m3-4rM"/>
     </objects>
 </document>
