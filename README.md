@@ -18,6 +18,7 @@ way to 'explain' the connexion of ideas.
 - [x] delete concepts/links [#9](https://github.com/fespinoza/linked-ideas-osx/pull/9)
 - [x] improvements: resizable TextFields [#10](https://github.com/fespinoza/linked-ideas-osx/pull/10)
 - [x] use formatted strings for concepts [#11](https://github.com/fespinoza/linked-ideas-osx/pull/11)
+- [x] add color to links [#12](https://github.com/fespinoza/linked-ideas-osx/pull/12)
 - [ ] undo/redo actions for concepts and links
 - [ ] multiple select concepts (move them)
 - [ ] align concepts
