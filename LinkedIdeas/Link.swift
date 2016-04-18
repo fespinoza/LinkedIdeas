@@ -6,7 +6,7 @@
 //  Copyright © 2015 Felipe Espinoza Dev. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 class Link: NSObject, NSCoding, Element, VisualElement {
   // own attributes
@@ -14,12 +14,15 @@ class Link: NSObject, NSCoding, Element, VisualElement {
   var target: Concept
   var originPoint: NSPoint { return origin.point }
   var targetPoint: NSPoint { return target.point }
+  var color: NSColor
   
   // MARK: - VisualElement
   var isEditable: Bool = false
   var isSelected: Bool = false
   
   private let padding: CGFloat = 20
+  
+  static let defaultColor = NSColor.grayColor()
   
   override var description: String {
     return "'\(origin.stringValue)' '\(target.stringValue)'"
@@ -43,21 +46,30 @@ class Link: NSObject, NSCoding, Element, VisualElement {
     self.origin = origin
     self.target = target
     self.identifier = "\(NSUUID().UUIDString)-link"
+    self.color = Link.defaultColor
   }
   
   let identifierKey = "identifierKey"
   let originKey = "OriginKey"
   let targetKey = "TargetKey"
+  let colorKey = "colorKey"
   
   required init?(coder aDecoder: NSCoder) {
     identifier = aDecoder.decodeObjectForKey(identifierKey) as! String
     origin = aDecoder.decodeObjectForKey(originKey) as! Concept
     target = aDecoder.decodeObjectForKey(targetKey) as! Concept
+    
+    if let color = aDecoder.decodeObjectForKey(colorKey) as? NSColor {
+      self.color = color
+    } else {
+      self.color = Link.defaultColor
+    }
   }
   
   func encodeWithCoder(aCoder: NSCoder) {
     aCoder.encodeObject(identifier, forKey: identifierKey)
     aCoder.encodeObject(origin, forKey: originKey)
     aCoder.encodeObject(target, forKey: targetKey)
+    aCoder.encodeObject(color, forKey: colorKey)
   }
 }

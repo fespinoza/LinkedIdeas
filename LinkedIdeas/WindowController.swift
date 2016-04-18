@@ -16,9 +16,9 @@ class WindowController: NSWindowController {
   @IBOutlet weak var conceptMode: NSButton!
   @IBOutlet weak var linkMode: NSButton!
   
-  @IBOutlet weak var fontSizeField: NSTextField!
-  @IBOutlet weak var fontSizeStepper: NSStepper!
-  @IBOutlet weak var fontColor: NSColorWell!
+  @IBOutlet weak var colorSelector: NSColorWell!
+  
+  dynamic var selectedColor: NSColor = Link.defaultColor
   
   var editionMode = Mode.Concepts
   
@@ -43,7 +43,6 @@ class WindowController: NSWindowController {
     if let readLinks = currentDocument.documentData.readLinks { canvas.links = readLinks }
     currentDocument.canvas = canvas
   }
-  
   
   // MARK: - Keyboard Events
   override func keyDown(theEvent: NSEvent) {
@@ -73,4 +72,14 @@ class WindowController: NSWindowController {
     Swift.print(editionMode)
     canvas.mode = editionMode
   }
+  
+  @IBAction func selectColor(sender: AnyObject) {
+    let newColor = colorSelector.color
+    let selectedLinks = canvas.links.filter { $0.isSelected }
+    for link in selectedLinks {
+      link.color = newColor
+      canvas.linkViewFor(link).needsDisplay = true
+    }
+  }
+  
 }

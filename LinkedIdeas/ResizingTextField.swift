@@ -21,7 +21,6 @@ class ResizingTextField: NSTextField {
   }
   
   override var intrinsicContentSize: NSSize {
-//    let boundingSize: NSSize = stringValue.sizeWithAttributes(nil)
     let boundingSize: NSSize = attributedStringValue.size()
     
     let roundedWidth  = CGFloat(boundingSize.width + Concept.padding)

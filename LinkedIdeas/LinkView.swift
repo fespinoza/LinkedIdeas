@@ -67,7 +67,7 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
   }
   
   func drawArrow() {
-    NSColor.grayColor().set()
+    link.color.set()
     arrowPath.fill()
   }
   
@@ -118,6 +118,7 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
     canvas.unselectConcepts()
     canvas.unselectLinks()
     selectLink()
+    (window?.windowController as? WindowController)?.selectedColor = link.color
   }
   
   func doubleClick(point: NSPoint) {}
