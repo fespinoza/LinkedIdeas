@@ -239,6 +239,11 @@ class CanvasView: NSView, Canvas {
   
   func createLinkBetweenConceptsViews(originConceptView: ConceptView, targetConceptView: ConceptView) {
     let link = Link(origin: originConceptView.concept, target: targetConceptView.concept)
+    
+    if let windowController = window?.windowController as? WindowController {
+      link.color = windowController.selectedColor
+    }
+    
     links.append(link)
     
     sprint("create link \(link)")
