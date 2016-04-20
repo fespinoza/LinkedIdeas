@@ -38,13 +38,12 @@ way to 'explain' the connexion of ideas.
 - construction line not on same worker
 - BUG: LinkArrow when there is no intersection point with conceptViews
 - BUG: dragging fails many times when concepts has already many links
-- multi element dragging
-- attributed strings on concepts
 - control + dragging to create straight links
 - aligment of concepts
 - center text
 - copy/paste/duplicate concepts/links
-- improve who holds the reference to the data, canvas or document
 - autosave document
 - refactor conceptView/linkView use a delegate to decouple from Canvas
-- fix link views to be outside canvas
+- fix link views to be outside canvas ???
+- resizing of text field goes to the right
+

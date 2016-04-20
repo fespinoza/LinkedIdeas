@@ -35,15 +35,24 @@ class DocumentData: NSObject, NSCoding {
   }
 }
 
-class Document: NSDocument {
+class Document: NSDocument, LinkedIdeasDocument {
   var documentData = DocumentData()
+  
+  var concepts: [Concept] = [Concept]()
+  var links: [Link] = [Link]()
   
   override init() {
     super.init()
     // Add your subclass-specific initialization here.
   }
   
-  var canvas: CanvasView!
+  // MARK: - LinkedIdeasDocument
+  
+  func saveConcept(concept: Concept) {}
+  func removeConcept(concept: Concept) {}
+  
+  func saveLink(link: Link) {}
+  func removeLink(link: Link) {}
 
   override class func autosavesInPlace() -> Bool {
     return true
@@ -58,8 +67,8 @@ class Document: NSDocument {
     // Insert code here to write your document to data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning nil.
     // You can also choose to override fileWrapperOfType:error:, writeToURL:ofType:error:, or writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
     Swift.print("saving document..")
-    documentData.writeConcepts = canvas.concepts
-    documentData.writeLinks = canvas.links
+    documentData.writeConcepts = concepts
+    documentData.writeLinks = links
     return NSKeyedArchiver.archivedDataWithRootObject(documentData)
   }
 
@@ -68,5 +77,11 @@ class Document: NSDocument {
     // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
     // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
     documentData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! DocumentData
+    if let readConcepts = documentData.readConcepts {
+      concepts = readConcepts
+    }
+    if let readLinks = documentData.readLinks {
+      links = readLinks
+    }
   }
 }

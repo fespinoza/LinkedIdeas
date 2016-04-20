@@ -39,9 +39,7 @@ class WindowController: NSWindowController {
     ultraWindow.acceptsMouseMovedEvents = true
     
     let currentDocument = document as! Document
-    if let readConcepts = currentDocument.documentData.readConcepts { canvas.concepts = readConcepts }
-    if let readLinks = currentDocument.documentData.readLinks { canvas.links = readLinks }
-    currentDocument.canvas = canvas
+    canvas.document = currentDocument
   }
   
   // MARK: - Keyboard Events

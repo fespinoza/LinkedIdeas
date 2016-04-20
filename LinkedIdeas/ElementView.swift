@@ -110,8 +110,11 @@ protocol BasicCanvas {
   var newConcept: Concept? { get }
   var newConceptView: ConceptView? { get }
   
-  var concepts: [Concept] { get set }
+  var concepts: [Concept] { get }
   var conceptViews: [String: ConceptView] { get set }
+  
+  var links: [Link] { get }
+  var linkViews: [String: LinkView] { get set }
   
   func addConceptView(concept: Concept)
   func saveConcept(concept: ConceptView)

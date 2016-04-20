@@ -8,14 +8,30 @@
 
 import Cocoa
 
+protocol LinkedIdeasDocument {
+  var concepts: [Concept] { get }
+  var links: [Link] { get }
+  
+  func saveConcept(concept: Concept)
+  func removeConcept(concept: Concept)
+  
+  func saveLink(link: Link)
+  func removeLink(link: Link)
+}
+
 class CanvasView: NSView, Canvas {
+  var document: LinkedIdeasDocument!
+  
   var newConcept: Concept? = nil
   var newConceptView: ConceptView? = nil
-  var concepts: [Concept] = [Concept]()
+  
   var conceptViews: [String: ConceptView] = [String: ConceptView]()
-  var mode: Mode = .Select
-  var links: [Link] = [Link]()
   var linkViews: [String: LinkView] = [String: LinkView]()
+  
+  var concepts: [Concept] { return document.concepts }
+  var links: [Link] { return document.links }
+  
+  var mode: Mode = .Select
   
   // MARK: - NSResponder
   override var acceptsFirstResponder: Bool { return true }
@@ -58,7 +74,7 @@ class CanvasView: NSView, Canvas {
     newConcept = nil
     newConceptView = nil
 
-    concepts.append(_newConcept)
+    document.saveConcept(_newConcept)
     conceptViews[_newConcept.identifier] = _newConceptView
   }
   
@@ -181,7 +197,7 @@ class CanvasView: NSView, Canvas {
   func removeConceptView(conceptView: ConceptView) {
     let concept = conceptView.concept
     
-    concepts.removeAtIndex(concepts.indexOf(concept)!)
+    document.removeConcept(concept)
     conceptViews.removeValueForKey(concept.identifier)
     conceptView.removeFromSuperview()
     
@@ -244,7 +260,7 @@ class CanvasView: NSView, Canvas {
       link.color = windowController.selectedColor
     }
     
-    links.append(link)
+    document.saveLink(link)
     
     sprint("create link \(link)")
     
@@ -254,7 +270,7 @@ class CanvasView: NSView, Canvas {
   func removeLinkView(linkView: LinkView) {
     let link = linkView.link
     
-    links.removeAtIndex(links.indexOf(link)!)
+    document.removeLink(link)
     linkViews.removeValueForKey(link.identifier)
     linkView.removeFromSuperview()
   }
