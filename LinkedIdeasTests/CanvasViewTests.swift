@@ -13,20 +13,26 @@ class TestDocument: LinkedIdeasDocument {
   var concepts = [Concept]()
   var links = [Link]()
   
+  var observer: DocumentObserver?
+  
   func saveConcept(concept: Concept) {
     concepts.append(concept)
+    observer?.conceptAdded(concept)
   }
   
   func removeConcept(concept: Concept) {
     concepts.removeAtIndex(concepts.indexOf(concept)!)
+    observer?.conceptRemoved(concept)
   }
   
   func saveLink(link: Link) {
     links.append(link)
+    observer?.linkAdded(link)
   }
   
   func removeLink(link: Link) {
     links.removeAtIndex(links.indexOf(link)!)
+    observer?.linkRemoved(link)
   }
 }
 
@@ -140,7 +146,24 @@ class CanvasViewTests: XCTestCase {
     XCTAssertNil(canvas.newConcept)
     XCTAssertNil(canvas.newConceptView)
     XCTAssertEqual(canvas.concepts.first!.identifier, concept.identifier)
-    XCTAssertEqual(canvas.conceptViewFor(concept), conceptView)
+    XCTAssertEqual(canvas.conceptViews.count, 1)
+  }
+  
+  func testRemovingAConcept() {
+    // given
+    let concept = Concept(point: NSMakePoint(100, 200))
+    testDocument.concepts = [concept]
+    canvas.drawConceptViews()
+    
+    XCTAssertEqual(canvas.conceptViews.count, 1)
+    XCTAssertEqual(canvas.subviews.count, 1)
+    
+    // when
+    canvas.conceptRemoved(concept)
+    
+    // then
+    XCTAssertEqual(canvas.conceptViews.count, 0)
+    XCTAssertEqual(canvas.subviews.count, 0)
   }
   
   // MARK: - Link Mode

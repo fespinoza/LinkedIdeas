@@ -35,11 +35,21 @@ class DocumentData: NSObject, NSCoding {
   }
 }
 
+protocol DocumentObserver {
+  func conceptAdded(concept: Concept)
+  func conceptRemoved(concept: Concept)
+  
+  func linkAdded(link: Link)
+  func linkRemoved(link: Link)
+}
+
 class Document: NSDocument, LinkedIdeasDocument {
   var documentData = DocumentData()
   
   var concepts: [Concept] = [Concept]()
   var links: [Link] = [Link]()
+  
+  var observer: DocumentObserver?
   
   override init() {
     super.init()
@@ -48,8 +58,25 @@ class Document: NSDocument, LinkedIdeasDocument {
   
   // MARK: - LinkedIdeasDocument
   
-  func saveConcept(concept: Concept) {}
-  func removeConcept(concept: Concept) {}
+  func saveConcept(concept: Concept) {
+    Swift.print("add concept \(concept)")
+    concepts.append(concept)
+    undoManager?.registerUndoWithTarget(
+      self,
+      selector: #selector(Document.removeConcept(_:)),
+      object: concept)
+    observer?.conceptAdded(concept)
+  }
+  
+  func removeConcept(concept: Concept) {
+    Swift.print("remove concept \(concept)")
+    concepts.removeAtIndex(concepts.indexOf(concept)!)
+    undoManager?.registerUndoWithTarget(
+      self,
+      selector: #selector(Document.saveConcept(_:)),
+      object: concept)
+    observer?.conceptRemoved(concept)
+  }
   
   func saveLink(link: Link) {}
   func removeLink(link: Link) {}
