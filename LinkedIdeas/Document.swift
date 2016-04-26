@@ -78,8 +78,25 @@ class Document: NSDocument, LinkedIdeasDocument {
     observer?.conceptRemoved(concept)
   }
   
-  func saveLink(link: Link) {}
-  func removeLink(link: Link) {}
+  func saveLink(link: Link) {
+    Swift.print("add link \(link)")
+    links.append(link)
+    undoManager?.registerUndoWithTarget(
+      self,
+      selector: #selector(Document.removeLink(_:)),
+      object: link)
+    observer?.linkAdded(link)
+  }
+  
+  func removeLink(link: Link) {
+    Swift.print("remove link \(link)")
+    links.removeAtIndex(links.indexOf(link)!)
+    undoManager?.registerUndoWithTarget(
+      self,
+      selector: #selector(Document.saveLink(_:)),
+      object: link)
+    observer?.linkRemoved(link)
+  }
 
   override class func autosavesInPlace() -> Bool {
     return true

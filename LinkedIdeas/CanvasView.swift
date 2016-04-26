@@ -68,9 +68,6 @@ class CanvasView: NSView, Canvas, DocumentObserver {
 
   // MARK: - BasicCanvas
   
-  func addConceptView(concept: Concept) {
-  }
-
   func saveConcept(concept: ConceptView) {
     let _newConcept = concept.concept
     newConcept = nil
@@ -273,15 +270,16 @@ class CanvasView: NSView, Canvas, DocumentObserver {
     document.saveLink(link)
     
     sprint("create link \(link)")
-    
-    drawLinkView(link)
   }
 
   func removeLinkView(linkView: LinkView) {
     let link = linkView.link
-    
     document.removeLink(link)
-    linkViews.removeValueForKey(link.identifier)
+    justRemoveLinkView(linkView)
+  }
+  
+  func justRemoveLinkView(linkView: LinkView) {
+    linkViews.removeValueForKey(linkView.link.identifier)
     linkView.removeFromSuperview()
   }
   
@@ -292,17 +290,18 @@ class CanvasView: NSView, Canvas, DocumentObserver {
   
   // MARK: - DocumentObserver
   func conceptAdded(concept: Concept) {
-    sprint("concept added")
     createConceptViewFor(concept)
   }
   
   func conceptRemoved(concept: Concept) {
-    sprint("concept removed")
-    let conceptView = conceptViewFor(concept)
-    justRemoveConceptView(conceptView)
-    needsDisplay = true
+    justRemoveConceptView(conceptViewFor(concept))
   }
   
-  func linkAdded(link: Link) {}
-  func linkRemoved(link: Link) {}
+  func linkAdded(link: Link) {
+    drawLinkView(link)
+  }
+  
+  func linkRemoved(link: Link) {
+    justRemoveLinkView(linkViewFor(link))
+  }
 }

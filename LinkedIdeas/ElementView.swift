@@ -116,7 +116,6 @@ protocol BasicCanvas {
   var links: [Link] { get }
   var linkViews: [String: LinkView] { get set }
   
-  func addConceptView(concept: Concept)
   func saveConcept(concept: ConceptView)
   
   func pointInCanvasCoordinates(point: NSPoint) -> NSPoint
