@@ -297,6 +297,10 @@ class CanvasView: NSView, Canvas, DocumentObserver {
     justRemoveConceptView(conceptViewFor(concept))
   }
   
+  func conceptUpdated(concept: Concept) {
+    conceptViewFor(concept).needsDisplay = true
+  }
+  
   func linkAdded(link: Link) {
     drawLinkView(link)
   }

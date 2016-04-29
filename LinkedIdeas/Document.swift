@@ -38,6 +38,7 @@ class DocumentData: NSObject, NSCoding {
 protocol DocumentObserver {
   func conceptAdded(concept: Concept)
   func conceptRemoved(concept: Concept)
+  func conceptUpdated(concept: Concept)
   
   func linkAdded(link: Link)
   func linkRemoved(link: Link)
@@ -46,10 +47,23 @@ protocol DocumentObserver {
 class Document: NSDocument, LinkedIdeasDocument {
   var documentData = DocumentData()
   
-  var concepts: [Concept] = [Concept]()
+  var concepts: [Concept] = [Concept]() {
+    willSet {
+      for concept in concepts {
+        stopObservingConcept(concept)
+      }
+    }
+    didSet {
+      for concept in concepts {
+        startObservingConcept(concept)
+      }
+    }
+  }
   var links: [Link] = [Link]()
   
   var observer: DocumentObserver?
+  
+  private var KVOContext: Int = 0
   
   override init() {
     super.init()
@@ -126,6 +140,37 @@ class Document: NSDocument, LinkedIdeasDocument {
     }
     if let readLinks = documentData.readLinks {
       links = readLinks
+    }
+  }
+  
+  // MARK: - KeyValue Observing
+  let stringValueKey = "attributedStringValue"
+  
+  func startObservingConcept(concept: Concept) {
+    concept.addObserver(self, forKeyPath: stringValueKey, options: .Old, context: &KVOContext)
+  }
+  
+  func stopObservingConcept(concept: Concept) {
+    concept.removeObserver(self, forKeyPath: stringValueKey, context: &KVOContext)
+  }
+  
+  override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    guard context == &KVOContext else {
+      // If the context does not match, this message
+      // must be intended for our superclass.
+      super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+      return
+    }
+    
+    if let keyPath = keyPath, object = object, change = change {
+      var oldValue: AnyObject? = change[NSKeyValueChangeOldKey]
+      if oldValue is NSNull {
+        oldValue = nil
+      }
+      if let concept = object as? Concept {
+        undoManager?.prepareWithInvocationTarget(object).setValue(oldValue, forKey: keyPath)
+        observer?.conceptUpdated(concept)
+      }
     }
   }
 }

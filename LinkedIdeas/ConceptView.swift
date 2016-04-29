@@ -97,12 +97,10 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   }
   
   override func mouseEntered(theEvent: NSEvent) {
-    sprint("mouse entered")
     isHoveringView = true
   }
   
   override func mouseExited(theEvent: NSEvent) {
-    sprint("mouse exited")
     isHoveringView = false
   }
   
@@ -121,7 +119,6 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   // MARK: - NSTextFieldDelegate
 
   func control(control: NSControl, textView: NSTextView, doCommandBySelector commandSelector: Selector) -> Bool {
-    sprint("use selector \(commandSelector)")
     switch commandSelector {
     case #selector(NSResponder.insertNewline(_:)):
       pressEnterKey()
@@ -183,7 +180,9 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     concept.isEditable = false
     concept.attributedStringValue = textField.attributedStringValue
     updateFrameToMatchConcept()
-    canvas.saveConcept(self)
+    if (canvas.concepts.indexOf(concept) == nil) {
+      canvas.saveConcept(self)
+    }
   }
   
   func cancelEdition() {
@@ -221,7 +220,6 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   // MARK: - ConceptViewProtocol
   
   func updateFrameToMatchConcept() {
-    sprint("update frame to match concept")
     frame = NSRect(center: concept.point, size: textField.intrinsicContentSize)
   }
 }

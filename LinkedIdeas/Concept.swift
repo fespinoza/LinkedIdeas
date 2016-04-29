@@ -14,7 +14,7 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
   // element
   var identifier: String
   // MARK: - AttributedStringElement
-  var attributedStringValue: NSAttributedString
+  dynamic var attributedStringValue: NSAttributedString
   var stringValue: String { return attributedStringValue.string }
   
   static let padding: CGFloat = 10
