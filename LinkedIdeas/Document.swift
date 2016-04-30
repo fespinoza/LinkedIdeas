@@ -111,6 +111,12 @@ class Document: NSDocument, LinkedIdeasDocument {
       object: link)
     observer?.linkRemoved(link)
   }
+  
+  func changeConceptPoint(concept: Concept, fromPoint pointA: NSPoint, toPoint pointB: NSPoint) {
+    concept.point = pointB
+    observer?.conceptUpdated(concept)
+    undoManager?.prepareWithInvocationTarget(self).changeConceptPoint(concept, fromPoint: pointB, toPoint: pointA)
+  }
 
   override class func autosavesInPlace() -> Bool {
     return true
@@ -144,14 +150,13 @@ class Document: NSDocument, LinkedIdeasDocument {
   }
   
   // MARK: - KeyValue Observing
-  let stringValueKey = "attributedStringValue"
   
   func startObservingConcept(concept: Concept) {
-    concept.addObserver(self, forKeyPath: stringValueKey, options: .Old, context: &KVOContext)
+    concept.addObserver(self, forKeyPath: Concept.attributedStringValuePath, options: .Old, context: &KVOContext)
   }
   
   func stopObservingConcept(concept: Concept) {
-    concept.removeObserver(self, forKeyPath: stringValueKey, context: &KVOContext)
+    concept.removeObserver(self, forKeyPath: Concept.attributedStringValuePath, context: &KVOContext)
   }
   
   override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {

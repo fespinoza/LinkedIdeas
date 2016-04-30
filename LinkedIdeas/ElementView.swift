@@ -67,7 +67,7 @@ protocol ConceptViewProtocol {
 }
 
 protocol DraggableElement {
-  func dragTo(point: NSPoint)
+  func dragTo(point: NSPoint, lastDrag: Bool)
 }
 
 protocol ClickableView {

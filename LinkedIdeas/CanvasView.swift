@@ -19,6 +19,8 @@ protocol LinkedIdeasDocument {
   
   func saveLink(link: Link)
   func removeLink(link: Link)
+  
+  func changeConceptPoint(concept: Concept, fromPoint: NSPoint, toPoint: NSPoint)
 }
 
 class CanvasView: NSView, Canvas, DocumentObserver {
@@ -167,7 +169,6 @@ class CanvasView: NSView, Canvas, DocumentObserver {
   var arrowTargetPoint: NSPoint?
   
   func dragFromConceptView(conceptView: ConceptView, point: NSPoint) {
-    sprint("drag from conceptView \(conceptView.concept.identifier) to \(point)")
     arrowOriginPoint = conceptView.concept.point
     arrowTargetPoint = point
     updateLinkViewsFor(conceptView.concept)
@@ -298,7 +299,9 @@ class CanvasView: NSView, Canvas, DocumentObserver {
   }
   
   func conceptUpdated(concept: Concept) {
-    conceptViewFor(concept).needsDisplay = true
+    let conceptView = conceptViewFor(concept)
+    conceptView.updateFrameToMatchConcept()
+    conceptView.needsDisplay = true
   }
   
   func linkAdded(link: Link) {

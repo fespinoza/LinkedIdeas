@@ -31,12 +31,18 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
   // visual element
   var isEditable: Bool = false
   var isSelected: Bool = false
+  
+  // KVO
+  static let attributedStringValuePath = "attributedStringValue"
+  static let pointPath = "point"
+  static let identifierPath = "identifier"
+  static let isEditablePath = "isEditable"
 
   // NSCoding
-  let attributedStringValueKey = "stringValueKey"
-  let pointKey = "pointKey"
-  let identifierKey = "identifierKey"
-  let isEditableKey = "isEditableKey"
+  static let attributedStringValueKey = "stringValueKey"
+  static let pointKey = "pointKey"
+  static let identifierKey = "identifierKey"
+  static let isEditableKey = "isEditableKey"
 
   override var description: String {
     return "[\(identifier)] '\(stringValue)' \(isEditable) \(point)"
@@ -59,16 +65,16 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
   // MARK: - NSCoding
 
   required init?(coder aDecoder: NSCoder) {
-    point       = aDecoder.decodePointForKey(pointKey)
-    identifier  = aDecoder.decodeObjectForKey(identifierKey) as! String
-    isEditable  = aDecoder.decodeBoolForKey(isEditableKey)
-    attributedStringValue = aDecoder.decodeObjectForKey(attributedStringValueKey) as! NSAttributedString
+    point       = aDecoder.decodePointForKey(Concept.pointKey)
+    identifier  = aDecoder.decodeObjectForKey(Concept.identifierKey) as! String
+    isEditable  = aDecoder.decodeBoolForKey(Concept.isEditableKey)
+    attributedStringValue = aDecoder.decodeObjectForKey(Concept.attributedStringValueKey) as! NSAttributedString
   }
 
   func encodeWithCoder(aCoder: NSCoder) {
-    aCoder.encodePoint(point, forKey: pointKey)
-    aCoder.encodeObject(attributedStringValue, forKey: attributedStringValueKey)
-    aCoder.encodeObject(identifier, forKey: identifierKey)
-    aCoder.encodeBool(isEditable, forKey: isEditableKey)
+    aCoder.encodePoint(point, forKey: Concept.pointKey)
+    aCoder.encodeObject(attributedStringValue, forKey: Concept.attributedStringValueKey)
+    aCoder.encodeObject(identifier, forKey: Concept.identifierKey)
+    aCoder.encodeBool(isEditable, forKey: Concept.isEditableKey)
   }
 }

@@ -18,6 +18,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   var isTextFieldFocused: Bool = false
   // Mouse events
   var dragInitiated: Bool = false
+  var document: LinkedIdeasDocument { return canvas.document }
   
   override var acceptsFirstResponder: Bool { return true }
   
@@ -70,10 +71,11 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   }
 
   // MARK: - Mouse events
-
+  var initialPoint: NSPoint?
+  
   override func mouseDown(theEvent: NSEvent) {
-    sprint("mouse down")
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
+    initialPoint = concept.point
     if (theEvent.clickCount == 2) {
       doubleClick(point)
     } else {
@@ -82,16 +84,16 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   }
 
   override func mouseDragged(theEvent: NSEvent) {
-    sprint("mouse drag")
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
     dragTo(point)
     dragInitiated = true
   }
 
   override func mouseUp(theEvent: NSEvent) {
-    sprint("mouse up")
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
-    if dragInitiated { dragTo(point) }
+    if dragInitiated {
+      dragTo(point, lastDrag: true)
+    }
     dragInitiated = false
     canvas.releaseMouseFromConceptView(self, point: point)
   }
@@ -209,9 +211,13 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
 
   // MARK: - Dragable element
   
-  func dragTo(point: NSPoint) {
+  func dragTo(point: NSPoint, lastDrag: Bool = false) {
     if (canvas.mode == .Select) {
-      concept.point = point
+      if let initialPoint = initialPoint where lastDrag {
+        document.changeConceptPoint(concept, fromPoint: initialPoint, toPoint: point)
+      } else {
+        concept.point = point
+      }
       updateFrameToMatchConcept()
     }
     canvas.dragFromConceptView(self, point: point)
