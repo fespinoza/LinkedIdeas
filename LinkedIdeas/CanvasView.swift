@@ -302,6 +302,7 @@ class CanvasView: NSView, Canvas, DocumentObserver {
     let conceptView = conceptViewFor(concept)
     conceptView.updateFrameToMatchConcept()
     conceptView.needsDisplay = true
+    updateLinkViewsFor(concept)
   }
   
   func linkAdded(link: Link) {
