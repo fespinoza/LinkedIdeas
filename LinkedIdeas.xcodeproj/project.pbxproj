@@ -15,6 +15,10 @@
 		9B2F1DA71BE7CFE70090CC18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA61BE7CFE70090CC18 /* Assets.xcassets */; };
 		9B2F1DAA1BE7CFE80090CC18 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA81BE7CFE80090CC18 /* MainMenu.xib */; };
 		9B2F1DCE1BE7D3990090CC18 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1DCD1BE7D3990090CC18 /* CanvasView.swift */; };
+		9B48F8471CD613F60014758D /* DocumentObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8461CD613F60014758D /* DocumentObserver.swift */; };
+		9B48F8491CD614370014758D /* LinkedIdeasDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */; };
+		9B48F84D1CD614BC0014758D /* DocumentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F84C1CD614BC0014758D /* DocumentData.swift */; };
+		9B48F84F1CD614C50014758D /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F84E1CD614C50014758D /* Mode.swift */; };
 		9B6505261CB5A74800A3B41C /* icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 9B6505251CB5A74800A3B41C /* icon.iconset */; };
 		9B733AF71CB9B7D200C04F47 /* ResizingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B733AF61CB9B7D200C04F47 /* ResizingTextField.swift */; };
 		9B7D535F1CB6D0A400B3D43B /* ElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D535E1CB6D0A400B3D43B /* ElementView.swift */; };
@@ -61,6 +65,10 @@
 		9B2F1DB01BE7CFE80090CC18 /* LinkedIdeasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinkedIdeasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2F1DB61BE7CFE80090CC18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B2F1DCD1BE7D3990090CC18 /* CanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		9B48F8461CD613F60014758D /* DocumentObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentObserver.swift; sourceTree = "<group>"; };
+		9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedIdeasDocument.swift; sourceTree = "<group>"; };
+		9B48F84C1CD614BC0014758D /* DocumentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentData.swift; sourceTree = "<group>"; };
+		9B48F84E1CD614C50014758D /* Mode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
 		9B6505251CB5A74800A3B41C /* icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = icon.iconset; sourceTree = "<group>"; };
 		9B733AF61CB9B7D200C04F47 /* ResizingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizingTextField.swift; sourceTree = "<group>"; };
 		9B7D535E1CB6D0A400B3D43B /* ElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementView.swift; sourceTree = "<group>"; };
@@ -124,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */,
-				9B2F1DA11BE7CFE70090CC18 /* Document.swift */,
 				9B2F1DA31BE7CFE70090CC18 /* Document.xib */,
 				9BF15C381CAC69A500C95041 /* WindowController.swift */,
 				9B2F1DA61BE7CFE70090CC18 /* Assets.xcassets */,
@@ -146,6 +153,24 @@
 				9B2F1DB61BE7CFE80090CC18 /* Info.plist */,
 			);
 			path = LinkedIdeasTests;
+			sourceTree = "<group>";
+		};
+		9B48F84A1CD614460014758D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9BB8FC881CA6B889008CD6A2 /* Element.swift */,
+				9B48F8461CD613F60014758D /* DocumentObserver.swift */,
+				9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		9B48F84B1CD6146D0014758D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9B7D535E1CB6D0A400B3D43B /* ElementView.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		9BB8FC801CA6B7B0008CD6A2 /* Models */ = {
@@ -170,9 +195,12 @@
 		9BCA09E31C9217A900637F6D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9B2F1DA11BE7CFE70090CC18 /* Document.swift */,
+				9B48F84C1CD614BC0014758D /* DocumentData.swift */,
+				9B48F84E1CD614C50014758D /* Mode.swift */,
 				9BDDE7381BEF9157000AAD44 /* Concept.swift */,
 				9BABB2B11C07B7F7001EC9E0 /* Link.swift */,
-				9BB8FC881CA6B889008CD6A2 /* Element.swift */,
+				9B48F84A1CD614460014758D /* Protocols */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -183,8 +211,8 @@
 				9B2F1DCD1BE7D3990090CC18 /* CanvasView.swift */,
 				9BD2C14D1BEE6F9F00CD3C2F /* ConceptView.swift */,
 				9BB8FC861CA6B828008CD6A2 /* LinkView.swift */,
-				9B7D535E1CB6D0A400B3D43B /* ElementView.swift */,
 				9B733AF61CB9B7D200C04F47 /* ResizingTextField.swift */,
+				9B48F84B1CD6146D0014758D /* Protocols */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -309,15 +337,19 @@
 			files = (
 				9BABB2B21C07B7F7001EC9E0 /* Link.swift in Sources */,
 				9B2F1DA21BE7CFE70090CC18 /* Document.swift in Sources */,
+				9B48F84F1CD614C50014758D /* Mode.swift in Sources */,
 				9BB8FC871CA6B828008CD6A2 /* LinkView.swift in Sources */,
 				9B956CE51C1B11C200CF20DA /* NSPoint+Utilities.swift in Sources */,
 				9B06AD151C11AF03000BC75C /* NSView+Debugging.swift in Sources */,
 				9BD2BF3D1C7F8B6A00E8A303 /* FiniteLine.swift in Sources */,
+				9B48F8471CD613F60014758D /* DocumentObserver.swift in Sources */,
 				9B2F1DA01BE7CFE70090CC18 /* AppDelegate.swift in Sources */,
 				9B06AD131C11AD74000BC75C /* NSRect+PointHelpers.swift in Sources */,
 				9BD2BF421C7F8C2000E8A303 /* Arrow.swift in Sources */,
 				9BD2BF371C7F8B2300E8A303 /* Interceptable.swift in Sources */,
 				9B733AF71CB9B7D200C04F47 /* ResizingTextField.swift in Sources */,
+				9B48F84D1CD614BC0014758D /* DocumentData.swift in Sources */,
+				9B48F8491CD614370014758D /* LinkedIdeasDocument.swift in Sources */,
 				9BD2BF391C7F8B4100E8A303 /* PointInterceptable.swift in Sources */,
 				9BB8FC891CA6B889008CD6A2 /* Element.swift in Sources */,
 				9B2F1DCE1BE7D3990090CC18 /* CanvasView.swift in Sources */,

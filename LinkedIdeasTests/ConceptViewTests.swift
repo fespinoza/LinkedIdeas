@@ -11,6 +11,11 @@ import XCTest
 
 class ConceptViewTests: XCTestCase {
   let canvas = CanvasView(frame: NSMakeRect(20, 20, 600, 400))
+  let testDocument = TestDocument()
+  
+  override func setUp() {
+    canvas.document = testDocument
+  }
   
   func testSavingAConcept() {
     // given
@@ -70,8 +75,7 @@ class ConceptViewTests: XCTestCase {
     let concept1 = Concept(point: NSMakePoint(1, 20))
     let concept2 = Concept(point: NSMakePoint(100, 200))
     concept1.isEditable = true
-    canvas.concepts.append(concept1)
-    canvas.concepts.append(concept2)
+    testDocument.concepts = [concept1, concept2]
     canvas.drawConceptViews()
     let conceptView2 = canvas.conceptViewFor(concept2)
 
@@ -170,7 +174,7 @@ class ConceptViewTests: XCTestCase {
     let concept = Concept(stringValue: "foo", point: NSMakePoint(200, 300))
     concept.isEditable = true
     let conceptView = ConceptView(concept: concept, canvas: canvas)
-    canvas.concepts = [concept]
+    testDocument.concepts = [concept]
     canvas.conceptViews = [concept.identifier: conceptView]
     
     // when
@@ -211,8 +215,8 @@ class ConceptViewTests: XCTestCase {
     let link1 = Link(origin: concept1, target: concept2)
     let link2 = Link(origin: concept3, target: concept1)
     let link3 = Link(origin: concept3, target: concept2)
-    canvas.concepts = [concept1, concept2, concept3]
-    canvas.links = [link1, link2, link3]
+    testDocument.concepts = [concept1, concept2, concept3]
+    testDocument.links = [link1, link2, link3]
     canvas.drawConceptViews()
     canvas.drawLinkViews()
     let conceptView1 = canvas.conceptViewFor(concept1)

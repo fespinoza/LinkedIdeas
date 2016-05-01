@@ -67,7 +67,7 @@ protocol ConceptViewProtocol {
 }
 
 protocol DraggableElement {
-  func dragTo(point: NSPoint)
+  func dragTo(point: NSPoint, lastDrag: Bool)
 }
 
 protocol ClickableView {
@@ -110,10 +110,12 @@ protocol BasicCanvas {
   var newConcept: Concept? { get }
   var newConceptView: ConceptView? { get }
   
-  var concepts: [Concept] { get set }
+  var concepts: [Concept] { get }
   var conceptViews: [String: ConceptView] { get set }
   
-  func addConceptView(concept: Concept)
+  var links: [Link] { get }
+  var linkViews: [String: LinkView] { get set }
+  
   func saveConcept(concept: ConceptView)
   
   func pointInCanvasCoordinates(point: NSPoint) -> NSPoint

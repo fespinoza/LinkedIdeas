@@ -14,7 +14,7 @@ class Link: NSObject, NSCoding, Element, VisualElement {
   var target: Concept
   var originPoint: NSPoint { return origin.point }
   var targetPoint: NSPoint { return target.point }
-  var color: NSColor
+  dynamic var color: NSColor
   
   // MARK: - VisualElement
   var isEditable: Bool = false
@@ -48,6 +48,8 @@ class Link: NSObject, NSCoding, Element, VisualElement {
     self.identifier = "\(NSUUID().UUIDString)-link"
     self.color = Link.defaultColor
   }
+  
+  static let colorPath = "color"
   
   let identifierKey = "identifierKey"
   let originKey = "OriginKey"

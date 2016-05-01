@@ -8,14 +8,21 @@
 
 import Cocoa
 
-class CanvasView: NSView, Canvas {
+class CanvasView: NSView, Canvas, DocumentObserver {
+  var document: LinkedIdeasDocument! {
+    didSet { document.observer = self }
+  }
+  
   var newConcept: Concept? = nil
   var newConceptView: ConceptView? = nil
-  var concepts: [Concept] = [Concept]()
+  
   var conceptViews: [String: ConceptView] = [String: ConceptView]()
-  var mode: Mode = .Select
-  var links: [Link] = [Link]()
   var linkViews: [String: LinkView] = [String: LinkView]()
+  
+  var concepts: [Concept] { return document.concepts }
+  var links: [Link] { return document.links }
+  
+  var mode: Mode = .Select
   
   // MARK: - NSResponder
   override var acceptsFirstResponder: Bool { return true }
@@ -48,18 +55,12 @@ class CanvasView: NSView, Canvas {
 
   // MARK: - BasicCanvas
   
-  func addConceptView(concept: Concept) {
-  }
-
   func saveConcept(concept: ConceptView) {
     let _newConcept = concept.concept
-    let _newConceptView = concept
-
     newConcept = nil
+    newConceptView?.removeFromSuperview()
     newConceptView = nil
-
-    concepts.append(_newConcept)
-    conceptViews[_newConcept.identifier] = _newConceptView
+    document.saveConcept(_newConcept)
   }
   
   func pointInCanvasCoordinates(point: NSPoint) -> NSPoint {
@@ -99,9 +100,7 @@ class CanvasView: NSView, Canvas {
     if let conceptView = conceptViews[concept.identifier] {
       conceptView.needsDisplay = true
     } else {
-      let conceptView = ConceptView(concept: concept, canvas: self)
-      conceptViews[concept.identifier] = conceptView
-      addSubview(conceptView)
+      createConceptViewFor(concept)
     }
   }
 
@@ -111,13 +110,21 @@ class CanvasView: NSView, Canvas {
   func createConceptAt(point: NSPoint) {
     let _newConcept = Concept(point: point)
     _newConcept.isEditable = true
-    let _newConceptView = ConceptView(concept: _newConcept, canvas: self)
+    let _newConceptView = createConceptViewFor(_newConcept)
 
     newConceptView?.removeFromSuperview()
 
     newConcept = _newConcept
     newConceptView = _newConceptView
-    addSubview(_newConceptView)
+    
+  }
+  
+  func createConceptViewFor(concept: Concept) -> ConceptView {
+    let conceptView = ConceptView(concept: concept, canvas: self)
+    conceptViews[concept.identifier] = conceptView
+    Swift.print("create concept view for \(concept)")
+    addSubview(conceptView)
+    return conceptView
   }
 
   func markConceptsAsNotEditable() {
@@ -147,7 +154,6 @@ class CanvasView: NSView, Canvas {
   var arrowTargetPoint: NSPoint?
   
   func dragFromConceptView(conceptView: ConceptView, point: NSPoint) {
-    sprint("drag from conceptView \(conceptView.concept.identifier) to \(point)")
     arrowOriginPoint = conceptView.concept.point
     arrowTargetPoint = point
     updateLinkViewsFor(conceptView.concept)
@@ -178,16 +184,19 @@ class CanvasView: NSView, Canvas {
     return concept != newConcept
   }
   
+  func justRemoveConceptView(conceptView: ConceptView) {
+    let concept = conceptView.concept
+    conceptViews.removeValueForKey(concept.identifier)
+    conceptView.hidden = true
+    conceptView.removeFromSuperview()
+
+    for link in conceptLinksFor(concept) { removeLinkView(linkViewFor(link)) }
+  }
+  
   func removeConceptView(conceptView: ConceptView) {
     let concept = conceptView.concept
-    
-    concepts.removeAtIndex(concepts.indexOf(concept)!)
-    conceptViews.removeValueForKey(concept.identifier)
-    conceptView.removeFromSuperview()
-    
-    for link in conceptLinksFor(concept) {
-      removeLinkView(linkViewFor(link))
-    }
+    document.removeConcept(concept)
+    justRemoveConceptView(conceptView)
   }
   
   func conceptLinksFor(concept: Concept) -> [Link] {
@@ -244,23 +253,54 @@ class CanvasView: NSView, Canvas {
       link.color = windowController.selectedColor
     }
     
-    links.append(link)
+    document.saveLink(link)
     
     sprint("create link \(link)")
-    
-    drawLinkView(link)
   }
 
   func removeLinkView(linkView: LinkView) {
     let link = linkView.link
-    
-    links.removeAtIndex(links.indexOf(link)!)
-    linkViews.removeValueForKey(link.identifier)
+    document.removeLink(link)
+    justRemoveLinkView(linkView)
+  }
+  
+  func justRemoveLinkView(linkView: LinkView) {
+    linkViews.removeValueForKey(linkView.link.identifier)
     linkView.removeFromSuperview()
   }
   
   func unselectLinks() {
     for link in links { link.isSelected = false }
     drawLinkViews()
+  }
+  
+  // MARK: - DocumentObserver
+  func conceptAdded(concept: Concept) {
+    createConceptViewFor(concept)
+  }
+  
+  func conceptRemoved(concept: Concept) {
+    justRemoveConceptView(conceptViewFor(concept))
+  }
+  
+  func conceptUpdated(concept: Concept) {
+    let conceptView = conceptViewFor(concept)
+    conceptView.updateFrameToMatchConcept()
+    conceptView.needsDisplay = true
+    updateLinkViewsFor(concept)
+  }
+  
+  func linkAdded(link: Link) {
+    drawLinkView(link)
+  }
+  
+  func linkRemoved(link: Link) {
+    justRemoveLinkView(linkViewFor(link))
+  }
+  
+  func linkUpdated(link: Link) {
+    Swift.print("link updated \(link)")
+    let linkView = linkViewFor(link)
+    linkView.needsDisplay = true
   }
 }

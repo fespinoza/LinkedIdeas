@@ -13,7 +13,6 @@ class ResizingTextField: NSTextField {
   var conceptView: ConceptView?
   
   override func textDidChange(notification: NSNotification) {
-    sprint("text did change")
     super.textDidChange(notification)
     invalidateIntrinsicContentSize()
     self.setFrameSize(intrinsicContentSize)
@@ -28,7 +27,6 @@ class ResizingTextField: NSTextField {
     
     let result = NSSize(width: roundedWidth, height: roundedHeight)
     
-    sprint("\(result)")
     return result
   }
 }

@@ -11,8 +11,15 @@ import XCTest
 
 class LinkViewTests: XCTestCase {
   let canvas = CanvasView(frame: NSMakeRect(20, 20, 600, 400))
+  let testDocument = TestDocument()
   let concept1 = Concept(point: NSMakePoint(100, 200))
   let concept2 = Concept(point: NSMakePoint(300, 300))
+  
+  override func setUp() {
+    canvas.document = testDocument
+    testDocument.saveConcept(concept1)
+    testDocument.saveConcept(concept2)
+  }
   
   func testCreateALinkView() {
     // given
@@ -27,7 +34,6 @@ class LinkViewTests: XCTestCase {
   
   func testLinkViewDrawingProportions() {
     // given
-    canvas.concepts = [concept1, concept2]
     canvas.drawConceptViews()
     let link = Link(origin: concept1, target: concept2)
     let linkView = LinkView(link: link, canvas: canvas)
@@ -50,8 +56,7 @@ class LinkViewTests: XCTestCase {
     // given
     let link1 = Link(origin: concept1, target: concept2)
     let link2 = Link(origin: concept2, target: concept1)
-    canvas.concepts = [concept1, concept2]
-    canvas.links = [link1, link2]
+    testDocument.links = [link1, link2]
     canvas.drawConceptViews()
     canvas.drawLinkViews()
     let linkView = canvas.linkViewFor(link1)
@@ -71,8 +76,7 @@ class LinkViewTests: XCTestCase {
   func testDeletingALink() {
     // given
     let link = Link(origin: concept1, target: concept2)
-    canvas.concepts = [concept1, concept2]
-    canvas.links = [link]
+    testDocument.links = [link]
     canvas.drawConceptViews()
     canvas.drawLinkViews()
     let linkView = canvas.linkViewFor(link)

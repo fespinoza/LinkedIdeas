@@ -9,8 +9,43 @@
 import XCTest
 @testable import LinkedIdeas
 
+class TestDocument: LinkedIdeasDocument {
+  var concepts = [Concept]()
+  var links = [Link]()
+  
+  var observer: DocumentObserver?
+  
+  func saveConcept(concept: Concept) {
+    concepts.append(concept)
+    observer?.conceptAdded(concept)
+  }
+  
+  func removeConcept(concept: Concept) {
+    concepts.removeAtIndex(concepts.indexOf(concept)!)
+    observer?.conceptRemoved(concept)
+  }
+  
+  func saveLink(link: Link) {
+    links.append(link)
+    observer?.linkAdded(link)
+  }
+  
+  func removeLink(link: Link) {
+    links.removeAtIndex(links.indexOf(link)!)
+    observer?.linkRemoved(link)
+  }
+  
+  func changeConceptPoint(concept: Concept, fromPoint: NSPoint, toPoint: NSPoint) {
+  }
+}
+
 class CanvasViewTests: XCTestCase {
   let canvas = CanvasView(frame: NSMakeRect(20, 20, 600, 400))
+  let testDocument = TestDocument()
+  
+  override func setUp() {
+    canvas.document = testDocument
+  }
   
   // MARK: - Initialization
   
@@ -23,8 +58,8 @@ class CanvasViewTests: XCTestCase {
     let links = [
       Link(origin: concepts[0], target: concepts[1])
     ]
-    canvas.concepts = concepts
-    canvas.links = links
+    testDocument.concepts = concepts
+    testDocument.links = links
     
     // when
     canvas.drawRect(canvas.bounds)
@@ -83,8 +118,8 @@ class CanvasViewTests: XCTestCase {
     let concept2 = Concept(point: NSMakePoint(100, 200))
     concept1.isEditable = true
     concept2.isEditable = true
-    canvas.concepts.append(concept1)
-    canvas.concepts.append(concept2)
+    testDocument.concepts.append(concept1)
+    testDocument.concepts.append(concept2)
     canvas.mode = .Concepts
     canvas.drawConceptViews()
     
@@ -114,7 +149,24 @@ class CanvasViewTests: XCTestCase {
     XCTAssertNil(canvas.newConcept)
     XCTAssertNil(canvas.newConceptView)
     XCTAssertEqual(canvas.concepts.first!.identifier, concept.identifier)
-    XCTAssertEqual(canvas.conceptViewFor(concept), conceptView)
+    XCTAssertEqual(canvas.conceptViews.count, 1)
+  }
+  
+  func testRemovingAConcept() {
+    // given
+    let concept = Concept(point: NSMakePoint(100, 200))
+    testDocument.concepts = [concept]
+    canvas.drawConceptViews()
+    
+    XCTAssertEqual(canvas.conceptViews.count, 1)
+    XCTAssertEqual(canvas.subviews.count, 1)
+    
+    // when
+    canvas.conceptRemoved(concept)
+    
+    // then
+    XCTAssertEqual(canvas.conceptViews.count, 0)
+    XCTAssertEqual(canvas.subviews.count, 0)
   }
   
   // MARK: - Link Mode
@@ -123,7 +175,7 @@ class CanvasViewTests: XCTestCase {
     // given
     let concept1 = Concept(stringValue: "C1", point: NSMakePoint(120, 130))
     let concept2 = Concept(stringValue: "C2", point: NSMakePoint(220, 230))
-    canvas.concepts = [concept1, concept2]
+    testDocument.concepts = [concept1, concept2]
     canvas.drawConceptViews()
     let conceptView2 = canvas.conceptViewFor(concept2)
     
@@ -139,7 +191,7 @@ class CanvasViewTests: XCTestCase {
     // given
     let concept1 = Concept(stringValue: "C1", point: NSMakePoint(120, 130))
     let concept2 = Concept(stringValue: "C2", point: NSMakePoint(220, 230))
-    canvas.concepts = [concept1, concept2]
+    testDocument.concepts = [concept1, concept2]
     canvas.drawConceptViews()
     
     // when
@@ -153,7 +205,7 @@ class CanvasViewTests: XCTestCase {
   func testSelectTargetConceptViewWhenNoConceptIsFound() {
     // given
     let concept2 = Concept(stringValue: "C2", point: NSMakePoint(220, 230))
-    canvas.concepts = [concept2]
+    testDocument.concepts = [concept2]
     let conceptView2 = ConceptView(concept: concept2, canvas: canvas)
     canvas.conceptViews = [concept2.identifier: conceptView2]
     
@@ -169,7 +221,7 @@ class CanvasViewTests: XCTestCase {
     // given
     let concept1 = Concept(stringValue: "C1", point: NSMakePoint(20, 30))
     let concept2 = Concept(stringValue: "C2", point: NSMakePoint(220, 230))
-    canvas.concepts = [concept1, concept2]
+    testDocument.concepts = [concept1, concept2]
     let conceptView1 = ConceptView(concept: concept1, canvas: canvas)
     let conceptView2 = ConceptView(concept: concept2, canvas: canvas)
     canvas.conceptViews = [
@@ -208,8 +260,8 @@ class CanvasViewTests: XCTestCase {
     let links = [
       Link(origin: concepts[0], target: concepts[1])
     ]
-    canvas.concepts = concepts
-    canvas.links = links
+    testDocument.concepts = concepts
+    testDocument.links = links
     links.first!.isSelected = true
     concepts.first!.isSelected = true
     

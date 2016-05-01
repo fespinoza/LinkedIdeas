@@ -19,7 +19,7 @@ way to 'explain' the connexion of ideas.
 - [x] improvements: resizable TextFields [#10](https://github.com/fespinoza/linked-ideas-osx/pull/10)
 - [x] use formatted strings for concepts [#11](https://github.com/fespinoza/linked-ideas-osx/pull/11)
 - [x] add color to links [#12](https://github.com/fespinoza/linked-ideas-osx/pull/12)
-- [ ] undo/redo actions for concepts and links
+- [x] undo/redo actions for concepts and links [#13](https://github.com/fespinoza/linked-ideas-osx/pull/13)
 - [ ] multiple select concepts (move them)
 - [ ] align concepts
 - [ ] add editable text to links
@@ -38,13 +38,12 @@ way to 'explain' the connexion of ideas.
 - construction line not on same worker
 - BUG: LinkArrow when there is no intersection point with conceptViews
 - BUG: dragging fails many times when concepts has already many links
-- multi element dragging
-- attributed strings on concepts
 - control + dragging to create straight links
 - aligment of concepts
 - center text
 - copy/paste/duplicate concepts/links
-- improve who holds the reference to the data, canvas or document
 - autosave document
 - refactor conceptView/linkView use a delegate to decouple from Canvas
-- fix link views to be outside canvas
+- fix link views to be outside canvas ???
+- resizing of text field goes to the right
+
