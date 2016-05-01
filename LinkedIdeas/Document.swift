@@ -8,43 +8,6 @@
 
 import Cocoa
 
-enum Mode: String {
-  case Select = "select"
-  case Concepts = "concepts"
-  case Links = "links"
-}
-
-class DocumentData: NSObject, NSCoding {
-  var readConcepts: [Concept]?
-  var readLinks: [Link]?
-  var writeConcepts: [Concept]?
-  var writeLinks: [Link]?
-
-  override init() {
-    super.init()
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    readConcepts = aDecoder.decodeObjectForKey("concepts") as! [Concept]?
-    readLinks = aDecoder.decodeObjectForKey("links") as! [Link]?
-  }
-
-  func encodeWithCoder(aCoder: NSCoder) {
-    aCoder.encodeObject(writeConcepts, forKey: "concepts")
-    aCoder.encodeObject(writeLinks, forKey: "links")
-  }
-}
-
-protocol DocumentObserver {
-  func conceptAdded(concept: Concept)
-  func conceptRemoved(concept: Concept)
-  func conceptUpdated(concept: Concept)
-  
-  func linkAdded(link: Link)
-  func linkRemoved(link: Link)
-  func linkUpdated(link: Link)
-}
-
 class Document: NSDocument, LinkedIdeasDocument {
   var documentData = DocumentData()
   
