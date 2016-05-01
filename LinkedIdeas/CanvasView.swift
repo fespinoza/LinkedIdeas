@@ -311,4 +311,10 @@ class CanvasView: NSView, Canvas, DocumentObserver {
   func linkRemoved(link: Link) {
     justRemoveLinkView(linkViewFor(link))
   }
+  
+  func linkUpdated(link: Link) {
+    Swift.print("link updated \(link)")
+    let linkView = linkViewFor(link)
+    linkView.needsDisplay = true
+  }
 }

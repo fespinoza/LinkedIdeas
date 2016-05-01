@@ -34,6 +34,9 @@ class TestDocument: LinkedIdeasDocument {
     links.removeAtIndex(links.indexOf(link)!)
     observer?.linkRemoved(link)
   }
+  
+  func changeConceptPoint(concept: Concept, fromPoint: NSPoint, toPoint: NSPoint) {
+  }
 }
 
 class CanvasViewTests: XCTestCase {

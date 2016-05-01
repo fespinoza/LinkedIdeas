@@ -42,6 +42,7 @@ protocol DocumentObserver {
   
   func linkAdded(link: Link)
   func linkRemoved(link: Link)
+  func linkUpdated(link: Link)
 }
 
 class Document: NSDocument, LinkedIdeasDocument {
@@ -59,7 +60,18 @@ class Document: NSDocument, LinkedIdeasDocument {
       }
     }
   }
-  var links: [Link] = [Link]()
+  var links: [Link] = [Link]() {
+    willSet {
+      for link in links {
+        stopObservingLink(link)
+      }
+    }
+    didSet {
+      for link in links {
+        startObservingLink(link)
+      }
+    }
+  }
   
   var observer: DocumentObserver?
   
@@ -159,6 +171,14 @@ class Document: NSDocument, LinkedIdeasDocument {
     concept.removeObserver(self, forKeyPath: Concept.attributedStringValuePath, context: &KVOContext)
   }
   
+  func startObservingLink(link: Link) {
+    link.addObserver(self, forKeyPath: Link.colorPath, options: .Old, context: &KVOContext)
+  }
+  
+  func stopObservingLink(link: Link) {
+    link.removeObserver(self, forKeyPath: Link.colorPath, context: &KVOContext)
+  }
+  
   override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
     guard context == &KVOContext else {
       // If the context does not match, this message
@@ -172,10 +192,11 @@ class Document: NSDocument, LinkedIdeasDocument {
       if oldValue is NSNull {
         oldValue = nil
       }
-      if let concept = object as? Concept {
-        undoManager?.prepareWithInvocationTarget(object).setValue(oldValue, forKey: keyPath)
-        observer?.conceptUpdated(concept)
-      }
+      
+      undoManager?.prepareWithInvocationTarget(object).setValue(oldValue, forKey: keyPath)
+      
+      if let concept = object as? Concept { observer?.conceptUpdated(concept) }
+      if let link = object as? Link { observer?.linkUpdated(link) }
     }
   }
 }
