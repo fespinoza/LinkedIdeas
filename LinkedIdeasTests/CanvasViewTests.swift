@@ -273,4 +273,45 @@ class CanvasViewTests: XCTestCase {
     XCTAssertEqual(links.first!.isSelected, false)
     XCTAssertEqual(concepts.first!.isSelected, false)
   }
+  
+  func testMultipleSelectionOfConcepts() {
+    let concepts = [
+      Concept(stringValue: "C1", point: NSMakePoint(20, 30)),
+      Concept(stringValue: "C2", point: NSMakePoint(20, 30)),
+    ]
+    testDocument.concepts = concepts
+    concepts.first!.isSelected = true
+    canvas.drawConceptViews()
+    let conceptView2 = canvas.conceptViewFor(concepts[1])
+    canvas.mode = .Select
+    
+    // when
+    conceptView2.shiftClick(NSMakePoint(50, 60))
+    
+    // then
+    XCTAssertEqual(concepts[0].isSelected, true)
+    XCTAssertEqual(concepts[1].isSelected, true)
+  }
+  
+  func testDeselectAConceptOnMultipleSelect() {
+    let concepts = [
+      Concept(stringValue: "C1", point: NSMakePoint(20, 30)),
+      Concept(stringValue: "C2", point: NSMakePoint(20, 30)),
+    ]
+    testDocument.concepts = concepts
+    concepts[0].isSelected = true
+    concepts[1].isSelected = true
+    canvas.mode = .Select
+    canvas.drawConceptViews()
+    let conceptView2 = canvas.conceptViewFor(concepts[1])
+    
+    XCTAssertEqual(concepts[1].isSelected, true)
+    
+    // when
+    conceptView2.shiftClick(NSMakePoint(50, 60))
+    
+    // then
+    XCTAssertEqual(concepts[0].isSelected, true)
+    XCTAssertEqual(concepts[1].isSelected, false)
+  }
 }

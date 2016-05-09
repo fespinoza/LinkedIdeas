@@ -73,6 +73,11 @@ protocol DraggableElement {
 protocol ClickableView {
   func click(point: NSPoint)
   func doubleClick(point: NSPoint)
+  func shiftClick(point: NSPoint)
+}
+
+extension ClickableView {
+  func shiftClick(point: NSPoint) {}
 }
 
 protocol CanvasConceptsActions {
@@ -84,8 +89,8 @@ protocol CanvasConceptsActions {
   
   func drawConceptViews()
   func drawConceptView(concept: Concept)
-  func clickOnConceptView(conceptView: ConceptView, point: NSPoint)
   func dragFromConceptView(conceptView: ConceptView, point: NSPoint)
+  func clickOnConceptView(conceptView: ConceptView, point: NSPoint, multipleSelect: Bool)
   func releaseMouseFromConceptView(conceptView: ConceptView, point: NSPoint)
   func updateLinkViewsFor(concept: Concept)
   func conceptLinksFor(concept: Concept) -> [Link]

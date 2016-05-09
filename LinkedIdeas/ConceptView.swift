@@ -79,7 +79,11 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     if (theEvent.clickCount == 2) {
       doubleClick(point)
     } else {
-      click(point)
+      if (theEvent.modifierFlags.rawValue == 131330) {
+        shiftClick(point)
+      } else {
+        click(point)
+      }
     }
   }
 
@@ -142,11 +146,11 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   // MARK: - ClickableView
   
   func click(point: NSPoint) {
-    concept.isSelected = !concept.isSelected
+    canvas.clickOnConceptView(self, point: point)
+    concept.isSelected = true //!concept.isSelected
     needsDisplay = true
     textField.attributedStringValue = concept.attributedStringValue
     updateFrameToMatchConcept()
-    canvas.clickOnConceptView(self, point: point)
     becomeFirstResponder()
   }
 
@@ -158,6 +162,14 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     updateFrameToMatchConcept()
     textField.setFrameSize(textField.intrinsicContentSize)
     canvas.clickOnConceptView(self, point: point)
+  }
+  
+  func shiftClick(point: NSPoint) {
+    concept.isSelected = !concept.isSelected
+    needsDisplay = true
+    textField.attributedStringValue = concept.attributedStringValue
+    updateFrameToMatchConcept()
+    canvas.clickOnConceptView(self, point: point, multipleSelect: true)
   }
 
   // MARK: - StringEditableView

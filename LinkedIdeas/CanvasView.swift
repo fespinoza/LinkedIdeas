@@ -137,17 +137,28 @@ class CanvasView: NSView, Canvas, DocumentObserver {
     drawConceptViews()
   }
 
-  func clickOnConceptView(conceptView: ConceptView, point: NSPoint) {
+  func clickOnConceptView(conceptView: ConceptView, point: NSPoint, multipleSelect: Bool = false) {
     sprint("click on conceptView \(conceptView.concept.identifier) to \(point)")
-    let selectedConcept = conceptView.concept
+    let clickedConcept = conceptView.concept
+    let selectedConcepts = concepts.filter { $0.isSelected }
+    
+    let notAddingConceptsToMultipleSelect = !multipleSelect
+    let clickedConceptIsNotPartOfMultipleSelection = !selectedConcepts.contains(clickedConcept)
+    
     for concept in concepts {
-      if (concept.identifier != selectedConcept.identifier) {
-        concept.isSelected = false
+      if (concept.identifier != clickedConcept.identifier) {
+        if notAddingConceptsToMultipleSelect && clickedConceptIsNotPartOfMultipleSelection {
+          concept.isSelected = false
+        }
         concept.isEditable = false
         conceptViewFor(concept).needsDisplay = true
       }
     }
     cleanNewConcept()
+  }
+  
+  func selectedConcepts() -> [Concept] {
+    return concepts.filter { $0.isSelected }
   }
   
   var arrowOriginPoint: NSPoint?

@@ -29,11 +29,9 @@ way to 'explain' the connexion of ideas.
 - [ ] save canvas dimensions in document
 - [ ] reorder concepts in canvas
 - [ ] export document as image
-- [ ] support for icloud documents
 
 ## A world of ideas
 
-- add app indicator of not saved
 - dismiss construction arrow on click
 - construction line not on same worker
 - BUG: LinkArrow when there is no intersection point with conceptViews
@@ -42,8 +40,6 @@ way to 'explain' the connexion of ideas.
 - aligment of concepts
 - center text
 - copy/paste/duplicate concepts/links
-- autosave document
 - refactor conceptView/linkView use a delegate to decouple from Canvas
 - fix link views to be outside canvas ???
 - resizing of text field goes to the right
-
