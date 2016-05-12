@@ -164,11 +164,23 @@ class CanvasView: NSView, Canvas, DocumentObserver {
   var arrowOriginPoint: NSPoint?
   var arrowTargetPoint: NSPoint?
   
-  func dragFromConceptView(conceptView: ConceptView, point: NSPoint) {
+  func dragFromConceptView(conceptView: ConceptView, point: NSPoint, from initialPoint: NSPoint) {
     arrowOriginPoint = conceptView.concept.point
     arrowTargetPoint = point
     updateLinkViewsFor(conceptView.concept)
     needsDisplay = true
+    
+    for concept in selectedConcepts() where concept != conceptView.concept {
+      let deltaX = point.x - initialPoint.x
+      let deltaY = point.y - initialPoint.y
+      let selectedConceptInitialPoint = concept.point
+      let newPoint = concept.point.translate(deltaX, deltaY: deltaY)
+//      document.changeConceptPoint(concept, fromPoint: newPoint, toPoint: selectedConceptInitialPoint)
+      concept.point = newPoint
+      let selectedConceptView = conceptViewFor(concept)
+      selectedConceptView.updateFrameToMatchConcept()
+      selectedConceptView.needsDisplay = true
+    }
   }
   
   func releaseMouseFromConceptView(conceptView: ConceptView, point: NSPoint) {

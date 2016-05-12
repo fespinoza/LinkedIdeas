@@ -314,4 +314,31 @@ class CanvasViewTests: XCTestCase {
     XCTAssertEqual(concepts[0].isSelected, true)
     XCTAssertEqual(concepts[1].isSelected, false)
   }
+  
+  func testDraggingMultipleConcepts() {
+    // given
+    let concepts = [
+      Concept(stringValue: "foo", point: NSMakePoint(200, 300)),
+      Concept(stringValue: "bar", point: NSMakePoint(100, 450)),
+      Concept(stringValue: "baz", point: NSMakePoint(300, 200))
+    ]
+    testDocument.concepts = concepts
+    concepts[0].isSelected = true
+    concepts[1].isSelected = true
+    canvas.mode = .Select
+    canvas.drawConceptViews()
+    let conceptView2 = canvas.conceptViewFor(concepts[1])
+    
+    // when
+    let initialPoints = concepts.map { $0.point }
+    let newPoint2 = NSMakePoint(120, 400) // x+20,y-50
+    let newPoint3 = NSMakePoint(150, 420) // +30, +20
+    canvas.dragFromConceptView(conceptView2, point: newPoint2, from: initialPoints[1])
+    canvas.dragFromConceptView(conceptView2, point: newPoint3, from: newPoint2)
+    
+    // then
+    XCTAssertEqual(concepts[0].point, initialPoints[0].translate(50, deltaY: -30))
+    XCTAssertEqual(concepts[1].point, initialPoints[1])
+    XCTAssertEqual(concepts[2].point, initialPoints[2])
+  }
 }

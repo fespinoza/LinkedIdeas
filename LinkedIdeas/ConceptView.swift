@@ -224,6 +224,8 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   // MARK: - Dragable element
   
   func dragTo(point: NSPoint, lastDrag: Bool = false) {
+    let _initialPoint = concept.point
+    
     if (canvas.mode == .Select) {
       if let initialPoint = initialPoint where lastDrag {
         document.changeConceptPoint(concept, fromPoint: initialPoint, toPoint: point)
@@ -232,7 +234,8 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
       }
       updateFrameToMatchConcept()
     }
-    canvas.dragFromConceptView(self, point: point)
+    
+    canvas.dragFromConceptView(self, point: point, from: _initialPoint)
   }
   
   // MARK: - ConceptViewProtocol
