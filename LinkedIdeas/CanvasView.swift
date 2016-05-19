@@ -32,12 +32,23 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   }
 
   // MARK: - NSView
+  let fillColor = NSColor(calibratedRed: 173/255, green: 224/255, blue: 186/255, alpha: 1)
+  let borderColor = NSColor(calibratedRed: 144/255, green: 212/255, blue: 161/255, alpha: 1)
   
   override func drawRect(dirtyRect: NSRect) {
     NSColor.whiteColor().set()
     NSRectFill(bounds)
     drawConceptViews()
     drawLinkViews()
+    
+    if isDragging {
+      let selectionRect = NSRect(p1: initialPoint!, p2: endPoint!)
+      let path = NSBezierPath(rect: selectionRect)
+      fillColor.set()
+      path.fill()
+      borderColor.set()
+      path.stroke()
+    }
     
     if (mode == .Links) { showConstructionArrow() }
   }
@@ -50,6 +61,37 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
       doubleClick(clickedPoint)
     } else {
       click(clickedPoint)
+    }
+  }
+  
+  var isDragging: Bool = false
+  var initialPoint: NSPoint?
+  var endPoint: NSPoint?
+  
+  override func mouseDragged(theEvent: NSEvent) {
+    if (mode == .Select) {
+      let point = pointInCanvasCoordinates(theEvent.locationInWindow)
+      if isDragging {
+        // already dragging
+        endPoint = point
+        let selectionRect = NSRect(p1: initialPoint!, p2: endPoint!)
+        for concept in concepts {
+          concept.isSelected = selectionRect.contains(concept.point)
+          conceptViewFor(concept).needsDisplay = true
+        }
+        needsDisplay = true
+      } else {
+        // first dragging
+        isDragging = true
+        initialPoint = point
+      }
+    }
+  }
+  
+  override func mouseUp(theEvent: NSEvent) {
+    if (mode == .Select) {
+      isDragging = false
+      needsDisplay = true
     }
   }
 
