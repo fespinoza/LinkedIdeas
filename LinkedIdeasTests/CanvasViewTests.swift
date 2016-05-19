@@ -36,6 +36,7 @@ class TestDocument: LinkedIdeasDocument {
   }
   
   func changeConceptPoint(concept: Concept, fromPoint: NSPoint, toPoint: NSPoint) {
+    concept.point = toPoint
   }
 }
 

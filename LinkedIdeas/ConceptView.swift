@@ -17,7 +17,6 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   // Extras
   var isTextFieldFocused: Bool = false
   // Mouse events
-  var dragInitiated: Bool = false
   var document: LinkedIdeasDocument { return canvas.document }
   
   override var acceptsFirstResponder: Bool { return true }
@@ -71,8 +70,6 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   }
 
   // MARK: - Mouse events
-  var initialPoint: NSPoint?
-  
   override func mouseDown(theEvent: NSEvent) {
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
     initialPoint = concept.point
@@ -89,16 +86,18 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
 
   override func mouseDragged(theEvent: NSEvent) {
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
-    dragTo(point)
-    dragInitiated = true
+    if (canvas.mode == .Select) {
+      if isDragging {
+        dragTo(point)
+      } else {
+        dragStart(point)
+      }
+    }
   }
 
   override func mouseUp(theEvent: NSEvent) {
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
-    if dragInitiated {
-      dragTo(point, lastDrag: true)
-    }
-    dragInitiated = false
+    if isDragging { dragEnd(point) }
     canvas.releaseMouseFromConceptView(self, point: point)
   }
   
@@ -222,20 +221,53 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   }
 
   // MARK: - Dragable element
+  var isDragging: Bool = false
+  var initialPoint: NSPoint?
+  var draggableDelegate: DraggableElementDelegate? { return canvas }
   
-  func dragTo(point: NSPoint, lastDrag: Bool = false) {
-    let _initialPoint = concept.point
-    
+  func dragStart(point: NSPoint, performCallback: Bool = true) {
     if (canvas.mode == .Select) {
-      if let initialPoint = initialPoint where lastDrag {
-        document.changeConceptPoint(concept, fromPoint: initialPoint, toPoint: point)
-      } else {
-        concept.point = point
-      }
+      isDragging = true
+      initialPoint = concept.point
+      
+      concept.point = point
+      // TODO: this function should be observer from ^
       updateFrameToMatchConcept()
+      
+      if performCallback {
+        let dragEvent = DragEvent(fromPoint: initialPoint!, toPoint: point)
+        draggableDelegate?.dragStartCallback(self, dragEvent: dragEvent)
+      }
+    }
+  }
+  
+  func dragTo(point: NSPoint, performCallback: Bool = true) {
+    if (canvas.mode == .Select) {
+      let fromPoint = concept.point
+      concept.point = point
+      // TODO: this function should be observer from ^
+      updateFrameToMatchConcept()
+      
+      if performCallback {
+        let dragEvent = DragEvent(fromPoint: fromPoint, toPoint: point)
+        draggableDelegate?.dragToCallback(self, dragEvent: dragEvent)
+      }
+    }
+  }
+  
+  func dragEnd(lastPoint: NSPoint, performCallback: Bool = true) {
+    if let initialPoint = initialPoint where canvas.mode == .Select {
+      let fromPoint = concept.point
+      document.changeConceptPoint(concept, fromPoint: initialPoint, toPoint: lastPoint)
+      
+      if performCallback {
+        let dragEvent = DragEvent(fromPoint: fromPoint, toPoint: lastPoint)
+        draggableDelegate?.dragEndCallback(self, dragEvent: dragEvent)
+      }
     }
     
-    canvas.dragFromConceptView(self, point: point, from: _initialPoint)
+    isDragging = false
+    initialPoint = nil
   }
   
   // MARK: - ConceptViewProtocol

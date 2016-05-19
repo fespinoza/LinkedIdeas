@@ -67,7 +67,31 @@ protocol ConceptViewProtocol {
 }
 
 protocol DraggableElement {
-  func dragTo(point: NSPoint, lastDrag: Bool)
+  var isDragging: Bool { get set }
+  var initialPoint: NSPoint? { get set }
+  var draggableDelegate: DraggableElementDelegate? { get }
+  
+  func dragStart(initialPoint: NSPoint, performCallback: Bool)
+  func dragTo(point: NSPoint, performCallback: Bool)
+  func dragEnd(lastPoint: NSPoint, performCallback: Bool)
+}
+
+struct DragEvent {
+  let fromPoint: NSPoint
+  let toPoint: NSPoint
+  
+  var deltaX: CGFloat { return toPoint.x - fromPoint.x }
+  var deltaY: CGFloat { return toPoint.y - fromPoint.y }
+  
+  func translatePoint(point: NSPoint) -> NSPoint {
+    return point.translate(deltaX, deltaY: deltaY)
+  }
+}
+
+protocol DraggableElementDelegate {
+  func dragStartCallback(draggableElementView: DraggableElement, dragEvent: DragEvent)
+  func dragToCallback(draggableElementView: DraggableElement, dragEvent: DragEvent)
+  func dragEndCallback(draggableElementView: DraggableElement, dragEvent: DragEvent)
 }
 
 protocol ClickableView {

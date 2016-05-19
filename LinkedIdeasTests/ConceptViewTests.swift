@@ -339,7 +339,9 @@ class ConceptViewTests: XCTestCase {
     let conceptViewsOriginalFrames = conceptViews.map { $0.frame }
     
     // when
+    conceptViews[1].dragStart(NSMakePoint(200, 450))
     conceptViews[1].dragTo(NSMakePoint(200, 450))
+    conceptViews[1].dragEnd(NSMakePoint(200, 450))
     
     // then
     let conceptViewsNewFrames = conceptViews.map { $0.frame }

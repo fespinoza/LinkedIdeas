@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class CanvasView: NSView, Canvas, DocumentObserver {
+class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   var document: LinkedIdeasDocument! {
     didSet { document.observer = self }
   }
@@ -173,10 +173,8 @@ class CanvasView: NSView, Canvas, DocumentObserver {
     for concept in selectedConcepts() where concept != conceptView.concept {
       let deltaX = point.x - initialPoint.x
       let deltaY = point.y - initialPoint.y
-      let selectedConceptInitialPoint = concept.point
       let newPoint = concept.point.translate(deltaX, deltaY: deltaY)
-//      document.changeConceptPoint(concept, fromPoint: newPoint, toPoint: selectedConceptInitialPoint)
-      concept.point = newPoint
+      document.changeConceptPoint(concept, fromPoint: concept.point, toPoint: newPoint)
       let selectedConceptView = conceptViewFor(concept)
       selectedConceptView.updateFrameToMatchConcept()
       selectedConceptView.needsDisplay = true
@@ -325,5 +323,33 @@ class CanvasView: NSView, Canvas, DocumentObserver {
     Swift.print("link updated \(link)")
     let linkView = linkViewFor(link)
     linkView.needsDisplay = true
+  }
+  
+  // MARK: - DraggableElementDelegate
+  func dragStartCallback(draggableElementView: DraggableElement, dragEvent: DragEvent) {
+    let conceptView = draggableElementView as! ConceptView
+    
+    for concept in selectedConcepts() where concept != conceptView.concept {
+      let newPoint = dragEvent.translatePoint(concept.point)
+      conceptViewFor(concept).dragStart(newPoint, performCallback: false)
+    }
+  }
+  
+  func dragToCallback(draggableElementView: DraggableElement, dragEvent: DragEvent) {
+    let conceptView = draggableElementView as! ConceptView
+    
+    for concept in selectedConcepts() where concept != conceptView.concept {
+      let newPoint = dragEvent.translatePoint(concept.point)
+      conceptViewFor(concept).dragTo(newPoint, performCallback: false)
+    }
+  }
+  
+  func dragEndCallback(draggableElementView: DraggableElement, dragEvent: DragEvent) {
+    let conceptView = draggableElementView as! ConceptView
+    
+    for concept in selectedConcepts() where concept != conceptView.concept {
+      let newPoint = dragEvent.translatePoint(concept.point)
+      conceptViewFor(concept).dragEnd(newPoint, performCallback: false)
+    }
   }
 }
