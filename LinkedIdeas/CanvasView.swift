@@ -202,34 +202,6 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   func selectedConcepts() -> [Concept] {
     return concepts.filter { $0.isSelected }
   }
-  
-  var arrowOriginPoint: NSPoint?
-  var arrowTargetPoint: NSPoint?
-  
-  func dragFromConceptView(conceptView: ConceptView, point: NSPoint, from initialPoint: NSPoint) {
-    arrowOriginPoint = conceptView.concept.point
-    arrowTargetPoint = point
-    updateLinkViewsFor(conceptView.concept)
-    needsDisplay = true
-    
-    for concept in selectedConcepts() where concept != conceptView.concept {
-      let deltaX = point.x - initialPoint.x
-      let deltaY = point.y - initialPoint.y
-      let newPoint = concept.point.translate(deltaX, deltaY: deltaY)
-      document.changeConceptPoint(concept, fromPoint: concept.point, toPoint: newPoint)
-      let selectedConceptView = conceptViewFor(concept)
-      selectedConceptView.updateFrameToMatchConcept()
-      selectedConceptView.needsDisplay = true
-    }
-  }
-  
-  func releaseMouseFromConceptView(conceptView: ConceptView, point: NSPoint) {
-    if let targetedConceptView = selectTargetConceptView(point, fromConcept: conceptView.concept) {
-      createLinkBetweenConceptsViews(conceptView, targetConceptView: targetedConceptView)
-    }
-    
-    removeConstructionArrow()
-  }
 
   func cleanNewConcept() {
     newConceptView?.removeFromSuperview()
@@ -371,27 +343,55 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   func dragStartCallback(draggableElementView: DraggableElement, dragEvent: DragEvent) {
     let conceptView = draggableElementView as! ConceptView
     
-    for concept in selectedConcepts() where concept != conceptView.concept {
-      let newPoint = dragEvent.translatePoint(concept.point)
-      conceptViewFor(concept).dragStart(newPoint, performCallback: false)
+    if (mode == .Select) {
+      for concept in selectedConcepts() where concept != conceptView.concept {
+        let newPoint = dragEvent.translatePoint(concept.point)
+        conceptViewFor(concept).dragStart(newPoint, performCallback: false)
+      }
+    }
+    
+    if (mode == .Links) {
+      arrowOriginPoint = conceptView.concept.point
     }
   }
   
   func dragToCallback(draggableElementView: DraggableElement, dragEvent: DragEvent) {
     let conceptView = draggableElementView as! ConceptView
     
-    for concept in selectedConcepts() where concept != conceptView.concept {
-      let newPoint = dragEvent.translatePoint(concept.point)
-      conceptViewFor(concept).dragTo(newPoint, performCallback: false)
+    if (mode == .Select) {
+      for concept in selectedConcepts() where concept != conceptView.concept {
+        let newPoint = dragEvent.translatePoint(concept.point)
+        conceptViewFor(concept).dragTo(newPoint, performCallback: false)
+      }
     }
+    
+    if (mode == .Links) {
+      arrowTargetPoint = dragEvent.toPoint
+      needsDisplay = true
+    }
+    
+    updateLinkViewsFor(conceptView.concept)
   }
+  
+  var arrowOriginPoint: NSPoint?
+  var arrowTargetPoint: NSPoint?
   
   func dragEndCallback(draggableElementView: DraggableElement, dragEvent: DragEvent) {
     let conceptView = draggableElementView as! ConceptView
     
-    for concept in selectedConcepts() where concept != conceptView.concept {
-      let newPoint = dragEvent.translatePoint(concept.point)
-      conceptViewFor(concept).dragEnd(newPoint, performCallback: false)
+    if (mode == .Select) {
+      for concept in selectedConcepts() where concept != conceptView.concept {
+        let newPoint = dragEvent.translatePoint(concept.point)
+        conceptViewFor(concept).dragEnd(newPoint, performCallback: false)
+      }
+    }
+    
+    if (mode == .Links) {
+      if let targetedConceptView = selectTargetConceptView(dragEvent.toPoint, fromConcept: conceptView.concept) {
+        createLinkBetweenConceptsViews(conceptView, targetConceptView: targetedConceptView)
+      }
+      
+      removeConstructionArrow()
     }
   }
 }

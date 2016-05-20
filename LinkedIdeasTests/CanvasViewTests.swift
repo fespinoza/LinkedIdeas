@@ -233,7 +233,7 @@ class CanvasViewTests: XCTestCase {
     // when
     canvas.drawRect(canvas.bounds)
     canvas.mode = .Links
-    canvas.releaseMouseFromConceptView(conceptView1, point: concept2.point)
+    canvas.dragEndCallback(conceptView1, dragEvent: DragEvent(fromPoint: concept1.point, toPoint: concept2.point))
     
     // then
     XCTAssertEqual(canvas.links.count, 1)
@@ -334,8 +334,8 @@ class CanvasViewTests: XCTestCase {
     let initialPoints = concepts.map { $0.point }
     let newPoint2 = NSMakePoint(120, 400) // x+20,y-50
     let newPoint3 = NSMakePoint(150, 420) // +30, +20
-    canvas.dragFromConceptView(conceptView2, point: newPoint2, from: initialPoints[1])
-    canvas.dragFromConceptView(conceptView2, point: newPoint3, from: newPoint2)
+    canvas.dragToCallback(conceptView2, dragEvent: DragEvent(fromPoint: initialPoints[1], toPoint: newPoint2))
+    canvas.dragToCallback(conceptView2, dragEvent: DragEvent(fromPoint: newPoint2, toPoint: newPoint3))
     
     // then
     XCTAssertEqual(concepts[0].point, initialPoints[0].translate(50, deltaY: -30))

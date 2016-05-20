@@ -89,13 +89,11 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
   }
   
   override func mouseEntered(theEvent: NSEvent) {
-    sprint("mouse entered")
     isHoveringView = true
     super.mouseEntered(theEvent)
   }
   
   override func mouseExited(theEvent: NSEvent) {
-    sprint("mouse exited")
     isHoveringView = false
     super.mouseExited(theEvent)
   }

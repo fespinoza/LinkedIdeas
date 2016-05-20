@@ -86,19 +86,18 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
 
   override func mouseDragged(theEvent: NSEvent) {
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
-    if (canvas.mode == .Select) {
-      if isDragging {
-        dragTo(point)
-      } else {
-        dragStart(point)
-      }
+    if isDragging {
+      dragTo(point)
+    } else {
+      dragStart(point)
     }
   }
 
   override func mouseUp(theEvent: NSEvent) {
-    let point = pointInCanvasCoordinates(theEvent.locationInWindow)
-    if isDragging { dragEnd(point) }
-    canvas.releaseMouseFromConceptView(self, point: point)
+    if isDragging {
+      let point = pointInCanvasCoordinates(theEvent.locationInWindow)
+      dragEnd(point)
+    }
   }
   
   override func mouseEntered(theEvent: NSEvent) {
@@ -226,44 +225,48 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   var draggableDelegate: DraggableElementDelegate? { return canvas }
   
   func dragStart(point: NSPoint, performCallback: Bool = true) {
+    initialPoint = concept.point
+    isDragging = true
+    
     if (canvas.mode == .Select) {
-      isDragging = true
-      initialPoint = concept.point
-      
       concept.point = point
       // TODO: this function should be observer from ^
+      textField.attributedStringValue = concept.attributedStringValue
       updateFrameToMatchConcept()
-      
-      if performCallback {
-        let dragEvent = DragEvent(fromPoint: initialPoint!, toPoint: point)
-        draggableDelegate?.dragStartCallback(self, dragEvent: dragEvent)
-      }
+    }
+    
+    if performCallback {
+      let dragEvent = DragEvent(fromPoint: initialPoint!, toPoint: point)
+      draggableDelegate?.dragStartCallback(self, dragEvent: dragEvent)
     }
   }
   
   func dragTo(point: NSPoint, performCallback: Bool = true) {
+    let fromPoint = concept.point
+    
     if (canvas.mode == .Select) {
-      let fromPoint = concept.point
       concept.point = point
       // TODO: this function should be observer from ^
+      textField.attributedStringValue = concept.attributedStringValue
       updateFrameToMatchConcept()
-      
-      if performCallback {
-        let dragEvent = DragEvent(fromPoint: fromPoint, toPoint: point)
-        draggableDelegate?.dragToCallback(self, dragEvent: dragEvent)
-      }
+    }
+    
+    if performCallback {
+      let dragEvent = DragEvent(fromPoint: fromPoint, toPoint: point)
+      draggableDelegate?.dragToCallback(self, dragEvent: dragEvent)
     }
   }
   
   func dragEnd(lastPoint: NSPoint, performCallback: Bool = true) {
+    let fromPoint = concept.point
+    
     if let initialPoint = initialPoint where canvas.mode == .Select {
-      let fromPoint = concept.point
       document.changeConceptPoint(concept, fromPoint: initialPoint, toPoint: lastPoint)
-      
-      if performCallback {
-        let dragEvent = DragEvent(fromPoint: fromPoint, toPoint: lastPoint)
-        draggableDelegate?.dragEndCallback(self, dragEvent: dragEvent)
-      }
+    }
+    
+    if performCallback {
+      let dragEvent = DragEvent(fromPoint: fromPoint, toPoint: lastPoint)
+      draggableDelegate?.dragEndCallback(self, dragEvent: dragEvent)
     }
     
     isDragging = false

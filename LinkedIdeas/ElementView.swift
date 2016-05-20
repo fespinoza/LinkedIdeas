@@ -113,9 +113,7 @@ protocol CanvasConceptsActions {
   
   func drawConceptViews()
   func drawConceptView(concept: Concept)
-  func dragFromConceptView(conceptView: ConceptView, point: NSPoint, from: NSPoint)
   func clickOnConceptView(conceptView: ConceptView, point: NSPoint, multipleSelect: Bool)
-  func releaseMouseFromConceptView(conceptView: ConceptView, point: NSPoint)
   func updateLinkViewsFor(concept: Concept)
   func conceptLinksFor(concept: Concept) -> [Link]
   func isConceptSaved(concept: Concept) -> Bool
