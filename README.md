@@ -20,7 +20,7 @@ way to 'explain' the connexion of ideas.
 - [x] use formatted strings for concepts [#11](https://github.com/fespinoza/linked-ideas-osx/pull/11)
 - [x] add color to links [#12](https://github.com/fespinoza/linked-ideas-osx/pull/12)
 - [x] undo/redo actions for concepts and links [#13](https://github.com/fespinoza/linked-ideas-osx/pull/13)
-- [ ] multiple select concepts (move them)
+- [x] multiple select concepts (move them) [#14](https://github.com/fespinoza/linked-ideas-osx/pull/14)
 - [ ] align concepts
 - [ ] add editable text to links
 - [ ] add editable curvature to links
@@ -29,11 +29,9 @@ way to 'explain' the connexion of ideas.
 - [ ] save canvas dimensions in document
 - [ ] reorder concepts in canvas
 - [ ] export document as image
-- [ ] support for icloud documents
 
 ## A world of ideas
 
-- add app indicator of not saved
 - dismiss construction arrow on click
 - construction line not on same worker
 - BUG: LinkArrow when there is no intersection point with conceptViews
@@ -42,8 +40,6 @@ way to 'explain' the connexion of ideas.
 - aligment of concepts
 - center text
 - copy/paste/duplicate concepts/links
-- autosave document
 - refactor conceptView/linkView use a delegate to decouple from Canvas
 - fix link views to be outside canvas ???
 - resizing of text field goes to the right
-

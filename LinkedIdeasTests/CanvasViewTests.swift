@@ -36,6 +36,7 @@ class TestDocument: LinkedIdeasDocument {
   }
   
   func changeConceptPoint(concept: Concept, fromPoint: NSPoint, toPoint: NSPoint) {
+    concept.point = toPoint
   }
 }
 
@@ -232,7 +233,7 @@ class CanvasViewTests: XCTestCase {
     // when
     canvas.drawRect(canvas.bounds)
     canvas.mode = .Links
-    canvas.releaseMouseFromConceptView(conceptView1, point: concept2.point)
+    canvas.dragEndCallback(conceptView1, dragEvent: DragEvent(fromPoint: concept1.point, toPoint: concept2.point))
     
     // then
     XCTAssertEqual(canvas.links.count, 1)
@@ -272,5 +273,73 @@ class CanvasViewTests: XCTestCase {
     // then
     XCTAssertEqual(links.first!.isSelected, false)
     XCTAssertEqual(concepts.first!.isSelected, false)
+  }
+  
+  func testMultipleSelectionOfConcepts() {
+    let concepts = [
+      Concept(stringValue: "C1", point: NSMakePoint(20, 30)),
+      Concept(stringValue: "C2", point: NSMakePoint(20, 30)),
+    ]
+    testDocument.concepts = concepts
+    concepts.first!.isSelected = true
+    canvas.drawConceptViews()
+    let conceptView2 = canvas.conceptViewFor(concepts[1])
+    canvas.mode = .Select
+    
+    // when
+    conceptView2.shiftClick(NSMakePoint(50, 60))
+    
+    // then
+    XCTAssertEqual(concepts[0].isSelected, true)
+    XCTAssertEqual(concepts[1].isSelected, true)
+  }
+  
+  func testDeselectAConceptOnMultipleSelect() {
+    let concepts = [
+      Concept(stringValue: "C1", point: NSMakePoint(20, 30)),
+      Concept(stringValue: "C2", point: NSMakePoint(20, 30)),
+    ]
+    testDocument.concepts = concepts
+    concepts[0].isSelected = true
+    concepts[1].isSelected = true
+    canvas.mode = .Select
+    canvas.drawConceptViews()
+    let conceptView2 = canvas.conceptViewFor(concepts[1])
+    
+    XCTAssertEqual(concepts[1].isSelected, true)
+    
+    // when
+    conceptView2.shiftClick(NSMakePoint(50, 60))
+    
+    // then
+    XCTAssertEqual(concepts[0].isSelected, true)
+    XCTAssertEqual(concepts[1].isSelected, false)
+  }
+  
+  func testDraggingMultipleConcepts() {
+    // given
+    let concepts = [
+      Concept(stringValue: "foo", point: NSMakePoint(200, 300)),
+      Concept(stringValue: "bar", point: NSMakePoint(100, 450)),
+      Concept(stringValue: "baz", point: NSMakePoint(300, 200))
+    ]
+    testDocument.concepts = concepts
+    concepts[0].isSelected = true
+    concepts[1].isSelected = true
+    canvas.mode = .Select
+    canvas.drawConceptViews()
+    let conceptView2 = canvas.conceptViewFor(concepts[1])
+    
+    // when
+    let initialPoints = concepts.map { $0.point }
+    let newPoint2 = NSMakePoint(120, 400) // x+20,y-50
+    let newPoint3 = NSMakePoint(150, 420) // +30, +20
+    canvas.dragToCallback(conceptView2, dragEvent: DragEvent(fromPoint: initialPoints[1], toPoint: newPoint2))
+    canvas.dragToCallback(conceptView2, dragEvent: DragEvent(fromPoint: newPoint2, toPoint: newPoint3))
+    
+    // then
+    XCTAssertEqual(concepts[0].point, initialPoints[0].translate(50, deltaY: -30))
+    XCTAssertEqual(concepts[1].point, initialPoints[1])
+    XCTAssertEqual(concepts[2].point, initialPoints[2])
   }
 }

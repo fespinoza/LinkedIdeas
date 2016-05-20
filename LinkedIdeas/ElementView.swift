@@ -67,12 +67,41 @@ protocol ConceptViewProtocol {
 }
 
 protocol DraggableElement {
-  func dragTo(point: NSPoint, lastDrag: Bool)
+  var isDragging: Bool { get set }
+  var initialPoint: NSPoint? { get set }
+  var draggableDelegate: DraggableElementDelegate? { get }
+  
+  func dragStart(initialPoint: NSPoint, performCallback: Bool)
+  func dragTo(point: NSPoint, performCallback: Bool)
+  func dragEnd(lastPoint: NSPoint, performCallback: Bool)
+}
+
+struct DragEvent {
+  let fromPoint: NSPoint
+  let toPoint: NSPoint
+  
+  var deltaX: CGFloat { return toPoint.x - fromPoint.x }
+  var deltaY: CGFloat { return toPoint.y - fromPoint.y }
+  
+  func translatePoint(point: NSPoint) -> NSPoint {
+    return point.translate(deltaX, deltaY: deltaY)
+  }
+}
+
+protocol DraggableElementDelegate {
+  func dragStartCallback(draggableElementView: DraggableElement, dragEvent: DragEvent)
+  func dragToCallback(draggableElementView: DraggableElement, dragEvent: DragEvent)
+  func dragEndCallback(draggableElementView: DraggableElement, dragEvent: DragEvent)
 }
 
 protocol ClickableView {
   func click(point: NSPoint)
   func doubleClick(point: NSPoint)
+  func shiftClick(point: NSPoint)
+}
+
+extension ClickableView {
+  func shiftClick(point: NSPoint) {}
 }
 
 protocol CanvasConceptsActions {
@@ -84,9 +113,7 @@ protocol CanvasConceptsActions {
   
   func drawConceptViews()
   func drawConceptView(concept: Concept)
-  func clickOnConceptView(conceptView: ConceptView, point: NSPoint)
-  func dragFromConceptView(conceptView: ConceptView, point: NSPoint)
-  func releaseMouseFromConceptView(conceptView: ConceptView, point: NSPoint)
+  func clickOnConceptView(conceptView: ConceptView, point: NSPoint, multipleSelect: Bool)
   func updateLinkViewsFor(concept: Concept)
   func conceptLinksFor(concept: Concept) -> [Link]
   func isConceptSaved(concept: Concept) -> Bool

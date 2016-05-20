@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class CanvasView: NSView, Canvas, DocumentObserver {
+class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   var document: LinkedIdeasDocument! {
     didSet { document.observer = self }
   }
@@ -32,12 +32,23 @@ class CanvasView: NSView, Canvas, DocumentObserver {
   }
 
   // MARK: - NSView
+  let fillColor = NSColor(calibratedRed: 173/255, green: 224/255, blue: 186/255, alpha: 1)
+  let borderColor = NSColor(calibratedRed: 144/255, green: 212/255, blue: 161/255, alpha: 1)
   
   override func drawRect(dirtyRect: NSRect) {
     NSColor.whiteColor().set()
     NSRectFill(bounds)
     drawConceptViews()
     drawLinkViews()
+    
+    if isDragging {
+      let selectionRect = NSRect(p1: initialPoint!, p2: endPoint!)
+      let path = NSBezierPath(rect: selectionRect)
+      fillColor.set()
+      path.fill()
+      borderColor.set()
+      path.stroke()
+    }
     
     if (mode == .Links) { showConstructionArrow() }
   }
@@ -50,6 +61,37 @@ class CanvasView: NSView, Canvas, DocumentObserver {
       doubleClick(clickedPoint)
     } else {
       click(clickedPoint)
+    }
+  }
+  
+  var isDragging: Bool = false
+  var initialPoint: NSPoint?
+  var endPoint: NSPoint?
+  
+  override func mouseDragged(theEvent: NSEvent) {
+    if (mode == .Select) {
+      let point = pointInCanvasCoordinates(theEvent.locationInWindow)
+      if isDragging {
+        // already dragging
+        endPoint = point
+        let selectionRect = NSRect(p1: initialPoint!, p2: endPoint!)
+        for concept in concepts {
+          concept.isSelected = selectionRect.contains(concept.point)
+          conceptViewFor(concept).needsDisplay = true
+        }
+        needsDisplay = true
+      } else {
+        // first dragging
+        isDragging = true
+        initialPoint = point
+      }
+    }
+  }
+  
+  override func mouseUp(theEvent: NSEvent) {
+    if (mode == .Select) {
+      isDragging = false
+      needsDisplay = true
     }
   }
 
@@ -137,12 +179,19 @@ class CanvasView: NSView, Canvas, DocumentObserver {
     drawConceptViews()
   }
 
-  func clickOnConceptView(conceptView: ConceptView, point: NSPoint) {
+  func clickOnConceptView(conceptView: ConceptView, point: NSPoint, multipleSelect: Bool = false) {
     sprint("click on conceptView \(conceptView.concept.identifier) to \(point)")
-    let selectedConcept = conceptView.concept
+    let clickedConcept = conceptView.concept
+    let selectedConcepts = concepts.filter { $0.isSelected }
+    
+    let notAddingConceptsToMultipleSelect = !multipleSelect
+    let clickedConceptIsNotPartOfMultipleSelection = !selectedConcepts.contains(clickedConcept)
+    
     for concept in concepts {
-      if (concept.identifier != selectedConcept.identifier) {
-        concept.isSelected = false
+      if (concept.identifier != clickedConcept.identifier) {
+        if notAddingConceptsToMultipleSelect && clickedConceptIsNotPartOfMultipleSelection {
+          concept.isSelected = false
+        }
         concept.isEditable = false
         conceptViewFor(concept).needsDisplay = true
       }
@@ -150,22 +199,8 @@ class CanvasView: NSView, Canvas, DocumentObserver {
     cleanNewConcept()
   }
   
-  var arrowOriginPoint: NSPoint?
-  var arrowTargetPoint: NSPoint?
-  
-  func dragFromConceptView(conceptView: ConceptView, point: NSPoint) {
-    arrowOriginPoint = conceptView.concept.point
-    arrowTargetPoint = point
-    updateLinkViewsFor(conceptView.concept)
-    needsDisplay = true
-  }
-  
-  func releaseMouseFromConceptView(conceptView: ConceptView, point: NSPoint) {
-    if let targetedConceptView = selectTargetConceptView(point, fromConcept: conceptView.concept) {
-      createLinkBetweenConceptsViews(conceptView, targetConceptView: targetedConceptView)
-    }
-    
-    removeConstructionArrow()
+  func selectedConcepts() -> [Concept] {
+    return concepts.filter { $0.isSelected }
   }
 
   func cleanNewConcept() {
@@ -302,5 +337,61 @@ class CanvasView: NSView, Canvas, DocumentObserver {
     Swift.print("link updated \(link)")
     let linkView = linkViewFor(link)
     linkView.needsDisplay = true
+  }
+  
+  // MARK: - DraggableElementDelegate
+  func dragStartCallback(draggableElementView: DraggableElement, dragEvent: DragEvent) {
+    let conceptView = draggableElementView as! ConceptView
+    
+    if (mode == .Select) {
+      for concept in selectedConcepts() where concept != conceptView.concept {
+        let newPoint = dragEvent.translatePoint(concept.point)
+        conceptViewFor(concept).dragStart(newPoint, performCallback: false)
+      }
+    }
+    
+    if (mode == .Links) {
+      arrowOriginPoint = conceptView.concept.point
+    }
+  }
+  
+  func dragToCallback(draggableElementView: DraggableElement, dragEvent: DragEvent) {
+    let conceptView = draggableElementView as! ConceptView
+    
+    if (mode == .Select) {
+      for concept in selectedConcepts() where concept != conceptView.concept {
+        let newPoint = dragEvent.translatePoint(concept.point)
+        conceptViewFor(concept).dragTo(newPoint, performCallback: false)
+      }
+    }
+    
+    if (mode == .Links) {
+      arrowTargetPoint = dragEvent.toPoint
+      needsDisplay = true
+    }
+    
+    updateLinkViewsFor(conceptView.concept)
+  }
+  
+  var arrowOriginPoint: NSPoint?
+  var arrowTargetPoint: NSPoint?
+  
+  func dragEndCallback(draggableElementView: DraggableElement, dragEvent: DragEvent) {
+    let conceptView = draggableElementView as! ConceptView
+    
+    if (mode == .Select) {
+      for concept in selectedConcepts() where concept != conceptView.concept {
+        let newPoint = dragEvent.translatePoint(concept.point)
+        conceptViewFor(concept).dragEnd(newPoint, performCallback: false)
+      }
+    }
+    
+    if (mode == .Links) {
+      if let targetedConceptView = selectTargetConceptView(dragEvent.toPoint, fromConcept: conceptView.concept) {
+        createLinkBetweenConceptsViews(conceptView, targetConceptView: targetedConceptView)
+      }
+      
+      removeConstructionArrow()
+    }
   }
 }

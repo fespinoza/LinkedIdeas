@@ -232,4 +232,150 @@ class ConceptViewTests: XCTestCase {
     XCTAssertEqual(canvas.linkViews.count, 1)
     XCTAssertEqual(canvas.subviews.count, 3)
   }
+  
+  // Mark: - MultipleSelect tests
+  
+  func testClickOnConceptAlreadyMultipleSelected() {
+    // Given
+    let concepts = [
+      Concept(stringValue: "foo", point: NSMakePoint(200, 300)),
+      Concept(stringValue: "bar", point: NSMakePoint(100, 450)),
+      Concept(stringValue: "baz", point: NSMakePoint(300, 200))
+    ]
+    testDocument.concepts = concepts
+    concepts[0].isSelected = true
+    concepts[1].isSelected = true
+    canvas.mode = .Select
+    canvas.drawConceptViews()
+    
+    // when
+    canvas.conceptViewFor(concepts[1]).click(NSMakePoint(20, 10))
+    
+    // then
+    XCTAssertEqual(concepts[0].isSelected, true)
+    XCTAssertEqual(concepts[1].isSelected, true)
+    XCTAssertEqual(concepts[2].isSelected, false)
+  }
+  
+  func testClickOnAnUnselectedConceptWhenThereAreOthersSelected() {
+    // Given
+    let concepts = [
+      Concept(stringValue: "foo", point: NSMakePoint(200, 300)),
+      Concept(stringValue: "bar", point: NSMakePoint(100, 450)),
+      Concept(stringValue: "baz", point: NSMakePoint(300, 200))
+    ]
+    testDocument.concepts = concepts
+    concepts[0].isSelected = true
+    concepts[1].isSelected = true
+    canvas.mode = .Select
+    canvas.drawConceptViews()
+    
+    // when
+    canvas.conceptViewFor(concepts[2]).click(NSMakePoint(20, 10))
+    
+    // then
+    XCTAssertEqual(concepts[0].isSelected, false)
+    XCTAssertEqual(concepts[1].isSelected, false)
+    XCTAssertEqual(concepts[2].isSelected, true)
+  }
+  
+  func testMultipleSelectingAConcept() {
+    // Given
+    let concepts = [
+      Concept(stringValue: "foo", point: NSMakePoint(200, 300)),
+      Concept(stringValue: "bar", point: NSMakePoint(100, 450)),
+      Concept(stringValue: "baz", point: NSMakePoint(300, 200))
+    ]
+    testDocument.concepts = concepts
+    concepts[0].isSelected = true
+    concepts[1].isSelected = true
+    canvas.mode = .Select
+    canvas.drawConceptViews()
+    
+    // when
+    canvas.conceptViewFor(concepts[2]).shiftClick(NSMakePoint(20, 10))
+    
+    // then
+    XCTAssertEqual(concepts[0].isSelected, true)
+    XCTAssertEqual(concepts[1].isSelected, true)
+    XCTAssertEqual(concepts[2].isSelected, true)
+  }
+  
+  func testDeselectingElementFromMultipleSelect() {
+    // given
+    let concepts = [
+      Concept(stringValue: "foo", point: NSMakePoint(200, 300)),
+      Concept(stringValue: "bar", point: NSMakePoint(100, 450)),
+      Concept(stringValue: "baz", point: NSMakePoint(300, 200))
+    ]
+    testDocument.concepts = concepts
+    concepts[0].isSelected = true
+    concepts[1].isSelected = true
+    canvas.mode = .Select
+    canvas.drawConceptViews()
+    
+    // when
+    canvas.conceptViewFor(concepts[1]).shiftClick(NSMakePoint(20, 10))
+    
+    // then
+    XCTAssertEqual(concepts[0].isSelected, true)
+    XCTAssertEqual(concepts[1].isSelected, false)
+    XCTAssertEqual(concepts[2].isSelected, false)
+  }
+  
+  func testDraggingMultipleSelectedConcepts() {
+    // given
+    let concepts = [
+      Concept(stringValue: "foo", point: NSMakePoint(200, 300)),
+      Concept(stringValue: "bar", point: NSMakePoint(100, 450)),
+      Concept(stringValue: "baz", point: NSMakePoint(300, 200))
+    ]
+    testDocument.concepts = concepts
+    concepts[0].isSelected = true
+    concepts[1].isSelected = true
+    canvas.mode = .Select
+    canvas.drawConceptViews()
+    let conceptViews = concepts.map { canvas.conceptViewFor($0) }
+    let conceptViewsOriginalFrames = conceptViews.map { $0.frame }
+    
+    // when
+    conceptViews[1].dragStart(NSMakePoint(200, 450))
+    conceptViews[1].dragTo(NSMakePoint(200, 450))
+    conceptViews[1].dragEnd(NSMakePoint(200, 450))
+    
+    // then
+    let conceptViewsNewFrames = conceptViews.map { $0.frame }
+    XCTAssertNotEqual(conceptViewsOriginalFrames[0], conceptViewsNewFrames[0])
+    XCTAssertNotEqual(conceptViewsOriginalFrames[1], conceptViewsNewFrames[1])
+    XCTAssertEqual(conceptViewsOriginalFrames[2], conceptViewsNewFrames[2])
+  }
+  
+  func testDraggingConceptNotInMultipleSelect() {
+    // given
+    let concepts = [
+      Concept(stringValue: "foo", point: NSMakePoint(200, 300)),
+      Concept(stringValue: "bar", point: NSMakePoint(100, 450)),
+      Concept(stringValue: "baz", point: NSMakePoint(300, 200))
+    ]
+    testDocument.concepts = concepts
+    concepts[0].isSelected = true
+    concepts[1].isSelected = true
+    canvas.mode = .Select
+    canvas.drawConceptViews()
+    let conceptViews = concepts.map { canvas.conceptViewFor($0) }
+    let conceptViewsOriginalFrames = conceptViews.map { $0.frame }
+    
+    // when
+    conceptViews[2].click(NSMakePoint(200, 450))
+    conceptViews[2].dragTo(NSMakePoint(200, 450))
+    
+    // then
+    let conceptViewsNewFrames = conceptViews.map { $0.frame }
+    XCTAssertEqual(conceptViewsOriginalFrames[0], conceptViewsNewFrames[0])
+    XCTAssertEqual(conceptViewsOriginalFrames[1], conceptViewsNewFrames[1])
+    XCTAssertNotEqual(conceptViewsOriginalFrames[2], conceptViewsNewFrames[2])
+    XCTAssertEqual(concepts[0].isSelected, false)
+    XCTAssertEqual(concepts[1].isSelected, false)
+    XCTAssertEqual(concepts[2].isSelected, true)
+  }
 }
