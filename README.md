@@ -20,7 +20,7 @@ way to 'explain' the connexion of ideas.
 - [x] use formatted strings for concepts [#11](https://github.com/fespinoza/linked-ideas-osx/pull/11)
 - [x] add color to links [#12](https://github.com/fespinoza/linked-ideas-osx/pull/12)
 - [x] undo/redo actions for concepts and links [#13](https://github.com/fespinoza/linked-ideas-osx/pull/13)
-- [ ] multiple select concepts (move them)
+- [x] multiple select concepts (move them) [#14](https://github.com/fespinoza/linked-ideas-osx/pull/14)
 - [ ] align concepts
 - [ ] add editable text to links
 - [ ] add editable curvature to links
