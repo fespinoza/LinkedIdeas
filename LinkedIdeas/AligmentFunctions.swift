@@ -8,7 +8,11 @@
 
 import Cocoa
 
-struct AligmentFunctions {
+protocol AlignmentFunctions {
+  static func setNewPoint(newPoint: NSPoint, forElement element: SquareElement)
+}
+
+extension AlignmentFunctions {
   // MARK: - SquareElement
   static func compareByMaxRectX(p1: SquareElement, p2: SquareElement) -> Bool {
     return p1.rect.maxX > p2.rect.maxX
