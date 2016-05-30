@@ -24,8 +24,8 @@ way to 'explain' the connexion of ideas.
 - [ ] align/space concepts
 - [ ] zooming canvas
 - [ ] panning canvas
-- [ ] save canvas dimensions in document
 - [ ] add editable text to links
+- [ ] save canvas dimensions in document
 - [ ] add editable curvature to links
 - [ ] reorder concepts in canvas
 - [ ] export document as image
