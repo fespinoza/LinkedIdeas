@@ -65,17 +65,14 @@ func horizontalDistanceBetween(a: SquareElement, _ b: SquareElement) -> CGFloat 
 }
 
 class AlignmentFunctionTests: XCTestCase {
-  
-  override func setUp() { super.setUp() }
-  
-  override func tearDown() { super.tearDown() }
+  let aligmentController = TestAlignmentFunctions()
   
   func testCenterAlignConcepts() {
     // given
     let concepts = AlignmentTestsFixtures.semiVerticalAligmentElements
     
     // when
-    TestAlignmentFunctions.verticallyCenterAlign(concepts)
+    aligmentController.verticallyCenterAlign(concepts)
     
     // then
     XCTAssertEqual(concepts[0].point.x, concepts[1].point.x)
@@ -87,7 +84,7 @@ class AlignmentFunctionTests: XCTestCase {
     let concepts = AlignmentTestsFixtures.semiVerticalAligmentElements
     
     // when
-    TestAlignmentFunctions.verticallyLeftAlign(concepts)
+    aligmentController.verticallyLeftAlign(concepts)
     
     // then
     XCTAssertEqual(concepts[0].rect.minX, concepts[1].rect.minX)
@@ -99,7 +96,7 @@ class AlignmentFunctionTests: XCTestCase {
     let concepts = AlignmentTestsFixtures.semiVerticalAligmentElements
     
     // when
-    TestAlignmentFunctions.verticallyRightAlign(concepts)
+    aligmentController.verticallyRightAlign(concepts)
     
     // then
     XCTAssertEqual(maxX(concepts[0].rect), maxX(concepts[1].rect))
@@ -111,7 +108,7 @@ class AlignmentFunctionTests: XCTestCase {
     let concepts = AlignmentTestsFixtures.semiHorizontalAligmentElements
     
     // when
-    TestAlignmentFunctions.horizontallyAlign(concepts)
+    aligmentController.horizontallyAlign(concepts)
     
     // then
     XCTAssertEqual(concepts[0].point.y, concepts[1].point.y)
@@ -123,7 +120,7 @@ class AlignmentFunctionTests: XCTestCase {
     let concepts = AlignmentTestsFixtures.semiVerticalAligmentElements
     
     // when
-    TestAlignmentFunctions.equalVerticalSpace(concepts)
+    aligmentController.equalVerticalSpace(concepts)
     
     // then
     XCTAssertEqual(concepts[0].point, NSMakePoint(100, 201.25))
@@ -140,7 +137,7 @@ class AlignmentFunctionTests: XCTestCase {
     let concepts = AlignmentTestsFixtures.semiHorizontalAligmentElements
     
     // when
-    TestAlignmentFunctions.equalHorizontalSpace(concepts)
+    aligmentController.equalHorizontalSpace(concepts)
     
     // then
     XCTAssertEqual(concepts[0].point, NSMakePoint(100, 210))

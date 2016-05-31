@@ -9,29 +9,29 @@
 import Cocoa
 
 protocol AlignmentFunctions {
-  static func setNewPoint(newPoint: NSPoint, forElement element: SquareElement)
+  func setNewPoint(newPoint: NSPoint, forElement element: SquareElement)
 }
 
 extension AlignmentFunctions {
   // MARK: - SquareElement
-  static func compareByMaxRectX(p1: SquareElement, p2: SquareElement) -> Bool {
+  func compareByMaxRectX(p1: SquareElement, p2: SquareElement) -> Bool {
     return p1.rect.maxX > p2.rect.maxX
   }
   
-  static func compareByMinRectX(p1: SquareElement, p2: SquareElement) -> Bool {
+  func compareByMinRectX(p1: SquareElement, p2: SquareElement) -> Bool {
     return p1.rect.origin.x < p2.rect.origin.x
   }
   
-  static func compareByMinCenterX(p1: SquareElement, p2: SquareElement) -> Bool {
+  func compareByMinCenterX(p1: SquareElement, p2: SquareElement) -> Bool {
     return p1.point.x < p2.point.x
   }
   
-  static func compareByMinCenterY(p1: SquareElement, p2: SquareElement) -> Bool {
+  func compareByMinCenterY(p1: SquareElement, p2: SquareElement) -> Bool {
     return p1.point.y < p2.point.y
   }
   
   // MARK: - Alignment Functions
-  static func verticallyCenterAlign(elements: [SquareElement]) {
+  func verticallyCenterAlign(elements: [SquareElement]) {
     let sortedConcepts = elements.sort(compareByMinCenterX)
     let minimunXCoordinate = sortedConcepts.first!.point.x
     
@@ -42,7 +42,7 @@ extension AlignmentFunctions {
     updateElementPoints(elements, newPointCalculator: calculateNewPoint)
   }
   
-  static func verticallyLeftAlign(elements: [SquareElement]) {
+  func verticallyLeftAlign(elements: [SquareElement]) {
     let sortedConcepts = elements.sort(compareByMinRectX)
     let minimunXCoordinate = sortedConcepts.first!.rect.origin.x
     
@@ -54,7 +54,7 @@ extension AlignmentFunctions {
     updateElementPoints(elements, newPointCalculator: calculateNewPoint)
   }
   
-  static func verticallyRightAlign(elements: [SquareElement]) {
+  func verticallyRightAlign(elements: [SquareElement]) {
     let sortedConcepts = elements.sort(compareByMaxRectX)
     let minimunXCoordinate = sortedConcepts.first!.rect.maxX
     
@@ -66,7 +66,7 @@ extension AlignmentFunctions {
     updateElementPoints(elements, newPointCalculator: calculateNewPoint)
   }
   
-  static func horizontallyAlign(elements: [SquareElement]) {
+  func horizontallyAlign(elements: [SquareElement]) {
     let averageYCoordinate: CGFloat = elements.minElement(compareByMinCenterX)!.point.y
     
     func calculateNewPoint(element: SquareElement) -> NSPoint {
@@ -76,7 +76,7 @@ extension AlignmentFunctions {
     updateElementPoints(elements, newPointCalculator: calculateNewPoint)
   }
   
-  static func equalVerticalSpace(elements: [SquareElement]) {
+  func equalVerticalSpace(elements: [SquareElement]) {
     let containingRect = containingRectFor(elements)
     
     let n = CGFloat(elements.count)
@@ -98,7 +98,7 @@ extension AlignmentFunctions {
     }
   }
   
-  static func equalHorizontalSpace(elements: [SquareElement]) {
+  func equalHorizontalSpace(elements: [SquareElement]) {
     let containingRect = containingRectFor(elements)
     
     let n = CGFloat(elements.count)
@@ -119,17 +119,17 @@ extension AlignmentFunctions {
   }
   
   // MARK: - Utilities
-  static func setNewPoint(newPoint: NSPoint, forElement element: SquareElement) {
+  func setNewPoint(newPoint: NSPoint, forElement element: SquareElement) {
     element.point = newPoint
   }
   
-  static func updateElementPoints(elements: [SquareElement], newPointCalculator: (SquareElement) -> NSPoint) {
+  func updateElementPoints(elements: [SquareElement], newPointCalculator: (SquareElement) -> NSPoint) {
     for element in elements {
       setNewPoint(newPointCalculator(element), forElement: element)
     }
   }
   
-  static func containingRectFor(elements: [SquareElement]) -> NSRect {
+  func containingRectFor(elements: [SquareElement]) -> NSRect {
     let minX = (elements.map { $0.rect.origin.x }).minElement()!
     let minY = (elements.map { $0.rect.origin.y }).minElement()!
     let maxX = (elements.map { $0.rect.maxX }).maxElement()!

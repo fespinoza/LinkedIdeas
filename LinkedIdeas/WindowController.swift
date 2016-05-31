@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class WindowController: NSWindowController {
+class WindowController: NSWindowController, AlignmentFunctions {
   @IBOutlet var ultraWindow: NSWindow!
   
   @IBOutlet weak var canvas: CanvasView!
@@ -91,131 +91,29 @@ class WindowController: NSWindowController {
   @IBOutlet weak var equalHorizontalSpaceButton: NSButton!
   
   @IBAction func alignVertically(sender: AnyObject) {
+    let elements = canvas.selectedConcepts().map { $0 as SquareElement }
     
-    if (sender as! NSObject == alignVerticallyLeftButton) {
-      alignConcepts("left", concepts: canvas.selectedConcepts())
-    }
-    
-    if (sender as! NSObject == alignVerticallyCenterButton) {
-      alignConcepts("center", concepts: canvas.selectedConcepts())
-    }
-    
-    if (sender as! NSObject == alignVerticallyRightButton) {
-      alignConcepts("right", concepts: canvas.selectedConcepts())
-    }
-    
-    if (sender as! NSObject == alignHorizontallyButton) {
-      alignConcepts("horizontally", concepts: canvas.selectedConcepts())
-    }
-    
-    if (sender as! NSObject == equalVerticalSpaceButton) {
-      alignConcepts("eq_v", concepts: canvas.selectedConcepts())
-    }
-    
-    if (sender as! NSObject == equalHorizontalSpaceButton) {
-      alignConcepts("eq_h", concepts: canvas.selectedConcepts())
-    }
-    
-  }
-  
-  func alignConcepts(mode: String, concepts: [Concept]) {
-    let currentDocument = document as! Document
-    
-    if (mode == "center") {
-      let sortedConcepts = concepts.sort { (p1: Concept, p2: Concept) -> Bool in return p1.point.x < p2.point.x }
-      let minimunXCoordinate = sortedConcepts.first!.point.x
-      
-      for concept in concepts {
-        let verticallyCenterAlignedPoint = NSMakePoint(minimunXCoordinate, concept.point.y)
-        canvas.conceptViewFor(concept).textField.attributedStringValue = concept.attributedStringValue
-        currentDocument.changeConceptPoint(concept, fromPoint: concept.point, toPoint: verticallyCenterAlignedPoint)
-      }
-      return
-    }
-    
-    if (mode == "left") {
-      let sortedConcepts = concepts.sort { (p1: Concept, p2: Concept) -> Bool in return p1.minimalRect.origin.x < p2.minimalRect.origin.x }
-      let minimunXCoordinate = sortedConcepts.first!.minimalRect.origin.x
-      
-      for concept in concepts {
-        let newX: CGFloat = minimunXCoordinate + concept.minimalRect.width / 2
-        let verticallyCenterAlignedPoint = NSMakePoint(newX, concept.point.y)
-        canvas.conceptViewFor(concept).textField.attributedStringValue = concept.attributedStringValue
-        currentDocument.changeConceptPoint(concept, fromPoint: concept.point, toPoint: verticallyCenterAlignedPoint)
-      }
-      return
-    }
-    
-    if (mode == "right") {
-      let sortedConcepts = concepts.sort { (p1: Concept, p2: Concept) -> Bool in return p1.minimalRect.maxX > p2.minimalRect.maxX }
-      let minimunXCoordinate = sortedConcepts.first!.minimalRect.maxX
-      
-      for concept in concepts {
-        let newX: CGFloat = minimunXCoordinate - concept.minimalRect.width / 2
-        let verticallyCenterAlignedPoint = NSMakePoint(newX, concept.point.y)
-        canvas.conceptViewFor(concept).textField.attributedStringValue = concept.attributedStringValue
-        currentDocument.changeConceptPoint(concept, fromPoint: concept.point, toPoint: verticallyCenterAlignedPoint)
-      }
-    }
-    
-    if (mode == "horizontally") {
-      let averageYCoordinate: CGFloat = concepts.minElement({ (a, b) -> Bool in
-        return a.point.x <= b.point.x
-      })!.point.y
-      
-      for concept in concepts {
-        let verticallyCenterAlignedPoint = NSMakePoint(concept.point.x, averageYCoordinate)
-        canvas.conceptViewFor(concept).textField.attributedStringValue = concept.attributedStringValue
-        currentDocument.changeConceptPoint(concept, fromPoint: concept.point, toPoint: verticallyCenterAlignedPoint)
-      }
-    }
-    
-    if (mode == "eq_v") {
-      let containingRect = containingRectFor(concepts)
-      
-      let n = CGFloat(concepts.count)
-      let combinedConceptHeight = concepts.reduce(0, combine: { (acc, concept) in return acc + concept.minimalRect.height })
-      let equalVerticalSpacing: CGFloat = (containingRect.height - combinedConceptHeight) / (n - 1)
-      
-      let conceptsSortedByYCoordinate = concepts.sort({ (a, b) -> Bool in return a.point.y <= b.point.y })
-      var previousConcept = conceptsSortedByYCoordinate[0]
-      for concept in conceptsSortedByYCoordinate[1..<concepts.count] {
-        let newY = (concept.minimalRect.height / 2) + equalVerticalSpacing + (previousConcept.minimalRect.height / 2) + previousConcept.point.y
-        
-        let newPoint = NSMakePoint(concept.point.x, newY)
-        
-        canvas.conceptViewFor(concept).textField.attributedStringValue = concept.attributedStringValue
-        currentDocument.changeConceptPoint(concept, fromPoint: concept.point, toPoint: newPoint)
-        previousConcept = concept
-      }
-    }
-    
-    if (mode == "eq_h") {
-      let containingRect = containingRectFor(concepts)
-      
-      let n = CGFloat(concepts.count)
-      let combinedConceptWidth = concepts.reduce(0, combine: { (acc, concept) in return acc + concept.minimalRect.width })
-      let equalHorizontalSpacing: CGFloat = (containingRect.width - combinedConceptWidth) / (n - 1)
-      
-      
-      let conceptsSortedByXCoordinate = concepts.sort({ (a, b) -> Bool in return a.point.x <= b.point.x })
-      
-      var previousConcept = conceptsSortedByXCoordinate[0]
-      for concept in conceptsSortedByXCoordinate[1..<conceptsSortedByXCoordinate.count] {
-        let newX = (concept.minimalRect.width / 2) + equalHorizontalSpacing + (previousConcept.minimalRect.width / 2) + previousConcept.point.x
-        let newPoint = NSMakePoint(newX, concept.point.y)
-        canvas.conceptViewFor(concept).textField.attributedStringValue = concept.attributedStringValue
-        currentDocument.changeConceptPoint(concept, fromPoint: concept.point, toPoint: newPoint)
-        previousConcept = concept
-      }
+    switch (sender as! NSObject) {
+    case alignVerticallyLeftButton:
+      verticallyLeftAlign(elements)
+    case alignVerticallyCenterButton:
+      verticallyCenterAlign(elements)
+    case alignVerticallyRightButton:
+      verticallyRightAlign(elements)
+    case alignHorizontallyButton:
+      horizontallyAlign(elements)
+    case equalVerticalSpaceButton:
+      equalVerticalSpace(elements)
+    case equalHorizontalSpaceButton:
+      equalHorizontalSpace(elements)
+    default:
+      Swift.print("not implemented")
     }
   }
   
-  func containingRectFor(concepts: [Concept]) -> NSRect {
-    let minX = (concepts.map { $0.minimalRect.origin.x }).minElement({ (a, b) -> Bool in return a < b })!
-    let minY = (concepts.map { $0.minimalRect.origin.y }).minElement({ (a, b) -> Bool in return a < b })!
-    let maxX = (concepts.map { $0.minimalRect.maxX }).maxElement()!
-    let maxY = (concepts.map { $0.minimalRect.maxY }).maxElement()!
-    return NSMakeRect(minX, minY, maxX - minX, maxY - minY)
+  func setNewPoint(newPoint: NSPoint, forElement element: SquareElement) {
+    let concept = element as! Concept
+    canvas.conceptViewFor(concept).textField.attributedStringValue = concept.attributedStringValue
+    canvas.document.changeConceptPoint(concept, fromPoint: concept.point, toPoint: newPoint)
   }
 }
