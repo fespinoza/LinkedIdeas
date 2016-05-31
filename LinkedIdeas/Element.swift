@@ -10,7 +10,7 @@ import Foundation
 
 protocol Element {
   var identifier: String { get }
-  var minimalRect: NSRect { get }
+  var rect: NSRect { get }
 }
 
 protocol AttributedStringElement {

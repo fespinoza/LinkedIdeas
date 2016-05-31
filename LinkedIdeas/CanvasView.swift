@@ -211,7 +211,7 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   
   func updateLinkViewsFor(concept: Concept) {
     for link in conceptLinksFor(concept) {
-      linkViewFor(link).frame = link.minimalRect
+      linkViewFor(link).frame = link.rect
     }
   }
   
