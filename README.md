@@ -21,7 +21,7 @@ way to 'explain' the connexion of ideas.
 - [x] add color to links [#12](https://github.com/fespinoza/linked-ideas-osx/pull/12)
 - [x] undo/redo actions for concepts and links [#13](https://github.com/fespinoza/linked-ideas-osx/pull/13)
 - [x] multiple select concepts (move them) [#14](https://github.com/fespinoza/linked-ideas-osx/pull/14)
-- [ ] align/space concepts
+- [x] align/space concepts [#15](https://github.com/fespinoza/linked-ideas-osx/pull/15)
 - [ ] zooming canvas
 - [ ] panning canvas
 - [ ] add editable text to links
