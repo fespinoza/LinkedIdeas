@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class WindowController: NSWindowController {
+class WindowController: NSWindowController, AlignmentFunctions {
   @IBOutlet var ultraWindow: NSWindow!
   
   @IBOutlet weak var canvas: CanvasView!
@@ -80,4 +80,40 @@ class WindowController: NSWindowController {
     }
   }
   
+  // MARK: - Align Buttons
+  @IBOutlet weak var alignVerticallyLeftButton: NSButton!
+  @IBOutlet weak var alignVerticallyCenterButton: NSButton!
+  @IBOutlet weak var alignVerticallyRightButton: NSButton!
+  
+  @IBOutlet weak var alignHorizontallyButton: NSButton!
+  
+  @IBOutlet weak var equalVerticalSpaceButton: NSButton!
+  @IBOutlet weak var equalHorizontalSpaceButton: NSButton!
+  
+  @IBAction func alignVertically(sender: AnyObject) {
+    let elements = canvas.selectedConcepts().map { $0 as SquareElement }
+    
+    switch (sender as! NSObject) {
+    case alignVerticallyLeftButton:
+      verticallyLeftAlign(elements)
+    case alignVerticallyCenterButton:
+      verticallyCenterAlign(elements)
+    case alignVerticallyRightButton:
+      verticallyRightAlign(elements)
+    case alignHorizontallyButton:
+      horizontallyAlign(elements)
+    case equalVerticalSpaceButton:
+      equalVerticalSpace(elements)
+    case equalHorizontalSpaceButton:
+      equalHorizontalSpace(elements)
+    default:
+      Swift.print("not implemented")
+    }
+  }
+  
+  func setNewPoint(newPoint: NSPoint, forElement element: SquareElement) {
+    let concept = element as! Concept
+    canvas.conceptViewFor(concept).textField.attributedStringValue = concept.attributedStringValue
+    canvas.document.changeConceptPoint(concept, fromPoint: concept.point, toPoint: newPoint)
+  }
 }

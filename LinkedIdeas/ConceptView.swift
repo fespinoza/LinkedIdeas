@@ -34,7 +34,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     self.textField = ResizingTextField(frame: textFieldRect)
     self.canvas = canvas
 
-    super.init(frame: concept.minimalRect)
+    super.init(frame: concept.rect)
     
     enableTrackingArea()
     textField.delegate = self

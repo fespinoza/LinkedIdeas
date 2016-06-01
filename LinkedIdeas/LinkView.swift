@@ -28,7 +28,7 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
   init(link: Link, canvas: CanvasView) {
     self.link = link
     self.canvas = canvas
-    super.init(frame: link.minimalRect)
+    super.init(frame: link.rect)
     enableTrackingArea()
   }
   

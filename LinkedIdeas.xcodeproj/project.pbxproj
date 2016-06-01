@@ -19,10 +19,13 @@
 		9B48F8491CD614370014758D /* LinkedIdeasDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */; };
 		9B48F84D1CD614BC0014758D /* DocumentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F84C1CD614BC0014758D /* DocumentData.swift */; };
 		9B48F84F1CD614C50014758D /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F84E1CD614C50014758D /* Mode.swift */; };
+		9B521F851CFB37D200A71598 /* AligmentFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B521F841CFB37D200A71598 /* AligmentFunctions.swift */; };
+		9B521F871CFB380300A71598 /* SquareElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B521F861CFB380300A71598 /* SquareElement.swift */; };
 		9B6505261CB5A74800A3B41C /* icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 9B6505251CB5A74800A3B41C /* icon.iconset */; };
 		9B733AF71CB9B7D200C04F47 /* ResizingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B733AF61CB9B7D200C04F47 /* ResizingTextField.swift */; };
 		9B7D535F1CB6D0A400B3D43B /* ElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D535E1CB6D0A400B3D43B /* ElementView.swift */; };
 		9B956CE51C1B11C200CF20DA /* NSPoint+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B956CE41C1B11C200CF20DA /* NSPoint+Utilities.swift */; };
+		9B9A2EA41CF5EE5300607208 /* AlignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A2EA31CF5EE5300607208 /* AlignmentTests.swift */; };
 		9BABB2B21C07B7F7001EC9E0 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BABB2B11C07B7F7001EC9E0 /* Link.swift */; };
 		9BB8FC831CA6B7D7008CD6A2 /* LinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */; };
 		9BB8FC851CA6B7F8008CD6A2 /* LinkViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC841CA6B7F8008CD6A2 /* LinkViewTests.swift */; };
@@ -69,10 +72,13 @@
 		9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedIdeasDocument.swift; sourceTree = "<group>"; };
 		9B48F84C1CD614BC0014758D /* DocumentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentData.swift; sourceTree = "<group>"; };
 		9B48F84E1CD614C50014758D /* Mode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
+		9B521F841CFB37D200A71598 /* AligmentFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AligmentFunctions.swift; sourceTree = "<group>"; };
+		9B521F861CFB380300A71598 /* SquareElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareElement.swift; sourceTree = "<group>"; };
 		9B6505251CB5A74800A3B41C /* icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = icon.iconset; sourceTree = "<group>"; };
 		9B733AF61CB9B7D200C04F47 /* ResizingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizingTextField.swift; sourceTree = "<group>"; };
 		9B7D535E1CB6D0A400B3D43B /* ElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementView.swift; sourceTree = "<group>"; };
 		9B956CE41C1B11C200CF20DA /* NSPoint+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPoint+Utilities.swift"; sourceTree = "<group>"; };
+		9B9A2EA31CF5EE5300607208 /* AlignmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignmentTests.swift; sourceTree = "<group>"; };
 		9BABB2B11C07B7F7001EC9E0 /* Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
 		9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkTests.swift; sourceTree = "<group>"; };
 		9BB8FC841CA6B7F8008CD6A2 /* LinkViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkViewTests.swift; sourceTree = "<group>"; };
@@ -141,6 +147,7 @@
 				9BCA09E41C9217C900637F6D /* Views */,
 				9BCA09E31C9217A900637F6D /* Models */,
 				9BD2BF3E1C7F8B8D00E8A303 /* 2DMath */,
+				9B521F841CFB37D200A71598 /* AligmentFunctions.swift */,
 			);
 			path = LinkedIdeas;
 			sourceTree = "<group>";
@@ -151,6 +158,7 @@
 				9BB8FC811CA6B7C0008CD6A2 /* Views */,
 				9BB8FC801CA6B7B0008CD6A2 /* Models */,
 				9B2F1DB61BE7CFE80090CC18 /* Info.plist */,
+				9B9A2EA31CF5EE5300607208 /* AlignmentTests.swift */,
 			);
 			path = LinkedIdeasTests;
 			sourceTree = "<group>";
@@ -161,6 +169,7 @@
 				9BB8FC881CA6B889008CD6A2 /* Element.swift */,
 				9B48F8461CD613F60014758D /* DocumentObserver.swift */,
 				9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */,
+				9B521F861CFB380300A71598 /* SquareElement.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -338,7 +347,9 @@
 				9BABB2B21C07B7F7001EC9E0 /* Link.swift in Sources */,
 				9B2F1DA21BE7CFE70090CC18 /* Document.swift in Sources */,
 				9B48F84F1CD614C50014758D /* Mode.swift in Sources */,
+				9B521F851CFB37D200A71598 /* AligmentFunctions.swift in Sources */,
 				9BB8FC871CA6B828008CD6A2 /* LinkView.swift in Sources */,
+				9B521F871CFB380300A71598 /* SquareElement.swift in Sources */,
 				9B956CE51C1B11C200CF20DA /* NSPoint+Utilities.swift in Sources */,
 				9B06AD151C11AF03000BC75C /* NSView+Debugging.swift in Sources */,
 				9BD2BF3D1C7F8B6A00E8A303 /* FiniteLine.swift in Sources */,
@@ -367,6 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BF058FC1C9220F200274A62 /* ConceptTests.swift in Sources */,
+				9B9A2EA41CF5EE5300607208 /* AlignmentTests.swift in Sources */,
 				9BF058F91C921F7D00274A62 /* CanvasViewTests.swift in Sources */,
 				9BF058FA1C921F7D00274A62 /* ConceptViewTests.swift in Sources */,
 				9BB8FC831CA6B7D7008CD6A2 /* LinkTests.swift in Sources */,

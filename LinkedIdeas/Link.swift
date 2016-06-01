@@ -30,7 +30,7 @@ class Link: NSObject, NSCoding, Element, VisualElement {
   
   // Element
   var identifier: String
-  var minimalRect: NSRect {
+  var rect: NSRect {
     var minX = min(originPoint.x, targetPoint.x)
     if (abs(originPoint.x - targetPoint.x) <= padding) { minX -= padding / 2 }
     var minY = min(originPoint.y, targetPoint.y)

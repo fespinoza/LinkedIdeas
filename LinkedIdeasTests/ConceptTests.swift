@@ -10,16 +10,16 @@ import XCTest
 @testable import LinkedIdeas
 
 class ConceptTests: XCTestCase {
-  func testMinimalRectWithoutStringValue() {
+  func testRectWithoutStringValue() {
     // given
     let point = NSPoint(x: 60, y: 400)
     let concept = Concept(point: point)
     
     // then
-    XCTAssertEqual(concept.minimalRect, NSRect(center: point, size: NSMakeSize(60, 20)))
+    XCTAssertEqual(concept.rect, NSRect(center: point, size: NSMakeSize(60, 20)))
   }
   
-  func testMinimalRectWithStringValue() {
+  func testRectWithStringValue() {
     // given
     let point = NSPoint(x: 60, y: 400)
     let stringValue = "everything is..."
@@ -29,11 +29,11 @@ class ConceptTests: XCTestCase {
     stringSize.height += 10
     
     // then
-    XCTAssert(concept.minimalRect.size.width > 60)
-    XCTAssertEqual(concept.minimalRect, NSRect(center: point, size: stringSize))
+    XCTAssert(concept.rect.size.width > 60)
+    XCTAssertEqual(concept.rect, NSRect(center: point, size: stringSize))
   }
   
-  func testMinimalRectWithMultiLineStringValue() {
+  func testRectWithMultiLineStringValue() {
     // given
     let point = NSPoint(x: 60, y: 400)
     let stringValue = "everything is...\nAWESOME!"
@@ -43,6 +43,6 @@ class ConceptTests: XCTestCase {
     stringSize.height += 10
     
     // then
-    XCTAssertEqual(concept.minimalRect, NSRect(center: point, size: stringSize))
+    XCTAssertEqual(concept.rect, NSRect(center: point, size: stringSize))
   }
 }

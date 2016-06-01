@@ -29,7 +29,7 @@ class LinkViewTests: XCTestCase {
     let linkView = LinkView(link: link, canvas: canvas)
     
     // then
-    XCTAssertEqual(linkView.frame, link.minimalRect)
+    XCTAssertEqual(linkView.frame, link.rect)
   }
   
   func testLinkViewDrawingProportions() {

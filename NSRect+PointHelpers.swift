@@ -26,7 +26,7 @@ extension NSRect {
   var center: NSPoint { return NSMakePoint(origin.x + size.width / 2, origin.y + size.height / 2) }
   
   var maxX: CGFloat { return origin.x + size.width }
-  var maxY: CGFloat { return origin.x + size.width }
+  var maxY: CGFloat { return origin.y + size.height }
   
   var lines: [FiniteLine] {
     var result: [FiniteLine] = []

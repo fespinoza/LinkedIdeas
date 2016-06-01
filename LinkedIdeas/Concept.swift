@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringElement {
+class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringElement, SquareElement {
   // NOTE: the point value is relative to the canvas coordinate system
   var point: NSPoint
   // element
@@ -18,7 +18,7 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
   var stringValue: String { return attributedStringValue.string }
   
   static let padding: CGFloat = 10
-  var minimalRect: NSRect {
+  var rect: NSRect {
     if stringValue != "" {
       var size = attributedStringValue.size()
       size.width  += Concept.padding
