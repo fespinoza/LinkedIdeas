@@ -22,13 +22,16 @@ way to 'explain' the connexion of ideas.
 - [x] undo/redo actions for concepts and links [#13](https://github.com/fespinoza/linked-ideas-osx/pull/13)
 - [x] multiple select concepts (move them) [#14](https://github.com/fespinoza/linked-ideas-osx/pull/14)
 - [x] align/space concepts [#15](https://github.com/fespinoza/linked-ideas-osx/pull/15)
-- [ ] zooming canvas
 - [ ] panning canvas
+- [ ] zooming canvas
 - [ ] add editable text to links
-- [ ] save canvas dimensions in document
-- [ ] add editable curvature to links
-- [ ] reorder concepts in canvas
-- [ ] export document as image
+
+## Optional Features
+
+- export document as image
+- restore canvas dimensions when opening the document?
+- reorder concepts in canvas
+- add editable curvature to links
 
 ## A world of ideas
 
