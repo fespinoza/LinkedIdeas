@@ -22,8 +22,7 @@ way to 'explain' the connexion of ideas.
 - [x] undo/redo actions for concepts and links [#13](https://github.com/fespinoza/linked-ideas-osx/pull/13)
 - [x] multiple select concepts (move them) [#14](https://github.com/fespinoza/linked-ideas-osx/pull/14)
 - [x] align/space concepts [#15](https://github.com/fespinoza/linked-ideas-osx/pull/15)
-- [ ] panning canvas
-- [ ] zooming canvas
+- [x] panning canvas [#16](https://github.com/fespinoza/linked-ideas-osx/pull/16)
 - [ ] add editable text to links
 
 ## Optional Features
@@ -32,6 +31,7 @@ way to 'explain' the connexion of ideas.
 - restore canvas dimensions when opening the document?
 - reorder concepts in canvas
 - add editable curvature to links
+- zooming canvas
 
 ## A world of ideas
 
