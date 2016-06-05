@@ -35,10 +35,9 @@ way to 'explain' the connexion of ideas.
 
 ## A world of ideas
 
+- BUG: dragging fails many times when concepts has already many links
 - dismiss construction arrow on click
 - construction line not on same worker
-- BUG: LinkArrow when there is no intersection point with conceptViews
-- BUG: dragging fails many times when concepts has already many links
 - control + dragging to create straight links
 - aligment of concepts
 - center text

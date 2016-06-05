@@ -157,7 +157,7 @@ typealias Canvas = protocol<BasicCanvas, ClickableView, CanvasConceptsActions, C
 // MARK: LinkView
 
 protocol ArrowDrawable {
-  func constructArrow() -> Arrow
+  func constructArrow() -> Arrow?
   func drawArrow()
   func drawArrowBorder()
 }

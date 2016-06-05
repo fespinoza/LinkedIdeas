@@ -46,10 +46,10 @@ class LinkViewTests: XCTestCase {
     // then
     let linkViewBoundsInCanvasCoordinates = canvas.convertRect(linkView.bounds, toView: nil)
     XCTAssertEqual(linkView.bounds, NSMakeRect(0, 0, 200, 100))
-    XCTAssertEqual(arrow.p1, concept1PointInLinkViewCoordinates)
-    XCTAssertEqual(arrow.p2, concept2PointInLinkViewCoordinates)
-    XCTAssert(CGRectContainsPoint(linkViewBoundsInCanvasCoordinates, arrow.p1))
-    XCTAssert(CGRectContainsPoint(linkViewBoundsInCanvasCoordinates, arrow.p2))
+    XCTAssertEqual(arrow!.p1, concept1PointInLinkViewCoordinates)
+    XCTAssertEqual(arrow!.p2, concept2PointInLinkViewCoordinates)
+    XCTAssert(CGRectContainsPoint(linkViewBoundsInCanvasCoordinates, arrow!.p1))
+    XCTAssert(CGRectContainsPoint(linkViewBoundsInCanvasCoordinates, arrow!.p2))
   }
   
   func testSelectALinkByClickingOnIt() {

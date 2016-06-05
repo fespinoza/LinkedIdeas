@@ -11,7 +11,7 @@ import Cocoa
 class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewActions, HoveringView {
   // own
   var link: Link
-  var arrowPath: NSBezierPath { return constructArrow().bezierPath() }
+  var arrowPath: NSBezierPath? { return constructArrow()?.bezierPath() }
   
   // MARK: - HoveringView
   var isHoveringView: Bool = false {
@@ -50,30 +50,31 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
   
   // MARK: - ArrowDrawable
   
-  func constructArrow() -> Arrow {
+  func constructArrow() -> Arrow? {
     let originPoint = link.originPoint
     let targetPoint = link.targetPoint
     
     let originRect = canvas.conceptViewFor(link.origin).frame
     let targetRect = canvas.conceptViewFor(link.target).frame
     
-    let intersectionPointWithOrigin = originRect.firstIntersectionTo(targetPoint)!
-    let intersectionPointWithTarget = targetRect.firstIntersectionTo(originPoint)!
-    
-    let intersectionPointWithOriginInLinkViewCoordinates = convertPoint(intersectionPointWithOrigin, fromView: canvas)
-    let intersectionPointWithTargetInLinkViewCoordinates = convertPoint(intersectionPointWithTarget, fromView: canvas)
-    
-    return Arrow(p1: intersectionPointWithOriginInLinkViewCoordinates, p2: intersectionPointWithTargetInLinkViewCoordinates)
+    if let intersectionPointWithOrigin = originRect.firstIntersectionTo(targetPoint), intersectionPointWithTarget = targetRect.firstIntersectionTo(originPoint) {
+      let intersectionPointWithOriginInLinkViewCoordinates = convertPoint(intersectionPointWithOrigin, fromView: canvas)
+      let intersectionPointWithTargetInLinkViewCoordinates = convertPoint(intersectionPointWithTarget, fromView: canvas)
+      
+      return Arrow(p1: intersectionPointWithOriginInLinkViewCoordinates, p2: intersectionPointWithTargetInLinkViewCoordinates)
+    } else {
+      return nil
+    }
   }
   
   func drawArrow() {
     link.color.set()
-    arrowPath.fill()
+    arrowPath?.fill()
   }
   
   func drawArrowBorder() {
     NSColor.blackColor().set()
-    arrowPath.stroke()
+    arrowPath?.stroke()
   }
   
   // MARK: - Mouse Events
@@ -81,7 +82,7 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
   override func mouseDown(theEvent: NSEvent) {
     sprint("mouse down")
     let point = convertPoint(theEvent.locationInWindow, fromView: nil)
-    if arrowPath.containsPoint(point) {
+    if let arrowPath = arrowPath where arrowPath.containsPoint(point) {
       click(point)
     } else {
       super.mouseDown(theEvent)
