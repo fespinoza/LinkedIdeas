@@ -23,7 +23,14 @@ way to 'explain' the connexion of ideas.
 - [x] multiple select concepts (move them) [#14](https://github.com/fespinoza/linked-ideas-osx/pull/14)
 - [x] align/space concepts [#15](https://github.com/fespinoza/linked-ideas-osx/pull/15)
 - [x] panning canvas [#16](https://github.com/fespinoza/linked-ideas-osx/pull/16)
-- [ ] add editable text to links
+
+## For releasing
+
+- [ ] BUG: dragging fails many times when concepts has already many links
+- [ ] BUG: constrains + dimensions of canvas and NSScrollView
+- [x] change app icon + document icon
+- [ ] add a folder with examples of documents
+- [ ] make a website for releasing
 
 ## Optional Features
 
@@ -32,10 +39,10 @@ way to 'explain' the connexion of ideas.
 - reorder concepts in canvas
 - add editable curvature to links
 - zooming canvas
+- add editable text to links
 
 ## A world of ideas
 
-- BUG: dragging fails many times when concepts has already many links
 - dismiss construction arrow on click
 - construction line not on same worker
 - control + dragging to create straight links

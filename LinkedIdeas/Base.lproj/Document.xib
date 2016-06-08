@@ -17,6 +17,7 @@
                 <outlet property="equalHorizontalSpaceButton" destination="UOz-k6-jid" id="UMa-ZV-6zS"/>
                 <outlet property="equalVerticalSpaceButton" destination="h6j-hq-kaj" id="zGi-yO-mEG"/>
                 <outlet property="linkMode" destination="i7N-v3-T0p" id="HHb-Me-GvD"/>
+                <outlet property="scrollView" destination="Ath-s3-rsM" id="I1h-mR-FBO"/>
                 <outlet property="selectMode" destination="7v6-GU-e5B" id="WKz-LA-ejA"/>
                 <outlet property="ultraWindow" destination="xOd-HO-29H" id="y0s-jg-cSM"/>
                 <outlet property="window" destination="xOd-HO-29H" id="faa-lW-Akj"/>
@@ -150,7 +151,7 @@
                             <rect key="frame" x="1" y="1" width="896" height="530"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="TBv-Q1-CwE" customClass="CanvasView" customModule="LinkedIdeas" customModuleProvider="target">
+                                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TBv-Q1-CwE" customClass="CanvasView" customModule="LinkedIdeas" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="897" height="530"/>
                                     <accessibility description="canvas view" identifier="canvas"/>
                                 </customView>
@@ -159,21 +160,12 @@
                                 <outlet property="nextKeyView" destination="Ath-s3-rsM" id="3sO-vn-JVb"/>
                             </connections>
                         </clipView>
-                        <constraints>
-                            <constraint firstItem="TBv-Q1-CwE" firstAttribute="top" secondItem="Ath-s3-rsM" secondAttribute="top" constant="1" id="03I-EW-dP3"/>
-                            <constraint firstAttribute="trailing" secondItem="TBv-Q1-CwE" secondAttribute="trailing" id="7GM-Qc-Leu"/>
-                            <constraint firstItem="TBv-Q1-CwE" firstAttribute="width" relation="lessThanOrEqual" secondItem="Ath-s3-rsM" secondAttribute="width" id="CfM-xX-6Ip"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="530" id="PNv-SH-oab"/>
-                            <constraint firstAttribute="bottom" secondItem="TBv-Q1-CwE" secondAttribute="bottom" constant="1" id="UaE-yi-KId"/>
-                            <constraint firstItem="TBv-Q1-CwE" firstAttribute="leading" secondItem="Ath-s3-rsM" secondAttribute="leading" constant="1" id="gl8-KU-Fvh"/>
-                            <constraint firstItem="TBv-Q1-CwE" firstAttribute="height" relation="lessThanOrEqual" secondItem="Ath-s3-rsM" secondAttribute="height" id="oh1-vr-drr"/>
-                        </constraints>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="raK-9g-TDA">
                             <rect key="frame" x="1" y="515" width="896" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="7fF-pE-QO0">
-                            <rect key="frame" x="881" y="1" width="16" height="530"/>
+                            <rect key="frame" x="882" y="1" width="15" height="530"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>

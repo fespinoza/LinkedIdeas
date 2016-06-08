@@ -18,6 +18,7 @@ class WindowController: NSWindowController, AlignmentFunctions {
   
   @IBOutlet weak var colorSelector: NSColorWell!
   
+  @IBOutlet weak var scrollView: NSScrollView!
   dynamic var selectedColor: NSColor = Link.defaultColor
   
   var editionMode = Mode.Concepts
@@ -40,6 +41,7 @@ class WindowController: NSWindowController, AlignmentFunctions {
     
     let currentDocument = document as! Document
     canvas.document = currentDocument
+    canvas.frame = scrollView.bounds
   }
   
   // MARK: - Keyboard Events

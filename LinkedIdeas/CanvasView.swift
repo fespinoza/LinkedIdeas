@@ -64,13 +64,14 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     let maxY = (elements.map { $0.rect.maxY }).maxElement()!
     return NSMakeRect(minX, minY, maxX - minX, maxY - minY)
   }
-
+  
+  let minCanvasSize = NSMakeSize(900, 530)
   let padding: CGFloat = 30.0
   override var intrinsicContentSize: NSSize {
     let elements = concepts.map { $0 as SquareElement }
     var size = containingRectFor(elements).size
-    size.height += padding
-    size.width  += padding
+    size.height = [size.height, minCanvasSize.height].maxElement()! + padding
+    size.width  = [size.width, minCanvasSize.width].maxElement()! + padding
     return size
   }
 
