@@ -186,8 +186,9 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   func createConceptViewFor(concept: Concept) -> ConceptView {
     let conceptView = ConceptView(concept: concept, canvas: self)
     conceptViews[concept.identifier] = conceptView
-    Swift.print("create concept view for \(concept)")
-    addSubview(conceptView)
+    
+    addSubview(conceptView, positioned:.Above, relativeTo: nil)
+    
     return conceptView
   }
 
@@ -275,7 +276,7 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     } else {
       sprint("draw new link view for \(link)")
       let linkView = LinkView(link: link, canvas: self)
-      addSubview(linkView)
+      addSubview(linkView, positioned: .Below, relativeTo: nil)
       linkViews[link.identifier] = linkView
     }
   }
