@@ -27,7 +27,10 @@ way to 'explain' the connexion of ideas.
 ## For releasing
 
 - [ ] BUG: dragging fails many times when concepts has already many links
+    - investigate about zIndex
 - [ ] BUG: constrains + dimensions of canvas and NSScrollView
+    - investigate about Autoresizing masks
+    - [x] liveAutoRealoading false
 - [x] change app icon + document icon
 - [ ] add a folder with examples of documents
 - [ ] make a website for releasing
