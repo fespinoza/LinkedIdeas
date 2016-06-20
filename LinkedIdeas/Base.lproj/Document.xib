@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="WindowController" customModule="LinkedIdeas" customModuleProvider="target">
@@ -13,12 +13,10 @@
                 <outlet property="alignVerticallyRightButton" destination="FTF-sG-ov7" id="WNr-Kj-bef"/>
                 <outlet property="canvas" destination="TBv-Q1-CwE" id="hL5-Wd-5Lv"/>
                 <outlet property="colorSelector" destination="T1A-TJ-gzE" id="pbo-WW-Yk7"/>
-                <outlet property="conceptMode" destination="M5U-qj-cKy" id="Qgn-Fn-Oau"/>
                 <outlet property="equalHorizontalSpaceButton" destination="UOz-k6-jid" id="UMa-ZV-6zS"/>
                 <outlet property="equalVerticalSpaceButton" destination="h6j-hq-kaj" id="zGi-yO-mEG"/>
-                <outlet property="linkMode" destination="i7N-v3-T0p" id="HHb-Me-GvD"/>
+                <outlet property="modeSelector" destination="b9e-PI-TpR" id="fQk-lc-sdU"/>
                 <outlet property="scrollView" destination="Ath-s3-rsM" id="I1h-mR-FBO"/>
-                <outlet property="selectMode" destination="7v6-GU-e5B" id="WKz-LA-ejA"/>
                 <outlet property="ultraWindow" destination="xOd-HO-29H" id="y0s-jg-cSM"/>
                 <outlet property="window" destination="xOd-HO-29H" id="faa-lW-Akj"/>
             </connections>
@@ -29,50 +27,12 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="133" y="235" width="898" height="602"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <value key="minSize" type="size" width="94" height="86"/>
             <view key="contentView" id="gIp-Ho-8D9">
                 <rect key="frame" x="0.0" y="0.0" width="898" height="602"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="M5U-qj-cKy">
-                        <rect key="frame" x="139" y="565" width="80" height="18"/>
-                        <buttonCell key="cell" type="radio" title="Concepts" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="zDM-p1-BMN">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="changeMode:" target="-2" id="Tzb-KH-5Vv"/>
-                        </connections>
-                    </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V2K-jY-9vr">
-                        <rect key="frame" x="18" y="565" width="32" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Add:" id="bR3-3x-2LK">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="7v6-GU-e5B">
-                        <rect key="frame" x="62" y="565" width="61" height="18"/>
-                        <buttonCell key="cell" type="radio" title="Select" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="AX3-PE-uyz">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="changeMode:" target="-2" id="bS3-pg-OHb"/>
-                        </connections>
-                    </button>
-                    <button tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="i7N-v3-T0p">
-                        <rect key="frame" x="235" y="565" width="54" height="18"/>
-                        <buttonCell key="cell" type="radio" title="Links" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="BP9-Qq-X3c">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="changeMode:" target="-2" id="Kmn-Kc-uJH"/>
-                        </connections>
-                    </button>
                     <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="T1A-TJ-gzE">
                         <rect key="frame" x="834" y="562" width="44" height="23"/>
                         <constraints>
@@ -151,11 +111,21 @@
                             <rect key="frame" x="1" y="1" width="896" height="530"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <customView autoresizesSubviews="NO" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TBv-Q1-CwE" customClass="CanvasView" customModule="LinkedIdeas" customModuleProvider="target">
+                                <customView autoresizesSubviews="NO" canDrawConcurrently="YES" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TBv-Q1-CwE" customClass="CanvasView" customModule="LinkedIdeas" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="897" height="530"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="897" id="ABu-cR-9Cb"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="530" id="ZBJ-tk-mhv"/>
+                                    </constraints>
                                     <accessibility description="canvas view" identifier="canvas"/>
                                 </customView>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="TBv-Q1-CwE" firstAttribute="leading" secondItem="Boz-r0-yx4" secondAttribute="leading" id="JRh-Ux-GBO"/>
+                                <constraint firstAttribute="bottom" secondItem="TBv-Q1-CwE" secondAttribute="bottom" id="MCx-4W-wyO"/>
+                                <constraint firstItem="TBv-Q1-CwE" firstAttribute="width" relation="greaterThanOrEqual" secondItem="Boz-r0-yx4" secondAttribute="width" id="NqQ-4p-GrX"/>
+                                <constraint firstItem="TBv-Q1-CwE" firstAttribute="height" relation="greaterThanOrEqual" secondItem="Boz-r0-yx4" secondAttribute="height" id="ZQs-ar-eFL"/>
+                            </constraints>
                             <connections>
                                 <outlet property="nextKeyView" destination="Ath-s3-rsM" id="3sO-vn-JVb"/>
                             </connections>
@@ -169,35 +139,43 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
+                    <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b9e-PI-TpR">
+                        <rect key="frame" x="18" y="563" width="234" height="24"/>
+                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="PJV-T4-oUr">
+                            <font key="font" metaFont="system"/>
+                            <segments>
+                                <segment label="Select" width="76" selected="YES"/>
+                                <segment label="Concept" width="75" tag="1"/>
+                                <segment label="Link" width="75"/>
+                            </segments>
+                        </segmentedCell>
+                        <connections>
+                            <action selector="changeMode:" target="-2" id="CUf-8Z-ihg"/>
+                        </connections>
+                    </segmentedControl>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="b9e-PI-TpR" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" constant="20" id="7J8-HJ-Vxh"/>
                     <constraint firstItem="N9U-yA-6oG" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="16" id="9sg-nu-KoY"/>
-                    <constraint firstItem="V2K-jY-9vr" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" constant="20" id="AMb-qU-YE1"/>
-                    <constraint firstItem="7v6-GU-e5B" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="20" id="BFO-0a-jRe"/>
                     <constraint firstAttribute="bottom" secondItem="Ath-s3-rsM" secondAttribute="bottom" constant="21" id="BJE-ho-GdT"/>
                     <constraint firstItem="4Xv-gC-kiP" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="16" id="Bwd-jD-DqA"/>
-                    <constraint firstItem="4Xv-gC-kiP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FTF-sG-ov7" secondAttribute="trailing" constant="53" id="BzK-yd-Z2k"/>
+                    <constraint firstItem="4Xv-gC-kiP" firstAttribute="leading" secondItem="FTF-sG-ov7" secondAttribute="trailing" constant="53" id="BzK-yd-Z2k"/>
+                    <constraint firstItem="b9e-PI-TpR" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="16" id="DTs-YO-E4O"/>
                     <constraint firstItem="6ZX-BH-Csy" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="16" id="Dct-iS-hMn"/>
                     <constraint firstItem="Ath-s3-rsM" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="49" id="HH1-0c-cHo"/>
                     <constraint firstItem="h6j-hq-kaj" firstAttribute="leading" secondItem="4Xv-gC-kiP" secondAttribute="trailing" constant="23" id="Hny-1E-S1i"/>
-                    <constraint firstItem="M5U-qj-cKy" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="20" id="I13-XB-rhJ"/>
-                    <constraint firstItem="i7N-v3-T0p" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="20" id="L8i-1R-Hed"/>
-                    <constraint firstItem="M5U-qj-cKy" firstAttribute="leading" secondItem="7v6-GU-e5B" secondAttribute="trailing" constant="19" id="LFY-Nk-QAZ"/>
                     <constraint firstItem="FTF-sG-ov7" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="16" id="QJk-Rp-B6j"/>
                     <constraint firstItem="N9U-yA-6oG" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" constant="364" id="Qyx-FU-JVd"/>
                     <constraint firstItem="FTF-sG-ov7" firstAttribute="leading" secondItem="6ZX-BH-Csy" secondAttribute="trailing" constant="4" id="S8a-Nx-PIO"/>
-                    <constraint firstItem="T1A-TJ-gzE" firstAttribute="leading" secondItem="UOz-k6-jid" secondAttribute="trailing" constant="30" id="Twm-W9-dnJ"/>
                     <constraint firstItem="6ZX-BH-Csy" firstAttribute="leading" secondItem="N9U-yA-6oG" secondAttribute="trailing" constant="4" id="Vh9-ez-l3Z"/>
                     <constraint firstAttribute="trailing" secondItem="Ath-s3-rsM" secondAttribute="trailing" id="WMR-9j-bKD"/>
+                    <constraint firstItem="T1A-TJ-gzE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UOz-k6-jid" secondAttribute="trailing" constant="30" id="eMx-St-bOV"/>
                     <constraint firstAttribute="trailing" secondItem="T1A-TJ-gzE" secondAttribute="trailing" constant="20" id="g5H-fM-D2a"/>
-                    <constraint firstItem="7v6-GU-e5B" firstAttribute="leading" secondItem="V2K-jY-9vr" secondAttribute="trailing" constant="15" id="h91-sU-sJe"/>
-                    <constraint firstItem="V2K-jY-9vr" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="20" id="haX-pE-WMQ"/>
                     <constraint firstItem="T1A-TJ-gzE" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="17" id="hj4-fp-0mp"/>
                     <constraint firstItem="UOz-k6-jid" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="16" id="o4r-wH-Lnj"/>
                     <constraint firstItem="Ath-s3-rsM" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" id="pml-qa-8dQ"/>
                     <constraint firstItem="UOz-k6-jid" firstAttribute="leading" secondItem="h6j-hq-kaj" secondAttribute="trailing" constant="3" id="tks-KR-jKx"/>
                     <constraint firstItem="h6j-hq-kaj" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="16" id="whu-dT-qek"/>
-                    <constraint firstItem="i7N-v3-T0p" firstAttribute="leading" secondItem="M5U-qj-cKy" secondAttribute="trailing" constant="19" id="zBp-2Z-IRE"/>
                 </constraints>
             </view>
             <connections>
