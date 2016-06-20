@@ -42,12 +42,14 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     drawLinkViews()
     
     if isDragging {
-      let selectionRect = NSRect(p1: initialPoint!, p2: endPoint!)
-      let path = NSBezierPath(rect: selectionRect)
-      fillColor.set()
-      path.fill()
-      borderColor.set()
-      path.stroke()
+      if let initialPoint = initialPoint, endPoint = endPoint {
+        let selectionRect = NSRect(p1: initialPoint, p2: endPoint)
+        let path = NSBezierPath(rect: selectionRect)
+        fillColor.set()
+        path.fill()
+        borderColor.set()
+        path.stroke()
+      }
     }
     
     if (mode == .Links) { showConstructionArrow() }
@@ -66,12 +68,15 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   }
   
   let minCanvasSize = NSMakeSize(900, 530)
-  let padding: CGFloat = 30.0
+  let padding: CGFloat = 300.0
+  
   override var intrinsicContentSize: NSSize {
     let elements = concepts.map { $0 as SquareElement }
     var size = containingRectFor(elements).size
+    sprint("containingRect \(containingRectFor(elements))")
     size.height = [size.height, minCanvasSize.height].maxElement()! + padding
     size.width  = [size.width, minCanvasSize.width].maxElement()! + padding
+    sprint("size \(size)")
     return size
   }
 
