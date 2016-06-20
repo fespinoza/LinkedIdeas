@@ -183,10 +183,10 @@ extension HoveringView where Self: NSView {
   }
   
   func drawHoveringState() {
-    if (isHoveringView) {
-      NSColor.blueColor().set()
-      NSBezierPath(rect: bounds).stroke()
-    }
+//    if (isHoveringView) {
+//      NSColor.blueColor().set()
+//      NSBezierPath(rect: bounds).stroke()
+//    }
   }
   
   func enableTrackingArea() {
