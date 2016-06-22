@@ -9,18 +9,14 @@
 import Cocoa
 
 class WindowController: NSWindowController, AlignmentFunctions {
+  
   @IBOutlet var ultraWindow: NSWindow!
-  
   @IBOutlet weak var canvas: CanvasView!
-  @IBOutlet weak var selectMode: NSButton!
-  @IBOutlet weak var conceptMode: NSButton!
-  @IBOutlet weak var linkMode: NSButton!
-  
+  @IBOutlet weak var modeSelector: NSSegmentedControl!
   @IBOutlet weak var colorSelector: NSColorWell!
-  
   @IBOutlet weak var scrollView: NSScrollView!
-  dynamic var selectedColor: NSColor = Link.defaultColor
   
+  dynamic var selectedColor: NSColor = Link.defaultColor
   var editionMode = Mode.Concepts
   
   convenience init() {
@@ -44,32 +40,57 @@ class WindowController: NSWindowController, AlignmentFunctions {
     canvas.frame = scrollView.bounds
   }
   
+  let numberOne: UInt16 = 18
+  let numberTwo: UInt16 = 19
+  let numberThree: UInt16 = 20
+  let numberFour: UInt16 = 21
+  let numberFive: UInt16 = 22
+  let numberSix: UInt16  = 23
+
+  
   // MARK: - Keyboard Events
   override func keyDown(theEvent: NSEvent) {
-    switch theEvent.keyCode {
-    case 18:
-      canvas.mode = .Select
-      selectMode.cell?.state = 1
-    case 19:
-      canvas.mode = .Concepts
-      conceptMode.cell?.state = 1
-    case 20:
-      canvas.mode = .Links
-      linkMode.cell?.state = 1
-    default: break
+    if (theEvent.modifierFlags.contains(.ShiftKeyMask)) {
+      switch theEvent.keyCode {
+      case numberOne:
+        alignVertically(alignVerticallyLeftButton)
+      case numberTwo:
+        alignVertically(alignVerticallyCenterButton)
+      case numberThree:
+        alignVertically(alignVerticallyRightButton)
+      case numberFour:
+        alignVertically(alignHorizontallyButton)
+      case numberFive:
+        alignVertically(equalHorizontalSpaceButton)
+      case numberSix:
+        alignVertically(equalVerticalSpaceButton)
+      default: break
+      }
+    } else {
+      switch theEvent.keyCode {
+      case numberOne:
+        canvas.mode = .Select
+        modeSelector.selectedSegment = 0
+      case numberTwo:
+        canvas.mode = .Concepts
+        modeSelector.selectedSegment = 1
+      case numberThree:
+        canvas.mode = .Links
+        modeSelector.selectedSegment = 2
+      default: break
+      }
     }
   }
   
-  @IBAction func changeMode(sender: NSButton) {
-    switch sender {
-    case conceptMode:
+  @IBAction func changeMode(sender: NSSegmentedControl) {
+    switch sender.doubleValueForSelectedSegment {
+    case 1:
       editionMode = .Concepts
-    case linkMode:
+    case 2:
       editionMode = .Links
     default:
       editionMode = .Select
     }
-    Swift.print(editionMode)
     canvas.mode = editionMode
   }
   
