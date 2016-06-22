@@ -24,16 +24,6 @@ way to 'explain' the connexion of ideas.
 - [x] align/space concepts [#15][15]
 - [x] panning canvas [#16][16]
 
-## For releasing
-
-- [x] BUG: dragging fails many times when concepts has already many links
-- [ ] BUG: constrains + dimensions of canvas and NSScrollView
-    - investigate about Autoresizing masks
-    - [x] liveAutoRealoading false
-- [x] change app icon + document icon
-- [x] add a folder with examples of documents
-- [ ] make a website for releasing
-
 ## Optional Features
 
 - export document as image
@@ -48,7 +38,6 @@ way to 'explain' the connexion of ideas.
 - dismiss construction arrow on click
 - construction line not on same worker
 - control + dragging to create straight links
-- aligment of concepts
 - center text
 - copy/paste/duplicate concepts/links
 - refactor conceptView/linkView use a delegate to decouple from Canvas
