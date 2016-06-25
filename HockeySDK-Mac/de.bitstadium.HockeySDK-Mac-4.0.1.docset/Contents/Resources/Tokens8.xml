@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/BITChannel.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/BITChannel</TokenIdentifier>
+			<Abstract type="html">Items get queued before they are persisted and sent out as a batch. This class managed the queue, and forwards the batch
+to the persistence layer once the max batch count has been reached.</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+            
+			
+			<NodeRef refid="8"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITChannel/setTelemetryContext:</TokenIdentifier>
+			<Abstract type="html">Telemetry context used by the channel to create the payload (testing).</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) BITTelemetryContext *telemetryContext</Declaration>
+			
+			
+			<Anchor>//api/name/telemetryContext</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITChannel/telemetryContext</TokenIdentifier>
+			<Abstract type="html">Telemetry context used by the channel to create the payload (testing).</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) BITTelemetryContext *telemetryContext</Declaration>
+			
+			
+			<Anchor>//api/name/telemetryContext</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITChannel/telemetryContext</TokenIdentifier>
+			<Abstract type="html">Telemetry context used by the channel to create the payload (testing).</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) BITTelemetryContext *telemetryContext</Declaration>
+			
+			
+			<Anchor>//api/name/telemetryContext</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITChannel/setPersistence:</TokenIdentifier>
+			<Abstract type="html">Persistence instance for storing files after the queue gets flushed (testing).</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) BITPersistence *persistence</Declaration>
+			
+			
+			<Anchor>//api/name/persistence</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITChannel/persistence</TokenIdentifier>
+			<Abstract type="html">Persistence instance for storing files after the queue gets flushed (testing).</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) BITPersistence *persistence</Declaration>
+			
+			
+			<Anchor>//api/name/persistence</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITChannel/persistence</TokenIdentifier>
+			<Abstract type="html">Persistence instance for storing files after the queue gets flushed (testing).</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) BITPersistence *persistence</Declaration>
+			
+			
+			<Anchor>//api/name/persistence</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITChannel/setMaxBatchCount:</TokenIdentifier>
+			<Abstract type="html">Number of queue items which will trigger a flush (testing).</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSUInteger maxBatchCount</Declaration>
+			
+			
+			<Anchor>//api/name/maxBatchCount</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITChannel/maxBatchCount</TokenIdentifier>
+			<Abstract type="html">Number of queue items which will trigger a flush (testing).</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSUInteger maxBatchCount</Declaration>
+			
+			
+			<Anchor>//api/name/maxBatchCount</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITChannel/maxBatchCount</TokenIdentifier>
+			<Abstract type="html">Number of queue items which will trigger a flush (testing).</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic) NSUInteger maxBatchCount</Declaration>
+			
+			
+			<Anchor>//api/name/maxBatchCount</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITChannel/setDataItemsOperations:</TokenIdentifier>
+			<Abstract type="html">A queue which makes array operations thread safe.</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) dispatch_queue_t dataItemsOperations</Declaration>
+			
+			
+			<Anchor>//api/name/dataItemsOperations</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITChannel/dataItemsOperations</TokenIdentifier>
+			<Abstract type="html">A queue which makes array operations thread safe.</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) dispatch_queue_t dataItemsOperations</Declaration>
+			
+			
+			<Anchor>//api/name/dataItemsOperations</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITChannel/dataItemsOperations</TokenIdentifier>
+			<Abstract type="html">A queue which makes array operations thread safe.</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) dispatch_queue_t dataItemsOperations</Declaration>
+			
+			
+			<Anchor>//api/name/dataItemsOperations</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITChannel/setDataItemCount:</TokenIdentifier>
+			<Abstract type="html">An integer value that keeps tracks of the number of data items added to the JSON Stream string.</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) NSUInteger dataItemCount</Declaration>
+			
+			
+			<Anchor>//api/name/dataItemCount</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITChannel/dataItemCount</TokenIdentifier>
+			<Abstract type="html">An integer value that keeps tracks of the number of data items added to the JSON Stream string.</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) NSUInteger dataItemCount</Declaration>
+			
+			
+			<Anchor>//api/name/dataItemCount</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITChannel/dataItemCount</TokenIdentifier>
+			<Abstract type="html">An integer value that keeps tracks of the number of data items added to the JSON Stream string.</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) NSUInteger dataItemCount</Declaration>
+			
+			
+			<Anchor>//api/name/dataItemCount</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITChannel/initWithTelemetryContext:persistence:</TokenIdentifier>
+			<Abstract type="html">Initializes a new BITChannel instance.</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithTelemetryContext:(BITTelemetryContext *)telemetryContext persistence:(BITPersistence *)persistence</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>telemetryContext</Name>
+					<Abstract type="html">the context used to add context values to the metrics payload</Abstract>
+				</Parameter><Parameter>
+					<Name>persistence</Name>
+					<Abstract type="html">the persistence used to save metrics after the queue gets flushed</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">the telemetry context</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithTelemetryContext:persistence:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITChannel/enqueueTelemetryItem:</TokenIdentifier>
+			<Abstract type="html">Enqueue telemetry data (events, metrics, exceptions, traces) before processing it.</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)enqueueTelemetryItem:(BITTelemetryData *)item</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>item</Name>
+					<Abstract type="html">the telemetry object, which should be processed</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/enqueueTelemetryItem:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITChannel/persistDataItemQueue</TokenIdentifier>
+			<Abstract type="html">Manually trigger the BITChannel to persist all items currently in its data item queue.</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)persistDataItemQueue</Declaration>
+			
+			
+			<Anchor>//api/name/persistDataItemQueue</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITChannel/appendDictionaryToJsonStream:</TokenIdentifier>
+			<Abstract type="html">Adds the specified dictionary to the JSON Stream string.</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)appendDictionaryToJsonStream:(BITOrderedDictionary *)dictionary</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>dictionary</Name>
+					<Abstract type="html">the dictionary object which is to be added to the JSON Stream queue string.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/appendDictionaryToJsonStream:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITChannel/isQueueBusy</TokenIdentifier>
+			<Abstract type="html">A method which indicates whether the telemetry pipeline is busy and no new data should be enqueued.
+Currently, we drop telemetry data if this returns YES.
+This depends on defaultMaxBatchCount and defaultBatchInterval.</Abstract>
+			<DeclaredIn>BITChannel.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)isQueueBusy</Declaration>
+			
+			<ReturnValue><Abstract type="html">Returns yes if currently no new data should be enqueued on the channel.</Abstract></ReturnValue>
+			<Anchor>//api/name/isQueueBusy</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

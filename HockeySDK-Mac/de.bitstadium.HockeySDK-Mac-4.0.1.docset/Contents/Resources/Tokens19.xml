@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/BITHockeyManager.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/BITHockeyManager</TokenIdentifier>
+			<Abstract type="html">The HockeySDK manager. Responsible for setup and management of all components</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+            
+			
+			<NodeRef refid="19"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/BITHockeyManager/sharedHockeyManager</TokenIdentifier>
+			<Abstract type="html">Returns the shared manager object</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+			<Declaration>+ (BITHockeyManager *)sharedHockeyManager</Declaration>
+			
+			<ReturnValue><Abstract type="html">A singleton BITHockeyManager instance ready use</Abstract></ReturnValue>
+			<Anchor>//api/name/sharedHockeyManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:</TokenIdentifier>
+			<Abstract type="html">Initializes the manager with a particular app identifier, company name and delegate</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/BITCrashManagerDelegate</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/startManager</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:delegate:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (void)configureWithIdentifier:(NSString *)appIdentifier</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>appIdentifier</Name>
+					<Abstract type="html">The app identifier that should be used.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/configureWithIdentifier:</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:delegate:</TokenIdentifier>
+			<Abstract type="html">Initializes the manager with a particular app identifier, company name and delegate</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/BITCrashManagerDelegate</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/startManager</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (void)configureWithIdentifier:(NSString *)appIdentifier delegate:(id&lt;BITHockeyManagerDelegate&gt;)delegate</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>appIdentifier</Name>
+					<Abstract type="html">The app identifier that should be used.</Abstract>
+				</Parameter><Parameter>
+					<Name>delegate</Name>
+					<Abstract type="html">nil or the class implementing the optional protocols</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/configureWithIdentifier:delegate:</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:companyName:delegate:</TokenIdentifier>
+			<Abstract type="html">Initializes the manager with a particular app identifier, company name and delegate</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/BITCrashManagerDelegate</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/startManager</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:delegate:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (void)configureWithIdentifier:(NSString *)appIdentifier companyName:(NSString *)companyName delegate:(id&lt;BITHockeyManagerDelegate&gt;)delegate</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>appIdentifier</Name>
+					<Abstract type="html">The app identifier that should be used.</Abstract>
+				</Parameter><Parameter>
+					<Name>companyName</Name>
+					<Abstract type="html">nil or the company name, this is not used anywhere any longer.</Abstract>
+				</Parameter><Parameter>
+					<Name>delegate</Name>
+					<Abstract type="html">nil or the class implementing the required protocols</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/configureWithIdentifier:companyName:delegate:</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/startManager</TokenIdentifier>
+			<Abstract type="html">Starts the manager and runs all modules</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:delegate:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (void)startManager</Declaration>
+			
+			
+			<Anchor>//api/name/startManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setDelegate:</TokenIdentifier>
+			<Abstract type="html">Set the delegate</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/BITHockeyManagerDelegate</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/intf/BITCrashManagerDelegate</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, unsafe_unretained) id&lt;BITHockeyManagerDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/delegate</TokenIdentifier>
+			<Abstract type="html">Set the delegate</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/BITHockeyManagerDelegate</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/intf/BITCrashManagerDelegate</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, unsafe_unretained) id&lt;BITHockeyManagerDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/delegate</TokenIdentifier>
+			<Abstract type="html">Set the delegate</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/BITHockeyManagerDelegate</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/intf/BITCrashManagerDelegate</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, unsafe_unretained) id&lt;BITHockeyManagerDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setServerURL:</TokenIdentifier>
+			<Abstract type="html">Defines the server URL to send data to or request data from</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *serverURL</Declaration>
+			
+			
+			<Anchor>//api/name/serverURL</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/serverURL</TokenIdentifier>
+			<Abstract type="html">Defines the server URL to send data to or request data from</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *serverURL</Declaration>
+			
+			
+			<Anchor>//api/name/serverURL</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/serverURL</TokenIdentifier>
+			<Abstract type="html">Defines the server URL to send data to or request data from</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *serverURL</Declaration>
+			
+			
+			<Anchor>//api/name/serverURL</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setCrashManager:</TokenIdentifier>
+			<Abstract type="html">Reference to the initialized BITCrashManager module</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:delegate:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/startManager</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/disableCrashManager</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, strong, readonly) BITCrashManager *crashManager</Declaration>
+			
+			
+			<Anchor>//api/name/crashManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/crashManager</TokenIdentifier>
+			<Abstract type="html">Reference to the initialized BITCrashManager module</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:delegate:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/startManager</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/disableCrashManager</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, strong, readonly) BITCrashManager *crashManager</Declaration>
+			
+			
+			<Anchor>//api/name/crashManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/crashManager</TokenIdentifier>
+			<Abstract type="html">Reference to the initialized BITCrashManager module</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:delegate:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/startManager</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/disableCrashManager</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, strong, readonly) BITCrashManager *crashManager</Declaration>
+			
+			
+			<Anchor>//api/name/crashManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setDisableCrashManager:</TokenIdentifier>
+			<Abstract type="html">Flag the determines whether the Crash Manager should be disabled</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/crashManager</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, getter=isCrashManagerDisabled) BOOL disableCrashManager</Declaration>
+			
+			
+			<Anchor>//api/name/disableCrashManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/isCrashManagerDisabled</TokenIdentifier>
+			<Abstract type="html">Flag the determines whether the Crash Manager should be disabled</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/crashManager</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, getter=isCrashManagerDisabled) BOOL disableCrashManager</Declaration>
+			
+			
+			<Anchor>//api/name/disableCrashManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/disableCrashManager</TokenIdentifier>
+			<Abstract type="html">Flag the determines whether the Crash Manager should be disabled</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/crashManager</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, getter=isCrashManagerDisabled) BOOL disableCrashManager</Declaration>
+			
+			
+			<Anchor>//api/name/disableCrashManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setFeedbackManager:</TokenIdentifier>
+			<Abstract type="html">Reference to the initialized BITFeedbackManager module</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:delegate:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/startManager</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/disableFeedbackManager</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, strong, readonly) BITFeedbackManager *feedbackManager</Declaration>
+			
+			
+			<Anchor>//api/name/feedbackManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/feedbackManager</TokenIdentifier>
+			<Abstract type="html">Reference to the initialized BITFeedbackManager module</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:delegate:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/startManager</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/disableFeedbackManager</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, strong, readonly) BITFeedbackManager *feedbackManager</Declaration>
+			
+			
+			<Anchor>//api/name/feedbackManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/feedbackManager</TokenIdentifier>
+			<Abstract type="html">Reference to the initialized BITFeedbackManager module</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/configureWithIdentifier:delegate:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/startManager</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/disableFeedbackManager</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, strong, readonly) BITFeedbackManager *feedbackManager</Declaration>
+			
+			
+			<Anchor>//api/name/feedbackManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setDisableFeedbackManager:</TokenIdentifier>
+			<Abstract type="html">Flag the determines whether the Feedback Manager should be disabled</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/feedbackManager</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, getter=isFeedbackManagerDisabled) BOOL disableFeedbackManager</Declaration>
+			
+			
+			<Anchor>//api/name/disableFeedbackManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/isFeedbackManagerDisabled</TokenIdentifier>
+			<Abstract type="html">Flag the determines whether the Feedback Manager should be disabled</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/feedbackManager</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, getter=isFeedbackManagerDisabled) BOOL disableFeedbackManager</Declaration>
+			
+			
+			<Anchor>//api/name/disableFeedbackManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/disableFeedbackManager</TokenIdentifier>
+			<Abstract type="html">Flag the determines whether the Feedback Manager should be disabled</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/feedbackManager</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, getter=isFeedbackManagerDisabled) BOOL disableFeedbackManager</Declaration>
+			
+			
+			<Anchor>//api/name/disableFeedbackManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setMetricsManager:</TokenIdentifier>
+			<Abstract type="html">Reference to the initialized BITMetricsManager module</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) BITMetricsManager *metricsManager</Declaration>
+			
+			
+			<Anchor>//api/name/metricsManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/metricsManager</TokenIdentifier>
+			<Abstract type="html">Reference to the initialized BITMetricsManager module</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) BITMetricsManager *metricsManager</Declaration>
+			
+			
+			<Anchor>//api/name/metricsManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/metricsManager</TokenIdentifier>
+			<Abstract type="html">Reference to the initialized BITMetricsManager module</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) BITMetricsManager *metricsManager</Declaration>
+			
+			
+			<Anchor>//api/name/metricsManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setDisableMetricsManager:</TokenIdentifier>
+			<Abstract type="html">Flag the determines whether the BITMetricsManager should be disabled</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/metricsManager</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, getter=isMetricsManagerDisabled) BOOL disableMetricsManager</Declaration>
+			
+			
+			<Anchor>//api/name/disableMetricsManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/isMetricsManagerDisabled</TokenIdentifier>
+			<Abstract type="html">Flag the determines whether the BITMetricsManager should be disabled</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/metricsManager</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, getter=isMetricsManagerDisabled) BOOL disableMetricsManager</Declaration>
+			
+			
+			<Anchor>//api/name/disableMetricsManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/disableMetricsManager</TokenIdentifier>
+			<Abstract type="html">Flag the determines whether the BITMetricsManager should be disabled</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/metricsManager</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, getter=isMetricsManagerDisabled) BOOL disableMetricsManager</Declaration>
+			
+			
+			<Anchor>//api/name/disableMetricsManager</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setUserID:</TokenIdentifier>
+			<Abstract type="html">Set the userid that should used in the SDK components</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intfm/BITHockeyManagerDelegate/userIDForHockeyManager:componentManager:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setUserName:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setUserEmail:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (void)setUserID:(NSString *)userID</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>userID</Name>
+					<Abstract type="html">NSString value for the userID</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setUserID:</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setUserName:</TokenIdentifier>
+			<Abstract type="html">Set the user name that should used in the SDK components</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intfm/BITHockeyManagerDelegate/userNameForHockeyManager:componentManager:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setUserID:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setUserEmail:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (void)setUserName:(NSString *)userName</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>userName</Name>
+					<Abstract type="html">NSString value for the userName</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setUserName:</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setUserEmail:</TokenIdentifier>
+			<Abstract type="html">Set the users email address that should used in the SDK components</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intfm/BITHockeyManagerDelegate/userEmailForHockeyManager:componentManager:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setUserID:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setUserName:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (void)setUserEmail:(NSString *)userEmail</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>userEmail</Name>
+					<Abstract type="html">NSString value for the userEmail</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setUserEmail:</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/setDebugLogEnabled:</TokenIdentifier>
+			<Abstract type="html">Flag that determines whether additional logging output should be generated
+by the manager and all modules.</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign, getter=isDebugLogEnabled) BOOL debugLogEnabled</Declaration>
+			
+			
+			<Anchor>//api/name/debugLogEnabled</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/isDebugLogEnabled</TokenIdentifier>
+			<Abstract type="html">Flag that determines whether additional logging output should be generated
+by the manager and all modules.</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign, getter=isDebugLogEnabled) BOOL debugLogEnabled</Declaration>
+			
+			
+			<Anchor>//api/name/debugLogEnabled</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITHockeyManager/debugLogEnabled</TokenIdentifier>
+			<Abstract type="html">Flag that determines whether additional logging output should be generated
+by the manager and all modules.</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign, getter=isDebugLogEnabled) BOOL debugLogEnabled</Declaration>
+			
+			
+			<Anchor>//api/name/debugLogEnabled</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITHockeyManager/testIdentifier</TokenIdentifier>
+			<Abstract type="html">Pings the server with the HockeyApp app identifiers used for initialization</Abstract>
+			<DeclaredIn>BITHockeyManager.h</DeclaredIn>
+			
+			<Declaration>- (void)testIdentifier</Declaration>
+			
+			
+			<Anchor>//api/name/testIdentifier</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

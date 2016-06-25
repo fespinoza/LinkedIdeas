@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>BITFeedbackManager Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1334)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">HockeySDK-Mac 4.0.1 </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Bit Stadium GmbH</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/requireUserEmail">requireUserEmail</option>
+		
+		<option value="//api/name/requireUserName">requireUserName</option>
+		
+		<option value="//api/name/showAlertOnIncomingMessages">showAlertOnIncomingMessages</option>
+		
+	</optgroup>
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/showFeedbackWindow">- showFeedbackWindow</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">BITFeedbackManager Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td><a href="../Classes/BITHockeyBaseManager.html">BITHockeyBaseManager</a> : NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>BITFeedbackManager.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>The feedback module.</p>
+
+<p>This is the HockeySDK module for letting your users to communicate directly with you via
+the app and an integrated user interface. It provides to have a single threaded
+discussion with a user running your app.</p>
+
+<p>The user interface provides a window than can be presented  using
+<a href="#//api/name/showFeedbackWindow"><code>[BITFeedbackManager showFeedbackWindow]</code></a>.
+This window integrates all features to load new messages, write new messages, view message
+and ask the user for additional (optional) data like name and email.</p>
+
+<p>If the user provides the email address, all responses from the server will also be send
+to the user via email and the user is also able to respond directly via email too.</p>
+
+<p>It is also integrates actions to invoke the user interface to compose a new messages,
+reload the list content from the server and changing the users name or email if these
+are allowed to be set.</p>
+
+<p>If new messages are written while the device is offline, the SDK automatically retries to
+send them once the app starts again or gets active again, or if the notification
+<code>BITHockeyNetworkDidBecomeReachableNotification</code> is fired.</p>
+
+<p>New message are automatically loaded on startup, when the app becomes active again
+or when the notification <code>BITHockeyNetworkDidBecomeReachableNotification</code> is fired and
+the last server communication task was more than 5 minutes ago. This
+only happens if the user ever did initiate a conversation by writing the first
+feedback message.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						<a title="General settings" name="task_General settings"></a>
+						<h2 class="task-title">General settings</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/requireUserName" title="requireUserName"></a>
+	<h3 class="method-title"><code><a href="#//api/name/requireUserName">&nbsp;&nbsp;requireUserName</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Define if a name has to be provided by the user when providing feedback</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite) BITFeedbackUserDataElement requireUserName</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<ul>
+<li><code>BITFeedbackUserDataElementDontShow</code>: Don&rsquo;t ask for this user data element at all</li>
+<li><code>BITFeedbackUserDataElementOptional</code>: The user may provide it, but does not have to</li>
+<li><code>BITFeedbackUserDataElementRequired</code>: The user has to provide this to continue</li>
+</ul>
+
+
+<p>The default value is <code>BITFeedbackUserDataElementOptional</code>.</p><div class="warning"><p><strong>Warning:</strong> If you provide a non nil value for the <code>BITFeedbackManager</code> class via
+<a href="../Protocols/BITHockeyManagerDelegate.html#//api/name/userNameForHockeyManager:componentManager:"><code>[BITHockeyManagerDelegate userNameForHockeyManager:componentManager:]</code></a> then this
+property will automatically be set to <code>BITFeedbackUserDataElementDontShow</code></p></div>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/requireUserEmail">@property requireUserEmail</a></p></code></li>
+					
+					<li><code><p><code>[BITHockeyManagerDelegate userNameForHockeyManager:componentManager:]</code></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITFeedbackManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/requireUserEmail" title="requireUserEmail"></a>
+	<h3 class="method-title"><code><a href="#//api/name/requireUserEmail">&nbsp;&nbsp;requireUserEmail</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Define if an email address has to be provided by the user when providing feedback</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite) BITFeedbackUserDataElement requireUserEmail</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>If the user provides the email address, all responses from the server will also be send
+to the user via email and the user is also able to respond directly via email too.</p>
+
+<ul>
+<li><code>BITFeedbackUserDataElementDontShow</code>: Don&rsquo;t ask for this user data element at all</li>
+<li><code>BITFeedbackUserDataElementOptional</code>: The user may provide it, but does not have to</li>
+<li><code>BITFeedbackUserDataElementRequired</code>: The user has to provide this to continue</li>
+</ul>
+
+
+<p>The default value is <code>BITFeedbackUserDataElementOptional</code>.</p><div class="warning"><p><strong>Warning:</strong> If you provide a non nil value for the <code>BITFeedbackManager</code> class via
+<a href="../Protocols/BITHockeyManagerDelegate.html#//api/name/userEmailForHockeyManager:componentManager:"><code>[BITHockeyManagerDelegate userEmailForHockeyManager:componentManager:]</code></a> then this
+property will automatically be set to <code>BITFeedbackUserDataElementDontShow</code></p></div>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/requireUserName">@property requireUserName</a></p></code></li>
+					
+					<li><code><p><code>[BITHockeyManagerDelegate userEmailForHockeyManager:componentManager:]</code></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITFeedbackManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/showAlertOnIncomingMessages" title="showAlertOnIncomingMessages"></a>
+	<h3 class="method-title"><code><a href="#//api/name/showAlertOnIncomingMessages">&nbsp;&nbsp;showAlertOnIncomingMessages</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Indicates if an Notification Center alert should be shown when new messages arrived</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite) BOOL showAlertOnIncomingMessages</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The alert is only shown, if the newest message is not originated from the current user.
+This requires the users email address to be present! The optional userid property
+cannot be used, because users could also answer via email and then this information
+is not available.</p>
+
+<p>Default is <code>YES</code></p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/requireUserEmail">@property requireUserEmail</a></p></code></li>
+					
+					<li><code><p><code>[BITHockeyManagerDelegate userEmailForHockeyManager:componentManager:]</code></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITFeedbackManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="User Interface" name="task_User Interface"></a>
+						<h2 class="task-title">User Interface</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/showFeedbackWindow" title="showFeedbackWindow"></a>
+	<h3 class="method-title"><code><a href="#//api/name/showFeedbackWindow">&ndash;&nbsp;showFeedbackWindow</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Present the modal feedback list user interface.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)showFeedbackWindow</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITFeedbackManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2016 Bit Stadium GmbH. All rights reserved. Updated: 2016-05-05</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

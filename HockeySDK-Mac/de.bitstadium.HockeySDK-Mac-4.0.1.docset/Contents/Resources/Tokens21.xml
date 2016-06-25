@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/BITPersistence.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/BITPersistence</TokenIdentifier>
+			<Abstract type="html">A simple class that handles serialisation and deserialisation of bundles of data.</Abstract>
+			<DeclaredIn>BITPersistence.h</DeclaredIn>
+            
+			
+			<NodeRef refid="21"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITPersistence/setPersistenceQueue:</TokenIdentifier>
+			<Abstract type="html">A queue which makes file system operations thread safe.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) dispatch_queue_t persistenceQueue</Declaration>
+			
+			
+			<Anchor>//api/name/persistenceQueue</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITPersistence/persistenceQueue</TokenIdentifier>
+			<Abstract type="html">A queue which makes file system operations thread safe.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) dispatch_queue_t persistenceQueue</Declaration>
+			
+			
+			<Anchor>//api/name/persistenceQueue</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITPersistence/persistenceQueue</TokenIdentifier>
+			<Abstract type="html">A queue which makes file system operations thread safe.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) dispatch_queue_t persistenceQueue</Declaration>
+			
+			
+			<Anchor>//api/name/persistenceQueue</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITPersistence/setMaxFileCount:</TokenIdentifier>
+			<Abstract type="html">Determines how many telemetry files can be on disk at a time.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>@property NSUInteger maxFileCount</Declaration>
+			
+			
+			<Anchor>//api/name/maxFileCount</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITPersistence/maxFileCount</TokenIdentifier>
+			<Abstract type="html">Determines how many telemetry files can be on disk at a time.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>@property NSUInteger maxFileCount</Declaration>
+			
+			
+			<Anchor>//api/name/maxFileCount</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITPersistence/maxFileCount</TokenIdentifier>
+			<Abstract type="html">Determines how many telemetry files can be on disk at a time.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>@property NSUInteger maxFileCount</Declaration>
+			
+			
+			<Anchor>//api/name/maxFileCount</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITPersistence/setRequestedBundlePaths:</TokenIdentifier>
+			<Abstract type="html">An array with all file paths, that have been requested by the sender. If the sender
+triggers a delete, the appropriate path should also be removed here. We keep to
+track of requested bundles to make sure that bundles don&apos;t get sent twice at the same
+time by differend http operations.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *requestedBundlePaths</Declaration>
+			
+			
+			<Anchor>//api/name/requestedBundlePaths</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITPersistence/requestedBundlePaths</TokenIdentifier>
+			<Abstract type="html">An array with all file paths, that have been requested by the sender. If the sender
+triggers a delete, the appropriate path should also be removed here. We keep to
+track of requested bundles to make sure that bundles don&apos;t get sent twice at the same
+time by differend http operations.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *requestedBundlePaths</Declaration>
+			
+			
+			<Anchor>//api/name/requestedBundlePaths</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITPersistence/requestedBundlePaths</TokenIdentifier>
+			<Abstract type="html">An array with all file paths, that have been requested by the sender. If the sender
+triggers a delete, the appropriate path should also be removed here. We keep to
+track of requested bundles to make sure that bundles don&apos;t get sent twice at the same
+time by differend http operations.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *requestedBundlePaths</Declaration>
+			
+			
+			<Anchor>//api/name/requestedBundlePaths</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITPersistence/persistBundle:</TokenIdentifier>
+			<Abstract type="html">Saves the bundle to disk.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>- (void)persistBundle:(NSData *)bundle</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>bundle</Name>
+					<Abstract type="html">the bundle, which should be saved to disk</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">a block which is executed after the bundle has been stored</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/persistBundle:</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITPersistence/persistMetaData:</TokenIdentifier>
+			<Abstract type="html">Saves the given dictionary to the session Ids file.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>- (void)persistMetaData:(NSDictionary *)metaData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>metaData</Name>
+					<Abstract type="html">a dictionary consisting of unix timestamps and session ids</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/persistMetaData:</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITPersistence/deleteFileAtPath:</TokenIdentifier>
+			<Abstract type="html">Deletes the file for the given path.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>- (void)deleteFileAtPath:(NSString *)path</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>path</Name>
+					<Abstract type="html">the path of the file, which should be deleted</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/deleteFileAtPath:</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITPersistence/isFreeSpaceAvailable</TokenIdentifier>
+			<Abstract type="html">Determines whether the persistence layer is able to write more files to disk.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)isFreeSpaceAvailable</Declaration>
+			
+			<ReturnValue><Abstract type="html">YES if the maxFileCount has not been reached, yet (otherwise NO).</Abstract></ReturnValue>
+			<Anchor>//api/name/isFreeSpaceAvailable</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITPersistence/requestNextFilePath</TokenIdentifier>
+			<Abstract type="html">Returns the path for the next item to send. The requested path is reserved as long
+as leaveUpRequestedPath: gets called.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)requestNextFilePath</Declaration>
+			
+			<ReturnValue><Abstract type="html">the path of the item, which should be sent next</Abstract></ReturnValue>
+			<Anchor>//api/name/requestNextFilePath</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITPersistence/giveBackRequestedFilePath:</TokenIdentifier>
+			<Abstract type="html">Release a requested path. This method should be called after sending a file failed.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>- (void)giveBackRequestedFilePath:(NSString *)filePath</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>path</Name>
+					<Abstract type="html">the path that should be available for sending again.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/giveBackRequestedFilePath:</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITPersistence/dataAtFilePath:</TokenIdentifier>
+			<Abstract type="html">Return the json data for a given path</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>- (NSData *)dataAtFilePath:(NSString *)filePath</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>path</Name>
+					<Abstract type="html">the path of the file</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">a data object which contains telemetry data in json representation</Abstract></ReturnValue>
+			<Anchor>//api/name/dataAtFilePath:</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITPersistence/metaData</TokenIdentifier>
+			<Abstract type="html">Returns the content of the session Ids file.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>- (NSDictionary *)metaData</Declaration>
+			
+			<ReturnValue><Abstract type="html">return a dictionary containing all session Ids</Abstract></ReturnValue>
+			<Anchor>//api/name/metaData</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITPersistence/folderPathForType:</TokenIdentifier>
+			<Abstract type="html">Returns a folder path for items of a given type.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)folderPathForType:(BITPersistenceType)type</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>the</Name>
+					<Abstract type="html">type</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">a folder path for items of a given type</Abstract></ReturnValue>
+			<Anchor>//api/name/folderPathForType:</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITPersistence/fileURLForType:</TokenIdentifier>
+			<Abstract type="html">Creates the path for a file
+The filename includes the timestamp.</Abstract>
+			<DeclaredIn>BITPersistencePrivate.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)fileURLForType:(BITPersistenceType)type</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>the</Name>
+					<Abstract type="html">type that you want the fileURL for</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/fileURLForType:</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

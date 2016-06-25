@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleIdentifier</key>
+	<string>de.bitstadium.HockeySDK-Mac-4.0.1</string>
+	<key>CFBundleName</key>
+	<string>HockeySDK-Mac 4.0.1</string>
+	<key>CFBundleShortVersionString</key>
+	<string>4.0.1</string>
+	<key>CFBundleVersion</key>
+	<string>4.0.1</string>
+	
+	
+	
+	
+	<key>DocSetFeedName</key>
+	<string>HockeySDK-Mac</string>
+	
+	<key>DocSetMinimumXcodeVersion</key>
+	<string>3.0</string>
+	<key>DocSetPlatformFamily</key>
+	<string>macosx</string>
+	<key>DashDocSetFamily</key>
+	<string>appledoc</string>
+	<key>DocSetPublisherIdentifier</key>
+	<string>de.bitstadium.documentation</string>
+	<key>DocSetPublisherName</key>
+	<string>Bit Stadium GmbH</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2016 Bit Stadium GmbH. All rights reserved.</string>
+</dict>
+</plist>

@@ -7,12 +7,17 @@
 //
 
 import Cocoa
+import HockeySDK
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     // Insert code here to initialize your application
+    if let sharedHockeyManager = BITHockeyManager.sharedHockeyManager() {
+      sharedHockeyManager.configureWithIdentifier("910181e274534fc1a9c01ad131c17ea8")
+      sharedHockeyManager.startManager()
+    }
   }
 
   func applicationWillTerminate(aNotification: NSNotification) {

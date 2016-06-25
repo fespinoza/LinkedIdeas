@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/BITFeedbackManager.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/BITFeedbackManager</TokenIdentifier>
+			<Abstract type="html">The feedback module.</Abstract>
+			<DeclaredIn>BITFeedbackManager.h</DeclaredIn>
+            
+			
+			<NodeRef refid="13"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITFeedbackManager/setRequireUserName:</TokenIdentifier>
+			<Abstract type="html">Define if a name has to be provided by the user when providing feedback</Abstract>
+			<DeclaredIn>BITFeedbackManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITFeedbackManager/requireUserEmail</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/intfm/BITHockeyManagerDelegate/userNameForHockeyManager:componentManager:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, readwrite) BITFeedbackUserDataElement requireUserName</Declaration>
+			
+			
+			<Anchor>//api/name/requireUserName</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITFeedbackManager/requireUserName</TokenIdentifier>
+			<Abstract type="html">Define if a name has to be provided by the user when providing feedback</Abstract>
+			<DeclaredIn>BITFeedbackManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITFeedbackManager/requireUserEmail</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/intfm/BITHockeyManagerDelegate/userNameForHockeyManager:componentManager:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, readwrite) BITFeedbackUserDataElement requireUserName</Declaration>
+			
+			
+			<Anchor>//api/name/requireUserName</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITFeedbackManager/requireUserName</TokenIdentifier>
+			<Abstract type="html">Define if a name has to be provided by the user when providing feedback</Abstract>
+			<DeclaredIn>BITFeedbackManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITFeedbackManager/requireUserEmail</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/intfm/BITHockeyManagerDelegate/userNameForHockeyManager:componentManager:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, readwrite) BITFeedbackUserDataElement requireUserName</Declaration>
+			
+			
+			<Anchor>//api/name/requireUserName</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITFeedbackManager/setRequireUserEmail:</TokenIdentifier>
+			<Abstract type="html">Define if an email address has to be provided by the user when providing feedback</Abstract>
+			<DeclaredIn>BITFeedbackManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITFeedbackManager/requireUserName</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/intfm/BITHockeyManagerDelegate/userEmailForHockeyManager:componentManager:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, readwrite) BITFeedbackUserDataElement requireUserEmail</Declaration>
+			
+			
+			<Anchor>//api/name/requireUserEmail</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITFeedbackManager/requireUserEmail</TokenIdentifier>
+			<Abstract type="html">Define if an email address has to be provided by the user when providing feedback</Abstract>
+			<DeclaredIn>BITFeedbackManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITFeedbackManager/requireUserName</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/intfm/BITHockeyManagerDelegate/userEmailForHockeyManager:componentManager:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, readwrite) BITFeedbackUserDataElement requireUserEmail</Declaration>
+			
+			
+			<Anchor>//api/name/requireUserEmail</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITFeedbackManager/requireUserEmail</TokenIdentifier>
+			<Abstract type="html">Define if an email address has to be provided by the user when providing feedback</Abstract>
+			<DeclaredIn>BITFeedbackManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITFeedbackManager/requireUserName</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/intfm/BITHockeyManagerDelegate/userEmailForHockeyManager:componentManager:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, readwrite) BITFeedbackUserDataElement requireUserEmail</Declaration>
+			
+			
+			<Anchor>//api/name/requireUserEmail</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITFeedbackManager/setShowAlertOnIncomingMessages:</TokenIdentifier>
+			<Abstract type="html">Indicates if an Notification Center alert should be shown when new messages arrived</Abstract>
+			<DeclaredIn>BITFeedbackManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITFeedbackManager/requireUserEmail</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/intfm/BITHockeyManagerDelegate/userEmailForHockeyManager:componentManager:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, readwrite) BOOL showAlertOnIncomingMessages</Declaration>
+			
+			
+			<Anchor>//api/name/showAlertOnIncomingMessages</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITFeedbackManager/showAlertOnIncomingMessages</TokenIdentifier>
+			<Abstract type="html">Indicates if an Notification Center alert should be shown when new messages arrived</Abstract>
+			<DeclaredIn>BITFeedbackManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITFeedbackManager/requireUserEmail</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/intfm/BITHockeyManagerDelegate/userEmailForHockeyManager:componentManager:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, readwrite) BOOL showAlertOnIncomingMessages</Declaration>
+			
+			
+			<Anchor>//api/name/showAlertOnIncomingMessages</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITFeedbackManager/showAlertOnIncomingMessages</TokenIdentifier>
+			<Abstract type="html">Indicates if an Notification Center alert should be shown when new messages arrived</Abstract>
+			<DeclaredIn>BITFeedbackManager.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instp/BITFeedbackManager/requireUserEmail</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/intfm/BITHockeyManagerDelegate/userEmailForHockeyManager:componentManager:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>@property (nonatomic, readwrite) BOOL showAlertOnIncomingMessages</Declaration>
+			
+			
+			<Anchor>//api/name/showAlertOnIncomingMessages</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITFeedbackManager/showFeedbackWindow</TokenIdentifier>
+			<Abstract type="html">Present the modal feedback list user interface.</Abstract>
+			<DeclaredIn>BITFeedbackManager.h</DeclaredIn>
+			
+			<Declaration>- (void)showFeedbackWindow</Declaration>
+			
+			
+			<Anchor>//api/name/showFeedbackWindow</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

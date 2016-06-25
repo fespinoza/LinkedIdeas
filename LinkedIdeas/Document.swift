@@ -48,7 +48,6 @@ class Document: NSDocument, LinkedIdeasDocument {
   // MARK: - LinkedIdeasDocument
   
   func saveConcept(concept: Concept) {
-    Swift.print("add concept \(concept)")
     concepts.append(concept)
     undoManager?.registerUndoWithTarget(
       self,
@@ -58,7 +57,6 @@ class Document: NSDocument, LinkedIdeasDocument {
   }
   
   func removeConcept(concept: Concept) {
-    Swift.print("remove concept \(concept)")
     concepts.removeAtIndex(concepts.indexOf(concept)!)
     undoManager?.registerUndoWithTarget(
       self,
@@ -68,7 +66,6 @@ class Document: NSDocument, LinkedIdeasDocument {
   }
   
   func saveLink(link: Link) {
-    Swift.print("add link \(link)")
     links.append(link)
     undoManager?.registerUndoWithTarget(
       self,
@@ -78,7 +75,6 @@ class Document: NSDocument, LinkedIdeasDocument {
   }
   
   func removeLink(link: Link) {
-    Swift.print("remove link \(link)")
     links.removeAtIndex(links.indexOf(link)!)
     undoManager?.registerUndoWithTarget(
       self,
@@ -105,7 +101,6 @@ class Document: NSDocument, LinkedIdeasDocument {
   override func dataOfType(typeName: String) throws -> NSData {
     // Insert code here to write your document to data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning nil.
     // You can also choose to override fileWrapperOfType:error:, writeToURL:ofType:error:, or writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-    Swift.print("saving document..")
     documentData.writeConcepts = concepts
     documentData.writeLinks = links
     return NSKeyedArchiver.archivedDataWithRootObject(documentData)

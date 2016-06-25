@@ -80,7 +80,6 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
   // MARK: - Mouse Events
   
   override func mouseDown(theEvent: NSEvent) {
-    sprint("mouse down")
     let point = convertPoint(theEvent.locationInWindow, fromView: nil)
     if let arrowPath = arrowPath where arrowPath.containsPoint(point) {
       click(point)
@@ -103,7 +102,6 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
   
   let deleteKeyCode: UInt16 = 51
   override func keyDown(theEvent: NSEvent) {
-    sprint("keyDown \(theEvent.keyCode)")
     if (theEvent.keyCode == deleteKeyCode) {
       pressDeleteKey()
     } else {

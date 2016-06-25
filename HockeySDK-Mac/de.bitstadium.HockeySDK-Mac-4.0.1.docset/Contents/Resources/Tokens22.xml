@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/BITSender.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/BITSender</TokenIdentifier>
+			<Abstract type="html">Utility class that&apos;s responsible for sending a bundle of data to the server</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+            
+			
+			<NodeRef refid="22"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/initWithPersistence:serverURL:</TokenIdentifier>
+			<Abstract type="html">Initializes a sender instance with a given persistence object.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithPersistence:(BITPersistence *)persistence serverURL:(NSURL *)serverURL</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>persistence</Name>
+					<Abstract type="html">used for loading files before sending them out</Abstract>
+				</Parameter><Parameter>
+					<Name>serverURL</Name>
+					<Abstract type="html">the endpoint URL for telemetry data</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">an initialized sender instance</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithPersistence:serverURL:</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/setRequestsCountQueue:</TokenIdentifier>
+			<Abstract type="html">We use this queue to keep track of the number of currently running requests</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) dispatch_queue_t requestsCountQueue</Declaration>
+			
+			
+			<Anchor>//api/name/requestsCountQueue</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/requestsCountQueue</TokenIdentifier>
+			<Abstract type="html">We use this queue to keep track of the number of currently running requests</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) dispatch_queue_t requestsCountQueue</Declaration>
+			
+			
+			<Anchor>//api/name/requestsCountQueue</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITSender/requestsCountQueue</TokenIdentifier>
+			<Abstract type="html">We use this queue to keep track of the number of currently running requests</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) dispatch_queue_t requestsCountQueue</Declaration>
+			
+			
+			<Anchor>//api/name/requestsCountQueue</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/setSenderTasksQueue:</TokenIdentifier>
+			<Abstract type="html">A queue which is used to handle BITHTTPOperation completion blocks.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) dispatch_queue_t senderTasksQueue</Declaration>
+			
+			
+			<Anchor>//api/name/senderTasksQueue</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/senderTasksQueue</TokenIdentifier>
+			<Abstract type="html">A queue which is used to handle BITHTTPOperation completion blocks.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) dispatch_queue_t senderTasksQueue</Declaration>
+			
+			
+			<Anchor>//api/name/senderTasksQueue</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITSender/senderTasksQueue</TokenIdentifier>
+			<Abstract type="html">A queue which is used to handle BITHTTPOperation completion blocks.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) dispatch_queue_t senderTasksQueue</Declaration>
+			
+			
+			<Anchor>//api/name/senderTasksQueue</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/setOperationQueue:</TokenIdentifier>
+			<Abstract type="html">A queue for processing http operations (iOS &lt; 7)</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSOperationQueue *operationQueue</Declaration>
+			
+			
+			<Anchor>//api/name/operationQueue</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/operationQueue</TokenIdentifier>
+			<Abstract type="html">A queue for processing http operations (iOS &lt; 7)</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSOperationQueue *operationQueue</Declaration>
+			
+			
+			<Anchor>//api/name/operationQueue</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITSender/operationQueue</TokenIdentifier>
+			<Abstract type="html">A queue for processing http operations (iOS &lt; 7)</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSOperationQueue *operationQueue</Declaration>
+			
+			
+			<Anchor>//api/name/operationQueue</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/setEndpointPath:</TokenIdentifier>
+			<Abstract type="html">The endpoint url of the telemetry server.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *endpointPath</Declaration>
+			
+			
+			<Anchor>//api/name/endpointPath</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/endpointPath</TokenIdentifier>
+			<Abstract type="html">The endpoint url of the telemetry server.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *endpointPath</Declaration>
+			
+			
+			<Anchor>//api/name/endpointPath</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITSender/endpointPath</TokenIdentifier>
+			<Abstract type="html">The endpoint url of the telemetry server.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, copy) NSString *endpointPath</Declaration>
+			
+			
+			<Anchor>//api/name/endpointPath</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/setMaxRequestCount:</TokenIdentifier>
+			<Abstract type="html">The max number of request that can run at a time.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property NSUInteger maxRequestCount</Declaration>
+			
+			
+			<Anchor>//api/name/maxRequestCount</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/maxRequestCount</TokenIdentifier>
+			<Abstract type="html">The max number of request that can run at a time.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property NSUInteger maxRequestCount</Declaration>
+			
+			
+			<Anchor>//api/name/maxRequestCount</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITSender/maxRequestCount</TokenIdentifier>
+			<Abstract type="html">The max number of request that can run at a time.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property NSUInteger maxRequestCount</Declaration>
+			
+			
+			<Anchor>//api/name/maxRequestCount</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/setRunningRequestsCount:</TokenIdentifier>
+			<Abstract type="html">The number of requests that are currently running.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property NSUInteger runningRequestsCount</Declaration>
+			
+			
+			<Anchor>//api/name/runningRequestsCount</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/runningRequestsCount</TokenIdentifier>
+			<Abstract type="html">The number of requests that are currently running.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property NSUInteger runningRequestsCount</Declaration>
+			
+			
+			<Anchor>//api/name/runningRequestsCount</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITSender/runningRequestsCount</TokenIdentifier>
+			<Abstract type="html">The number of requests that are currently running.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property NSUInteger runningRequestsCount</Declaration>
+			
+			
+			<Anchor>//api/name/runningRequestsCount</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/setServerURL:</TokenIdentifier>
+			<Abstract type="html">	BaseURL to which relative paths are appended.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSURL *serverURL</Declaration>
+			
+			
+			<Anchor>//api/name/serverURL</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/serverURL</TokenIdentifier>
+			<Abstract type="html">	BaseURL to which relative paths are appended.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSURL *serverURL</Declaration>
+			
+			
+			<Anchor>//api/name/serverURL</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITSender/serverURL</TokenIdentifier>
+			<Abstract type="html">	BaseURL to which relative paths are appended.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSURL *serverURL</Declaration>
+			
+			
+			<Anchor>//api/name/serverURL</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/setPersistence:</TokenIdentifier>
+			<Abstract type="html">The persistence instance used for loading files before sending them out.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) BITPersistence *persistence</Declaration>
+			
+			
+			<Anchor>//api/name/persistence</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/persistence</TokenIdentifier>
+			<Abstract type="html">The persistence instance used for loading files before sending them out.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) BITPersistence *persistence</Declaration>
+			
+			
+			<Anchor>//api/name/persistence</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BITSender/persistence</TokenIdentifier>
+			<Abstract type="html">The persistence instance used for loading files before sending them out.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) BITPersistence *persistence</Declaration>
+			
+			
+			<Anchor>//api/name/persistence</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/sendData:withFilePath:</TokenIdentifier>
+			<Abstract type="html">Creates a request for the given data and forwards that in order to send it out.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>- (void)sendData:(NSData *)data withFilePath:(NSString *)filePath</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>data</Name>
+					<Abstract type="html">the telemetry data which should be sent</Abstract>
+				</Parameter><Parameter>
+					<Name>filePath</Name>
+					<Abstract type="html">a reference of filePath to the file which should be sent (needed to delete it after sending)</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/sendData:withFilePath:</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/sendSavedDataAsync</TokenIdentifier>
+			<Abstract type="html">Triggers sending the saved data on a background thread. Does nothing if nothing has been persisted, yet. This method should be called on app start.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>- (void)sendSavedDataAsync</Declaration>
+			
+			
+			<Anchor>//api/name/sendSavedDataAsync</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/sendSavedData</TokenIdentifier>
+			<Abstract type="html">Triggers sending the saved data.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>- (void)sendSavedData</Declaration>
+			
+			
+			<Anchor>//api/name/sendSavedData</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/sendRequest:filePath:</TokenIdentifier>
+			<Abstract type="html">Creates a HTTP operation/session task and puts it to the queue.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>- (void)sendRequest:(NSURLRequest *)request filePath:(NSString *)path</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>request</Name>
+					<Abstract type="html">a request for sending a data object to the telemetry server</Abstract>
+				</Parameter><Parameter>
+					<Name>path</Name>
+					<Abstract type="html">path to the file which should be sent</Abstract>
+				</Parameter><Parameter>
+					<Name>isUrlSessionSupported</Name>
+					<Abstract type="html">a flag which determines whether to use NSURLConnection or NSURLSession for sending out data</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/sendRequest:filePath:</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/isURLSessionSupported</TokenIdentifier>
+			<Abstract type="html">Helper method that checks whether the current OS supports NSURLSession</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)isURLSessionSupported</Declaration>
+			
+			<ReturnValue><Abstract type="html">YES if NSURLSession is available</Abstract></ReturnValue>
+			<Anchor>//api/name/isURLSessionSupported</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/resumeSessionDataTask:</TokenIdentifier>
+			<Abstract type="html">Resumes the given NSURLSessionDataTask instance.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>- (void)resumeSessionDataTask:(NSURLSessionDataTask *)sessionDataTask</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>sessionDataTask</Name>
+					<Abstract type="html">the task which should be resumed</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/resumeSessionDataTask:</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/handleResponseWithStatusCode:responseData:filePath:error:</TokenIdentifier>
+			<Abstract type="html">Deletes or unblocks sent file according to the given response code.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>- (void)handleResponseWithStatusCode:(NSInteger)statusCode responseData:(NSData *)responseData filePath:(NSString *)filePath error:(NSError *)error</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>statusCode</Name>
+					<Abstract type="html">the status code of the response</Abstract>
+				</Parameter><Parameter>
+					<Name>responseData</Name>
+					<Abstract type="html">the data of the response</Abstract>
+				</Parameter><Parameter>
+					<Name>filePath</Name>
+					<Abstract type="html">the path of the file which content has been sent to the server</Abstract>
+				</Parameter><Parameter>
+					<Name>error</Name>
+					<Abstract type="html">an error object sent from the server</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/handleResponseWithStatusCode:responseData:filePath:error:</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/requestForData:</TokenIdentifier>
+			<Abstract type="html">Returns a request for sending data to the telemetry sender.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>- (NSURLRequest *)requestForData:(NSData *)data</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>data</Name>
+					<Abstract type="html">the data which should be sent</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">a request which contains the given data</Abstract></ReturnValue>
+			<Anchor>//api/name/requestForData:</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSender/shouldDeleteDataWithStatusCode:</TokenIdentifier>
+			<Abstract type="html">Returns if data should be deleted based on a given status code.</Abstract>
+			<DeclaredIn>BITSender.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)shouldDeleteDataWithStatusCode:(NSInteger)statusCode</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>statusCode</Name>
+					<Abstract type="html">the status code which is part of the response object</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">YES if data should be deleted, NO if the payload should be sent at a later time again.</Abstract></ReturnValue>
+			<Anchor>//api/name/shouldDeleteDataWithStatusCode:</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

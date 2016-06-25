@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/BITSystemProfile.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/BITSystemProfile</TokenIdentifier>
+			<Abstract type="html">Helper class for accessing system information and measuring usage time</Abstract>
+			<DeclaredIn>BITSystemProfile.h</DeclaredIn>
+            
+			
+			<NodeRef refid="23"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/BITSystemProfile/sharedSystemProfile</TokenIdentifier>
+			<Abstract type="html">Returns a shared BITSystemProfile object</Abstract>
+			<DeclaredIn>BITSystemProfile.h</DeclaredIn>
+			
+			<Declaration>+ (BITSystemProfile *)sharedSystemProfile</Declaration>
+			
+			<ReturnValue><Abstract type="html">A singleton BITSystemProfile instance ready use</Abstract></ReturnValue>
+			<Anchor>//api/name/sharedSystemProfile</Anchor>
+            <NodeRef refid="23"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/BITSystemProfile/deviceIdentifier</TokenIdentifier>
+			<Abstract type="html">Return the current devices identifier</Abstract>
+			<DeclaredIn>BITSystemProfile.h</DeclaredIn>
+			
+			<Declaration>+ (NSString *)deviceIdentifier</Declaration>
+			
+			<ReturnValue><Abstract type="html">NSString with the device identifier</Abstract></ReturnValue>
+			<Anchor>//api/name/deviceIdentifier</Anchor>
+            <NodeRef refid="23"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/BITSystemProfile/deviceModel</TokenIdentifier>
+			<Abstract type="html">Return the current device model</Abstract>
+			<DeclaredIn>BITSystemProfile.h</DeclaredIn>
+			
+			<Declaration>+ (NSString *)deviceModel</Declaration>
+			
+			<ReturnValue><Abstract type="html">NSString with the repesentation of the device model</Abstract></ReturnValue>
+			<Anchor>//api/name/deviceModel</Anchor>
+            <NodeRef refid="23"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/BITSystemProfile/systemVersionString</TokenIdentifier>
+			<Abstract type="html">Return the system version of the current device</Abstract>
+			<DeclaredIn>BITSystemProfile.h</DeclaredIn>
+			
+			<Declaration>+ (NSString *)systemVersionString</Declaration>
+			
+			<ReturnValue><Abstract type="html">NSString with the system version</Abstract></ReturnValue>
+			<Anchor>//api/name/systemVersionString</Anchor>
+            <NodeRef refid="23"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSystemProfile/systemDataForBundle:</TokenIdentifier>
+			<Abstract type="html">Return an array with system data for a specific bundle</Abstract>
+			<DeclaredIn>BITSystemProfile.h</DeclaredIn>
+			
+			<Declaration>- (NSMutableArray *)systemDataForBundle:(NSBundle *)bundle</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>bundle</Name>
+					<Abstract type="html">The app or framework bundle to get the system data from</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">NSMutableArrray with system data</Abstract></ReturnValue>
+			<Anchor>//api/name/systemDataForBundle:</Anchor>
+            <NodeRef refid="23"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSystemProfile/systemData</TokenIdentifier>
+			<Abstract type="html">Return an array with system data</Abstract>
+			<DeclaredIn>BITSystemProfile.h</DeclaredIn>
+			
+			<Declaration>- (NSMutableArray *)systemData</Declaration>
+			
+			<ReturnValue><Abstract type="html">NSMutableArray with system data</Abstract></ReturnValue>
+			<Anchor>//api/name/systemData</Anchor>
+            <NodeRef refid="23"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSystemProfile/systemUsageDataForBundle:</TokenIdentifier>
+			<Abstract type="html">Return an array with system usage data for a specific bundle</Abstract>
+			<DeclaredIn>BITSystemProfile.h</DeclaredIn>
+			
+			<Declaration>- (NSMutableArray *)systemUsageDataForBundle:(NSBundle *)bundle</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>bundle</Name>
+					<Abstract type="html">The app or framework bundle to get the usage data from</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">NSMutableArray with system and bundle usage data</Abstract></ReturnValue>
+			<Anchor>//api/name/systemUsageDataForBundle:</Anchor>
+            <NodeRef refid="23"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSystemProfile/systemUsageData</TokenIdentifier>
+			<Abstract type="html">Return an array with system usage data that can be used with Sparkle</Abstract>
+			<DeclaredIn>BITSystemProfile.h</DeclaredIn>
+			
+			<Declaration>- (NSMutableArray *)systemUsageData</Declaration>
+			
+			<ReturnValue><Abstract type="html">NSMutableArray with system and app usage data</Abstract></ReturnValue>
+			<Anchor>//api/name/systemUsageData</Anchor>
+            <NodeRef refid="23"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSystemProfile/startUsageForBundle:</TokenIdentifier>
+			<Abstract type="html">Start recording usage time for a specific app or framework bundle</Abstract>
+			<DeclaredIn>BITSystemProfile.h</DeclaredIn>
+			
+			<Declaration>- (void)startUsageForBundle:(NSBundle *)bundle</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>bundle</Name>
+					<Abstract type="html">The app or framework bundle to measure the usage time for</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/startUsageForBundle:</Anchor>
+            <NodeRef refid="23"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSystemProfile/startUsage</TokenIdentifier>
+			<Abstract type="html">Start recording usage time for the current app</Abstract>
+			<DeclaredIn>BITSystemProfile.h</DeclaredIn>
+			
+			<Declaration>- (void)startUsage</Declaration>
+			
+			
+			<Anchor>//api/name/startUsage</Anchor>
+            <NodeRef refid="23"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BITSystemProfile/stopUsage</TokenIdentifier>
+			<Abstract type="html">stop recording usage time</Abstract>
+			<DeclaredIn>BITSystemProfile.h</DeclaredIn>
+			
+			<Declaration>- (void)stopUsage</Declaration>
+			
+			
+			<Anchor>//api/name/stopUsage</Anchor>
+            <NodeRef refid="23"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

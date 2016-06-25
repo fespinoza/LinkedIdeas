@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>BITCrashManagerDelegate Protocol Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1334)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">HockeySDK-Mac 4.0.1 </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Bit Stadium GmbH</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/applicationLogForCrashManager:">- applicationLogForCrashManager:</option>
+		
+		<option value="//api/name/attachmentForCrashManager:">- attachmentForCrashManager:</option>
+		
+		<option value="//api/name/crashManager:didFailWithError:">- crashManager:didFailWithError:</option>
+		
+		<option value="//api/name/crashManagerDidFinishSendingCrashReport:">- crashManagerDidFinishSendingCrashReport:</option>
+		
+		<option value="//api/name/crashManagerWillCancelSendingCrashReport:">- crashManagerWillCancelSendingCrashReport:</option>
+		
+		<option value="//api/name/crashManagerWillSendCrashReport:">- crashManagerWillSendCrashReport:</option>
+		
+		<option value="//api/name/crashManagerWillShowSubmitCrashReportAlert:">- crashManagerWillShowSubmitCrashReportAlert:</option>
+		
+		<option value="//api/name/showMainApplicationWindowForCrashManager:">- showMainApplicationWindowForCrashManager:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">BITCrashManagerDelegate Protocol Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Conforms to</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>BITCrashManagerDelegate.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>The <code>BITCrashManagerDelegate</code> formal protocol defines methods further configuring
+the behaviour of <a href="../Classes/BITCrashManager.html"><code>BITCrashManager</code></a>.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/showMainApplicationWindowForCrashManager:" title="showMainApplicationWindowForCrashManager:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/showMainApplicationWindowForCrashManager:">&ndash;&nbsp;showMainApplicationWindowForCrashManager:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Not used any longer! (<b class="deprecated">Deprecated:</b><span class="deprecated"> The default crash report UI is not shown modal any longer, so this delegate is not being used any more!</span>)</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)showMainApplicationWindowForCrashManager:(BITCrashManager *)<em>crashManager</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>crashManager</code></th>
+						<td><p>The <a href="../Classes/BITCrashManager.html"><code>BITCrashManager</code></a> instance invoking the method</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>In previous SDK versions this invoked once the user interface asking for crash details and if the data should be send is dismissed</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITCrashManagerDelegate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Additional meta data" name="task_Additional meta data"></a>
+						<h2 class="task-title">Additional meta data</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/applicationLogForCrashManager:" title="applicationLogForCrashManager:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/applicationLogForCrashManager:">&ndash;&nbsp;applicationLogForCrashManager:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Return any log string based data the crash report being processed should contain</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSString *)applicationLogForCrashManager:(BITCrashManager *)<em>crashManager</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>crashManager</code></th>
+						<td><p>The <a href="../Classes/BITCrashManager.html"><code>BITCrashManager</code></a> instance invoking this delegate</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITCrashManagerDelegate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/attachmentForCrashManager:" title="attachmentForCrashManager:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/attachmentForCrashManager:">&ndash;&nbsp;attachmentForCrashManager:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Return a <a href="../Classes/BITHockeyAttachment.html">BITHockeyAttachment</a> object providing an NSData object the crash report
+being processed should contain</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BITHockeyAttachment *)attachmentForCrashManager:(BITCrashManager *)<em>crashManager</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>crashManager</code></th>
+						<td><p>The <a href="../Classes/BITCrashManager.html"><code>BITCrashManager</code></a> instance invoking this delegate</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Please limit your attachments to reasonable files to avoid high traffic costs for your users.</p>
+
+<p>Example implementation:</p>
+
+<pre><code> - (BITHockeyAttachment *)attachmentForCrashManager:(BITCrashManager *)crashManager {
+   NSData *data = [NSData dataWithContentsOfURL:@"mydatafile"];
+
+   BITHockeyAttachment *attachment = [[BITHockeyAttachment alloc] initWithFilename:@"myfile.data"
+                                                              hockeyAttachmentData:data
+                                                                      contentType:@"'application/octet-stream"];
+   return attachment;
+ }
+</code></pre>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/applicationLogForCrashManager:">- applicationLogForCrashManager:</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITCrashManagerDelegate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Alert" name="task_Alert"></a>
+						<h2 class="task-title">Alert</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/crashManagerWillShowSubmitCrashReportAlert:" title="crashManagerWillShowSubmitCrashReportAlert:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/crashManagerWillShowSubmitCrashReportAlert:">&ndash;&nbsp;crashManagerWillShowSubmitCrashReportAlert:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Invoked before the user is asked to send a crash report, so you can do additional actions.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)crashManagerWillShowSubmitCrashReportAlert:(BITCrashManager *)<em>crashManager</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>crashManager</code></th>
+						<td><p>The <a href="../Classes/BITCrashManager.html"><code>BITCrashManager</code></a> instance invoking this delegate</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>E.g. to make sure not to ask the user for an app rating :)</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITCrashManagerDelegate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/crashManagerWillCancelSendingCrashReport:" title="crashManagerWillCancelSendingCrashReport:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/crashManagerWillCancelSendingCrashReport:">&ndash;&nbsp;crashManagerWillCancelSendingCrashReport:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Invoked after the user did choose <em>NOT</em> to send a crash in the alert</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)crashManagerWillCancelSendingCrashReport:(BITCrashManager *)<em>crashManager</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>crashManager</code></th>
+						<td><p>The <a href="../Classes/BITCrashManager.html"><code>BITCrashManager</code></a> instance invoking this delegate</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITCrashManagerDelegate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Networking" name="task_Networking"></a>
+						<h2 class="task-title">Networking</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/crashManagerWillSendCrashReport:" title="crashManagerWillSendCrashReport:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/crashManagerWillSendCrashReport:">&ndash;&nbsp;crashManagerWillSendCrashReport:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Invoked right before sending crash reports will start</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)crashManagerWillSendCrashReport:(BITCrashManager *)<em>crashManager</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>crashManager</code></th>
+						<td><p>The <a href="../Classes/BITCrashManager.html"><code>BITCrashManager</code></a> instance invoking this delegate</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITCrashManagerDelegate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/crashManager:didFailWithError:" title="crashManager:didFailWithError:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/crashManager:didFailWithError:">&ndash;&nbsp;crashManager:didFailWithError:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Invoked after sending crash reports failed</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)crashManager:(BITCrashManager *)<em>crashManager</em> didFailWithError:(NSError *)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>crashManager</code></th>
+						<td><p>The <a href="../Classes/BITCrashManager.html"><code>BITCrashManager</code></a> instance invoking this delegate</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p>The error returned from the NSURLConnection call or <code>kBITCrashErrorDomain</code>
+with reason of type <a href="../Constants/BITCrashErrorReason.html"><code>BITCrashErrorReason</code></a>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITCrashManagerDelegate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/crashManagerDidFinishSendingCrashReport:" title="crashManagerDidFinishSendingCrashReport:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/crashManagerDidFinishSendingCrashReport:">&ndash;&nbsp;crashManagerDidFinishSendingCrashReport:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Invoked after sending crash reports succeeded</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)crashManagerDidFinishSendingCrashReport:(BITCrashManager *)<em>crashManager</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>crashManager</code></th>
+						<td><p>The <a href="../Classes/BITCrashManager.html"><code>BITCrashManager</code></a> instance invoking this delegate</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITCrashManagerDelegate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2016 Bit Stadium GmbH. All rights reserved. Updated: 2016-05-05</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

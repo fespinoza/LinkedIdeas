@@ -27,7 +27,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="133" y="235" width="898" height="602"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <value key="minSize" type="size" width="94" height="86"/>
             <view key="contentView" id="gIp-Ho-8D9">
                 <rect key="frame" x="0.0" y="0.0" width="898" height="602"/>
@@ -111,7 +111,7 @@
                             <rect key="frame" x="1" y="1" width="896" height="530"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <customView autoresizesSubviews="NO" canDrawConcurrently="YES" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TBv-Q1-CwE" customClass="CanvasView" customModule="LinkedIdeas" customModuleProvider="target">
+                                <customView autoresizesSubviews="NO" canDrawConcurrently="YES" placeholderIntrinsicWidth="897" placeholderIntrinsicHeight="530" translatesAutoresizingMaskIntoConstraints="NO" id="TBv-Q1-CwE" customClass="CanvasView" customModule="LinkedIdeas" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="897" height="530"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="897" id="ABu-cR-9Cb"/>
@@ -135,13 +135,13 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="7fF-pE-QO0">
-                            <rect key="frame" x="882" y="1" width="15" height="530"/>
+                            <rect key="frame" x="881" y="1" width="16" height="530"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b9e-PI-TpR">
-                        <rect key="frame" x="18" y="563" width="234" height="24"/>
-                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="PJV-T4-oUr">
+                        <rect key="frame" x="20" y="562" width="230" height="25"/>
+                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="PJV-T4-oUr">
                             <font key="font" metaFont="system"/>
                             <segments>
                                 <segment label="Select" width="76" selected="YES"/>

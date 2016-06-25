@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>BITMetricsManager Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1334)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">HockeySDK-Mac 4.0.1 </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Bit Stadium GmbH</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/appBackgroundTimeBeforeSessionExpires">appBackgroundTimeBeforeSessionExpires</option>
+		
+		<option value="//api/name/channel">channel</option>
+		
+		<option value="//api/name/metricsEventQueue">metricsEventQueue</option>
+		
+		<option value="//api/name/persistence">persistence</option>
+		
+		<option value="//api/name/sender">sender</option>
+		
+		<option value="//api/name/telemetryContext">telemetryContext</option>
+		
+		<option value="//api/name/userDefaults">userDefaults</option>
+		
+	</optgroup>
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/createNewSessionWithId:">- createNewSessionWithId:</option>
+		
+		<option value="//api/name/initWithChannel:telemetryContext:persistence:userDefaults:">- initWithChannel:telemetryContext:persistence:userDefaults:</option>
+		
+		<option value="//api/name/registerObservers">- registerObservers</option>
+		
+		<option value="//api/name/startNewSessionIfNeeded">- startNewSessionIfNeeded</option>
+		
+		<option value="//api/name/startNewSessionWithId:">- startNewSessionWithId:</option>
+		
+		<option value="//api/name/trackSessionWithState:">- trackSessionWithState:</option>
+		
+		<option value="//api/name/unregisterObservers">- unregisterObservers</option>
+		
+		<option value="//api/name/updateDidEnterBackgroundTime">- updateDidEnterBackgroundTime</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">BITMetricsManager Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td><a href="../Classes/BITHockeyBaseManager.html">BITHockeyBaseManager</a> : NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>BITMetricsManager.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>The metrics module.</p>
+
+<p>This is the HockeySDK module that handles users, sessions and events tracking.</p>
+
+<p>Unless disabled, this module automatically tracks users and session of your app to give you
+better insights about how your app is being used.
+Users are tracked in a completely anonymous way without collecting any personally identifiable
+information.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						<a title="Extension Methods" name="task_Extension Methods"></a>
+						
+<h2 class="task-title">Extension Methods</h2>
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/initWithChannel:telemetryContext:persistence:userDefaults:" title="initWithChannel:telemetryContext:persistence:userDefaults:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithChannel:telemetryContext:persistence:userDefaults:">&ndash;&nbsp;initWithChannel:telemetryContext:persistence:userDefaults:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<ul>
+<li>Create a new BITMetricsManager instance by passing the <a href="#//api/name/channel">channel</a>, the telemetry context, and <a href="#//api/name/persistence">persistence</a> instance to use
+for processing metrics. This method can be used for dependency injection.</li>
+</ul>
+
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithChannel:(BITChannel *)<em>channel</em> telemetryContext:(BITTelemetryContext *)<em>telemetryContext</em> persistence:(BITPersistence *)<em>persistence</em> userDefaults:(NSUserDefaults *)<em>userDefaults</em></code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITMetricsManagerPrivate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/userDefaults" title="userDefaults"></a>
+	<h3 class="method-title"><code><a href="#//api/name/userDefaults">&nbsp;&nbsp;userDefaults</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The user defaults object used to store meta data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSUserDefaults *userDefaults</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITMetricsManagerPrivate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/persistence" title="persistence"></a>
+	<h3 class="method-title"><code><a href="#//api/name/persistence">&nbsp;&nbsp;persistence</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>A <a href="#//api/name/channel">channel</a> for collecting new events before storing and sending them.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) BITPersistence *persistence</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITMetricsManagerPrivate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/channel" title="channel"></a>
+	<h3 class="method-title"><code><a href="#//api/name/channel">&nbsp;&nbsp;channel</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>A channel for collecting new events before storing and sending them.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) BITChannel *channel</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITMetricsManagerPrivate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/telemetryContext" title="telemetryContext"></a>
+	<h3 class="method-title"><code><a href="#//api/name/telemetryContext">&nbsp;&nbsp;telemetryContext</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>A telemetry context which is used to add meta info to events, before they&rsquo;re sent out.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) BITTelemetryContext *telemetryContext</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITMetricsManagerPrivate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/metricsEventQueue" title="metricsEventQueue"></a>
+	<h3 class="method-title"><code><a href="#//api/name/metricsEventQueue">&nbsp;&nbsp;metricsEventQueue</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>A concurrent queue which creates and processes telemetry items.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) dispatch_queue_t metricsEventQueue</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITMetricsManagerPrivate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/sender" title="sender"></a>
+	<h3 class="method-title"><code><a href="#//api/name/sender">&nbsp;&nbsp;sender</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Sender instance to send out telemetry data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) BITSender *sender</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITMetricsManagerPrivate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/appBackgroundTimeBeforeSessionExpires" title="appBackgroundTimeBeforeSessionExpires"></a>
+	<h3 class="method-title"><code><a href="#//api/name/appBackgroundTimeBeforeSessionExpires">&nbsp;&nbsp;appBackgroundTimeBeforeSessionExpires</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The Interval an app has to be in the background until the current session gets renewed.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSUInteger appBackgroundTimeBeforeSessionExpires</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITMetricsManagerPrivate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/registerObservers" title="registerObservers"></a>
+	<h3 class="method-title"><code><a href="#//api/name/registerObservers">&ndash;&nbsp;registerObservers</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Registers manager for several notifications, which influence the session state.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)registerObservers</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITMetricsManagerPrivate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/unregisterObservers" title="unregisterObservers"></a>
+	<h3 class="method-title"><code><a href="#//api/name/unregisterObservers">&ndash;&nbsp;unregisterObservers</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Unregisters manager for several notifications, which influence the session state.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)unregisterObservers</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITMetricsManagerPrivate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateDidEnterBackgroundTime" title="updateDidEnterBackgroundTime"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateDidEnterBackgroundTime">&ndash;&nbsp;updateDidEnterBackgroundTime</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Stores the current date before app is sent to background.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)updateDidEnterBackgroundTime</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/appBackgroundTimeBeforeSessionExpires">@property appBackgroundTimeBeforeSessionExpires</a></p></code></li>
+					
+					<li><code><p><a href="#//api/name/startNewSessionIfNeeded">- startNewSessionIfNeeded</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITMetricsManagerPrivate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/startNewSessionIfNeeded" title="startNewSessionIfNeeded"></a>
+	<h3 class="method-title"><code><a href="#//api/name/startNewSessionIfNeeded">&ndash;&nbsp;startNewSessionIfNeeded</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Determines whether the current session needs to be renewed or not.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)startNewSessionIfNeeded</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/appBackgroundTimeBeforeSessionExpires">@property appBackgroundTimeBeforeSessionExpires</a></p></code></li>
+					
+					<li><code><p><a href="#//api/name/updateDidEnterBackgroundTime">- updateDidEnterBackgroundTime</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITMetricsManagerPrivate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/startNewSessionWithId:" title="startNewSessionWithId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/startNewSessionWithId:">&ndash;&nbsp;startNewSessionWithId:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates a new session, updates the session context and sends it to the <a href="#//api/name/channel">channel</a>.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)startNewSessionWithId:(NSString *)<em>sessionId</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>sessionId</code></th>
+						<td><p>the id for the new session</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITMetricsManagerPrivate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/createNewSessionWithId:" title="createNewSessionWithId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/createNewSessionWithId:">&ndash;&nbsp;createNewSessionWithId:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates a new session and stores it to NSUserDefaults.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BITSession *)createNewSessionWithId:(NSString *)<em>sessionId</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>sessionId</code></th>
+						<td><p>the id for the new session</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>the newly created session</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITMetricsManagerPrivate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/trackSessionWithState:" title="trackSessionWithState:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/trackSessionWithState:">&ndash;&nbsp;trackSessionWithState:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates and enqueues a session event for the given state.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)trackSessionWithState:(BITSessionState)<em>state</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>state</code></th>
+						<td><p>value that determines whether the session started or ended</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BITMetricsManagerPrivate.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2016 Bit Stadium GmbH. All rights reserved. Updated: 2016-05-05</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

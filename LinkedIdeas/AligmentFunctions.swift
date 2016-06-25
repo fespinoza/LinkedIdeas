@@ -32,6 +32,8 @@ extension AlignmentFunctions {
   
   // MARK: - Alignment Functions
   func verticallyCenterAlign(elements: [SquareElement]) {
+    guard !elements.isEmpty else { return }
+    
     let sortedConcepts = elements.sort(compareByMinCenterX)
     let minimunXCoordinate = sortedConcepts.first!.point.x
     
@@ -43,6 +45,8 @@ extension AlignmentFunctions {
   }
   
   func verticallyLeftAlign(elements: [SquareElement]) {
+    guard !elements.isEmpty else { return }
+    
     let sortedConcepts = elements.sort(compareByMinRectX)
     let minimunXCoordinate = sortedConcepts.first!.rect.origin.x
     
@@ -55,6 +59,8 @@ extension AlignmentFunctions {
   }
   
   func verticallyRightAlign(elements: [SquareElement]) {
+    guard !elements.isEmpty else { return }
+    
     let sortedConcepts = elements.sort(compareByMaxRectX)
     let minimunXCoordinate = sortedConcepts.first!.rect.maxX
     
@@ -67,6 +73,8 @@ extension AlignmentFunctions {
   }
   
   func horizontallyAlign(elements: [SquareElement]) {
+    guard !elements.isEmpty else { return }
+    
     let averageYCoordinate: CGFloat = elements.minElement(compareByMinCenterX)!.point.y
     
     func calculateNewPoint(element: SquareElement) -> NSPoint {
@@ -77,6 +85,8 @@ extension AlignmentFunctions {
   }
   
   func equalVerticalSpace(elements: [SquareElement]) {
+    guard !elements.isEmpty else { return }
+    
     let containingRect = containingRectFor(elements)
     
     let n = CGFloat(elements.count)
@@ -99,6 +109,8 @@ extension AlignmentFunctions {
   }
   
   func equalHorizontalSpace(elements: [SquareElement]) {
+    guard !elements.isEmpty else { return }
+    
     let containingRect = containingRectFor(elements)
     
     let n = CGFloat(elements.count)

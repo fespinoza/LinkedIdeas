@@ -112,7 +112,6 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   
   let deleteKeyCode: UInt16 = 51
   override func keyDown(theEvent: NSEvent) {
-    sprint("key down")
     if (theEvent.keyCode == deleteKeyCode) {
       pressDeleteKey()
     } else {
@@ -136,7 +135,6 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   }
   
   func textDidChange(notification: NSNotification) {
-    sprint("text did chage")
     updateFrameToMatchConcept()
   }
 

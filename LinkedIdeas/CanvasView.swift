@@ -73,10 +73,8 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   override var intrinsicContentSize: NSSize {
     let elements = concepts.map { $0 as SquareElement }
     var size = containingRectFor(elements).size
-    sprint("containingRect \(containingRectFor(elements))")
     size.height = [size.height, minCanvasSize.height].maxElement()! + padding
     size.width  = [size.width, minCanvasSize.width].maxElement()! + padding
-    sprint("size \(size)")
     return size
   }
 
@@ -147,7 +145,6 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   // MARK: - ClickableView
   
   func click(point: NSPoint) {
-    sprint("click at \(point)")
     if mode == .Concepts { createConceptAt(point) }
     doubleClick(point)
   }
@@ -208,7 +205,6 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   }
 
   func clickOnConceptView(conceptView: ConceptView, point: NSPoint, multipleSelect: Bool = false) {
-    sprint("click on conceptView \(conceptView.concept.identifier) to \(point)")
     let clickedConcept = conceptView.concept
     let selectedConcepts = concepts.filter { $0.isSelected }
     
@@ -279,7 +275,6 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     if let linkView = linkViews[link.identifier] {
       linkView.needsDisplay = true
     } else {
-      sprint("draw new link view for \(link)")
       let linkView = LinkView(link: link, canvas: self)
       addSubview(linkView, positioned: .Below, relativeTo: nil)
       linkViews[link.identifier] = linkView
@@ -317,8 +312,6 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     }
     
     document.saveLink(link)
-    
-    sprint("create link \(link)")
   }
 
   func removeLinkView(linkView: LinkView) {
@@ -362,7 +355,6 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   }
   
   func linkUpdated(link: Link) {
-    Swift.print("link updated \(link)")
     let linkView = linkViewFor(link)
     linkView.needsDisplay = true
   }

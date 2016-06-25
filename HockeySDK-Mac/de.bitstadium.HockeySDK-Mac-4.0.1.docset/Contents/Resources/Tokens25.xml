@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/BITTelemetryData.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/BITTelemetryData</TokenIdentifier>
+			<Abstract type="html">Data contract class for type BITTelemetryData.</Abstract>
+			<DeclaredIn>BITTelemetryData.h</DeclaredIn>
+            
+			
+			<NodeRef refid="25"/>
+		</Token>
+		
+		
+        
+        
+	</File>
+</Tokens>

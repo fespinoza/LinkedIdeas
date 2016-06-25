@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>HockeySDK-Mac 4.0.1 Reference</title>
+
+	<link rel="stylesheet" href="css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1334)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="index.html">HockeySDK-Mac 4.0.1 </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="index.html">Bit Stadium GmbH</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="hierarchy.html">Hierarchy</a></li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview-contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">HockeySDK-Mac 4.0.1 Reference</h1>
+
+					
+					<div class="section section-overview index-overview">
+						
+						
+						<h2>Introduction</h2>
+
+<p>HockeySDK-Mac implements support for using HockeyApp in your Mac applications.</p>
+
+<p>The following feature is currently supported:</p>
+
+<ol>
+<li><p><strong>Collect crash reports:</strong> If you app crashes, a crash log with the same format as from the Apple Crash Reporter is written to the device&rsquo;s storage. If the user starts the app again, he is asked to submit the crash report to HockeyApp. This works for both beta and live apps, i.e. those submitted to the App Store!</p></li>
+<li><p><strong>Feedback:</strong> Collect feedback from your users from within your app and communicate directly with them using the HockeyApp backend.</p></li>
+<li><p><strong>Add analytics to Sparkle:</strong> If you are using Sparkle to provide app-updates (HockeyApp also supports Sparkle feeds for beta distribution) the SDK contains helpers to add some analytics data to each Sparkle request.</p></li>
+</ol>
+
+
+<p>The main SDK class is <a href="Classes/BITHockeyManager.html"><code>BITHockeyManager</code></a>. It initializes all modules and provides access to them, so they can be further adjusted if required. Additionally all modules provide their own protocols.</p>
+
+<h2>Prerequisites</h2>
+
+<ol>
+<li>Before you integrate HockeySDK into your own app, you should add the app to HockeyApp if you haven&rsquo;t already. Read <a href="http://support.hockeyapp.net/kb/how-tos/how-to-create-a-new-app">this how-to</a> on how to do it.</li>
+<li>We also assume that you already have a project in Xcode and that this project is opened in Xcode 6.</li>
+<li>The SDK supports Mac OS X 10.7 or newer.</li>
+</ol>
+
+
+<h2>Release Notes</h2>
+
+<ul>
+<li><a href="docs/docs/Changelog.html">Changelog</a></li>
+</ul>
+
+
+<h2>Guides</h2>
+
+<ul>
+<li><a href="docs/docs/Guide-Installation-Setup.html">Installation &amp; Setup</a></li>
+<li><a href="docs/docs/Guide-Migration.html">Migration from previous SDK Versions</a></li>
+<li><a href="http://support.hockeyapp.net/kb/services-webhooks-desktop-apps/how-to-upload-to-hockeyapp-on-a-mac">Mac Desktop Uploader</a></li>
+</ul>
+
+
+<h2>HowTos</h2>
+
+<ul>
+<li><a href="docs/docs/HowTo-App-Versioning.html">How to do app versioning</a></li>
+<li><a href="docs/docs/HowTo-Upload-Symbols.html">How to upload symbols for crash reporting</a></li>
+<li><a href="http://support.hockeyapp.net/kb/client-integration-ios-mac-os-x/how-to-add-application-specific-log-data-on-ios-or-osx">How to add application specific log data</a></li>
+</ul>
+
+
+<h2>Troubleshooting</h2>
+
+<ul>
+<li><a href="http://support.hockeyapp.net/kb/client-integration-ios-mac-os-x/how-to-solve-symbolication-problems">Symbolication doesn&rsquo;t work</a> (Or the rules of binary UUIDs and dSYMs)</li>
+<li><a href="docs/docs/Troubleshooting-Crash-Reporting-Not-Working.html">Crash Reporting is not working</a></li>
+</ul>
+
+
+<h2>Xcode Documentation</h2>
+
+<p>This documentation provides integrated help in Xcode for all public APIs and a set of additional tutorials and HowTos.</p>
+
+<ol>
+<li><p>Download the <a href="http://hockeyapp.net/releases/">HockeySDK-Mac documentation</a>.</p></li>
+<li><p>Unzip the file. A new folder <code>HockeySDK-Mac-documentation</code> is created.</p></li>
+<li><p>Copy the content into ~<code>/Library/Developer/Shared/Documentation/DocSet</code></p></li>
+</ol>
+
+						
+						
+					</div>
+					
+
+					<div class="index-container">
+						
+						<div class="index-column">
+							<h2 class="index-title">Programming Guides</h2>
+							<ul>
+								
+								<li><a href="docs/docs/Changelog.html">Changelog</a></li>
+								
+								<li><a href="docs/docs/Guide-Installation-Mac-App.html">Guide-Installation-Mac-App</a></li>
+								
+								<li><a href="docs/docs/Guide-Installation-Setup.html">Guide-Installation-Setup</a></li>
+								
+								<li><a href="docs/docs/Guide-Migration.html">Guide-Migration</a></li>
+								
+								<li><a href="docs/docs/HowTo-App-Versioning.html">HowTo-App-Versioning</a></li>
+								
+								<li><a href="docs/docs/HowTo-Upload-Symbols.html">HowTo-Upload-Symbols</a></li>
+								
+								<li><a href="docs/docs/Troubleshooting-Crash-Reporting-Not-Working.html">Troubleshooting-Crash-Reporting-Not-Working</a></li>
+								
+							</ul>
+						</div>
+						
+
+						
+						<div class="index-column">
+							<h2 class="index-title">Class References</h2>
+							<ul>
+								
+								<li><a href="Classes/BITChannel.html">BITChannel</a></li>
+								
+								<li><a href="Classes/BITCrashDetails.html">BITCrashDetails</a></li>
+								
+								<li><a href="Classes/BITCrashExceptionApplication.html">BITCrashExceptionApplication</a></li>
+								
+								<li><a href="Classes/BITCrashManager.html">BITCrashManager</a></li>
+								
+								<li><a href="Classes/BITCrashMetaData.html">BITCrashMetaData</a></li>
+								
+								<li><a href="Classes/BITFeedbackManager.html">BITFeedbackManager</a></li>
+								
+								<li><a href="Classes/BITFeedbackMessage.html">BITFeedbackMessage</a></li>
+								
+								<li><a href="Classes/BITFeedbackMessageAttachment.html">BITFeedbackMessageAttachment</a></li>
+								
+								<li><a href="Classes/BITHockeyAppClient.html">BITHockeyAppClient</a></li>
+								
+								<li><a href="Classes/BITHockeyAttachment.html">BITHockeyAttachment</a></li>
+								
+								<li><a href="Classes/BITHockeyBaseManager.html">BITHockeyBaseManager</a></li>
+								
+								<li><a href="Classes/BITHockeyManager.html">BITHockeyManager</a></li>
+								
+								<li><a href="Classes/BITMetricsManager.html">BITMetricsManager</a></li>
+								
+								<li><a href="Classes/BITPersistence.html">BITPersistence</a></li>
+								
+								<li><a href="Classes/BITSender.html">BITSender</a></li>
+								
+								<li><a href="Classes/BITSystemProfile.html">BITSystemProfile</a></li>
+								
+								<li><a href="Classes/BITTelemetryContext.html">BITTelemetryContext</a></li>
+								
+								<li><a href="Classes/BITTelemetryData.html">BITTelemetryData</a></li>
+								
+							</ul>
+						</div>
+						
+
+						
+						<div class="index-column">
+							
+							<h2 class="index-title">Protocol References</h2>
+							<ul>
+								
+								<li><a href="Protocols/BITCrashManagerDelegate.html">BITCrashManagerDelegate</a></li>
+								
+								<li><a href="Protocols/BITHockeyManagerDelegate.html">BITHockeyManagerDelegate</a></li>
+								
+							</ul>
+							
+
+							
+							<h2 class="index-title">Constant References</h2>
+							<ul>
+								
+									<li><a href="Constants/BITCrashErrorReason.html">BITCrashErrorReason</a></li>
+								
+									<li><a href="Constants/BITCrashManagerUserInput.html">BITCrashManagerUserInput</a></li>
+								
+									<li><a href="Constants/BITFeedbackErrorReason.html">BITFeedbackErrorReason</a></li>
+								
+									<li><a href="Constants/BITFeedbackMessageStatus.html">BITFeedbackMessageStatus</a></li>
+								
+									<li><a href="Constants/BITFeedbackUserDataElement.html">BITFeedbackUserDataElement</a></li>
+								
+									<li><a href="Constants/BITHockeyErrorReason.html">BITHockeyErrorReason</a></li>
+								
+									<li><a href="Constants/BITSessionState.html">BITSessionState</a></li>
+								
+							</ul>
+							
+
+							
+						</div>
+						
+					</div>
+
+					<footer>
+						<div class="footer-copyright">
+							
+							<p class="copyright">Copyright &copy; 2016 Bit Stadium GmbH. All rights reserved. Updated: 2016-05-05</p>
+							
+							
+							<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
+							
+						</div>
+					</footer>
+				</main>
+			</div>
+		</div>
+	</article>
+
+	<script src="js/script.js"></script>
+</body>
+</html>
