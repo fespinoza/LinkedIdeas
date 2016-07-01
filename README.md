@@ -23,15 +23,20 @@ way to 'explain' the connexion of ideas.
 - [x] multiple select concepts (move them) [#14][14]
 - [x] align/space concepts [#15][15]
 - [x] panning canvas [#16][16]
+- [ ] improvements of handling format of concept's text
+- [ ] delete multiple concepts
+- [ ] button to quickly organize elements in a table
+- [ ] add editable text to links
+- [ ] copy/and paste support for concepts
+- [ ] UI improvements
 
 ## Optional Features
 
 - export document as image
 - restore canvas dimensions when opening the document?
-- reorder concepts in canvas
+- reorder concepts in canvas (based on links)
 - add editable curvature to links
 - zooming canvas
-- add editable text to links
 
 ## A world of ideas
 
@@ -43,7 +48,14 @@ way to 'explain' the connexion of ideas.
 - refactor conceptView/linkView use a delegate to decouple from Canvas
 - fix link views to be outside canvas ???
 - resizing of text field goes to the right
-- delete multiple concepts when selected
+
+## Credits
+
+### Icons
+
+- [select icon][select icon]: By Baboon designs, US
+- [concept icon][concept icon]: By sahira zakkiya, ID
+- [link icon][link icon]: By Lynn Christensen, US
 
 [4]: https://github.com/fespinoza/linked-ideas-osx/pull/4
 [6]: https://github.com/fespinoza/linked-ideas-osx/pull/6
@@ -55,3 +67,6 @@ way to 'explain' the connexion of ideas.
 [14]: https://github.com/fespinoza/linked-ideas-osx/pull/14
 [15]: https://github.com/fespinoza/linked-ideas-osx/pull/15
 [16]: https://github.com/fespinoza/linked-ideas-osx/pull/16
+[select icon]: https://thenounproject.com/search/?q=select&i=464317
+[concept icon]: https://thenounproject.com/search/?q=write&i=501467
+[link icon]: https://thenounproject.com/search/?q=link&i=90164
