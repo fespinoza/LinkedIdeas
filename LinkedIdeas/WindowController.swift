@@ -149,6 +149,39 @@ class WindowController: NSWindowController, AlignmentFunctions {
   }
   
   func selectedElementsCallback() {
+    let selectedConcepts = canvas.selectedConcepts()
+    
+    var selectedFontSize: Int?
+    var selectedFontColor: NSColor?
+    var isStrikethrough: Bool?
+    var isBold: Bool?
+    
+    let fontSizes = Set(selectedConcepts.map { $0.attributedStringValue.fontSize })
+    if fontSizes.count == 1 { selectedFontSize = fontSizes.first }
+    
+    let fontColors = Set(selectedConcepts.map { $0.attributedStringValue.fontColor })
+    if fontColors.count == 1 { selectedFontColor = fontColors.first }
+    
+    let strikethroughs = Set(selectedConcepts.map { $0.attributedStringValue.isStrikedThrough })
+    if strikethroughs.count == 1 { isStrikethrough = strikethroughs.first }
+    
+    let bolds = Set(selectedConcepts.map { $0.attributedStringValue.isBold })
+    if bolds.count == 1 { isBold = bolds.first }
+    
+    if let selectedFontSize = selectedFontSize { fontSizeTextField.integerValue = selectedFontSize }
+    if let selectedFontColor = selectedFontColor { colorSelector.color = selectedFontColor }
+    
+    if let isBold = isBold {
+      formatTextButtons.setSelected(isBold, forSegment: FormatButtons.Bold.rawValue)
+    } else {
+      formatTextButtons.setSelected(false, forSegment: FormatButtons.Bold.rawValue)
+    }
+    
+    if let isStrikethrough = isStrikethrough {
+      formatTextButtons.setSelected(isStrikethrough, forSegment: FormatButtons.Strikethrough.rawValue)
+    } else {
+      formatTextButtons.setSelected(false, forSegment: FormatButtons.Strikethrough.rawValue)
+    }
   }
   
   func updateSelectedConceptsText(newAttributedStringTranformation: (Concept) -> NSAttributedString) {

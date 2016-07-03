@@ -118,6 +118,7 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
       isDragging = false
       needsDisplay = true
     }
+    (window?.windowController as? WindowController)?.selectedElementsCallback()
   }
 
   // MARK: - BasicCanvas
@@ -188,11 +189,11 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   func createConceptViewFor(concept: Concept) -> ConceptView {
     let conceptView = ConceptView(concept: concept, canvas: self)
     conceptViews[concept.identifier] = conceptView
-
+    
     dispatch_async(dispatch_get_main_queue(), { [unowned self] in
       self.addSubview(conceptView, positioned:.Above, relativeTo: nil)
     })
-
+    
     return conceptView
   }
 
