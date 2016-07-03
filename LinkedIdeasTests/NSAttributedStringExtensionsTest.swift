@@ -62,14 +62,26 @@ class NSAttributedStringExtensionsTest: XCTestCase {
   }
   
   // fontColor
-  func testFontColor() {}
+  func testFontColor() {
+    let coloredText = NSAttributedString(
+      string: stringValue,
+      attributes: [NSForegroundColorAttributeName: NSColor.redColor()]
+    )
+    
+    XCTAssertEqual(coloredText.fontColor!, NSColor.redColor())
+  }
   
   // fontSize
-  func testFontSize() {}
+  func testFontSize() {
+    let attributedString = NSAttributedString(
+      string: stringValue,
+      attributes: [NSFontAttributeName: NSFont(name: "Helvetica", size: 18)!]
+    )
+    
+    XCTAssertEqual(attributedString.fontSize, 18)
+  }
   
-  // maxRange
-  func testMaxRange() {}
-  
+  // NSAttributedString(attributedString:strikeThrough:)
   func testCreatingAStrikedThroughString() {
     let attributedString = NSAttributedString(string: stringValue)
     let newAttributedString = NSAttributedString(
@@ -95,7 +107,7 @@ class NSAttributedStringExtensionsTest: XCTestCase {
     XCTAssertEqual(newAttributedString.isStrikedThrough, false)
   }
   
-  // NSAttributedString(attributedString:bold:Bool)
+  // NSAttributedString(attributedString:bold:)
   func testCreatingABoldString() {
     let newAttributedString = NSAttributedString(
       attributedString: NSAttributedString(string: stringValue),
@@ -105,8 +117,23 @@ class NSAttributedStringExtensionsTest: XCTestCase {
     XCTAssert(newAttributedString.isBold)
   }
   
-  // NSAttributedString(attributedString:strikeThrough:Bool)
-  // NSAttributedString(attributedString:bold:Bool)
   // NSAttributedString(attributedString:withColor:NSColor)
+  func testCreatingAFontWithColor() {
+    let newAttributedString = NSAttributedString(
+      attributedString: NSAttributedString(string: stringValue),
+      fontColor: NSColor.redColor()
+    )
+    
+    XCTAssertEqual(newAttributedString.fontColor!, NSColor.redColor())
+  }
+  
   // NSAttributedString(attributedString:withFontSize:Int)
+  func testCreatingAStringWithGivenFontSize() {
+    let newAttributedString = NSAttributedString(
+      attributedString: NSAttributedString(string: stringValue),
+      fontSize: 20
+    )
+    
+    XCTAssertEqual(newAttributedString.fontSize, 20)
+  }
 }
