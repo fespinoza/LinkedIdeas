@@ -9,14 +9,17 @@
 /* Begin PBXBuildFile section */
 		9B06AD131C11AD74000BC75C /* NSRect+PointHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */; };
 		9B06AD151C11AF03000BC75C /* NSView+Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */; };
+		9B1CCDEB1D294E0900F319EB /* NSAttributedStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */; };
 		9B2F1DA01BE7CFE70090CC18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */; };
 		9B2F1DA21BE7CFE70090CC18 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA11BE7CFE70090CC18 /* Document.swift */; };
 		9B2F1DA51BE7CFE70090CC18 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA31BE7CFE70090CC18 /* Document.xib */; };
 		9B2F1DA71BE7CFE70090CC18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA61BE7CFE70090CC18 /* Assets.xcassets */; };
 		9B2F1DAA1BE7CFE80090CC18 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA81BE7CFE80090CC18 /* MainMenu.xib */; };
 		9B2F1DCE1BE7D3990090CC18 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1DCD1BE7D3990090CC18 /* CanvasView.swift */; };
+		9B33821F1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B33821E1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift */; };
 		9B40CA0F1D1E963300D5EDDD /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B40CA0E1D1E963300D5EDDD /* HockeySDK.framework */; };
 		9B40CA111D1E975500D5EDDD /* HockeySDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9B40CA0E1D1E963300D5EDDD /* HockeySDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9B424EA91D25619E00BC043B /* Playgrounds in Resources */ = {isa = PBXBuildFile; fileRef = 9B424EA81D25619E00BC043B /* Playgrounds */; };
 		9B48F8471CD613F60014758D /* DocumentObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8461CD613F60014758D /* DocumentObserver.swift */; };
 		9B48F8491CD614370014758D /* LinkedIdeasDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */; };
 		9B48F84D1CD614BC0014758D /* DocumentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F84C1CD614BC0014758D /* DocumentData.swift */; };
@@ -73,6 +76,7 @@
 /* Begin PBXFileReference section */
 		9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSRect+PointHelpers.swift"; path = "../NSRect+PointHelpers.swift"; sourceTree = "<group>"; };
 		9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+Debugging.swift"; path = "../NSView+Debugging.swift"; sourceTree = "<group>"; };
+		9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtensions.swift; sourceTree = "<group>"; };
 		9B2F1D9C1BE7CFE70090CC18 /* LinkedIdeas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkedIdeas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B2F1DA11BE7CFE70090CC18 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -83,7 +87,9 @@
 		9B2F1DB01BE7CFE80090CC18 /* LinkedIdeasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinkedIdeasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2F1DB61BE7CFE80090CC18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B2F1DCD1BE7D3990090CC18 /* CanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		9B33821E1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtensionsTest.swift; sourceTree = "<group>"; };
 		9B40CA0E1D1E963300D5EDDD /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = "HockeySDK-Mac/HockeySDK.framework"; sourceTree = "<group>"; };
+		9B424EA81D25619E00BC043B /* Playgrounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Playgrounds; sourceTree = "<group>"; };
 		9B48F8461CD613F60014758D /* DocumentObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentObserver.swift; sourceTree = "<group>"; };
 		9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedIdeasDocument.swift; sourceTree = "<group>"; };
 		9B48F84C1CD614BC0014758D /* DocumentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentData.swift; sourceTree = "<group>"; };
@@ -140,6 +146,7 @@
 				9B2F1D9E1BE7CFE70090CC18 /* LinkedIdeas */,
 				9B2F1DB31BE7CFE80090CC18 /* LinkedIdeasTests */,
 				9B2F1D9D1BE7CFE70090CC18 /* Products */,
+				9B424EA81D25619E00BC043B /* Playgrounds */,
 				9B40CA0D1D1E960800D5EDDD /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -166,6 +173,7 @@
 				9BCA09E31C9217A900637F6D /* Models */,
 				9BD2BF3E1C7F8B8D00E8A303 /* 2DMath */,
 				9B521F841CFB37D200A71598 /* AligmentFunctions.swift */,
+				9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */,
 			);
 			path = LinkedIdeas;
 			sourceTree = "<group>";
@@ -213,6 +221,7 @@
 			children = (
 				9BF058FB1C9220F200274A62 /* ConceptTests.swift */,
 				9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */,
+				9B33821E1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -353,6 +362,7 @@
 			files = (
 				9B2F1DA71BE7CFE70090CC18 /* Assets.xcassets in Resources */,
 				9B2F1DA51BE7CFE70090CC18 /* Document.xib in Resources */,
+				9B424EA91D25619E00BC043B /* Playgrounds in Resources */,
 				9B66961C1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns in Resources */,
 				9B2F1DAA1BE7CFE80090CC18 /* MainMenu.xib in Resources */,
 			);
@@ -395,6 +405,7 @@
 				9BF15C391CAC69A500C95041 /* WindowController.swift in Sources */,
 				9B7D535F1CB6D0A400B3D43B /* ElementView.swift in Sources */,
 				9BD2C14E1BEE6F9F00CD3C2F /* ConceptView.swift in Sources */,
+				9B1CCDEB1D294E0900F319EB /* NSAttributedStringExtensions.swift in Sources */,
 				9BD2BF3B1C7F8B5500E8A303 /* Line.swift in Sources */,
 				9BDDE7391BEF9157000AAD44 /* Concept.swift in Sources */,
 				9BD2BF351C7F8B1200E8A303 /* LineRange.swift in Sources */,
@@ -408,6 +419,7 @@
 				9BF058FC1C9220F200274A62 /* ConceptTests.swift in Sources */,
 				9B9A2EA41CF5EE5300607208 /* AlignmentTests.swift in Sources */,
 				9BF058F91C921F7D00274A62 /* CanvasViewTests.swift in Sources */,
+				9B33821F1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift in Sources */,
 				9BF058FA1C921F7D00274A62 /* ConceptViewTests.swift in Sources */,
 				9BB8FC831CA6B7D7008CD6A2 /* LinkTests.swift in Sources */,
 				9BB8FC851CA6B7F8008CD6A2 /* LinkViewTests.swift in Sources */,
@@ -528,7 +540,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -545,7 +556,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

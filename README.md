@@ -23,15 +23,21 @@ way to 'explain' the connexion of ideas.
 - [x] multiple select concepts (move them) [#14][14]
 - [x] align/space concepts [#15][15]
 - [x] panning canvas [#16][16]
+- [ ] improvements of handling format of concept's text [#21][21]
+- [ ] delete multiple concepts
+- [ ] button to quickly organize elements in a table
+- [ ] add editable text to links
+- [ ] copy/and paste support for concepts
+- [ ] UI improvements
 
 ## Optional Features
 
+- propper implementation of a toolbar
 - export document as image
 - restore canvas dimensions when opening the document?
-- reorder concepts in canvas
+- reorder concepts in canvas (based on links)
 - add editable curvature to links
 - zooming canvas
-- add editable text to links
 
 ## A world of ideas
 
@@ -43,7 +49,17 @@ way to 'explain' the connexion of ideas.
 - refactor conceptView/linkView use a delegate to decouple from Canvas
 - fix link views to be outside canvas ???
 - resizing of text field goes to the right
-- delete multiple concepts when selected
+
+## Credits
+
+### Icons
+
+- select icon: Created by Max Burnside, from the Noun Project
+- concept icon: Created by Alex Auda Samora, from the Noun Project
+- link icon: Created by Thomas Helbig, from the Noun Project
+- strikethrough icon: Created by Hello Many, from the Noun Project
+- bold icon: Created by useiconic.com, Created by Thomas Helbig
+- aligment icons: Created by dw, from the Noun Project
 
 [4]: https://github.com/fespinoza/linked-ideas-osx/pull/4
 [6]: https://github.com/fespinoza/linked-ideas-osx/pull/6
@@ -55,3 +71,4 @@ way to 'explain' the connexion of ideas.
 [14]: https://github.com/fespinoza/linked-ideas-osx/pull/14
 [15]: https://github.com/fespinoza/linked-ideas-osx/pull/15
 [16]: https://github.com/fespinoza/linked-ideas-osx/pull/16
+[21]: https://github.com/fespinoza/linked-ideas-osx/pull/21

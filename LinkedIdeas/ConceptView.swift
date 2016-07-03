@@ -98,6 +98,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
       let point = pointInCanvasCoordinates(theEvent.locationInWindow)
       dragEnd(point)
     }
+    (window?.windowController as? WindowController)?.selectedElementsCallback()
   }
   
   override func mouseEntered(theEvent: NSEvent) {
