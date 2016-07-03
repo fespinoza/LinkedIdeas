@@ -54,9 +54,12 @@ way to 'explain' the connexion of ideas.
 
 ### Icons
 
-- [select icon][select icon]: By Baboon designs, US
-- [concept icon][concept icon]: By sahira zakkiya, ID
-- [link icon][link icon]: By Lynn Christensen, US
+- select icon: Created by Max Burnside, from the Noun Project
+- concept icon: Created by Alex Auda Samora, from the Noun Project
+- link icon: Created by Thomas Helbig, from the Noun Project
+- strikethrough icon: Created by Hello Many, from the Noun Project
+- bold icon: Created by useiconic.com, Created by Thomas Helbig
+- aligment icons: Created by dw, from the Noun Project
 
 [4]: https://github.com/fespinoza/linked-ideas-osx/pull/4
 [6]: https://github.com/fespinoza/linked-ideas-osx/pull/6
@@ -68,6 +71,3 @@ way to 'explain' the connexion of ideas.
 [14]: https://github.com/fespinoza/linked-ideas-osx/pull/14
 [15]: https://github.com/fespinoza/linked-ideas-osx/pull/15
 [16]: https://github.com/fespinoza/linked-ideas-osx/pull/16
-[select icon]: https://thenounproject.com/search/?q=select&i=464317
-[concept icon]: https://thenounproject.com/search/?q=write&i=501467
-[link icon]: https://thenounproject.com/search/?q=link&i=90164
