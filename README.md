@@ -32,6 +32,7 @@ way to 'explain' the connexion of ideas.
 
 ## Optional Features
 
+- propper implementation of a toolbar
 - export document as image
 - restore canvas dimensions when opening the document?
 - reorder concepts in canvas (based on links)

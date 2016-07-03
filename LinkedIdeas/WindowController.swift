@@ -93,33 +93,18 @@ class WindowController: NSWindowController, AlignmentFunctions {
     }
   }
 
-  @IBAction func changeMode(sender: NSSegmentedControl) {
-    switch sender.doubleValueForSelectedSegment {
-    case 1:
-      editionMode = .Concepts
-    case 2:
-      editionMode = .Links
-    default:
-      editionMode = .Select
-    }
-    canvas.mode = editionMode
-  }
-
   func toggleScratchText() {
     var scratchText: Bool = true
     canvas.selectedConcepts().forEach { concept in
       scratchText = scratchText && concept.attributedStringValue.isStrikedThrough
     }
     scratchText = !scratchText
-
-    for concept in canvas.selectedConcepts() {
-      let newText = NSAttributedString(
+    
+    updateSelectedConceptsText { concept in
+      NSAttributedString(
         attributedString: concept.attributedStringValue,
         strikeThrough: scratchText
       )
-
-      canvas.conceptViewFor(concept).textField.attributedStringValue = newText
-      concept.attributedStringValue = newText
     }
   }
 
@@ -129,30 +114,18 @@ class WindowController: NSWindowController, AlignmentFunctions {
       bold = bold && concept.attributedStringValue.isBold
     }
     bold = !bold
-
-    for concept in canvas.selectedConcepts() {
-      let newText = NSAttributedString(
+    
+    updateSelectedConceptsText { concept in
+      NSAttributedString(
         attributedString: concept.attributedStringValue,
         bold: bold
       )
-
-      canvas.conceptViewFor(concept).textField.attributedStringValue = newText
-      concept.attributedStringValue = newText
     }
   }
-
-  @IBAction func selectColor(sender: AnyObject) {
-    let newColor = colorSelector  .color
-    let selectedLinks = canvas.links.filter { $0.isSelected }
-    for link in selectedLinks {
-      link.color = newColor
-      canvas.linkViewFor(link).needsDisplay = true
-    }
-  }
-
+  
   func alignSelectedElements(alignment: Aligment) {
     let elements = canvas.selectedConcepts().map { $0 as SquareElement }
-
+    
     switch alignment {
     case .Left:
       verticallyLeftAlign(elements)
@@ -168,6 +141,54 @@ class WindowController: NSWindowController, AlignmentFunctions {
       equalHorizontalSpace(elements)
     }
   }
+  
+  func setNewPoint(newPoint: NSPoint, forElement element: SquareElement) {
+    let concept = element as! Concept
+    canvas.conceptViewFor(concept).textField.attributedStringValue = concept.attributedStringValue
+    canvas.document.changeConceptPoint(concept, fromPoint: concept.point, toPoint: newPoint)
+  }
+  
+  func selectedElementsCallback() {
+  }
+  
+  func updateSelectedConceptsText(newAttributedStringTranformation: (Concept) -> NSAttributedString) {
+    for concept in canvas.selectedConcepts() {
+      let newText = newAttributedStringTranformation(concept)
+      canvas.conceptViewFor(concept).textField.attributedStringValue = newText
+      concept.attributedStringValue = newText
+    }
+  }
+  
+  // MARK: - Interface Actions
+  
+  @IBAction func changeMode(sender: NSSegmentedControl) {
+    switch sender.doubleValueForSelectedSegment {
+    case 1:
+      editionMode = .Concepts
+    case 2:
+      editionMode = .Links
+    default:
+      editionMode = .Select
+    }
+    canvas.mode = editionMode
+  }
+
+  @IBAction func selectColor(sender: AnyObject) {
+    let newColor = colorSelector.color
+    
+    updateSelectedConceptsText { concept in
+      NSAttributedString(
+        attributedString: concept.attributedStringValue,
+        fontColor: newColor
+      )
+    }
+    
+    let selectedLinks = canvas.links.filter { $0.isSelected }
+    for link in selectedLinks {
+      link.color = newColor
+      canvas.linkViewFor(link).needsDisplay = true
+    }
+  }
 
   @IBAction func formatSelectedTexts(sender: NSSegmentedControl) {
     if let format = FormatButtons(rawValue: sender.selectedSegment) {
@@ -180,8 +201,13 @@ class WindowController: NSWindowController, AlignmentFunctions {
     }
   }
 
-  @IBAction func stepFontSize(sender: NSStepper) {
-    // Update selected text font size
+  @IBAction func updateFontSize(sender: AnyObject) {
+    updateSelectedConceptsText { concept in
+      NSAttributedString(
+        attributedString: concept.attributedStringValue,
+        fontSize: self.fontSizeTextField.integerValue
+      )
+    }
   }
 
   @IBAction func alignElements(sender: NSSegmentedControl) {
@@ -190,70 +216,4 @@ class WindowController: NSWindowController, AlignmentFunctions {
     }
   }
 
-  func setNewPoint(newPoint: NSPoint, forElement element: SquareElement) {
-    let concept = element as! Concept
-    canvas.conceptViewFor(concept).textField.attributedStringValue = concept.attributedStringValue
-    canvas.document.changeConceptPoint(concept, fromPoint: concept.point, toPoint: newPoint)
-  }
-
-  func selectedElementsCallback() {
-  }
-}
-
-extension NSAttributedString {
-  var maxRange: NSRange { return NSMakeRange(0, length) }
-  var isStrikedThrough: Bool {
-    get {
-      var range = maxRange
-      let strikeValue = attribute(NSStrikethroughStyleAttributeName, atIndex: 0, effectiveRange: &range) as? Int
-      return strikeValue == NSUnderlineStyle.StyleSingle.rawValue
-    }
-  }
-
-  convenience init(attributedString: NSAttributedString, strikeThrough:Bool) {
-    var strikeStyle: NSUnderlineStyle = NSUnderlineStyle.StyleNone
-    if strikeThrough { strikeStyle = NSUnderlineStyle.StyleSingle }
-
-    let _tempCopy = attributedString.mutableCopy()
-    _tempCopy.addAttribute(
-      NSStrikethroughStyleAttributeName,
-      value: strikeStyle.rawValue,
-      range: attributedString.maxRange
-    )
-    self.init(attributedString: _tempCopy as! NSAttributedString)
-  }
-
-  var isBold: Bool {
-    var range = maxRange
-    let font = attribute(NSFontAttributeName, atIndex: 0, effectiveRange: &range) as? NSFont
-
-    if let font = font {
-      return (font.fontDescriptor.symbolicTraits & UInt32(NSFontTraitMask.BoldFontMask.rawValue)) != 0
-    }
-
-    return false
-  }
-
-  convenience init(attributedString: NSAttributedString, bold:Bool) {
-    var range = attributedString.maxRange
-    let font = attributedString.attribute(NSFontAttributeName, atIndex: 0, effectiveRange: &range) as? NSFont
-    var newFont: NSFont = NSFont(name: "Helvetica", size: 12)!
-
-    if let font = font { newFont = font }
-
-    if bold {
-      newFont = NSFontManager.sharedFontManager().convertFont(newFont, toHaveTrait: .BoldFontMask)
-    } else {
-      newFont = NSFontManager.sharedFontManager().convertFont(newFont, toNotHaveTrait: .BoldFontMask)
-    }
-
-    let _tempCopy = attributedString.mutableCopy()
-    _tempCopy.addAttribute(
-      NSFontAttributeName,
-      value: newFont,
-      range: attributedString.maxRange
-    )
-
-    self.init(attributedString: _tempCopy as! NSAttributedString)
-  }
 }

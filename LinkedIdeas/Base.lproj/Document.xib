@@ -22,7 +22,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="xOd-HO-29H" userLabel="Window">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="133" y="235" width="1156" height="661"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
@@ -84,7 +84,7 @@
                         <rect key="frame" x="993" y="627" width="19" height="27"/>
                         <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="h6T-C2-11Z"/>
                         <connections>
-                            <action selector="stepFontSize:" target="-2" id="qns-Az-dhB"/>
+                            <action selector="updateFontSize:" target="-2" id="4pN-23-aht"/>
                             <binding destination="-2" name="value" keyPath="self.fontSize" id="ydo-fj-2W9"/>
                         </connections>
                     </stepper>
@@ -100,6 +100,7 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+                            <action selector="updateFontSize:" target="-2" id="heB-sH-2Lf"/>
                             <binding destination="-2" name="value" keyPath="self.fontSize" id="vQ5-Wx-6Oe"/>
                         </connections>
                     </textField>
@@ -156,14 +157,14 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <scrollView canDrawConcurrently="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="Ath-s3-rsM">
-                        <rect key="frame" x="0.0" y="20" width="1157" height="584"/>
+                    <scrollView canDrawConcurrently="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="Ath-s3-rsM">
+                        <rect key="frame" x="0.0" y="-1" width="1157" height="605"/>
                         <clipView key="contentView" id="Boz-r0-yx4">
-                            <rect key="frame" x="1" y="1" width="1155" height="582"/>
+                            <rect key="frame" x="1" y="1" width="1155" height="603"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <customView autoresizesSubviews="NO" canDrawConcurrently="YES" misplaced="YES" placeholderIntrinsicWidth="897" placeholderIntrinsicHeight="530" translatesAutoresizingMaskIntoConstraints="NO" id="TBv-Q1-CwE" customClass="CanvasView" customModule="LinkedIdeas" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="-8" width="1155" height="590"/>
+                                <customView autoresizesSubviews="NO" canDrawConcurrently="YES" placeholderIntrinsicWidth="897" placeholderIntrinsicHeight="530" translatesAutoresizingMaskIntoConstraints="NO" id="TBv-Q1-CwE" customClass="CanvasView" customModule="LinkedIdeas" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="-15" width="1155" height="603"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="897" id="ABu-cR-9Cb"/>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="530" id="ZBJ-tk-mhv"/>
@@ -173,7 +174,7 @@
                             </subviews>
                             <constraints>
                                 <constraint firstItem="TBv-Q1-CwE" firstAttribute="leading" secondItem="Boz-r0-yx4" secondAttribute="leading" id="JRh-Ux-GBO"/>
-                                <constraint firstAttribute="bottom" secondItem="TBv-Q1-CwE" secondAttribute="bottom" constant="-8" id="MCx-4W-wyO"/>
+                                <constraint firstAttribute="bottom" secondItem="TBv-Q1-CwE" secondAttribute="bottom" constant="-15" id="MCx-4W-wyO"/>
                                 <constraint firstItem="TBv-Q1-CwE" firstAttribute="width" relation="greaterThanOrEqual" secondItem="Boz-r0-yx4" secondAttribute="width" id="NqQ-4p-GrX"/>
                                 <constraint firstItem="TBv-Q1-CwE" firstAttribute="height" relation="greaterThanOrEqual" secondItem="Boz-r0-yx4" secondAttribute="height" id="ZQs-ar-eFL"/>
                             </constraints>
@@ -181,12 +182,12 @@
                                 <outlet property="nextKeyView" destination="Ath-s3-rsM" id="3sO-vn-JVb"/>
                             </connections>
                         </clipView>
-                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="raK-9g-TDA">
-                            <rect key="frame" x="1" y="567" width="1155" height="16"/>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="raK-9g-TDA">
+                            <rect key="frame" x="1" y="589" width="1140" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="7fF-pE-QO0">
-                            <rect key="frame" x="1141" y="1" width="15" height="582"/>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="7fF-pE-QO0">
+                            <rect key="frame" x="1141" y="1" width="15" height="588"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
@@ -196,7 +197,7 @@
                     <constraint firstItem="c6y-RP-d79" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="C8r-9o-jtz" secondAttribute="trailing" constant="402" id="3IB-UJ-hI3"/>
                     <constraint firstItem="b9e-PI-TpR" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" constant="20" id="7J8-HJ-Vxh"/>
                     <constraint firstItem="mEr-Nd-2Ow" firstAttribute="top" secondItem="C8r-9o-jtz" secondAttribute="bottom" constant="5" id="84o-cq-l9G"/>
-                    <constraint firstAttribute="bottom" secondItem="Ath-s3-rsM" secondAttribute="bottom" constant="20" id="BJE-ho-GdT"/>
+                    <constraint firstAttribute="bottom" secondItem="Ath-s3-rsM" secondAttribute="bottom" constant="-1" id="BJE-ho-GdT"/>
                     <constraint firstItem="b9e-PI-TpR" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="10" id="DTs-YO-E4O"/>
                     <constraint firstItem="ezq-Wh-2wy" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="9" id="GgN-HN-IXb"/>
                     <constraint firstItem="Ath-s3-rsM" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="57" id="HH1-0c-cHo"/>

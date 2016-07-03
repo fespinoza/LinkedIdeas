@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9B06AD131C11AD74000BC75C /* NSRect+PointHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */; };
 		9B06AD151C11AF03000BC75C /* NSView+Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */; };
+		9B1CCDEB1D294E0900F319EB /* NSAttributedStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */; };
 		9B2F1DA01BE7CFE70090CC18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */; };
 		9B2F1DA21BE7CFE70090CC18 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA11BE7CFE70090CC18 /* Document.swift */; };
 		9B2F1DA51BE7CFE70090CC18 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA31BE7CFE70090CC18 /* Document.xib */; };
@@ -75,6 +76,7 @@
 /* Begin PBXFileReference section */
 		9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSRect+PointHelpers.swift"; path = "../NSRect+PointHelpers.swift"; sourceTree = "<group>"; };
 		9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+Debugging.swift"; path = "../NSView+Debugging.swift"; sourceTree = "<group>"; };
+		9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtensions.swift; sourceTree = "<group>"; };
 		9B2F1D9C1BE7CFE70090CC18 /* LinkedIdeas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkedIdeas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B2F1DA11BE7CFE70090CC18 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				9BCA09E31C9217A900637F6D /* Models */,
 				9BD2BF3E1C7F8B8D00E8A303 /* 2DMath */,
 				9B521F841CFB37D200A71598 /* AligmentFunctions.swift */,
+				9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */,
 			);
 			path = LinkedIdeas;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				9BF15C391CAC69A500C95041 /* WindowController.swift in Sources */,
 				9B7D535F1CB6D0A400B3D43B /* ElementView.swift in Sources */,
 				9BD2C14E1BEE6F9F00CD3C2F /* ConceptView.swift in Sources */,
+				9B1CCDEB1D294E0900F319EB /* NSAttributedStringExtensions.swift in Sources */,
 				9BD2BF3B1C7F8B5500E8A303 /* Line.swift in Sources */,
 				9BDDE7391BEF9157000AAD44 /* Concept.swift in Sources */,
 				9BD2BF351C7F8B1200E8A303 /* LineRange.swift in Sources */,
