@@ -68,7 +68,7 @@ class NSAttributedStringExtensionsTest: XCTestCase {
       attributes: [NSForegroundColorAttributeName: NSColor.redColor()]
     )
     
-    XCTAssertEqual(coloredText.fontColor!, NSColor.redColor())
+    XCTAssertEqual(coloredText.fontColor, NSColor.redColor())
   }
   
   // fontSize
@@ -124,7 +124,7 @@ class NSAttributedStringExtensionsTest: XCTestCase {
       fontColor: NSColor.redColor()
     )
     
-    XCTAssertEqual(newAttributedString.fontColor!, NSColor.redColor())
+    XCTAssertEqual(newAttributedString.fontColor, NSColor.redColor())
   }
   
   // NSAttributedString(attributedString:withFontSize:Int)
