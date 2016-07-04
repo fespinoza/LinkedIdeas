@@ -117,7 +117,7 @@ protocol CanvasConceptsActions {
   func updateLinkViewsFor(concept: Concept)
   func conceptLinksFor(concept: Concept) -> [Link]
   func isConceptSaved(concept: Concept) -> Bool
-  func removeConceptView(conceptView: ConceptView)
+  func removeSelectedConceptViews()
 }
 
 protocol CanvasLinkActions {

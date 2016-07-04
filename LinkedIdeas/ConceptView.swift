@@ -207,7 +207,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   }
   
   func pressDeleteKey() {
-    canvas.removeConceptView(self)
+    canvas.removeSelectedConceptViews()
   }
 
   // draw concept string

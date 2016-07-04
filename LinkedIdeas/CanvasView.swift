@@ -120,6 +120,16 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     }
     (window?.windowController as? WindowController)?.selectedElementsCallback()
   }
+  
+  // MARK: - Keyboard Events
+  let deleteKeyCode: UInt16 = 51
+  override func keyDown(theEvent: NSEvent) {
+    if (theEvent.keyCode == deleteKeyCode) {
+      removeSelectedConceptViews()
+    } else {
+      super.keyDown(theEvent)
+    }
+  }
 
   // MARK: - BasicCanvas
 
@@ -263,10 +273,12 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     for link in conceptLinksFor(concept) { removeLinkView(linkViewFor(link)) }
   }
 
-  func removeConceptView(conceptView: ConceptView) {
-    let concept = conceptView.concept
-    document.removeConcept(concept)
-    justRemoveConceptView(conceptView)
+  func removeSelectedConceptViews() {
+    for concept in selectedConcepts() {
+      let currentConceptView = conceptViewFor(concept)
+      document.removeConcept(concept)
+      justRemoveConceptView(currentConceptView)
+    }
   }
 
   func conceptLinksFor(concept: Concept) -> [Link] {
