@@ -22,7 +22,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="xOd-HO-29H" userLabel="Window">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES" fullSizeContentView="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="133" y="235" width="1156" height="661"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -31,140 +31,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="1156" height="661"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="T1A-TJ-gzE">
-                        <rect key="frame" x="1092" y="628" width="44" height="23"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="44" id="uI8-T4-lLV"/>
-                            <constraint firstAttribute="height" constant="23" id="yFj-mR-vfh"/>
-                        </constraints>
-                        <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <connections>
-                            <action selector="selectColor:" target="-2" id="nKR-Om-31b"/>
-                            <binding destination="-2" name="value" keyPath="selectedColor" id="72z-ns-Kqh"/>
-                        </connections>
-                    </colorWell>
-                    <segmentedControl verticalHuggingPriority="750" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b9e-PI-TpR">
-                        <rect key="frame" x="20" y="627" width="140" height="25"/>
-                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="PJV-T4-oUr">
-                            <font key="font" metaFont="system"/>
-                            <segments>
-                                <segment toolTip="Select Mode" image="selectIcon2Template" width="46" selected="YES">
-                                    <nil key="label"/>
-                                </segment>
-                                <segment toolTip="Concept Mode" image="conceptIconCTemplate" width="45" tag="1">
-                                    <nil key="label"/>
-                                </segment>
-                                <segment toolTip="Link Mode" image="linkIconB2Template" width="45">
-                                    <nil key="label"/>
-                                </segment>
-                            </segments>
-                        </segmentedCell>
-                        <connections>
-                            <action selector="changeMode:" target="-2" id="CUf-8Z-ihg"/>
-                        </connections>
-                    </segmentedControl>
-                    <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bQ2-VS-WWo">
-                        <rect key="frame" x="1015" y="628" width="71" height="24"/>
-                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectAny" id="TKS-eL-CR3">
-                            <font key="font" metaFont="system"/>
-                            <segments>
-                                <segment toolTip="Bold" image="boldIcon3Template" width="32">
-                                    <nil key="label"/>
-                                </segment>
-                                <segment toolTip="Strikethrough" image="strikethroughIcon3Template" width="32" tag="1">
-                                    <nil key="label"/>
-                                </segment>
-                            </segments>
-                        </segmentedCell>
-                        <connections>
-                            <action selector="formatSelectedTexts:" target="-2" id="yzW-P3-V4i"/>
-                        </connections>
-                    </segmentedControl>
-                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ezq-Wh-2wy">
-                        <rect key="frame" x="993" y="627" width="19" height="27"/>
-                        <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="h6T-C2-11Z"/>
-                        <connections>
-                            <action selector="updateFontSize:" target="-2" id="4pN-23-aht"/>
-                            <binding destination="-2" name="value" keyPath="self.fontSize" id="ydo-fj-2W9"/>
-                        </connections>
-                    </stepper>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c6y-RP-d79">
-                        <rect key="frame" x="948" y="629" width="45" height="22"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="45" id="HYZ-Wh-Ssk"/>
-                        </constraints>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="12" drawsBackground="YES" id="Kux-QR-McQ">
-                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="iBd-vu-Mbi"/>
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <connections>
-                            <action selector="updateFontSize:" target="-2" id="heB-sH-2Lf"/>
-                            <binding destination="-2" name="value" keyPath="self.fontSize" id="vQ5-Wx-6Oe"/>
-                        </connections>
-                    </textField>
-                    <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C8r-9o-jtz">
-                        <rect key="frame" x="237" y="628" width="311" height="24"/>
-                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="momentary" id="CiL-JD-Vvj">
-                            <font key="font" metaFont="system"/>
-                            <segments>
-                                <segment toolTip="Align Vertically Left" image="alignLeftIconTemplate" width="50">
-                                    <nil key="label"/>
-                                </segment>
-                                <segment toolTip="Align Vertically Center" image="alignCenterIconTemplate" width="50" tag="1">
-                                    <nil key="label"/>
-                                </segment>
-                                <segment toolTip="Align Vertically Right" image="alightRightIconTemplae" width="50">
-                                    <nil key="label"/>
-                                </segment>
-                                <segment toolTip="Align Horizontally Center" image="alignHorizontallyIconTemplate" width="50">
-                                    <nil key="label"/>
-                                </segment>
-                                <segment toolTip="Equal Vertical Spacing" image="equalVerticalSpaceTemplate" width="50">
-                                    <nil key="label"/>
-                                </segment>
-                                <segment image="equalHorizontalSpaceTemplate" width="50">
-                                    <nil key="label"/>
-                                </segment>
-                            </segments>
-                        </segmentedCell>
-                        <connections>
-                            <action selector="alignElements:" target="-2" id="5hF-x4-jWA"/>
-                        </connections>
-                    </segmentedControl>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RIp-YC-56w">
-                        <rect key="frame" x="71" y="607" width="39" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mode" id="n6p-Yi-TqD">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mEr-Nd-2Ow">
-                        <rect key="frame" x="360" y="608" width="66" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Alignment" id="1kN-0E-uaU">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a38-Nf-unj">
-                        <rect key="frame" x="1027" y="608" width="47" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Format" id="oU1-o4-sNb">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <scrollView canDrawConcurrently="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="Ath-s3-rsM">
-                        <rect key="frame" x="0.0" y="-1" width="1157" height="605"/>
+                        <rect key="frame" x="0.0" y="-1" width="1157" height="663"/>
                         <clipView key="contentView" id="Boz-r0-yx4">
-                            <rect key="frame" x="1" y="1" width="1155" height="603"/>
+                            <rect key="frame" x="1" y="1" width="1155" height="661"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <customView autoresizesSubviews="NO" canDrawConcurrently="YES" placeholderIntrinsicWidth="897" placeholderIntrinsicHeight="530" translatesAutoresizingMaskIntoConstraints="NO" id="TBv-Q1-CwE" customClass="CanvasView" customModule="LinkedIdeas" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="-15" width="1155" height="603"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1155" height="661"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="897" id="ABu-cR-9Cb"/>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="530" id="ZBJ-tk-mhv"/>
@@ -174,7 +48,7 @@
                             </subviews>
                             <constraints>
                                 <constraint firstItem="TBv-Q1-CwE" firstAttribute="leading" secondItem="Boz-r0-yx4" secondAttribute="leading" id="JRh-Ux-GBO"/>
-                                <constraint firstAttribute="bottom" secondItem="TBv-Q1-CwE" secondAttribute="bottom" constant="-15" id="MCx-4W-wyO"/>
+                                <constraint firstAttribute="bottom" secondItem="TBv-Q1-CwE" secondAttribute="bottom" id="MCx-4W-wyO"/>
                                 <constraint firstItem="TBv-Q1-CwE" firstAttribute="width" relation="greaterThanOrEqual" secondItem="Boz-r0-yx4" secondAttribute="width" id="NqQ-4p-GrX"/>
                                 <constraint firstItem="TBv-Q1-CwE" firstAttribute="height" relation="greaterThanOrEqual" secondItem="Boz-r0-yx4" secondAttribute="height" id="ZQs-ar-eFL"/>
                             </constraints>
@@ -187,37 +61,171 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="7fF-pE-QO0">
-                            <rect key="frame" x="1141" y="1" width="15" height="588"/>
+                            <rect key="frame" x="1140" y="57" width="16" height="605"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ezq-Wh-2wy" firstAttribute="leading" secondItem="c6y-RP-d79" secondAttribute="trailing" constant="3" id="0Q2-7F-8BP"/>
-                    <constraint firstItem="c6y-RP-d79" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="C8r-9o-jtz" secondAttribute="trailing" constant="402" id="3IB-UJ-hI3"/>
-                    <constraint firstItem="b9e-PI-TpR" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" constant="20" id="7J8-HJ-Vxh"/>
-                    <constraint firstItem="mEr-Nd-2Ow" firstAttribute="top" secondItem="C8r-9o-jtz" secondAttribute="bottom" constant="5" id="84o-cq-l9G"/>
                     <constraint firstAttribute="bottom" secondItem="Ath-s3-rsM" secondAttribute="bottom" constant="-1" id="BJE-ho-GdT"/>
-                    <constraint firstItem="b9e-PI-TpR" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="10" id="DTs-YO-E4O"/>
-                    <constraint firstItem="ezq-Wh-2wy" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="9" id="GgN-HN-IXb"/>
-                    <constraint firstItem="Ath-s3-rsM" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="57" id="HH1-0c-cHo"/>
-                    <constraint firstItem="bQ2-VS-WWo" firstAttribute="leading" secondItem="ezq-Wh-2wy" secondAttribute="trailing" constant="8" id="INs-VO-IL8"/>
-                    <constraint firstItem="mEr-Nd-2Ow" firstAttribute="centerX" secondItem="C8r-9o-jtz" secondAttribute="centerX" id="IRz-Et-nBk"/>
-                    <constraint firstItem="C8r-9o-jtz" firstAttribute="leading" secondItem="b9e-PI-TpR" secondAttribute="trailing" constant="79" id="Jg1-9e-Etf"/>
-                    <constraint firstItem="RIp-YC-56w" firstAttribute="centerX" secondItem="b9e-PI-TpR" secondAttribute="centerX" id="RGM-M4-KKI"/>
+                    <constraint firstItem="Ath-s3-rsM" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="-1" id="HH1-0c-cHo"/>
                     <constraint firstAttribute="trailing" secondItem="Ath-s3-rsM" secondAttribute="trailing" constant="-1" id="WMR-9j-bKD"/>
-                    <constraint firstItem="C8r-9o-jtz" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="10" id="Yau-ck-9yL"/>
-                    <constraint firstItem="T1A-TJ-gzE" firstAttribute="leading" secondItem="bQ2-VS-WWo" secondAttribute="trailing" constant="8" id="ZdU-vo-Igz"/>
-                    <constraint firstItem="a38-Nf-unj" firstAttribute="centerX" secondItem="bQ2-VS-WWo" secondAttribute="centerX" id="bUk-SP-dwr"/>
-                    <constraint firstItem="bQ2-VS-WWo" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="10" id="eAd-Ws-GPP"/>
-                    <constraint firstAttribute="trailing" secondItem="T1A-TJ-gzE" secondAttribute="trailing" constant="20" id="g5H-fM-D2a"/>
-                    <constraint firstItem="T1A-TJ-gzE" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="10" id="hj4-fp-0mp"/>
-                    <constraint firstItem="RIp-YC-56w" firstAttribute="top" secondItem="b9e-PI-TpR" secondAttribute="bottom" constant="5" id="jz4-kd-Eoq"/>
-                    <constraint firstItem="a38-Nf-unj" firstAttribute="top" secondItem="bQ2-VS-WWo" secondAttribute="bottom" constant="5" id="m8B-sW-mwp"/>
-                    <constraint firstItem="c6y-RP-d79" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="10" id="nXI-B1-ese"/>
                     <constraint firstItem="Ath-s3-rsM" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" id="pml-qa-8dQ"/>
                 </constraints>
             </view>
+            <toolbar key="toolbar" implicitIdentifier="DC501FAB-9D1C-4736-94EC-0B4B041139F9" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="pMy-4O-1NX">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="vgG-zn-OXy"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="PaC-qQ-9NE"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="38y-sW-sHN"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="olP-eQ-Avc"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="U2i-Hu-MPQ"/>
+                    <toolbarItem implicitItemIdentifier="6FD2FB7D-757F-4F38-9BF6-1E05AC58630A" label="" paletteLabel="Color Selector" id="P2Y-IO-Nef">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="44" height="23"/>
+                        <size key="maxSize" width="44" height="23"/>
+                        <colorWell key="view" id="T1A-TJ-gzE">
+                            <rect key="frame" x="20" y="14" width="44" height="23"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="uI8-T4-lLV"/>
+                                <constraint firstAttribute="height" constant="23" id="yFj-mR-vfh"/>
+                            </constraints>
+                            <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="selectColor:" target="-2" id="nKR-Om-31b"/>
+                                <binding destination="-2" name="value" keyPath="selectedColor" id="72z-ns-Kqh"/>
+                            </connections>
+                        </colorWell>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="D7BBC235-1AA0-458E-B9C4-CEAED3918C89" label="Mode" paletteLabel="Mode Selector" id="BLI-Wy-kUg">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="140" height="25"/>
+                        <size key="maxSize" width="140" height="25"/>
+                        <segmentedControl key="view" verticalHuggingPriority="750" springLoaded="YES" id="b9e-PI-TpR">
+                            <rect key="frame" x="0.0" y="14" width="140" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="PJV-T4-oUr">
+                                <font key="font" metaFont="system"/>
+                                <segments>
+                                    <segment toolTip="Select Mode" image="selectIcon2Template" width="46" selected="YES">
+                                        <nil key="label"/>
+                                    </segment>
+                                    <segment toolTip="Concept Mode" image="conceptIconCTemplate" width="45" tag="1">
+                                        <nil key="label"/>
+                                    </segment>
+                                    <segment toolTip="Link Mode" image="linkIconB2Template" width="45">
+                                        <nil key="label"/>
+                                    </segment>
+                                </segments>
+                            </segmentedCell>
+                            <connections>
+                                <action selector="changeMode:" target="-2" id="CUf-8Z-ihg"/>
+                            </connections>
+                        </segmentedControl>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="2899453B-01F1-4705-8861-120BEE46A5EA" label="Format" paletteLabel="Format Buttons" id="8ZN-Xo-a55">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="71" height="24"/>
+                        <size key="maxSize" width="71" height="24"/>
+                        <segmentedControl key="view" verticalHuggingPriority="750" id="bQ2-VS-WWo">
+                            <rect key="frame" x="9" y="14" width="71" height="24"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectAny" id="TKS-eL-CR3">
+                                <font key="font" metaFont="system"/>
+                                <segments>
+                                    <segment toolTip="Bold" image="boldIcon3Template" width="32">
+                                        <nil key="label"/>
+                                    </segment>
+                                    <segment toolTip="Strikethrough" image="strikethroughIcon3Template" width="32" tag="1">
+                                        <nil key="label"/>
+                                    </segment>
+                                </segments>
+                            </segmentedCell>
+                            <connections>
+                                <action selector="formatSelectedTexts:" target="-2" id="yzW-P3-V4i"/>
+                            </connections>
+                        </segmentedControl>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="B24BC130-C7C6-41AA-AD12-6E3EED873F3D" label="" paletteLabel="Font Size Stepper" id="NmB-G6-XpL">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="19" height="27"/>
+                        <size key="maxSize" width="19" height="27"/>
+                        <stepper key="view" horizontalHuggingPriority="750" verticalHuggingPriority="750" id="ezq-Wh-2wy">
+                            <rect key="frame" x="41" y="14" width="19" height="27"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="h6T-C2-11Z"/>
+                            <connections>
+                                <action selector="updateFontSize:" target="-2" id="4pN-23-aht"/>
+                                <binding destination="-2" name="value" keyPath="self.fontSize" id="ydo-fj-2W9"/>
+                            </connections>
+                        </stepper>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="C132883A-786F-4007-83C5-AD84503DEC58" label="" paletteLabel="Font Size Text Field" id="UzG-Ic-qla">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="45" height="24"/>
+                        <size key="maxSize" width="45" height="24"/>
+                        <textField key="view" verticalHuggingPriority="750" id="c6y-RP-d79">
+                            <rect key="frame" x="33" y="14" width="45" height="24"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="12" drawsBackground="YES" id="Kux-QR-McQ">
+                                <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="iBd-vu-Mbi"/>
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <action selector="updateFontSize:" target="-2" id="heB-sH-2Lf"/>
+                                <binding destination="-2" name="value" keyPath="self.fontSize" id="vQ5-Wx-6Oe"/>
+                            </connections>
+                        </textField>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="8C14B1B9-DF9F-4471-8BCE-86F4B98970D1" label="Aligment" paletteLabel="Aligment Buttons" id="bB8-5v-Ggb">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="311" height="24"/>
+                        <size key="maxSize" width="311" height="24"/>
+                        <segmentedControl key="view" verticalHuggingPriority="750" id="C8r-9o-jtz">
+                            <rect key="frame" x="0.0" y="14" width="311" height="24"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="momentary" id="CiL-JD-Vvj">
+                                <font key="font" metaFont="system"/>
+                                <segments>
+                                    <segment toolTip="Align Vertically Left" image="alignLeftIconTemplate" width="50">
+                                        <nil key="label"/>
+                                    </segment>
+                                    <segment toolTip="Align Vertically Center" image="alignCenterIconTemplate" width="50" tag="1">
+                                        <nil key="label"/>
+                                    </segment>
+                                    <segment toolTip="Align Vertically Right" image="alightRightIconTemplae" width="50">
+                                        <nil key="label"/>
+                                    </segment>
+                                    <segment toolTip="Align Horizontally Center" image="alignHorizontallyIconTemplate" width="50">
+                                        <nil key="label"/>
+                                    </segment>
+                                    <segment toolTip="Equal Vertical Spacing" image="equalVerticalSpaceTemplate" width="50">
+                                        <nil key="label"/>
+                                    </segment>
+                                    <segment image="equalHorizontalSpaceTemplate" width="50">
+                                        <nil key="label"/>
+                                    </segment>
+                                </segments>
+                            </segmentedCell>
+                            <connections>
+                                <action selector="alignElements:" target="-2" id="5hF-x4-jWA"/>
+                            </connections>
+                        </segmentedControl>
+                    </toolbarItem>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="BLI-Wy-kUg"/>
+                    <toolbarItem reference="bB8-5v-Ggb"/>
+                    <toolbarItem reference="U2i-Hu-MPQ"/>
+                    <toolbarItem reference="UzG-Ic-qla"/>
+                    <toolbarItem reference="NmB-G6-XpL"/>
+                    <toolbarItem reference="8ZN-Xo-a55"/>
+                    <toolbarItem reference="P2Y-IO-Nef"/>
+                </defaultToolbarItems>
+            </toolbar>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-x8E"/>
             </connections>
