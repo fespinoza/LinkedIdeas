@@ -23,7 +23,7 @@ way to 'explain' the connexion of ideas.
 - [x] multiple select concepts (move them) [#14][14]
 - [x] align/space concepts [#15][15]
 - [x] panning canvas [#16][16]
-- [ ] improvements of handling format of concept's text [#21][21]
+- [x] improvements of handling format of concept's text [#21][21]
 - [ ] delete multiple concepts
 - [ ] button to quickly organize elements in a table
 - [ ] add editable text to links
