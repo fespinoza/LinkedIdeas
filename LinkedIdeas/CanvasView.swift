@@ -71,7 +71,10 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   let padding: CGFloat = 300.0
 
   override var intrinsicContentSize: NSSize {
-    let elements = concepts.map { $0 as SquareElement }
+    var elements = [SquareElement]()
+    if document != nil {
+      elements = concepts.map { $0 as SquareElement }
+    }
     var size = containingRectFor(elements).size
     size.height = [size.height, minCanvasSize.height].maxElement()! + padding
     size.width  = [size.width, minCanvasSize.width].maxElement()! + padding

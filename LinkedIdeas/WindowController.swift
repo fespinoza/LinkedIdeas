@@ -64,10 +64,11 @@ class WindowController: NSWindowController, AlignmentFunctions {
   override func windowDidLoad() {
     super.windowDidLoad()
     ultraWindow.acceptsMouseMovedEvents = true
-
+    
     let currentDocument = document as! Document
     canvas.document = currentDocument
     canvas.frame = scrollView.bounds
+    canvas.invalidateIntrinsicContentSize()
   }
 
   // MARK: - Keyboard Events
@@ -195,7 +196,7 @@ class WindowController: NSWindowController, AlignmentFunctions {
   // MARK: - Interface Actions
   
   @IBAction func changeMode(sender: NSSegmentedControl) {
-    switch sender.doubleValueForSelectedSegment {
+    switch sender.selectedSegment {
     case 1:
       editionMode = .Concepts
     case 2:
