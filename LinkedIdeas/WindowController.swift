@@ -93,6 +93,8 @@ class WindowController: NSWindowController, AlignmentFunctions {
       }
     }
   }
+  
+  // MARK: - Text Format
 
   func toggleScratchText() {
     var scratchText: Bool = true
@@ -123,6 +125,8 @@ class WindowController: NSWindowController, AlignmentFunctions {
       )
     }
   }
+  
+  // MARK: - Alignment
   
   func alignSelectedElements(alignment: Aligment) {
     let elements = canvas.selectedConcepts().map { $0 as SquareElement }
@@ -193,6 +197,63 @@ class WindowController: NSWindowController, AlignmentFunctions {
     }
   }
   
+  
+  // MARK: - Pasteboard
+  
+  func writeToPasteboard(pasteboard: NSPasteboard) {
+    guard canvas.selectedConcepts().count != 0 else { return }
+    
+    pasteboard.clearContents()
+    pasteboard.writeObjects(canvas.selectedConcepts().map { $0.attributedStringValue })
+  }
+  
+  func readFromPasteboard(pasteboard: NSPasteboard) -> Bool {
+    let objects = pasteboard.readObjectsForClasses(
+      [NSAttributedString.self], options: [:]
+      ) as! [NSAttributedString]
+    
+    guard objects.count != 0 else { return false }
+    
+    canvas.deselectConcepts()
+    for (index, string) in objects.enumerate() {
+      createConceptFromPasteboard(string, index: index)
+    }
+    return true
+  }
+  
+  func readFromPasteboardAsPlainText(pasteboard: NSPasteboard) -> Bool {
+    let objects = pasteboard.readObjectsForClasses(
+      [NSString.self], options: [:]
+      ) as! [String]
+    
+    guard objects.count != 0 else { return false }
+    
+    canvas.deselectConcepts()
+    let splittedStrings = objects.first?.characters.split { $0 == "\n" }.map {
+      NSAttributedString(string: String($0))
+    }
+    
+    if let splittedStrings = splittedStrings {
+      for (index, string) in splittedStrings.enumerate() {
+        createConceptFromPasteboard(string, index: index)
+      }
+      return true
+    } else {
+      return false
+    }
+  }
+  
+  func createConceptFromPasteboard(attributedString: NSAttributedString, index: Int) {
+    let newConceptPadding: Int = 30
+    let newPoint = NSPoint(
+      x: CGFloat(200+(newConceptPadding*index)),
+      y: CGFloat(200+(newConceptPadding*index))
+    )
+    let concept = Concept(attributedStringValue: attributedString, point: newPoint)
+    concept.isSelected = true
+    canvas.justSaveConcept(concept)
+  }
+  
   // MARK: - Interface Actions
   
   @IBAction func changeMode(sender: NSSegmentedControl) {
@@ -250,4 +311,38 @@ class WindowController: NSWindowController, AlignmentFunctions {
     }
   }
 
+  @IBAction func cut(sender: AnyObject?) {
+    writeToPasteboard(NSPasteboard.generalPasteboard())
+    canvas.removeSelectedConceptViews()
+  }
+  
+  @IBAction func copy(sender: AnyObject?) {
+    writeToPasteboard(NSPasteboard.generalPasteboard())
+  }
+  
+  @IBAction func paste(sender: AnyObject?) {
+    readFromPasteboard(NSPasteboard.generalPasteboard())
+  }
+  
+  @IBAction func pasteAsPlainText(sender: AnyObject?) {
+    readFromPasteboardAsPlainText(NSPasteboard.generalPasteboard())
+  }
+  
+  @IBAction func addFontTrait(sender: AnyObject?) {
+    let title = (sender as? NSMenuItem)?.title
+    
+    guard title != nil else {
+      NSFontManager.sharedFontManager().addFontTrait(sender)
+      return
+    }
+    
+    switch title! {
+    case "Bold":
+      toggleBoldText()
+    case "Strikethrough":
+      toggleScratchText()
+    default:
+      NSFontManager.sharedFontManager().addFontTrait(sender)
+    }
+  }
 }
