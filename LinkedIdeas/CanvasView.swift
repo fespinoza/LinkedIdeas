@@ -138,10 +138,18 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
 
   func saveConcept(concept: ConceptView) {
     let _newConcept = concept.concept
+    justSaveConcept(_newConcept)
+  }
+  
+  func justSaveConcept(concept: Concept) {
+    resetNewConcept()
+    document.saveConcept(concept)
+  }
+  
+  func resetNewConcept() {
     newConcept = nil
     newConceptView?.removeFromSuperview()
     newConceptView = nil
-    document.saveConcept(_newConcept)
   }
 
   func pointInCanvasCoordinates(point: NSPoint) -> NSPoint {
@@ -196,7 +204,6 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
 
     newConcept = _newConcept
     newConceptView = _newConceptView
-
   }
   
   func isRunningInTestMode() -> Bool {

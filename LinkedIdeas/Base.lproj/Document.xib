@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="WindowController" customModule="LinkedIdeas" customModuleProvider="target">
@@ -25,7 +25,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES" fullSizeContentView="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="133" y="235" width="1156" height="661"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <value key="minSize" type="size" width="94" height="86"/>
             <view key="contentView" id="gIp-Ho-8D9">
                 <rect key="frame" x="0.0" y="0.0" width="1156" height="661"/>
@@ -60,8 +60,8 @@
                             <rect key="frame" x="1" y="589" width="1140" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="7fF-pE-QO0">
-                            <rect key="frame" x="1140" y="57" width="16" height="605"/>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="7fF-pE-QO0">
+                            <rect key="frame" x="1140" y="70" width="16" height="592"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
@@ -196,7 +196,7 @@
                                     <segment toolTip="Align Vertically Center" image="alignCenterIconTemplate" width="50" tag="1">
                                         <nil key="label"/>
                                     </segment>
-                                    <segment toolTip="Align Vertically Right" image="alightRightIconTemplae" width="50">
+                                    <segment toolTip="Align Vertically Right" image="alightRightIconTemplate" width="50">
                                         <nil key="label"/>
                                     </segment>
                                     <segment toolTip="Align Horizontally Center" image="alignHorizontallyIconTemplate" width="50">
@@ -234,7 +234,7 @@
         <userDefaultsController representsSharedInstance="YES" id="W5v-m3-4rM"/>
     </objects>
     <resources>
-        <image name="alightRightIconTemplae" width="19" height="19"/>
+        <image name="alightRightIconTemplate" width="19" height="19"/>
         <image name="alignCenterIconTemplate" width="19" height="19"/>
         <image name="alignHorizontallyIconTemplate" width="20" height="19"/>
         <image name="alignLeftIconTemplate" width="19" height="19"/>

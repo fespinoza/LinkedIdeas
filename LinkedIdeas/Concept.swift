@@ -6,7 +6,7 @@
 //  Copyright © 2015 Felipe Espinoza Dev. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringElement, SquareElement {
   // NOTE: the point value is relative to the canvas coordinate system
