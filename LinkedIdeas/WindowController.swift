@@ -93,6 +93,8 @@ class WindowController: NSWindowController, AlignmentFunctions {
       }
     }
   }
+  
+  // MARK: - Text Format
 
   func toggleScratchText() {
     var scratchText: Bool = true
@@ -123,6 +125,8 @@ class WindowController: NSWindowController, AlignmentFunctions {
       )
     }
   }
+  
+  // MARK: - Alignment
   
   func alignSelectedElements(alignment: Aligment) {
     let elements = canvas.selectedConcepts().map { $0 as SquareElement }
@@ -322,5 +326,23 @@ class WindowController: NSWindowController, AlignmentFunctions {
   
   @IBAction func pasteAsPlainText(sender: AnyObject?) {
     readFromPasteboardAsPlainText(NSPasteboard.generalPasteboard())
+  }
+  
+  @IBAction func addFontTrait(sender: AnyObject?) {
+    let title = (sender as? NSMenuItem)?.title
+    
+    guard title != nil else {
+      NSFontManager.sharedFontManager().addFontTrait(sender)
+      return
+    }
+    
+    switch title! {
+    case "Bold":
+      toggleBoldText()
+    case "Strikethrough":
+      toggleScratchText()
+    default:
+      NSFontManager.sharedFontManager().addFontTrait(sender)
+    }
   }
 }
