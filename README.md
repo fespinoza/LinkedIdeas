@@ -25,9 +25,9 @@ way to 'explain' the connexion of ideas.
 - [x] panning canvas [#16][16]
 - [x] improvements of handling format of concept's text [#21][21]
 - [x] delete multiple concepts [#22][22]
+- [x] copy/and paste support for concepts [#24][24]
 - [ ] button to quickly organize elements in a table
 - [ ] add editable text to links
-- [ ] copy/and paste support for concepts
 - [ ] UI improvements
 
 ## Optional Features
@@ -38,6 +38,7 @@ way to 'explain' the connexion of ideas.
 - reorder concepts in canvas (based on links)
 - add editable curvature to links
 - zooming canvas
+- allow to align concepts from menu item
 
 ## A world of ideas
 
@@ -73,3 +74,4 @@ way to 'explain' the connexion of ideas.
 [16]: https://github.com/fespinoza/linked-ideas-osx/pull/16
 [21]: https://github.com/fespinoza/linked-ideas-osx/pull/21
 [22]: https://github.com/fespinoza/linked-ideas-osx/pull/22
+[24]: https://github.com/fespinoza/linked-ideas-osx/pull/24
