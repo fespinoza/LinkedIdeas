@@ -12,7 +12,7 @@ class ResizingTextField: NSTextField {
   // TODO: decouple from ConcepView
   var conceptView: ConceptView?
   
-  override func textDidChange(notification: NSNotification) {
+  override func textDidChange(_ notification: Notification) {
     super.textDidChange(notification)
     invalidateIntrinsicContentSize()
     self.setFrameSize(intrinsicContentSize)

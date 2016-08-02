@@ -305,7 +305,6 @@
 				9B2F1DAC1BE7CFE80090CC18 /* Sources */,
 				9B2F1DAD1BE7CFE80090CC18 /* Frameworks */,
 				9B2F1DAE1BE7CFE80090CC18 /* Resources */,
-				9B472EF11D2D3B1900FCFDB5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -330,9 +329,11 @@
 					9B2F1D9B1BE7CFE70090CC18 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = 4E6CZX3H5W;
+						LastSwiftMigration = 0800;
 					};
 					9B2F1DAF1BE7CFE80090CC18 = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 9B2F1D9B1BE7CFE70090CC18;
 					};
 				};
@@ -377,22 +378,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		9B472EF11D2D3B1900FCFDB5 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9B2F1D981BE7CFE70090CC18 /* Sources */ = {
@@ -566,6 +551,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -583,6 +569,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -597,6 +584,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeasTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LinkedIdeas.app/Contents/MacOS/LinkedIdeas";
 			};
 			name = Debug;
@@ -612,6 +600,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeasTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LinkedIdeas.app/Contents/MacOS/LinkedIdeas";
 			};
 			name = Release;

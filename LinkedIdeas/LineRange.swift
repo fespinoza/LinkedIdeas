@@ -18,11 +18,11 @@ struct LineRange: Interceptable {
     return minX <= maxX && minY <= maxY
   }
   
-  func interceptsWith(other: LineRange) -> Bool {
+  func interceptsWith(_ other: LineRange) -> Bool {
     return interception(other).isValid()
   }
   
-  func interception(other: LineRange) -> LineRange {
+  func interception(_ other: LineRange) -> LineRange {
     return LineRange(
       minX: max(minX, other.minX),
       maxX: min(maxX, other.maxX),
@@ -31,7 +31,7 @@ struct LineRange: Interceptable {
     )
   }
   
-  func doesContain(point: NSPoint) -> Bool {
+  func doesContain(_ point: NSPoint) -> Bool {
     return point.x >= minX && point.x <= maxX && point.y >= minY && point.y <= maxY
   }
 }

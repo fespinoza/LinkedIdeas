@@ -19,12 +19,12 @@ class DocumentData: NSObject, NSCoding {
   }
   
   required init?(coder aDecoder: NSCoder) {
-    readConcepts = aDecoder.decodeObjectForKey("concepts") as! [Concept]?
-    readLinks = aDecoder.decodeObjectForKey("links") as! [Link]?
+    readConcepts = aDecoder.decodeObject(forKey: "concepts") as! [Concept]?
+    readLinks = aDecoder.decodeObject(forKey: "links") as! [Link]?
   }
   
-  func encodeWithCoder(aCoder: NSCoder) {
-    aCoder.encodeObject(writeConcepts, forKey: "concepts")
-    aCoder.encodeObject(writeLinks, forKey: "links")
+  func encode(with aCoder: NSCoder) {
+    aCoder.encode(writeConcepts, forKey: "concepts")
+    aCoder.encode(writeLinks, forKey: "links")
   }
 }

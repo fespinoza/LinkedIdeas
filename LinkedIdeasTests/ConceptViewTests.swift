@@ -25,7 +25,7 @@ class ConceptViewTests: XCTestCase {
     // when
     conceptView.typeText("foo bar 123")
     conceptView.pressEnterKey()
-    conceptView.drawRect(conceptView.bounds)
+    conceptView.draw(conceptView.bounds)
 
     // then
     XCTAssertNil(canvas.newConcept)
@@ -52,7 +52,7 @@ class ConceptViewTests: XCTestCase {
 
     // when
     let conceptView = ConceptView(concept: concept, canvas: canvas)
-    conceptView.drawRect(conceptView.bounds)
+    conceptView.draw(conceptView.bounds)
 
     // then
     XCTAssertEqual(conceptView.isTextFieldFocused, true)
@@ -180,7 +180,7 @@ class ConceptViewTests: XCTestCase {
     // when
     conceptView.typeText("another text")
     conceptView.cancelEdition()
-    canvas.drawRect(canvas.bounds)
+    canvas.draw(canvas.bounds)
     
     // then
     XCTAssertEqual(concept.stringValue, "foo")
@@ -199,7 +199,7 @@ class ConceptViewTests: XCTestCase {
     // when
     conceptView.typeText("another text")
     conceptView.cancelEdition()
-    canvas.drawRect(canvas.bounds)
+    canvas.draw(canvas.bounds)
     
     // then
     XCTAssertNil(canvas.newConcept)

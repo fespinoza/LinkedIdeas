@@ -15,27 +15,27 @@ class TestDocument: LinkedIdeasDocument {
   
   var observer: DocumentObserver?
   
-  func saveConcept(concept: Concept) {
+  func saveConcept(_ concept: Concept) {
     concepts.append(concept)
     observer?.conceptAdded(concept)
   }
   
-  func removeConcept(concept: Concept) {
-    concepts.removeAtIndex(concepts.indexOf(concept)!)
+  func removeConcept(_ concept: Concept) {
+    concepts.remove(at: concepts.index(of: concept)!)
     observer?.conceptRemoved(concept)
   }
   
-  func saveLink(link: Link) {
+  func saveLink(_ link: Link) {
     links.append(link)
     observer?.linkAdded(link)
   }
   
-  func removeLink(link: Link) {
-    links.removeAtIndex(links.indexOf(link)!)
+  func removeLink(_ link: Link) {
+    links.remove(at: links.index(of: link)!)
     observer?.linkRemoved(link)
   }
   
-  func changeConceptPoint(concept: Concept, fromPoint: NSPoint, toPoint: NSPoint) {
+  func changeConceptPoint(_ concept: Concept, fromPoint: NSPoint, toPoint: NSPoint) {
     concept.point = toPoint
   }
 }
@@ -63,7 +63,7 @@ class CanvasViewTests: XCTestCase {
     testDocument.links = links
     
     // when
-    canvas.drawRect(canvas.bounds)
+    canvas.draw(canvas.bounds)
     
     // then
     XCTAssertEqual(canvas.conceptViews.count, 2)
@@ -231,7 +231,7 @@ class CanvasViewTests: XCTestCase {
     ]
     
     // when
-    canvas.drawRect(canvas.bounds)
+    canvas.draw(canvas.bounds)
     canvas.mode = .Links
     canvas.dragEndCallback(conceptView1, dragEvent: DragEvent(fromPoint: concept1.point, toPoint: concept2.point))
     
@@ -267,7 +267,7 @@ class CanvasViewTests: XCTestCase {
     concepts.first!.isSelected = true
     
     // when
-    canvas.drawRect(canvas.bounds)
+    canvas.draw(canvas.bounds)
     canvas.click(NSMakePoint(20, 50))
     
     // then
@@ -338,7 +338,7 @@ class CanvasViewTests: XCTestCase {
     canvas.dragToCallback(conceptView2, dragEvent: DragEvent(fromPoint: newPoint2, toPoint: newPoint3))
     
     // then
-    XCTAssertEqual(concepts[0].point, initialPoints[0].translate(50, deltaY: -30))
+    XCTAssertEqual(concepts[0].point, initialPoints[0].translate(deltaX: 50, deltaY: -30))
     XCTAssertEqual(concepts[1].point, initialPoints[1])
     XCTAssertEqual(concepts[2].point, initialPoints[2])
   }

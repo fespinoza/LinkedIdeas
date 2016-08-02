@@ -9,11 +9,11 @@
 import Foundation
 
 protocol DocumentObserver {
-  func conceptAdded(concept: Concept)
-  func conceptRemoved(concept: Concept)
-  func conceptUpdated(concept: Concept)
+  func conceptAdded(_ concept: Concept)
+  func conceptRemoved(_ concept: Concept)
+  func conceptUpdated(_ concept: Concept)
   
-  func linkAdded(link: Link)
-  func linkRemoved(link: Link)
-  func linkUpdated(link: Link)
+  func linkAdded(_ link: Link)
+  func linkRemoved(_ link: Link)
+  func linkUpdated(_ link: Link)
 }

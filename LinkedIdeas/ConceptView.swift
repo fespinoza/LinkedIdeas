@@ -53,7 +53,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
 
   // MARK: - NSView
   
-  override func drawRect(dirtyRect: NSRect) {
+  override func draw(_ dirtyRect: NSRect) {
     drawSelectedMark()
     toggleTextFieldEditMode()
     if !concept.isEditable { drawString() }
@@ -63,20 +63,20 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   func drawSelectedMark() {
     if concept.isSelected {
       let bezierPath = NSBezierPath(rect: bounds)
-      NSColor.redColor().set()
+      NSColor.red.set()
       bezierPath.lineWidth = 3
       bezierPath.stroke()
     }
   }
 
   // MARK: - Mouse events
-  override func mouseDown(theEvent: NSEvent) {
+  override func mouseDown(with theEvent: NSEvent) {
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
     initialPoint = concept.point
     if (theEvent.clickCount == 2) {
       doubleClick(point)
     } else {
-      if (theEvent.modifierFlags.rawValue == 131330) {
+      if (theEvent.modifierFlags.contains(.shift)) {
         shiftClick(point)
       } else {
         click(point)
@@ -84,7 +84,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     }
   }
 
-  override func mouseDragged(theEvent: NSEvent) {
+  override func mouseDragged(with theEvent: NSEvent) {
     let point = pointInCanvasCoordinates(theEvent.locationInWindow)
     if isDragging {
       dragTo(point)
@@ -93,7 +93,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     }
   }
 
-  override func mouseUp(theEvent: NSEvent) {
+  override func mouseUp(with theEvent: NSEvent) {
     if isDragging {
       let point = pointInCanvasCoordinates(theEvent.locationInWindow)
       dragEnd(point)
@@ -101,28 +101,28 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     (window?.windowController as? WindowController)?.selectedElementsCallback()
   }
   
-  override func mouseEntered(theEvent: NSEvent) {
+  override func mouseEntered(with theEvent: NSEvent) {
     isHoveringView = true
   }
   
-  override func mouseExited(theEvent: NSEvent) {
+  override func mouseExited(with theEvent: NSEvent) {
     isHoveringView = false
   }
   
   // MARK: - Keyboard Events
   
   let deleteKeyCode: UInt16 = 51
-  override func keyDown(theEvent: NSEvent) {
+  override func keyDown(with theEvent: NSEvent) {
     if (theEvent.keyCode == deleteKeyCode) {
       pressDeleteKey()
     } else {
-      super.keyDown(theEvent)
+      super.keyDown(with: theEvent)
     }
   }
 
   // MARK: - NSTextFieldDelegate
 
-  func control(control: NSControl, textView: NSTextView, doCommandBySelector commandSelector: Selector) -> Bool {
+  func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
     switch commandSelector {
     case #selector(NSResponder.insertNewline(_:)):
       pressEnterKey()
@@ -135,14 +135,14 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     }
   }
   
-  func textDidChange(notification: NSNotification) {
+  func textDidChange(_ notification: Notification) {
     updateFrameToMatchConcept()
   }
 
 
   // MARK: - ClickableView
   
-  func click(point: NSPoint) {
+  func click(_ point: NSPoint) {
     canvas.clickOnConceptView(self, point: point)
     concept.isSelected = true //!concept.isSelected
     needsDisplay = true
@@ -151,7 +151,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     becomeFirstResponder()
   }
 
-  func doubleClick(point: NSPoint) {
+  func doubleClick(_ point: NSPoint) {
     concept.isEditable = true
     isTextFieldFocused = false
     needsDisplay = true
@@ -161,7 +161,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     canvas.clickOnConceptView(self, point: point)
   }
   
-  func shiftClick(point: NSPoint) {
+  func shiftClick(_ point: NSPoint) {
     concept.isSelected = !concept.isSelected
     needsDisplay = true
     textField.attributedStringValue = concept.attributedStringValue
@@ -191,7 +191,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     concept.isEditable = false
     concept.attributedStringValue = textField.attributedStringValue
     updateFrameToMatchConcept()
-    if (canvas.concepts.indexOf(concept) == nil) {
+    if (canvas.concepts.index(of: concept) == nil) {
       canvas.saveConcept(self)
     }
   }
@@ -214,8 +214,8 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   func drawString() {
     let stringSize = concept.attributedStringValue.size()
     let stringRect = NSRect(center: bounds.center, size: stringSize)
-    NSColor.blackColor().set()
-    concept.attributedStringValue.drawInRect(stringRect)
+    NSColor.black.set()
+    concept.attributedStringValue.draw(in: stringRect)
   }
 
   // MARK: - Dragable element
@@ -223,7 +223,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   var initialPoint: NSPoint?
   var draggableDelegate: DraggableElementDelegate? { return canvas }
   
-  func dragStart(point: NSPoint, performCallback: Bool = true) {
+  func dragStart(_ point: NSPoint, performCallback: Bool = true) {
     initialPoint = concept.point
     isDragging = true
     
@@ -240,7 +240,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     }
   }
   
-  func dragTo(point: NSPoint, performCallback: Bool = true) {
+  func dragTo(_ point: NSPoint, performCallback: Bool = true) {
     let fromPoint = concept.point
     
     if (canvas.mode == .Select) {
@@ -256,10 +256,10 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     }
   }
   
-  func dragEnd(lastPoint: NSPoint, performCallback: Bool = true) {
+  func dragEnd(_ lastPoint: NSPoint, performCallback: Bool = true) {
     let fromPoint = concept.point
     
-    if let initialPoint = initialPoint where canvas.mode == .Select {
+    if let initialPoint = initialPoint, canvas.mode == .Select {
       document.changeConceptPoint(concept, fromPoint: initialPoint, toPoint: lastPoint)
     }
     

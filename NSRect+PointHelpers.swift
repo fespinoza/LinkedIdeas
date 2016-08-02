@@ -39,14 +39,14 @@ extension NSRect {
     return result
   }
   
-  func intersectionTo(point: NSPoint) -> [NSPoint] {
+  func intersectionTo(_ point: NSPoint) -> [NSPoint] {
     let secondLine = FiniteLine(p1: center, p2: point)
     return lines.map {
       $0.intersectionPointWith(secondLine)
     }.filter { $0 != nil }.map { $0! }
   }
   
-  func firstIntersectionTo(point: NSPoint) -> NSPoint? {
+  func firstIntersectionTo(_ point: NSPoint) -> NSPoint? {
     return intersectionTo(point).first
   }
 }

@@ -16,8 +16,8 @@ extension NSView {
     drawCenteredDotAtPoint(bounds.center)
   }
   
-  func drawDotAtPoint(point: NSPoint) {
-    NSColor.redColor().set()
+  func drawDotAtPoint(_ point: NSPoint) {
+    NSColor.red.set()
     var x: CGFloat = point.x
     var y: CGFloat = point.y
     
@@ -25,10 +25,10 @@ extension NSView {
     if y >= bounds.maxY { y = bounds.maxY - area }
     
     let rect = NSMakeRect(x, y, area, area)
-    NSBezierPath(ovalInRect: rect).fill()
+    NSBezierPath(ovalIn: rect).fill()
   }
   
-  func drawCenteredDotAtPoint(point: NSPoint, color: NSColor = NSColor.yellowColor()) {
+  func drawCenteredDotAtPoint(_ point: NSPoint, color: NSColor = NSColor.yellow) {
     color.set()
     var x: CGFloat = point.x - area / 2
     var y: CGFloat = point.y - area / 2
@@ -37,25 +37,25 @@ extension NSView {
     if y >= bounds.maxY { y = bounds.maxY - area / 2 }
     
     let rect = NSMakeRect(x, y, area, area)
-    NSBezierPath(ovalInRect: rect).fill()
+    NSBezierPath(ovalIn: rect).fill()
     
   }
   
-  func drawBorderForRect(rect: NSRect) {
-    NSColor.blueColor().set()
+  func drawBorderForRect(_ rect: NSRect) {
+    NSColor.blue.set()
     let border = NSBezierPath()
-    border.moveToPoint(rect.bottomLeftPoint)
-    border.lineToPoint(rect.bottomRightPoint)
-    border.lineToPoint(rect.topRightPoint)
-    border.lineToPoint(rect.topLeftPoint)
-    border.lineToPoint(rect.bottomLeftPoint)
+    border.move(to: rect.bottomLeftPoint)
+    border.line(to: rect.bottomRightPoint)
+    border.line(to: rect.topRightPoint)
+    border.line(to: rect.topLeftPoint)
+    border.line(to: rect.bottomLeftPoint)
     border.stroke()
   }
   
-  func drawFullRect(rect: NSRect) {
+  func drawFullRect(_ rect: NSRect) {
     NSRectFill(rect)
     drawBorderForRect(rect)
-    drawCenteredDotAtPoint(rect.origin, color: NSColor.redColor())
+    drawCenteredDotAtPoint(rect.origin, color: NSColor.red)
     drawCenteredDotAtPoint(rect.center)
   }
 }

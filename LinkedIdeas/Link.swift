@@ -22,7 +22,7 @@ class Link: NSObject, NSCoding, Element, VisualElement {
   
   private let padding: CGFloat = 20
   
-  static let defaultColor = NSColor.grayColor()
+  static let defaultColor = NSColor.gray
   
   override var description: String {
     return "'\(origin.stringValue)' '\(target.stringValue)'"
@@ -45,7 +45,7 @@ class Link: NSObject, NSCoding, Element, VisualElement {
   init(origin: Concept, target: Concept) {
     self.origin = origin
     self.target = target
-    self.identifier = "\(NSUUID().UUIDString)-link"
+    self.identifier = "\(UUID().uuidString)-link"
     self.color = Link.defaultColor
   }
   
@@ -57,21 +57,21 @@ class Link: NSObject, NSCoding, Element, VisualElement {
   let colorKey = "colorKey"
   
   required init?(coder aDecoder: NSCoder) {
-    identifier = aDecoder.decodeObjectForKey(identifierKey) as! String
-    origin = aDecoder.decodeObjectForKey(originKey) as! Concept
-    target = aDecoder.decodeObjectForKey(targetKey) as! Concept
+    identifier = aDecoder.decodeObject(forKey: identifierKey) as! String
+    origin = aDecoder.decodeObject(forKey: originKey) as! Concept
+    target = aDecoder.decodeObject(forKey: targetKey) as! Concept
     
-    if let color = aDecoder.decodeObjectForKey(colorKey) as? NSColor {
+    if let color = aDecoder.decodeObject(forKey: colorKey) as? NSColor {
       self.color = color
     } else {
       self.color = Link.defaultColor
     }
   }
   
-  func encodeWithCoder(aCoder: NSCoder) {
-    aCoder.encodeObject(identifier, forKey: identifierKey)
-    aCoder.encodeObject(origin, forKey: originKey)
-    aCoder.encodeObject(target, forKey: targetKey)
-    aCoder.encodeObject(color, forKey: colorKey)
+  func encode(with aCoder: NSCoder) {
+    aCoder.encode(identifier, forKey: identifierKey)
+    aCoder.encode(origin, forKey: originKey)
+    aCoder.encode(target, forKey: targetKey)
+    aCoder.encode(color, forKey: colorKey)
   }
 }

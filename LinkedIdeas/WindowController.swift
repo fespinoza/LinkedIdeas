@@ -36,17 +36,17 @@ class WindowController: NSWindowController, AlignmentFunctions {
   dynamic var fontSize: Int = 12
 
   enum Aligment: Int {
-    case Left = 0
-    case Center = 1
-    case Right = 2
-    case Horizontal = 3
-    case VerticalSpacing = 4
-    case HorizontalSpacing = 5
+    case left = 0
+    case center = 1
+    case right = 2
+    case horizontal = 3
+    case verticalSpacing = 4
+    case horizontalSpacing = 5
   }
 
   enum FormatButtons: Int {
-    case Bold = 0
-    case Strikethrough = 1
+    case bold = 0
+    case strikethrough = 1
   }
 
   convenience init() {
@@ -72,8 +72,8 @@ class WindowController: NSWindowController, AlignmentFunctions {
   }
 
   // MARK: - Keyboard Events
-  override func keyDown(theEvent: NSEvent) {
-    if (theEvent.modifierFlags.contains(.ShiftKeyMask)) {
+  override func keyDown(with theEvent: NSEvent) {
+    if (theEvent.modifierFlags.contains(.shift)) {
       let index: Int = Int(theEvent.keyCode) - Int(numberOne)
       if let aligment = Aligment(rawValue: index) {
         alignSelectedElements(aligment)
@@ -119,7 +119,7 @@ class WindowController: NSWindowController, AlignmentFunctions {
     bold = !bold
     
     updateSelectedConceptsText { concept in
-      NSAttributedString(
+     NSAttributedString(
         attributedString: concept.attributedStringValue,
         bold: bold
       )
@@ -128,26 +128,26 @@ class WindowController: NSWindowController, AlignmentFunctions {
   
   // MARK: - Alignment
   
-  func alignSelectedElements(alignment: Aligment) {
+  func alignSelectedElements(_ alignment: Aligment) {
     let elements = canvas.selectedConcepts().map { $0 as SquareElement }
     
     switch alignment {
-    case .Left:
+    case .left:
       verticallyLeftAlign(elements)
-    case .Center:
+    case .center:
       verticallyCenterAlign(elements)
-    case .Right:
+    case .right:
       verticallyRightAlign(elements)
-    case .Horizontal:
+    case .horizontal:
       horizontallyAlign(elements)
-    case .VerticalSpacing:
+    case .verticalSpacing:
       equalVerticalSpace(elements)
-    case .HorizontalSpacing:
+    case .horizontalSpacing:
       equalHorizontalSpace(elements)
     }
   }
   
-  func setNewPoint(newPoint: NSPoint, forElement element: SquareElement) {
+  func setNewPoint(_ newPoint: NSPoint, forElement element: SquareElement) {
     let concept = element as! Concept
     canvas.conceptViewFor(concept).textField.attributedStringValue = concept.attributedStringValue
     canvas.document.changeConceptPoint(concept, fromPoint: concept.point, toPoint: newPoint)
@@ -177,21 +177,21 @@ class WindowController: NSWindowController, AlignmentFunctions {
     if let selectedFontColor = selectedFontColor { colorSelector.color = selectedFontColor }
     
     if let isBold = isBold {
-      formatTextButtons.setSelected(isBold, forSegment: FormatButtons.Bold.rawValue)
+      formatTextButtons.setSelected(isBold, forSegment: FormatButtons.bold.rawValue)
     } else {
-      formatTextButtons.setSelected(false, forSegment: FormatButtons.Bold.rawValue)
+      formatTextButtons.setSelected(false, forSegment: FormatButtons.bold.rawValue)
     }
     
     if let isStrikethrough = isStrikethrough {
-      formatTextButtons.setSelected(isStrikethrough, forSegment: FormatButtons.Strikethrough.rawValue)
+      formatTextButtons.setSelected(isStrikethrough, forSegment: FormatButtons.strikethrough.rawValue)
     } else {
-      formatTextButtons.setSelected(false, forSegment: FormatButtons.Strikethrough.rawValue)
+      formatTextButtons.setSelected(false, forSegment: FormatButtons.strikethrough.rawValue)
     }
   }
   
-  func updateSelectedConceptsText(newAttributedStringTranformation: (Concept) -> NSAttributedString) {
+  func updateSelectedConceptsText(_ neNSAttributedStringTranformation: (Concept) -> NSAttributedString) {
     for concept in canvas.selectedConcepts() {
-      let newText = newAttributedStringTranformation(concept)
+      let newText = neNSAttributedStringTranformation(concept)
       canvas.conceptViewFor(concept).textField.attributedStringValue = newText
       concept.attributedStringValue = newText
     }
@@ -200,41 +200,39 @@ class WindowController: NSWindowController, AlignmentFunctions {
   
   // MARK: - Pasteboard
   
-  func writeToPasteboard(pasteboard: NSPasteboard) {
+  func writeToPasteboard(_ pasteboard: NSPasteboard) {
     guard canvas.selectedConcepts().count != 0 else { return }
     
     pasteboard.clearContents()
     pasteboard.writeObjects(canvas.selectedConcepts().map { $0.attributedStringValue })
   }
   
-  func readFromPasteboard(pasteboard: NSPasteboard) -> Bool {
-    let objects = pasteboard.readObjectsForClasses(
-      [NSAttributedString.self], options: [:]
-      ) as! [NSAttributedString]
+  func readFromPasteboard(_ pasteboard: NSPasteboard) -> Bool {
+    let objects = pasteboard.readObjects(forClasses: [NSAttributedString.self], options: [:]) as! [NSAttributedString]
     
     guard objects.count != 0 else { return false }
     
     canvas.deselectConcepts()
-    for (index, string) in objects.enumerate() {
+    for (index, string) in objects.enumerated() {
       createConceptFromPasteboard(string, index: index)
     }
     return true
   }
   
-  func readFromPasteboardAsPlainText(pasteboard: NSPasteboard) -> Bool {
-    let objects = pasteboard.readObjectsForClasses(
-      [NSString.self], options: [:]
+  func readFromPasteboardAsPlainText(_ pasteboard: NSPasteboard) -> Bool {
+    let objects = pasteboard.readObjects(
+      forClasses: [NSString.self], options: [:]
       ) as! [String]
     
     guard objects.count != 0 else { return false }
     
     canvas.deselectConcepts()
     let splittedStrings = objects.first?.characters.split { $0 == "\n" }.map {
-      NSAttributedString(string: String($0))
+     NSAttributedString(string: String($0))
     }
     
     if let splittedStrings = splittedStrings {
-      for (index, string) in splittedStrings.enumerate() {
+      for (index, string) in splittedStrings.enumerated() {
         createConceptFromPasteboard(string, index: index)
       }
       return true
@@ -243,7 +241,7 @@ class WindowController: NSWindowController, AlignmentFunctions {
     }
   }
   
-  func createConceptFromPasteboard(attributedString: NSAttributedString, index: Int) {
+  func createConceptFromPasteboard(_ attributedString: NSAttributedString, index: Int) {
     let newConceptPadding: Int = 30
     let newPoint = NSPoint(
       x: CGFloat(200+(newConceptPadding*index)),
@@ -256,7 +254,7 @@ class WindowController: NSWindowController, AlignmentFunctions {
   
   // MARK: - Interface Actions
   
-  @IBAction func changeMode(sender: NSSegmentedControl) {
+  @IBAction func changeMode(_ sender: NSSegmentedControl) {
     switch sender.selectedSegment {
     case 1:
       editionMode = .Concepts
@@ -268,11 +266,11 @@ class WindowController: NSWindowController, AlignmentFunctions {
     canvas.mode = editionMode
   }
 
-  @IBAction func selectColor(sender: AnyObject) {
+  @IBAction func selectColor(_ sender: AnyObject) {
     let newColor = colorSelector.color
     
     updateSelectedConceptsText { concept in
-      NSAttributedString(
+     NSAttributedString(
         attributedString: concept.attributedStringValue,
         fontColor: newColor
       )
@@ -285,54 +283,54 @@ class WindowController: NSWindowController, AlignmentFunctions {
     }
   }
 
-  @IBAction func formatSelectedTexts(sender: NSSegmentedControl) {
+  @IBAction func formatSelectedTexts(_ sender: NSSegmentedControl) {
     if let format = FormatButtons(rawValue: sender.selectedSegment) {
       switch format {
-      case .Bold:
+      case .bold:
         toggleBoldText()
-      case .Strikethrough:
+      case .strikethrough:
         toggleScratchText()
       }
     }
   }
 
-  @IBAction func updateFontSize(sender: AnyObject) {
+  @IBAction func updateFontSize(_ sender: AnyObject) {
     updateSelectedConceptsText { concept in
-      NSAttributedString(
+     NSAttributedString(
         attributedString: concept.attributedStringValue,
         fontSize: self.fontSizeTextField.integerValue
       )
     }
   }
 
-  @IBAction func alignElements(sender: NSSegmentedControl) {
+  @IBAction func alignElements(_ sender: NSSegmentedControl) {
     if let alignment = Aligment(rawValue: sender.selectedSegment) {
       alignSelectedElements(alignment)
     }
   }
 
-  @IBAction func cut(sender: AnyObject?) {
-    writeToPasteboard(NSPasteboard.generalPasteboard())
+  @IBAction func cut(_ sender: AnyObject?) {
+    writeToPasteboard(NSPasteboard.general())
     canvas.removeSelectedConceptViews()
   }
   
-  @IBAction func copy(sender: AnyObject?) {
-    writeToPasteboard(NSPasteboard.generalPasteboard())
+  @IBAction func copy(_ sender: AnyObject?) {
+    writeToPasteboard(NSPasteboard.general())
   }
   
-  @IBAction func paste(sender: AnyObject?) {
-    readFromPasteboard(NSPasteboard.generalPasteboard())
+  @IBAction func paste(_ sender: AnyObject?) {
+    readFromPasteboard(NSPasteboard.general())
   }
   
-  @IBAction func pasteAsPlainText(sender: AnyObject?) {
-    readFromPasteboardAsPlainText(NSPasteboard.generalPasteboard())
+  @IBAction func pasteAsPlainText(_ sender: AnyObject?) {
+    readFromPasteboardAsPlainText(NSPasteboard.general())
   }
   
-  @IBAction func addFontTrait(sender: AnyObject?) {
+  @IBAction func addFontTrait(_ sender: AnyObject?) {
     let title = (sender as? NSMenuItem)?.title
     
     guard title != nil else {
-      NSFontManager.sharedFontManager().addFontTrait(sender)
+      NSFontManager.shared().addFontTrait(sender)
       return
     }
     
@@ -342,7 +340,7 @@ class WindowController: NSWindowController, AlignmentFunctions {
     case "Strikethrough":
       toggleScratchText()
     default:
-      NSFontManager.sharedFontManager().addFontTrait(sender)
+      NSFontManager.shared().addFontTrait(sender)
     }
   }
 }

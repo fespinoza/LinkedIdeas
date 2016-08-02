@@ -25,18 +25,18 @@ struct FiniteLine: Interceptable, PointInterceptable {
     )
   }
   
-  func interceptsWith(other: FiniteLine) -> Bool {
+  func interceptsWith(_ other: FiniteLine) -> Bool {
     return lineRange.interceptsWith(other.lineRange)
   }
   
   func bezierPath() -> NSBezierPath {
     let path = NSBezierPath()
-    path.moveToPoint(p1)
-    path.lineToPoint(p2)
+    path.move(to: p1)
+    path.line(to: p2)
     return path
   }
   
-  func intersectionPointWith(other: FiniteLine) -> NSPoint? {
+  func intersectionPointWith(_ other: FiniteLine) -> NSPoint? {
     if let intersectionPoint = line.intersectionPointWith(other.line) {
       let intersectionLineRange = lineRange.interception(other.lineRange)
       if (intersectionLineRange.isValid() && intersectionLineRange.doesContain(intersectionPoint)) {

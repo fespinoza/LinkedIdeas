@@ -35,14 +35,14 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   let fillColor = NSColor(calibratedRed: 173/255, green: 224/255, blue: 186/255, alpha: 1)
   let borderColor = NSColor(calibratedRed: 144/255, green: 212/255, blue: 161/255, alpha: 1)
 
-  override func drawRect(dirtyRect: NSRect) {
-    NSColor.whiteColor().set()
+  override func draw(_ dirtyRect: NSRect) {
+    NSColor.white.set()
     NSRectFill(bounds)
     drawConceptViews()
     drawLinkViews()
 
     if isDragging {
-      if let initialPoint = initialPoint, endPoint = endPoint {
+      if let initialPoint = initialPoint, let endPoint = endPoint {
         let selectionRect = NSRect(p1: initialPoint, p2: endPoint)
         let path = NSBezierPath(rect: selectionRect)
         fillColor.set()
@@ -55,15 +55,15 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     if (mode == .Links) { showConstructionArrow() }
   }
 
-  func containingRectFor(elements: [SquareElement]) -> NSRect {
+  func containingRectFor(_ elements: [SquareElement]) -> NSRect {
     if (elements.isEmpty) {
       return NSMakeRect(0, 0, 900, 530)
     }
 
-    let minX = (elements.map { $0.rect.origin.x }).minElement()!
-    let minY = (elements.map { $0.rect.origin.y }).minElement()!
-    let maxX = (elements.map { $0.rect.maxX }).maxElement()!
-    let maxY = (elements.map { $0.rect.maxY }).maxElement()!
+    let minX = (elements.map { $0.rect.origin.x }).min()!
+    let minY = (elements.map { $0.rect.origin.y }).min()!
+    let maxX = (elements.map { $0.rect.maxX }).max()!
+    let maxY = (elements.map { $0.rect.maxY }).max()!
     return NSMakeRect(minX, minY, maxX - minX, maxY - minY)
   }
 
@@ -76,14 +76,14 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
       elements = concepts.map { $0 as SquareElement }
     }
     var size = containingRectFor(elements).size
-    size.height = [size.height, minCanvasSize.height].maxElement()! + padding
-    size.width  = [size.width, minCanvasSize.width].maxElement()! + padding
+    size.height = [size.height, minCanvasSize.height].max()! + padding
+    size.width  = [size.width, minCanvasSize.width].max()! + padding
     return size
   }
 
   // MARK: - MouseEvents
 
-  override func mouseDown(theEvent: NSEvent) {
+  override func mouseDown(with theEvent: NSEvent) {
     let clickedPoint = pointInCanvasCoordinates(theEvent.locationInWindow)
     if (theEvent.clickCount == 2) {
       doubleClick(clickedPoint)
@@ -96,7 +96,7 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   var initialPoint: NSPoint?
   var endPoint: NSPoint?
 
-  override func mouseDragged(theEvent: NSEvent) {
+  override func mouseDragged(with theEvent: NSEvent) {
     if (mode == .Select) {
       let point = pointInCanvasCoordinates(theEvent.locationInWindow)
       if isDragging {
@@ -116,7 +116,7 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     }
   }
 
-  override func mouseUp(theEvent: NSEvent) {
+  override func mouseUp(with theEvent: NSEvent) {
     if (mode == .Select) {
       isDragging = false
       needsDisplay = true
@@ -126,22 +126,22 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   
   // MARK: - Keyboard Events
   let deleteKeyCode: UInt16 = 51
-  override func keyDown(theEvent: NSEvent) {
+  override func keyDown(with theEvent: NSEvent) {
     if (theEvent.keyCode == deleteKeyCode) {
       removeSelectedConceptViews()
     } else {
-      super.keyDown(theEvent)
+      super.keyDown(with: theEvent)
     }
   }
 
   // MARK: - BasicCanvas
 
-  func saveConcept(concept: ConceptView) {
+  func saveConcept(_ concept: ConceptView) {
     let _newConcept = concept.concept
     justSaveConcept(_newConcept)
   }
   
-  func justSaveConcept(concept: Concept) {
+  func justSaveConcept(_ concept: Concept) {
     resetNewConcept()
     document.saveConcept(concept)
   }
@@ -152,26 +152,26 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     newConceptView = nil
   }
 
-  func pointInCanvasCoordinates(point: NSPoint) -> NSPoint {
-    return convertPoint(point, fromView: nil)
+  func pointInCanvasCoordinates(_ point: NSPoint) -> NSPoint {
+    return convert(point, from: nil)
   }
 
-  func conceptViewFor(concept: Concept) -> ConceptView {
+  func conceptViewFor(_ concept: Concept) -> ConceptView {
     return conceptViews[concept.identifier]!
   }
 
-  func linkViewFor(link: Link) -> LinkView {
+  func linkViewFor(_ link: Link) -> LinkView {
     return linkViews[link.identifier]!
   }
 
   // MARK: - ClickableView
 
-  func click(point: NSPoint) {
+  func click(_ point: NSPoint) {
     if mode == .Concepts { createConceptAt(point) }
     doubleClick(point)
   }
 
-  func doubleClick(point: NSPoint) {
+  func doubleClick(_ point: NSPoint) {
     markConceptsAsNotEditable()
     unselectConcepts()
     unselectLinks()
@@ -184,7 +184,7 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     for concept in concepts { drawConceptView(concept) }
   }
 
-  func drawConceptView(concept: Concept) {
+  func drawConceptView(_ concept: Concept) {
     if let conceptView = conceptViews[concept.identifier] {
       conceptView.needsDisplay = true
     } else {
@@ -195,7 +195,7 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   func deselectConcepts() {}
   func removeNonSavedConcepts() {}
 
-  func createConceptAt(point: NSPoint) {
+  func createConceptAt(_ point: NSPoint) {
     let _newConcept = Concept(point: point)
     _newConcept.isEditable = true
     let _newConceptView = createConceptViewFor(_newConcept)
@@ -207,18 +207,18 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   }
   
   func isRunningInTestMode() -> Bool {
-    return NSProcessInfo.processInfo().environment["XCTestConfigurationFilePath"] != nil
+    return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
   }
 
-  func createConceptViewFor(concept: Concept) -> ConceptView {
+  func createConceptViewFor(_ concept: Concept) -> ConceptView {
     let conceptView = ConceptView(concept: concept, canvas: self)
     conceptViews[concept.identifier] = conceptView
     
     if isRunningInTestMode() {
-      addSubview(conceptView, positioned:.Above, relativeTo: nil)
+      addSubview(conceptView, positioned:.above, relativeTo: nil)
     } else {
-      dispatch_async(dispatch_get_main_queue(), { [unowned self] in
-        self.addSubview(conceptView, positioned:.Above, relativeTo: nil)
+      DispatchQueue.main.async(execute: { [unowned self] in
+        self.addSubview(conceptView, positioned:.above, relativeTo: nil)
       })
     }
     
@@ -235,7 +235,7 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     drawConceptViews()
   }
 
-  func clickOnConceptView(conceptView: ConceptView, point: NSPoint, multipleSelect: Bool = false) {
+  func clickOnConceptView(_ conceptView: ConceptView, point: NSPoint, multipleSelect: Bool = false) {
     let clickedConcept = conceptView.concept
     let selectedConcepts = concepts.filter { $0.isSelected }
 
@@ -264,20 +264,20 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     newConcept = nil
   }
 
-  func updateLinkViewsFor(concept: Concept) {
+  func updateLinkViewsFor(_ concept: Concept) {
     for link in conceptLinksFor(concept) {
       linkViewFor(link).frame = link.rect
     }
   }
 
-  func isConceptSaved(concept: Concept) -> Bool {
+  func isConceptSaved(_ concept: Concept) -> Bool {
     return concept != newConcept
   }
 
-  func justRemoveConceptView(conceptView: ConceptView) {
+  func justRemoveConceptView(_ conceptView: ConceptView) {
     let concept = conceptView.concept
-    conceptViews.removeValueForKey(concept.identifier)
-    conceptView.hidden = true
+    conceptViews.removeValue(forKey: concept.identifier)
+    conceptView.isHidden = true
     conceptView.removeFromSuperview()
 
     for link in conceptLinksFor(concept) { removeLinkView(linkViewFor(link)) }
@@ -291,7 +291,7 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     }
   }
 
-  func conceptLinksFor(concept: Concept) -> [Link] {
+  func conceptLinksFor(_ concept: Concept) -> [Link] {
     return links.filter {
       return $0.origin.identifier == concept.identifier ||
         $0.target.identifier == concept.identifier
@@ -304,19 +304,19 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     for link in links { drawLinkView(link) }
   }
 
-  func drawLinkView(link: Link) {
+  func drawLinkView(_ link: Link) {
     if let linkView = linkViews[link.identifier] {
       linkView.needsDisplay = true
     } else {
       let linkView = LinkView(link: link, canvas: self)
-      addSubview(linkView, positioned: .Below, relativeTo: nil)
+      addSubview(linkView, positioned: .below, relativeTo: nil)
       linkViews[link.identifier] = linkView
     }
   }
 
   func showConstructionArrow() {
-    if let arrowOriginPoint = arrowOriginPoint, arrowTargetPoint = arrowTargetPoint {
-      NSColor.blueColor().set()
+    if let arrowOriginPoint = arrowOriginPoint, let arrowTargetPoint = arrowTargetPoint {
+      NSColor.blue.set()
       let arrow = Arrow(p1: arrowOriginPoint, p2: arrowTargetPoint)
       arrow.bezierPath().fill()
     }
@@ -327,9 +327,9 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     arrowTargetPoint = nil
   }
 
-  func selectTargetConceptView(point: NSPoint, fromConcept originConcept: Concept) -> ConceptView? {
+  func selectTargetConceptView(_ point: NSPoint, fromConcept originConcept: Concept) -> ConceptView? {
     for (_, conceptView) in conceptViews {
-      if (mode == .Links && conceptView.concept != originConcept && CGRectContainsPoint(conceptView.frame, point)) {
+      if (mode == .Links && conceptView.concept != originConcept && conceptView.frame.contains(point)) {
         return conceptView
       }
     }
@@ -337,7 +337,7 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     return nil
   }
 
-  func createLinkBetweenConceptsViews(originConceptView: ConceptView, targetConceptView: ConceptView) {
+  func createLinkBetweenConceptsViews(_ originConceptView: ConceptView, targetConceptView: ConceptView) {
     let link = Link(origin: originConceptView.concept, target: targetConceptView.concept)
 
     if let windowController = window?.windowController as? WindowController {
@@ -347,14 +347,14 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     document.saveLink(link)
   }
 
-  func removeLinkView(linkView: LinkView) {
+  func removeLinkView(_ linkView: LinkView) {
     let link = linkView.link
     document.removeLink(link)
     justRemoveLinkView(linkView)
   }
 
-  func justRemoveLinkView(linkView: LinkView) {
-    linkViews.removeValueForKey(linkView.link.identifier)
+  func justRemoveLinkView(_ linkView: LinkView) {
+    linkViews.removeValue(forKey: linkView.link.identifier)
     linkView.removeFromSuperview()
   }
 
@@ -364,36 +364,36 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   }
 
   // MARK: - DocumentObserver
-  func conceptAdded(concept: Concept) {
+  func conceptAdded(_ concept: Concept) {
     createConceptViewFor(concept)
   }
 
-  func conceptRemoved(concept: Concept) {
+  func conceptRemoved(_ concept: Concept) {
     justRemoveConceptView(conceptViewFor(concept))
   }
 
-  func conceptUpdated(concept: Concept) {
+  func conceptUpdated(_ concept: Concept) {
     let conceptView = conceptViewFor(concept)
     conceptView.updateFrameToMatchConcept()
     conceptView.needsDisplay = true
     updateLinkViewsFor(concept)
   }
 
-  func linkAdded(link: Link) {
+  func linkAdded(_ link: Link) {
     drawLinkView(link)
   }
 
-  func linkRemoved(link: Link) {
+  func linkRemoved(_ link: Link) {
     justRemoveLinkView(linkViewFor(link))
   }
 
-  func linkUpdated(link: Link) {
+  func linkUpdated(_ link: Link) {
     let linkView = linkViewFor(link)
     linkView.needsDisplay = true
   }
 
   // MARK: - DraggableElementDelegate
-  func dragStartCallback(draggableElementView: DraggableElement, dragEvent: DragEvent) {
+  func dragStartCallback(_ draggableElementView: DraggableElement, dragEvent: DragEvent) {
     let conceptView = draggableElementView as! ConceptView
 
     if (mode == .Select) {
@@ -408,7 +408,7 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     }
   }
 
-  func dragToCallback(draggableElementView: DraggableElement, dragEvent: DragEvent) {
+  func dragToCallback(_ draggableElementView: DraggableElement, dragEvent: DragEvent) {
     let conceptView = draggableElementView as! ConceptView
 
     if (mode == .Select) {
@@ -429,7 +429,7 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   var arrowOriginPoint: NSPoint?
   var arrowTargetPoint: NSPoint?
 
-  func dragEndCallback(draggableElementView: DraggableElement, dragEvent: DragEvent) {
+  func dragEndCallback(_ draggableElementView: DraggableElement, dragEvent: DragEvent) {
     let conceptView = draggableElementView as! ConceptView
 
     if (mode == .Select) {
