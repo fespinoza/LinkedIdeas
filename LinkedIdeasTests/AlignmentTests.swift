@@ -13,7 +13,7 @@ class TestConcept: SquareElement {
   var point: NSPoint
   var size: NSSize
   var rect: NSRect {
-    return NSRect(origin: point, size: size)
+    return NSRect(center: point, size: size)
   }
   
   init(point: NSPoint, size: NSSize) {

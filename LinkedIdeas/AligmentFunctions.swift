@@ -13,13 +13,29 @@ protocol AlignmentFunctions {
 }
 
 extension AlignmentFunctions {
+  func rectMaxX(rect: NSRect) -> CGFloat {
+    return rect.origin.x + rect.width
+  }
+  
+  func rectMaxY(rect: NSRect) -> CGFloat {
+    return rect.origin.y + rect.height
+  }
+  
+  func rectMinX(rect: NSRect) -> CGFloat {
+    return rect.origin.x
+  }
+  
+  func rectMinY(rect: NSRect) -> CGFloat {
+    return rect.origin.y
+  }
+  
   // MARK: - SquareElement
   func compareByMaxRectX(_ p1: SquareElement, p2: SquareElement) -> Bool {
-    return p1.rect.maxX > p2.rect.maxX
+    return rectMaxX(rect: p1.rect) > rectMaxX(rect: p2.rect)
   }
   
   func compareByMinRectX(_ p1: SquareElement, p2: SquareElement) -> Bool {
-    return p1.rect.origin.x < p2.rect.origin.x
+    return rectMinX(rect: p1.rect) < rectMinX(rect: p2.rect)
   }
   
   func compareByMinCenterX(_ p1: SquareElement, p2: SquareElement) -> Bool {
@@ -62,7 +78,7 @@ extension AlignmentFunctions {
     guard !elements.isEmpty else { return }
     
     let sortedConcepts = elements.sorted(by: compareByMaxRectX)
-    let minimunXCoordinate = sortedConcepts.first!.rect.maxX
+    let minimunXCoordinate = rectMaxX(rect: sortedConcepts.first!.rect)
     
     func calculateNewPoint(_ element: SquareElement) -> NSPoint {
       let newX: CGFloat = minimunXCoordinate - element.rect.width / 2
@@ -142,10 +158,10 @@ extension AlignmentFunctions {
   }
   
   func containingRectFor(_ elements: [SquareElement]) -> NSRect {
-    let minX = (elements.map { $0.rect.origin.x }).min()!
-    let minY = (elements.map { $0.rect.origin.y }).min()!
-    let maxX = (elements.map { $0.rect.maxX }).max()!
-    let maxY = (elements.map { $0.rect.maxY }).max()!
+    let minX = (elements.map { rectMinX(rect: $0.rect) }).min()!
+    let minY = (elements.map { rectMinY(rect: $0.rect) }).min()!
+    let maxX = (elements.map { rectMaxX(rect: $0.rect) }).max()!
+    let maxY = (elements.map { rectMaxY(rect: $0.rect) }).max()!
     return NSMakeRect(minX, minY, maxX - minX, maxY - minY)
   }
 }
