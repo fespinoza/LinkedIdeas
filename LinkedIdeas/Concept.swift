@@ -13,7 +13,7 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
   var point: NSPoint
   // element
   var identifier: String
-  // MARK: - AttributedStringElement
+  // MARK: -NSAttributedStringElement
   dynamic var attributedStringValue: NSAttributedString
   var stringValue: String { return attributedStringValue.string }
   
@@ -53,28 +53,28 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
   }
   
   convenience init(stringValue: String, point: NSPoint) {
-    self.init(attributedStringValue: NSAttributedString(string: stringValue), point: point)
+    self.init(attributedStringValue:NSAttributedString(string: stringValue), point: point)
   }
 
   init(attributedStringValue: NSAttributedString, point: NSPoint) {
     self.point = point
-    self.identifier = "\(NSUUID().UUIDString)-concept"
+    self.identifier = "\(UUID().uuidString)-concept"
     self.attributedStringValue = attributedStringValue
   }
 
   // MARK: - NSCoding
 
   required init?(coder aDecoder: NSCoder) {
-    point       = aDecoder.decodePointForKey(Concept.pointKey)
-    identifier  = aDecoder.decodeObjectForKey(Concept.identifierKey) as! String
-    isEditable  = aDecoder.decodeBoolForKey(Concept.isEditableKey)
-    attributedStringValue = aDecoder.decodeObjectForKey(Concept.attributedStringValueKey) as! NSAttributedString
+    point       = aDecoder.decodePoint(forKey: Concept.pointKey)
+    identifier  = aDecoder.decodeObject(forKey: Concept.identifierKey) as! String
+    isEditable  = aDecoder.decodeBool(forKey: Concept.isEditableKey)
+    attributedStringValue = aDecoder.decodeObject(forKey: Concept.attributedStringValueKey) as!NSAttributedString
   }
 
-  func encodeWithCoder(aCoder: NSCoder) {
-    aCoder.encodePoint(point, forKey: Concept.pointKey)
-    aCoder.encodeObject(attributedStringValue, forKey: Concept.attributedStringValueKey)
-    aCoder.encodeObject(identifier, forKey: Concept.identifierKey)
-    aCoder.encodeBool(isEditable, forKey: Concept.isEditableKey)
+  func encode(with aCoder: NSCoder) {
+    aCoder.encode(point, forKey: Concept.pointKey)
+    aCoder.encode(attributedStringValue, forKey: Concept.attributedStringValueKey)
+    aCoder.encode(identifier, forKey: Concept.identifierKey)
+    aCoder.encode(isEditable, forKey: Concept.isEditableKey)
   }
 }

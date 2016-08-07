@@ -14,11 +14,11 @@ protocol LinkedIdeasDocument {
   
   var observer: DocumentObserver? { get set }
   
-  func saveConcept(concept: Concept)
-  func removeConcept(concept: Concept)
+  func saveConcept(_ concept: Concept)
+  func removeConcept(_ concept: Concept)
   
-  func saveLink(link: Link)
-  func removeLink(link: Link)
+  func saveLink(_ link: Link)
+  func removeLink(_ link: Link)
   
-  func changeConceptPoint(concept: Concept, fromPoint: NSPoint, toPoint: NSPoint)
+  func changeConceptPoint(_ concept: Concept, fromPoint: NSPoint, toPoint: NSPoint)
 }

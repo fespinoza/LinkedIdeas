@@ -12,15 +12,15 @@ import HockeySDK
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-  func applicationDidFinishLaunching(aNotification: NSNotification) {
+  func applicationDidFinishLaunching(_ aNotification: Notification) {
     // Insert code here to initialize your application
-    if let sharedHockeyManager = BITHockeyManager.sharedHockeyManager() {
-      sharedHockeyManager.configureWithIdentifier("910181e274534fc1a9c01ad131c17ea8")
-      sharedHockeyManager.startManager()
+    if let sharedHockeyManager = BITHockeyManager.shared() {
+      sharedHockeyManager.configure(withIdentifier: "910181e274534fc1a9c01ad131c17ea8")
+      sharedHockeyManager.start()
     }
   }
 
-  func applicationWillTerminate(aNotification: NSNotification) {
+  func applicationWillTerminate(_ aNotification: Notification) {
     // Insert code here to tear down your application
   }
 

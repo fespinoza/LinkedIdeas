@@ -9,48 +9,64 @@
 import Cocoa
 
 protocol AlignmentFunctions {
-  func setNewPoint(newPoint: NSPoint, forElement element: SquareElement)
+  func setNewPoint(_ newPoint: NSPoint, forElement element: SquareElement)
 }
 
 extension AlignmentFunctions {
+  func rectMaxX(rect: NSRect) -> CGFloat {
+    return rect.origin.x + rect.width
+  }
+  
+  func rectMaxY(rect: NSRect) -> CGFloat {
+    return rect.origin.y + rect.height
+  }
+  
+  func rectMinX(rect: NSRect) -> CGFloat {
+    return rect.origin.x
+  }
+  
+  func rectMinY(rect: NSRect) -> CGFloat {
+    return rect.origin.y
+  }
+  
   // MARK: - SquareElement
-  func compareByMaxRectX(p1: SquareElement, p2: SquareElement) -> Bool {
-    return p1.rect.maxX > p2.rect.maxX
+  func compareByMaxRectX(_ p1: SquareElement, p2: SquareElement) -> Bool {
+    return rectMaxX(rect: p1.rect) > rectMaxX(rect: p2.rect)
   }
   
-  func compareByMinRectX(p1: SquareElement, p2: SquareElement) -> Bool {
-    return p1.rect.origin.x < p2.rect.origin.x
+  func compareByMinRectX(_ p1: SquareElement, p2: SquareElement) -> Bool {
+    return rectMinX(rect: p1.rect) < rectMinX(rect: p2.rect)
   }
   
-  func compareByMinCenterX(p1: SquareElement, p2: SquareElement) -> Bool {
+  func compareByMinCenterX(_ p1: SquareElement, p2: SquareElement) -> Bool {
     return p1.point.x < p2.point.x
   }
   
-  func compareByMinCenterY(p1: SquareElement, p2: SquareElement) -> Bool {
+  func compareByMinCenterY(_ p1: SquareElement, p2: SquareElement) -> Bool {
     return p1.point.y < p2.point.y
   }
   
   // MARK: - Alignment Functions
-  func verticallyCenterAlign(elements: [SquareElement]) {
+  func verticallyCenterAlign(_ elements: [SquareElement]) {
     guard !elements.isEmpty else { return }
     
-    let sortedConcepts = elements.sort(compareByMinCenterX)
+    let sortedConcepts = elements.sorted(by: compareByMinCenterX)
     let minimunXCoordinate = sortedConcepts.first!.point.x
     
-    func calculateNewPoint(element: SquareElement) -> NSPoint {
+    func calculateNewPoint(_ element: SquareElement) -> NSPoint {
       return NSMakePoint(minimunXCoordinate, element.point.y)
     }
     
     updateElementPoints(elements, newPointCalculator: calculateNewPoint)
   }
   
-  func verticallyLeftAlign(elements: [SquareElement]) {
+  func verticallyLeftAlign(_ elements: [SquareElement]) {
     guard !elements.isEmpty else { return }
     
-    let sortedConcepts = elements.sort(compareByMinRectX)
+    let sortedConcepts = elements.sorted(by: compareByMinRectX)
     let minimunXCoordinate = sortedConcepts.first!.rect.origin.x
     
-    func calculateNewPoint(element: SquareElement) -> NSPoint {
+    func calculateNewPoint(_ element: SquareElement) -> NSPoint {
       let newX: CGFloat = minimunXCoordinate + element.rect.width / 2
       return NSMakePoint(newX, element.point.y)
     }
@@ -58,13 +74,13 @@ extension AlignmentFunctions {
     updateElementPoints(elements, newPointCalculator: calculateNewPoint)
   }
   
-  func verticallyRightAlign(elements: [SquareElement]) {
+  func verticallyRightAlign(_ elements: [SquareElement]) {
     guard !elements.isEmpty else { return }
     
-    let sortedConcepts = elements.sort(compareByMaxRectX)
-    let minimunXCoordinate = sortedConcepts.first!.rect.maxX
+    let sortedConcepts = elements.sorted(by: compareByMaxRectX)
+    let minimunXCoordinate = rectMaxX(rect: sortedConcepts.first!.rect)
     
-    func calculateNewPoint(element: SquareElement) -> NSPoint {
+    func calculateNewPoint(_ element: SquareElement) -> NSPoint {
       let newX: CGFloat = minimunXCoordinate - element.rect.width / 2
       return NSMakePoint(newX, element.point.y)
     }
@@ -72,32 +88,32 @@ extension AlignmentFunctions {
     updateElementPoints(elements, newPointCalculator: calculateNewPoint)
   }
   
-  func horizontallyAlign(elements: [SquareElement]) {
+  func horizontallyAlign(_ elements: [SquareElement]) {
     guard !elements.isEmpty else { return }
     
-    let averageYCoordinate: CGFloat = elements.minElement(compareByMinCenterX)!.point.y
+    let averageYCoordinate: CGFloat = elements.min(by: compareByMinCenterX)!.point.y
     
-    func calculateNewPoint(element: SquareElement) -> NSPoint {
+    func calculateNewPoint(_ element: SquareElement) -> NSPoint {
       return NSMakePoint(element.point.x, averageYCoordinate)
     }
     
     updateElementPoints(elements, newPointCalculator: calculateNewPoint)
   }
   
-  func equalVerticalSpace(elements: [SquareElement]) {
+  func equalVerticalSpace(_ elements: [SquareElement]) {
     guard !elements.isEmpty else { return }
     
     let containingRect = containingRectFor(elements)
     
     let n = CGFloat(elements.count)
-    let combinedConceptHeight = elements.reduce(0, combine: { (acc, concept) in return acc + concept.rect.height })
+    let combinedConceptHeight = elements.reduce(0, { (acc, concept) in return acc + concept.rect.height })
     let equalVerticalSpacing: CGFloat = (containingRect.height - combinedConceptHeight) / (n - 1)
     
-    let elementsSortedByYCoordinate = elements.sort(compareByMinCenterY)
+    let elementsSortedByYCoordinate = elements.sorted(by: compareByMinCenterY)
     
     var previousElement = elementsSortedByYCoordinate[0]
     
-    func calculateNewPoint(element: SquareElement) -> NSPoint {
+    func calculateNewPoint(_ element: SquareElement) -> NSPoint {
       let newY = (element.rect.height / 2) + equalVerticalSpacing + (previousElement.rect.height / 2) + previousElement.point.y
       return NSMakePoint(element.point.x, newY)
     }
@@ -108,16 +124,16 @@ extension AlignmentFunctions {
     }
   }
   
-  func equalHorizontalSpace(elements: [SquareElement]) {
+  func equalHorizontalSpace(_ elements: [SquareElement]) {
     guard !elements.isEmpty else { return }
     
     let containingRect = containingRectFor(elements)
     
     let n = CGFloat(elements.count)
-    let combinedConceptWidth = elements.reduce(0, combine: { (acc, concept) in return acc + concept.rect.width })
+    let combinedConceptWidth = elements.reduce(0, { (acc, concept) in return acc + concept.rect.width })
     let equalHorizontalSpacing: CGFloat = (containingRect.width - combinedConceptWidth) / (n - 1)
     
-    let conceptsSortedByXCoordinate = elements.sort(compareByMinCenterX)
+    let conceptsSortedByXCoordinate = elements.sorted(by: compareByMinCenterX)
     
     var previousConcept = conceptsSortedByXCoordinate[0]
     for element in conceptsSortedByXCoordinate[1..<conceptsSortedByXCoordinate.count] {
@@ -131,21 +147,21 @@ extension AlignmentFunctions {
   }
   
   // MARK: - Utilities
-  func setNewPoint(newPoint: NSPoint, forElement element: SquareElement) {
+  func setNewPoint(_ newPoint: NSPoint, forElement element: SquareElement) {
     element.point = newPoint
   }
   
-  func updateElementPoints(elements: [SquareElement], newPointCalculator: (SquareElement) -> NSPoint) {
+  func updateElementPoints(_ elements: [SquareElement], newPointCalculator: (SquareElement) -> NSPoint) {
     for element in elements {
       setNewPoint(newPointCalculator(element), forElement: element)
     }
   }
   
-  func containingRectFor(elements: [SquareElement]) -> NSRect {
-    let minX = (elements.map { $0.rect.origin.x }).minElement()!
-    let minY = (elements.map { $0.rect.origin.y }).minElement()!
-    let maxX = (elements.map { $0.rect.maxX }).maxElement()!
-    let maxY = (elements.map { $0.rect.maxY }).maxElement()!
+  func containingRectFor(_ elements: [SquareElement]) -> NSRect {
+    let minX = (elements.map { rectMinX(rect: $0.rect) }).min()!
+    let minY = (elements.map { rectMinY(rect: $0.rect) }).min()!
+    let maxX = (elements.map { rectMaxX(rect: $0.rect) }).max()!
+    let maxY = (elements.map { rectMaxY(rect: $0.rect) }).max()!
     return NSMakeRect(minX, minY, maxX - minX, maxY - minY)
   }
 }

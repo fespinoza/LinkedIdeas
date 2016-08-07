@@ -42,7 +42,7 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
   
   // MARK: - NSView
   
-  override func drawRect(dirtyRect: NSRect) {
+  override func draw(_ dirtyRect: NSRect) {
     drawArrow()
     if (link.isSelected) { drawArrowBorder() }
     drawHoveringState()
@@ -57,9 +57,9 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
     let originRect = canvas.conceptViewFor(link.origin).frame
     let targetRect = canvas.conceptViewFor(link.target).frame
     
-    if let intersectionPointWithOrigin = originRect.firstIntersectionTo(targetPoint), intersectionPointWithTarget = targetRect.firstIntersectionTo(originPoint) {
-      let intersectionPointWithOriginInLinkViewCoordinates = convertPoint(intersectionPointWithOrigin, fromView: canvas)
-      let intersectionPointWithTargetInLinkViewCoordinates = convertPoint(intersectionPointWithTarget, fromView: canvas)
+    if let intersectionPointWithOrigin = originRect.firstIntersectionTo(targetPoint), let intersectionPointWithTarget = targetRect.firstIntersectionTo(originPoint) {
+      let intersectionPointWithOriginInLinkViewCoordinates = convert(intersectionPointWithOrigin, from: canvas)
+      let intersectionPointWithTargetInLinkViewCoordinates = convert(intersectionPointWithTarget, from: canvas)
       
       return Arrow(p1: intersectionPointWithOriginInLinkViewCoordinates, p2: intersectionPointWithTargetInLinkViewCoordinates)
     } else {
@@ -73,52 +73,52 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
   }
   
   func drawArrowBorder() {
-    NSColor.blackColor().set()
+    NSColor.black.set()
     arrowPath?.stroke()
   }
   
   // MARK: - Mouse Events
   
-  override func mouseDown(theEvent: NSEvent) {
-    let point = convertPoint(theEvent.locationInWindow, fromView: nil)
-    if let arrowPath = arrowPath where arrowPath.containsPoint(point) {
+  override func mouseDown(with theEvent: NSEvent) {
+    let point = convert(theEvent.locationInWindow, from: nil)
+    if let arrowPath = arrowPath, arrowPath.contains(point) {
       click(point)
     } else {
-      super.mouseDown(theEvent)
+      super.mouseDown(with: theEvent)
     }
   }
   
-  override func mouseEntered(theEvent: NSEvent) {
+  override func mouseEntered(with theEvent: NSEvent) {
     isHoveringView = true
-    super.mouseEntered(theEvent)
+    super.mouseEntered(with: theEvent)
   }
   
-  override func mouseExited(theEvent: NSEvent) {
+  override func mouseExited(with theEvent: NSEvent) {
     isHoveringView = false
-    super.mouseExited(theEvent)
+    super.mouseExited(with: theEvent)
   }
   
   // MARK: - Keyboard Events
   
   let deleteKeyCode: UInt16 = 51
-  override func keyDown(theEvent: NSEvent) {
+  override func keyDown(with theEvent: NSEvent) {
     if (theEvent.keyCode == deleteKeyCode) {
       pressDeleteKey()
     } else {
-      super.keyDown(theEvent)
+      super.keyDown(with: theEvent)
     }
   }
   
   // MARK: - ClickableView
   
-  func click(point: NSPoint) {
+  func click(_ point: NSPoint) {
     canvas.unselectConcepts()
     canvas.unselectLinks()
     selectLink()
     (window?.windowController as? WindowController)?.selectedColor = link.color
   }
   
-  func doubleClick(point: NSPoint) {}
+  func doubleClick(_ point: NSPoint) {}
   
   // MARK: - LinkViewActions
   

@@ -25,9 +25,6 @@ extension NSRect {
   var topLeftPoint: NSPoint { return NSMakePoint(origin.x, origin.y + size.height) }
   var center: NSPoint { return NSMakePoint(origin.x + size.width / 2, origin.y + size.height / 2) }
   
-  var maxX: CGFloat { return origin.x + size.width }
-  var maxY: CGFloat { return origin.y + size.height }
-  
   var lines: [FiniteLine] {
     var result: [FiniteLine] = []
     
@@ -39,14 +36,14 @@ extension NSRect {
     return result
   }
   
-  func intersectionTo(point: NSPoint) -> [NSPoint] {
+  func intersectionTo(_ point: NSPoint) -> [NSPoint] {
     let secondLine = FiniteLine(p1: center, p2: point)
     return lines.map {
       $0.intersectionPointWith(secondLine)
     }.filter { $0 != nil }.map { $0! }
   }
   
-  func firstIntersectionTo(point: NSPoint) -> NSPoint? {
+  func firstIntersectionTo(_ point: NSPoint) -> NSPoint? {
     return intersectionTo(point).first
   }
 }

@@ -33,15 +33,15 @@ struct Arrow {
     let p9 = NSMakePoint((p1.x + C * sin(alpha)), (p1.y - C * cos(alpha)))
 
     let arrowPath = NSBezierPath()
-    arrowPath.moveToPoint(p1)
-    arrowPath.lineToPoint(p8)
-    arrowPath.lineToPoint(p6)
-    arrowPath.lineToPoint(p3)
-    arrowPath.lineToPoint(p2)
-    arrowPath.lineToPoint(p4)
-    arrowPath.lineToPoint(p7)
-    arrowPath.lineToPoint(p9)
-    arrowPath.closePath()
+    arrowPath.move(to: p1)
+    arrowPath.line(to: p8)
+    arrowPath.line(to: p6)
+    arrowPath.line(to: p3)
+    arrowPath.line(to: p2)
+    arrowPath.line(to: p4)
+    arrowPath.line(to: p7)
+    arrowPath.line(to: p9)
+    arrowPath.close()
 
     return arrowPath
   }

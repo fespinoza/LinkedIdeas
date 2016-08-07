@@ -25,7 +25,7 @@ struct Line: PointInterceptable {
     return -intersectionWithYAxis / gradient
   }
   
-  func evaluateX(x: CGFloat) -> CGFloat {
+  func evaluateX(_ x: CGFloat) -> CGFloat {
     return gradient * x + intersectionWithYAxis
   }
   
@@ -37,7 +37,7 @@ struct Line: PointInterceptable {
     return gradient == 0
   }
   
-  func isParallelTo(line: Line) -> Bool {
+  func isParallelTo(_ line: Line) -> Bool {
     return abs(gradient) == abs(line.gradient)
   }
   
@@ -46,7 +46,7 @@ struct Line: PointInterceptable {
   }
   
   // it does not considate the same lines: the answer is all the points
-  func intersectionPointWith(line: Line) -> NSPoint? {
+  func intersectionPointWith(_ line: Line) -> NSPoint? {
     if (isParallelTo(line)) {
       return nil
     }
@@ -67,7 +67,7 @@ struct Line: PointInterceptable {
     return NSMakePoint(intersectionX, intersectionY)
   }
   
-  func intersectionPointWithinBoundaries(line: Line, lineBoundaryP1 p1: NSPoint, lineBoundaryP2 p2: NSPoint) -> NSPoint? {
+  func intersectionPointWithinBoundaries(_ line: Line, lineBoundaryP1 p1: NSPoint, lineBoundaryP2 p2: NSPoint) -> NSPoint? {
     return nil
   }
 }

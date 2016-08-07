@@ -21,7 +21,7 @@ class TestConcept: SquareElement {
     self.size = size
   }
   
-  func setNewPoint(newPoint: NSPoint) {
+  func setNewPoint(_ newPoint: NSPoint) {
     self.point = newPoint
   }
 }
@@ -48,19 +48,19 @@ struct TestAlignmentFunctions: AlignmentFunctions {}
 
 // helpers
 
-func maxX(rect: NSRect) -> CGFloat {
+func maxX(_ rect: NSRect) -> CGFloat {
   return rect.origin.x + rect.size.width
 }
 
-func maxY(rect: NSRect) -> CGFloat {
+func maxY(_ rect: NSRect) -> CGFloat {
   return rect.origin.y + rect.size.height
 }
 
-func verticalDistanceBetween(a: SquareElement, _ b: SquareElement) -> CGFloat {
+func verticalDistanceBetween(_ a: SquareElement, _ b: SquareElement) -> CGFloat {
   return abs(a.point.y - b.point.y) - (a.rect.height + b.rect.height) / 2
 }
 
-func horizontalDistanceBetween(a: SquareElement, _ b: SquareElement) -> CGFloat {
+func horizontalDistanceBetween(_ a: SquareElement, _ b: SquareElement) -> CGFloat {
   return abs(a.point.x - b.point.x) - (a.rect.width + b.rect.width) / 2
 }
 

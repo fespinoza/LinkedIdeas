@@ -15,20 +15,20 @@ extension NSAttributedString {
   var isStrikedThrough: Bool {
     get {
       var range = maxRange
-      let strikeValue = attribute(NSStrikethroughStyleAttributeName, atIndex: 0, effectiveRange: &range) as? Int
-      return strikeValue == NSUnderlineStyle.StyleSingle.rawValue
+      let strikeValue = attribute(NSStrikethroughStyleAttributeName, at: 0, effectiveRange: &range) as? Int
+      return strikeValue == NSUnderlineStyle.styleSingle.rawValue
     }
   }
   
   var isBold: Bool {
-    return (font.fontDescriptor.symbolicTraits & UInt32(NSFontTraitMask.BoldFontMask.rawValue)) != 0
+    return (font.fontDescriptor.symbolicTraits & UInt32(NSFontTraitMask.boldFontMask.rawValue)) != 0
   }
   
   var defaultFont: NSFont { return NSFont(name: "Helvetica", size: 12)! }
   
   var font: NSFont {
     var range = maxRange
-    let _font = attribute(NSFontAttributeName, atIndex: 0, effectiveRange: &range) as? NSFont
+    let _font = attribute(NSFontAttributeName, at: 0, effectiveRange: &range) as? NSFont
     if let _font = _font {
       return _font
     } else {
@@ -40,18 +40,18 @@ extension NSAttributedString {
   
   var fontColor: NSColor {
     var range = maxRange
-    let color = attribute(NSForegroundColorAttributeName, atIndex: 0, effectiveRange: &range) as? NSColor
+    let color = attribute(NSForegroundColorAttributeName, at: 0, effectiveRange: &range) as? NSColor
     if let color = color {
       return color
     } else {
-      return NSColor.blackColor()
+      return NSColor.black
     }
   }
   
   // Mark: - Convenience Initializers
-  convenience init(attributedString: NSAttributedString, strikeThrough:Bool) {
-    var strikeStyle: NSUnderlineStyle = NSUnderlineStyle.StyleNone
-    if strikeThrough { strikeStyle = NSUnderlineStyle.StyleSingle }
+  convenience init(attributedString:NSAttributedString, strikeThrough:Bool) {
+    var strikeStyle: NSUnderlineStyle = NSUnderlineStyle.styleNone
+    if strikeThrough { strikeStyle = NSUnderlineStyle.styleSingle }
     
     let _tempCopy = attributedString.mutableCopy()
     _tempCopy.addAttribute(
@@ -59,37 +59,37 @@ extension NSAttributedString {
       value: strikeStyle.rawValue,
       range: attributedString.maxRange
     )
-    self.init(attributedString: _tempCopy as! NSAttributedString)
+    self.init(attributedString: _tempCopy as!NSAttributedString)
   }
   
-  convenience init(attributedString: NSAttributedString, bold:Bool) {
+  convenience init(attributedString:NSAttributedString, bold:Bool) {
     var newFont: NSFont!
     
     if bold {
-      newFont = NSFontManager.sharedFontManager().convertFont(attributedString.font, toHaveTrait: .BoldFontMask)
+      newFont = NSFontManager.shared().convert(attributedString.font, toHaveTrait: .boldFontMask)
     } else {
-      newFont = NSFontManager.sharedFontManager().convertFont(attributedString.font, toNotHaveTrait: .BoldFontMask)
+      newFont = NSFontManager.shared().convert(attributedString.font, toNotHaveTrait: .boldFontMask)
     }
     
     let _tempCopy = attributedString.mutableCopy()
     _tempCopy.addAttribute(NSFontAttributeName, value: newFont, range: attributedString.maxRange)
     
-    self.init(attributedString: _tempCopy as! NSAttributedString)
+    self.init(attributedString: _tempCopy as!NSAttributedString)
   }
   
-  convenience init(attributedString: NSAttributedString, fontColor: NSColor) {
+  convenience init(attributedString:NSAttributedString, fontColor: NSColor) {
     let _tempCopy = attributedString.mutableCopy()
     _tempCopy.addAttribute(NSForegroundColorAttributeName, value: fontColor, range: attributedString.maxRange)
     
-    self.init(attributedString: _tempCopy as! NSAttributedString)
+    self.init(attributedString: _tempCopy as!NSAttributedString)
   }
   
-  convenience init(attributedString: NSAttributedString, fontSize: Int) {
-    let newFont: NSFont = NSFontManager.sharedFontManager().convertFont(
+  convenience init(attributedString:NSAttributedString, fontSize: Int) {
+    let newFont: NSFont = NSFontManager.shared().convert(
       attributedString.font, toSize: CGFloat(fontSize))
     let _tempCopy = attributedString.mutableCopy()
     _tempCopy.addAttribute(NSFontAttributeName, value: newFont, range: attributedString.maxRange)
     
-    self.init(attributedString: _tempCopy as! NSAttributedString)
+    self.init(attributedString: _tempCopy as!NSAttributedString)
   }
 }

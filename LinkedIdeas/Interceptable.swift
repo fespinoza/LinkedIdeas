@@ -9,5 +9,5 @@
 import Foundation
 
 protocol Interceptable {
-  func interceptsWith(other: Self) -> Bool
+  func interceptsWith(_ other: Self) -> Bool
 }
