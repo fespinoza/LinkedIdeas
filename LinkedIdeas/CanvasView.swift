@@ -117,10 +117,9 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   }
 
   override func mouseUp(with theEvent: NSEvent) {
-    if (mode == .Select) {
-      isDragging = false
-      needsDisplay = true
-    }
+    isDragging = false
+    removeConstructionArrow()
+    needsDisplay = true
     (window?.windowController as? WindowController)?.selectedElementsCallback()
   }
   

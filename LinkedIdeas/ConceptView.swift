@@ -98,6 +98,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
       let point = pointInCanvasCoordinates(theEvent.locationInWindow)
       dragEnd(point)
     }
+    canvas.mouseUp(with: theEvent)
     (window?.windowController as? WindowController)?.selectedElementsCallback()
   }
   
