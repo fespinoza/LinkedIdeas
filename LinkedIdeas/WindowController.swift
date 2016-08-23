@@ -319,11 +319,11 @@ class WindowController: NSWindowController, AlignmentFunctions {
   }
   
   @IBAction func paste(_ sender: AnyObject?) {
-    readFromPasteboard(NSPasteboard.general())
+    let _ = readFromPasteboard(NSPasteboard.general())
   }
   
   @IBAction func pasteAsPlainText(_ sender: AnyObject?) {
-    readFromPasteboardAsPlainText(NSPasteboard.general())
+    let _ = readFromPasteboardAsPlainText(NSPasteboard.general())
   }
   
   @IBAction func addFontTrait(_ sender: AnyObject?) {

@@ -187,7 +187,7 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     if let conceptView = conceptViews[concept.identifier] {
       conceptView.needsDisplay = true
     } else {
-      createConceptViewFor(concept)
+      let _ = createConceptViewFor(concept)
     }
   }
 
@@ -364,7 +364,7 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
 
   // MARK: - DocumentObserver
   func conceptAdded(_ concept: Concept) {
-    createConceptViewFor(concept)
+    let _ = createConceptViewFor(concept)
   }
 
   func conceptRemoved(_ concept: Concept) {
