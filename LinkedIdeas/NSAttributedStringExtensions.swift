@@ -53,13 +53,13 @@ extension NSAttributedString {
     var strikeStyle: NSUnderlineStyle = NSUnderlineStyle.styleNone
     if strikeThrough { strikeStyle = NSUnderlineStyle.styleSingle }
     
-    let _tempCopy = attributedString.mutableCopy()
+    let _tempCopy = attributedString.mutableCopy() as! NSMutableAttributedString
     _tempCopy.addAttribute(
       NSStrikethroughStyleAttributeName,
       value: strikeStyle.rawValue,
       range: attributedString.maxRange
     )
-    self.init(attributedString: _tempCopy as!NSAttributedString)
+    self.init(attributedString: _tempCopy as NSAttributedString)
   }
   
   convenience init(attributedString:NSAttributedString, bold:Bool) {
@@ -71,25 +71,25 @@ extension NSAttributedString {
       newFont = NSFontManager.shared().convert(attributedString.font, toNotHaveTrait: .boldFontMask)
     }
     
-    let _tempCopy = attributedString.mutableCopy()
+    let _tempCopy = attributedString.mutableCopy() as! NSMutableAttributedString
     _tempCopy.addAttribute(NSFontAttributeName, value: newFont, range: attributedString.maxRange)
     
-    self.init(attributedString: _tempCopy as!NSAttributedString)
+    self.init(attributedString: _tempCopy as NSAttributedString)
   }
   
   convenience init(attributedString:NSAttributedString, fontColor: NSColor) {
-    let _tempCopy = attributedString.mutableCopy()
+    let _tempCopy = attributedString.mutableCopy() as! NSMutableAttributedString
     _tempCopy.addAttribute(NSForegroundColorAttributeName, value: fontColor, range: attributedString.maxRange)
     
-    self.init(attributedString: _tempCopy as!NSAttributedString)
+    self.init(attributedString: _tempCopy as NSAttributedString)
   }
   
   convenience init(attributedString:NSAttributedString, fontSize: Int) {
     let newFont: NSFont = NSFontManager.shared().convert(
       attributedString.font, toSize: CGFloat(fontSize))
-    let _tempCopy = attributedString.mutableCopy()
+    let _tempCopy = attributedString.mutableCopy() as! NSMutableAttributedString
     _tempCopy.addAttribute(NSFontAttributeName, value: newFont, range: attributedString.maxRange)
     
-    self.init(attributedString: _tempCopy as!NSAttributedString)
+    self.init(attributedString: _tempCopy as NSAttributedString)
   }
 }
