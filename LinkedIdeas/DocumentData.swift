@@ -28,3 +28,19 @@ class DocumentData: NSObject, NSCoding {
     aCoder.encode(writeLinks, forKey: "links")
   }
 }
+
+class Graph: NSObject, NSCoding {
+  var concepts = [Concept]()
+  var links = [Link]()
+  
+  required init?(coder aDecoder: NSCoder) {
+    concepts = aDecoder.decodeObject(forKey: "concepts") as! [Concept]
+    links = aDecoder.decodeObject(forKey: "links") as! [Link]
+  }
+  
+  func encode(with aCoder: NSCoder) {
+    aCoder.encode(concepts, forKey: "concepts")
+    aCoder.encode(links, forKey: "links")
+  }
+  
+}
