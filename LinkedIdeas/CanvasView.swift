@@ -156,7 +156,11 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   }
 
   func conceptViewFor(_ concept: Concept) -> ConceptView {
-    return conceptViews[concept.identifier]!
+    if let conceptView = conceptViews[concept.identifier] {
+      return conceptView
+    } else {
+      return createConceptViewFor(concept)
+    }
   }
 
   func linkViewFor(_ link: Link) -> LinkView {
@@ -213,13 +217,13 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
     let conceptView = ConceptView(concept: concept, canvas: self)
     conceptViews[concept.identifier] = conceptView
     
-    if isRunningInTestMode() {
+//    if isRunningInTestMode() {
       addSubview(conceptView, positioned:.above, relativeTo: nil)
-    } else {
-      DispatchQueue.main.async(execute: { [unowned self] in
-        self.addSubview(conceptView, positioned:.above, relativeTo: nil)
-      })
-    }
+//    } else {
+//      DispatchQueue.main.async(execute: { [unowned self] in
+//        self.addSubview(conceptView, positioned:.above, relativeTo: nil)
+//      })
+//    }
     
     return conceptView
   }

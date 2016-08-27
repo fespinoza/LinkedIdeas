@@ -86,7 +86,8 @@ class Document: NSDocument, LinkedIdeasDocument {
   func changeConceptPoint(_ concept: Concept, fromPoint pointA: NSPoint, toPoint pointB: NSPoint) {
     concept.point = pointB
     observer?.conceptUpdated(concept)
-    (undoManager?.prepare(withInvocationTarget: self) as AnyObject).changeConceptPoint(concept, fromPoint: pointB, toPoint: pointA)
+    
+//    undoManager?.prepare(withInvocationTarget: self).changeConceptPoint(concept, fromPoint: pointB, toPoint: pointA)
   }
 
   override class func autosavesInPlace() -> Bool {
@@ -136,7 +137,6 @@ class Document: NSDocument, LinkedIdeasDocument {
   func stopObservingLink(_ link: Link) {
     link.removeObserver(self, forKeyPath: Link.colorPath, context: &KVOContext)
   }
-
   
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
     guard context == &KVOContext else {
@@ -147,13 +147,13 @@ class Document: NSDocument, LinkedIdeasDocument {
     }
     
 //    if let keyPath = keyPath, let object = object, let change = change {
-    if let object = object, let change = change {
+      if let object = object, let change = change {
       var oldValue: Any? = change[NSKeyValueChangeKey.oldKey]
       if oldValue is NSNull {
         oldValue = nil
       }
       
-//      undoManager?.prepare(withInvocationTarget: object).setValue(oldValue, forKey: keyPath)
+//      (undoManager?.prepare(withInvocationTarget: object) as! NSObject).setValue(oldValue, forKey: keyPath)
       
       if let concept = object as? Concept { observer?.conceptUpdated(concept) }
       if let link = object as? Link { observer?.linkUpdated(link) }
