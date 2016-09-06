@@ -10,7 +10,7 @@ import XCTest
 @testable import LinkedIdeas
 
 class LinkViewTests: XCTestCase {
-  let canvas = CanvasView(frame: NSMakeRect(20, 20, 600, 400))
+  let canvas = OldCanvasView(frame: NSMakeRect(20, 20, 600, 400))
   let testDocument = TestDocument()
   let concept1 = Concept(point: NSMakePoint(100, 200))
   let concept2 = Concept(point: NSMakePoint(300, 300))

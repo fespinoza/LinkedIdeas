@@ -49,7 +49,7 @@ extension StringEditableView {
 }
 
 protocol CanvasElement {
-  var canvas: CanvasView { get }
+  var canvas: OldCanvasView { get }
   
   func pointInCanvasCoordinates(_ point: NSPoint) -> NSPoint
 }

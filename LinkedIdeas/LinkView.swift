@@ -19,13 +19,13 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
   }
   
   // CanvasElement
-  var canvas: CanvasView
+  var canvas: OldCanvasView
   
   override var description: String {
     return "[LinkView][\(link.identifier)]"
   }
   
-  init(link: Link, canvas: CanvasView) {
+  init(link: Link, canvas: OldCanvasView) {
     self.link = link
     self.canvas = canvas
     super.init(frame: link.rect)
@@ -115,7 +115,7 @@ class LinkView: NSView, CanvasElement, ArrowDrawable, ClickableView, LinkViewAct
     canvas.unselectConcepts()
     canvas.unselectLinks()
     selectLink()
-    (window?.windowController as? WindowController)?.selectedColor = link.color
+//    (window?.windowController as? WindowController)?.selectedColor = link.color
   }
   
   func doubleClick(_ point: NSPoint) {}

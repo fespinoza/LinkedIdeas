@@ -13,7 +13,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   var textField: ResizingTextField
   var textFieldSize: NSSize { return textField.bounds.size }
   // MARK: - Canvas
-  var canvas: CanvasView
+  var canvas: OldCanvasView
   // Extras
   var isTextFieldFocused: Bool = false
   // Mouse events
@@ -28,7 +28,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
 
   private let defaultTextFieldSize = NSMakeSize(60, 20)
 
-  init(concept: Concept, canvas: CanvasView) {
+  init(concept: Concept, canvas: OldCanvasView) {
     let textFieldRect = NSRect(origin: NSMakePoint(0, 0), size: defaultTextFieldSize)
     self.concept = concept
     self.textField = ResizingTextField(frame: textFieldRect)
@@ -99,7 +99,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
       dragEnd(point)
     }
     canvas.mouseUp(with: theEvent)
-    (window?.windowController as? WindowController)?.selectedElementsCallback()
+//    (window?.windowController as? WindowController)?.selectedElementsCallback()
   }
   
   override func mouseEntered(with theEvent: NSEvent) {

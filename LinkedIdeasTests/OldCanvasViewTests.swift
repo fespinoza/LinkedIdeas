@@ -40,8 +40,8 @@ class TestDocument: LinkedIdeasDocument {
   }
 }
 
-class CanvasViewTests: XCTestCase {
-  let canvas = CanvasView(frame: NSMakeRect(20, 20, 600, 400))
+class OldCanvasViewTests: XCTestCase {
+  let canvas = OldCanvasView(frame: NSMakeRect(20, 20, 600, 400))
   let testDocument = TestDocument()
   
   override func setUp() {
@@ -50,7 +50,7 @@ class CanvasViewTests: XCTestCase {
   
   // MARK: - Initialization
   
-  func testInitializingCanvasViewFromReadingADocument() {
+  func testInitializingOldCanvasViewFromReadingADocument() {
     // given
     let concepts = [
       Concept(stringValue: "C1", point: NSMakePoint(20, 30)),

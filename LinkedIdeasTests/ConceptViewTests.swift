@@ -10,7 +10,7 @@ import XCTest
 @testable import LinkedIdeas
 
 class ConceptViewTests: XCTestCase {
-  let canvas = CanvasView(frame: NSMakeRect(20, 20, 600, 400))
+  let canvas = OldCanvasView(frame: NSMakeRect(20, 20, 600, 400))
   let testDocument = TestDocument()
   
   override func setUp() {
