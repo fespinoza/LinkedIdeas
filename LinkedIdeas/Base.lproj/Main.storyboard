@@ -661,15 +661,6 @@
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="294" y="362" width="650" height="500"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
-                        <toolbar key="toolbar" implicitIdentifier="C138D6F8-8D7C-4F7E-93B7-4C9E1CB377AD" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="Lzv-31-nPM">
-                            <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="hyu-ok-EWt"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="X01-Ex-ql5"/>
-                            </allowedToolbarItems>
-                            <defaultToolbarItems>
-                                <toolbarItem reference="X01-Ex-ql5"/>
-                            </defaultToolbarItems>
-                        </toolbar>
                     </window>
                     <connections>
                         <segue destination="9gT-PM-MLh" kind="relationship" relationship="window.shadowedContentViewController" id="mOI-bs-iEY"/>

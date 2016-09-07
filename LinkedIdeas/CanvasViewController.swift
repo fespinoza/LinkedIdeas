@@ -16,13 +16,9 @@ struct DrawableConcept: DrawableElement {
   }
 }
 
-protocol Identifiable {
-  var uuid: String { get }
-}
-
-extension Identifiable {
+extension NSResponder {
   var identifierString: String {
-    return "\(type(of: self)) <\(uuid)>"
+    return "\(type(of: self))"
   }
   
   func print(_ message: String) {
@@ -30,15 +26,7 @@ extension Identifiable {
   }
 }
 
-class CanvasViewController: NSViewController, Identifiable {
-  var uuid: String
-  
-  required init?(coder: NSCoder) {
-    uuid = UUID().uuidString
-    super.init(coder: coder)
-    print("init")
-  }
-  
+class CanvasViewController: NSViewController {
   @IBOutlet weak var canvasView: CanvasView!
   
   var document: Document! {

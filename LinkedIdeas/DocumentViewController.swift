@@ -8,9 +8,7 @@
 
 import Cocoa
 
-class DocumentViewController: NSViewController, Identifiable {
-  var uuid: String
-  
+class DocumentViewController: NSViewController {
   var canvasViewController: CanvasViewController! {
     return childViewControllers.lazy.first as? CanvasViewController
   }
@@ -20,14 +18,6 @@ class DocumentViewController: NSViewController, Identifiable {
       canvasViewController.document = document
       print("-didSetDocument")
     }
-  }
-  
-  // MARK: - Initialization
-  
-  required init?(coder: NSCoder) {
-    uuid = UUID().uuidString
-    super.init(coder: coder)
-    print("init")
   }
   
   // MARK: - View Lifecycle

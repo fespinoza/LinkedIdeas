@@ -8,18 +8,10 @@
 
 import Cocoa
 
-class WindowController: NSWindowController, Identifiable {
+class WindowController: NSWindowController {
   
   var documentViewController: DocumentViewController! {
     return contentViewController as! DocumentViewController
-  }
-  
-  var uuid: String
-  
-  required init?(coder: NSCoder) {
-    uuid = UUID().uuidString
-    super.init(coder: coder)
-    print("init")
   }
   
   override var document: AnyObject? {

@@ -22,7 +22,6 @@ class CanvasView: NSView {
   
   override func draw(_ dirtyRect: NSRect) {
     super.draw(dirtyRect)
-    Swift.print("CanvasView: -draw")
     drawBackground()
     
     if let dataSource = dataSource {
