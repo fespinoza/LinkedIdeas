@@ -659,9 +659,38 @@
                 <windowController storyboardIdentifier="Document Window Controller" id="E4o-oh-Qw8" customClass="WindowController" customModule="LinkedIdeas" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="3Qr-Ne-UhW">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="294" y="362" width="480" height="270"/>
+                        <rect key="contentRect" x="294" y="362" width="650" height="500"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+                        <toolbar key="toolbar" implicitIdentifier="C138D6F8-8D7C-4F7E-93B7-4C9E1CB377AD" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="Lzv-31-nPM">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="hyu-ok-EWt"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="X01-Ex-ql5"/>
+                                <toolbarItem implicitItemIdentifier="97B04FB1-2B13-4307-B4ED-445D8F65BD7E" label="Zoom" paletteLabel="Zoom" id="6oG-ay-MRE">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="100" height="25"/>
+                                    <size key="maxSize" width="121" height="28"/>
+                                    <segmentedControl key="view" verticalHuggingPriority="750" id="KSA-N6-7fl">
+                                        <rect key="frame" x="0.0" y="14" width="121" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="momentary" id="tTZ-ZH-eEA">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment label="-" toolTip="Zoom Out" width="32"/>
+                                                <segment label="100%" tag="1"/>
+                                                <segment label="+" toolTip="Zoom In" width="32"/>
+                                            </segments>
+                                        </segmentedCell>
+                                        <connections>
+                                            <action selector="didPressZoomSegment:" target="3Xs-vk-d2X" id="Qf9-Nu-vq4"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </toolbarItem>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="X01-Ex-ql5"/>
+                                <toolbarItem reference="6oG-ay-MRE"/>
+                            </defaultToolbarItems>
+                        </toolbar>
                     </window>
                     <connections>
                         <segue destination="9gT-PM-MLh" kind="relationship" relationship="window.shadowedContentViewController" id="mOI-bs-iEY"/>
@@ -696,23 +725,59 @@
                 </viewController>
                 <customObject id="zeF-Ne-lG1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-70" y="438"/>
+            <point key="canvasLocation" x="-70" y="583"/>
         </scene>
         <!--Canvas View Controller-->
         <scene sceneID="Xdz-jJ-g6C">
             <objects>
                 <customObject id="iTz-cl-syz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="CanvasViewController" id="uZZ-C2-Fco" customClass="CanvasViewController" customModule="LinkedIdeas" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="ls4-dN-Eom" customClass="CanvasView" customModule="LinkedIdeas" customModuleProvider="target">
+                    <view key="view" id="ls4-dN-Eom">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwg-Li-4rw">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                <clipView key="contentView" id="IfO-iI-PkA">
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="J1r-A3-W5C" customClass="CanvasView" customModule="LinkedIdeas" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                        </customView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="J1r-A3-W5C" firstAttribute="top" secondItem="IfO-iI-PkA" secondAttribute="top" id="FKj-oJ-DrM"/>
+                                        <constraint firstItem="J1r-A3-W5C" firstAttribute="leading" secondItem="IfO-iI-PkA" secondAttribute="leading" id="Jcw-X6-WE2"/>
+                                        <constraint firstAttribute="trailing" secondItem="J1r-A3-W5C" secondAttribute="trailing" id="sgK-DB-6dT"/>
+                                        <constraint firstAttribute="bottom" secondItem="J1r-A3-W5C" secondAttribute="bottom" id="tdZ-fL-51X"/>
+                                    </constraints>
+                                    <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="2eG-s9-L30">
+                                    <rect key="frame" x="0.0" y="284" width="450" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="jKS-ae-aQ1">
+                                    <rect key="frame" x="434" y="0.0" width="16" height="300"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="hwg-Li-4rw" firstAttribute="top" secondItem="ls4-dN-Eom" secondAttribute="top" id="Nak-5A-Cfc"/>
+                            <constraint firstItem="hwg-Li-4rw" firstAttribute="leading" secondItem="ls4-dN-Eom" secondAttribute="leading" id="SWU-sg-KIh"/>
+                            <constraint firstAttribute="bottom" secondItem="hwg-Li-4rw" secondAttribute="bottom" id="UUm-2e-yzh"/>
+                            <constraint firstAttribute="trailing" secondItem="hwg-Li-4rw" secondAttribute="trailing" id="WUN-GL-OHb"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="canvasView" destination="ls4-dN-Eom" id="oci-OO-6jF"/>
+                        <outlet property="canvasView" destination="J1r-A3-W5C" id="VnP-lt-fFS"/>
+                        <outlet property="scrollView" destination="hwg-Li-4rw" id="Rvi-Qu-h3v"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="525" y="438"/>
+            <point key="canvasLocation" x="539" y="583"/>
         </scene>
     </scenes>
 </document>
