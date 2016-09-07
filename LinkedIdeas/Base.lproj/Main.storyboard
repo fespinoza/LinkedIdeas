@@ -743,7 +743,6 @@
                     </view>
                     <connections>
                         <outlet property="canvasView" destination="J1r-A3-W5C" id="VnP-lt-fFS"/>
-                        <outlet property="scrollView" destination="hwg-Li-4rw" id="Rvi-Qu-h3v"/>
                     </connections>
                 </viewController>
             </objects>
