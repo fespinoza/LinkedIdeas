@@ -8,6 +8,11 @@
 
 import Cocoa
 
+// TODO: what happens when content is bigger than scroll view
+// TODO: how to draw links
+// TODO: accept user interaction (move)
+// TODO: create concept/link
+
 class WindowController: NSWindowController {
   
   var documentViewController: DocumentViewController! {
