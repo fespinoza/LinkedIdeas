@@ -8,11 +8,53 @@
 
 import Cocoa
 
+protocol GraphConcept {
+  var rect: NSRect { get }
+  var attributedStringValue: NSAttributedString { get }
+}
+
+protocol GraphLink {
+  var color: NSColor { get }
+  
+  var originPoint: NSPoint { get }
+  var targetPoint: NSPoint { get }
+  
+  var originRect: NSRect { get }
+  var targetRect: NSRect { get }
+}
+
+extension Concept: GraphConcept {}
+extension Link: GraphLink {
+  var originRect: NSRect { return origin.rect }
+  var targetRect: NSRect { return target.rect }
+}
+
 struct DrawableConcept: DrawableElement {
-  let concept: Concept
+  let concept: GraphConcept
   
   func draw() {
-    concept.attributedStringValue.draw(at: concept.point)
+    concept.attributedStringValue.draw(at: concept.rect.origin)
+  }
+}
+
+struct DrawableLink: DrawableElement {
+  let link: GraphLink
+  
+  func draw() {
+    link.color.set()
+    constructArrow()?.bezierPath().fill()
+  }
+  
+  func constructArrow() -> Arrow? {
+    let originPoint = link.originPoint
+    let targetPoint = link.targetPoint
+    
+    if let intersectionPointWithOrigin = link.originRect.firstIntersectionTo(targetPoint),
+       let intersectionPointWithTarget = link.targetRect.firstIntersectionTo(originPoint) {
+      return Arrow(p1: intersectionPointWithOrigin, p2: intersectionPointWithTarget)
+    } else {
+      return nil
+    }
   }
 }
 
@@ -49,8 +91,16 @@ class CanvasViewController: NSViewController {
 extension CanvasViewController: CanvasViewDataSource {
   var drawableElements: [DrawableElement] {
     print("drawableElements")
-    return document.concepts.map {
-      DrawableConcept(concept: $0) as DrawableElement
+    var elements: [DrawableElement] = []
+    
+    elements += document.concepts.map {
+      DrawableConcept(concept: $0 as GraphConcept) as DrawableElement
     }
+    
+    elements += document.links.map {
+      DrawableLink(link: $0 as GraphLink) as DrawableElement
+    }
+    
+    return elements
   }
 }
