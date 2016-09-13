@@ -24,7 +24,9 @@ extension NSRect {
   var topRightPoint: NSPoint { return NSMakePoint(origin.x + size.width, origin.y + size.height) }
   var topLeftPoint: NSPoint { return NSMakePoint(origin.x, origin.y + size.height) }
   var center: NSPoint { return NSMakePoint(origin.x + size.width / 2, origin.y + size.height / 2) }
-  
+}
+
+extension NSRect {
   var lines: [FiniteLine] {
     var result: [FiniteLine] = []
     
@@ -40,10 +42,11 @@ extension NSRect {
     let secondLine = FiniteLine(p1: center, p2: point)
     return lines.map {
       $0.intersectionPointWith(secondLine)
-    }.filter { $0 != nil }.map { $0! }
+      }.filter { $0 != nil }.map { $0! }
   }
   
   func firstIntersectionTo(_ point: NSPoint) -> NSPoint? {
     return intersectionTo(point).first
   }
+
 }
