@@ -712,16 +712,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="J1r-A3-W5C" customClass="CanvasView" customModule="LinkedIdeas" customModuleProvider="target">
+                                        <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J1r-A3-W5C" customClass="CanvasView" customModule="LinkedIdeas" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </customView>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="J1r-A3-W5C" firstAttribute="top" secondItem="IfO-iI-PkA" secondAttribute="top" id="FKj-oJ-DrM"/>
-                                        <constraint firstItem="J1r-A3-W5C" firstAttribute="leading" secondItem="IfO-iI-PkA" secondAttribute="leading" id="Jcw-X6-WE2"/>
-                                        <constraint firstAttribute="trailing" secondItem="J1r-A3-W5C" secondAttribute="trailing" id="sgK-DB-6dT"/>
-                                        <constraint firstAttribute="bottom" secondItem="J1r-A3-W5C" secondAttribute="bottom" id="tdZ-fL-51X"/>
-                                    </constraints>
                                     <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="2eG-s9-L30">
@@ -743,6 +738,7 @@
                     </view>
                     <connections>
                         <outlet property="canvasView" destination="J1r-A3-W5C" id="VnP-lt-fFS"/>
+                        <outlet property="scrollView" destination="hwg-Li-4rw" id="Xaa-fJ-uXk"/>
                     </connections>
                 </viewController>
             </objects>

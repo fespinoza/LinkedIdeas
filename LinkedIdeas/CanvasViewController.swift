@@ -70,6 +70,7 @@ extension NSResponder {
 
 class CanvasViewController: NSViewController {
   @IBOutlet weak var canvasView: CanvasView!
+  @IBOutlet weak var scrollView: NSScrollView!
   
   var document: Document! {
     didSet {
@@ -81,6 +82,15 @@ class CanvasViewController: NSViewController {
     super.viewDidLoad()
     print("-viewDidLoad")
     canvasView.dataSource = self
+    
+    // modify canvas frame (size)
+    // and scroll to center of it
+    canvasView.frame = NSMakeRect(0, 0, 3000, 2000)
+    let canvasViewCenterForScroll = NSMakePoint(
+      (canvasView.frame.center.x - scrollView.frame.center.x),
+      (canvasView.frame.center.y - scrollView.frame.center.y)
+    )
+    scrollView.scroll(canvasViewCenterForScroll)
   }
   
   override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
