@@ -136,7 +136,7 @@ struct StateManager {
     return true
   }
   
-  mutating func saveConcept(text: NSAttributedString) -> Bool {
+  mutating func saveNewConcept(text: NSAttributedString) -> Bool {
     switch currentState {
     case .canvasWaiting, .selectedElements:
       // you cannot do this
@@ -169,7 +169,12 @@ class CanvasViewController: NSViewController {
   
   var stateManager = StateManager(initialState: .canvasWaiting)
   var currentState: CanvasState {
-    return stateManager.currentState
+    get {
+      return stateManager.currentState
+    }
+    set(newState) {
+      stateManager.currentState = newState
+    }
   }
   
   lazy var textField: NSTextField = {
@@ -199,6 +204,7 @@ class CanvasViewController: NSViewController {
     )
     scrollView.scroll(canvasViewCenterForScroll)
     
+    textField.delegate = self
     view.addSubview(textField)
     
     stateManager.delegate = self
@@ -233,13 +239,30 @@ extension CanvasViewController: CanvasViewDataSource {
   }
 }
 
+extension CanvasViewController: DocumentObserver {
+  func conceptAdded(_ concept: Concept) {
+    view.needsDisplay = true
+  }
+  
+  func conceptRemoved(_ concept: Concept) {}
+  func conceptUpdated(_ concept: Concept) {}
+    
+  func linkAdded(_ link: Link) {}
+  func linkRemoved(_ link: Link) {}
+  func linkUpdated(_ link: Link) {}
+}
+
 extension CanvasViewController: StateManagerDelegate {
   // elemnts
   func unselectAllElements() {}
   
   // concepts
   func cancelConceptCreation() {}
-  func saveConcept(text: NSAttributedString, atPoint: NSPoint) {}
+  
+  func saveConcept(text: NSAttributedString, atPoint point: NSPoint) {
+    let newConcept = Concept(attributedStringValue: text, point: point)
+    document.saveConcept(newConcept)
+  }
   
   // text field
   func showTextField(atPoint point: NSPoint) {
@@ -255,5 +278,21 @@ extension CanvasViewController: StateManagerDelegate {
     textField.isHidden = true
     textField.stringValue = ""
     textField.resignFirstResponder()
+  }
+}
+
+extension CanvasViewController: NSTextFieldDelegate {
+  // Invoked when users press keys with predefined bindings in a cell of the specified control.
+  func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+    print(#function)
+    print("\(control)")
+    print("\(textView)")
+    print("\(commandSelector)")
+    switch commandSelector {
+    case #selector(NSResponder.insertNewline(_:)):
+      return stateManager.saveNewConcept(text: control.attributedStringValue)
+    default:
+      return false
+    }
   }
 }

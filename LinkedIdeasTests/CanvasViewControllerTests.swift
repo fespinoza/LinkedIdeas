@@ -16,7 +16,6 @@ import XCTest
 //
 
 class StateManagerTestDelegate {
-  
   var methodCalls = [String: Int]()
   
   func registerCall(methodName: String) {
@@ -52,7 +51,6 @@ extension StateManagerTestDelegate: StateManagerDelegate {
   }
 }
 
-
 class StateManager_ToNewConceptTransitionTests: XCTestCase {
   func testFromCanvasWaitingTransition() {
     var stateManager = StateManager(initialState: .canvasWaiting)
@@ -81,6 +79,8 @@ class StateManager_ToNewConceptTransitionTests: XCTestCase {
   }
 }
 
+// MARK - CanvasViewControllers: Integration tests
+
 class CanvasViewController_MouseEventTests: XCTestCase {
   func createMouseEvent(clickCount: Int, location: NSPoint) -> NSEvent {
     return NSEvent.mouseEvent(
@@ -106,6 +106,25 @@ class CanvasViewController_MouseEventTests: XCTestCase {
     XCTAssertEqual(canvasViewController.currentState, .newConcept(point: clickedPoint))
   }
   
+}
+
+class CanvasViewController_TextFieldDelegateEvents: XCTestCase {
+  func testPressEnterKeyWhenEditingInTheTextField() {
+    let conceptPoint = NSPoint.zero
+    let canvasViewController = CanvasViewController()
+    canvasViewController.currentState = .newConcept(point: conceptPoint)
+    
+    let textField = canvasViewController.textField
+    textField.stringValue = "New Concept"
+    
+    let _ = canvasViewController.control(
+      textField,
+      textView: NSTextView(),
+      doCommandBy: #selector(NSResponder.insertNewline(_:))
+    )
+    
+    XCTAssertEqual(canvasViewController.currentState, .canvasWaiting)
+  }
 }
 
 class CanvasViewController_StateManagerDelegateTests: XCTestCase {
