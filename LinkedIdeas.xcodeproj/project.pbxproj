@@ -25,6 +25,7 @@
 		9B66961C1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */; };
 		9B733AF71CB9B7D200C04F47 /* ResizingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B733AF61CB9B7D200C04F47 /* ResizingTextField.swift */; };
 		9B7D535F1CB6D0A400B3D43B /* ElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D535E1CB6D0A400B3D43B /* ElementView.swift */; };
+		9B8665C61D96C9E800799678 /* StateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8665C51D96C9E800799678 /* StateManagerTests.swift */; };
 		9B956CE51C1B11C200CF20DA /* NSPoint+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B956CE41C1B11C200CF20DA /* NSPoint+Utilities.swift */; };
 		9B9A2EA41CF5EE5300607208 /* AlignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A2EA31CF5EE5300607208 /* AlignmentTests.swift */; };
 		9BA3BE281D734CC800B3A510 /* OldWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA3BE271D734CC800B3A510 /* OldWindowController.swift */; };
@@ -86,6 +87,7 @@
 		9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = linked_ideas_doc_icon.icns; sourceTree = "<group>"; };
 		9B733AF61CB9B7D200C04F47 /* ResizingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizingTextField.swift; sourceTree = "<group>"; };
 		9B7D535E1CB6D0A400B3D43B /* ElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ElementView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		9B8665C51D96C9E800799678 /* StateManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateManagerTests.swift; sourceTree = "<group>"; };
 		9B956CE41C1B11C200CF20DA /* NSPoint+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPoint+Utilities.swift"; sourceTree = "<group>"; };
 		9B9A2EA31CF5EE5300607208 /* AlignmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignmentTests.swift; sourceTree = "<group>"; };
 		9BA3BE271D734CC800B3A510 /* OldWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = OldWindowController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */,
+				9B8665C51D96C9E800799678 /* StateManagerTests.swift */,
 				9BB8FC811CA6B7C0008CD6A2 /* Views */,
 				9BB8FC801CA6B7B0008CD6A2 /* Models */,
 				9B2F1DB61BE7CFE80090CC18 /* Info.plist */,
@@ -426,6 +429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B8665C61D96C9E800799678 /* StateManagerTests.swift in Sources */,
 				9BE40C211D8DD98B0025F154 /* CanvasViewControllerTests.swift in Sources */,
 				9BF058FC1C9220F200274A62 /* ConceptTests.swift in Sources */,
 				9B9A2EA41CF5EE5300607208 /* AlignmentTests.swift in Sources */,
