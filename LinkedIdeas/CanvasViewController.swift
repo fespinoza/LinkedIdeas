@@ -68,9 +68,116 @@ extension NSResponder {
   }
 }
 
+protocol StateManagerDelegate {
+  // elemnts
+  func unselectAllElements()
+  
+  // concepts
+  func cancelConceptCreation()
+  func saveConcept(text: NSAttributedString, atPoint: NSPoint)
+  
+  // text field
+  func showTextField(atPoint: NSPoint)
+  func dismissTextField()
+}
+
+enum CanvasState {
+  case canvasWaiting
+  case newConcept(point: NSPoint)
+  case selectedElements
+}
+
+extension CanvasState: Equatable {
+  static func == (lhs: CanvasState, rhs: CanvasState) -> Bool {
+    switch (lhs, rhs) {
+    case (.newConcept(let a), .newConcept(let b)) where a == b: return true
+    case (.canvasWaiting, .canvasWaiting): return true
+    case (.selectedElements, .selectedElements): return true
+    default: return false
+    }
+  }
+}
+
+struct StateManager {
+  var currentState: CanvasState {
+    didSet {
+      print("Transitioned to \(currentState)")
+    }
+  }
+  var delegate: StateManagerDelegate?
+  
+  init(initialState: CanvasState) {
+    currentState = initialState
+  }
+  
+  // events: functions that trigger transitions
+  
+  // actions: concrete functions of what happens
+  
+  // transition:
+  //    - can go from A to B?
+  //      - if so what happens then?
+  //          then do the actual transition (only calls actions)
+  //      - else what happens?
+  
+  mutating func toNewConcept(atPoint point: NSPoint) -> Bool {
+    switch currentState {
+    case .canvasWaiting:
+      break
+    case .newConcept:
+      delegate?.dismissTextField()
+    case .selectedElements:
+      // unselectAll elements
+      delegate?.unselectAllElements()
+    }
+    
+    delegate?.showTextField(atPoint: point)
+    currentState = .newConcept(point: point)
+    return true
+  }
+  
+  mutating func saveConcept(text: NSAttributedString) -> Bool {
+    switch currentState {
+    case .canvasWaiting, .selectedElements:
+      // you cannot do this
+      return false
+    case .newConcept(let point):
+      delegate?.saveConcept(text: text, atPoint: point)
+    }
+    
+    delegate?.dismissTextField()
+    currentState = .canvasWaiting
+    return true
+  }
+  
+  mutating func cancelNewConcept() -> Bool {
+    switch currentState {
+    case .newConcept:
+      currentState = .canvasWaiting
+      
+      delegate?.cancelConceptCreation()
+      return true
+    default:
+      return false
+    }
+  }
+}
+
 class CanvasViewController: NSViewController {
   @IBOutlet weak var canvasView: CanvasView!
   @IBOutlet weak var scrollView: NSScrollView!
+  
+  var stateManager = StateManager(initialState: .canvasWaiting)
+  var currentState: CanvasState {
+    return stateManager.currentState
+  }
+  
+  lazy var textField: NSTextField = {
+    let textField = NSTextField()
+    textField.isHidden = true
+    textField.isEditable = false
+    return textField
+  }()
   
   var document: Document! {
     didSet {
@@ -91,6 +198,10 @@ class CanvasViewController: NSViewController {
       (canvasView.frame.center.y - scrollView.frame.center.y)
     )
     scrollView.scroll(canvasViewCenterForScroll)
+    
+    view.addSubview(textField)
+    
+    stateManager.delegate = self
   }
   
   override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -98,9 +209,16 @@ class CanvasViewController: NSViewController {
   }
 }
 
+extension CanvasViewController {
+  override func mouseDown(with event: NSEvent) {
+    if event.clickCount == 2 {
+      let _ = stateManager.toNewConcept(atPoint: event.locationInWindow)
+    }
+  }
+}
+
 extension CanvasViewController: CanvasViewDataSource {
   var drawableElements: [DrawableElement] {
-    print("drawableElements")
     var elements: [DrawableElement] = []
     
     elements += document.concepts.map {
@@ -112,5 +230,30 @@ extension CanvasViewController: CanvasViewDataSource {
     }
     
     return elements
+  }
+}
+
+extension CanvasViewController: StateManagerDelegate {
+  // elemnts
+  func unselectAllElements() {}
+  
+  // concepts
+  func cancelConceptCreation() {}
+  func saveConcept(text: NSAttributedString, atPoint: NSPoint) {}
+  
+  // text field
+  func showTextField(atPoint point: NSPoint) {
+    textField.frame = NSRect(center: point, size: NSMakeSize(60, 40))
+    textField.isEditable = true
+    textField.isHidden = false
+    textField.becomeFirstResponder()
+  }
+  
+  func dismissTextField() {
+    textField.setFrameOrigin(NSPoint.zero)
+    textField.isEditable = false
+    textField.isHidden = true
+    textField.stringValue = ""
+    textField.resignFirstResponder()
   }
 }
