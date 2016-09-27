@@ -230,8 +230,9 @@ extension CanvasViewController: CanvasViewDataSource {
 }
 
 extension CanvasViewController: DocumentObserver {
+  // TODO: refactor this protocol
   func conceptAdded(_ concept: Concept) {
-    view.needsDisplay = true
+    canvasView.needsDisplay = true
   }
   
   func conceptRemoved(_ concept: Concept) {}
