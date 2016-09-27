@@ -184,9 +184,10 @@ class CanvasViewController: NSViewController {
     return textField
   }()
   
-  var document: Document! {
+  var document: LinkedIdeasDocument! {
     didSet {
       print("- didSetDocument \(document)")
+      document.observer = self
     }
   }
   
