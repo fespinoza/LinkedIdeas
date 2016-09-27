@@ -74,7 +74,7 @@ protocol StateManagerDelegate {
   
   // concepts
   func cancelConceptCreation()
-  func saveConcept(text: NSAttributedString, atPoint: NSPoint)
+  func saveConcept(text: NSAttributedString, atPoint: NSPoint) -> Bool
   
   // text field
   func showTextField(atPoint: NSPoint)
@@ -110,16 +110,6 @@ struct StateManager {
     currentState = initialState
   }
   
-  // events: functions that trigger transitions
-  
-  // actions: concrete functions of what happens
-  
-  // transition:
-  //    - can go from A to B?
-  //      - if so what happens then?
-  //          then do the actual transition (only calls actions)
-  //      - else what happens?
-  
   mutating func toNewConcept(atPoint point: NSPoint) -> Bool {
     switch currentState {
     case .canvasWaiting:
@@ -127,7 +117,6 @@ struct StateManager {
     case .newConcept:
       delegate?.dismissTextField()
     case .selectedElements:
-      // unselectAll elements
       delegate?.unselectAllElements()
     }
     
@@ -138,16 +127,16 @@ struct StateManager {
   
   mutating func saveNewConcept(text: NSAttributedString) -> Bool {
     switch currentState {
-    case .canvasWaiting, .selectedElements:
-      // you cannot do this
-      return false
     case .newConcept(let point):
-      delegate?.saveConcept(text: text, atPoint: point)
+      guard let success = delegate?.saveConcept(text: text, atPoint: point) else {
+        return false
+      }
+      delegate?.dismissTextField()
+      currentState = .canvasWaiting
+      return success
+    default:
+      return false
     }
-    
-    delegate?.dismissTextField()
-    currentState = .canvasWaiting
-    return true
   }
   
   mutating func cancelNewConcept() -> Bool {
