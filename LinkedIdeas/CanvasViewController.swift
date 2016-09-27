@@ -195,7 +195,7 @@ class CanvasViewController: NSViewController {
     scrollView.scroll(canvasViewCenterForScroll)
     
     textField.delegate = self
-    view.addSubview(textField)
+    canvasView.addSubview(textField)
     
     stateManager.delegate = self
   }
@@ -203,12 +203,17 @@ class CanvasViewController: NSViewController {
   override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
     print("-prepareForSegue")
   }
+  
+  func convertToCanvasCoordinates(point: NSPoint) -> NSPoint {
+    return canvasView.convert(point, from: nil)
+  }
 }
 
 extension CanvasViewController {
   override func mouseDown(with event: NSEvent) {
     if event.clickCount == 2 {
-      let _ = stateManager.toNewConcept(atPoint: event.locationInWindow)
+      let point = convertToCanvasCoordinates(point: event.locationInWindow)
+      let _ = stateManager.toNewConcept(atPoint: point)
     }
   }
 }
