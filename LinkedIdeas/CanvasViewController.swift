@@ -249,10 +249,13 @@ extension CanvasViewController: StateManagerDelegate {
   // concepts
   func cancelConceptCreation() {}
   
-  func saveConcept(text: NSAttributedString, atPoint point: NSPoint) {
+  func saveConcept(text: NSAttributedString, atPoint point: NSPoint) -> Bool {
+    guard text.string != "" else { return false }
+    
     let newConcept = Concept(attributedStringValue: text, point: point)
     
     document.save(concept: newConcept)
+    return true
   }
   
   // text field

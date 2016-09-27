@@ -61,6 +61,7 @@ class CanvasViewController_TextFieldDelegateEvents: XCTestCase {
     let conceptPoint = NSPoint.zero
     let canvasViewController = CanvasViewController()
     canvasViewController.currentState = .newConcept(point: conceptPoint)
+    canvasViewController.stateManager.delegate = StateManagerTestDelegate()
     
     let textField = canvasViewController.textField
     textField.stringValue = "New Concept"
@@ -106,5 +107,39 @@ class CanvasViewController_StateManagerDelegateTests: XCTestCase {
     XCTAssertFalse(canvasViewController.textField.isEditable)
     XCTAssertNotEqual(canvasViewController.textField.frame.center, textFieldCenter)
     XCTAssertEqual(canvasViewController.textField.stringValue, "")
+  }
+  
+  func testSaveConceptWithAppropriateData() {
+    let document = TestLinkedIdeasDocument()
+    let canvasViewController = CanvasViewController()
+    canvasViewController.document = document
+    
+    let attributedString = NSAttributedString(string: "New Concept")
+    let conceptCenterPoint = NSMakePoint(300, 400)
+    
+    let successfullSave = canvasViewController.saveConcept(
+      text: attributedString,
+      atPoint: conceptCenterPoint
+    )
+    
+    XCTAssert(successfullSave)
+    XCTAssertEqual(document.concepts.count, 1)
+  }
+  
+  func testSaveConceptFailsWithBadData() {
+    let document = TestLinkedIdeasDocument()
+    let canvasViewController = CanvasViewController()
+    canvasViewController.document = document
+    
+    let attributedString = NSAttributedString(string: "")
+    let conceptCenterPoint = NSMakePoint(300, 400)
+    
+    let successfullSave = canvasViewController.saveConcept(
+      text: attributedString,
+      atPoint: conceptCenterPoint
+    )
+    
+    XCTAssertFalse(successfullSave)
+    XCTAssertEqual(document.concepts.count, 0)
   }
 }
