@@ -9,49 +9,6 @@
 import XCTest
 @testable import LinkedIdeas
 
-// StateManager
-// transition -> can go from "state A" to "state B"?
-//                 -> if so, go
-//                 -> else, don't
-//
-
-class StateManagerTestDelegate {
-  var methodCalls = [String: Int]()
-  
-  func registerCall(methodName: String) {
-    if let currentCallsNumber = methodCalls[methodName] {
-      methodCalls[methodName] = currentCallsNumber + 1
-    } else {
-      methodCalls[methodName] = 1
-    }
-  }
-}
-
-extension StateManagerTestDelegate: StateManagerDelegate {
-  func unselectAllElements() {
-    registerCall(methodName: #function)
-  }
-  
-  // concepts
-  func cancelConceptCreation() {
-    registerCall(methodName: #function)
-  }
-  
-  func saveConcept(text: NSAttributedString, atPoint: NSPoint) -> Bool {
-    registerCall(methodName: #function)
-    return true
-  }
-  
-  // text field
-  func showTextField(atPoint: NSPoint) {
-    registerCall(methodName: #function)
-  }
-  
-  func dismissTextField() {
-    registerCall(methodName: #function)
-  }
-}
-
 class StateManagerTests: XCTestCase {}
 
 // MARK: StateManager - ToNewConceptTransition Tests
