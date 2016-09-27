@@ -28,6 +28,7 @@ class TestLinkedIdeasDocument: LinkedIdeasDocument {
 // MARK - CanvasViewControllers: Mouse Tests
 
 class CanvasViewController_MouseEventTests: XCTestCase {
+class CanvasViewControllerTests: XCTestCase {
   func createMouseEvent(clickCount: Int, location: NSPoint) -> NSEvent {
     return NSEvent.mouseEvent(
       with: .leftMouseDown,
@@ -39,9 +40,12 @@ class CanvasViewController_MouseEventTests: XCTestCase {
       eventNumber: 0,
       clickCount: clickCount,
       pressure: 1.0
-    )!
+      )!
   }
   
+// MARK - CanvasViewControllers: Mouse Tests
+
+extension CanvasViewControllerTests {
   func testDoubleClick() {
     let clickedPoint = NSMakePoint(200, 300)
     let mouseEvent = createMouseEvent(clickCount: 2, location: clickedPoint)
@@ -56,7 +60,7 @@ class CanvasViewController_MouseEventTests: XCTestCase {
 
 // MARK - CanvasViewControllers: TextField Delegate Tests
 
-class CanvasViewController_TextFieldDelegateEvents: XCTestCase {
+extension CanvasViewControllerTests {
   func testPressEnterKeyWhenEditingInTheTextField() {
     let conceptPoint = NSPoint.zero
     let canvasViewController = CanvasViewController()
@@ -78,7 +82,7 @@ class CanvasViewController_TextFieldDelegateEvents: XCTestCase {
 
 // MARK - CanvasViewControllers: StateManagerDelegate Tests
 
-class CanvasViewController_StateManagerDelegateTests: XCTestCase {
+extension CanvasViewControllerTests {
   
   func testShowTextFieldAt() {
     let canvasViewController = CanvasViewController()

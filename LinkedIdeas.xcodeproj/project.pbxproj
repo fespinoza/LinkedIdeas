@@ -38,6 +38,7 @@
 		9BB8FC851CA6B7F8008CD6A2 /* LinkViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC841CA6B7F8008CD6A2 /* LinkViewTests.swift */; };
 		9BB8FC871CA6B828008CD6A2 /* LinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC861CA6B828008CD6A2 /* LinkView.swift */; };
 		9BB8FC891CA6B889008CD6A2 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC881CA6B889008CD6A2 /* Element.swift */; };
+		9BD0BD581D9B0BED0041F7ED /* TestProtocolConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD0BD571D9B0BED0041F7ED /* TestProtocolConformance.swift */; };
 		9BD2BF351C7F8B1200E8A303 /* LineRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF341C7F8B1200E8A303 /* LineRange.swift */; };
 		9BD2BF371C7F8B2300E8A303 /* Interceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF361C7F8B2300E8A303 /* Interceptable.swift */; };
 		9BD2BF391C7F8B4100E8A303 /* PointInterceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF381C7F8B4100E8A303 /* PointInterceptable.swift */; };
@@ -100,6 +101,7 @@
 		9BB8FC841CA6B7F8008CD6A2 /* LinkViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LinkViewTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9BB8FC861CA6B828008CD6A2 /* LinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LinkView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9BB8FC881CA6B889008CD6A2 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
+		9BD0BD571D9B0BED0041F7ED /* TestProtocolConformance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestProtocolConformance.swift; sourceTree = "<group>"; };
 		9BD2BF341C7F8B1200E8A303 /* LineRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineRange.swift; sourceTree = "<group>"; };
 		9BD2BF361C7F8B2300E8A303 /* Interceptable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interceptable.swift; sourceTree = "<group>"; };
 		9BD2BF381C7F8B4100E8A303 /* PointInterceptable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointInterceptable.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			children = (
 				9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */,
 				9B8665C51D96C9E800799678 /* StateManagerTests.swift */,
+				9BD0BD571D9B0BED0041F7ED /* TestProtocolConformance.swift */,
 				9BB8FC811CA6B7C0008CD6A2 /* Views */,
 				9BB8FC801CA6B7B0008CD6A2 /* Models */,
 				9B2F1DB61BE7CFE80090CC18 /* Info.plist */,
@@ -434,6 +437,7 @@
 				9BF058FC1C9220F200274A62 /* ConceptTests.swift in Sources */,
 				9B9A2EA41CF5EE5300607208 /* AlignmentTests.swift in Sources */,
 				9BF058F91C921F7D00274A62 /* OldCanvasViewTests.swift in Sources */,
+				9BD0BD581D9B0BED0041F7ED /* TestProtocolConformance.swift in Sources */,
 				9B33821F1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift in Sources */,
 				9BF058FA1C921F7D00274A62 /* ConceptViewTests.swift in Sources */,
 				9BB8FC831CA6B7D7008CD6A2 /* LinkTests.swift in Sources */,
