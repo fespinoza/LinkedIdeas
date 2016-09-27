@@ -138,7 +138,7 @@ class OldWindowController: NSWindowController, AlignmentFunctions {
   func setNewPoint(_ newPoint: NSPoint, forElement element: SquareElement) {
     let concept = element as! Concept
     canvas.conceptViewFor(concept).textField.attributedStringValue = concept.attributedStringValue
-    canvas.document.changeConceptPoint(concept, fromPoint: concept.point, toPoint: newPoint)
+    canvas.document.move(concept: concept, toPoint: newPoint)
   }
   
   func selectedElementsCallback() {

@@ -142,7 +142,7 @@ class OldCanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate 
   
   func justSaveConcept(_ concept: Concept) {
     resetNewConcept()
-    document.saveConcept(concept)
+    document.save(concept: concept)
   }
   
   func resetNewConcept() {
@@ -289,7 +289,7 @@ class OldCanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate 
   func removeSelectedConceptViews() {
     for concept in selectedConcepts() {
       let currentConceptView = conceptViewFor(concept)
-      document.removeConcept(concept)
+      document.remove(concept: concept)
       justRemoveConceptView(currentConceptView)
     }
   }
@@ -347,12 +347,12 @@ class OldCanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate 
 ////      link.color = windowController.selectedColor
 //    }
 
-    document.saveLink(link)
+    document.save(link: link)
   }
 
   func removeLinkView(_ linkView: LinkView) {
     let link = linkView.link
-    document.removeLink(link)
+    document.remove(link: link)
     justRemoveLinkView(linkView)
   }
 

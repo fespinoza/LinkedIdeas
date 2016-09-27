@@ -56,7 +56,9 @@ class Document: NSDocument {
   }
   
   override func data(ofType typeName: String) throws -> Data {
+    documentData.writeConcepts = concepts
     documentData.writeLinks = links
+    Swift.print("write data!")
     return NSKeyedArchiver.archivedData(withRootObject: documentData)
   }
   
@@ -113,47 +115,50 @@ class Document: NSDocument {
 }
 
 extension Document: LinkedIdeasDocument {
-  func saveConcept(_ concept: Concept) {
+  func save(concept: Concept) {
     concepts.append(concept)
     undoManager?.registerUndo(
       withTarget: self,
-      selector: #selector(Document.removeConcept(_:)),
+      selector: #selector(Document.remove(concept:)),
       object: concept)
     observer?.conceptAdded(concept)
   }
   
-  func removeConcept(_ concept: Concept) {
+  func remove(concept: Concept) {
     concepts.remove(at: concepts.index(of: concept)!)
     undoManager?.registerUndo(
       withTarget: self,
-      selector: #selector(Document.saveConcept(_:)),
+      selector: #selector(Document.save(concept:)),
       object: concept)
     observer?.conceptRemoved(concept)
   }
   
-  func saveLink(_ link: Link) {
+  func save(link: Link) {
     links.append(link)
     undoManager?.registerUndo(
       withTarget: self,
-      selector: #selector(Document.removeLink(_:)),
+      selector: #selector(Document.remove(link:)),
       object: link)
     observer?.linkAdded(link)
   }
   
-  func removeLink(_ link: Link) {
+  func remove(link: Link) {
     links.remove(at: links.index(of: link)!)
     undoManager?.registerUndo(
       withTarget: self,
-      selector: #selector(Document.saveLink(_:)),
+      selector: #selector(Document.save(link:)),
       object: link)
     observer?.linkRemoved(link)
   }
-  
-  func changeConceptPoint(_ concept: Concept, fromPoint pointA: NSPoint, toPoint pointB: NSPoint) {
-    concept.point = pointB
+
+  func move(concept: Concept, toPoint: NSPoint) {
+    let originalPoint = concept.point
+    concept.point = toPoint
     observer?.conceptUpdated(concept)
     
-    // undoManager?.prepare(withInvocationTarget: self).changeConceptPoint(concept, fromPoint: pointB, toPoint: pointA)
+    (undoManager?.prepare(withInvocationTarget: self) as AnyObject).move(
+      concept: concept, toPoint: originalPoint
+    )
   }
   
 }

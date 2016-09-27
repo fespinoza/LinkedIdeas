@@ -9,6 +9,22 @@
 import XCTest
 @testable import LinkedIdeas
 
+class TestLinkedIdeasDocument: LinkedIdeasDocument {
+  var concepts = [Concept]()
+  var links = [Link]()
+  var observer: DocumentObserver? = nil
+  
+  func save(concept: Concept) {
+    concepts.append(concept)
+  }
+  func remove(concept: Concept) {}
+  
+  func save(link: Link) {}
+  func remove(link: Link) {}
+  
+  func move(concept: Concept, toPoint: NSPoint) {}
+}
+
 // MARK - CanvasViewControllers: Mouse Tests
 
 class CanvasViewController_MouseEventTests: XCTestCase {

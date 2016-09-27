@@ -260,8 +260,8 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   func dragEnd(_ lastPoint: NSPoint, performCallback: Bool = true) {
     let fromPoint = concept.point
     
-    if let initialPoint = initialPoint, canvas.mode == .Select {
-      document.changeConceptPoint(concept, fromPoint: initialPoint, toPoint: lastPoint)
+    if canvas.mode == .Select {
+      document.move(concept: concept, toPoint: lastPoint)
     }
     
     if performCallback {

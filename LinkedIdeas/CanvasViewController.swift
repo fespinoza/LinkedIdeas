@@ -261,7 +261,8 @@ extension CanvasViewController: StateManagerDelegate {
   
   func saveConcept(text: NSAttributedString, atPoint point: NSPoint) {
     let newConcept = Concept(attributedStringValue: text, point: point)
-    document.saveConcept(newConcept)
+    
+    document.save(concept: newConcept)
   }
   
   // text field
@@ -284,10 +285,6 @@ extension CanvasViewController: StateManagerDelegate {
 extension CanvasViewController: NSTextFieldDelegate {
   // Invoked when users press keys with predefined bindings in a cell of the specified control.
   func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
-    print(#function)
-    print("\(control)")
-    print("\(textView)")
-    print("\(commandSelector)")
     switch commandSelector {
     case #selector(NSResponder.insertNewline(_:)):
       return stateManager.saveNewConcept(text: control.attributedStringValue)

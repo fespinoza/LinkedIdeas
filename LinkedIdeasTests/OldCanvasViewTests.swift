@@ -15,27 +15,27 @@ class TestDocument: LinkedIdeasDocument {
   
   var observer: DocumentObserver?
   
-  func saveConcept(_ concept: Concept) {
+  func save(concept: Concept) {
     concepts.append(concept)
     observer?.conceptAdded(concept)
   }
   
-  func removeConcept(_ concept: Concept) {
+  func remove(concept: Concept) {
     concepts.remove(at: concepts.index(of: concept)!)
     observer?.conceptRemoved(concept)
   }
   
-  func saveLink(_ link: Link) {
+  func save(link: Link) {
     links.append(link)
     observer?.linkAdded(link)
   }
   
-  func removeLink(_ link: Link) {
+  func remove(link: Link) {
     links.remove(at: links.index(of: link)!)
     observer?.linkRemoved(link)
   }
   
-  func changeConceptPoint(_ concept: Concept, fromPoint: NSPoint, toPoint: NSPoint) {
+  func move(concept: Concept, toPoint: NSPoint) {
     concept.point = toPoint
   }
 }

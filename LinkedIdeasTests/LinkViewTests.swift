@@ -17,8 +17,8 @@ class LinkViewTests: XCTestCase {
   
   override func setUp() {
     canvas.document = testDocument
-    testDocument.saveConcept(concept1)
-    testDocument.saveConcept(concept2)
+    testDocument.save(concept: concept1)
+    testDocument.save(concept: concept2)
   }
   
   func testCreateALinkView() {
