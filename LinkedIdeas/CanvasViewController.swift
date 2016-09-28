@@ -144,7 +144,7 @@ struct StateManager {
     case .newConcept:
       currentState = .canvasWaiting
       
-      delegate?.cancelConceptCreation()
+      delegate?.dismissTextField()
       return true
     default:
       return false

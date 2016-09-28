@@ -9,16 +9,23 @@
 import XCTest
 @testable import LinkedIdeas
 
-class StateManagerTests: XCTestCase {}
+class StateManagerTests: XCTestCase {
+  var stateManager: StateManager!
+  var testDelegate: StateManagerTestDelegate!
+  
+  override func setUp() {
+    super.setUp()
+    
+    stateManager = StateManager(initialState: .canvasWaiting)
+    testDelegate = StateManagerTestDelegate()
+    stateManager.delegate = testDelegate
+  }
+}
 
 // MARK: StateManager - ToNewConceptTransition Tests
 
 extension StateManagerTests {
   func testFromCanvasWaitingToNewConceptTransition() {
-    var stateManager = StateManager(initialState: .canvasWaiting)
-    let testDelegate = StateManagerTestDelegate()
-    stateManager.delegate = testDelegate
-    
     let transitionSuccessful = stateManager.toNewConcept(atPoint: NSPoint.zero)
     
     XCTAssert(transitionSuccessful)
@@ -28,9 +35,7 @@ extension StateManagerTests {
   }
   
   func testFromNewConceptToNewConceptTransition() {
-    var stateManager = StateManager(initialState: .newConcept(point: NSMakePoint(300, 400)))
-    let testDelegate = StateManagerTestDelegate()
-    stateManager.delegate = testDelegate
+    stateManager.currentState = .newConcept(point: NSMakePoint(300, 400))
     
     let transitionSuccessful = stateManager.toNewConcept(atPoint: NSPoint.zero)
     
@@ -45,10 +50,6 @@ extension StateManagerTests {
 
 extension StateManagerTests {
   func testFromCanvasWaitingToSaveConceptTransition() {
-    var stateManager = StateManager(initialState: .canvasWaiting)
-    let testDelegate = StateManagerTestDelegate()
-    stateManager.delegate = testDelegate
-    
     let transitionSuccessful = stateManager.saveNewConcept(text: NSAttributedString(string: "concept text"))
     
     XCTAssertFalse(transitionSuccessful)
@@ -59,9 +60,7 @@ extension StateManagerTests {
   
   func testFromNewConceptToSaveConceptTransition() {
     let newConceptPoint = NSMakePoint(300, 400)
-    var stateManager = StateManager(initialState: .newConcept(point: newConceptPoint))
-    let testDelegate = StateManagerTestDelegate()
-    stateManager.delegate = testDelegate
+    stateManager.currentState = .newConcept(point: newConceptPoint)
     
     let transitionSuccessful = stateManager.saveNewConcept(text: NSAttributedString(string: "concept text"))
     
@@ -75,5 +74,15 @@ extension StateManagerTests {
 // MARK: StateManager - CancelNewConceptTransition Tests
 
 extension StateManagerTests {
-  
+  func testFromNewConceptToCancelConceptTransition() {
+    let newConceptPoint = NSMakePoint(300, 400)
+    stateManager.currentState = .newConcept(point: newConceptPoint)
+    
+    let transitionSuccessful = stateManager.cancelNewConcept()
+    
+    XCTAssert(transitionSuccessful)
+    XCTAssertEqual(testDelegate.methodCalls["saveConcept(text:atPoint:)"], nil)
+    XCTAssertEqual(testDelegate.methodCalls["dismissTextField()"], 1)
+    XCTAssertEqual(stateManager.currentState, .canvasWaiting)
+  }
 }
