@@ -211,8 +211,10 @@ class CanvasViewController: NSViewController {
 
 extension CanvasViewController {
   override func mouseDown(with event: NSEvent) {
-    if event.clickCount == 2 {
-      let point = convertToCanvasCoordinates(point: event.locationInWindow)
+    let point = convertToCanvasCoordinates(point: event.locationInWindow)
+    if event.clickCount == 1 {
+      let _ = stateManager.cancelNewConcept()
+    } else if event.clickCount == 2 {
       let _ = stateManager.toNewConcept(atPoint: point)
     }
   }

@@ -39,13 +39,24 @@ class CanvasViewControllerTests: XCTestCase {
 // MARK - CanvasViewControllers: Mouse Tests
 
 extension CanvasViewControllerTests {
-  func testDoubleClick() {
+  func testDoubleClickInCanvas() {
     let clickedPoint = NSMakePoint(200, 300)
     let mouseEvent = createMouseEvent(clickCount: 2, location: clickedPoint)
     
     canvasViewController.mouseDown(with: mouseEvent)
     
     XCTAssertEqual(canvasViewController.currentState, .newConcept(point: clickedPoint))
+  }
+  
+  func testSingleClickInCanvasWhenConceptIsBeingCreated() {
+    canvasViewController.currentState = .newConcept(point: NSPoint.zero)
+    
+    let clickedPoint = NSMakePoint(200, 300)
+    let mouseEvent = createMouseEvent(clickCount: 1, location: clickedPoint)
+    
+    canvasViewController.mouseDown(with: mouseEvent)
+    
+    XCTAssertEqual(canvasViewController.currentState, .canvasWaiting)
   }
   
 }
