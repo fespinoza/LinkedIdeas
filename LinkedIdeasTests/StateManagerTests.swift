@@ -70,7 +70,6 @@ extension StateManagerTests {
     XCTAssertEqual(testDelegate.methodCalls["dismissTextField()"], 1)
     XCTAssertEqual(stateManager.currentState, .canvasWaiting)
   }
-
 }
 
 // MARK: StateManager - CancelNewConceptTransition Tests

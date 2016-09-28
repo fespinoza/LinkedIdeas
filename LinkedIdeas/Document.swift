@@ -106,10 +106,10 @@ class Document: NSDocument {
         oldValue = nil
       }
       
-      // (undoManager?.prepare(withInvocationTarget: object) as! NSObject).setValue(oldValue, forKey: keyPath)
+//      (undoManager?.prepare(withInvocationTarget: object) as! NSObject).setValue(oldValue, forKey: keyPath)
       
-      if let concept = object as? Concept { observer?.conceptUpdated(concept) }
-      if let link = object as? Link { observer?.linkUpdated(link) }
+      if let concept = object as? Concept { observer?.documentChanged(withElement: concept as Element) }
+      if let link = object as? Link { observer?.documentChanged(withElement: link as Element) }
     }
   }
 }
@@ -121,7 +121,7 @@ extension Document: LinkedIdeasDocument {
       withTarget: self,
       selector: #selector(Document.remove(concept:)),
       object: concept)
-    observer?.conceptAdded(concept)
+    observer?.documentChanged(withElement: concept as Element)
   }
   
   func remove(concept: Concept) {
@@ -130,7 +130,7 @@ extension Document: LinkedIdeasDocument {
       withTarget: self,
       selector: #selector(Document.save(concept:)),
       object: concept)
-    observer?.conceptRemoved(concept)
+    observer?.documentChanged(withElement: concept as Element)
   }
   
   func save(link: Link) {
@@ -139,7 +139,7 @@ extension Document: LinkedIdeasDocument {
       withTarget: self,
       selector: #selector(Document.remove(link:)),
       object: link)
-    observer?.linkAdded(link)
+    observer?.documentChanged(withElement: link as Element)
   }
   
   func remove(link: Link) {
@@ -148,13 +148,13 @@ extension Document: LinkedIdeasDocument {
       withTarget: self,
       selector: #selector(Document.save(link:)),
       object: link)
-    observer?.linkRemoved(link)
+    observer?.documentChanged(withElement: link as Element)
   }
 
   func move(concept: Concept, toPoint: NSPoint) {
     let originalPoint = concept.point
     concept.point = toPoint
-    observer?.conceptUpdated(concept)
+    observer?.documentChanged(withElement: concept as Element)
     
     (undoManager?.prepare(withInvocationTarget: self) as AnyObject).move(
       concept: concept, toPoint: originalPoint

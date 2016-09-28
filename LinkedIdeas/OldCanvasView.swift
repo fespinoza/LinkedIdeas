@@ -367,6 +367,8 @@ class OldCanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate 
   }
 
   // MARK: - DocumentObserver
+  func documentChanged(withElement element: Element) {}
+  
   func conceptAdded(_ concept: Concept) {
     let _ = createConceptViewFor(concept)
   }

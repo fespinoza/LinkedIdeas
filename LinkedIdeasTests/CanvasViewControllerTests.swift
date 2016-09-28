@@ -24,13 +24,24 @@ class CanvasViewControllerTests: XCTestCase {
       )!
   }
   
+  var canvasViewController: CanvasViewController!
+  var canvasView: CanvasView!
+  
+  override func setUp() {
+    super.setUp()
+    
+    canvasViewController = CanvasViewController()
+    canvasView = CanvasView()
+    canvasViewController.canvasView = canvasView
+  }
+}
+
 // MARK - CanvasViewControllers: Mouse Tests
 
 extension CanvasViewControllerTests {
   func testDoubleClick() {
     let clickedPoint = NSMakePoint(200, 300)
     let mouseEvent = createMouseEvent(clickCount: 2, location: clickedPoint)
-    let canvasViewController = CanvasViewController()
     
     canvasViewController.mouseDown(with: mouseEvent)
     
@@ -44,7 +55,6 @@ extension CanvasViewControllerTests {
 extension CanvasViewControllerTests {
   func testPressEnterKeyWhenEditingInTheTextField() {
     let conceptPoint = NSPoint.zero
-    let canvasViewController = CanvasViewController()
     canvasViewController.currentState = .newConcept(point: conceptPoint)
     canvasViewController.stateManager.delegate = StateManagerTestDelegate()
     
@@ -66,8 +76,6 @@ extension CanvasViewControllerTests {
 extension CanvasViewControllerTests {
   
   func testShowTextFieldAt() {
-    let canvasViewController = CanvasViewController()
-    
     let clickedPoint = NSMakePoint(400, 300)
     canvasViewController.showTextField(atPoint: clickedPoint)
     
@@ -77,8 +85,6 @@ extension CanvasViewControllerTests {
   }
   
   func testDismissTextField() {
-    let canvasViewController = CanvasViewController()
-    
     let textFieldCenter = NSMakePoint(400, 300)
     let textField = canvasViewController.textField
     textField.frame = NSRect(center: textFieldCenter, size: NSMakeSize(60, 40))
@@ -96,7 +102,6 @@ extension CanvasViewControllerTests {
   
   func testSaveConceptWithAppropriateData() {
     let document = TestLinkedIdeasDocument()
-    let canvasViewController = CanvasViewController()
     canvasViewController.document = document
     
     let attributedString = NSAttributedString(string: "New Concept")
@@ -113,7 +118,6 @@ extension CanvasViewControllerTests {
   
   func testSaveConceptFailsWithBadData() {
     let document = TestLinkedIdeasDocument()
-    let canvasViewController = CanvasViewController()
     canvasViewController.document = document
     
     let attributedString = NSAttributedString(string: "")
