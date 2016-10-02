@@ -62,3 +62,7 @@ extension StateManagerTestDelegate: StateManagerDelegate {
   }
 }
 
+struct TestElement: Element {
+  var identifier: String
+  var rect: NSRect
+}

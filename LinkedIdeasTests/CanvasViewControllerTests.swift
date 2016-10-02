@@ -26,6 +26,7 @@ class CanvasViewControllerTests: XCTestCase {
   
   var canvasViewController: CanvasViewController!
   var canvasView: CanvasView!
+  var document: TestLinkedIdeasDocument!
   
   override func setUp() {
     super.setUp()
@@ -33,6 +34,44 @@ class CanvasViewControllerTests: XCTestCase {
     canvasViewController = CanvasViewController()
     canvasView = CanvasView()
     canvasViewController.canvasView = canvasView
+    document = TestLinkedIdeasDocument()
+    canvasViewController.document = document
+  }
+}
+
+// MARK - CanvasViewController: Basic Behavior
+
+extension CanvasViewControllerTests {
+  func testClickedConceptsAtPointWhenIntercepsAConcept() {
+    let clickedPoint = NSMakePoint(200, 300)
+
+    let concepts = [
+      Concept(stringValue: "Foo #0", point: NSMakePoint(210, 310)),
+      Concept(stringValue: "Foo #1", point: NSMakePoint(210, 110)),
+      Concept(stringValue: "Foo #2", point: NSMakePoint(200, 300)),
+    ]
+    document.concepts = concepts
+    
+    let clickedConcepts = canvasViewController.clickedConcepts(atPoint: clickedPoint)
+    
+    XCTAssertEqual(clickedConcepts?.count, 2)
+    XCTAssertEqual(clickedConcepts?.contains(concepts[0]), true)
+    XCTAssertEqual(clickedConcepts?.contains(concepts[2]), true)
+  }
+  
+  func testClickedConceptsAtPointWithNoResults() {
+    let clickedPoint = NSMakePoint(1200, 1300)
+    
+    let concepts = [
+      Concept(stringValue: "Foo #0", point: NSMakePoint(210, 310)),
+      Concept(stringValue: "Foo #1", point: NSMakePoint(210, 110)),
+      Concept(stringValue: "Foo #2", point: NSMakePoint(200, 300)),
+      ]
+    document.concepts = concepts
+    
+    let clickedConcepts = canvasViewController.clickedConcepts(atPoint: clickedPoint)
+    
+    XCTAssertTrue(clickedConcepts == nil)
   }
 }
 
@@ -59,6 +98,19 @@ extension CanvasViewControllerTests {
     XCTAssertEqual(canvasViewController.currentState, .canvasWaiting)
   }
   
+  func testSingleClickOnConcept() {
+    let clickedPoint = NSMakePoint(200, 300)
+    let conceptPoint = clickedPoint
+    
+    let concept = Concept(stringValue: "Foo bar", point: conceptPoint)
+    document.concepts.append(concept)
+    
+    let clickEvent = createMouseEvent(clickCount: 1, location: clickedPoint)
+    
+    canvasViewController.mouseDown(with: clickEvent)
+    
+    XCTAssertEqual(canvasViewController.currentState, .selectedElements(elements: [concept] as [Element]))
+  }
 }
 
 // MARK - CanvasViewControllers: TextField Delegate Tests
@@ -84,8 +136,7 @@ extension CanvasViewControllerTests {
 
 // MARK - CanvasViewControllers: StateManagerDelegate Tests
 
-extension CanvasViewControllerTests {
-  
+extension CanvasViewControllerTests {  
   func testShowTextFieldAt() {
     let clickedPoint = NSMakePoint(400, 300)
     canvasViewController.showTextField(atPoint: clickedPoint)

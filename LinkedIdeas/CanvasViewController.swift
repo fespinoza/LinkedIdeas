@@ -84,7 +84,7 @@ protocol StateManagerDelegate {
 enum CanvasState {
   case canvasWaiting
   case newConcept(point: NSPoint)
-  case selectedElements
+  case selectedElements(elements: [Element])
 }
 
 extension CanvasState: Equatable {
@@ -150,6 +150,20 @@ struct StateManager {
       return false
     }
   }
+  
+  mutating func select(elements: [Element]) -> Bool {
+    switch currentState {
+    case .canvasWaiting:
+      guard elements.count > 0 else {
+        return false
+      }
+      
+      currentState = .selectedElements(elements: elements)
+      return true
+    default:
+      return false
+    }
+  }
 }
 
 class CanvasViewController: NSViewController {
@@ -207,13 +221,25 @@ class CanvasViewController: NSViewController {
   func convertToCanvasCoordinates(point: NSPoint) -> NSPoint {
     return canvasView.convert(point, from: nil)
   }
+  
+  func clickedConcepts(atPoint clickedPoint: NSPoint) -> [Concept]? {
+    let results = document.concepts.filter { (concept) -> Bool in
+      return concept.rect.contains(clickedPoint)
+    }
+    guard results.count > 0 else { return nil }
+    return results
+  }
 }
 
 extension CanvasViewController {
   override func mouseDown(with event: NSEvent) {
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
     if event.clickCount == 1 {
-      let _ = stateManager.cancelNewConcept()
+      if let clickedConcepts = clickedConcepts(atPoint: point) {
+        let _ = stateManager.select(elements: clickedConcepts)
+      } else {
+        let _ = stateManager.cancelNewConcept()
+      }
     } else if event.clickCount == 2 {
       let _ = stateManager.toNewConcept(atPoint: point)
     }

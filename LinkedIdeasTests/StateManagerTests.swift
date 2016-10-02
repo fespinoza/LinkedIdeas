@@ -86,3 +86,17 @@ extension StateManagerTests {
     XCTAssertEqual(stateManager.currentState, .canvasWaiting)
   }
 }
+
+// MARK: StateManager - selectElements Tests
+
+extension StateManagerTests {
+  func testFromCanvasWaitingToSelectedElements() {
+    let testElement = TestElement(identifier: "element #1", rect: NSMakeRect(30, 40, 100, 50))
+    
+    let transitionSuccessful = stateManager.select(elements: [testElement])
+    
+    XCTAssert(transitionSuccessful)
+    XCTAssertEqual(stateManager.currentState, .selectedElements(elements: [testElement]))
+  }
+}
+
