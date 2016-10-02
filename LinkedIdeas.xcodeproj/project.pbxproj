@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B0683FD1DA1A1AA00609AE5 /* StateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0683FC1DA1A1AA00609AE5 /* StateManager.swift */; };
 		9B06AD131C11AD74000BC75C /* NSRect+PointHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */; };
 		9B06AD151C11AF03000BC75C /* NSView+Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */; };
 		9B1CCDEB1D294E0900F319EB /* NSAttributedStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B0683FC1DA1A1AA00609AE5 /* StateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateManager.swift; sourceTree = "<group>"; };
 		9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSRect+PointHelpers.swift"; path = "../NSRect+PointHelpers.swift"; sourceTree = "<group>"; };
 		9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+Debugging.swift"; path = "../NSView+Debugging.swift"; sourceTree = "<group>"; };
 		9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtensions.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				9BA63D311D74C38400EBC3AD /* CanvasViewController.swift */,
 				9BA63D341D74C47800EBC3AD /* CanvasView.swift */,
 				9B2F1DA11BE7CFE70090CC18 /* Document.swift */,
+				9B0683FC1DA1A1AA00609AE5 /* StateManager.swift */,
 			);
 			name = NewUI;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				9BB8FC871CA6B828008CD6A2 /* LinkView.swift in Sources */,
 				9B521F871CFB380300A71598 /* SquareElement.swift in Sources */,
 				9B956CE51C1B11C200CF20DA /* NSPoint+Utilities.swift in Sources */,
+				9B0683FD1DA1A1AA00609AE5 /* StateManager.swift in Sources */,
 				9B06AD151C11AF03000BC75C /* NSView+Debugging.swift in Sources */,
 				9BD2BF3D1C7F8B6A00E8A303 /* FiniteLine.swift in Sources */,
 				9B48F8471CD613F60014758D /* DocumentObserver.swift in Sources */,
