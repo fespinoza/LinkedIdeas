@@ -9,7 +9,10 @@
 import Foundation
 
 protocol StateManagerDelegate {
-  // elemnts
+  // basic
+  func transitionSuccesfull()
+  
+  // elements
   func unselectAllElements()
   
   // concepts
@@ -41,6 +44,7 @@ extension CanvasState: Equatable {
 struct StateManager {
   var currentState: CanvasState {
     didSet {
+      delegate?.transitionSuccesfull()
       print("Transitioned to \(currentState)")
     }
   }

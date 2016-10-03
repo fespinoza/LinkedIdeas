@@ -38,6 +38,8 @@ class StateManagerTestDelegate {
 }
 
 extension StateManagerTestDelegate: StateManagerDelegate {
+  func transitionSuccesfull() {}
+  
   func unselectAllElements() {
     registerCall(methodName: #function)
   }

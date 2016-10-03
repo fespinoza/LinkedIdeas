@@ -200,7 +200,12 @@ extension CanvasViewController: DocumentObserver {
 }
 
 extension CanvasViewController: StateManagerDelegate {
-  // elemnts
+  // basic
+  func transitionSuccesfull() {
+    canvasView.needsDisplay = true
+  }
+  
+  // elements
   func unselectAllElements() {}
   
   // concepts
