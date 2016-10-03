@@ -142,16 +142,23 @@ class CanvasViewController: NSViewController {
   }
 }
 
+
+extension NSEvent {
+  func isSingleClick() -> Bool { return clickCount == 1 }
+  func isDoubleClick() -> Bool { return clickCount == 2 }
+}
+
 extension CanvasViewController {
   override func mouseDown(with event: NSEvent) {
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
-    if event.clickCount == 1 {
+    
+    if event.isSingleClick() {
       if let clickedConcepts = clickedConcepts(atPoint: point) {
         let _ = stateManager.select(elements: clickedConcepts)
       } else {
         let _ = stateManager.cancelNewConcept()
       }
-    } else if event.clickCount == 2 {
+    } else if event.isDoubleClick() {
       let _ = stateManager.toNewConcept(atPoint: point)
     }
   }
