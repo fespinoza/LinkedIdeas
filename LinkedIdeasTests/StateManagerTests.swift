@@ -91,7 +91,7 @@ extension StateManagerTests {
 
 extension StateManagerTests {
   func testFromCanvasWaitingToSelectedElements() {
-    let testElement = TestElement(identifier: "element #1", rect: NSMakeRect(30, 40, 100, 50))
+    let testElement = TestElement.sample
     
     let transitionSuccessful = stateManager.select(elements: [testElement])
     

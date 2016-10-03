@@ -68,4 +68,10 @@ struct TestElement: Element {
   var isSelected: Bool = false
   var isEditable: Bool = false
   
+  static let sample = TestElement(
+    identifier: "element #1",
+    rect: NSMakeRect(30, 40, 100, 50),
+    isSelected: false,
+    isEditable: false
+  )
 }
