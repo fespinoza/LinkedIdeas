@@ -99,6 +99,18 @@ struct StateManager {
       }
       
       currentState = .selectedElements(elements: elements)
+      for var element in elements { element.isSelected = true }
+      return true
+    default:
+      return false
+    }
+  }
+  
+  mutating func deselectElements() -> Bool {
+    switch currentState {
+    case .selectedElements(let elements):
+      currentState = .canvasWaiting
+      for var element in elements { element.isSelected = false }
       return true
     default:
       return false

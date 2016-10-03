@@ -100,3 +100,17 @@ extension StateManagerTests {
   }
 }
 
+// MARK: StateManager - deselectElements Tests
+
+extension StateManagerTests {
+  func testFromSelectedElementsToCanvasWaiting() {
+    let testElement = TestElement.sample
+    stateManager.currentState = .selectedElements(elements: [testElement])
+    
+    let transitionSuccessful = stateManager.deselectElements()
+    
+    XCTAssert(transitionSuccessful)
+    XCTAssertEqual(stateManager.currentState, .canvasWaiting)
+  }
+}
+

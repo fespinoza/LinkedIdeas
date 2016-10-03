@@ -98,6 +98,20 @@ extension CanvasViewControllerTests {
     XCTAssertEqual(canvasViewController.currentState, .canvasWaiting)
   }
   
+  func testSingleClickOnCanvasWhenConceptIsSelected() {
+    let concept = Concept(stringValue: "Foo bar", point: NSMakePoint(200, 300))
+    document.concepts.append(concept)
+    
+    canvasViewController.currentState = .selectedElements(elements: [concept])
+    
+    let clickedPoint = NSMakePoint(10, 20)
+    let clickEvent = createMouseEvent(clickCount: 1, location: clickedPoint)
+    
+    canvasViewController.mouseDown(with: clickEvent)
+    
+    XCTAssertEqual(canvasViewController.currentState, .canvasWaiting)
+  }
+  
   func testSingleClickOnConcept() {
     let clickedPoint = NSMakePoint(200, 300)
     let conceptPoint = clickedPoint
@@ -109,7 +123,7 @@ extension CanvasViewControllerTests {
     
     canvasViewController.mouseDown(with: clickEvent)
     
-    XCTAssertEqual(canvasViewController.currentState, .selectedElements(elements: [concept] as [Element]))
+    XCTAssertEqual(canvasViewController.currentState, .selectedElements(elements: [concept]))
   }
 }
 

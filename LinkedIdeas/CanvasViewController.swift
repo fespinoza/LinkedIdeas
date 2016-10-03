@@ -142,6 +142,11 @@ class CanvasViewController: NSViewController {
   }
 }
 
+// given an state A, there is a limited amount of possible transitions
+
+// newConcept -> (saveNewConcept) -> canvasWaiting
+// newConcept -> (cancelNewConcept) -> canvasWaiting
+// selectedElements -> (deselectElements) -> canvasWaiting
 
 extension NSEvent {
   func isSingleClick() -> Bool { return clickCount == 1 }
@@ -153,10 +158,18 @@ extension CanvasViewController {
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
     
     if event.isSingleClick() {
+      // TODO: this should not be decided in here
       if let clickedConcepts = clickedConcepts(atPoint: point) {
         let _ = stateManager.select(elements: clickedConcepts)
       } else {
-        let _ = stateManager.cancelNewConcept()
+        // TODO: this should not happen in a mouse down event
+        switch currentState {
+        case .selectedElements:
+          let _ = stateManager.deselectElements()
+        case .newConcept:
+          let _ = stateManager.cancelNewConcept()
+        default: break
+        }
       }
     } else if event.isDoubleClick() {
       let _ = stateManager.toNewConcept(atPoint: point)
