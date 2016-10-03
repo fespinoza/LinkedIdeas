@@ -11,6 +11,7 @@ import Cocoa
 protocol GraphConcept {
   var rect: NSRect { get }
   var attributedStringValue: NSAttributedString { get }
+  var isSelected: Bool { get set }
 }
 
 protocol GraphLink {
@@ -34,6 +35,14 @@ struct DrawableConcept: DrawableElement {
   
   func draw() {
     concept.attributedStringValue.draw(at: concept.rect.origin)
+    drawSelectedRing()
+  }
+  
+  func drawSelectedRing() {
+    guard concept.isSelected else { return }
+    
+    NSColor.red.set()
+    NSBezierPath(rect: concept.rect).stroke()
   }
 }
 
