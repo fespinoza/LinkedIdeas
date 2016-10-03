@@ -65,4 +65,7 @@ extension StateManagerTestDelegate: StateManagerDelegate {
 struct TestElement: Element {
   var identifier: String
   var rect: NSRect
+  var isSelected: Bool = false
+  var isEditable: Bool = false
+  
 }

@@ -11,6 +11,9 @@ import Foundation
 protocol Element {
   var identifier: String { get }
   var rect: NSRect { get }
+  
+  var isEditable: Bool { get set }
+  var isSelected: Bool { get set }
 }
 
 protocol AttributedStringElement {
