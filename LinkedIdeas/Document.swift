@@ -154,7 +154,9 @@ class Document: NSDocument, LinkedIdeasDocument {
         oldValue = nil
       }
       
-      (undoManager?.prepare(withInvocationTarget: object) as AnyObject).setValue(oldValue, forKey: keyPath)
+      undoManager?.registerUndo(withTarget: (object as! Concept), handler: { (object) in
+        object.setValue(oldValue, forKey: keyPath)
+      })
       
       if let concept = object as? Concept { observer?.conceptUpdated(concept) }
       if let link = object as? Link { observer?.linkUpdated(link) }
