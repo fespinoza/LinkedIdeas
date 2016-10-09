@@ -156,7 +156,12 @@ class CanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate {
   }
 
   func conceptViewFor(_ concept: Concept) -> ConceptView {
-    return conceptViews[concept.identifier]!
+    if let conceptView = conceptViews[concept.identifier] {
+      return conceptView
+    } else {
+      let conceptView = createConceptViewFor(concept)
+      return conceptView
+    }
   }
 
   func linkViewFor(_ link: Link) -> LinkView {
