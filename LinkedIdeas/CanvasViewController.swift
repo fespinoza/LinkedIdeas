@@ -144,9 +144,25 @@ class CanvasViewController: NSViewController {
 
 // given an state A, there is a limited amount of possible transitions
 
+// initial state
 // newConcept -> (saveNewConcept) -> canvasWaiting
+  // what happens when the transition is successful?
+
 // newConcept -> (cancelNewConcept) -> canvasWaiting
+  // what happens when the transition is successful?
+  // call actions
+
 // selectedElements -> (deselectElements) -> canvasWaiting
+
+// StateManager
+
+// transition definition
+
+// actions when transitions occur
+
+// throw error when the transition fails
+
+// mutating func transitionTo(newState: CanvasState) throws
 
 extension NSEvent {
   func isSingleClick() -> Bool { return clickCount == 1 }
@@ -158,10 +174,13 @@ extension CanvasViewController {
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
     
     if event.isSingleClick() {
-      // TODO: this should not be decided in here
       if let clickedConcepts = clickedConcepts(atPoint: point) {
+        // X -> transitionTo(.selectedElements(elements: clickedConcepts))
+        
         let _ = stateManager.select(elements: clickedConcepts)
       } else {
+        // X -> transitionTo(.canvasView)
+        
         // TODO: this should not happen in a mouse down event
         switch currentState {
         case .selectedElements:
