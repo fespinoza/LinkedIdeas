@@ -25,6 +25,7 @@ protocol GraphLink {
 }
 
 extension Concept: GraphConcept {}
+
 extension Link: GraphLink {
   var originRect: NSRect { return origin.rect }
   var targetRect: NSRect { return target.rect }
@@ -75,6 +76,11 @@ extension NSResponder {
   func print(_ message: String) {
     Swift.print("\(identifierString): \(message)")
   }
+}
+
+extension NSEvent {
+  func isSingleClick() -> Bool { return clickCount == 1 }
+  func isDoubleClick() -> Bool { return clickCount == 2 }
 }
 
 class CanvasViewController: NSViewController {
@@ -142,60 +148,24 @@ class CanvasViewController: NSViewController {
   }
 }
 
-// given an state A, there is a limited amount of possible transitions
-
-// initial state
-// newConcept -> (saveNewConcept) -> canvasWaiting
-  // what happens when the transition is successful?
-
-// newConcept -> (cancelNewConcept) -> canvasWaiting
-  // what happens when the transition is successful?
-  // call actions
-
-// selectedElements -> (deselectElements) -> canvasWaiting
-
-// StateManager
-
-// transition definition
-
-// actions when transitions occur
-
-// throw error when the transition fails
-
-// mutating func transitionTo(newState: CanvasState) throws
-
-extension NSEvent {
-  func isSingleClick() -> Bool { return clickCount == 1 }
-  func isDoubleClick() -> Bool { return clickCount == 2 }
-}
-
+// MARK: - MouseEvents
 extension CanvasViewController {
   override func mouseDown(with event: NSEvent) {
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
     
     if event.isSingleClick() {
       if let clickedConcepts = clickedConcepts(atPoint: point) {
-        // X -> transitionTo(.selectedElements(elements: clickedConcepts))
-        
-        let _ = stateManager.select(elements: clickedConcepts)
+        try! stateManager.toSelectedElements(elements: clickedConcepts)
       } else {
-        // X -> transitionTo(.canvasView)
-        
-        // TODO: this should not happen in a mouse down event
-        switch currentState {
-        case .selectedElements:
-          let _ = stateManager.deselectElements()
-        case .newConcept:
-          let _ = stateManager.cancelNewConcept()
-        default: break
-        }
+        try! stateManager.toCanvasWaiting()
       }
     } else if event.isDoubleClick() {
-      let _ = stateManager.toNewConcept(atPoint: point)
+      try! stateManager.toNewConcept(atPoint: point)
     }
   }
 }
 
+// MARK: - CanvasViewDataSource
 extension CanvasViewController: CanvasViewDataSource {
   var drawableElements: [DrawableElement] {
     var elements: [DrawableElement] = []
@@ -212,56 +182,34 @@ extension CanvasViewController: CanvasViewDataSource {
   }
 }
 
+// MARK: - DocumentObserver
 extension CanvasViewController: DocumentObserver {
   func documentChanged(withElement element: Element) {
     canvasView.needsDisplay = true
   }
 }
 
-extension CanvasViewController: StateManagerDelegate {
+// MARK: - NewStateManagerDelegate
+extension CanvasViewController: NewStateManagerDelegate {
   // basic
   func transitionSuccesfull() {
     canvasView.needsDisplay = true
   }
   
-  // elements
-  func unselectAllElements() {}
-  
-  // concepts
-  func cancelConceptCreation() {}
-  
-  func saveConcept(text: NSAttributedString, atPoint point: NSPoint) -> Bool {
-    guard text.string != "" else { return false }
-    
-    let newConcept = Concept(attributedStringValue: text, point: point)
-    
-    document.save(concept: newConcept)
-    return true
-  }
-  
-  // text field
-  func showTextField(atPoint point: NSPoint) {
-    textField.frame = NSRect(center: point, size: NSMakeSize(60, 40))
-    textField.isEditable = true
-    textField.isHidden = false
-    textField.becomeFirstResponder()
-  }
-  
-  func dismissTextField() {
-    textField.setFrameOrigin(NSPoint.zero)
-    textField.isEditable = false
-    textField.isHidden = true
-    textField.stringValue = ""
-    textField.resignFirstResponder()
-  }
+  func transitionedToNewConcept(fromState: CanvasState) {}
+  func transitionedToCanvasWaiting(fromState: CanvasState) {}
+  func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString) {}
+  func transitionedToSelectedElements(fromState: CanvasState) {}
 }
 
+// MARK: NSTextFieldDelegate
 extension CanvasViewController: NSTextFieldDelegate {
   // Invoked when users press keys with predefined bindings in a cell of the specified control.
   func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
     switch commandSelector {
     case #selector(NSResponder.insertNewline(_:)):
-      return stateManager.saveNewConcept(text: control.attributedStringValue)
+      try! stateManager.toCanvasWaiting(savingConceptWithText: control.attributedStringValue)
+      return true
     default:
       return false
     }

@@ -37,29 +37,22 @@ class StateManagerTestDelegate {
   }
 }
 
-extension StateManagerTestDelegate: StateManagerDelegate {
+extension StateManagerTestDelegate: NewStateManagerDelegate {
   func transitionSuccesfull() {}
   
-  func unselectAllElements() {
+  func transitionedToNewConcept(fromState: CanvasState) {
     registerCall(methodName: #function)
   }
   
-  // concepts
-  func cancelConceptCreation() {
+  func transitionedToCanvasWaiting(fromState: CanvasState) {
     registerCall(methodName: #function)
   }
   
-  func saveConcept(text: NSAttributedString, atPoint: NSPoint) -> Bool {
-    registerCall(methodName: #function)
-    return true
-  }
-  
-  // text field
-  func showTextField(atPoint: NSPoint) {
+  func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString) {
     registerCall(methodName: #function)
   }
   
-  func dismissTextField() {
+  func transitionedToSelectedElements(fromState: CanvasState) {
     registerCall(methodName: #function)
   }
 }

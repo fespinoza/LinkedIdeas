@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum CanvasTransitionError: Error {
+  case invalidTransition(message: String)
+}
+
 protocol StateManagerDelegate {
   // basic
   func transitionSuccesfull()
@@ -24,10 +28,32 @@ protocol StateManagerDelegate {
   func dismissTextField()
 }
 
+protocol NewStateManagerDelegate {
+//  var stateManager: StateManager { get }
+  
+  func transitionSuccesfull()
+  
+  func transitionedToNewConcept(fromState: CanvasState)
+  func transitionedToCanvasWaiting(fromState: CanvasState)
+  func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString)
+  func transitionedToSelectedElements(fromState: CanvasState)
+}
+
 enum CanvasState {
   case canvasWaiting
   case newConcept(point: NSPoint)
   case selectedElements(elements: [Element])
+  
+  func isSimilar(to state: CanvasState) -> Bool {
+    switch (self, state) {
+    case (.newConcept, .newConcept),
+         (.selectedElements, .selectedElements),
+         (.canvasWaiting, .canvasWaiting):
+      return true
+    default:
+      return false
+    }
+  }
 }
 
 extension CanvasState: Equatable {
@@ -35,7 +61,8 @@ extension CanvasState: Equatable {
     switch (lhs, rhs) {
     case (.newConcept(let a), .newConcept(let b)) where a == b: return true
     case (.canvasWaiting, .canvasWaiting): return true
-    case (.selectedElements, .selectedElements): return true
+    case (.selectedElements(let a), .selectedElements(let b)):
+      return a.map({ $0.identifier }) == b.map({ $0.identifier })
     default: return false
     }
   }
@@ -48,76 +75,71 @@ struct StateManager {
       print("Transitioned to \(currentState)")
     }
   }
-  var delegate: StateManagerDelegate?
+  var delegate: NewStateManagerDelegate?
   
   init(initialState: CanvasState) {
     currentState = initialState
   }
   
-  mutating func toNewConcept(atPoint point: NSPoint) -> Bool {
-    switch currentState {
-    case .canvasWaiting:
-      break
-    case .newConcept:
-      delegate?.dismissTextField()
-    case .selectedElements:
-      delegate?.unselectAllElements()
-    }
+  public mutating func toNewConcept(atPoint point: NSPoint) throws {
+    let possibleStates: [CanvasState] = [
+      .canvasWaiting,
+      .newConcept(point: NSPoint.zero)
+    ]
     
-    delegate?.showTextField(atPoint: point)
-    currentState = .newConcept(point: point)
-    return true
+    try transition(fromPossibleStates: possibleStates, toState: .newConcept(point: point)) { (oldState) in
+      delegate?.transitionedToNewConcept(fromState: oldState)
+    }
   }
   
-  mutating func saveNewConcept(text: NSAttributedString) -> Bool {
+  public mutating func toCanvasWaiting() throws {
+    let possibleStates: [CanvasState] = [
+      .newConcept(point: NSPoint.zero),
+      .selectedElements(elements: [Element]())
+    ]
+    
+    try transition(fromPossibleStates: possibleStates, toState: .canvasWaiting) { (oldState) in
+      delegate?.transitionedToCanvasWaiting(fromState: oldState)
+    }
+  }
+  
+  public mutating func toCanvasWaiting(savingConceptWithText text: NSAttributedString) throws {
+    let oldState = currentState
+    
     switch currentState {
     case .newConcept(let point):
-      guard let success = delegate?.saveConcept(text: text, atPoint: point) else {
-        return false
-      }
-      delegate?.dismissTextField()
       currentState = .canvasWaiting
-      return success
+      delegate?.transitionedToCanvasWaitingSavingConcept(fromState: oldState, point: point, text: text)
     default:
-      return false
+      throw CanvasTransitionError.invalidTransition(
+        message: "there is no transition from \(currentState) to 'canvasWaiting' saving concept"
+      )
     }
   }
   
-  mutating func cancelNewConcept() -> Bool {
-    switch currentState {
-    case .newConcept:
-      currentState = .canvasWaiting
-      
-      delegate?.dismissTextField()
-      return true
-    default:
-      return false
+  public mutating func toSelectedElements(elements: [Element]) throws {
+    let possibleStates: [CanvasState] = [
+      .canvasWaiting,
+      .newConcept(point: NSPoint.zero),
+      .selectedElements(elements: [Element]())
+    ]
+    
+    let state = CanvasState.selectedElements(elements: elements)
+    try transition(fromPossibleStates: possibleStates, toState: state) { (oldState) in
+      delegate?.transitionedToSelectedElements(fromState: oldState)
     }
   }
   
-  mutating func select(elements: [Element]) -> Bool {
-    switch currentState {
-    case .canvasWaiting:
-      guard elements.count > 0 else {
-        return false
-      }
-      
-      currentState = .selectedElements(elements: elements)
-      for var element in elements { element.isSelected = true }
-      return true
-    default:
-      return false
-    }
-  }
-  
-  mutating func deselectElements() -> Bool {
-    switch currentState {
-    case .selectedElements(let elements):
-      currentState = .canvasWaiting
-      for var element in elements { element.isSelected = false }
-      return true
-    default:
-      return false
+  private mutating func transition(fromPossibleStates validFromStates: [CanvasState], toState: CanvasState, onSuccess: (CanvasState) -> Void) throws {
+    let oldState = currentState
+    
+    if let _ = validFromStates.index(where: { $0.isSimilar(to: oldState) }) {
+      currentState = toState
+      onSuccess(oldState)
+    } else {
+      throw CanvasTransitionError.invalidTransition(
+        message: "there is no transition from \(oldState) to '\(toState)'"
+      )
     }
   }
 }

@@ -148,63 +148,63 @@ extension CanvasViewControllerTests {
   }
 }
 
-// MARK - CanvasViewControllers: StateManagerDelegate Tests
-
-extension CanvasViewControllerTests {  
-  func testShowTextFieldAt() {
-    let clickedPoint = NSMakePoint(400, 300)
-    canvasViewController.showTextField(atPoint: clickedPoint)
-    
-    XCTAssertFalse(canvasViewController.textField.isHidden)
-    XCTAssert(canvasViewController.textField.isEditable)
-    XCTAssertEqual(canvasViewController.textField.frame.center, clickedPoint)
-  }
-  
-  func testDismissTextField() {
-    let textFieldCenter = NSMakePoint(400, 300)
-    let textField = canvasViewController.textField
-    textField.frame = NSRect(center: textFieldCenter, size: NSMakeSize(60, 40))
-    textField.stringValue = "Foo bar asdf"
-    textField.isHidden = false
-    textField.isEditable = true
-    
-    canvasViewController.dismissTextField()
-    
-    XCTAssert(canvasViewController.textField.isHidden)
-    XCTAssertFalse(canvasViewController.textField.isEditable)
-    XCTAssertNotEqual(canvasViewController.textField.frame.center, textFieldCenter)
-    XCTAssertEqual(canvasViewController.textField.stringValue, "")
-  }
-  
-  func testSaveConceptWithAppropriateData() {
-    let document = TestLinkedIdeasDocument()
-    canvasViewController.document = document
-    
-    let attributedString = NSAttributedString(string: "New Concept")
-    let conceptCenterPoint = NSMakePoint(300, 400)
-    
-    let successfullSave = canvasViewController.saveConcept(
-      text: attributedString,
-      atPoint: conceptCenterPoint
-    )
-    
-    XCTAssert(successfullSave)
-    XCTAssertEqual(document.concepts.count, 1)
-  }
-  
-  func testSaveConceptFailsWithBadData() {
-    let document = TestLinkedIdeasDocument()
-    canvasViewController.document = document
-    
-    let attributedString = NSAttributedString(string: "")
-    let conceptCenterPoint = NSMakePoint(300, 400)
-    
-    let successfullSave = canvasViewController.saveConcept(
-      text: attributedString,
-      atPoint: conceptCenterPoint
-    )
-    
-    XCTAssertFalse(successfullSave)
-    XCTAssertEqual(document.concepts.count, 0)
-  }
-}
+//// MARK - CanvasViewControllers: StateManagerDelegate Tests
+//
+//extension CanvasViewControllerTests {  
+//  func testShowTextFieldAt() {
+//    let clickedPoint = NSMakePoint(400, 300)
+//    canvasViewController.showTextField(atPoint: clickedPoint)
+//    
+//    XCTAssertFalse(canvasViewController.textField.isHidden)
+//    XCTAssert(canvasViewController.textField.isEditable)
+//    XCTAssertEqual(canvasViewController.textField.frame.center, clickedPoint)
+//  }
+//  
+//  func testDismissTextField() {
+//    let textFieldCenter = NSMakePoint(400, 300)
+//    let textField = canvasViewController.textField
+//    textField.frame = NSRect(center: textFieldCenter, size: NSMakeSize(60, 40))
+//    textField.stringValue = "Foo bar asdf"
+//    textField.isHidden = false
+//    textField.isEditable = true
+//    
+//    canvasViewController.dismissTextField()
+//    
+//    XCTAssert(canvasViewController.textField.isHidden)
+//    XCTAssertFalse(canvasViewController.textField.isEditable)
+//    XCTAssertNotEqual(canvasViewController.textField.frame.center, textFieldCenter)
+//    XCTAssertEqual(canvasViewController.textField.stringValue, "")
+//  }
+//  
+//  func testSaveConceptWithAppropriateData() {
+//    let document = TestLinkedIdeasDocument()
+//    canvasViewController.document = document
+//    
+//    let attributedString = NSAttributedString(string: "New Concept")
+//    let conceptCenterPoint = NSMakePoint(300, 400)
+//    
+//    let successfullSave = canvasViewController.saveConcept(
+//      text: attributedString,
+//      atPoint: conceptCenterPoint
+//    )
+//    
+//    XCTAssert(successfullSave)
+//    XCTAssertEqual(document.concepts.count, 1)
+//  }
+//  
+//  func testSaveConceptFailsWithBadData() {
+//    let document = TestLinkedIdeasDocument()
+//    canvasViewController.document = document
+//    
+//    let attributedString = NSAttributedString(string: "")
+//    let conceptCenterPoint = NSMakePoint(300, 400)
+//    
+//    let successfullSave = canvasViewController.saveConcept(
+//      text: attributedString,
+//      atPoint: conceptCenterPoint
+//    )
+//    
+//    XCTAssertFalse(successfullSave)
+//    XCTAssertEqual(document.concepts.count, 0)
+//  }
+//}

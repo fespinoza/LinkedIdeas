@@ -12,105 +12,91 @@ import XCTest
 class StateManagerTests: XCTestCase {
   var stateManager: StateManager!
   var testDelegate: StateManagerTestDelegate!
-  
+
   override func setUp() {
     super.setUp()
-    
+
     stateManager = StateManager(initialState: .canvasWaiting)
     testDelegate = StateManagerTestDelegate()
     stateManager.delegate = testDelegate
   }
+  
+  func executeTransition(block: () throws -> Void) {
+    do {
+      try block()
+    } catch let error {
+      XCTFail("transition failed with: \(error)")
+    }
+  }
 }
 
-// MARK: StateManager - ToNewConceptTransition Tests
+// MARK: StateManager - toNewConcept Transition Tests
 
 extension StateManagerTests {
-  func testFromCanvasWaitingToNewConceptTransition() {
-    let transitionSuccessful = stateManager.toNewConcept(atPoint: NSPoint.zero)
+  func testToNewConceptFromCanvasWaitingTransition() {
+    executeTransition { try stateManager.toNewConcept(atPoint: NSPoint.zero) }
     
-    XCTAssert(transitionSuccessful)
-    XCTAssertEqual(testDelegate.methodCalls["dismissTextField()"], nil)
-    XCTAssertEqual(testDelegate.methodCalls["showTextField(atPoint:)"], 1)
     XCTAssertEqual(stateManager.currentState, .newConcept(point: NSPoint.zero))
   }
-  
-  func testFromNewConceptToNewConceptTransition() {
+
+  func testToNewConceptFromNewConceptTransition() {
+    stateManager.currentState = .newConcept(point: NSMakePoint(300, 400))
+
+    executeTransition {
+      try stateManager.toNewConcept(atPoint: NSPoint.zero)
+    }
+    
+    XCTAssertEqual(stateManager.currentState, .newConcept(point: NSPoint.zero))
+  }
+}
+
+// MARK: StateManager - toCanvasWaiting Tests
+
+extension StateManagerTests {
+  func testToCanvasWaitingFromNewConcept() {
     stateManager.currentState = .newConcept(point: NSMakePoint(300, 400))
     
-    let transitionSuccessful = stateManager.toNewConcept(atPoint: NSPoint.zero)
+    executeTransition { try stateManager.toCanvasWaiting() }
     
-    XCTAssert(transitionSuccessful)
-    XCTAssertEqual(testDelegate.methodCalls["dismissTextField()"], 1)
-    XCTAssertEqual(testDelegate.methodCalls["showTextField(atPoint:)"], 1)
-    XCTAssertEqual(stateManager.currentState, .newConcept(point: NSPoint.zero))
-  }
-}
-
-// MARK: StateManager - SaveConceptTransition Tests
-
-extension StateManagerTests {
-  func testFromCanvasWaitingToSaveConceptTransition() {
-    let transitionSuccessful = stateManager.saveNewConcept(text: NSAttributedString(string: "concept text"))
-    
-    XCTAssertFalse(transitionSuccessful)
-    XCTAssertEqual(testDelegate.methodCalls["saveConcept(text:atPoint:)"], nil)
-    XCTAssertEqual(testDelegate.methodCalls["dismissTextField()"], nil)
     XCTAssertEqual(stateManager.currentState, .canvasWaiting)
   }
   
-  func testFromNewConceptToSaveConceptTransition() {
-    let newConceptPoint = NSMakePoint(300, 400)
-    stateManager.currentState = .newConcept(point: newConceptPoint)
-    
-    let transitionSuccessful = stateManager.saveNewConcept(text: NSAttributedString(string: "concept text"))
-    
-    XCTAssert(transitionSuccessful)
-    XCTAssertEqual(testDelegate.methodCalls["saveConcept(text:atPoint:)"], 1)
-    XCTAssertEqual(testDelegate.methodCalls["dismissTextField()"], 1)
-    XCTAssertEqual(stateManager.currentState, .canvasWaiting)
-  }
-}
-
-// MARK: StateManager - CancelNewConceptTransition Tests
-
-extension StateManagerTests {
-  func testFromNewConceptToCancelConceptTransition() {
-    let newConceptPoint = NSMakePoint(300, 400)
-    stateManager.currentState = .newConcept(point: newConceptPoint)
-    
-    let transitionSuccessful = stateManager.cancelNewConcept()
-    
-    XCTAssert(transitionSuccessful)
-    XCTAssertEqual(testDelegate.methodCalls["saveConcept(text:atPoint:)"], nil)
-    XCTAssertEqual(testDelegate.methodCalls["dismissTextField()"], 1)
-    XCTAssertEqual(stateManager.currentState, .canvasWaiting)
-  }
-}
-
-// MARK: StateManager - selectElements Tests
-
-extension StateManagerTests {
-  func testFromCanvasWaitingToSelectedElements() {
-    let testElement = TestElement.sample
-    
-    let transitionSuccessful = stateManager.select(elements: [testElement])
-    
-    XCTAssert(transitionSuccessful)
-    XCTAssertEqual(stateManager.currentState, .selectedElements(elements: [testElement]))
-  }
-}
-
-// MARK: StateManager - deselectElements Tests
-
-extension StateManagerTests {
-  func testFromSelectedElementsToCanvasWaiting() {
+  func testToCanvasWaitingFromSelectedElements() {
     let testElement = TestElement.sample
     stateManager.currentState = .selectedElements(elements: [testElement])
     
-    let transitionSuccessful = stateManager.deselectElements()
+    executeTransition { try stateManager.toCanvasWaiting() }
     
-    XCTAssert(transitionSuccessful)
     XCTAssertEqual(stateManager.currentState, .canvasWaiting)
   }
 }
 
+// MARK: StateManager - toCanvasWaiting savingConceptWithText Tests
+
+extension StateManagerTests {
+  func testToCanvasWaitingSavingConceptFromNewConcept() {
+    stateManager.currentState = .newConcept(point: NSMakePoint(300, 400))
+    let text = NSAttributedString(string: "concept text")
+
+    executeTransition {
+      try stateManager.toCanvasWaiting(savingConceptWithText: text)
+    }
+
+    XCTAssertEqual(stateManager.currentState, .canvasWaiting)
+  }
+}
+
+
+// MARK: StateManager - toSelectedElements Tests
+
+extension StateManagerTests {
+  func testToSelectedElementsFromCanvasWaiting() {
+    let testElement = TestElement.sample
+
+    executeTransition {
+      try stateManager.toSelectedElements(elements: [testElement])
+    }
+
+    XCTAssertEqual(stateManager.currentState, .selectedElements(elements: [testElement]))
+  }
+}
