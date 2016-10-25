@@ -149,6 +149,7 @@ class CanvasViewController: NSViewController {
 }
 
 // MARK: - MouseEvents
+
 extension CanvasViewController {
   override func mouseDown(with event: NSEvent) {
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
@@ -166,6 +167,7 @@ extension CanvasViewController {
 }
 
 // MARK: - CanvasViewDataSource
+
 extension CanvasViewController: CanvasViewDataSource {
   var drawableElements: [DrawableElement] {
     var elements: [DrawableElement] = []
@@ -183,6 +185,7 @@ extension CanvasViewController: CanvasViewDataSource {
 }
 
 // MARK: - DocumentObserver
+
 extension CanvasViewController: DocumentObserver {
   func documentChanged(withElement element: Element) {
     canvasView.needsDisplay = true
@@ -190,19 +193,78 @@ extension CanvasViewController: DocumentObserver {
 }
 
 // MARK: - NewStateManagerDelegate
+
 extension CanvasViewController: NewStateManagerDelegate {
-  // basic
   func transitionSuccesfull() {
     canvasView.needsDisplay = true
   }
   
-  func transitionedToNewConcept(fromState: CanvasState) {}
-  func transitionedToCanvasWaiting(fromState: CanvasState) {}
-  func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString) {}
-  func transitionedToSelectedElements(fromState: CanvasState) {}
+  func transitionedToNewConcept(fromState: CanvasState) {
+    guard case .newConcept(let point) = currentState else { return }
+    
+    showTextField(atPoint: point)
+  }
+  
+  func transitionedToCanvasWaiting(fromState: CanvasState) {
+    switch fromState {
+    case .newConcept:
+      dismissTextField()
+    case .selectedElements:
+      unselectAllElements()
+    default:
+      break
+    }
+  }
+  
+  func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString) {
+    dismissTextField()
+    let _ = saveConcept(text: text, atPoint: point)
+  }
+  
+  func transitionedToSelectedElements(fromState: CanvasState) {
+    switch fromState {
+    case .newConcept:
+      dismissTextField()
+    default:
+      break
+    }
+  }
 }
 
-// MARK: NSTextFieldDelegate
+// MARK: - Transition Actions
+
+extension CanvasViewController {
+  func unselectAllElements() {}
+  
+  func cancelConceptCreation() {}
+  
+  func saveConcept(text: NSAttributedString, atPoint point: NSPoint) -> Bool {
+    guard text.string != "" else { return false }
+    
+    let newConcept = Concept(attributedStringValue: text, point: point)
+    
+    document.save(concept: newConcept)
+    return true
+  }
+  
+  func showTextField(atPoint point: NSPoint) {
+    textField.frame = NSRect(center: point, size: NSMakeSize(60, 40))
+    textField.isEditable = true
+    textField.isHidden = false
+    textField.becomeFirstResponder()
+  }
+  
+  func dismissTextField() {
+    textField.setFrameOrigin(NSPoint.zero)
+    textField.isEditable = false
+    textField.isHidden = true
+    textField.stringValue = ""
+    textField.resignFirstResponder()
+  }
+}
+
+// MARK: - NSTextFieldDelegate
+
 extension CanvasViewController: NSTextFieldDelegate {
   // Invoked when users press keys with predefined bindings in a cell of the specified control.
   func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {

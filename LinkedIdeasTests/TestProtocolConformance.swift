@@ -25,9 +25,11 @@ class TestLinkedIdeasDocument: LinkedIdeasDocument {
   func move(concept: Concept, toPoint: NSPoint) {}
 }
 
-class StateManagerTestDelegate {
-  var methodCalls = [String: Int]()
-  
+protocol MockMethodCalls: class {
+  var methodCalls: [String: Int] { get set }
+}
+
+extension MockMethodCalls {
   func registerCall(methodName: String) {
     if let currentCallsNumber = methodCalls[methodName] {
       methodCalls[methodName] = currentCallsNumber + 1
@@ -35,6 +37,10 @@ class StateManagerTestDelegate {
       methodCalls[methodName] = 1
     }
   }
+}
+
+class StateManagerTestDelegate: MockMethodCalls {
+  var methodCalls = [String: Int]()
 }
 
 extension StateManagerTestDelegate: NewStateManagerDelegate {

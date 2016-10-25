@@ -70,10 +70,7 @@ extension CanvasState: Equatable {
 
 struct StateManager {
   var currentState: CanvasState {
-    didSet {
-      delegate?.transitionSuccesfull()
-      print("Transitioned to \(currentState)")
-    }
+    didSet { print("Transitioned to \(currentState)") }
   }
   var delegate: NewStateManagerDelegate?
   
@@ -106,10 +103,13 @@ struct StateManager {
   public mutating func toCanvasWaiting(savingConceptWithText text: NSAttributedString) throws {
     let oldState = currentState
     
+    // TODO: this code can be re-written
+    
     switch currentState {
     case .newConcept(let point):
       currentState = .canvasWaiting
       delegate?.transitionedToCanvasWaitingSavingConcept(fromState: oldState, point: point, text: text)
+      delegate?.transitionSuccesfull()
     default:
       throw CanvasTransitionError.invalidTransition(
         message: "there is no transition from \(currentState) to 'canvasWaiting' saving concept"
@@ -136,6 +136,7 @@ struct StateManager {
     if let _ = validFromStates.index(where: { $0.isSimilar(to: oldState) }) {
       currentState = toState
       onSuccess(oldState)
+      delegate?.transitionSuccesfull()
     } else {
       throw CanvasTransitionError.invalidTransition(
         message: "there is no transition from \(oldState) to '\(toState)'"
