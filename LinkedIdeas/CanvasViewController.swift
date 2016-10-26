@@ -146,6 +146,14 @@ class CanvasViewController: NSViewController {
     guard results.count > 0 else { return nil }
     return results
   }
+  
+  func safeTransiton(transitionCall: () throws -> Void) {
+    do {
+      try transitionCall()
+    } catch let error {
+      Swift.print(error)
+    }
+  }
 }
 
 // MARK: - MouseEvents
@@ -156,12 +164,18 @@ extension CanvasViewController {
     
     if event.isSingleClick() {
       if let clickedConcepts = clickedConcepts(atPoint: point) {
-        try! stateManager.toSelectedElements(elements: clickedConcepts)
+        safeTransiton {
+          try stateManager.toSelectedElements(elements: clickedConcepts)
+        }
       } else {
-        try! stateManager.toCanvasWaiting()
+        safeTransiton {
+          try stateManager.toCanvasWaiting()
+        }
       }
     } else if event.isDoubleClick() {
-      try! stateManager.toNewConcept(atPoint: point)
+      safeTransiton {
+        try stateManager.toNewConcept(atPoint: point)
+      }
     }
   }
 }
@@ -202,18 +216,13 @@ extension CanvasViewController: NewStateManagerDelegate {
   func transitionedToNewConcept(fromState: CanvasState) {
     guard case .newConcept(let point) = currentState else { return }
     
+    commonTransitionBehavior(fromState)
+    
     showTextField(atPoint: point)
   }
   
   func transitionedToCanvasWaiting(fromState: CanvasState) {
-    switch fromState {
-    case .newConcept:
-      dismissTextField()
-    case .selectedElements:
-      unselectAllElements()
-    default:
-      break
-    }
+    commonTransitionBehavior(fromState)
   }
   
   func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString) {
@@ -222,9 +231,19 @@ extension CanvasViewController: NewStateManagerDelegate {
   }
   
   func transitionedToSelectedElements(fromState: CanvasState) {
+    commonTransitionBehavior(fromState)
+    
+    guard case .selectedElements(let elements) = currentState else { return }
+    
+    select(elements: elements)
+  }
+  
+  private func commonTransitionBehavior(_ fromState: CanvasState) {
     switch fromState {
     case .newConcept:
       dismissTextField()
+    case .selectedElements(let elements):
+      unselect(elements: elements)
     default:
       break
     }
@@ -234,9 +253,13 @@ extension CanvasViewController: NewStateManagerDelegate {
 // MARK: - Transition Actions
 
 extension CanvasViewController {
-  func unselectAllElements() {}
+  func select(elements: [Element]) {
+    for var element in elements { element.isSelected = true }
+  }
   
-  func cancelConceptCreation() {}
+  func unselect(elements: [Element]) {
+    for var element in elements { element.isSelected = false }
+  }
   
   func saveConcept(text: NSAttributedString, atPoint point: NSPoint) -> Bool {
     guard text.string != "" else { return false }
@@ -270,7 +293,9 @@ extension CanvasViewController: NSTextFieldDelegate {
   func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
     switch commandSelector {
     case #selector(NSResponder.insertNewline(_:)):
-      try! stateManager.toCanvasWaiting(savingConceptWithText: control.attributedStringValue)
+      safeTransiton {
+        try stateManager.toCanvasWaiting(savingConceptWithText: control.attributedStringValue)
+      }
       return true
     default:
       return false

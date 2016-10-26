@@ -91,6 +91,7 @@ struct StateManager {
   
   public mutating func toCanvasWaiting() throws {
     let possibleStates: [CanvasState] = [
+      .canvasWaiting,
       .newConcept(point: NSPoint.zero),
       .selectedElements(elements: [Element]())
     ]
