@@ -148,7 +148,7 @@ extension CanvasViewControllerTests {
   }
 }
 
-// MARK: - CanvasViewController: NewStateManagerDelegate Tests
+// MARK: - CanvasViewController: StateManagerDelegate Tests
 
 protocol CanvasStateController {
   
@@ -164,7 +164,7 @@ class CanvasViewControllerTransitionLogic: MockMethodCalls {
   }
 }
 
-extension CanvasViewControllerTransitionLogic: NewStateManagerDelegate {
+extension CanvasViewControllerTransitionLogic: StateManagerDelegate {
   func transitionSuccesfull() {}
   func transitionedToNewConcept(fromState: CanvasState) {}
   func transitionedToCanvasWaiting(fromState: CanvasState) {}

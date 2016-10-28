@@ -43,7 +43,7 @@ class StateManagerTestDelegate: MockMethodCalls {
   var methodCalls = [String: Int]()
 }
 
-extension StateManagerTestDelegate: NewStateManagerDelegate {
+extension StateManagerTestDelegate: StateManagerDelegate {
   func transitionSuccesfull() {}
   
   func transitionedToNewConcept(fromState: CanvasState) {

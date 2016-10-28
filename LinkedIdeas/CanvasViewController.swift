@@ -206,9 +206,9 @@ extension CanvasViewController: DocumentObserver {
   }
 }
 
-// MARK: - NewStateManagerDelegate
+// MARK: - StateManagerDelegate
 
-extension CanvasViewController: NewStateManagerDelegate {
+extension CanvasViewController: StateManagerDelegate {
   func transitionSuccesfull() {
     canvasView.needsDisplay = true
   }

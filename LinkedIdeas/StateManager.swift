@@ -13,24 +13,6 @@ enum CanvasTransitionError: Error {
 }
 
 protocol StateManagerDelegate {
-  // basic
-  func transitionSuccesfull()
-  
-  // elements
-  func unselectAllElements()
-  
-  // concepts
-  func cancelConceptCreation()
-  func saveConcept(text: NSAttributedString, atPoint: NSPoint) -> Bool
-  
-  // text field
-  func showTextField(atPoint: NSPoint)
-  func dismissTextField()
-}
-
-protocol NewStateManagerDelegate {
-//  var stateManager: StateManager { get }
-  
   func transitionSuccesfull()
   
   func transitionedToNewConcept(fromState: CanvasState)
@@ -72,7 +54,7 @@ struct StateManager {
   var currentState: CanvasState {
     didSet { print("Transitioned to \(currentState)") }
   }
-  var delegate: NewStateManagerDelegate?
+  var delegate: StateManagerDelegate?
   
   init(initialState: CanvasState) {
     currentState = initialState
