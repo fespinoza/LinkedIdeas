@@ -63,7 +63,7 @@ extension StateManagerTests {
   
   func testToCanvasWaitingFromSelectedElements() {
     let testElement = TestElement.sample
-    stateManager.currentState = .selectedElements(elements: [testElement])
+    stateManager.currentState = .selectedElement(element: testElement)
     
     executeTransition { try stateManager.toCanvasWaiting() }
     
@@ -87,16 +87,16 @@ extension StateManagerTests {
 }
 
 
-// MARK: StateManager - toSelectedElements Tests
+// MARK: StateManager - toSelectedElement Tests
 
 extension StateManagerTests {
   func testToSelectedElementsFromCanvasWaiting() {
     let testElement = TestElement.sample
 
     executeTransition {
-      try stateManager.toSelectedElements(elements: [testElement])
+      try stateManager.toSelectedElement(element: testElement)
     }
 
-    XCTAssertEqual(stateManager.currentState, .selectedElements(elements: [testElement]))
+    XCTAssertEqual(stateManager.currentState, .selectedElement(element: testElement))
   }
 }

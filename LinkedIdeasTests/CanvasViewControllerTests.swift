@@ -102,7 +102,7 @@ extension CanvasViewControllerTests {
     let concept = Concept(stringValue: "Foo bar", point: NSMakePoint(200, 300))
     document.concepts.append(concept)
     
-    canvasViewController.currentState = .selectedElements(elements: [concept])
+    canvasViewController.currentState = .selectedElement(element: concept)
     
     let clickedPoint = NSMakePoint(10, 20)
     let clickEvent = createMouseEvent(clickCount: 1, location: clickedPoint)
@@ -123,7 +123,7 @@ extension CanvasViewControllerTests {
     
     canvasViewController.mouseDown(with: clickEvent)
     
-    XCTAssertEqual(canvasViewController.currentState, .selectedElements(elements: [concept]))
+    XCTAssertEqual(canvasViewController.currentState, .selectedElement(element: concept))
   }
 }
 
@@ -187,7 +187,7 @@ extension CanvasViewControllerTransitionLogic: StateManagerDelegate {
 //    // From newConcept
 //    // - remove previous text field value
 //    // - show textfield to point
-//    // From selectedElements
+//    // From selectedElement
 //    // - unselectAll elements
 //    // - show textfield at point
 //  }

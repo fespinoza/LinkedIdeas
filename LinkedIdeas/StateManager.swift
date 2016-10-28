@@ -24,12 +24,12 @@ protocol StateManagerDelegate {
 enum CanvasState {
   case canvasWaiting
   case newConcept(point: NSPoint)
-  case selectedElements(elements: [Element])
+  case selectedElement(element: Element)
   
   func isSimilar(to state: CanvasState) -> Bool {
     switch (self, state) {
     case (.newConcept, .newConcept),
-         (.selectedElements, .selectedElements),
+         (.selectedElement, .selectedElement),
          (.canvasWaiting, .canvasWaiting):
       return true
     default:
@@ -38,13 +38,27 @@ enum CanvasState {
   }
 }
 
+struct EmptyElement: Element {
+  var identifier: String
+  var rect: NSRect
+  var isEditable: Bool
+  var isSelected: Bool
+  
+  static let example = EmptyElement(
+    identifier: "empty-element",
+    rect: NSMakeRect(0, 0, 30, 40),
+    isEditable: false,
+    isSelected: false
+  )
+}
+
 extension CanvasState: Equatable {
   static func == (lhs: CanvasState, rhs: CanvasState) -> Bool {
     switch (lhs, rhs) {
     case (.newConcept(let a), .newConcept(let b)) where a == b: return true
     case (.canvasWaiting, .canvasWaiting): return true
-    case (.selectedElements(let a), .selectedElements(let b)):
-      return a.map({ $0.identifier }) == b.map({ $0.identifier })
+    case (.selectedElement(let a), .selectedElement(let b)):
+      return a.identifier == b.identifier
     default: return false
     }
   }
@@ -75,7 +89,7 @@ struct StateManager {
     let possibleStates: [CanvasState] = [
       .canvasWaiting,
       .newConcept(point: NSPoint.zero),
-      .selectedElements(elements: [Element]())
+      .selectedElement(element: EmptyElement.example)
     ]
     
     try transition(fromPossibleStates: possibleStates, toState: .canvasWaiting) { (oldState) in
@@ -100,14 +114,14 @@ struct StateManager {
     }
   }
   
-  public mutating func toSelectedElements(elements: [Element]) throws {
+  public mutating func toSelectedElement(element: Element) throws {
     let possibleStates: [CanvasState] = [
       .canvasWaiting,
       .newConcept(point: NSPoint.zero),
-      .selectedElements(elements: [Element]())
+      .selectedElement(element: EmptyElement.example)
     ]
     
-    let state = CanvasState.selectedElements(elements: elements)
+    let state = CanvasState.selectedElement(element: element)
     try transition(fromPossibleStates: possibleStates, toState: state) { (oldState) in
       delegate?.transitionedToSelectedElements(fromState: oldState)
     }

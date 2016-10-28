@@ -165,7 +165,7 @@ extension CanvasViewController {
     if event.isSingleClick() {
       if let clickedConcepts = clickedConcepts(atPoint: point) {
         safeTransiton {
-          try stateManager.toSelectedElements(elements: clickedConcepts)
+          try stateManager.toSelectedElement(element: clickedConcepts.first!)
         }
       } else {
         safeTransiton {
@@ -233,17 +233,17 @@ extension CanvasViewController: StateManagerDelegate {
   func transitionedToSelectedElements(fromState: CanvasState) {
     commonTransitionBehavior(fromState)
     
-    guard case .selectedElements(let elements) = currentState else { return }
+    guard case .selectedElement(let element) = currentState else { return }
     
-    select(elements: elements)
+    select(elements: [element])
   }
   
   private func commonTransitionBehavior(_ fromState: CanvasState) {
     switch fromState {
     case .newConcept:
       dismissTextField()
-    case .selectedElements(let elements):
-      unselect(elements: elements)
+    case .selectedElement(let element):
+      unselect(elements: [element])
     default:
       break
     }
