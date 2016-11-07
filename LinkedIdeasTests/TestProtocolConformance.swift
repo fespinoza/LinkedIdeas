@@ -58,7 +58,19 @@ extension StateManagerTestDelegate: StateManagerDelegate {
     registerCall(methodName: #function)
   }
   
-  func transitionedToSelectedElements(fromState: CanvasState) {
+  func transitionedToSelectedElement(fromState: CanvasState) {
+    registerCall(methodName: #function)
+  }
+  
+  func transitionedToSelectedElementSavingChanges(fromState: CanvasState) {
+    registerCall(methodName: #function)
+  }
+  
+  func transitionedToEditingElement(fromState: CanvasState) {
+    registerCall(methodName: #function)
+  }
+  
+  func transitionedToSelectingElements(fromState: CanvasState) {
     registerCall(methodName: #function)
   }
 }

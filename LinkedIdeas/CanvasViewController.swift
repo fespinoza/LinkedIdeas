@@ -139,6 +139,14 @@ class CanvasViewController: NSViewController {
     return canvasView.convert(point, from: nil)
   }
   
+  func clickedSingleConcept(atPoint clickedPoint: NSPoint) -> Concept? {
+    if let concepts = clickedConcepts(atPoint: clickedPoint), concepts.count == 1 {
+      return concepts.first
+    }
+    
+    return nil
+  }
+  
   func clickedConcepts(atPoint clickedPoint: NSPoint) -> [Concept]? {
     let results = document.concepts.filter { (concept) -> Bool in
       return concept.rect.contains(clickedPoint)
@@ -173,8 +181,14 @@ extension CanvasViewController {
         }
       }
     } else if event.isDoubleClick() {
-      safeTransiton {
-        try stateManager.toNewConcept(atPoint: point)
+      if let concept = clickedSingleConcept(atPoint: point) {
+        if !concept.isEditable {
+          safeTransiton { try stateManager.toEditingElement(element: concept) }
+        } else {
+          safeTransiton { try stateManager.toSelectedElement(element: concept) }
+        }
+      } else {
+        safeTransiton { try stateManager.toNewConcept(atPoint: point) }
       }
     }
   }
@@ -230,7 +244,7 @@ extension CanvasViewController: StateManagerDelegate {
     let _ = saveConcept(text: text, atPoint: point)
   }
   
-  func transitionedToSelectedElements(fromState: CanvasState) {
+  func transitionedToSelectedElement(fromState: CanvasState) {
     commonTransitionBehavior(fromState)
     
     guard case .selectedElement(let element) = currentState else { return }
@@ -238,9 +252,34 @@ extension CanvasViewController: StateManagerDelegate {
     select(elements: [element])
   }
   
+  func transitionedToSelectedElementSavingChanges(fromState: CanvasState) {
+    guard case .selectedElement(let element) = currentState else { return }
+    let concept: Concept = element as! Concept
+    
+    concept.attributedStringValue = textField.attributedStringValue
+    dismissTextField()
+    
+    transitionedToSelectedElement(fromState: fromState)
+  }
+  
+  func transitionedToEditingElement(fromState: CanvasState) {
+    commonTransitionBehavior(fromState)
+    
+    guard case .editingElement(let element) = currentState else { return }
+    let concept: Concept = element as! Concept
+    concept.isEditable = true
+    
+    showTextField(atPoint: concept.point, text: concept.attributedStringValue)
+  }
+  
+  func transitionedToSelectingElements(fromState: CanvasState) {}
+  
   private func commonTransitionBehavior(_ fromState: CanvasState) {
     switch fromState {
     case .newConcept:
+      dismissTextField()
+    case .editingElement(var element):
+      element.isEditable = false
       dismissTextField()
     case .selectedElement(let element):
       unselect(elements: [element])
@@ -270,10 +309,11 @@ extension CanvasViewController {
     return true
   }
   
-  func showTextField(atPoint point: NSPoint) {
+  func showTextField(atPoint point: NSPoint, text: NSAttributedString? = nil) {
     textField.frame = NSRect(center: point, size: NSMakeSize(60, 40))
     textField.isEditable = true
     textField.isHidden = false
+    if let text = text { textField.attributedStringValue = text }
     textField.becomeFirstResponder()
   }
   
@@ -293,8 +333,14 @@ extension CanvasViewController: NSTextFieldDelegate {
   func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
     switch commandSelector {
     case #selector(NSResponder.insertNewline(_:)):
-      safeTransiton {
-        try stateManager.toCanvasWaiting(savingConceptWithText: control.attributedStringValue)
+      if case .editingElement(let element) = currentState {
+        safeTransiton {
+          try stateManager.toSelectedElementSavingChanges(element: element)
+        }
+      } else {
+        safeTransiton {
+          try stateManager.toCanvasWaiting(savingConceptWithText: control.attributedStringValue)
+        }
       }
       return true
     default:

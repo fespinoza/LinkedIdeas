@@ -150,27 +150,28 @@ extension CanvasViewControllerTests {
 
 // MARK: - CanvasViewController: StateManagerDelegate Tests
 
-protocol CanvasStateController {
-  
-}
-
-class CanvasViewControllerTransitionLogic: MockMethodCalls {
-  let controller: CanvasStateController
-  var methodCalls: [String : Int]
-  
-  init(controller: CanvasStateController) {
-    self.controller = controller
-    self.methodCalls = [String : Int]()
-  }
-}
-
-extension CanvasViewControllerTransitionLogic: StateManagerDelegate {
-  func transitionSuccesfull() {}
-  func transitionedToNewConcept(fromState: CanvasState) {}
-  func transitionedToCanvasWaiting(fromState: CanvasState) {}
-  func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString) {}
-  func transitionedToSelectedElements(fromState: CanvasState) {}
-}
+//protocol CanvasStateController {
+//  
+//}
+//
+//class CanvasViewControllerTransitionLogic: MockMethodCalls {
+//  let controller: CanvasStateController
+//  var methodCalls: [String : Int]
+//  
+//  init(controller: CanvasStateController) {
+//    self.controller = controller
+//    self.methodCalls = [String : Int]()
+//  }
+//}
+//
+//extension CanvasViewControllerTransitionLogic: StateManagerDelegate {
+//  func transitionSuccesfull() {}
+//  func transitionedToNewConcept(fromState: CanvasState) {}
+//  func transitionedToCanvasWaiting(fromState: CanvasState) {}
+//  func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString) {}
+//  func transitionedToSelectedElements(fromState: CanvasState) {}
+//  func transitionedToSelectedElementsSavingChanges(fromState: CanvasState) {}
+//}
 
 //extension CanvasViewControllerTests {
 //  func testTransitionedToNewConceptFromCanvasWaiting() {

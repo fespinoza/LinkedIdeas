@@ -99,14 +99,15 @@ class Document: NSDocument {
       return
     }
     
-    // if let keyPath = keyPath, let object = object, let change = change {
-    if let object = object, let change = change {
+    if let keyPath = keyPath, let object = object, let change = change {
       var oldValue: Any? = change[NSKeyValueChangeKey.oldKey]
       if oldValue is NSNull {
         oldValue = nil
       }
       
-//      (undoManager?.prepare(withInvocationTarget: object) as! NSObject).setValue(oldValue, forKey: keyPath)
+      undoManager?.registerUndo(withTarget: (object as! Concept), handler: { (object) in
+        object.setValue(oldValue, forKey: keyPath)
+      })
       
       if let concept = object as? Concept { observer?.documentChanged(withElement: concept as Element) }
       if let link = object as? Link { observer?.documentChanged(withElement: link as Element) }
@@ -156,9 +157,9 @@ extension Document: LinkedIdeasDocument {
     concept.point = toPoint
     observer?.documentChanged(withElement: concept as Element)
     
-    (undoManager?.prepare(withInvocationTarget: self) as AnyObject).move(
-      concept: concept, toPoint: originalPoint
-    )
+    undoManager?.registerUndo(withTarget: self, handler: { (object) in
+      object.move(concept: concept, toPoint: originalPoint)
+    })
   }
   
 }

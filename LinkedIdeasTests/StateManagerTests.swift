@@ -12,6 +12,7 @@ import XCTest
 class StateManagerTests: XCTestCase {
   var stateManager: StateManager!
   var testDelegate: StateManagerTestDelegate!
+  let testElement = TestElement.sample
 
   override func setUp() {
     super.setUp()
@@ -20,7 +21,7 @@ class StateManagerTests: XCTestCase {
     testDelegate = StateManagerTestDelegate()
     stateManager.delegate = testDelegate
   }
-  
+
   func executeTransition(block: () throws -> Void) {
     do {
       try block()
@@ -35,7 +36,7 @@ class StateManagerTests: XCTestCase {
 extension StateManagerTests {
   func testToNewConceptFromCanvasWaitingTransition() {
     executeTransition { try stateManager.toNewConcept(atPoint: NSPoint.zero) }
-    
+
     XCTAssertEqual(stateManager.currentState, .newConcept(point: NSPoint.zero))
   }
 
@@ -45,7 +46,7 @@ extension StateManagerTests {
     executeTransition {
       try stateManager.toNewConcept(atPoint: NSPoint.zero)
     }
-    
+
     XCTAssertEqual(stateManager.currentState, .newConcept(point: NSPoint.zero))
   }
 }
@@ -55,18 +56,18 @@ extension StateManagerTests {
 extension StateManagerTests {
   func testToCanvasWaitingFromNewConcept() {
     stateManager.currentState = .newConcept(point: NSMakePoint(300, 400))
-    
+
     executeTransition { try stateManager.toCanvasWaiting() }
-    
+
     XCTAssertEqual(stateManager.currentState, .canvasWaiting)
   }
-  
+
   func testToCanvasWaitingFromSelectedElements() {
     let testElement = TestElement.sample
     stateManager.currentState = .selectedElement(element: testElement)
-    
+
     executeTransition { try stateManager.toCanvasWaiting() }
-    
+
     XCTAssertEqual(stateManager.currentState, .canvasWaiting)
   }
 }
@@ -90,13 +91,90 @@ extension StateManagerTests {
 // MARK: StateManager - toSelectedElement Tests
 
 extension StateManagerTests {
-  func testToSelectedElementsFromCanvasWaiting() {
-    let testElement = TestElement.sample
+  func testToSelectedElementFromCanvasWaiting() {
+    executeTransition {
+      try stateManager.toSelectedElement(element: testElement)
+    }
+
+    XCTAssertEqual(
+      stateManager.currentState,
+      .selectedElement(element: testElement)
+    )
+  }
+
+  func testToSelectedElementFromEditingElement() {
+    stateManager.currentState = .editingElement(element: testElement)
 
     executeTransition {
       try stateManager.toSelectedElement(element: testElement)
     }
 
     XCTAssertEqual(stateManager.currentState, .selectedElement(element: testElement))
+  }
+}
+
+// MARK: StateManager - toSelectedElementSavingChanges
+
+extension StateManagerTests {
+  func testToSelectedElementSavingChangesFromEditingElement() {
+    stateManager.currentState = .editingElement(element: testElement)
+
+    executeTransition {
+      try stateManager.toSelectedElementSavingChanges(element: testElement)
+    }
+
+    XCTAssertEqual(stateManager.currentState, .selectedElement(element: testElement))
+  }
+}
+
+// MARK: StateManager - toEditingElement
+
+extension StateManagerTests {
+  func testToEditingElementFromSelectedElement() {
+    stateManager.currentState = .selectedElement(element: testElement)
+
+    executeTransition {
+      try stateManager.toEditingElement(element: testElement)
+    }
+
+    XCTAssertEqual(
+      stateManager.currentState,
+      .editingElement(element: testElement)
+    )
+  }
+}
+
+// MARK: StateManager - toSelectingElements
+
+extension StateManagerTests {
+  func testToSelectingElementsFromCanvasWaiting() {
+    let initialPoint = NSPoint.zero
+    let endPoint = NSPoint(x: 400, y: 300)
+
+    executeTransition {
+      try stateManager.toSelectingElements(from: initialPoint, to: endPoint)
+    }
+
+    XCTAssertEqual(
+      stateManager.currentState,
+      .selectingElements(begin: initialPoint, end: endPoint)
+    )
+  }
+
+  func testToSelectingElementsFromSelectingElements() {
+    let initialPoint = NSPoint.zero
+    let endPoint = NSPoint(x: 400, y: 300)
+    let newEndPoint = NSPoint(x: 300, y: 200)
+
+    stateManager.currentState = .selectingElements(begin: initialPoint, end: endPoint)
+    
+    executeTransition {
+      try stateManager.toSelectingElements(from: initialPoint, to: newEndPoint)
+    }
+
+    XCTAssertEqual(
+      stateManager.currentState,
+      .selectingElements(begin: initialPoint, end: newEndPoint)
+    )
   }
 }
