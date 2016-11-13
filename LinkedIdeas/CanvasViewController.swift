@@ -194,6 +194,9 @@ extension CanvasViewController {
   }
 }
 
+// TODO: handle drag event to move element
+// TODO: handle delete key onSelectedElement onSelectedElementS
+
 // MARK: - CanvasViewDataSource
 
 extension CanvasViewController: CanvasViewDataSource {
@@ -272,7 +275,11 @@ extension CanvasViewController: StateManagerDelegate {
     showTextField(atPoint: concept.point, text: concept.attributedStringValue)
   }
   
-  func transitionedToSelectingElements(fromState: CanvasState) {}
+  func transitionedToSelectingElements(fromState: CanvasState) {
+    commonTransitionBehavior(fromState)
+    
+    // TODO: render the selection rectangle
+  }
   
   private func commonTransitionBehavior(_ fromState: CanvasState) {
     switch fromState {
@@ -327,6 +334,8 @@ extension CanvasViewController {
 }
 
 // MARK: - NSTextFieldDelegate
+
+// TODO: handle escape when editing concept
 
 extension CanvasViewController: NSTextFieldDelegate {
   // Invoked when users press keys with predefined bindings in a cell of the specified control.
