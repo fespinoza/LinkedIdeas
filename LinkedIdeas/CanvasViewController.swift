@@ -341,6 +341,11 @@ extension CanvasViewController: NSTextFieldDelegate {
   // Invoked when users press keys with predefined bindings in a cell of the specified control.
   func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
     switch commandSelector {
+    case #selector(NSResponder.cancelOperation(_:)):
+      safeTransiton {
+        try stateManager.toCanvasWaiting()
+      }
+      return true
     case #selector(NSResponder.insertNewline(_:)):
       if case .editingElement(let element) = currentState {
         safeTransiton {
