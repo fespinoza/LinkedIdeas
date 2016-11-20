@@ -178,3 +178,34 @@ extension StateManagerTests {
     )
   }
 }
+
+// MARK: StateManager - toMovingElements
+
+//extension StateManagerTests {
+//  func testToMovingElementsFromSelectedElement() {
+//    stateManager.currentState = .selectedElement(element: testElement)
+//    
+//    executeTransition {
+//      try stateManager.toMovingElements(elements: [testElement])
+//    }
+//    
+//    XCTAssertEqual(
+//      stateManager.currentState,
+//      .movingElements(elements: [testElement])
+//    )
+//  }
+//  
+//  func testToMovingElementsFromSelectedElements() {
+//    stateManager.currentState = .multipleSelectedElements(elements: [testElement])
+//    
+//    executeTransition {
+//      try stateManager.toMovingElements()
+//    }
+//    
+//    XCTAssertEqual(
+//      stateManager.currentState,
+//      .movingElements(elements: [testElement])
+//    )
+//  }
+//}
+//

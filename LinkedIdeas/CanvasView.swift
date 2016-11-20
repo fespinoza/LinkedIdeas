@@ -19,6 +19,16 @@ protocol CanvasViewDataSource {
 class CanvasView: NSView {
   
   var dataSource: CanvasViewDataSource?
+  var selectFromPoint: NSPoint? = nil
+  var selectToPoint: NSPoint? = nil
+  var selectionRect: NSRect? {
+    if let selectFromPoint = selectFromPoint, let selectToPoint = selectToPoint {
+      return NSRect(p1: selectFromPoint, p2: selectToPoint)
+    } else {
+      return nil
+    }
+  }
+
   
   override func draw(_ dirtyRect: NSRect) {
     super.draw(dirtyRect)
@@ -27,10 +37,27 @@ class CanvasView: NSView {
     if let dataSource = dataSource {
       for element in dataSource.drawableElements { element.draw() }
     }
+    
+    drawSelectionRect()
   }
   
   func drawBackground() {
     NSColor.white.set()
     NSRectFill(bounds)
+  }
+  
+  func drawSelectionRect() {
+    guard let selectionRect = selectionRect else { return }
+    
+    let borderColor = NSColor(red: 0, green: 0, blue: 1, alpha: 1)
+    let backgroundColor = NSColor(red: 0, green: 0, blue: 1, alpha: 0.5)
+    
+    let bezierPath = NSBezierPath(rect: selectionRect)
+    
+    borderColor.set()
+    bezierPath.stroke()
+    
+    backgroundColor.set()
+    bezierPath.fill()
   }
 }

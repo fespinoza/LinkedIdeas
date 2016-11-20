@@ -22,6 +22,7 @@ protocol StateManagerDelegate {
   func transitionedToSelectedElementSavingChanges(fromState: CanvasState)
   func transitionedToEditingElement(fromState: CanvasState)
   func transitionedToSelectingElements(fromState: CanvasState)
+  func transitionedToMultipleSelectedElements(fromState: CanvasState)
 }
 
 enum CanvasState {
@@ -32,7 +33,7 @@ enum CanvasState {
   case multipleSelectedElements(elements: [Element])
   case creatingLink(fromConcept: Concept)
   case selectingElements(begin: NSPoint, end: NSPoint)
-  case movingElements
+  case movingElements(elements: [Element])
 
   func isSimilar(to state: CanvasState) -> Bool {
     switch (self, state) {
@@ -80,8 +81,8 @@ extension CanvasState: Equatable {
       return a == b
     case (.selectingElements(let aStart, let aEnd), .selectingElements(let bStart, let bEnd)):
       return aStart == bStart && aEnd == bEnd
-    case (.movingElements, .movingElements):
-      return true
+    case (.movingElements(let a), .movingElements(let b)):
+      return a.map { $0.identifier } == b.map { $0.identifier }
     default: return false
     }
   }
@@ -113,7 +114,8 @@ struct StateManager {
       .canvasWaiting,
       .newConcept(point: NSPoint.zero),
       .editingElement(element: EmptyElement.example),
-      .selectedElement(element: EmptyElement.example)
+      .selectedElement(element: EmptyElement.example),
+      .multipleSelectedElements(elements: [Element]()),
     ]
 
     try transition(fromPossibleStates: possibleStates, toState: .canvasWaiting) { (oldState) in
@@ -175,6 +177,18 @@ struct StateManager {
     }
   }
   
+  public mutating func toMultipleSelectedElements(elements: [Element]) throws {
+    let possibleStates: [CanvasState] = [
+      .canvasWaiting,
+      .multipleSelectedElements(elements: [Element]())
+    ]
+    
+    let state = CanvasState.multipleSelectedElements(elements: elements)
+    try transition(fromPossibleStates: possibleStates, toState: state) { (oldState) in
+      delegate?.transitionedToMultipleSelectedElements(fromState: oldState)
+    }
+  }
+  
   public mutating func toEditingElement(element: Element) throws {
     let possibleStates: [CanvasState] = [
       .selectedElement(element: EmptyElement.example),
@@ -185,7 +199,7 @@ struct StateManager {
       delegate?.transitionedToEditingElement(fromState: oldState)
     }
   }
-
+  
   private mutating func transition(fromPossibleStates validFromStates: [CanvasState], toState: CanvasState, onSuccess: (CanvasState) -> Void) throws {
     let oldState = currentState
 

@@ -43,6 +43,27 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
   static let pointKey = "pointKey"
   static let identifierKey = "identifierKey"
   static let isEditableKey = "isEditableKey"
+  
+  // Moving
+  var beforeMovingPoint: NSPoint? = nil
+//  
+//  func prepareToMove() {
+//    beforeMovingPoint = point
+//  }
+//  
+//  func didMoveBegan() -> Bool {
+//    return beforeMovingPoint != nil
+//  }
+//  
+//  func move(toPoint: NSPoint, finish: Bool = false) {
+//    if !didMoveBegan() { prepareToMove() }
+//    point = toPoint
+//    if finish { endMove() }
+//  }
+//  
+//  func endMove() {
+//    beforeMovingPoint = nil
+//  }
 
   override var description: String {
     return "[\(identifier)] '\(stringValue)' \(isEditable) \(point)"

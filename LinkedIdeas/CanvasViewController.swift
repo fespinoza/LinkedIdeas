@@ -87,6 +87,9 @@ class CanvasViewController: NSViewController {
   @IBOutlet weak var canvasView: CanvasView!
   @IBOutlet weak var scrollView: NSScrollView!
   
+  var didDragStart = false
+  var dragStartPoint: NSPoint? = nil
+  
   var stateManager = StateManager(initialState: .canvasWaiting)
   var currentState: CanvasState {
     get {
@@ -155,6 +158,21 @@ class CanvasViewController: NSViewController {
     return results
   }
   
+  
+  /// matchedConcepts: custom description
+  ///
+  /// - Parameter rect: the area to match
+  /// - Returns:
+  ///   - nil if there were no concepts intersecting the given area
+  ///   - [Concept] if there were concepts intersecting the given area
+  func matchedConcepts(inRect rect: NSRect) -> [Concept]? {
+    let results = document.concepts.filter { (concept) -> Bool in
+      return rect.intersects(concept.rect)
+    }
+    guard results.count > 0 else { return nil }
+    return results
+  }
+  
   func safeTransiton(transitionCall: () throws -> Void) {
     do {
       try transitionCall()
@@ -192,10 +210,105 @@ extension CanvasViewController {
       }
     }
   }
+  
+  override func mouseDragged(with event: NSEvent) {
+    let point = convertToCanvasCoordinates(point: event.locationInWindow)
+    
+    switch currentState {
+    case .selectedElement(let element):
+      // dragging a single selected concept
+      guard let concept = element as? Concept else { return }
+      
+      if didDragStart == false { didDragStart = true }
+      
+      concept.point = point
+      canvasView.needsDisplay = true
+    case .multipleSelectedElements(let elements):
+      guard let concepts = elements as? [Concept] else { return }
+      
+      if let oldDragStart = dragStartPoint, didDragStart {
+        let deltaX = point.x - oldDragStart.x
+        let deltaY = point.y - oldDragStart.y
+        
+        dragStartPoint = point
+        
+        for concept in concepts {
+          concept.point = concept.point.translate(deltaX: deltaX, deltaY: deltaY)
+        }
+      } else {
+        for concept in concepts { concept.beforeMovingPoint = concept.point }
+        Swift.print("drag start at \(point)")
+        didDragStart = true
+        dragStartPoint = point
+      }
+      
+      canvasView.needsDisplay = true
+    case .canvasWaiting:
+      // start selecting elements
+      if didDragStart == false {
+        didDragStart = true
+        canvasView.selectFromPoint = point
+      } else {
+        canvasView.selectToPoint = point
+      }
+      canvasView.needsDisplay = true
+    default:
+      return
+    }
+  }
+  
+  override func mouseUp(with event: NSEvent) {
+    let point = convertToCanvasCoordinates(point: event.locationInWindow)
+    
+    switch currentState {
+    case .selectedElement(let element):
+      // drag end a single selected concept
+      guard let concept = element as? Concept else { return }
+      
+      guard didDragStart else { return }
+      
+      Swift.print("Drag end")
+      document.move(concept: concept, toPoint: point)
+      
+      didDragStart = false
+    case .multipleSelectedElements(let elements):
+      Swift.print("multiple drag ended")
+      
+      guard let concepts = elements as? [Concept] else { return }
+      
+      guard let oldDragStart = dragStartPoint, didDragStart else { return }
+    
+      Swift.print("Multiple Drag end")
+      for concept in concepts {
+        let toPoint = concept.point
+        let deltaX = point.x - oldDragStart.x
+        let deltaY = point.y - oldDragStart.y
+        concept.point = concept.beforeMovingPoint!
+        document.move(concept: concept, toPoint: toPoint.translate(deltaX: deltaX, deltaY: deltaY))
+        concept.beforeMovingPoint = nil
+      }
+      
+      dragStartPoint = nil
+      didDragStart = false
+      
+    case .canvasWaiting:
+      guard let selectionRect = canvasView.selectionRect else { return }
+      // select concepts that intersect with the selection rect
+      if let concepts = matchedConcepts(inRect: selectionRect) {
+        safeTransiton {
+          try stateManager.toMultipleSelectedElements(elements: concepts)
+        }
+      }
+      
+      canvasView.selectFromPoint = nil
+      canvasView.selectToPoint = nil
+      canvasView.needsDisplay = true
+      didDragStart = false
+    default:
+      return
+    }
+  }
 }
-
-// TODO: handle drag event to move element
-// TODO: handle delete key onSelectedElement onSelectedElementS
 
 // MARK: - CanvasViewDataSource
 
@@ -255,6 +368,14 @@ extension CanvasViewController: StateManagerDelegate {
     select(elements: [element])
   }
   
+  func transitionedToMultipleSelectedElements(fromState: CanvasState) {
+    commonTransitionBehavior(fromState)
+    
+    guard case .multipleSelectedElements(let elements) = currentState else { return }
+    
+    select(elements: elements)
+  }
+  
   func transitionedToSelectedElementSavingChanges(fromState: CanvasState) {
     guard case .selectedElement(let element) = currentState else { return }
     let concept: Concept = element as! Concept
@@ -290,6 +411,8 @@ extension CanvasViewController: StateManagerDelegate {
       dismissTextField()
     case .selectedElement(let element):
       unselect(elements: [element])
+    case .multipleSelectedElements(let elements):
+      unselect(elements: elements)
     default:
       break
     }
