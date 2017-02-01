@@ -158,7 +158,6 @@ class CanvasViewController: NSViewController {
     return results
   }
   
-  
   /// matchedConcepts: custom description
   ///
   /// - Parameter rect: the area to match
@@ -250,6 +249,26 @@ extension CanvasViewController {
         canvasView.selectFromPoint = point
       } else {
         canvasView.selectToPoint = point
+        // TODO: here i can "hover" the concepts
+        
+        guard let selectionRect = canvasView.selectionRect else { return }
+        
+        Swift.print("selection rect \(selectionRect)")
+        
+        let hoveringConcepts = matchedConcepts(inRect: selectionRect)
+          
+          for concept in document.concepts {
+            if let _ = hoveringConcepts?.index(of: concept) {
+              // concept hovering
+              concept.isSelected = true
+              Swift.print("hovering on \(concept)")
+            } else {
+              // concept not hovering
+              Swift.print("not hovering on \(concept)")
+              concept.isSelected = false
+            }
+          }
+        
       }
       canvasView.needsDisplay = true
     default:
@@ -271,6 +290,7 @@ extension CanvasViewController {
       document.move(concept: concept, toPoint: point)
       
       didDragStart = false
+      
     case .multipleSelectedElements(let elements):
       Swift.print("multiple drag ended")
       
@@ -292,18 +312,23 @@ extension CanvasViewController {
       didDragStart = false
       
     case .canvasWaiting:
+      
       guard let selectionRect = canvasView.selectionRect else { return }
       // select concepts that intersect with the selection rect
       if let concepts = matchedConcepts(inRect: selectionRect) {
         safeTransiton {
           try stateManager.toMultipleSelectedElements(elements: concepts)
         }
+      } else {
+        for concept in document.concepts { concept.isSelected = false }
       }
       
+      didDragStart = false
       canvasView.selectFromPoint = nil
       canvasView.selectToPoint = nil
+      
       canvasView.needsDisplay = true
-      didDragStart = false
+      
     default:
       return
     }
