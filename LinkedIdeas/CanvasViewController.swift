@@ -249,26 +249,15 @@ extension CanvasViewController {
         canvasView.selectFromPoint = point
       } else {
         canvasView.selectToPoint = point
-        // TODO: here i can "hover" the concepts
         
+        // Handle hover of concepts
         guard let selectionRect = canvasView.selectionRect else { return }
-        
-        Swift.print("selection rect \(selectionRect)")
         
         let hoveringConcepts = matchedConcepts(inRect: selectionRect)
           
-          for concept in document.concepts {
-            if let _ = hoveringConcepts?.index(of: concept) {
-              // concept hovering
-              concept.isSelected = true
-              Swift.print("hovering on \(concept)")
-            } else {
-              // concept not hovering
-              Swift.print("not hovering on \(concept)")
-              concept.isSelected = false
-            }
-          }
-        
+        for concept in document.concepts {
+          concept.isSelected = hoveringConcepts?.index(of: concept) != nil
+        }
       }
       canvasView.needsDisplay = true
     default:
