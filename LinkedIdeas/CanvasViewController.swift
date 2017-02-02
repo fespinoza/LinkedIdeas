@@ -189,8 +189,10 @@ extension CanvasViewController {
     
     if event.isSingleClick() {
       if let clickedConcepts = clickedConcepts(atPoint: point) {
-        safeTransiton {
-          try stateManager.toSelectedElement(element: clickedConcepts.first!)
+        if (!currentState.isSimilar(to: .multipleSelectedElements(elements: [Element]()))) {
+          safeTransiton {
+            try stateManager.toSelectedElement(element: clickedConcepts.first!)
+          }
         }
       } else {
         safeTransiton {
