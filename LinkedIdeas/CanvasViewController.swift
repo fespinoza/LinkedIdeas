@@ -88,6 +88,8 @@ class CanvasViewController: NSViewController {
   @IBOutlet weak var scrollView: NSScrollView!
   
   var didDragStart = false
+  // to register the beginning of the drag
+  // for undo purposes
   var dragStartPoint: NSPoint? = nil
   
   var stateManager = StateManager(initialState: .canvasWaiting)
@@ -238,7 +240,7 @@ extension CanvasViewController {
         }
       } else {
         for concept in concepts { concept.beforeMovingPoint = concept.point }
-        Swift.print("drag start at \(point)")
+        
         didDragStart = true
         dragStartPoint = point
       }
@@ -277,19 +279,12 @@ extension CanvasViewController {
       
       guard didDragStart else { return }
       
-      Swift.print("Drag end")
       document.move(concept: concept, toPoint: point)
-      
-      didDragStart = false
-      
     case .multipleSelectedElements(let elements):
-      Swift.print("multiple drag ended")
-      
       guard let concepts = elements as? [Concept] else { return }
       
       guard let oldDragStart = dragStartPoint, didDragStart else { return }
     
-      Swift.print("Multiple Drag end")
       for concept in concepts {
         let toPoint = concept.point
         let deltaX = point.x - oldDragStart.x
@@ -298,12 +293,7 @@ extension CanvasViewController {
         document.move(concept: concept, toPoint: toPoint.translate(deltaX: deltaX, deltaY: deltaY))
         concept.beforeMovingPoint = nil
       }
-      
-      dragStartPoint = nil
-      didDragStart = false
-      
     case .canvasWaiting:
-      
       guard let selectionRect = canvasView.selectionRect else { return }
       // select concepts that intersect with the selection rect
       if let concepts = matchedConcepts(inRect: selectionRect) {
@@ -313,16 +303,16 @@ extension CanvasViewController {
       } else {
         for concept in document.concepts { concept.isSelected = false }
       }
-      
-      didDragStart = false
-      canvasView.selectFromPoint = nil
-      canvasView.selectToPoint = nil
-      
-      canvasView.needsDisplay = true
-      
     default:
       return
     }
+    
+    didDragStart = false
+    dragStartPoint = nil
+    canvasView.selectFromPoint = nil
+    canvasView.selectToPoint = nil
+    
+    canvasView.needsDisplay = true
   }
 }
 
@@ -410,12 +400,6 @@ extension CanvasViewController: StateManagerDelegate {
     concept.isEditable = true
     
     showTextField(atPoint: concept.point, text: concept.attributedStringValue)
-  }
-  
-  func transitionedToSelectingElements(fromState: CanvasState) {
-    commonTransitionBehavior(fromState)
-    
-    // TODO: render the selection rectangle
   }
   
   private func commonTransitionBehavior(_ fromState: CanvasState) {
