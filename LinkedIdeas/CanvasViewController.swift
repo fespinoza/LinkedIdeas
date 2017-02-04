@@ -181,6 +181,10 @@ class CanvasViewController: NSViewController {
       Swift.print(error)
     }
   }
+  
+  func reRenderCanvasView() {
+    canvasView.needsDisplay = true
+  }
 }
 
 // MARK: - MouseEvents
@@ -217,56 +221,26 @@ extension CanvasViewController {
   override func mouseDragged(with event: NSEvent) {
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
     
+    // Decision: which actions to trigger
+    // given the context and events that happen
+    
     switch currentState {
     case .selectedElement(let element):
-      // dragging a single selected concept
       guard let concept = element as? Concept else { return }
+      drag(concept: concept, toPoint: point)
       
-      if didDragStart == false { didDragStart = true }
-      
-      concept.point = point
-      canvasView.needsDisplay = true
     case .multipleSelectedElements(let elements):
       guard let concepts = elements as? [Concept] else { return }
+      drag(concepts: concepts, toPoint: point)
       
-      if let oldDragStart = dragStartPoint, didDragStart {
-        let deltaX = point.x - oldDragStart.x
-        let deltaY = point.y - oldDragStart.y
-        
-        dragStartPoint = point
-        
-        for concept in concepts {
-          concept.point = concept.point.translate(deltaX: deltaX, deltaY: deltaY)
-        }
-      } else {
-        for concept in concepts { concept.beforeMovingPoint = concept.point }
-        
-        didDragStart = true
-        dragStartPoint = point
-      }
-      
-      canvasView.needsDisplay = true
     case .canvasWaiting:
-      // start selecting elements
-      if didDragStart == false {
-        didDragStart = true
-        canvasView.selectFromPoint = point
-      } else {
-        canvasView.selectToPoint = point
-        
-        // Handle hover of concepts
-        guard let selectionRect = canvasView.selectionRect else { return }
-        
-        let hoveringConcepts = matchedConcepts(inRect: selectionRect)
-          
-        for concept in document.concepts {
-          concept.isSelected = hoveringConcepts?.index(of: concept) != nil
-        }
-      }
-      canvasView.needsDisplay = true
+      hoverConcepts(toPoint: point)
+      
     default:
       return
     }
+    
+    reRenderCanvasView()
   }
   
   override func mouseUp(with event: NSEvent) {
@@ -274,45 +248,21 @@ extension CanvasViewController {
     
     switch currentState {
     case .selectedElement(let element):
-      // drag end a single selected concept
-      guard let concept = element as? Concept else { return }
+      guard let concept = element as? Concept, didDragStart else { return }
+      endDrag(forConcept: concept, toPoint: point)
       
-      guard didDragStart else { return }
-      
-      document.move(concept: concept, toPoint: point)
     case .multipleSelectedElements(let elements):
       guard let concepts = elements as? [Concept] else { return }
+      endDrag(forConcepts: concepts, toPoint: point)
       
-      guard let oldDragStart = dragStartPoint, didDragStart else { return }
-    
-      for concept in concepts {
-        let toPoint = concept.point
-        let deltaX = point.x - oldDragStart.x
-        let deltaY = point.y - oldDragStart.y
-        concept.point = concept.beforeMovingPoint!
-        document.move(concept: concept, toPoint: toPoint.translate(deltaX: deltaX, deltaY: deltaY))
-        concept.beforeMovingPoint = nil
-      }
     case .canvasWaiting:
-      guard let selectionRect = canvasView.selectionRect else { return }
-      // select concepts that intersect with the selection rect
-      if let concepts = matchedConcepts(inRect: selectionRect) {
-        safeTransiton {
-          try stateManager.toMultipleSelectedElements(elements: concepts)
-        }
-      } else {
-        for concept in document.concepts { concept.isSelected = false }
-      }
+      selectHoveredConcepts()
+      
     default:
       return
     }
     
-    didDragStart = false
-    dragStartPoint = nil
-    canvasView.selectFromPoint = nil
-    canvasView.selectToPoint = nil
-    
-    canvasView.needsDisplay = true
+    resetDraggingConcepts()
   }
 }
 
@@ -338,7 +288,7 @@ extension CanvasViewController: CanvasViewDataSource {
 
 extension CanvasViewController: DocumentObserver {
   func documentChanged(withElement element: Element) {
-    canvasView.needsDisplay = true
+    reRenderCanvasView()
   }
 }
 
@@ -346,7 +296,7 @@ extension CanvasViewController: DocumentObserver {
 
 extension CanvasViewController: StateManagerDelegate {
   func transitionSuccesfull() {
-    canvasView.needsDisplay = true
+    reRenderCanvasView()
   }
   
   func transitionedToNewConcept(fromState: CanvasState) {
