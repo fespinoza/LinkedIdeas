@@ -143,38 +143,3 @@ extension StateManagerTests {
     )
   }
 }
-
-// MARK: StateManager - toSelectingElements
-
-extension StateManagerTests {
-  func testToSelectingElementsFromCanvasWaiting() {
-    let initialPoint = NSPoint.zero
-    let endPoint = NSPoint(x: 400, y: 300)
-
-    executeTransition {
-      try stateManager.toSelectingElements(from: initialPoint, to: endPoint)
-    }
-
-    XCTAssertEqual(
-      stateManager.currentState,
-      .selectingElements(begin: initialPoint, end: endPoint)
-    )
-  }
-
-  func testToSelectingElementsFromSelectingElements() {
-    let initialPoint = NSPoint.zero
-    let endPoint = NSPoint(x: 400, y: 300)
-    let newEndPoint = NSPoint(x: 300, y: 200)
-
-    stateManager.currentState = .selectingElements(begin: initialPoint, end: endPoint)
-    
-    executeTransition {
-      try stateManager.toSelectingElements(from: initialPoint, to: newEndPoint)
-    }
-
-    XCTAssertEqual(
-      stateManager.currentState,
-      .selectingElements(begin: initialPoint, end: newEndPoint)
-    )
-  }
-}

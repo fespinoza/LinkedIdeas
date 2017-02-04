@@ -27,6 +27,7 @@
 		9B733AF71CB9B7D200C04F47 /* ResizingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B733AF61CB9B7D200C04F47 /* ResizingTextField.swift */; };
 		9B7D535F1CB6D0A400B3D43B /* ElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D535E1CB6D0A400B3D43B /* ElementView.swift */; };
 		9B8665C61D96C9E800799678 /* StateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8665C51D96C9E800799678 /* StateManagerTests.swift */; };
+		9B8E90051E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E90041E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift */; };
 		9B956CE51C1B11C200CF20DA /* NSPoint+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B956CE41C1B11C200CF20DA /* NSPoint+Utilities.swift */; };
 		9B9A2EA41CF5EE5300607208 /* AlignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A2EA31CF5EE5300607208 /* AlignmentTests.swift */; };
 		9BA3BE281D734CC800B3A510 /* OldWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA3BE271D734CC800B3A510 /* OldWindowController.swift */; };
@@ -91,6 +92,7 @@
 		9B733AF61CB9B7D200C04F47 /* ResizingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizingTextField.swift; sourceTree = "<group>"; };
 		9B7D535E1CB6D0A400B3D43B /* ElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ElementView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9B8665C51D96C9E800799678 /* StateManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateManagerTests.swift; sourceTree = "<group>"; };
+		9B8E90041E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+DraggingActions.swift"; sourceTree = "<group>"; };
 		9B956CE41C1B11C200CF20DA /* NSPoint+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPoint+Utilities.swift"; sourceTree = "<group>"; };
 		9B9A2EA31CF5EE5300607208 /* AlignmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignmentTests.swift; sourceTree = "<group>"; };
 		9BA3BE271D734CC800B3A510 /* OldWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = OldWindowController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -216,12 +218,21 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
+		9B8E90061E462AB900C819F7 /* CanvasViewControllerExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				9B8E90041E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift */,
+			);
+			name = CanvasViewControllerExtensions;
+			sourceTree = "<group>";
+		};
 		9BA63D331D74C45100EBC3AD /* NewUI */ = {
 			isa = PBXGroup;
 			children = (
 				9BF15C381CAC69A500C95041 /* WindowController.swift */,
 				9BA63D2F1D74C31A00EBC3AD /* DocumentViewController.swift */,
 				9BA63D311D74C38400EBC3AD /* CanvasViewController.swift */,
+				9B8E90061E462AB900C819F7 /* CanvasViewControllerExtensions */,
 				9BA63D341D74C47800EBC3AD /* CanvasView.swift */,
 				9B2F1DA11BE7CFE70090CC18 /* Document.swift */,
 				9B0683FC1DA1A1AA00609AE5 /* StateManager.swift */,
@@ -342,11 +353,11 @@
 					9B2F1D9B1BE7CFE70090CC18 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = 4E6CZX3H5W;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 					};
 					9B2F1DAF1BE7CFE80090CC18 = {
 						CreatedOnToolsVersion = 7.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 						TestTargetID = 9B2F1D9B1BE7CFE70090CC18;
 					};
 				};
@@ -418,6 +429,7 @@
 				9B48F84D1CD614BC0014758D /* DocumentData.swift in Sources */,
 				9B48F8491CD614370014758D /* LinkedIdeasDocument.swift in Sources */,
 				9BD2BF391C7F8B4100E8A303 /* PointInterceptable.swift in Sources */,
+				9B8E90051E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift in Sources */,
 				9BB8FC891CA6B889008CD6A2 /* Element.swift in Sources */,
 				9B2F1DCE1BE7D3990090CC18 /* OldCanvasView.swift in Sources */,
 				9BF15C391CAC69A500C95041 /* WindowController.swift in Sources */,
@@ -568,10 +580,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/HockeySDK-Mac",
-				);
 				INFOPLIST_FILE = LinkedIdeas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeas;
@@ -585,10 +593,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/HockeySDK-Mac",
-				);
 				INFOPLIST_FILE = LinkedIdeas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeas;

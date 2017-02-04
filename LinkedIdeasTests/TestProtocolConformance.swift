@@ -70,7 +70,7 @@ extension StateManagerTestDelegate: StateManagerDelegate {
     registerCall(methodName: #function)
   }
   
-  func transitionedToSelectingElements(fromState: CanvasState) {
+  func transitionedToMultipleSelectedElements(fromState: CanvasState) {
     registerCall(methodName: #function)
   }
 }

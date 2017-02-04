@@ -21,7 +21,7 @@ protocol StateManagerDelegate {
   func transitionedToSelectedElement(fromState: CanvasState)
   func transitionedToSelectedElementSavingChanges(fromState: CanvasState)
   func transitionedToEditingElement(fromState: CanvasState)
-  func transitionedToSelectingElements(fromState: CanvasState)
+  func transitionedToMultipleSelectedElements(fromState: CanvasState)
 }
 
 enum CanvasState {
@@ -31,8 +31,6 @@ enum CanvasState {
   case editingElement(element: Element)
   case multipleSelectedElements(elements: [Element])
   case creatingLink(fromConcept: Concept)
-  case selectingElements(begin: NSPoint, end: NSPoint)
-  case movingElements
 
   func isSimilar(to state: CanvasState) -> Bool {
     switch (self, state) {
@@ -41,9 +39,7 @@ enum CanvasState {
          (.canvasWaiting, .canvasWaiting),
          (.editingElement, .editingElement),
          (.multipleSelectedElements, .multipleSelectedElements),
-         (.creatingLink, .creatingLink),
-         (.selectingElements, .selectingElements),
-         (.movingElements, .movingElements):
+         (.creatingLink, .creatingLink):
       return true
     default:
       return false
@@ -78,10 +74,6 @@ extension CanvasState: Equatable {
       return a.map { $0.identifier } == b.map { $0.identifier }
     case (.creatingLink(let a), .creatingLink(let b)):
       return a == b
-    case (.selectingElements(let aStart, let aEnd), .selectingElements(let bStart, let bEnd)):
-      return aStart == bStart && aEnd == bEnd
-    case (.movingElements, .movingElements):
-      return true
     default: return false
     }
   }
@@ -113,7 +105,8 @@ struct StateManager {
       .canvasWaiting,
       .newConcept(point: NSPoint.zero),
       .editingElement(element: EmptyElement.example),
-      .selectedElement(element: EmptyElement.example)
+      .selectedElement(element: EmptyElement.example),
+      .multipleSelectedElements(elements: [Element]()),
     ]
 
     try transition(fromPossibleStates: possibleStates, toState: .canvasWaiting) { (oldState) in
@@ -163,15 +156,15 @@ struct StateManager {
     }
   }
   
-  public mutating func toSelectingElements(from: NSPoint, to: NSPoint) throws {
+  public mutating func toMultipleSelectedElements(elements: [Element]) throws {
     let possibleStates: [CanvasState] = [
       .canvasWaiting,
-      .selectingElements(begin: NSPoint.zero, end: NSPoint.zero)
+      .multipleSelectedElements(elements: [Element]())
     ]
     
-    let state = CanvasState.selectingElements(begin: from, end: to)
+    let state = CanvasState.multipleSelectedElements(elements: elements)
     try transition(fromPossibleStates: possibleStates, toState: state) { (oldState) in
-      delegate?.transitionedToSelectingElements(fromState: oldState)
+      delegate?.transitionedToMultipleSelectedElements(fromState: oldState)
     }
   }
   
@@ -185,7 +178,7 @@ struct StateManager {
       delegate?.transitionedToEditingElement(fromState: oldState)
     }
   }
-
+  
   private mutating func transition(fromPossibleStates validFromStates: [CanvasState], toState: CanvasState, onSuccess: (CanvasState) -> Void) throws {
     let oldState = currentState
 

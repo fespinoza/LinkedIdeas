@@ -87,6 +87,11 @@ class CanvasViewController: NSViewController {
   @IBOutlet weak var canvasView: CanvasView!
   @IBOutlet weak var scrollView: NSScrollView!
   
+  var didDragStart = false
+  // to register the beginning of the drag
+  // for undo purposes
+  var dragStartPoint: NSPoint? = nil
+  
   var stateManager = StateManager(initialState: .canvasWaiting)
   var currentState: CanvasState {
     get {
@@ -155,12 +160,30 @@ class CanvasViewController: NSViewController {
     return results
   }
   
+  /// matchedConcepts: custom description
+  ///
+  /// - Parameter rect: the area to match
+  /// - Returns:
+  ///   - nil if there were no concepts intersecting the given area
+  ///   - [Concept] if there were concepts intersecting the given area
+  func matchedConcepts(inRect rect: NSRect) -> [Concept]? {
+    let results = document.concepts.filter { (concept) -> Bool in
+      return rect.intersects(concept.rect)
+    }
+    guard results.count > 0 else { return nil }
+    return results
+  }
+  
   func safeTransiton(transitionCall: () throws -> Void) {
     do {
       try transitionCall()
     } catch let error {
       Swift.print(error)
     }
+  }
+  
+  func reRenderCanvasView() {
+    canvasView.needsDisplay = true
   }
 }
 
@@ -172,8 +195,10 @@ extension CanvasViewController {
     
     if event.isSingleClick() {
       if let clickedConcepts = clickedConcepts(atPoint: point) {
-        safeTransiton {
-          try stateManager.toSelectedElement(element: clickedConcepts.first!)
+        if (!currentState.isSimilar(to: .multipleSelectedElements(elements: [Element]()))) {
+          safeTransiton {
+            try stateManager.toSelectedElement(element: clickedConcepts.first!)
+          }
         }
       } else {
         safeTransiton {
@@ -192,10 +217,54 @@ extension CanvasViewController {
       }
     }
   }
+  
+  override func mouseDragged(with event: NSEvent) {
+    let point = convertToCanvasCoordinates(point: event.locationInWindow)
+    
+    // Decision: which actions to trigger
+    // given the context and events that happen
+    
+    switch currentState {
+    case .selectedElement(let element):
+      guard let concept = element as? Concept else { return }
+      drag(concept: concept, toPoint: point)
+      
+    case .multipleSelectedElements(let elements):
+      guard let concepts = elements as? [Concept] else { return }
+      drag(concepts: concepts, toPoint: point)
+      
+    case .canvasWaiting:
+      hoverConcepts(toPoint: point)
+      
+    default:
+      return
+    }
+    
+    reRenderCanvasView()
+  }
+  
+  override func mouseUp(with event: NSEvent) {
+    let point = convertToCanvasCoordinates(point: event.locationInWindow)
+    
+    switch currentState {
+    case .selectedElement(let element):
+      guard let concept = element as? Concept, didDragStart else { return }
+      endDrag(forConcept: concept, toPoint: point)
+      
+    case .multipleSelectedElements(let elements):
+      guard let concepts = elements as? [Concept] else { return }
+      endDrag(forConcepts: concepts, toPoint: point)
+      
+    case .canvasWaiting:
+      selectHoveredConcepts()
+      
+    default:
+      return
+    }
+    
+    resetDraggingConcepts()
+  }
 }
-
-// TODO: handle drag event to move element
-// TODO: handle delete key onSelectedElement onSelectedElementS
 
 // MARK: - CanvasViewDataSource
 
@@ -219,7 +288,7 @@ extension CanvasViewController: CanvasViewDataSource {
 
 extension CanvasViewController: DocumentObserver {
   func documentChanged(withElement element: Element) {
-    canvasView.needsDisplay = true
+    reRenderCanvasView()
   }
 }
 
@@ -227,7 +296,7 @@ extension CanvasViewController: DocumentObserver {
 
 extension CanvasViewController: StateManagerDelegate {
   func transitionSuccesfull() {
-    canvasView.needsDisplay = true
+    reRenderCanvasView()
   }
   
   func transitionedToNewConcept(fromState: CanvasState) {
@@ -255,6 +324,14 @@ extension CanvasViewController: StateManagerDelegate {
     select(elements: [element])
   }
   
+  func transitionedToMultipleSelectedElements(fromState: CanvasState) {
+    commonTransitionBehavior(fromState)
+    
+    guard case .multipleSelectedElements(let elements) = currentState else { return }
+    
+    select(elements: elements)
+  }
+  
   func transitionedToSelectedElementSavingChanges(fromState: CanvasState) {
     guard case .selectedElement(let element) = currentState else { return }
     let concept: Concept = element as! Concept
@@ -275,12 +352,6 @@ extension CanvasViewController: StateManagerDelegate {
     showTextField(atPoint: concept.point, text: concept.attributedStringValue)
   }
   
-  func transitionedToSelectingElements(fromState: CanvasState) {
-    commonTransitionBehavior(fromState)
-    
-    // TODO: render the selection rectangle
-  }
-  
   private func commonTransitionBehavior(_ fromState: CanvasState) {
     switch fromState {
     case .newConcept:
@@ -290,6 +361,8 @@ extension CanvasViewController: StateManagerDelegate {
       dismissTextField()
     case .selectedElement(let element):
       unselect(elements: [element])
+    case .multipleSelectedElements(let elements):
+      unselect(elements: elements)
     default:
       break
     }
