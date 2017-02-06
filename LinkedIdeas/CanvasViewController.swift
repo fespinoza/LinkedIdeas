@@ -226,8 +226,12 @@ extension CanvasViewController {
     
     switch currentState {
     case .selectedElement(let element):
-      guard let concept = element as? Concept else { return }
-      drag(concept: concept, toPoint: point)
+      if (event.modifierFlags.contains(.shift)) {
+        creationArrowForLink(toPoint: point)
+      } else {
+        guard let concept = element as? Concept else { return }
+        drag(concept: concept, toPoint: point)
+      }
       
     case .multipleSelectedElements(let elements):
       guard let concepts = elements as? [Concept] else { return }
@@ -249,8 +253,16 @@ extension CanvasViewController {
     switch currentState {
     case .selectedElement(let element):
       guard let concept = element as? Concept, didDragStart else { return }
-      endDrag(forConcept: concept, toPoint: point)
       
+      if (event.modifierFlags.contains(.shift)) {
+        if let targetConcept = clickedSingleConcept(atPoint: point) {
+          createTemporaryLink(fromConcept: concept, toConcept: targetConcept)
+        } else {
+          cancelLinkCreation()
+        }
+      } else {
+        endDrag(forConcept: concept, toPoint: point)
+      }
     case .multipleSelectedElements(let elements):
       guard let concepts = elements as? [Concept] else { return }
       endDrag(forConcepts: concepts, toPoint: point)

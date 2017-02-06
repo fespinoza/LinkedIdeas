@@ -11,6 +11,7 @@
 		9B06AD131C11AD74000BC75C /* NSRect+PointHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */; };
 		9B06AD151C11AF03000BC75C /* NSView+Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */; };
 		9B1CCDEB1D294E0900F319EB /* NSAttributedStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */; };
+		9B1CD1C81E48D10B003F192B /* CanvasViewController+LinkCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CD1C71E48D10B003F192B /* CanvasViewController+LinkCreation.swift */; };
 		9B2F1DA01BE7CFE70090CC18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */; };
 		9B2F1DA21BE7CFE70090CC18 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA11BE7CFE70090CC18 /* Document.swift */; };
 		9B2F1DA51BE7CFE70090CC18 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA31BE7CFE70090CC18 /* Document.xib */; };
@@ -72,6 +73,7 @@
 		9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSRect+PointHelpers.swift"; path = "../NSRect+PointHelpers.swift"; sourceTree = "<group>"; };
 		9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+Debugging.swift"; path = "../NSView+Debugging.swift"; sourceTree = "<group>"; };
 		9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtensions.swift; sourceTree = "<group>"; };
+		9B1CD1C71E48D10B003F192B /* CanvasViewController+LinkCreation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+LinkCreation.swift"; sourceTree = "<group>"; };
 		9B2F1D9C1BE7CFE70090CC18 /* LinkedIdeas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkedIdeas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B2F1DA11BE7CFE70090CC18 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				9B8E90041E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift */,
+				9B1CD1C71E48D10B003F192B /* CanvasViewController+LinkCreation.swift */,
 			);
 			name = CanvasViewControllerExtensions;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				9BD2BF371C7F8B2300E8A303 /* Interceptable.swift in Sources */,
 				9B733AF71CB9B7D200C04F47 /* ResizingTextField.swift in Sources */,
 				9B48F84D1CD614BC0014758D /* DocumentData.swift in Sources */,
+				9B1CD1C81E48D10B003F192B /* CanvasViewController+LinkCreation.swift in Sources */,
 				9B48F8491CD614370014758D /* LinkedIdeasDocument.swift in Sources */,
 				9BD2BF391C7F8B4100E8A303 /* PointInterceptable.swift in Sources */,
 				9B8E90051E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift in Sources */,
