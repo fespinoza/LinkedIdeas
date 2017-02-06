@@ -19,6 +19,7 @@ protocol CanvasViewDataSource {
 class CanvasView: NSView {
   
   var dataSource: CanvasViewDataSource?
+
   var selectFromPoint: NSPoint? = nil
   var selectToPoint: NSPoint? = nil
   var selectionRect: NSRect? {
@@ -29,7 +30,9 @@ class CanvasView: NSView {
     }
   }
 
-  
+  var arrowStartPoint: NSPoint? = nil
+  var arrowEndPoint: NSPoint? = nil
+
   override func draw(_ dirtyRect: NSRect) {
     super.draw(dirtyRect)
     drawBackground()
@@ -39,6 +42,8 @@ class CanvasView: NSView {
     }
     
     drawSelectionRect()
+
+    drawLinkConstructionArrow()
   }
   
   func drawBackground() {
@@ -59,5 +64,13 @@ class CanvasView: NSView {
     
     backgroundColor.set()
     bezierPath.fill()
+  }
+
+  func drawLinkConstructionArrow() {
+    guard let arrowStartPoint = arrowStartPoint, let arrowEndPoint = arrowEndPoint else {
+      return
+    }
+
+    // TODO: draw new concept here
   }
 }

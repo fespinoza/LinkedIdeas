@@ -22,14 +22,33 @@ import Foundation
 
 // MARK: CanvasViewController+LinkCreation
 extension CanvasViewController {
-  func creationArrowForLink(toPoint: NSPoint) {
-    
+  func creationArrowForLink(toPoint point: NSPoint) {
+    if let arrowStart = canvasView.arrowStartPoint {
+      canvasView.arrowEndPoint = point
+    } else {
+      canvasView.arrowStartPoint = point
+    }
+    reRenderCanvasView()
   }
   
   func createTemporaryLink(fromConcept: Concept, toConcept: Concept) {
+    // Transition to CreatingLink
+//    safeTransiton { try stateManager.toNewLink() }
+  }
+
+  func saveLink() {
+    // Transition to CanvasWaiting (saving link)
+//    safeTransiton { try stateManager.toCanvasWaiting() }
   }
   
   func cancelLinkCreation() {
-    
+    // Transition to CanvasWaiting
+//    safeTransiton { try stateManager.toCanvasWaiting() }
+  }
+
+  func dismissConstructionArrow() {
+    canvasView.arrowStartPoint = nil
+    canvasView.arrowEndPoint = nil
+    reRenderCanvasView()
   }
 }
