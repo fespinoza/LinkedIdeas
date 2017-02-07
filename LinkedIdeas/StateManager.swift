@@ -22,6 +22,7 @@ protocol StateManagerDelegate {
   func transitionedToSelectedElementSavingChanges(fromState: CanvasState)
   func transitionedToEditingElement(fromState: CanvasState)
   func transitionedToMultipleSelectedElements(fromState: CanvasState)
+  func transitionedToNewLink(fromState: CanvasState)
 }
 
 enum CanvasState {
@@ -30,7 +31,7 @@ enum CanvasState {
   case selectedElement(element: Element)
   case editingElement(element: Element)
   case multipleSelectedElements(elements: [Element])
-  case creatingLink(fromConcept: Concept)
+  case newLink(fromConcept: Concept, toConcept: Concept)
 
   func isSimilar(to state: CanvasState) -> Bool {
     switch (self, state) {
@@ -39,7 +40,7 @@ enum CanvasState {
          (.canvasWaiting, .canvasWaiting),
          (.editingElement, .editingElement),
          (.multipleSelectedElements, .multipleSelectedElements),
-         (.creatingLink, .creatingLink):
+         (.newLink, .newLink):
       return true
     default:
       return false
@@ -72,8 +73,8 @@ extension CanvasState: Equatable {
       return a.identifier == b.identifier
     case (.multipleSelectedElements(let a), .multipleSelectedElements(let b)):
       return a.map { $0.identifier } == b.map { $0.identifier }
-    case (.creatingLink(let a), .creatingLink(let b)):
-      return a == b
+    case (.newLink(let a1, let b1), .newLink(let a2, let b2)):
+      return a1 == a2 && b1 == b2
     default: return false
     }
   }
@@ -176,6 +177,17 @@ struct StateManager {
     let state = CanvasState.editingElement(element: element)
     try transition(fromPossibleStates: possibleStates, toState: state) { (oldState) in
       delegate?.transitionedToEditingElement(fromState: oldState)
+    }
+  }
+  
+  public mutating func toNewLink(fromConcept: Concept, toConcept: Concept) throws {
+    let possibleStates: [CanvasState] = [
+      .selectedElement(element: EmptyElement.example),
+    ]
+    
+    let state = CanvasState.newLink(fromConcept: fromConcept, toConcept: toConcept)
+    try transition(fromPossibleStates: possibleStates, toState: state) { (oldState) in
+      delegate?.transitionedToNewLink(fromState: oldState)
     }
   }
   

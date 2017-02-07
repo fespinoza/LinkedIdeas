@@ -143,3 +143,18 @@ extension StateManagerTests {
     )
   }
 }
+
+// MARK: StateManager - toNewLink Transition Tests
+
+extension StateManagerTests {
+  func testToNewConceptFromSelectedElement() {
+    let conceptA = Concept(stringValue: "A", point: NSMakePoint(400, 300))
+    let conceptB = Concept(stringValue: "B", point: NSMakePoint(200, 100))
+    stateManager.currentState = .selectedElement(element: conceptA)
+    
+    executeTransition { try stateManager.toNewLink(fromConcept: conceptA, toConcept: conceptB) }
+    
+    XCTAssertEqual(stateManager.currentState, .newLink(fromConcept: conceptA, toConcept: conceptB))
+  }
+}
+

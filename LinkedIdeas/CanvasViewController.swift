@@ -364,6 +364,9 @@ extension CanvasViewController: StateManagerDelegate {
     showTextField(atPoint: concept.point, text: concept.attributedStringValue)
   }
   
+  func transitionedToNewLink(fromState: CanvasState) {
+  }
+  
   private func commonTransitionBehavior(_ fromState: CanvasState) {
     switch fromState {
     case .newConcept:
