@@ -35,8 +35,19 @@ struct DrawableConcept: DrawableElement {
   let concept: GraphConcept
   
   func draw() {
-    concept.attributedStringValue.draw(at: concept.rect.origin)
+    drawBackground()
+    drawConceptText()
     drawSelectedRing()
+  }
+  
+  func drawBackground() {
+    NSColor.white.set()
+    NSRectFill(concept.rect)
+  }
+  
+  func drawConceptText() {
+    NSColor.black.set()
+    concept.attributedStringValue.draw(at: concept.rect.origin)
   }
   
   func drawSelectedRing() {
@@ -86,6 +97,8 @@ extension NSEvent {
 class CanvasViewController: NSViewController {
   @IBOutlet weak var canvasView: CanvasView!
   @IBOutlet weak var scrollView: NSScrollView!
+  
+  var dragCount: Int = 0
   
   var didDragStart = false
   // to register the beginning of the drag
@@ -191,19 +204,28 @@ class CanvasViewController: NSViewController {
 
 extension CanvasViewController {
   override func mouseDown(with event: NSEvent) {
+    Swift.print("\n")
+    Swift.print("[mouseDown]")
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
     
     if event.isSingleClick() {
       if let clickedConcepts = clickedConcepts(atPoint: point) {
+        Swift.print("[mouseDown][singleClick] clicked concepts [\(clickedConcepts)]")
+        
         if (!currentState.isSimilar(to: .multipleSelectedElements(elements: [Element]()))) {
           safeTransiton {
             try stateManager.toSelectedElement(element: clickedConcepts.first!)
           }
         }
+        
+        
       } else {
+        Swift.print("[mouseDown][singleClick] no clicked concepts")
+        
         safeTransiton {
           try stateManager.toCanvasWaiting()
         }
+        
       }
     } else if event.isDoubleClick() {
       if let concept = clickedSingleConcept(atPoint: point) {
@@ -219,6 +241,11 @@ extension CanvasViewController {
   }
   
   override func mouseDragged(with event: NSEvent) {
+    if (dragCount <= 3) {
+      Swift.print("[mouseDragged]")
+      dragCount += 1
+    }
+    
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
     
     // Decision: which actions to trigger
@@ -248,6 +275,8 @@ extension CanvasViewController {
   }
   
   override func mouseUp(with event: NSEvent) {
+    dragCount = 0
+    Swift.print("[mouseUp] (state = \(currentState))")
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
     
     switch currentState {
@@ -256,11 +285,16 @@ extension CanvasViewController {
       
       if (event.modifierFlags.contains(.shift)) {
         if let targetConcept = clickedSingleConcept(atPoint: point) {
-          createTemporaryLink(fromConcept: concept, toConcept: targetConcept)
+          Swift.print("[mouseUp][shiftClick] (targetConcept = \(targetConcept))")
+          safeTransiton {
+            try stateManager.toNewLink(fromConcept: concept, toConcept: targetConcept)
+          }
         } else {
-          cancelLinkCreation()
+          Swift.print("[mouseUp][shiftClick] no targetConcept!")
+          safeTransiton { try stateManager.toCanvasWaiting() }
         }
       } else {
+        Swift.print("[mouseUp][noShift] normal drag")
         endDrag(forConcept: concept, toPoint: point)
       }
     case .multipleSelectedElements(let elements):
@@ -274,6 +308,7 @@ extension CanvasViewController {
       return
     }
     
+    Swift.print("\n")
     resetDraggingConcepts()
   }
 }
@@ -365,6 +400,22 @@ extension CanvasViewController: StateManagerDelegate {
   }
   
   func transitionedToNewLink(fromState: CanvasState) {
+    commonTransitionBehavior(fromState)
+    
+    guard case .newLink(let fromConcept, let toConcept) = currentState else { return }
+    
+    // show canvas view link construction arrow in another color
+    canvasView.arrowStartPoint = fromConcept.point
+    canvasView.arrowEndPoint = toConcept.point
+    canvasView.arrowColor = NSColor.blue
+    reRenderCanvasView()
+    
+    // show text field in the middle of the concepts
+    let middlePointBetweenConcepts = NSMakePoint(
+      ((fromConcept.point.x + toConcept.point.x) / 2.0),
+      ((fromConcept.point.y + toConcept.point.y) / 2.0)
+    )
+    showTextField(atPoint: middlePointBetweenConcepts, text: NSAttributedString(string: ""))
   }
   
   private func commonTransitionBehavior(_ fromState: CanvasState) {
@@ -378,6 +429,8 @@ extension CanvasViewController: StateManagerDelegate {
       unselect(elements: [element])
     case .multipleSelectedElements(let elements):
       unselect(elements: elements)
+    case .newLink:
+      cancelLinkCreation()
     default:
       break
     }
@@ -435,14 +488,21 @@ extension CanvasViewController: NSTextFieldDelegate {
       }
       return true
     case #selector(NSResponder.insertNewline(_:)):
-      if case .editingElement(let element) = currentState {
+      switch currentState {
+      case .editingElement(let element):
         safeTransiton {
           try stateManager.toSelectedElementSavingChanges(element: element)
         }
-      } else {
+      case .newConcept:
         safeTransiton {
           try stateManager.toCanvasWaiting(savingConceptWithText: control.attributedStringValue)
         }
+      case .newLink:
+//        safeTransiton {
+//          try stateManager.toCanvasWaiting(savingLinkWithText: control.attributedStringValue)
+//        }
+      default:
+        Swift.print("[textField][enterKey] unhandled event (state = \(currentState))")
       }
       return true
     default:

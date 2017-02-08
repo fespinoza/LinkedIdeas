@@ -32,6 +32,7 @@ class CanvasView: NSView {
 
   var arrowStartPoint: NSPoint? = nil
   var arrowEndPoint: NSPoint? = nil
+  var arrowColor: NSColor? = nil
 
   override func draw(_ dirtyRect: NSRect) {
     super.draw(dirtyRect)
@@ -70,7 +71,15 @@ class CanvasView: NSView {
     guard let arrowStartPoint = arrowStartPoint, let arrowEndPoint = arrowEndPoint else {
       return
     }
+    
+    let arrow = Arrow(p1: arrowStartPoint, p2: arrowEndPoint)
 
-    // TODO: draw new concept here
+    if let arrowColor = arrowColor {
+      arrowColor.set()
+    } else {
+      NSColor.blue.set()
+    }
+    
+    arrow.bezierPath().stroke()
   }
 }

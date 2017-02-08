@@ -108,6 +108,7 @@ struct StateManager {
       .editingElement(element: EmptyElement.example),
       .selectedElement(element: EmptyElement.example),
       .multipleSelectedElements(elements: [Element]()),
+      .newLink(fromConcept: Concept(point: NSMakePoint(0, 0)), toConcept: Concept(point: NSMakePoint(0, 0))),
     ]
 
     try transition(fromPossibleStates: possibleStates, toState: .canvasWaiting) { (oldState) in
