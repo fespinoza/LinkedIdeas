@@ -17,6 +17,11 @@ protocol GraphConcept {
 protocol GraphLink {
   var color: NSColor { get }
   
+  var stringValue: String { get }
+  var attributedStringValue: NSAttributedString { get }
+  
+  var point: NSPoint { get }
+  
   var originPoint: NSPoint { get }
   var targetPoint: NSPoint { get }
   
@@ -64,6 +69,28 @@ struct DrawableLink: DrawableElement {
   func draw() {
     link.color.set()
     constructArrow()?.bezierPath().fill()
+    drawLinkText()
+  }
+  
+  func drawLinkText() {
+    guard link.stringValue != "" else { return }
+    
+    // background
+    NSColor.white.set()
+    var textSize = link.attributedStringValue.size()
+    let padding: CGFloat = 8.0
+    textSize.width += padding
+    textSize.height += padding
+    
+    let textRect = NSRect(center: link.point, size: textSize)
+    NSRectFill(textRect)
+//    NSColor.blue.set()
+//    NSBezierPath(rect: textRect).stroke()
+    
+    // text
+    NSColor.black.set()
+    let bottomLeftTextPoint = link.point.translate(deltaX: -(textSize.width - padding) / 2.0, deltaY: -(textSize.height - padding) / 2.0)
+    link.attributedStringValue.draw(at: bottomLeftTextPoint)
   }
   
   func constructArrow() -> Arrow? {
@@ -418,6 +445,12 @@ extension CanvasViewController: StateManagerDelegate {
     showTextField(atPoint: middlePointBetweenConcepts, text: NSAttributedString(string: ""))
   }
   
+  func transitionedToCanvasWaitingSavingLink(fromState: CanvasState, fromConcept: Concept, toConcept: Concept, text: NSAttributedString) {
+    dismissTextField()
+    dismissConstructionArrow()
+    let _ = saveLink(fromConcept: fromConcept, toConcept: toConcept, text: text)
+  }
+  
   private func commonTransitionBehavior(_ fromState: CanvasState) {
     switch fromState {
     case .newConcept:
@@ -454,6 +487,14 @@ extension CanvasViewController {
     let newConcept = Concept(attributedStringValue: text, point: point)
     
     document.save(concept: newConcept)
+    return true
+  }
+  
+  func saveLink(fromConcept: Concept, toConcept: Concept, text: NSAttributedString) -> Bool {
+    let newLink = Link(origin: fromConcept, target: toConcept, attributedStringValue: text)
+    
+    document.save(link: newLink)
+    
     return true
   }
   
@@ -498,9 +539,9 @@ extension CanvasViewController: NSTextFieldDelegate {
           try stateManager.toCanvasWaiting(savingConceptWithText: control.attributedStringValue)
         }
       case .newLink:
-//        safeTransiton {
-//          try stateManager.toCanvasWaiting(savingLinkWithText: control.attributedStringValue)
-//        }
+        safeTransiton {
+          try stateManager.toCanvasWaiting(savingLinkWithText: control.attributedStringValue)
+        }
       default:
         Swift.print("[textField][enterKey] unhandled event (state = \(currentState))")
       }

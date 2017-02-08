@@ -18,6 +18,7 @@ protocol StateManagerDelegate {
   func transitionedToNewConcept(fromState: CanvasState)
   func transitionedToCanvasWaiting(fromState: CanvasState)
   func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString)
+  func transitionedToCanvasWaitingSavingLink(fromState: CanvasState, fromConcept: Concept, toConcept: Concept, text: NSAttributedString)
   func transitionedToSelectedElement(fromState: CanvasState)
   func transitionedToSelectedElementSavingChanges(fromState: CanvasState)
   func transitionedToEditingElement(fromState: CanvasState)
@@ -120,7 +121,6 @@ struct StateManager {
     let oldState = currentState
 
     // TODO: this code can be re-written
-
     switch currentState {
     case .newConcept(let point):
       currentState = .canvasWaiting
@@ -129,6 +129,26 @@ struct StateManager {
     default:
       throw CanvasTransitionError.invalidTransition(
         message: "there is no transition from \(currentState) to 'canvasWaiting' saving concept"
+      )
+    }
+  }
+  
+  public mutating func toCanvasWaiting(savingLinkWithText text: NSAttributedString) throws {
+    let oldState = currentState
+    
+    switch currentState {
+    case .newLink(let fromConcept, let toConcept):
+      currentState = .canvasWaiting
+      delegate?.transitionedToCanvasWaitingSavingLink(
+        fromState: oldState,
+        fromConcept: fromConcept,
+        toConcept: toConcept,
+        text: text
+      )
+      delegate?.transitionSuccesfull()
+    default:
+      throw CanvasTransitionError.invalidTransition(
+        message: "there is no transition from \(currentState) to 'canvasWaiting' saving link"
       )
     }
   }

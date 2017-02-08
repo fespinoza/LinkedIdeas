@@ -77,6 +77,10 @@ extension StateManagerTestDelegate: StateManagerDelegate {
   func transitionedToNewLink(fromState: CanvasState) {
     registerCall(methodName: #function)
   }
+  
+  func transitionedToCanvasWaitingSavingLink(fromState: CanvasState, fromConcept: Concept, toConcept: Concept, text: NSAttributedString) {
+    registerCall(methodName: #function)
+  }
 }
 
 struct TestElement: Element {

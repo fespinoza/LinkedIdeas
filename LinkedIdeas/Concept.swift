@@ -71,7 +71,7 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
     point       = aDecoder.decodePoint(forKey: Concept.pointKey)
     identifier  = aDecoder.decodeObject(forKey: Concept.identifierKey) as! String
     isEditable  = aDecoder.decodeBool(forKey: Concept.isEditableKey)
-    attributedStringValue = aDecoder.decodeObject(forKey: Concept.attributedStringValueKey) as!NSAttributedString
+    attributedStringValue = aDecoder.decodeObject(forKey: Concept.attributedStringValueKey) as! NSAttributedString
   }
 
   func encode(with aCoder: NSCoder) {

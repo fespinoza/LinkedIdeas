@@ -158,3 +158,19 @@ extension StateManagerTests {
   }
 }
 
+// MARK: StateManager - toCanvasWaiting savingLinkWithText Tests
+
+extension StateManagerTests {
+  func testToCanvasWaitingSavingLinkFromNewLink() {
+    let conceptA = Concept(stringValue: "A", point: NSMakePoint(400, 300))
+    let conceptB = Concept(stringValue: "B", point: NSMakePoint(200, 100))
+    stateManager.currentState = .newLink(fromConcept: conceptA, toConcept: conceptB)
+    let text = NSAttributedString(string: "link text")
+    
+    executeTransition {
+      try stateManager.toCanvasWaiting(savingLinkWithText: text)
+    }
+    
+    XCTAssertEqual(stateManager.currentState, .canvasWaiting)
+  }
+}

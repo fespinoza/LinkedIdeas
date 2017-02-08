@@ -52,6 +52,7 @@ extension CanvasViewController {
   func dismissConstructionArrow() {
     canvasView.arrowStartPoint = nil
     canvasView.arrowEndPoint = nil
+    canvasView.arrowColor = nil
     reRenderCanvasView()
   }
 }
