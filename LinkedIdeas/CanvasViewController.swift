@@ -310,6 +310,7 @@ extension CanvasViewController {
     switch currentState {
     case .selectedElement(let element):
       if (event.modifierFlags.contains(.shift)) {
+        guard let concept = element as? Concept else { return }
         creationArrowForLink(toPoint: point)
       } else {
         guard let concept = element as? Concept else { return }
@@ -337,7 +338,9 @@ extension CanvasViewController {
     
     switch currentState {
     case .selectedElement(let element):
-      guard let concept = element as? Concept, didDragStart else { return }
+      guard let concept = element as? Concept, didDragStart else {
+        return
+      }
       
       if (event.modifierFlags.contains(.shift)) {
         if let targetConcept = clickedSingleConcept(atPoint: point) {
