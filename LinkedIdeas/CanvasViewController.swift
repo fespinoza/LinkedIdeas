@@ -90,9 +90,12 @@ struct DrawableLink: DrawableElement {
 //    NSBezierPath(rect: textRect).stroke()
     
     // text
-    NSColor.black.set()
     let bottomLeftTextPoint = link.point.translate(deltaX: -(textSize.width - padding) / 2.0, deltaY: -(textSize.height - padding) / 2.0)
-    link.attributedStringValue.draw(at: bottomLeftTextPoint)
+    let attributedStringValue = NSAttributedString(
+      attributedString: link.attributedStringValue,
+      fontColor: NSColor.gray
+    )
+    attributedStringValue.draw(at: bottomLeftTextPoint)
   }
   
   func drawSelectedRing() {
