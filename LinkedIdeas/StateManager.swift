@@ -54,12 +54,15 @@ struct EmptyElement: Element {
   var rect: NSRect
   var isEditable: Bool
   var isSelected: Bool
+  var point: NSPoint { return rect.center }
+  var attributedStringValue: NSAttributedString
 
   static let example = EmptyElement(
     identifier: "empty-element",
     rect: NSMakeRect(0, 0, 30, 40),
     isEditable: false,
-    isSelected: false
+    isSelected: false,
+    attributedStringValue: NSAttributedString(string: "")
   )
 }
 

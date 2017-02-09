@@ -88,11 +88,14 @@ struct TestElement: Element {
   var rect: NSRect
   var isSelected: Bool = false
   var isEditable: Bool = false
+  var point: NSPoint { return rect.center }
+  var attributedStringValue: NSAttributedString
   
   static let sample = TestElement(
     identifier: "element #1",
     rect: NSMakeRect(30, 40, 100, 50),
     isSelected: false,
-    isEditable: false
+    isEditable: false,
+    attributedStringValue: NSAttributedString(string: "")
   )
 }

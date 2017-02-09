@@ -204,6 +204,14 @@ class CanvasViewController: NSViewController {
     return nil
   }
   
+  func clickedSingleElement(atPoint clickedPoint: NSPoint) -> Element? {
+    if let elements = clickedElements(atPoint: clickedPoint), elements.count == 1 {
+      return elements.first
+    }
+    
+    return nil
+  }
+  
   func clickedConcepts(atPoint clickedPoint: NSPoint) -> [Concept]? {
     let results = document.concepts.filter { (concept) -> Bool in
       return concept.rect.contains(clickedPoint)
@@ -284,11 +292,11 @@ extension CanvasViewController {
         
       }
     } else if event.isDoubleClick() {
-      if let concept = clickedSingleConcept(atPoint: point) {
-        if !concept.isEditable {
-          safeTransiton { try stateManager.toEditingElement(element: concept) }
+      if let element = clickedSingleElement(atPoint: point) {
+        if !element.isEditable {
+          safeTransiton { try stateManager.toEditingElement(element: element) }
         } else {
-          safeTransiton { try stateManager.toSelectedElement(element: concept) }
+          safeTransiton { try stateManager.toSelectedElement(element: element) }
         }
       } else {
         safeTransiton { try stateManager.toNewConcept(atPoint: point) }
@@ -445,10 +453,8 @@ extension CanvasViewController: StateManagerDelegate {
   }
   
   func transitionedToSelectedElementSavingChanges(fromState: CanvasState) {
-    guard case .selectedElement(let element) = currentState else { return }
-    let concept: Concept = element as! Concept
-    
-    concept.attributedStringValue = textField.attributedStringValue
+    guard case .selectedElement(var element) = currentState else { return }
+    element.attributedStringValue = textField.attributedStringValue
     dismissTextField()
     
     transitionedToSelectedElement(fromState: fromState)
@@ -457,11 +463,11 @@ extension CanvasViewController: StateManagerDelegate {
   func transitionedToEditingElement(fromState: CanvasState) {
     commonTransitionBehavior(fromState)
     
-    guard case .editingElement(let element) = currentState else { return }
-    let concept: Concept = element as! Concept
-    concept.isEditable = true
+    guard case .editingElement(var element) = currentState else { return }
     
-    showTextField(atPoint: concept.point, text: concept.attributedStringValue)
+    element.isEditable = true
+    
+    showTextField(atPoint: element.point, text: element.attributedStringValue)
   }
   
   func transitionedToNewLink(fromState: CanvasState) {

@@ -12,6 +12,11 @@ protocol Element {
   var identifier: String { get }
   var rect: NSRect { get }
   
+  // center point of element
+  var point: NSPoint { get }
+  
+  var attributedStringValue: NSAttributedString { get  set }
+  
   var isEditable: Bool { get set }
   var isSelected: Bool { get set }
 }
