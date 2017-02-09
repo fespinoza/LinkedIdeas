@@ -16,6 +16,7 @@ protocol GraphConcept {
 
 protocol GraphLink {
   var color: NSColor { get }
+  var isSelected: Bool { get set }
   
   var stringValue: String { get }
   var attributedStringValue: NSAttributedString { get }
@@ -69,6 +70,7 @@ struct DrawableLink: DrawableElement {
   func draw() {
     link.color.set()
     constructArrow()?.bezierPath().fill()
+    drawSelectedRing()
     drawLinkText()
   }
   
@@ -91,6 +93,13 @@ struct DrawableLink: DrawableElement {
     NSColor.black.set()
     let bottomLeftTextPoint = link.point.translate(deltaX: -(textSize.width - padding) / 2.0, deltaY: -(textSize.height - padding) / 2.0)
     link.attributedStringValue.draw(at: bottomLeftTextPoint)
+  }
+  
+  func drawSelectedRing() {
+    guard link.isSelected else { return }
+    
+    NSColor.red.set()
+    constructArrow()?.bezierPath().stroke()
   }
   
   func constructArrow() -> Arrow? {
@@ -200,6 +209,22 @@ class CanvasViewController: NSViewController {
     return results
   }
   
+  func clickedElements(atPoint clickedPoint: NSPoint) -> [Element]? {
+    var results = [Element]()
+    let clickedConcepts: [Element] = document.concepts.filter { (concept) -> Bool in
+      return concept.rect.contains(clickedPoint)
+    }
+    let clickedLinks: [Element] = document.links.filter { (link) -> Bool in
+      return link.rect.contains(clickedPoint)
+    }
+    
+    results.append(contentsOf: clickedConcepts)
+    results.append(contentsOf: clickedLinks)
+    
+    guard results.count > 0 else { return nil }
+    return results
+  }
+  
   /// matchedConcepts: custom description
   ///
   /// - Parameter rect: the area to match
@@ -236,12 +261,12 @@ extension CanvasViewController {
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
     
     if event.isSingleClick() {
-      if let clickedConcepts = clickedConcepts(atPoint: point) {
+      if let clickedElements = clickedElements(atPoint: point) {
         Swift.print("[mouseDown][singleClick] clicked concepts [\(clickedConcepts)]")
         
         if (!currentState.isSimilar(to: .multipleSelectedElements(elements: [Element]()))) {
           safeTransiton {
-            try stateManager.toSelectedElement(element: clickedConcepts.first!)
+            try stateManager.toSelectedElement(element: clickedElements.first!)
           }
         }
         
