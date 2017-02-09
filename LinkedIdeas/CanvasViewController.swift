@@ -215,6 +215,7 @@ class CanvasViewController: NSViewController {
       return concept.rect.contains(clickedPoint)
     }
     let clickedLinks: [Element] = document.links.filter { (link) -> Bool in
+      // TODO: improve area where link is clicked
       return link.rect.contains(clickedPoint)
     }
     

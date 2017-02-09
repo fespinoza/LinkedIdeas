@@ -32,16 +32,6 @@ extension CanvasViewController {
     reRenderCanvasView()
   }
   
-  func createTemporaryLink(fromConcept: Concept, toConcept: Concept) {
-    // Transition to CreatingLink
-//    safeTransiton { try stateManager.toNewLink() }
-  }
-
-  func saveLink() {
-    // Transition to CanvasWaiting (saving link)
-//    safeTransiton { try stateManager.toCanvasWaiting() }
-  }
-  
   func cancelLinkCreation() {
     dismissTextField()
     canvasView.arrowColor = nil
