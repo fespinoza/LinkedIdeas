@@ -470,10 +470,18 @@ extension CanvasViewController: StateManagerDelegate {
     guard case .newLink(let fromConcept, let toConcept) = currentState else { return }
     
     // show canvas view link construction arrow in another color
-    canvasView.arrowStartPoint = fromConcept.point
-    canvasView.arrowEndPoint = toConcept.point
-    canvasView.arrowColor = NSColor.blue
-    reRenderCanvasView()
+    // TODO: this part can be a function
+    let originPoint = fromConcept.point
+    let targetPoint = toConcept.point
+    
+    if let intersectionPointWithOrigin = fromConcept.rect.firstIntersectionTo(targetPoint),
+      let intersectionPointWithTarget = toConcept.rect.firstIntersectionTo(originPoint) {
+      
+      canvasView.arrowStartPoint = intersectionPointWithOrigin
+      canvasView.arrowEndPoint = intersectionPointWithTarget
+      canvasView.arrowColor = NSColor.blue
+      reRenderCanvasView()
+    }
     
     // show text field in the middle of the concepts
     let middlePointBetweenConcepts = NSMakePoint(
