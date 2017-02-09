@@ -312,6 +312,11 @@ extension CanvasViewController {
       if (event.modifierFlags.contains(.shift)) {
         guard let concept = element as? Concept else { return }
         creationArrowForLink(toPoint: point)
+        if let hoveredConcepts = clickedConcepts(atPoint: point) {
+          select(elements: hoveredConcepts)
+        } else {
+          unselect(elements: document.concepts.filter { $0 != concept })
+        }
       } else {
         guard let concept = element as? Concept else { return }
         drag(concept: concept, toPoint: point)
@@ -345,6 +350,7 @@ extension CanvasViewController {
       if (event.modifierFlags.contains(.shift)) {
         if let targetConcept = clickedSingleConcept(atPoint: point) {
           Swift.print("[mouseUp][shiftClick] (targetConcept = \(targetConcept))")
+          targetConcept.isSelected = false
           safeTransiton {
             try stateManager.toNewLink(fromConcept: concept, toConcept: targetConcept)
           }
