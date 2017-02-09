@@ -498,6 +498,7 @@ extension CanvasViewController: StateManagerDelegate {
       dismissTextField()
     case .selectedElement(let element):
       unselect(elements: [element])
+      dismissConstructionArrow()
     case .multipleSelectedElements(let elements):
       unselect(elements: elements)
     case .newLink:
