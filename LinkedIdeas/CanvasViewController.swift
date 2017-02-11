@@ -223,11 +223,10 @@ class CanvasViewController: NSViewController {
   func clickedElements(atPoint clickedPoint: NSPoint) -> [Element]? {
     var results = [Element]()
     let clickedConcepts: [Element] = document.concepts.filter { (concept) -> Bool in
-      return concept.rect.contains(clickedPoint)
+      return concept.contains(point: clickedPoint)
     }
     let clickedLinks: [Element] = document.links.filter { (link) -> Bool in
-      // TODO: improve area where link is clicked
-      return link.rect.contains(clickedPoint)
+      return link.contains(point: clickedPoint)
     }
     
     results.append(contentsOf: clickedConcepts)

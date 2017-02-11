@@ -21,6 +21,15 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
       ((originPoint.y + targetPoint.y) / 2.0)
     )
   }
+  
+  let textRectPadding: CGFloat = 8.0
+  var textRect: NSRect {
+    var textSizeWithPadding = attributedStringValue.size()
+    textSizeWithPadding.width += textRectPadding
+    textSizeWithPadding.height += textRectPadding
+    return NSRect(center: point, size: textSizeWithPadding)
+  }
+  
   dynamic var color: NSColor
   
   // MARK: -NSAttributedStringElement
@@ -51,6 +60,40 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
     let width = max(maxX - minX, padding)
     let height = max(maxY - minY, padding)
     return NSMakeRect(minX, minY, width, height)
+  }
+  
+  func contains(point: NSPoint) -> Bool {
+    guard rect.contains(point) else { return false }
+    if (textRect.contains(point)) { return true }
+    
+    let extendedAreaArrow = Arrow(p1: originPoint, p2: targetPoint, arrowBodyWidth: 20)
+    let minXPoint: NSPoint! = extendedAreaArrow.arrowBodyPoints().min { (pointA, pointB) -> Bool in pointA.x < pointB.x }
+    let maxXPoint: NSPoint! = extendedAreaArrow.arrowBodyPoints().max { (pointA, pointB) -> Bool in pointA.x < pointB.x }
+    
+    let linkLine = Line(p1: originPoint, p2: targetPoint)
+    let pivotPoint = NSPoint(x: linkLine.evaluateY(0), y: 0)
+    
+    let angledLine = Line(p1: pivotPoint, p2: minXPoint)
+    let a = angledLine.intersectionWithYAxis
+    let b = angledLine.intersectionWithXAxis
+    let c: CGFloat = sqrt(pow(a, 2) + pow(b, 2))
+    let sin_theta = a / c
+    let cos_theta = b / c
+    
+    func transformationFunction(ofPoint pointToTransform: NSPoint) -> NSPoint {
+      return NSPoint(
+        x: pointToTransform.x * cos_theta - sin_theta * pointToTransform.y - minXPoint.x,
+        y: pointToTransform.x * sin_theta + cos_theta * pointToTransform.y - minXPoint.y
+      )
+    }
+    
+    if (transformationFunction(ofPoint: minXPoint) == NSPoint.zero) {
+      Swift.print("very bad calculations! \(transformationFunction(ofPoint: minXPoint)) should be point 0")
+    }
+    
+    let transformedRect = NSRect(p1: transformationFunction(ofPoint: minXPoint), p2: transformationFunction(ofPoint: maxXPoint))
+    let transformedPoint = transformationFunction(ofPoint: point)
+    return transformedRect.contains(transformedPoint)
   }
   
   convenience init(origin: Concept, target: Concept) {

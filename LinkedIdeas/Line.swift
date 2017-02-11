@@ -29,6 +29,10 @@ struct Line: PointInterceptable {
     return gradient * x + intersectionWithYAxis
   }
   
+  func evaluateY(_ y: CGFloat) -> CGFloat {
+    return (y - intersectionWithYAxis) / gradient
+  }
+  
   func isConstantLineOnX() -> Bool {
     return gradient.isInfinite
   }

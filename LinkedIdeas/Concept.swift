@@ -18,6 +18,7 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
   var stringValue: String { return attributedStringValue.string }
   
   static let padding: CGFloat = 10
+  
   var rect: NSRect {
     if stringValue != "" {
       var size = attributedStringValue.size()
@@ -63,6 +64,10 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
     self.point = point
     self.identifier = "\(UUID().uuidString)-concept"
     self.attributedStringValue = attributedStringValue
+  }
+  
+  func contains(point: NSPoint) -> Bool {
+    return rect.contains(point)
   }
 
   // MARK: - NSCoding
