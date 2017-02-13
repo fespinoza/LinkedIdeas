@@ -29,6 +29,8 @@ class CanvasView: NSView {
       return nil
     }
   }
+  
+  override var acceptsFirstResponder: Bool { return true }
 
   var arrowStartPoint: NSPoint? = nil
   var arrowEndPoint: NSPoint? = nil
@@ -81,5 +83,9 @@ class CanvasView: NSView {
     }
     
     arrow.bezierPath().stroke()
+  }
+  
+  override func keyDown(with event: NSEvent) {
+    super.keyDown(with: event)
   }
 }

@@ -186,6 +186,8 @@ class CanvasViewController: NSViewController {
     canvasView.addSubview(textField)
     
     stateManager.delegate = self
+    
+    let _ = canvasView.becomeFirstResponder()
   }
   
   override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -358,8 +360,11 @@ extension CanvasViewController {
         if let targetConcept = clickedSingleConcept(atPoint: point) {
           Swift.print("[mouseUp][shiftClick] (targetConcept = \(targetConcept))")
           targetConcept.isSelected = false
+          
+          let link = saveLink(fromConcept: concept, toConcept: targetConcept)
+          dismissConstructionArrow()
           safeTransiton {
-            try stateManager.toNewLink(fromConcept: concept, toConcept: targetConcept)
+            try stateManager.toSelectedElement(element: link)
           }
         } else {
           Swift.print("[mouseUp][shiftClick] no targetConcept!")
@@ -384,6 +389,28 @@ extension CanvasViewController {
     resetDraggingConcepts()
   }
 }
+
+// MARK: - KeyboardEvents
+
+extension CanvasViewController {
+  override func keyDown(with event: NSEvent) {
+    let enterKeyCode: UInt16 = 36
+    
+    if event.keyCode == enterKeyCode {
+      Swift.print("enter event!")
+      
+      switch currentState {
+      case .selectedElement(let element):
+        safeTransiton {
+          try stateManager.toEditingElement(element: element)
+        }
+      default:
+        Swift.print("do nothing")
+      }
+    }
+  }
+}
+
 
 // MARK: - CanvasViewDataSource
 
@@ -542,12 +569,19 @@ extension CanvasViewController {
     return true
   }
   
-  func saveLink(fromConcept: Concept, toConcept: Concept, text: NSAttributedString) -> Bool {
-    let newLink = Link(origin: fromConcept, target: toConcept, attributedStringValue: text)
+  func saveLink(fromConcept: Concept, toConcept: Concept, text: NSAttributedString? = nil) -> Link {
+    var linkText: NSAttributedString
+    if let text = text {
+      linkText = text
+    } else {
+      linkText = NSAttributedString(string: "")
+    }
+    
+    let newLink = Link(origin: fromConcept, target: toConcept, attributedStringValue: linkText)
     
     document.save(link: newLink)
     
-    return true
+    return newLink
   }
   
   func showTextField(atPoint point: NSPoint, text: NSAttributedString? = nil) {
