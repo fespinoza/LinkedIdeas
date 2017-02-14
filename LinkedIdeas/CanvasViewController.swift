@@ -140,6 +140,7 @@ class CanvasViewController: NSViewController {
   var dragCount: Int = 0
   
   var didDragStart = false
+  var didShiftDragStart = false
   // to register the beginning of the drag
   // for undo purposes
   var dragStartPoint: NSPoint? = nil
@@ -318,9 +319,10 @@ extension CanvasViewController {
     
     switch currentState {
     case .selectedElement(let element):
-      if (event.modifierFlags.contains(.shift)) {
+      if (event.modifierFlags.contains(.shift) || didShiftDragStart) {
         guard let concept = element as? Concept else { return }
         creationArrowForLink(toPoint: point)
+        didShiftDragStart = true
         if let hoveredConcepts = clickedConcepts(atPoint: point) {
           select(elements: hoveredConcepts)
         } else {
@@ -346,7 +348,6 @@ extension CanvasViewController {
   }
   
   override func mouseUp(with event: NSEvent) {
-    dragCount = 0
     Swift.print("[mouseUp] (state = \(currentState))")
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
     
@@ -356,7 +357,7 @@ extension CanvasViewController {
         return
       }
       
-      if (event.modifierFlags.contains(.shift)) {
+      if (event.modifierFlags.contains(.shift) || didShiftDragStart) {
         if let targetConcept = clickedSingleConcept(atPoint: point) {
           Swift.print("[mouseUp][shiftClick] (targetConcept = \(targetConcept))")
           targetConcept.isSelected = false

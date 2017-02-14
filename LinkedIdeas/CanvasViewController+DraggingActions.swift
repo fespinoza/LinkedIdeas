@@ -101,7 +101,9 @@ extension CanvasViewController {
   
   // MARK: General drag operations
   func resetDraggingConcepts() {
+    dragCount = 0
     didDragStart = false
+    didShiftDragStart = false
     dragStartPoint = nil
     canvasView.selectFromPoint = nil
     canvasView.selectToPoint = nil
