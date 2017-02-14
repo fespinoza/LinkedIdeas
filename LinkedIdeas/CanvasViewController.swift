@@ -187,7 +187,7 @@ class CanvasViewController: NSViewController {
     
     stateManager.delegate = self
     
-    let _ = canvasView.becomeFirstResponder()
+    canvasView.window?.makeFirstResponder(canvasView)
   }
   
   override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -597,7 +597,8 @@ extension CanvasViewController {
     textField.isEditable = false
     textField.isHidden = true
     textField.stringValue = ""
-    textField.resignFirstResponder()
+    
+    canvasView.window?.makeFirstResponder(canvasView)
   }
 }
 
