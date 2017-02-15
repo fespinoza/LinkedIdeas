@@ -18,12 +18,19 @@ extension CanvasViewController {
   // MARK: Single Concept
   
   func drag(concept: Concept, toPoint dragToPoint: NSPoint) {
-    if didDragStart == false { didDragStart = true }
+    if didDragStart == false {
+      didDragStart = true
+      concept.beforeMovingPoint = concept.point
+    }
     
     concept.point = dragToPoint
   }
   
   func endDrag(forConcept concept: Concept, toPoint: NSPoint) {
+    if let originalPoint = concept.beforeMovingPoint {
+      concept.point = originalPoint
+      concept.beforeMovingPoint = nil
+    }
     document.move(concept: concept, toPoint: toPoint)
   }
   
