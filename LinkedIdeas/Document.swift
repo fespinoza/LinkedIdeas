@@ -15,24 +15,24 @@ class Document: NSDocument {
   var concepts: [Concept] = [Concept]() {
     willSet {
       for concept in concepts {
-        stopObservingConcept(concept)
+        stopObserving(concept: concept)
       }
     }
     didSet {
       for concept in concepts {
-        startObservingConcept(concept)
+        startObserving(concept: concept)
       }
     }
   }
   var links: [Link] = [Link]() {
     willSet {
       for link in links {
-        stopObservingLink(link)
+        stopObserving(link: link)
       }
     }
     didSet {
       for link in links {
-        startObservingLink(link)
+        startObserving(link: link)
       }
     }
   }
@@ -75,19 +75,19 @@ class Document: NSDocument {
   
   // MARK: - KeyValue Observing
   
-  func startObservingConcept(_ concept: Concept) {
+  func startObserving(concept: Concept) {
     concept.addObserver(self, forKeyPath: Concept.attributedStringValuePath, options: .old, context: &KVOContext)
   }
   
-  func stopObservingConcept(_ concept: Concept) {
+  func stopObserving(concept: Concept) {
     concept.removeObserver(self, forKeyPath: Concept.attributedStringValuePath, context: &KVOContext)
   }
   
-  func startObservingLink(_ link: Link) {
+  func startObserving(link: Link) {
     link.addObserver(self, forKeyPath: Link.colorPath, options: .old, context: &KVOContext)
   }
   
-  func stopObservingLink(_ link: Link) {
+  func stopObserving(link: Link) {
     link.removeObserver(self, forKeyPath: Link.colorPath, context: &KVOContext)
   }
   
@@ -109,8 +109,8 @@ class Document: NSDocument {
         object.setValue(oldValue, forKey: keyPath)
       })
       
-      if let concept = object as? Concept { observer?.documentChanged(withElement: concept as Element) }
-      if let link = object as? Link { observer?.documentChanged(withElement: link as Element) }
+      if let concept = object as? Concept { observer?.documentChanged(withElement: concept) }
+      if let link = object as? Link { observer?.documentChanged(withElement: link) }
     }
   }
 }
