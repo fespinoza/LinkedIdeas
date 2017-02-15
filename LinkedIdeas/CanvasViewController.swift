@@ -497,39 +497,6 @@ extension CanvasViewController: StateManagerDelegate {
     showTextField(atPoint: element.point, text: element.attributedStringValue)
   }
   
-  func transitionedToNewLink(fromState: CanvasState) {
-    commonTransitionBehavior(fromState)
-    
-    guard case .newLink(let fromConcept, let toConcept) = currentState else { return }
-    
-    // show canvas view link construction arrow in another color
-    // TODO: this part can be a function
-    let originPoint = fromConcept.point
-    let targetPoint = toConcept.point
-    
-    if let intersectionPointWithOrigin = fromConcept.rect.firstIntersectionTo(targetPoint),
-      let intersectionPointWithTarget = toConcept.rect.firstIntersectionTo(originPoint) {
-      
-      canvasView.arrowStartPoint = intersectionPointWithOrigin
-      canvasView.arrowEndPoint = intersectionPointWithTarget
-      canvasView.arrowColor = NSColor.blue
-      reRenderCanvasView()
-    }
-    
-    // show text field in the middle of the concepts
-    let middlePointBetweenConcepts = NSMakePoint(
-      ((fromConcept.point.x + toConcept.point.x) / 2.0),
-      ((fromConcept.point.y + toConcept.point.y) / 2.0)
-    )
-    showTextField(atPoint: middlePointBetweenConcepts, text: NSAttributedString(string: ""))
-  }
-  
-  func transitionedToCanvasWaitingSavingLink(fromState: CanvasState, fromConcept: Concept, toConcept: Concept, text: NSAttributedString) {
-    dismissTextField()
-    dismissConstructionArrow()
-    let _ = saveLink(fromConcept: fromConcept, toConcept: toConcept, text: text)
-  }
-  
   private func commonTransitionBehavior(_ fromState: CanvasState) {
     switch fromState {
     case .newConcept:
@@ -542,8 +509,6 @@ extension CanvasViewController: StateManagerDelegate {
       dismissConstructionArrow()
     case .multipleSelectedElements(let elements):
       unselect(elements: elements)
-    case .newLink:
-      cancelLinkCreation()
     default:
       break
     }
@@ -625,10 +590,6 @@ extension CanvasViewController: NSTextFieldDelegate {
       case .newConcept:
         safeTransiton {
           try stateManager.toCanvasWaiting(savingConceptWithText: control.attributedStringValue)
-        }
-      case .newLink:
-        safeTransiton {
-          try stateManager.toCanvasWaiting(savingLinkWithText: control.attributedStringValue)
         }
       default:
         Swift.print("[textField][enterKey] unhandled event (state = \(currentState))")
