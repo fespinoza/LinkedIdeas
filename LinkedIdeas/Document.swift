@@ -124,7 +124,7 @@ extension Document: LinkedIdeasDocument {
       withTarget: self,
       selector: #selector(Document.remove(concept:)),
       object: concept)
-    observer?.documentChanged(withElement: concept as Element)
+    observer?.documentChanged(withElement: concept)
   }
   
   func remove(concept: Concept) {
@@ -133,7 +133,7 @@ extension Document: LinkedIdeasDocument {
       withTarget: self,
       selector: #selector(Document.save(concept:)),
       object: concept)
-    observer?.documentChanged(withElement: concept as Element)
+    observer?.documentChanged(withElement: concept)
   }
   
   func save(link: Link) {
@@ -142,7 +142,7 @@ extension Document: LinkedIdeasDocument {
       withTarget: self,
       selector: #selector(Document.remove(link:)),
       object: link)
-    observer?.documentChanged(withElement: link as Element)
+    observer?.documentChanged(withElement: link)
   }
   
   func remove(link: Link) {
@@ -151,13 +151,14 @@ extension Document: LinkedIdeasDocument {
       withTarget: self,
       selector: #selector(Document.save(link:)),
       object: link)
-    observer?.documentChanged(withElement: link as Element)
+    observer?.documentChanged(withElement: link)
   }
 
   func move(concept: Concept, toPoint: NSPoint) {
+    Swift.print("move concept \(concept) toPoint: \(toPoint)")
     let originalPoint = concept.point
     concept.point = toPoint
-    observer?.documentChanged(withElement: concept as Element)
+    observer?.documentChanged(withElement: concept)
     
     undoManager?.registerUndo(withTarget: self, handler: { (object) in
       object.move(concept: concept, toPoint: originalPoint)
