@@ -86,8 +86,6 @@ struct DrawableLink: DrawableElement {
     
     let textRect = NSRect(center: link.point, size: textSize)
     NSRectFill(textRect)
-//    NSColor.blue.set()
-//    NSBezierPath(rect: textRect).stroke()
     
     // text
     let bottomLeftTextPoint = link.point.translate(deltaX: -(textSize.width - padding) / 2.0, deltaY: -(textSize.height - padding) / 2.0)
