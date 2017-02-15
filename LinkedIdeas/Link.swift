@@ -108,7 +108,9 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
     self.attributedStringValue = attributedStringValue
   }
   
+  // MARK: - KVO
   static let colorPath = "color"
+  static let attributedStringValuePath = "attributedStringValue"
   
   let identifierKey = "identifierKey"
   let originKey = "OriginKey"

@@ -85,10 +85,12 @@ class Document: NSDocument {
   
   func startObserving(link: Link) {
     link.addObserver(self, forKeyPath: Link.colorPath, options: .old, context: &KVOContext)
+    link.addObserver(self, forKeyPath: Link.attributedStringValuePath, options: .old, context: &KVOContext)
   }
   
   func stopObserving(link: Link) {
     link.removeObserver(self, forKeyPath: Link.colorPath, context: &KVOContext)
+    link.removeObserver(self, forKeyPath: Link.attributedStringValuePath, context: &KVOContext)
   }
   
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -105,7 +107,7 @@ class Document: NSDocument {
         oldValue = nil
       }
       
-      undoManager?.registerUndo(withTarget: (object as! Concept), handler: { (object) in
+      undoManager?.registerUndo(withTarget: (object as! NSObject), handler: { (object) in
         object.setValue(oldValue, forKey: keyPath)
       })
       
