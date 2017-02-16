@@ -57,7 +57,9 @@ struct DrawableConcept: DrawableElement {
   }
   
   func drawSelectedRing() {
-    guard concept.isSelected else { return }
+    guard concept.isSelected else {
+      return
+    }
     
     NSColor.red.set()
     NSBezierPath(rect: concept.rect).stroke()
@@ -75,7 +77,9 @@ struct DrawableLink: DrawableElement {
   }
   
   func drawLinkText() {
-    guard link.stringValue != "" else { return }
+    guard link.stringValue != "" else {
+      return
+    }
     
     // background
     NSColor.white.set()
@@ -97,7 +101,9 @@ struct DrawableLink: DrawableElement {
   }
   
   func drawSelectedRing() {
-    guard link.isSelected else { return }
+    guard link.isSelected else {
+      return
+    }
     
     NSColor.red.set()
     constructArrow()?.bezierPath().stroke()
@@ -217,7 +223,9 @@ class CanvasViewController: NSViewController {
     let results = document.concepts.filter { (concept) -> Bool in
       return concept.rect.contains(clickedPoint)
     }
-    guard results.count > 0 else { return nil }
+    guard results.count > 0 else {
+      return nil
+    }
     return results
   }
   
@@ -233,7 +241,9 @@ class CanvasViewController: NSViewController {
     results.append(contentsOf: clickedConcepts)
     results.append(contentsOf: clickedLinks)
     
-    guard results.count > 0 else { return nil }
+    guard results.count > 0 else {
+      return nil
+    }
     return results
   }
   
@@ -247,7 +257,9 @@ class CanvasViewController: NSViewController {
     let results = document.concepts.filter { (concept) -> Bool in
       return rect.intersects(concept.rect)
     }
-    guard results.count > 0 else { return nil }
+    guard results.count > 0 else {
+      return nil
+    }
     return results
   }
   
@@ -318,7 +330,9 @@ extension CanvasViewController {
     switch currentState {
     case .selectedElement(let element):
       if (event.modifierFlags.contains(.shift) || didShiftDragStart) {
-        guard let concept = element as? Concept else { return }
+        guard let concept = element as? Concept else {
+          return
+        }
         creationArrowForLink(toPoint: point)
         didShiftDragStart = true
         if let hoveredConcepts = clickedConcepts(atPoint: point) {
@@ -327,12 +341,16 @@ extension CanvasViewController {
           unselect(elements: document.concepts.filter { $0 != concept })
         }
       } else {
-        guard let concept = element as? Concept else { return }
+        guard let concept = element as? Concept else {
+          return
+        }
         drag(concept: concept, toPoint: point)
       }
       
     case .multipleSelectedElements(let elements):
-      guard let concepts = elements as? [Concept] else { return }
+      guard let concepts = elements as? [Concept] else {
+        return
+      }
       drag(concepts: concepts, toPoint: point)
       
     case .canvasWaiting:
@@ -374,7 +392,9 @@ extension CanvasViewController {
         endDrag(forConcept: concept, toPoint: point)
       }
     case .multipleSelectedElements(let elements):
-      guard let concepts = elements as? [Concept] else { return }
+      guard let concepts = elements as? [Concept] else {
+        return
+      }
       endDrag(forConcepts: concepts, toPoint: point)
       
     case .canvasWaiting:
@@ -445,7 +465,9 @@ extension CanvasViewController: StateManagerDelegate {
   }
   
   func transitionedToNewConcept(fromState: CanvasState) {
-    guard case .newConcept(let point) = currentState else { return }
+    guard case .newConcept(let point) = currentState else {
+      return
+    }
     
     commonTransitionBehavior(fromState)
     
@@ -464,7 +486,9 @@ extension CanvasViewController: StateManagerDelegate {
   func transitionedToSelectedElement(fromState: CanvasState) {
     commonTransitionBehavior(fromState)
     
-    guard case .selectedElement(let element) = currentState else { return }
+    guard case .selectedElement(let element) = currentState else {
+      return
+    }
     
     select(elements: [element])
   }
@@ -472,13 +496,17 @@ extension CanvasViewController: StateManagerDelegate {
   func transitionedToMultipleSelectedElements(fromState: CanvasState) {
     commonTransitionBehavior(fromState)
     
-    guard case .multipleSelectedElements(let elements) = currentState else { return }
+    guard case .multipleSelectedElements(let elements) = currentState else {
+      return
+    }
     
     select(elements: elements)
   }
   
   func transitionedToSelectedElementSavingChanges(fromState: CanvasState) {
-    guard case .selectedElement(var element) = currentState else { return }
+    guard case .selectedElement(var element) = currentState else {
+      return
+    }
     element.attributedStringValue = textField.attributedStringValue
     dismissTextField()
     
@@ -488,7 +516,9 @@ extension CanvasViewController: StateManagerDelegate {
   func transitionedToEditingElement(fromState: CanvasState) {
     commonTransitionBehavior(fromState)
     
-    guard case .editingElement(var element) = currentState else { return }
+    guard case .editingElement(var element) = currentState else {
+      return
+    }
     
     element.isEditable = true
     
@@ -525,7 +555,9 @@ extension CanvasViewController {
   }
   
   func saveConcept(text: NSAttributedString, atPoint point: NSPoint) -> Bool {
-    guard text.string != "" else { return false }
+    guard text.string != "" else {
+      return false
+    }
     
     let newConcept = Concept(attributedStringValue: text, point: point)
     

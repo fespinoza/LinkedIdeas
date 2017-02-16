@@ -11,26 +11,16 @@ import Foundation
 // MARK: CanvasViewController+LinkCreation
 extension CanvasViewController {
   func creationArrowForLink(toPoint point: NSPoint) {
-    if let _ = canvasView.arrowStartPoint {
-      canvasView.arrowEndPoint = point
-    } else {
+    if canvasView.arrowStartPoint == nil {
       canvasView.arrowStartPoint = point
+    } else {
+      canvasView.arrowEndPoint = point
     }
     didDragStart = true
     reRenderCanvasView()
   }
-  
-  func cancelLinkCreation() {
-    dismissTextField()
-    canvasView.arrowColor = nil
-    canvasView.arrowStartPoint = nil
-    canvasView.arrowEndPoint = nil
-  }
 
   func dismissConstructionArrow() {
-    canvasView.arrowStartPoint = nil
-    canvasView.arrowEndPoint = nil
-    canvasView.arrowColor = nil
-    reRenderCanvasView()
+    canvasView.cancelCreationArrow()
   }
 }

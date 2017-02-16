@@ -63,8 +63,12 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
   }
   
   func contains(point: NSPoint) -> Bool {
-    guard rect.contains(point) else { return false }
-    if (textRect.contains(point)) { return true }
+    guard rect.contains(point) else {
+      return false
+    }
+    if (textRect.contains(point)) {
+      return true
+    }
     
     let extendedAreaArrow = Arrow(p1: originPoint, p2: targetPoint, arrowBodyWidth: 20)
     let minXPoint: NSPoint! = extendedAreaArrow.arrowBodyPoints().min { (pointA, pointB) -> Bool in pointA.x < pointB.x }

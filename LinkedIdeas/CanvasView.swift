@@ -32,9 +32,9 @@ class CanvasView: NSView {
   
   override var acceptsFirstResponder: Bool { return true }
 
-  var arrowStartPoint: NSPoint? = nil
-  var arrowEndPoint: NSPoint? = nil
-  var arrowColor: NSColor? = nil
+  var arrowStartPoint: NSPoint?
+  var arrowEndPoint: NSPoint?
+  var arrowColor: NSColor?
 
   override func draw(_ dirtyRect: NSRect) {
     super.draw(dirtyRect)
@@ -55,7 +55,9 @@ class CanvasView: NSView {
   }
   
   func drawSelectionRect() {
-    guard let selectionRect = selectionRect else { return }
+    guard let selectionRect = selectionRect else {
+      return
+    }
     
     let borderColor = NSColor(red: 0, green: 0, blue: 1, alpha: 1)
     let backgroundColor = NSColor(red: 0, green: 0, blue: 1, alpha: 0.5)
@@ -83,6 +85,14 @@ class CanvasView: NSView {
     }
     
     arrow.bezierPath().stroke()
+  }
+  
+  func cancelCreationArrow() {
+    arrowStartPoint = nil
+    arrowEndPoint = nil
+    arrowColor = nil
+    
+    needsDisplay = true
   }
   
   override func keyDown(with event: NSEvent) {
