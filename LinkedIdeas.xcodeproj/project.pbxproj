@@ -14,9 +14,7 @@
 		9B1CD1C81E48D10B003F192B /* CanvasViewController+LinkCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CD1C71E48D10B003F192B /* CanvasViewController+LinkCreation.swift */; };
 		9B2F1DA01BE7CFE70090CC18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */; };
 		9B2F1DA21BE7CFE70090CC18 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA11BE7CFE70090CC18 /* Document.swift */; };
-		9B2F1DA51BE7CFE70090CC18 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA31BE7CFE70090CC18 /* Document.xib */; };
 		9B2F1DA71BE7CFE70090CC18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA61BE7CFE70090CC18 /* Assets.xcassets */; };
-		9B2F1DCE1BE7D3990090CC18 /* OldCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1DCD1BE7D3990090CC18 /* OldCanvasView.swift */; };
 		9B33821F1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B33821E1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift */; };
 		9B48F8471CD613F60014758D /* DocumentObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8461CD613F60014758D /* DocumentObserver.swift */; };
 		9B48F8491CD614370014758D /* LinkedIdeasDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */; };
@@ -25,13 +23,10 @@
 		9B521F851CFB37D200A71598 /* AligmentFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B521F841CFB37D200A71598 /* AligmentFunctions.swift */; };
 		9B521F871CFB380300A71598 /* SquareElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B521F861CFB380300A71598 /* SquareElement.swift */; };
 		9B66961C1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */; };
-		9B733AF71CB9B7D200C04F47 /* ResizingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B733AF61CB9B7D200C04F47 /* ResizingTextField.swift */; };
-		9B7D535F1CB6D0A400B3D43B /* ElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D535E1CB6D0A400B3D43B /* ElementView.swift */; };
 		9B8665C61D96C9E800799678 /* StateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8665C51D96C9E800799678 /* StateManagerTests.swift */; };
 		9B8E90051E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E90041E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift */; };
 		9B956CE51C1B11C200CF20DA /* NSPoint+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B956CE41C1B11C200CF20DA /* NSPoint+Utilities.swift */; };
 		9B9A2EA41CF5EE5300607208 /* AlignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A2EA31CF5EE5300607208 /* AlignmentTests.swift */; };
-		9BA3BE281D734CC800B3A510 /* OldWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA3BE271D734CC800B3A510 /* OldWindowController.swift */; };
 		9BA63D2E1D74C23100EBC3AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BA63D2C1D74C23100EBC3AD /* Main.storyboard */; };
 		9BA63D301D74C31A00EBC3AD /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA63D2F1D74C31A00EBC3AD /* DocumentViewController.swift */; };
 		9BA63D321D74C38400EBC3AD /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA63D311D74C38400EBC3AD /* CanvasViewController.swift */; };
@@ -39,7 +34,6 @@
 		9BABB2B21C07B7F7001EC9E0 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BABB2B11C07B7F7001EC9E0 /* Link.swift */; };
 		9BB8FC831CA6B7D7008CD6A2 /* LinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */; };
 		9BB8FC851CA6B7F8008CD6A2 /* LinkViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC841CA6B7F8008CD6A2 /* LinkViewTests.swift */; };
-		9BB8FC871CA6B828008CD6A2 /* LinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC861CA6B828008CD6A2 /* LinkView.swift */; };
 		9BB8FC891CA6B889008CD6A2 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC881CA6B889008CD6A2 /* Element.swift */; };
 		9BD0BD581D9B0BED0041F7ED /* TestProtocolConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD0BD571D9B0BED0041F7ED /* TestProtocolConformance.swift */; };
 		9BD2BF351C7F8B1200E8A303 /* LineRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF341C7F8B1200E8A303 /* LineRange.swift */; };
@@ -48,10 +42,8 @@
 		9BD2BF3B1C7F8B5500E8A303 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF3A1C7F8B5500E8A303 /* Line.swift */; };
 		9BD2BF3D1C7F8B6A00E8A303 /* FiniteLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF3C1C7F8B6A00E8A303 /* FiniteLine.swift */; };
 		9BD2BF421C7F8C2000E8A303 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF411C7F8C2000E8A303 /* Arrow.swift */; };
-		9BD2C14E1BEE6F9F00CD3C2F /* ConceptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2C14D1BEE6F9F00CD3C2F /* ConceptView.swift */; };
 		9BDDE7391BEF9157000AAD44 /* Concept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDDE7381BEF9157000AAD44 /* Concept.swift */; };
 		9BE40C211D8DD98B0025F154 /* CanvasViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */; };
-		9BED51861D2ED56100A67B49 /* Playgrounds in Resources */ = {isa = PBXBuildFile; fileRef = 9BED51851D2ED56100A67B49 /* Playgrounds */; };
 		9BF058F91C921F7D00274A62 /* OldCanvasViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF058F71C921F7D00274A62 /* OldCanvasViewTests.swift */; };
 		9BF058FA1C921F7D00274A62 /* ConceptViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF058F81C921F7D00274A62 /* ConceptViewTests.swift */; };
 		9BF058FC1C9220F200274A62 /* ConceptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF058FB1C9220F200274A62 /* ConceptTests.swift */; };
@@ -77,12 +69,10 @@
 		9B2F1D9C1BE7CFE70090CC18 /* LinkedIdeas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkedIdeas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B2F1DA11BE7CFE70090CC18 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
-		9B2F1DA41BE7CFE70090CC18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
 		9B2F1DA61BE7CFE70090CC18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B2F1DAB1BE7CFE80090CC18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B2F1DB01BE7CFE80090CC18 /* LinkedIdeasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinkedIdeasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2F1DB61BE7CFE80090CC18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9B2F1DCD1BE7D3990090CC18 /* OldCanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = OldCanvasView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9B33821E1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtensionsTest.swift; sourceTree = "<group>"; };
 		9B48F8461CD613F60014758D /* DocumentObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentObserver.swift; sourceTree = "<group>"; };
 		9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedIdeasDocument.swift; sourceTree = "<group>"; };
@@ -91,13 +81,10 @@
 		9B521F841CFB37D200A71598 /* AligmentFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AligmentFunctions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9B521F861CFB380300A71598 /* SquareElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareElement.swift; sourceTree = "<group>"; };
 		9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = linked_ideas_doc_icon.icns; sourceTree = "<group>"; };
-		9B733AF61CB9B7D200C04F47 /* ResizingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizingTextField.swift; sourceTree = "<group>"; };
-		9B7D535E1CB6D0A400B3D43B /* ElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ElementView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9B8665C51D96C9E800799678 /* StateManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateManagerTests.swift; sourceTree = "<group>"; };
 		9B8E90041E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "CanvasViewController+DraggingActions.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9B956CE41C1B11C200CF20DA /* NSPoint+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPoint+Utilities.swift"; sourceTree = "<group>"; };
 		9B9A2EA31CF5EE5300607208 /* AlignmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignmentTests.swift; sourceTree = "<group>"; };
-		9BA3BE271D734CC800B3A510 /* OldWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = OldWindowController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9BA63D2D1D74C23100EBC3AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9BA63D2F1D74C31A00EBC3AD /* DocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		9BA63D311D74C38400EBC3AD /* CanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CanvasViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -105,19 +92,16 @@
 		9BABB2B11C07B7F7001EC9E0 /* Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Link.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkTests.swift; sourceTree = "<group>"; };
 		9BB8FC841CA6B7F8008CD6A2 /* LinkViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LinkViewTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		9BB8FC861CA6B828008CD6A2 /* LinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LinkView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9BB8FC881CA6B889008CD6A2 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		9BD0BD571D9B0BED0041F7ED /* TestProtocolConformance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestProtocolConformance.swift; sourceTree = "<group>"; };
 		9BD2BF341C7F8B1200E8A303 /* LineRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineRange.swift; sourceTree = "<group>"; };
 		9BD2BF361C7F8B2300E8A303 /* Interceptable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interceptable.swift; sourceTree = "<group>"; };
 		9BD2BF381C7F8B4100E8A303 /* PointInterceptable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointInterceptable.swift; sourceTree = "<group>"; };
-		9BD2BF3A1C7F8B5500E8A303 /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
-		9BD2BF3C1C7F8B6A00E8A303 /* FiniteLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiniteLine.swift; sourceTree = "<group>"; };
+		9BD2BF3A1C7F8B5500E8A303 /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Line.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		9BD2BF3C1C7F8B6A00E8A303 /* FiniteLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FiniteLine.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9BD2BF411C7F8C2000E8A303 /* Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
-		9BD2C14D1BEE6F9F00CD3C2F /* ConceptView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ConceptView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9BDDE7381BEF9157000AAD44 /* Concept.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Concept.swift; sourceTree = "<group>"; };
 		9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewControllerTests.swift; sourceTree = "<group>"; };
-		9BED51851D2ED56100A67B49 /* Playgrounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Playgrounds; sourceTree = "<group>"; };
 		9BF058F71C921F7D00274A62 /* OldCanvasViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = OldCanvasViewTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9BF058F81C921F7D00274A62 /* ConceptViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ConceptViewTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9BF058FB1C9220F200274A62 /* ConceptTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConceptTests.swift; sourceTree = "<group>"; };
@@ -146,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */,
-				9BED51851D2ED56100A67B49 /* Playgrounds */,
 				9B2F1D9E1BE7CFE70090CC18 /* LinkedIdeas */,
 				9B2F1DB31BE7CFE80090CC18 /* LinkedIdeasTests */,
 				9B2F1D9D1BE7CFE70090CC18 /* Products */,
@@ -171,7 +154,6 @@
 				9BA63D2C1D74C23100EBC3AD /* Main.storyboard */,
 				9B2F1DA61BE7CFE70090CC18 /* Assets.xcassets */,
 				9B2F1DAB1BE7CFE80090CC18 /* Info.plist */,
-				9BCA09E41C9217C900637F6D /* Views */,
 				9BCA09E31C9217A900637F6D /* Models */,
 				9BD2BF3E1C7F8B8D00E8A303 /* 2DMath */,
 				9B521F841CFB37D200A71598 /* AligmentFunctions.swift */,
@@ -208,14 +190,6 @@
 				9B48F8461CD613F60014758D /* DocumentObserver.swift */,
 				9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */,
 				9B521F861CFB380300A71598 /* SquareElement.swift */,
-			);
-			name = Protocols;
-			sourceTree = "<group>";
-		};
-		9B48F84B1CD6146D0014758D /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				9B7D535E1CB6D0A400B3D43B /* ElementView.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -275,20 +249,6 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		9BCA09E41C9217C900637F6D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				9BA3BE271D734CC800B3A510 /* OldWindowController.swift */,
-				9B2F1DCD1BE7D3990090CC18 /* OldCanvasView.swift */,
-				9BD2C14D1BEE6F9F00CD3C2F /* ConceptView.swift */,
-				9B2F1DA31BE7CFE70090CC18 /* Document.xib */,
-				9BB8FC861CA6B828008CD6A2 /* LinkView.swift */,
-				9B733AF61CB9B7D200C04F47 /* ResizingTextField.swift */,
-				9B48F84B1CD6146D0014758D /* Protocols */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		9BD2BF3E1C7F8B8D00E8A303 /* 2DMath */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +275,7 @@
 				9B2F1D981BE7CFE70090CC18 /* Sources */,
 				9B2F1D991BE7CFE70090CC18 /* Frameworks */,
 				9B2F1D9A1BE7CFE70090CC18 /* Resources */,
+				9B39418E1E56475F00F1E957 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -332,6 +293,7 @@
 				9B2F1DAC1BE7CFE80090CC18 /* Sources */,
 				9B2F1DAD1BE7CFE80090CC18 /* Frameworks */,
 				9B2F1DAE1BE7CFE80090CC18 /* Resources */,
+				9B39418F1E56477100F1E957 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -391,8 +353,6 @@
 			files = (
 				9B2F1DA71BE7CFE70090CC18 /* Assets.xcassets in Resources */,
 				9BA63D2E1D74C23100EBC3AD /* Main.storyboard in Resources */,
-				9B2F1DA51BE7CFE70090CC18 /* Document.xib in Resources */,
-				9BED51861D2ED56100A67B49 /* Playgrounds in Resources */,
 				9B66961C1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,6 +366,35 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9B39418E1E56475F00F1E957 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		9B39418F1E56477100F1E957 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9B2F1D981BE7CFE70090CC18 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -415,9 +404,7 @@
 				9BABB2B21C07B7F7001EC9E0 /* Link.swift in Sources */,
 				9B2F1DA21BE7CFE70090CC18 /* Document.swift in Sources */,
 				9B48F84F1CD614C50014758D /* Mode.swift in Sources */,
-				9BA3BE281D734CC800B3A510 /* OldWindowController.swift in Sources */,
 				9B521F851CFB37D200A71598 /* AligmentFunctions.swift in Sources */,
-				9BB8FC871CA6B828008CD6A2 /* LinkView.swift in Sources */,
 				9B521F871CFB380300A71598 /* SquareElement.swift in Sources */,
 				9B956CE51C1B11C200CF20DA /* NSPoint+Utilities.swift in Sources */,
 				9B0683FD1DA1A1AA00609AE5 /* StateManager.swift in Sources */,
@@ -428,17 +415,13 @@
 				9B06AD131C11AD74000BC75C /* NSRect+PointHelpers.swift in Sources */,
 				9BD2BF421C7F8C2000E8A303 /* Arrow.swift in Sources */,
 				9BD2BF371C7F8B2300E8A303 /* Interceptable.swift in Sources */,
-				9B733AF71CB9B7D200C04F47 /* ResizingTextField.swift in Sources */,
 				9B48F84D1CD614BC0014758D /* DocumentData.swift in Sources */,
 				9B1CD1C81E48D10B003F192B /* CanvasViewController+LinkCreation.swift in Sources */,
 				9B48F8491CD614370014758D /* LinkedIdeasDocument.swift in Sources */,
 				9BD2BF391C7F8B4100E8A303 /* PointInterceptable.swift in Sources */,
 				9B8E90051E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift in Sources */,
 				9BB8FC891CA6B889008CD6A2 /* Element.swift in Sources */,
-				9B2F1DCE1BE7D3990090CC18 /* OldCanvasView.swift in Sources */,
 				9BF15C391CAC69A500C95041 /* WindowController.swift in Sources */,
-				9B7D535F1CB6D0A400B3D43B /* ElementView.swift in Sources */,
-				9BD2C14E1BEE6F9F00CD3C2F /* ConceptView.swift in Sources */,
 				9B1CCDEB1D294E0900F319EB /* NSAttributedStringExtensions.swift in Sources */,
 				9BD2BF3B1C7F8B5500E8A303 /* Line.swift in Sources */,
 				9BA63D351D74C47800EBC3AD /* CanvasView.swift in Sources */,
@@ -476,14 +459,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9B2F1DA31BE7CFE70090CC18 /* Document.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9B2F1DA41BE7CFE70090CC18 /* Base */,
-			);
-			name = Document.xib;
-			sourceTree = "<group>";
-		};
 		9BA63D2C1D74C23100EBC3AD /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
