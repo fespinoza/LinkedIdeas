@@ -13,16 +13,22 @@ class DocumentData: NSObject, NSCoding {
   var readLinks: [Link]?
   var writeConcepts: [Concept]?
   var writeLinks: [Link]?
-  
+
   override init() {
     super.init()
   }
-  
+
   required init?(coder aDecoder: NSCoder) {
-    readConcepts = aDecoder.decodeObject(forKey: "concepts") as! [Concept]?
-    readLinks = aDecoder.decodeObject(forKey: "links") as! [Link]?
+    guard let readConcepts = aDecoder.decodeObject(forKey: "concepts") as? [Concept]?,
+          let readLinks = aDecoder.decodeObject(forKey: "links") as? [Link]?
+      else {
+        return nil
+    }
+
+    self.readConcepts = readConcepts
+    self.readLinks = readLinks
   }
-  
+
   func encode(with aCoder: NSCoder) {
     aCoder.encode(writeConcepts, forKey: "concepts")
     aCoder.encode(writeLinks, forKey: "links")
@@ -32,15 +38,22 @@ class DocumentData: NSObject, NSCoding {
 class Graph: NSObject, NSCoding {
   var concepts = [Concept]()
   var links = [Link]()
-  
+
   required init?(coder aDecoder: NSCoder) {
-    concepts = aDecoder.decodeObject(forKey: "concepts") as! [Concept]
-    links = aDecoder.decodeObject(forKey: "links") as! [Link]
+
+    guard let concepts = aDecoder.decodeObject(forKey: "concepts") as? [Concept],
+          let links = aDecoder.decodeObject(forKey: "links") as? [Link]
+      else {
+        return nil
+    }
+
+    self.concepts = concepts
+    self.links = links
   }
-  
+
   func encode(with aCoder: NSCoder) {
     aCoder.encode(concepts, forKey: "concepts")
     aCoder.encode(links, forKey: "links")
   }
-  
+
 }

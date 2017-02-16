@@ -14,9 +14,9 @@ class ConceptTests: XCTestCase {
     // given
     let point = NSPoint(x: 60, y: 400)
     let concept = Concept(point: point)
-    
+
     // then
-    XCTAssertEqual(concept.rect, NSRect(center: point, size: NSMakeSize(60, 20)))
+    XCTAssertEqual(concept.rect, NSRect(center: point, size: NSSize(width: 60, height: 20)))
   }
 
   func testRectWithStringValue() {
@@ -27,12 +27,12 @@ class ConceptTests: XCTestCase {
     var stringSize = stringValue.size(withAttributes: nil)
     stringSize.width  += 10
     stringSize.height += 10
-    
+
     // then
     XCTAssert(concept.rect.size.width > 60)
     XCTAssertEqual(concept.rect, NSRect(center: point, size: stringSize))
   }
-  
+
   func testRectWithMultiLineStringValue() {
     // given
     let point = NSPoint(x: 60, y: 400)
@@ -41,7 +41,7 @@ class ConceptTests: XCTestCase {
     var stringSize = stringValue.size(withAttributes: nil)
     stringSize.width  += 10
     stringSize.height += 10
-    
+
     // then
     XCTAssertEqual(concept.rect, NSRect(center: point, size: stringSize))
   }

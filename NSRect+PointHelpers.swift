@@ -9,42 +9,42 @@
 import Cocoa
 
 extension NSRect {
-  init(p1: NSPoint, p2: NSPoint) {
-    origin = NSMakePoint(min(p1.x, p2.x), min(p1.y, p2.y))
-    size = NSSize(width:  abs(p2.x - p1.x), height: abs(p2.y - p1.y))
+  init(point1: NSPoint, point2: NSPoint) {
+    origin = NSPoint(x: min(point1.x, point2.x), y: min(point1.y, point2.y))
+    size = NSSize(width:  abs(point2.x - point1.x), height: abs(point2.y - point1.y))
   }
-  
+
   init(center: NSPoint, size: NSSize) {
-    origin = NSMakePoint(center.x - size.width / 2, center.y - size.height / 2)
+    origin = NSPoint(x: center.x - size.width / 2, y: center.y - size.height / 2)
     self.size = size
   }
-  
+
   var bottomLeftPoint: NSPoint { return origin }
-  var bottomRightPoint: NSPoint { return NSMakePoint(origin.x + size.width, origin.y) }
-  var topRightPoint: NSPoint { return NSMakePoint(origin.x + size.width, origin.y + size.height) }
-  var topLeftPoint: NSPoint { return NSMakePoint(origin.x, origin.y + size.height) }
-  var center: NSPoint { return NSMakePoint(origin.x + size.width / 2, origin.y + size.height / 2) }
+  var bottomRightPoint: NSPoint { return NSPoint(x: origin.x + size.width, y: origin.y) }
+  var topRightPoint: NSPoint { return NSPoint(x: origin.x + size.width, y: origin.y + size.height) }
+  var topLeftPoint: NSPoint { return NSPoint(x: origin.x, y: origin.y + size.height) }
+  var center: NSPoint { return NSPoint(x: origin.x + size.width / 2, y: origin.y + size.height / 2) }
 }
 
 extension NSRect {
   var lines: [FiniteLine] {
     var result: [FiniteLine] = []
-    
-    result.append(FiniteLine(p1: bottomLeftPoint, p2: bottomRightPoint))
-    result.append(FiniteLine(p1: bottomRightPoint, p2: topRightPoint))
-    result.append(FiniteLine(p1: topRightPoint, p2: topLeftPoint))
-    result.append(FiniteLine(p1: topLeftPoint, p2: bottomLeftPoint))
-    
+
+    result.append(FiniteLine(point1: bottomLeftPoint, point2: bottomRightPoint))
+    result.append(FiniteLine(point1: bottomRightPoint, point2: topRightPoint))
+    result.append(FiniteLine(point1: topRightPoint, point2: topLeftPoint))
+    result.append(FiniteLine(point1: topLeftPoint, point2: bottomLeftPoint))
+
     return result
   }
-  
+
   func intersectionTo(_ point: NSPoint) -> [NSPoint] {
-    let secondLine = FiniteLine(p1: center, p2: point)
+    let secondLine = FiniteLine(point1: center, point2: point)
     return lines.map {
       $0.intersectionPointWith(secondLine)
       }.filter { $0 != nil }.map { $0! }
   }
-  
+
   func firstIntersectionTo(_ point: NSPoint) -> NSPoint? {
     return intersectionTo(point).first
   }

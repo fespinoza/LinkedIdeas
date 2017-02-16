@@ -12,16 +12,16 @@ import Foundation
 class TestLinkedIdeasDocument: LinkedIdeasDocument {
   var concepts = [Concept]()
   var links = [Link]()
-  var observer: DocumentObserver? = nil
-  
+  var observer: DocumentObserver?
+
   func save(concept: Concept) {
     concepts.append(concept)
   }
   func remove(concept: Concept) {}
-  
+
   func save(link: Link) {}
   func remove(link: Link) {}
-  
+
   func move(concept: Concept, toPoint: NSPoint) {}
 }
 
@@ -45,31 +45,31 @@ class StateManagerTestDelegate: MockMethodCalls {
 
 extension StateManagerTestDelegate: StateManagerDelegate {
   func transitionSuccesfull() {}
-  
+
   func transitionedToNewConcept(fromState: CanvasState) {
     registerCall(methodName: #function)
   }
-  
+
   func transitionedToCanvasWaiting(fromState: CanvasState) {
     registerCall(methodName: #function)
   }
-  
+
   func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString) {
     registerCall(methodName: #function)
   }
-  
+
   func transitionedToSelectedElement(fromState: CanvasState) {
     registerCall(methodName: #function)
   }
-  
+
   func transitionedToSelectedElementSavingChanges(fromState: CanvasState) {
     registerCall(methodName: #function)
   }
-  
+
   func transitionedToEditingElement(fromState: CanvasState) {
     registerCall(methodName: #function)
   }
-  
+
   func transitionedToMultipleSelectedElements(fromState: CanvasState) {
     registerCall(methodName: #function)
   }
@@ -80,11 +80,14 @@ struct TestElement: Element {
   var rect: NSRect
   var isSelected: Bool = false
   var isEditable: Bool = false
-  
+  var point: NSPoint { return rect.center }
+  var attributedStringValue: NSAttributedString
+
   static let sample = TestElement(
     identifier: "element #1",
-    rect: NSMakeRect(30, 40, 100, 50),
+    rect: NSRect(x: 30, y: 40, width: 100, height: 50),
     isSelected: false,
-    isEditable: false
+    isEditable: false,
+    attributedStringValue: NSAttributedString(string: "")
   )
 }

@@ -10,9 +10,9 @@ import Cocoa
 
 extension NSPoint {
   func translate(deltaX: CGFloat, deltaY: CGFloat) -> NSPoint {
-    return NSMakePoint(x + deltaX, y + deltaY)
+    return NSPoint(x: x + deltaX, y: y + deltaY)
   }
-  
+
   func description() -> String {
     return "(\(x), \(y))"
   }
