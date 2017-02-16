@@ -5,16 +5,16 @@ import Cocoa
 class SimpleView: NSView {
   let color: NSColor
   var index: Int?
-  
+
   init(frame frameRect: NSRect, color: NSColor, index: Int?) {
     self.color = color
     super.init(frame: frameRect)
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   override func drawRect(dirtyRect: NSRect) {
     color.set()
     NSRectFill(bounds)
@@ -26,16 +26,16 @@ class SimpleView: NSView {
   }
 }
 
-let canvas = SimpleView(frame: NSMakeRect(0, 0, 600, 400), color: NSColor.whiteColor(), index: nil)
+let canvas = SimpleView(frame: NSRect(x: 0, y: 0, width: 600, height: 400), color: NSColor.whiteColor(), index: nil)
 
 // show some rectangles in the screen
 let rects = [
-  NSMakeRect(40, 40, 100, 40),
-  NSMakeRect(240, 80, 100, 60),
-  NSMakeRect(400, 20, 120, 40),
-  NSMakeRect(80, 200, 100, 40),
-  NSMakeRect(220, 220, 140, 60),
-  NSMakeRect(400, 250, 100, 40),
+  NSRect(x: 40, y: 40, width: 100, height: 40),
+  NSRect(x: 240, y: 80, width: 100, height: 60),
+  NSRect(x: 400, y: 20, width: 120, height: 40),
+  NSRect(x: 80, y: 200, width: 100, height: 40),
+  NSRect(x: 220, y: 220, width: 140, height: 60),
+  NSRect(x: 400, y: 250, width: 100, height: 40),
 ]
 let colors = [
   NSColor.redColor(),

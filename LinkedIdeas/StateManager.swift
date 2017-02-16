@@ -55,7 +55,7 @@ struct EmptyElement: Element {
 
   static let example = EmptyElement(
     identifier: "empty-element",
-    rect: NSMakeRect(0, 0, 30, 40),
+    rect: NSRect(x: 0, y: 0, width: 30, height: 40),
     isEditable: false,
     isSelected: false,
     attributedStringValue: NSAttributedString(string: "")
@@ -112,10 +112,10 @@ struct StateManager {
       delegate?.transitionedToCanvasWaiting(fromState: oldState)
     }
   }
-  
+
   public mutating func toCanvasWaiting(savingConceptWithText text: NSAttributedString) throws {
     let oldState = currentState
-    
+
     // TODO: this code can be re-written
     switch currentState {
     case .newConcept(let point):

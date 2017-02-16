@@ -41,7 +41,7 @@ extension StateManagerTests {
   }
 
   func testToNewConceptFromNewConceptTransition() {
-    stateManager.currentState = .newConcept(point: NSMakePoint(300, 400))
+    stateManager.currentState = .newConcept(point: NSPoint(x: 300, y: 400))
 
     executeTransition {
       try stateManager.toNewConcept(atPoint: NSPoint.zero)
@@ -55,7 +55,7 @@ extension StateManagerTests {
 
 extension StateManagerTests {
   func testToCanvasWaitingFromNewConcept() {
-    stateManager.currentState = .newConcept(point: NSMakePoint(300, 400))
+    stateManager.currentState = .newConcept(point: NSPoint(x: 300, y: 400))
 
     executeTransition { try stateManager.toCanvasWaiting() }
 
@@ -76,7 +76,7 @@ extension StateManagerTests {
 
 extension StateManagerTests {
   func testToCanvasWaitingSavingConceptFromNewConcept() {
-    stateManager.currentState = .newConcept(point: NSMakePoint(300, 400))
+    stateManager.currentState = .newConcept(point: NSPoint(x: 300, y: 400))
     let text = NSAttributedString(string: "concept text")
 
     executeTransition {
@@ -86,7 +86,6 @@ extension StateManagerTests {
     XCTAssertEqual(stateManager.currentState, .canvasWaiting)
   }
 }
-
 
 // MARK: StateManager - toSelectedElement Tests
 

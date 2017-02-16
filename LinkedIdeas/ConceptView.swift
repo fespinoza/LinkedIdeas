@@ -18,24 +18,24 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   var isTextFieldFocused: Bool = false
   // Mouse events
   var document: LinkedIdeasDocument { return canvas.document }
-  
+
   override var acceptsFirstResponder: Bool { return true }
-  
+
   // MARK: - HoveringView
   var isHoveringView: Bool = false {
     didSet { needsDisplay = true }
   }
 
-  private let defaultTextFieldSize = NSMakeSize(60, 20)
+  private let defaultTextFieldSize = NSSize(width: 60, height: 20)
 
   init(concept: Concept, canvas: OldCanvasView) {
-    let textFieldRect = NSRect(origin: NSMakePoint(0, 0), size: defaultTextFieldSize)
+    let textFieldRect = NSRect(origin: NSPoint(x: 0, y: 0), size: defaultTextFieldSize)
     self.concept = concept
     self.textField = ResizingTextField(frame: textFieldRect)
     self.canvas = canvas
 
     super.init(frame: concept.rect)
-    
+
     enableTrackingArea()
     textField.delegate = self
     addSubview(textField)
@@ -52,14 +52,14 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   }
 
   // MARK: - NSView
-  
+
   override func draw(_ dirtyRect: NSRect) {
     drawSelectedMark()
     toggleTextFieldEditMode()
     if !concept.isEditable { drawString() }
     drawHoveringState()
   }
-  
+
   func drawSelectedMark() {
     if concept.isSelected {
       let bezierPath = NSBezierPath(rect: bounds)
@@ -101,17 +101,17 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     canvas.mouseUp(with: theEvent)
 //    (window?.windowController as? WindowController)?.selectedElementsCallback()
   }
-  
+
   override func mouseEntered(with theEvent: NSEvent) {
     isHoveringView = true
   }
-  
+
   override func mouseExited(with theEvent: NSEvent) {
     isHoveringView = false
   }
-  
+
   // MARK: - Keyboard Events
-  
+
   let deleteKeyCode: UInt16 = 51
   override func keyDown(with theEvent: NSEvent) {
     if (theEvent.keyCode == deleteKeyCode) {
@@ -135,14 +135,13 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
       return false
     }
   }
-  
+
   func textDidChange(_ notification: Notification) {
     updateFrameToMatchConcept()
   }
 
-
   // MARK: - ClickableView
-  
+
   func click(_ point: NSPoint) {
     canvas.clickOnConceptView(self, point: point)
     concept.isSelected = true //!concept.isSelected
@@ -161,7 +160,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
     textField.setFrameSize(textField.intrinsicContentSize)
     canvas.clickOnConceptView(self, point: point)
   }
-  
+
   func shiftClick(_ point: NSPoint) {
     concept.isSelected = !concept.isSelected
     needsDisplay = true
@@ -171,7 +170,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   }
 
   // MARK: - StringEditableView
-  
+
   func toggleTextFieldEditMode() {
     if concept.isEditable {
       enableTextField()
@@ -196,7 +195,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
       canvas.saveConcept(self)
     }
   }
-  
+
   func cancelEdition() {
     if (canvas.isConceptSaved(concept)) {
       disableTextField()
@@ -206,7 +205,7 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
       canvas.cleanNewConcept()
     }
   }
-  
+
   func pressDeleteKey() {
     canvas.removeSelectedConceptViews()
   }
@@ -223,58 +222,58 @@ class ConceptView: NSView, NSTextFieldDelegate, StringEditableView, CanvasElemen
   var isDragging: Bool = false
   var initialPoint: NSPoint?
   var draggableDelegate: DraggableElementDelegate? { return canvas }
-  
+
   func dragStart(_ point: NSPoint, performCallback: Bool = true) {
     initialPoint = concept.point
     isDragging = true
-    
+
     if (canvas.mode == .Select) {
       concept.point = point
       // TODO: this function should be observer from ^
       textField.attributedStringValue = concept.attributedStringValue
       updateFrameToMatchConcept()
     }
-    
+
     if performCallback {
       let dragEvent = DragEvent(fromPoint: initialPoint!, toPoint: point)
       draggableDelegate?.dragStartCallback(self, dragEvent: dragEvent)
     }
   }
-  
+
   func dragTo(_ point: NSPoint, performCallback: Bool = true) {
     let fromPoint = concept.point
-    
+
     if (canvas.mode == .Select) {
       concept.point = point
       // TODO: this function should be observer from ^
       textField.attributedStringValue = concept.attributedStringValue
       updateFrameToMatchConcept()
     }
-    
+
     if performCallback {
       let dragEvent = DragEvent(fromPoint: fromPoint, toPoint: point)
       draggableDelegate?.dragToCallback(self, dragEvent: dragEvent)
     }
   }
-  
+
   func dragEnd(_ lastPoint: NSPoint, performCallback: Bool = true) {
     let fromPoint = concept.point
-    
+
     if canvas.mode == .Select {
       document.move(concept: concept, toPoint: lastPoint)
     }
-    
+
     if performCallback {
       let dragEvent = DragEvent(fromPoint: fromPoint, toPoint: lastPoint)
       draggableDelegate?.dragEndCallback(self, dragEvent: dragEvent)
     }
-    
+
     isDragging = false
     initialPoint = nil
   }
-  
+
   // MARK: - ConceptViewProtocol
-  
+
   func updateFrameToMatchConcept() {
     frame = NSRect(center: concept.point, size: textField.intrinsicContentSize)
   }

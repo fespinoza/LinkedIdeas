@@ -4,12 +4,9 @@ import Cocoa
 
 let stringValue = "Hello, playground"
 
-
-
-var text = NSTextField(frame: NSMakeRect(0, 0, 200, 30))
+var text = NSTextField(frame: NSRect(x: 0, y: 0, width: 200, height: 30))
 
 text.stringValue = stringValue
-
 
 let strikeThroughText = NSAttributedString(
   string: stringValue,

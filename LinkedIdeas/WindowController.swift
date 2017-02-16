@@ -14,11 +14,11 @@ import Cocoa
 // TODO: create concept/link
 
 class WindowController: NSWindowController {
-  
+
   var documentViewController: DocumentViewController! {
     return contentViewController as! DocumentViewController
   }
-  
+
   override var document: AnyObject? {
     didSet {
       if let document = document as? Document {
@@ -27,14 +27,14 @@ class WindowController: NSWindowController {
       }
     }
   }
-  
+
   override func windowDidLoad() {
     super.windowDidLoad()
     print("-windowDidLoad")
   }
-  
+
   override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
     print("-prepareForSegue")
   }
-  
+
 }

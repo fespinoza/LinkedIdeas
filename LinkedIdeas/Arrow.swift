@@ -14,25 +14,25 @@ struct Arrow {
   let arrowHeight: CGFloat = 20
   let arrowWidth: CGFloat = 15
   let arrowBodyWidth: CGFloat
-  
+
   init(p1: NSPoint, p2: NSPoint) {
     self.p1 = p1
     self.p2 = p2
     self.arrowBodyWidth = 5
   }
-  
+
   init(p1: NSPoint, p2: NSPoint, arrowBodyWidth: CGFloat = 5) {
     self.p1 = p1
     self.p2 = p2
     self.arrowBodyWidth = arrowBodyWidth
   }
-  
+
   private var m: CGFloat { return (p2.y - p1.y) / (p2.x - p1.x) }
   private var C: CGFloat { return arrowBodyWidth / 2 }
   private var B: CGFloat { return arrowWidth / 2 }
   private var alpha: CGFloat { return atan(m) }
   private var direction: CGFloat { return p2.x >= p1.x ? 1 : -1 }
-  
+
   private var p5: NSPoint {
     return NSMakePoint((p2.x - direction * cos(alpha) * arrowHeight), (p2.y - direction * sin(alpha) * arrowHeight))
   }
@@ -42,7 +42,7 @@ struct Arrow {
   private var p7: NSPoint { return NSMakePoint((p5.x + C * sin(alpha)), (p5.y - C * cos(alpha))) }
   private var p8: NSPoint { return NSMakePoint((p1.x - C * sin(alpha)), (p1.y + C * cos(alpha))) }
   private var p9: NSPoint { return NSMakePoint((p1.x + C * sin(alpha)), (p1.y - C * cos(alpha))) }
-  
+
   func arrowBodyPoints() -> [NSPoint] {
     return [p6, p7, p8, p9]
   }

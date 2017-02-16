@@ -14,14 +14,14 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
   var target: Concept
   var originPoint: NSPoint { return origin.point }
   var targetPoint: NSPoint { return target.point }
-  
+
   var point: NSPoint {
     return NSMakePoint(
       ((originPoint.x + targetPoint.x) / 2.0),
       ((originPoint.y + targetPoint.y) / 2.0)
     )
   }
-  
+
   let textRectPadding: CGFloat = 8.0
   var textRect: NSRect {
     var textSizeWithPadding = attributedStringValue.size()
@@ -29,25 +29,25 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
     textSizeWithPadding.height += textRectPadding
     return NSRect(center: point, size: textSizeWithPadding)
   }
-  
+
   dynamic var color: NSColor
-  
-  // MARK: -NSAttributedStringElement
+
+  // MARK: - NSAttributedStringElement
   dynamic var attributedStringValue: NSAttributedString
   var stringValue: String { return attributedStringValue.string }
-  
+
   // MARK: - VisualElement
   var isEditable: Bool = false
   var isSelected: Bool = false
-  
+
   private let padding: CGFloat = 20
-  
+
   static let defaultColor = NSColor.gray
-  
+
   override var description: String {
     return "'\(origin.stringValue)' '\(target.stringValue)'"
   }
-  
+
   // Element
   var identifier: String
   var rect: NSRect {
@@ -59,9 +59,9 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
     let maxY = max(originPoint.y, targetPoint.y)
     let width = max(maxX - minX, padding)
     let height = max(maxY - minY, padding)
-    return NSMakeRect(minX, minY, width, height)
+    return NSRect(x: minX, y: minY, width: width, height: height)
   }
-  
+
   func contains(point: NSPoint) -> Bool {
     guard rect.contains(point) else {
       return false
@@ -69,41 +69,41 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
     if (textRect.contains(point)) {
       return true
     }
-    
+
     let extendedAreaArrow = Arrow(p1: originPoint, p2: targetPoint, arrowBodyWidth: 20)
     let minXPoint: NSPoint! = extendedAreaArrow.arrowBodyPoints().min { (pointA, pointB) -> Bool in pointA.x < pointB.x }
     let maxXPoint: NSPoint! = extendedAreaArrow.arrowBodyPoints().max { (pointA, pointB) -> Bool in pointA.x < pointB.x }
-    
+
     let linkLine = Line(p1: originPoint, p2: targetPoint)
     let pivotPoint = NSPoint(x: linkLine.evaluateY(0), y: 0)
-    
+
     let angledLine = Line(p1: pivotPoint, p2: minXPoint)
     let a = angledLine.intersectionWithYAxis
     let b = angledLine.intersectionWithXAxis
     let c: CGFloat = sqrt(pow(a, 2) + pow(b, 2))
     let sin_theta = a / c
     let cos_theta = b / c
-    
+
     func transformationFunction(ofPoint pointToTransform: NSPoint) -> NSPoint {
       return NSPoint(
         x: pointToTransform.x * cos_theta - sin_theta * pointToTransform.y - minXPoint.x,
         y: pointToTransform.x * sin_theta + cos_theta * pointToTransform.y - minXPoint.y
       )
     }
-    
+
     if (transformationFunction(ofPoint: minXPoint) == NSPoint.zero) {
       Swift.print("very bad calculations! \(transformationFunction(ofPoint: minXPoint)) should be point 0")
     }
-    
+
     let transformedRect = NSRect(p1: transformationFunction(ofPoint: minXPoint), p2: transformationFunction(ofPoint: maxXPoint))
     let transformedPoint = transformationFunction(ofPoint: point)
     return transformedRect.contains(transformedPoint)
   }
-  
+
   convenience init(origin: Concept, target: Concept) {
     self.init(origin: origin, target: target, attributedStringValue: NSAttributedString(string: ""))
   }
-  
+
   init(origin: Concept, target: Concept, attributedStringValue: NSAttributedString) {
     self.origin = origin
     self.target = target
@@ -111,30 +111,30 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
     self.color = Link.defaultColor
     self.attributedStringValue = attributedStringValue
   }
-  
+
   // MARK: - KVO
   static let colorPath = "color"
   static let attributedStringValuePath = "attributedStringValue"
-  
+
   let identifierKey = "identifierKey"
   let originKey = "OriginKey"
   let targetKey = "TargetKey"
   let colorKey = "colorKey"
   let attributedStringValueKey = "attributedStringValue"
-  
+
   required init?(coder aDecoder: NSCoder) {
     identifier = aDecoder.decodeObject(forKey: identifierKey) as! String
     origin = aDecoder.decodeObject(forKey: originKey) as! Concept
     target = aDecoder.decodeObject(forKey: targetKey) as! Concept
     attributedStringValue = aDecoder.decodeObject(forKey: attributedStringValueKey) as! NSAttributedString
-    
+
     if let color = aDecoder.decodeObject(forKey: colorKey) as? NSColor {
       self.color = color
     } else {
       self.color = Link.defaultColor
     }
   }
-  
+
   func encode(with aCoder: NSCoder) {
     aCoder.encode(identifier, forKey: identifierKey)
     aCoder.encode(origin, forKey: originKey)

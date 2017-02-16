@@ -13,8 +13,8 @@ class OldCanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate 
     didSet { document.observer = self }
   }
 
-  var newConcept: Concept? = nil
-  var newConceptView: ConceptView? = nil
+  var newConcept: Concept?
+  var newConceptView: ConceptView?
 
   var conceptViews: [String: ConceptView] = [String: ConceptView]()
   var linkViews: [String: LinkView] = [String: LinkView]()
@@ -57,7 +57,7 @@ class OldCanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate 
 
   func containingRectFor(_ elements: [SquareElement]) -> NSRect {
     if (elements.isEmpty) {
-      return NSMakeRect(0, 0, 900, 530)
+      return NSRect(x: 0, y: 0, width: 900, height: 530)
     }
 
     let minX = (elements.map { $0.rect.origin.x }).min()!
@@ -67,7 +67,7 @@ class OldCanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate 
     return NSMakeRect(minX, minY, maxX - minX, maxY - minY)
   }
 
-  let minCanvasSize = NSMakeSize(900, 530)
+  let minCanvasSize = NSSize(width: 900, height: 530)
   let padding: CGFloat = 300.0
 
   override var intrinsicContentSize: NSSize {
@@ -122,7 +122,7 @@ class OldCanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate 
     needsDisplay = true
 //    (window?.windowController as? WindowController)?.selectedElementsCallback()
   }
-  
+
   // MARK: - Keyboard Events
   let deleteKeyCode: UInt16 = 51
   override func keyDown(with theEvent: NSEvent) {
@@ -139,12 +139,12 @@ class OldCanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate 
     let _newConcept = concept.concept
     justSaveConcept(_newConcept)
   }
-  
+
   func justSaveConcept(_ concept: Concept) {
     resetNewConcept()
     document.save(concept: concept)
   }
-  
+
   func resetNewConcept() {
     newConcept = nil
     newConceptView?.removeFromSuperview()
@@ -208,7 +208,7 @@ class OldCanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate 
     newConcept = _newConcept
     newConceptView = _newConceptView
   }
-  
+
   func isRunningInTestMode() -> Bool {
     return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
   }
@@ -216,7 +216,7 @@ class OldCanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate 
   func createConceptViewFor(_ concept: Concept) -> ConceptView {
     let conceptView = ConceptView(concept: concept, canvas: self)
     conceptViews[concept.identifier] = conceptView
-    
+
 //    if isRunningInTestMode() {
       addSubview(conceptView, positioned:.above, relativeTo: nil)
 //    } else {
@@ -224,7 +224,7 @@ class OldCanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate 
 //        self.addSubview(conceptView, positioned:.above, relativeTo: nil)
 //      })
 //    }
-    
+
     return conceptView
   }
 
@@ -368,7 +368,7 @@ class OldCanvasView: NSView, Canvas, DocumentObserver, DraggableElementDelegate 
 
   // MARK: - DocumentObserver
   func documentChanged(withElement element: Element) {}
-  
+
   func conceptAdded(_ concept: Concept) {
     let _ = createConceptViewFor(concept)
   }
