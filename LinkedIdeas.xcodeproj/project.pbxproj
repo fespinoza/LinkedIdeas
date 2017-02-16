@@ -16,6 +16,18 @@
 		9B2F1DA21BE7CFE70090CC18 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA11BE7CFE70090CC18 /* Document.swift */; };
 		9B2F1DA71BE7CFE70090CC18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA61BE7CFE70090CC18 /* Assets.xcassets */; };
 		9B33821F1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B33821E1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift */; };
+		9B3941921E5656AF00F1E957 /* ViewModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941911E5656AF00F1E957 /* ViewModelProtocols.swift */; };
+		9B3941941E5656FE00F1E957 /* DrawableConcept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941931E5656FE00F1E957 /* DrawableConcept.swift */; };
+		9B3941961E56572F00F1E957 /* DrawableLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941951E56572F00F1E957 /* DrawableLink.swift */; };
+		9B3941981E5657A000F1E957 /* CanvasViewController+MouseEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941971E5657A000F1E957 /* CanvasViewController+MouseEvents.swift */; };
+		9B39419A1E5657D200F1E957 /* CanvasViewController+StateManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941991E5657D200F1E957 /* CanvasViewController+StateManagerDelegate.swift */; };
+		9B39419C1E56582900F1E957 /* CanvasViewController+TransitionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39419B1E56582900F1E957 /* CanvasViewController+TransitionActions.swift */; };
+		9B39419E1E56586000F1E957 /* CanvasViewController+KeyboardEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39419D1E56586000F1E957 /* CanvasViewController+KeyboardEvents.swift */; };
+		9B3941A01E5658C600F1E957 /* CanvasViewController+NSTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39419F1E5658C600F1E957 /* CanvasViewController+NSTextFieldDelegate.swift */; };
+		9B3941A21E5658F500F1E957 /* CanvasViewController+CanvasViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A11E5658F500F1E957 /* CanvasViewController+CanvasViewDataSource.swift */; };
+		9B3941A41E56591900F1E957 /* CanvasViewController+DocumentObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A31E56591900F1E957 /* CanvasViewController+DocumentObserver.swift */; };
+		9B3941A61E56594700F1E957 /* NSEvent-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A51E56594700F1E957 /* NSEvent-Extensions.swift */; };
+		9B3941A81E56596000F1E957 /* NSResponder-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A71E56596000F1E957 /* NSResponder-Extensions.swift */; };
 		9B48F8471CD613F60014758D /* DocumentObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8461CD613F60014758D /* DocumentObserver.swift */; };
 		9B48F8491CD614370014758D /* LinkedIdeasDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */; };
 		9B48F84D1CD614BC0014758D /* DocumentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F84C1CD614BC0014758D /* DocumentData.swift */; };
@@ -74,6 +86,18 @@
 		9B2F1DB01BE7CFE80090CC18 /* LinkedIdeasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinkedIdeasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2F1DB61BE7CFE80090CC18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B33821E1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtensionsTest.swift; sourceTree = "<group>"; };
+		9B3941911E5656AF00F1E957 /* ViewModelProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelProtocols.swift; sourceTree = "<group>"; };
+		9B3941931E5656FE00F1E957 /* DrawableConcept.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableConcept.swift; sourceTree = "<group>"; };
+		9B3941951E56572F00F1E957 /* DrawableLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableLink.swift; sourceTree = "<group>"; };
+		9B3941971E5657A000F1E957 /* CanvasViewController+MouseEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+MouseEvents.swift"; sourceTree = "<group>"; };
+		9B3941991E5657D200F1E957 /* CanvasViewController+StateManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+StateManagerDelegate.swift"; sourceTree = "<group>"; };
+		9B39419B1E56582900F1E957 /* CanvasViewController+TransitionActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+TransitionActions.swift"; sourceTree = "<group>"; };
+		9B39419D1E56586000F1E957 /* CanvasViewController+KeyboardEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+KeyboardEvents.swift"; sourceTree = "<group>"; };
+		9B39419F1E5658C600F1E957 /* CanvasViewController+NSTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+NSTextFieldDelegate.swift"; sourceTree = "<group>"; };
+		9B3941A11E5658F500F1E957 /* CanvasViewController+CanvasViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+CanvasViewDataSource.swift"; sourceTree = "<group>"; };
+		9B3941A31E56591900F1E957 /* CanvasViewController+DocumentObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+DocumentObserver.swift"; sourceTree = "<group>"; };
+		9B3941A51E56594700F1E957 /* NSEvent-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSEvent-Extensions.swift"; sourceTree = "<group>"; };
+		9B3941A71E56596000F1E957 /* NSResponder-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSResponder-Extensions.swift"; sourceTree = "<group>"; };
 		9B48F8461CD613F60014758D /* DocumentObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentObserver.swift; sourceTree = "<group>"; };
 		9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedIdeasDocument.swift; sourceTree = "<group>"; };
 		9B48F84C1CD614BC0014758D /* DocumentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentData.swift; sourceTree = "<group>"; };
@@ -149,6 +173,7 @@
 		9B2F1D9E1BE7CFE70090CC18 /* LinkedIdeas */ = {
 			isa = PBXGroup;
 			children = (
+				9B3941901E5656A100F1E957 /* ViewModels */,
 				9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */,
 				9BA63D331D74C45100EBC3AD /* NewUI */,
 				9BA63D2C1D74C23100EBC3AD /* Main.storyboard */,
@@ -176,6 +201,16 @@
 			path = LinkedIdeasTests;
 			sourceTree = "<group>";
 		};
+		9B3941901E5656A100F1E957 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9B3941911E5656AF00F1E957 /* ViewModelProtocols.swift */,
+				9B3941931E5656FE00F1E957 /* DrawableConcept.swift */,
+				9B3941951E56572F00F1E957 /* DrawableLink.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
 		9B40CA0D1D1E960800D5EDDD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +234,13 @@
 			children = (
 				9B8E90041E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift */,
 				9B1CD1C71E48D10B003F192B /* CanvasViewController+LinkCreation.swift */,
+				9B3941971E5657A000F1E957 /* CanvasViewController+MouseEvents.swift */,
+				9B3941991E5657D200F1E957 /* CanvasViewController+StateManagerDelegate.swift */,
+				9B39419B1E56582900F1E957 /* CanvasViewController+TransitionActions.swift */,
+				9B39419D1E56586000F1E957 /* CanvasViewController+KeyboardEvents.swift */,
+				9B39419F1E5658C600F1E957 /* CanvasViewController+NSTextFieldDelegate.swift */,
+				9B3941A11E5658F500F1E957 /* CanvasViewController+CanvasViewDataSource.swift */,
+				9B3941A31E56591900F1E957 /* CanvasViewController+DocumentObserver.swift */,
 			);
 			name = CanvasViewControllerExtensions;
 			sourceTree = "<group>";
@@ -213,6 +255,8 @@
 				9BA63D341D74C47800EBC3AD /* CanvasView.swift */,
 				9B2F1DA11BE7CFE70090CC18 /* Document.swift */,
 				9B0683FC1DA1A1AA00609AE5 /* StateManager.swift */,
+				9B3941A51E56594700F1E957 /* NSEvent-Extensions.swift */,
+				9B3941A71E56596000F1E957 /* NSResponder-Extensions.swift */,
 			);
 			name = NewUI;
 			sourceTree = "<group>";
@@ -403,8 +447,14 @@
 				9BA63D301D74C31A00EBC3AD /* DocumentViewController.swift in Sources */,
 				9BABB2B21C07B7F7001EC9E0 /* Link.swift in Sources */,
 				9B2F1DA21BE7CFE70090CC18 /* Document.swift in Sources */,
+				9B39419C1E56582900F1E957 /* CanvasViewController+TransitionActions.swift in Sources */,
+				9B3941A01E5658C600F1E957 /* CanvasViewController+NSTextFieldDelegate.swift in Sources */,
+				9B3941A61E56594700F1E957 /* NSEvent-Extensions.swift in Sources */,
 				9B48F84F1CD614C50014758D /* Mode.swift in Sources */,
 				9B521F851CFB37D200A71598 /* AligmentFunctions.swift in Sources */,
+				9B3941981E5657A000F1E957 /* CanvasViewController+MouseEvents.swift in Sources */,
+				9B3941921E5656AF00F1E957 /* ViewModelProtocols.swift in Sources */,
+				9B39419E1E56586000F1E957 /* CanvasViewController+KeyboardEvents.swift in Sources */,
 				9B521F871CFB380300A71598 /* SquareElement.swift in Sources */,
 				9B956CE51C1B11C200CF20DA /* NSPoint+Utilities.swift in Sources */,
 				9B0683FD1DA1A1AA00609AE5 /* StateManager.swift in Sources */,
@@ -416,6 +466,7 @@
 				9BD2BF421C7F8C2000E8A303 /* Arrow.swift in Sources */,
 				9BD2BF371C7F8B2300E8A303 /* Interceptable.swift in Sources */,
 				9B48F84D1CD614BC0014758D /* DocumentData.swift in Sources */,
+				9B3941961E56572F00F1E957 /* DrawableLink.swift in Sources */,
 				9B1CD1C81E48D10B003F192B /* CanvasViewController+LinkCreation.swift in Sources */,
 				9B48F8491CD614370014758D /* LinkedIdeasDocument.swift in Sources */,
 				9BD2BF391C7F8B4100E8A303 /* PointInterceptable.swift in Sources */,
@@ -424,7 +475,12 @@
 				9BF15C391CAC69A500C95041 /* WindowController.swift in Sources */,
 				9B1CCDEB1D294E0900F319EB /* NSAttributedStringExtensions.swift in Sources */,
 				9BD2BF3B1C7F8B5500E8A303 /* Line.swift in Sources */,
+				9B3941A81E56596000F1E957 /* NSResponder-Extensions.swift in Sources */,
+				9B3941941E5656FE00F1E957 /* DrawableConcept.swift in Sources */,
+				9B3941A41E56591900F1E957 /* CanvasViewController+DocumentObserver.swift in Sources */,
+				9B3941A21E5658F500F1E957 /* CanvasViewController+CanvasViewDataSource.swift in Sources */,
 				9BA63D351D74C47800EBC3AD /* CanvasView.swift in Sources */,
+				9B39419A1E5657D200F1E957 /* CanvasViewController+StateManagerDelegate.swift in Sources */,
 				9BDDE7391BEF9157000AAD44 /* Concept.swift in Sources */,
 				9BA63D321D74C38400EBC3AD /* CanvasViewController.swift in Sources */,
 				9BD2BF351C7F8B1200E8A303 /* LineRange.swift in Sources */,
