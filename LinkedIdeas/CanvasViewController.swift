@@ -223,10 +223,8 @@ class CanvasViewController: NSViewController {
   }
 
   func clickedConcepts(atPoint clickedPoint: NSPoint) -> [Concept]? {
-    let results = document.concepts.filter { (concept) -> Bool in
-      return concept.rect.contains(clickedPoint)
-    }
-    guard results.count > 0 else {
+    let results = document.concepts.filter { $0.rect.contains(clickedPoint) }
+    guard !results.isEmpty else {
       return nil
     }
     return results
@@ -276,6 +274,10 @@ class CanvasViewController: NSViewController {
 
   func reRenderCanvasView() {
     canvasView.needsDisplay = true
+  }
+
+  func isDragShiftEvent(_ event: NSEvent) -> Bool {
+    return event.modifierFlags.contains(.shift) || didShiftDragStart
   }
 }
 
@@ -331,10 +333,11 @@ extension CanvasViewController {
 
     switch currentState {
     case .selectedElement(let element):
-      if event.modifierFlags.contains(.shift) || didShiftDragStart {
-        guard let concept = element as? Concept else {
-          return
-        }
+      guard let concept = element as? Concept else {
+        return
+      }
+
+      if isDragShiftEvent(event) {
         creationArrowForLink(toPoint: point)
         didShiftDragStart = true
         if let hoveredConcepts = clickedConcepts(atPoint: point) {
@@ -343,9 +346,6 @@ extension CanvasViewController {
           unselect(elements: document.concepts.filter { $0 != concept })
         }
       } else {
-        guard let concept = element as? Concept else {
-          return
-        }
         drag(concept: concept, toPoint: point)
       }
 
@@ -375,7 +375,7 @@ extension CanvasViewController {
         return
       }
 
-      if event.modifierFlags.contains(.shift) || didShiftDragStart {
+      if isDragShiftEvent(event) {
         if let targetConcept = clickedSingleConcept(atPoint: point) {
           Swift.print("[mouseUp][shiftClick] (targetConcept = \(targetConcept))")
           targetConcept.isSelected = false
@@ -567,11 +567,9 @@ extension CanvasViewController {
   }
 
   func saveLink(fromConcept: Concept, toConcept: Concept, text: NSAttributedString? = nil) -> Link {
-    var linkText: NSAttributedString
+    var linkText = NSAttributedString(string: "")
     if let text = text {
       linkText = text
-    } else {
-      linkText = NSAttributedString(string: "")
     }
 
     let newLink = Link(origin: fromConcept, target: toConcept, attributedStringValue: linkText)

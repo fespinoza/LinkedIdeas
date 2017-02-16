@@ -119,8 +119,14 @@ class Document: NSDocument {
         })
       }
 
-      if let concept = object as? Concept { observer?.documentChanged(withElement: concept) }
-      if let link = object as? Link { observer?.documentChanged(withElement: link) }
+      switch object {
+      case let concept as Concept:
+        observer?.documentChanged(withElement: concept)
+      case let link as Link:
+        observer?.documentChanged(withElement: link)
+      default:
+        break
+      }
     }
   }
 }
