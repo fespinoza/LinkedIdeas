@@ -10,11 +10,6 @@ import Cocoa
 
 // MARK: - CanvasViewController+DraggingActions
 extension CanvasViewController {
-  // Action: what do the actions do
-  // what are the effects, **commands** that happen
-  // those **commands** change the state of the application
-  // resulting in a need to refresh the view
-
   // MARK: Single Concept
 
   func drag(concept: Concept, toPoint dragToPoint: NSPoint) {
@@ -108,7 +103,6 @@ extension CanvasViewController {
 
   // MARK: General drag operations
   func resetDraggingConcepts() {
-    dragCount = 0
     didDragStart = false
     didShiftDragStart = false
     dragStartPoint = nil

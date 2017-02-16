@@ -15,15 +15,13 @@ extension CanvasViewController {
     let enterKeyCode: UInt16 = 36
 
     if event.keyCode == enterKeyCode {
-      Swift.print("enter event!")
-
       switch currentState {
       case .selectedElement(let element):
         safeTransiton {
           try stateManager.toEditingElement(element: element)
         }
       default:
-        Swift.print("do nothing")
+        break
       }
     }
   }

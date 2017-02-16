@@ -12,14 +12,10 @@ import Cocoa
 
 extension CanvasViewController {
   override func mouseDown(with event: NSEvent) {
-    Swift.print("\n")
-    Swift.print("[mouseDown]")
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
 
     if event.isSingleClick() {
       if let clickedElements = clickedElements(atPoint: point) {
-        Swift.print("[mouseDown][singleClick] clicked concepts [\(clickedConcepts)]")
-
         if !currentState.isSimilar(to: .multipleSelectedElements(elements: [Element]())) {
           safeTransiton {
             try stateManager.toSelectedElement(element: clickedElements.first!)
@@ -27,8 +23,6 @@ extension CanvasViewController {
         }
 
       } else {
-        Swift.print("[mouseDown][singleClick] no clicked concepts")
-
         safeTransiton {
           try stateManager.toCanvasWaiting()
         }
@@ -48,15 +42,7 @@ extension CanvasViewController {
   }
 
   override func mouseDragged(with event: NSEvent) {
-    if dragCount <= 3 {
-      Swift.print("[mouseDragged]")
-      dragCount += 1
-    }
-
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
-
-    // Decision: which actions to trigger
-    // given the context and events that happen
 
     switch currentState {
     case .selectedElement(let element):
@@ -93,7 +79,6 @@ extension CanvasViewController {
   }
 
   override func mouseUp(with event: NSEvent) {
-    Swift.print("[mouseUp] (state = \(currentState))")
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
 
     switch currentState {
@@ -104,7 +89,6 @@ extension CanvasViewController {
 
       if isDragShiftEvent(event) {
         if let targetConcept = clickedSingleConcept(atPoint: point) {
-          Swift.print("[mouseUp][shiftClick] (targetConcept = \(targetConcept))")
           targetConcept.isSelected = false
 
           let link = saveLink(fromConcept: concept, toConcept: targetConcept)
@@ -113,11 +97,9 @@ extension CanvasViewController {
             try stateManager.toSelectedElement(element: link)
           }
         } else {
-          Swift.print("[mouseUp][shiftClick] no targetConcept!")
           safeTransiton { try stateManager.toCanvasWaiting() }
         }
       } else {
-        Swift.print("[mouseUp][noShift] normal drag")
         endDrag(forConcept: concept, toPoint: point)
       }
     case .multipleSelectedElements(let elements):
@@ -133,7 +115,6 @@ extension CanvasViewController {
       return
     }
 
-    Swift.print("\n")
     resetDraggingConcepts()
   }
 }

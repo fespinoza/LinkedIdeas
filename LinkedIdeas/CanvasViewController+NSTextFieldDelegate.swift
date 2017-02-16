@@ -30,7 +30,7 @@ extension CanvasViewController: NSTextFieldDelegate {
           try stateManager.toCanvasWaiting(savingConceptWithText: control.attributedStringValue)
         }
       default:
-        Swift.print("[textField][enterKey] unhandled event (state = \(currentState))")
+        break
       }
       return true
     default:

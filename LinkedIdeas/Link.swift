@@ -93,10 +93,6 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
       )
     }
 
-    if transformationFunction(ofPoint: minXPoint) == NSPoint.zero {
-      Swift.print("very bad calculations! \(transformationFunction(ofPoint: minXPoint)) should be point 0")
-    }
-
     let transformedRect = NSRect(
       point1: transformationFunction(ofPoint: minXPoint),
       point2: transformationFunction(ofPoint: maxXPoint)
