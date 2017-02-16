@@ -39,16 +39,14 @@ class Document: NSDocument {
 
   private var KVOContext: Int = 0
 
-  override init() {
-    super.init()
-    Swift.print("Document: -init")
-  }
-
   override func makeWindowControllers() {
     let storyboard = NSStoryboard(name: "Main", bundle: nil)
-    let windowController = storyboard.instantiateController(withIdentifier: "Document Window Controller") as! WindowController
-    self.addWindowController(windowController)
-    Swift.print("Document: addWindowController")
+
+    if let windowController = storyboard.instantiateController(
+                                withIdentifier: "Document Window Controller"
+                              ) as? WindowController {
+      self.addWindowController(windowController)
+    }
   }
 
   override class func autosavesInPlace() -> Bool {
@@ -64,7 +62,10 @@ class Document: NSDocument {
 
   override func read(from data: Data, ofType typeName: String) throws {
     Swift.print("Document: -read")
-    documentData = NSKeyedUnarchiver.unarchiveObject(with: data) as! DocumentData
+    guard let documentData = NSKeyedUnarchiver.unarchiveObject(with: data) as? DocumentData else {
+      return
+    }
+    self.documentData = documentData
     if let readConcepts = documentData.readConcepts {
       concepts = readConcepts
     }
@@ -93,7 +94,12 @@ class Document: NSDocument {
     link.removeObserver(self, forKeyPath: Link.attributedStringValuePath, context: &KVOContext)
   }
 
-  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+  override func observeValue(
+    forKeyPath keyPath: String?,
+    of object: Any?,
+    change: [NSKeyValueChangeKey : Any]?,
+    context: UnsafeMutableRawPointer?
+  ) {
     guard context == &KVOContext else {
       // If the context does not match, this message
       // must be intended for our superclass.
@@ -107,9 +113,11 @@ class Document: NSDocument {
         oldValue = nil
       }
 
-      undoManager?.registerUndo(withTarget: (object as! NSObject), handler: { (object) in
-        object.setValue(oldValue, forKey: keyPath)
-      })
+      if let object = object as? NSObject {
+        undoManager?.registerUndo(withTarget: (object), handler: { (object) in
+          object.setValue(oldValue, forKey: keyPath)
+        })
+      }
 
       if let concept = object as? Concept { observer?.documentChanged(withElement: concept) }
       if let link = object as? Link { observer?.documentChanged(withElement: link) }

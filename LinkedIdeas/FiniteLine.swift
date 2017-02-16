@@ -9,19 +9,19 @@
 import Cocoa
 
 struct FiniteLine: Interceptable, PointInterceptable {
-  var p1: NSPoint
-  var p2: NSPoint
+  var point1: NSPoint
+  var point2: NSPoint
 
   var line: Line {
-    return Line(p1: p1, p2: p2)
+    return Line(pointA: point1, pointB: point2)
   }
 
   var lineRange: LineRange {
     return LineRange(
-      minX: min(p1.x, p2.x),
-      maxX: max(p1.x, p2.x),
-      minY: min(p1.y, p2.y),
-      maxY: max(p1.y, p2.y)
+      minX: min(point1.x, point2.x),
+      maxX: max(point1.x, point2.x),
+      minY: min(point1.y, point2.y),
+      maxY: max(point1.y, point2.y)
     )
   }
 
@@ -31,15 +31,15 @@ struct FiniteLine: Interceptable, PointInterceptable {
 
   func bezierPath() -> NSBezierPath {
     let path = NSBezierPath()
-    path.move(to: p1)
-    path.line(to: p2)
+    path.move(to: point1)
+    path.line(to: point2)
     return path
   }
 
   func intersectionPointWith(_ other: FiniteLine) -> NSPoint? {
     if let intersectionPoint = line.intersectionPointWith(other.line) {
       let intersectionLineRange = lineRange.interception(other.lineRange)
-      if (intersectionLineRange.isValid() && intersectionLineRange.doesContain(intersectionPoint)) {
+      if intersectionLineRange.isValid() && intersectionLineRange.doesContain(intersectionPoint) {
         return intersectionPoint
       }
     }

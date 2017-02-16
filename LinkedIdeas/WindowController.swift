@@ -8,21 +8,16 @@
 
 import Cocoa
 
-// TODO: what happens when content is bigger than scroll view
-// TODO: how to draw links
-// TODO: accept user interaction (move)
-// TODO: create concept/link
-
 class WindowController: NSWindowController {
 
-  var documentViewController: DocumentViewController! {
-    return contentViewController as! DocumentViewController
+  var documentViewController: DocumentViewController? {
+    return contentViewController as? DocumentViewController
   }
 
   override var document: AnyObject? {
     didSet {
       if let document = document as? Document {
-        documentViewController.document = document
+        documentViewController?.document = document
         print("-didSetDocument")
       }
     }

@@ -30,20 +30,20 @@ extension AlignmentFunctions {
   }
 
   // MARK: - SquareElement
-  func compareByMaxRectX(_ p1: SquareElement, p2: SquareElement) -> Bool {
-    return rectMaxX(rect: p1.rect) > rectMaxX(rect: p2.rect)
+  func compareByMaxRectX(_ point1: SquareElement, point2: SquareElement) -> Bool {
+    return rectMaxX(rect: point1.rect) > rectMaxX(rect: point2.rect)
   }
 
-  func compareByMinRectX(_ p1: SquareElement, p2: SquareElement) -> Bool {
-    return rectMinX(rect: p1.rect) < rectMinX(rect: p2.rect)
+  func compareByMinRectX(_ point1: SquareElement, point2: SquareElement) -> Bool {
+    return rectMinX(rect: point1.rect) < rectMinX(rect: point2.rect)
   }
 
-  func compareByMinCenterX(_ p1: SquareElement, p2: SquareElement) -> Bool {
-    return p1.point.x < p2.point.x
+  func compareByMinCenterX(_ point1: SquareElement, point2: SquareElement) -> Bool {
+    return point1.point.x < point2.point.x
   }
 
-  func compareByMinCenterY(_ p1: SquareElement, p2: SquareElement) -> Bool {
-    return p1.point.y < p2.point.y
+  func compareByMinCenterY(_ point1: SquareElement, point2: SquareElement) -> Bool {
+    return point1.point.y < point2.point.y
   }
 
   // MARK: - Alignment Functions
@@ -56,7 +56,7 @@ extension AlignmentFunctions {
     let minimunXCoordinate = sortedConcepts.first!.point.x
 
     func calculateNewPoint(_ element: SquareElement) -> NSPoint {
-      return NSMakePoint(minimunXCoordinate, element.point.y)
+      return NSPoint(x: minimunXCoordinate, y: element.point.y)
     }
 
     updateElementPoints(elements, newPointCalculator: calculateNewPoint)
@@ -72,7 +72,7 @@ extension AlignmentFunctions {
 
     func calculateNewPoint(_ element: SquareElement) -> NSPoint {
       let newX: CGFloat = minimunXCoordinate + element.rect.width / 2
-      return NSMakePoint(newX, element.point.y)
+      return NSPoint(x: newX, y: element.point.y)
     }
 
     updateElementPoints(elements, newPointCalculator: calculateNewPoint)
@@ -88,7 +88,7 @@ extension AlignmentFunctions {
 
     func calculateNewPoint(_ element: SquareElement) -> NSPoint {
       let newX: CGFloat = minimunXCoordinate - element.rect.width / 2
-      return NSMakePoint(newX, element.point.y)
+      return NSPoint(x: newX, y: element.point.y)
     }
 
     updateElementPoints(elements, newPointCalculator: calculateNewPoint)
@@ -102,7 +102,7 @@ extension AlignmentFunctions {
     let averageYCoordinate: CGFloat = elements.min(by: compareByMinCenterX)!.point.y
 
     func calculateNewPoint(_ element: SquareElement) -> NSPoint {
-      return NSMakePoint(element.point.x, averageYCoordinate)
+      return NSPoint(x: element.point.x, y: averageYCoordinate)
     }
 
     updateElementPoints(elements, newPointCalculator: calculateNewPoint)
@@ -124,8 +124,9 @@ extension AlignmentFunctions {
     var previousElement = elementsSortedByYCoordinate[0]
 
     func calculateNewPoint(_ element: SquareElement) -> NSPoint {
-      let newY = (element.rect.height / 2) + equalVerticalSpacing + (previousElement.rect.height / 2) + previousElement.point.y
-      return NSMakePoint(element.point.x, newY)
+      let newY = (element.rect.height / 2) + equalVerticalSpacing +
+                 (previousElement.rect.height / 2) + previousElement.point.y
+      return NSPoint(x: element.point.x, y: newY)
     }
 
     for element in elementsSortedByYCoordinate[1..<elementsSortedByYCoordinate.count] {
@@ -149,8 +150,9 @@ extension AlignmentFunctions {
 
     var previousConcept = conceptsSortedByXCoordinate[0]
     for element in conceptsSortedByXCoordinate[1..<conceptsSortedByXCoordinate.count] {
-      let newX = (element.rect.width / 2) + equalHorizontalSpacing + (previousConcept.rect.width / 2) + previousConcept.point.x
-      let newPoint = NSMakePoint(newX, element.point.y)
+      let newX = (element.rect.width / 2) + equalHorizontalSpacing +
+                 (previousConcept.rect.width / 2) + previousConcept.point.x
+      let newPoint = NSPoint(x: newX, y: element.point.y)
 
       setNewPoint(newPoint, forElement: element)
 
@@ -174,6 +176,9 @@ extension AlignmentFunctions {
     let minY = (elements.map { rectMinY(rect: $0.rect) }).min()!
     let maxX = (elements.map { rectMaxX(rect: $0.rect) }).max()!
     let maxY = (elements.map { rectMaxY(rect: $0.rect) }).max()!
-    return NSMakeRect(minX, minY, maxX - minX, maxY - minY)
+    return NSRect(
+      origin: NSPoint(x: minX, y: minY),
+      size: NSSize(width: maxX - minX, height: maxY - minY)
+    )
   }
 }

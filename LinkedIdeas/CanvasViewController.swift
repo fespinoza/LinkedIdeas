@@ -92,7 +92,10 @@ struct DrawableLink: DrawableElement {
     NSRectFill(textRect)
 
     // text
-    let bottomLeftTextPoint = link.point.translate(deltaX: -(textSize.width - padding) / 2.0, deltaY: -(textSize.height - padding) / 2.0)
+    let bottomLeftTextPoint = link.point.translate(
+      deltaX: -(textSize.width - padding) / 2.0,
+      deltaY: -(textSize.height - padding) / 2.0
+    )
     let attributedStringValue = NSAttributedString(
       attributedString: link.attributedStringValue,
       fontColor: NSColor.gray
@@ -115,7 +118,7 @@ struct DrawableLink: DrawableElement {
 
     if let intersectionPointWithOrigin = link.originRect.firstIntersectionTo(targetPoint),
        let intersectionPointWithTarget = link.targetRect.firstIntersectionTo(originPoint) {
-      return Arrow(p1: intersectionPointWithOrigin, p2: intersectionPointWithTarget)
+      return Arrow(point1: intersectionPointWithOrigin, point2: intersectionPointWithTarget)
     } else {
       return nil
     }
@@ -181,9 +184,9 @@ class CanvasViewController: NSViewController {
     // modify canvas frame (size)
     // and scroll to center of it
     canvasView.frame = NSRect(x: 0, y: 0, width: 3000, height: 2000)
-    let canvasViewCenterForScroll = NSMakePoint(
-      (canvasView.frame.center.x - scrollView.frame.center.x),
-      (canvasView.frame.center.y - scrollView.frame.center.y)
+    let canvasViewCenterForScroll = NSPoint(
+      x: (canvasView.frame.center.x - scrollView.frame.center.x),
+      y: (canvasView.frame.center.y - scrollView.frame.center.y)
     )
     scrollView.scroll(canvasViewCenterForScroll)
 
@@ -288,7 +291,7 @@ extension CanvasViewController {
       if let clickedElements = clickedElements(atPoint: point) {
         Swift.print("[mouseDown][singleClick] clicked concepts [\(clickedConcepts)]")
 
-        if (!currentState.isSimilar(to: .multipleSelectedElements(elements: [Element]()))) {
+        if !currentState.isSimilar(to: .multipleSelectedElements(elements: [Element]())) {
           safeTransiton {
             try stateManager.toSelectedElement(element: clickedElements.first!)
           }
@@ -316,7 +319,7 @@ extension CanvasViewController {
   }
 
   override func mouseDragged(with event: NSEvent) {
-    if (dragCount <= 3) {
+    if dragCount <= 3 {
       Swift.print("[mouseDragged]")
       dragCount += 1
     }
@@ -328,7 +331,7 @@ extension CanvasViewController {
 
     switch currentState {
     case .selectedElement(let element):
-      if (event.modifierFlags.contains(.shift) || didShiftDragStart) {
+      if event.modifierFlags.contains(.shift) || didShiftDragStart {
         guard let concept = element as? Concept else {
           return
         }
@@ -372,7 +375,7 @@ extension CanvasViewController {
         return
       }
 
-      if (event.modifierFlags.contains(.shift) || didShiftDragStart) {
+      if event.modifierFlags.contains(.shift) || didShiftDragStart {
         if let targetConcept = clickedSingleConcept(atPoint: point) {
           Swift.print("[mouseUp][shiftClick] (targetConcept = \(targetConcept))")
           targetConcept.isSelected = false
@@ -597,8 +600,6 @@ extension CanvasViewController {
 }
 
 // MARK: - NSTextFieldDelegate
-
-// TODO: handle escape when editing concept
 
 extension CanvasViewController: NSTextFieldDelegate {
   // Invoked when users press keys with predefined bindings in a cell of the specified control.

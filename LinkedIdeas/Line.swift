@@ -9,28 +9,32 @@
 import Foundation
 
 struct Line: PointInterceptable {
-  var p1: NSPoint
-  var p2: NSPoint
+  var pointA: NSPoint
+  var pointB: NSPoint
 
   var gradient: CGFloat {
-    return (p2.y - p1.y) / (p2.x - p1.x)
+    return (pointB.y - pointA.y) / (pointB.x - pointA.x)
   }
   var intersectionWithYAxis: CGFloat {
-    if (isConstantLineOnY()) { return p1.y }
-    return p1.y - p1.x * gradient
+    if isConstantLineOnY() {
+      return pointA.y
+    }
+    return pointA.y - pointA.x * gradient
   }
 
   var intersectionWithXAxis: CGFloat {
-    if (isConstantLineOnX()) { return p1.x }
+    if isConstantLineOnX() {
+      return pointA.x
+    }
     return -intersectionWithYAxis / gradient
   }
 
-  func evaluateX(_ x: CGFloat) -> CGFloat {
-    return gradient * x + intersectionWithYAxis
+  func evaluateX(_ xPoint: CGFloat) -> CGFloat {
+    return gradient * xPoint + intersectionWithYAxis
   }
 
-  func evaluateY(_ y: CGFloat) -> CGFloat {
-    return (y - intersectionWithYAxis) / gradient
+  func evaluateY(_ yPoint: CGFloat) -> CGFloat {
+    return (yPoint - intersectionWithYAxis) / gradient
   }
 
   func isConstantLineOnX() -> Bool {
@@ -51,16 +55,16 @@ struct Line: PointInterceptable {
 
   // it does not considate the same lines: the answer is all the points
   func intersectionPointWith(_ line: Line) -> NSPoint? {
-    if (isParallelTo(line)) {
+    if isParallelTo(line) {
       return nil
     }
 
-    if (line.isConstantLineOnX()) {
+    if line.isConstantLineOnX() {
       let intersectionX = line.intersectionWithXAxis
       let intersectionY = evaluateX(intersectionX)
       return NSPoint(x: intersectionX, y: intersectionY)
     }
-    if (isConstantLineOnX()) {
+    if isConstantLineOnX() {
       let intersectionX = intersectionWithXAxis
       let intersectionY = line.evaluateX(intersectionX)
       return NSPoint(x: intersectionX, y: intersectionY)
@@ -71,7 +75,9 @@ struct Line: PointInterceptable {
     return NSPoint(x: intersectionX, y: intersectionY)
   }
 
-  func intersectionPointWithinBoundaries(_ line: Line, lineBoundaryP1 p1: NSPoint, lineBoundaryP2 p2: NSPoint) -> NSPoint? {
+  func intersectionPointWithinBoundaries(
+    _ line: Line, lineBoundaryP1 point1: NSPoint, lineBoundaryP2 point2: NSPoint
+  ) -> NSPoint? {
     return nil
   }
 }

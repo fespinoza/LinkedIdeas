@@ -24,7 +24,10 @@ extension NSView {
     if x >= bounds.maxX { x = bounds.maxX - area }
     if y >= bounds.maxY { y = bounds.maxY - area }
 
-    let rect = NSMakeRect(x, y, area, area)
+    let rect = NSRect(
+      origin: NSPoint(x: x, y: y),
+      size: NSSize(width: area, height: area)
+    )
     NSBezierPath(ovalIn: rect).fill()
   }
 
@@ -36,7 +39,10 @@ extension NSView {
     if x >= bounds.maxX { x = bounds.maxX - area / 2 }
     if y >= bounds.maxY { y = bounds.maxY - area / 2 }
 
-    let rect = NSMakeRect(x, y, area, area)
+    let rect = NSRect(
+      origin: NSPoint(x: x, y: y),
+      size: NSSize(width: area, height: area)
+    )
     NSBezierPath(ovalIn: rect).fill()
 
   }

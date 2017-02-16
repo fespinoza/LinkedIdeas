@@ -56,12 +56,12 @@ func maxY(_ rect: NSRect) -> CGFloat {
   return rect.origin.y + rect.size.height
 }
 
-func verticalDistanceBetween(_ a: SquareElement, _ b: SquareElement) -> CGFloat {
-  return abs(a.point.y - b.point.y) - (a.rect.height + b.rect.height) / 2
+func verticalDistanceBetween(_ elementA: SquareElement, _ elementB: SquareElement) -> CGFloat {
+  return abs(elementA.point.y - elementB.point.y) - (elementA.rect.height + elementB.rect.height) / 2
 }
 
-func horizontalDistanceBetween(_ a: SquareElement, _ b: SquareElement) -> CGFloat {
-  return abs(a.point.x - b.point.x) - (a.rect.width + b.rect.width) / 2
+func horizontalDistanceBetween(_ elementA: SquareElement, _ elementB: SquareElement) -> CGFloat {
+  return abs(elementA.point.x - elementB.point.x) - (elementA.rect.width + elementB.rect.width) / 2
 }
 
 class AlignmentFunctionTests: XCTestCase {

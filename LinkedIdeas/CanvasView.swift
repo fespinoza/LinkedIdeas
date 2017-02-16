@@ -24,7 +24,7 @@ class CanvasView: NSView {
   var selectToPoint: NSPoint?
   var selectionRect: NSRect? {
     if let selectFromPoint = selectFromPoint, let selectToPoint = selectToPoint {
-      return NSRect(p1: selectFromPoint, p2: selectToPoint)
+      return NSRect(point1: selectFromPoint, point2: selectToPoint)
     } else {
       return nil
     }
@@ -76,7 +76,7 @@ class CanvasView: NSView {
       return
     }
 
-    let arrow = Arrow(p1: arrowStartPoint, p2: arrowEndPoint)
+    let arrow = Arrow(point1: arrowStartPoint, point2: arrowEndPoint)
 
     if let arrowColor = arrowColor {
       arrowColor.set()

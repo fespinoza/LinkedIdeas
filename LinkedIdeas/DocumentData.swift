@@ -19,8 +19,14 @@ class DocumentData: NSObject, NSCoding {
   }
 
   required init?(coder aDecoder: NSCoder) {
-    readConcepts = aDecoder.decodeObject(forKey: "concepts") as! [Concept]?
-    readLinks = aDecoder.decodeObject(forKey: "links") as! [Link]?
+    guard let readConcepts = aDecoder.decodeObject(forKey: "concepts") as? [Concept]?,
+          let readLinks = aDecoder.decodeObject(forKey: "links") as? [Link]?
+      else {
+        return nil
+    }
+
+    self.readConcepts = readConcepts
+    self.readLinks = readLinks
   }
 
   func encode(with aCoder: NSCoder) {
@@ -34,8 +40,15 @@ class Graph: NSObject, NSCoding {
   var links = [Link]()
 
   required init?(coder aDecoder: NSCoder) {
-    concepts = aDecoder.decodeObject(forKey: "concepts") as! [Concept]
-    links = aDecoder.decodeObject(forKey: "links") as! [Link]
+
+    guard let concepts = aDecoder.decodeObject(forKey: "concepts") as? [Concept],
+          let links = aDecoder.decodeObject(forKey: "links") as? [Link]
+      else {
+        return nil
+    }
+
+    self.concepts = concepts
+    self.links = links
   }
 
   func encode(with aCoder: NSCoder) {

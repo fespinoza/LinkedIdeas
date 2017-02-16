@@ -48,7 +48,7 @@ extension CanvasViewControllerTests {
     let concepts = [
       Concept(stringValue: "Foo #0", point: NSPoint(x: 210, y: 310)),
       Concept(stringValue: "Foo #1", point: NSPoint(x: 210, y: 110)),
-      Concept(stringValue: "Foo #2", point: NSPoint(x: 200, y: 300)),
+      Concept(stringValue: "Foo #2", point: NSPoint(x: 200, y: 300))
     ]
     document.concepts = concepts
 
@@ -65,7 +65,7 @@ extension CanvasViewControllerTests {
     let concepts = [
       Concept(stringValue: "Foo #0", point: NSPoint(x: 210, y: 310)),
       Concept(stringValue: "Foo #1", point: NSPoint(x: 210, y: 110)),
-      Concept(stringValue: "Foo #2", point: NSPoint(x: 200, y: 300)),
+      Concept(stringValue: "Foo #2", point: NSPoint(x: 200, y: 300))
       ]
     document.concepts = concepts
 

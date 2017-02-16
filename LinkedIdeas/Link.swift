@@ -16,9 +16,9 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
   var targetPoint: NSPoint { return target.point }
 
   var point: NSPoint {
-    return NSMakePoint(
-      ((originPoint.x + targetPoint.x) / 2.0),
-      ((originPoint.y + targetPoint.y) / 2.0)
+    return NSPoint(
+      x: ((originPoint.x + targetPoint.x) / 2.0),
+      y: ((originPoint.y + targetPoint.y) / 2.0)
     )
   }
 
@@ -52,9 +52,9 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
   var identifier: String
   var rect: NSRect {
     var minX = min(originPoint.x, targetPoint.x)
-    if (abs(originPoint.x - targetPoint.x) <= padding) { minX -= padding / 2 }
+    if abs(originPoint.x - targetPoint.x) <= padding { minX -= padding / 2 }
     var minY = min(originPoint.y, targetPoint.y)
-    if (abs(originPoint.y - targetPoint.y) <= padding) { minY -= padding / 2 }
+    if abs(originPoint.y - targetPoint.y) <= padding { minY -= padding / 2 }
     let maxX = max(originPoint.x, targetPoint.x)
     let maxY = max(originPoint.y, targetPoint.y)
     let width = max(maxX - minX, padding)
@@ -66,18 +66,20 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
     guard rect.contains(point) else {
       return false
     }
-    if (textRect.contains(point)) {
+    if textRect.contains(point) {
       return true
     }
 
-    let extendedAreaArrow = Arrow(p1: originPoint, p2: targetPoint, arrowBodyWidth: 20)
-    let minXPoint: NSPoint! = extendedAreaArrow.arrowBodyPoints().min { (pointA, pointB) -> Bool in pointA.x < pointB.x }
-    let maxXPoint: NSPoint! = extendedAreaArrow.arrowBodyPoints().max { (pointA, pointB) -> Bool in pointA.x < pointB.x }
+    let extendedAreaArrow = Arrow(point1: originPoint, point2: targetPoint, arrowBodyWidth: 20)
+    let minXPoint: NSPoint! = extendedAreaArrow.arrowBodyPoints()
+      .min { (pointA, pointB) -> Bool in pointA.x < pointB.x }
+    let maxXPoint: NSPoint! = extendedAreaArrow.arrowBodyPoints()
+      .max { (pointA, pointB) -> Bool in pointA.x < pointB.x }
 
-    let linkLine = Line(p1: originPoint, p2: targetPoint)
+    let linkLine = Line(pointA: originPoint, pointB: targetPoint)
     let pivotPoint = NSPoint(x: linkLine.evaluateY(0), y: 0)
 
-    let angledLine = Line(p1: pivotPoint, p2: minXPoint)
+    let angledLine = Line(pointA: pivotPoint, pointB: minXPoint)
     let a = angledLine.intersectionWithYAxis
     let b = angledLine.intersectionWithXAxis
     let c: CGFloat = sqrt(pow(a, 2) + pow(b, 2))
@@ -91,11 +93,14 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
       )
     }
 
-    if (transformationFunction(ofPoint: minXPoint) == NSPoint.zero) {
+    if transformationFunction(ofPoint: minXPoint) == NSPoint.zero {
       Swift.print("very bad calculations! \(transformationFunction(ofPoint: minXPoint)) should be point 0")
     }
 
-    let transformedRect = NSRect(p1: transformationFunction(ofPoint: minXPoint), p2: transformationFunction(ofPoint: maxXPoint))
+    let transformedRect = NSRect(
+      point1: transformationFunction(ofPoint: minXPoint),
+      point2: transformationFunction(ofPoint: maxXPoint)
+    )
     let transformedPoint = transformationFunction(ofPoint: point)
     return transformedRect.contains(transformedPoint)
   }
@@ -123,10 +128,20 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
   let attributedStringValueKey = "attributedStringValue"
 
   required init?(coder aDecoder: NSCoder) {
-    identifier = aDecoder.decodeObject(forKey: identifierKey) as! String
-    origin = aDecoder.decodeObject(forKey: originKey) as! Concept
-    target = aDecoder.decodeObject(forKey: targetKey) as! Concept
-    attributedStringValue = aDecoder.decodeObject(forKey: attributedStringValueKey) as! NSAttributedString
+    guard let identifier = aDecoder.decodeObject(forKey: identifierKey) as? String,
+      let origin = aDecoder.decodeObject(forKey: originKey) as? Concept,
+      let target = aDecoder.decodeObject(forKey: targetKey) as? Concept,
+      let attributedStringValue = aDecoder.decodeObject(
+        forKey: attributedStringValueKey
+        ) as? NSAttributedString
+      else {
+        return nil
+    }
+
+    self.identifier = identifier
+    self.origin = origin
+    self.target = target
+    self.attributedStringValue = attributedStringValue
 
     if let color = aDecoder.decodeObject(forKey: colorKey) as? NSColor {
       self.color = color

@@ -11,7 +11,7 @@ import XCTest
 
 class StateManagerTests: XCTestCase {
   var stateManager: StateManager!
-  var testDelegate: StateManagerTestDelegate!
+  weak var testDelegate: StateManagerTestDelegate!
   let testElement = TestElement.sample
 
   override func setUp() {

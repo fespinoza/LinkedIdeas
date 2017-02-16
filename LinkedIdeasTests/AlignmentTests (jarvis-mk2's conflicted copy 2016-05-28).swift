@@ -45,22 +45,26 @@ struct AlignmentTestsFixtures {
 
 struct AligmentFunctions {
   static func verticallyCenterAlign(elements: [SquareElement]) {
-    let sortedConcepts = elements.sort { (p1: SquareElement, p2: SquareElement) -> Bool in return p1.point.x < p2.point.x }
+    let sortedConcepts = elements.sort { (p1: SquareElement, p2: SquareElement) -> Bool in
+      return p1.point.x < p2.point.x
+    }
     let minimunXCoordinate = sortedConcepts.first!.point.x
 
     for var element in elements {
-      let verticallyCenterAlignedPoint = NSMakePoint(minimunXCoordinate, element.point.y)
+      let verticallyCenterAlignedPoint = NSPoint(x: minimunXCoordinate, y: element.point.y)
       element.setNewPoint(verticallyCenterAlignedPoint)
     }
   }
 
   static func verticallyLeftAlign(elements: [SquareElement]) {
-    let sortedConcepts = elements.sort { (p1: SquareElement, p2: SquareElement) -> Bool in return p1.minimalRect.origin.x < p2.minimalRect.origin.x }
+    let sortedConcepts = elements.sort { (p1: SquareElement, p2: SquareElement) -> Bool in
+      return p1.minimalRect.origin.x < p2.minimalRect.origin.x
+    }
     let minimunXCoordinate = sortedConcepts.first!.minimalRect.origin.x
 
     for var element in elements {
       let newX: CGFloat = minimunXCoordinate + element.minimalRect.width / 2
-      let verticallyLeftAlignedPoint = NSMakePoint(newX, element.point.y)
+      let verticallyLeftAlignedPoint = NSPoint(x: newX, y: element.point.y)
       element.setNewPoint(verticallyLeftAlignedPoint)
     }
   }

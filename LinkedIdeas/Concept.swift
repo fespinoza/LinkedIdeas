@@ -73,10 +73,17 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
   // MARK: - NSCoding
 
   required init?(coder aDecoder: NSCoder) {
-    point       = aDecoder.decodePoint(forKey: Concept.pointKey)
-    identifier  = aDecoder.decodeObject(forKey: Concept.identifierKey) as! String
-    isEditable  = aDecoder.decodeBool(forKey: Concept.isEditableKey)
-    attributedStringValue = aDecoder.decodeObject(forKey: Concept.attributedStringValueKey) as! NSAttributedString
+    guard let identifier = aDecoder.decodeObject(forKey: Concept.identifierKey) as? String,
+          let attributedStringValue = aDecoder.decodeObject(
+            forKey: Concept.attributedStringValueKey
+          ) as? NSAttributedString
+      else {
+        return nil
+    }
+    self.identifier = identifier
+    self.attributedStringValue = attributedStringValue
+    point = aDecoder.decodePoint(forKey: Concept.pointKey)
+    isEditable = aDecoder.decodeBool(forKey: Concept.isEditableKey)
   }
 
   func encode(with aCoder: NSCoder) {
