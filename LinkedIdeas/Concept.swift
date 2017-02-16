@@ -13,11 +13,12 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
   var point: NSPoint
   // element
   var identifier: String
-  // MARK: -NSAttributedStringElement
+  // MARK: - NSAttributedStringElement
   dynamic var attributedStringValue: NSAttributedString
   var stringValue: String { return attributedStringValue.string }
-  
+
   static let padding: CGFloat = 10
+
   var rect: NSRect {
     if stringValue != "" {
       var size = attributedStringValue.size()
@@ -25,13 +26,13 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
       size.height += Concept.padding
       return NSRect(center: point, size: size)
     } else {
-      return NSRect(center: point, size: NSMakeSize(60, 20))
+      return NSRect(center: point, size: NSSize(width: 60, height: 20))
     }
   }
   // visual element
   var isEditable: Bool = false
   var isSelected: Bool = false
-  
+
   // KVO
   static let attributedStringValuePath = "attributedStringValue"
   static let pointPath = "point"
@@ -44,6 +45,9 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
   static let identifierKey = "identifierKey"
   static let isEditableKey = "isEditableKey"
 
+  // Moving
+  var beforeMovingPoint: NSPoint?
+
   override var description: String {
     return "[\(identifier)] '\(stringValue)' \(isEditable) \(point)"
   }
@@ -51,7 +55,7 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
   convenience init(point: NSPoint) {
     self.init(stringValue: "", point: point)
   }
-  
+
   convenience init(stringValue: String, point: NSPoint) {
     self.init(attributedStringValue:NSAttributedString(string: stringValue), point: point)
   }
@@ -62,13 +66,24 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
     self.attributedStringValue = attributedStringValue
   }
 
+  func contains(point: NSPoint) -> Bool {
+    return rect.contains(point)
+  }
+
   // MARK: - NSCoding
 
   required init?(coder aDecoder: NSCoder) {
-    point       = aDecoder.decodePoint(forKey: Concept.pointKey)
-    identifier  = aDecoder.decodeObject(forKey: Concept.identifierKey) as! String
-    isEditable  = aDecoder.decodeBool(forKey: Concept.isEditableKey)
-    attributedStringValue = aDecoder.decodeObject(forKey: Concept.attributedStringValueKey) as!NSAttributedString
+    guard let identifier = aDecoder.decodeObject(forKey: Concept.identifierKey) as? String,
+          let attributedStringValue = aDecoder.decodeObject(
+            forKey: Concept.attributedStringValueKey
+          ) as? NSAttributedString
+      else {
+        return nil
+    }
+    self.identifier = identifier
+    self.attributedStringValue = attributedStringValue
+    point = aDecoder.decodePoint(forKey: Concept.pointKey)
+    isEditable = aDecoder.decodeBool(forKey: Concept.isEditableKey)
   }
 
   func encode(with aCoder: NSCoder) {

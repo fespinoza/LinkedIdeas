@@ -11,14 +11,14 @@ import Foundation
 protocol LinkedIdeasDocument {
   var concepts: [Concept] { get }
   var links: [Link] { get }
-  
+
   var observer: DocumentObserver? { get set }
-  
-  func saveConcept(_ concept: Concept)
-  func removeConcept(_ concept: Concept)
-  
-  func saveLink(_ link: Link)
-  func removeLink(_ link: Link)
-  
-  func changeConceptPoint(_ concept: Concept, fromPoint: NSPoint, toPoint: NSPoint)
+
+  func save(concept: Concept)
+  func remove(concept: Concept)
+
+  func save(link: Link)
+  func remove(link: Link)
+
+  func move(concept: Concept, toPoint: NSPoint)
 }

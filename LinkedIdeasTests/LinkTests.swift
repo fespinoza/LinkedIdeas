@@ -1,4 +1,3 @@
-
 //
 //  LinkTests.swift
 //  LinkedIdeas
@@ -11,53 +10,53 @@ import XCTest
 @testable import LinkedIdeas
 
 class LinkTests: XCTestCase {
-  
+
   func testRectNormalCase() {
     // given
-    let concept1 = Concept(point: NSMakePoint(20, 30))
-    let concept2 = Concept(point: NSMakePoint(120, 130))
-    
+    let concept1 = Concept(point: NSPoint(x: 20, y: 30))
+    let concept2 = Concept(point: NSPoint(x: 120, y: 130))
+
     // when
     let link = Link(origin: concept1, target: concept2)
-    
+
     // then
-    XCTAssertEqual(link.rect, NSMakeRect(20, 30, 100, 100))
+    XCTAssertEqual(link.rect, NSRect(x: 20, y: 30, width: 100, height: 100))
   }
-  
+
   func testRectWhenConceptsAreHorizontallyAligned() {
     // given
-    let concept1 = Concept(point: NSMakePoint(300, 130))
-    let concept2 = Concept(point: NSMakePoint(120, 130))
-    
+    let concept1 = Concept(point: NSPoint(x: 300, y: 130))
+    let concept2 = Concept(point: NSPoint(x: 120, y: 130))
+
     // when
     let link = Link(origin: concept1, target: concept2)
-    
+
     // then
-    XCTAssertEqual(link.rect, NSMakeRect(120, 120, 180, 20))
+    XCTAssertEqual(link.rect, NSRect(x: 120, y: 120, width: 180, height: 20))
   }
-  
+
   func testRectWhenConceptsAreVerticallyAligned() {
     // given
-    let concept1 = Concept(point: NSMakePoint(300, 50))
-    let concept2 = Concept(point: NSMakePoint(300, 200))
-    
+    let concept1 = Concept(point: NSPoint(x: 300, y: 50))
+    let concept2 = Concept(point: NSPoint(x: 300, y: 200))
+
     // when
     let link = Link(origin: concept1, target: concept2)
-    
+
     // then
-    XCTAssertEqual(link.rect, NSMakeRect(290, 50, 20, 150))
+    XCTAssertEqual(link.rect, NSRect(x: 290, y: 50, width: 20, height: 150))
   }
-  
+
   func testRectWhenConceptsAreAlmostVerticallyAligned() {
     // given
-    let concept1 = Concept(point: NSMakePoint(305, 50))
-    let concept2 = Concept(point: NSMakePoint(300, 200))
-    
+    let concept1 = Concept(point: NSPoint(x: 305, y: 50))
+    let concept2 = Concept(point: NSPoint(x: 300, y: 200))
+
     // when
     let link = Link(origin: concept1, target: concept2)
-    
+
     // then
-    XCTAssertEqual(link.rect, NSMakeRect(290, 50, 20, 150))
+    XCTAssertEqual(link.rect, NSRect(x: 290, y: 50, width: 20, height: 150))
   }
-  
+
 }
