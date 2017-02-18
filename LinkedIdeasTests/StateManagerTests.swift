@@ -142,3 +142,20 @@ extension StateManagerTests {
     )
   }
 }
+
+// MARK: StateManager - toCanvasWaitingDeletingElements
+
+extension StateManagerTests {
+  func testToCanvasWaitingDeletingElementsFromMultipleSelectedElements() {
+    stateManager.currentState = .multipleSelectedElements(elements: [testElement])
+
+    executeTransition {
+      try stateManager.toCanvasWaiting(deletingElements: [testElement])
+    }
+
+    XCTAssertEqual(
+      stateManager.currentState,
+      .canvasWaiting
+    )
+  }
+}

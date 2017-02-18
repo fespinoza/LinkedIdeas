@@ -76,6 +76,35 @@ extension CanvasViewController: StateManagerDelegate {
     showTextField(atPoint: element.point, text: element.attributedStringValue)
   }
 
+  func transitionedToCanvasWaitingDeletingElements(fromState: CanvasState) {
+    commonTransitionBehavior(fromState)
+
+    switch fromState {
+    case .selectedElement(let element):
+      guard let concept = element as? Concept else {
+        return
+      }
+      let linksToRemove = document.links.filter { $0.origin == concept || $0.target == concept }
+      for link in linksToRemove {
+        document.remove(link: link)
+      }
+      document.remove(concept: concept)
+    case .multipleSelectedElements(let elements):
+      for element in elements {
+        guard let concept = element as? Concept else {
+          continue
+        }
+        let linksToRemove = document.links.filter { $0.origin == concept || $0.target == concept }
+        for link in linksToRemove {
+          document.remove(link: link)
+        }
+        document.remove(concept: concept)
+      }
+    default:
+      break
+    }
+  }
+
   private func commonTransitionBehavior(_ fromState: CanvasState) {
     switch fromState {
     case .newConcept:

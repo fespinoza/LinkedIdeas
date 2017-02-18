@@ -18,6 +18,7 @@ protocol StateManagerDelegate: class {
   func transitionedToNewConcept(fromState: CanvasState)
   func transitionedToCanvasWaiting(fromState: CanvasState)
   func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString)
+  func transitionedToCanvasWaitingDeletingElements(fromState: CanvasState)
   func transitionedToSelectedElement(fromState: CanvasState)
   func transitionedToSelectedElementSavingChanges(fromState: CanvasState)
   func transitionedToEditingElement(fromState: CanvasState)
@@ -125,6 +126,18 @@ struct StateManager {
       throw CanvasTransitionError.invalidTransition(
         message: "there is no transition from \(currentState) to 'canvasWaiting' saving concept"
       )
+    }
+  }
+
+  public mutating func toCanvasWaiting(deletingElements elements: [Element]) throws {
+    let possibleStates: [CanvasState] = [
+      .selectedElement(element: EmptyElement.example),
+      .multipleSelectedElements(elements: [Element]())
+    ]
+
+    let state = CanvasState.canvasWaiting
+    try transition(fromPossibleStates: possibleStates, toState: state) { (oldState) in
+      delegate?.transitionedToCanvasWaitingDeletingElements(fromState: oldState)
     }
   }
 

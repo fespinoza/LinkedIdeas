@@ -73,6 +73,10 @@ extension StateManagerTestDelegate: StateManagerDelegate {
   func transitionedToMultipleSelectedElements(fromState: CanvasState) {
     registerCall(methodName: #function)
   }
+
+  func transitionedToCanvasWaitingDeletingElements(fromState: CanvasState) {
+    registerCall(methodName: #function)
+  }
 }
 
 struct TestElement: Element {

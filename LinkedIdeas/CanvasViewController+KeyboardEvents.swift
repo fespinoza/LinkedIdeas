@@ -13,8 +13,10 @@ import Cocoa
 extension CanvasViewController {
   override func keyDown(with event: NSEvent) {
     let enterKeyCode: UInt16 = 36
+    let deleteKeyCode: UInt16 = 51
 
-    if event.keyCode == enterKeyCode {
+    switch event.keyCode {
+    case enterKeyCode:
       switch currentState {
       case .selectedElement(let element):
         safeTransiton {
@@ -23,6 +25,21 @@ extension CanvasViewController {
       default:
         break
       }
+    case deleteKeyCode:
+      switch currentState {
+      case .selectedElement(let element):
+        safeTransiton {
+          try stateManager.toCanvasWaiting(deletingElements: [element])
+        }
+      case .multipleSelectedElements(let elements):
+        safeTransiton {
+          try stateManager.toCanvasWaiting(deletingElements: elements)
+        }
+      default:
+        break
+      }
+    default:
+      break
     }
   }
 }
