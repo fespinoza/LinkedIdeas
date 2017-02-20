@@ -20,6 +20,10 @@ extension CanvasViewController {
   }
 
   func delete(element: Element) {
+    if let link = element as? Link {
+      document.remove(link: link)
+    }
+
     if let concept = element as? Concept {
       document.remove(concept: concept)
     }
