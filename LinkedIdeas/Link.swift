@@ -123,6 +123,10 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
   let colorKey = "colorKey"
   let attributedStringValueKey = "attributedStringValue"
 
+  func doesBelongTo(concept: Concept) -> Bool {
+    return origin == concept || target == concept
+  }
+
   required init?(coder aDecoder: NSCoder) {
     guard let identifier = aDecoder.decodeObject(forKey: identifierKey) as? String,
       let origin = aDecoder.decodeObject(forKey: originKey) as? Concept,

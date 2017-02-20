@@ -34,7 +34,7 @@ extension CanvasViewController {
       guard let concept = element as? Concept else {
         continue
       }
-      let linksToRemove = document.links.filter { $0.origin == concept || $0.target == concept }
+      let linksToRemove = document.links.filter { $0.doesBelongTo(concept: concept) }
       for link in linksToRemove {
         document.remove(link: link)
       }
