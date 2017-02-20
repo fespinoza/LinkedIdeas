@@ -81,25 +81,9 @@ extension CanvasViewController: StateManagerDelegate {
 
     switch fromState {
     case .selectedElement(let element):
-      guard let concept = element as? Concept else {
-        return
-      }
-      let linksToRemove = document.links.filter { $0.origin == concept || $0.target == concept }
-      for link in linksToRemove {
-        document.remove(link: link)
-      }
-      document.remove(concept: concept)
+      delete(element: element)
     case .multipleSelectedElements(let elements):
-      for element in elements {
-        guard let concept = element as? Concept else {
-          continue
-        }
-        let linksToRemove = document.links.filter { $0.origin == concept || $0.target == concept }
-        for link in linksToRemove {
-          document.remove(link: link)
-        }
-        document.remove(concept: concept)
-      }
+      delete(elements: elements)
     default:
       break
     }
