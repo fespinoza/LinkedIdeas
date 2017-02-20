@@ -17,26 +17,34 @@ extension CanvasViewController {
 
     switch event.keyCode {
     case enterKeyCode:
-      switch currentState {
-      case .selectedElement(let element):
-        safeTransiton {
-          try stateManager.toEditingElement(element: element)
-        }
-      default:
-        break
-      }
+      enterKeyPressed()
     case deleteKeyCode:
-      switch currentState {
-      case .selectedElement(let element):
-        safeTransiton {
-          try stateManager.toCanvasWaiting(deletingElements: [element])
-        }
-      case .multipleSelectedElements(let elements):
-        safeTransiton {
-          try stateManager.toCanvasWaiting(deletingElements: elements)
-        }
-      default:
-        break
+      deleteKeyPressed()
+    default:
+      break
+    }
+  }
+
+  func enterKeyPressed() {
+    switch currentState {
+    case .selectedElement(let element):
+      safeTransiton {
+        try stateManager.toEditingElement(element: element)
+      }
+    default:
+      break
+    }
+  }
+
+  func deleteKeyPressed() {
+    switch currentState {
+    case .selectedElement(let element):
+      safeTransiton {
+        try stateManager.toCanvasWaiting(deletingElements: [element])
+      }
+    case .multipleSelectedElements(let elements):
+      safeTransiton {
+        try stateManager.toCanvasWaiting(deletingElements: elements)
       }
     default:
       break
