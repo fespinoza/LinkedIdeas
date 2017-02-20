@@ -19,6 +19,34 @@ extension CanvasViewController {
     for var element in elements { element.isSelected = false }
   }
 
+  func delete(element: Element) {
+    switch element {
+    case let link as Link:
+      document.remove(link: link)
+    case let concept as Concept:
+      delete(concept: concept)
+    default:
+      break
+    }
+  }
+
+  func delete(elements: [Element]) {
+    for element in elements {
+      guard let concept = element as? Concept else {
+        continue
+      }
+      delete(concept: concept)
+    }
+  }
+
+  func delete(concept: Concept) {
+    let linksToRemove = document.links.filter { $0.doesBelongTo(concept: concept) }
+    for link in linksToRemove {
+      document.remove(link: link)
+    }
+    document.remove(concept: concept)
+  }
+
   func saveConcept(text: NSAttributedString, atPoint point: NSPoint) -> Bool {
     guard text.string != "" else {
       return false
