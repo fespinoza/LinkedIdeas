@@ -20,12 +20,13 @@ extension CanvasViewController {
   }
 
   func delete(element: Element) {
-    if let link = element as? Link {
+    switch element {
+    case let link as Link:
       document.remove(link: link)
-    }
-
-    if let concept = element as? Concept {
-      document.remove(concept: concept)
+    case let concept as Concept:
+      delete(concept: concept)
+    default:
+      break
     }
   }
 
@@ -34,12 +35,16 @@ extension CanvasViewController {
       guard let concept = element as? Concept else {
         continue
       }
-      let linksToRemove = document.links.filter { $0.doesBelongTo(concept: concept) }
-      for link in linksToRemove {
-        document.remove(link: link)
-      }
-      document.remove(concept: concept)
+      delete(concept: concept)
     }
+  }
+
+  func delete(concept: Concept) {
+    let linksToRemove = document.links.filter { $0.doesBelongTo(concept: concept) }
+    for link in linksToRemove {
+      document.remove(link: link)
+    }
+    document.remove(concept: concept)
   }
 
   func saveConcept(text: NSAttributedString, atPoint point: NSPoint) -> Bool {
