@@ -24,7 +24,7 @@ struct DrawableConcept: DrawableElement {
 
   func drawConceptText() {
     NSColor.black.set()
-    concept.attributedStringValue.draw(at: concept.rect.origin)
+    concept.attributedStringValue.draw(in: concept.rect)
   }
 
   func drawSelectedRing() {
