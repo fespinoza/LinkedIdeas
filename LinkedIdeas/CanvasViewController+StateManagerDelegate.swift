@@ -73,7 +73,7 @@ extension CanvasViewController: StateManagerDelegate {
 
     element.isEditable = true
 
-    showTextField(atPoint: element.point, text: element.attributedStringValue)
+    showTextField(withOriginPoint: element.rect.origin, text: element.attributedStringValue)
   }
 
   func transitionedToCanvasWaitingDeletingElements(fromState: CanvasState) {
