@@ -14,10 +14,6 @@ struct TextFieldResizingBehavior {
   let minWidth: CGFloat = 50
   let maxWidth: CGFloat = 250
 
-  // TODO: match rendering of string itself on canvas
-
-  // TODO: do something for the initial position of the text field + resizing
-
   func resize(_ textField: NSTextField) {
     let originalFrame = textField.frame
 

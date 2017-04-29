@@ -169,16 +169,14 @@
 		9B2F1D9E1BE7CFE70090CC18 /* LinkedIdeas */ = {
 			isa = PBXGroup;
 			children = (
-				9B3941901E5656A100F1E957 /* ViewModels */,
-				9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */,
-				9BA63D331D74C45100EBC3AD /* NewUI */,
+				9B2F1DAB1BE7CFE80090CC18 /* Info.plist */,
 				9BA63D2C1D74C23100EBC3AD /* Main.storyboard */,
 				9B2F1DA61BE7CFE70090CC18 /* Assets.xcassets */,
-				9B2F1DAB1BE7CFE80090CC18 /* Info.plist */,
+				9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */,
+				9BA63D331D74C45100EBC3AD /* UI */,
+				9B3941901E5656A100F1E957 /* ViewModels */,
 				9BCA09E31C9217A900637F6D /* Models */,
-				9BD2BF3E1C7F8B8D00E8A303 /* 2DMath */,
-				9B521F841CFB37D200A71598 /* AligmentFunctions.swift */,
-				9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */,
+				9B6E97E81EB5062B00D4EF86 /* Utilities */,
 			);
 			path = LinkedIdeas;
 			sourceTree = "<group>";
@@ -199,6 +197,7 @@
 		9B3941901E5656A100F1E957 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				9B2FE8F21EB28F7C00DEEBA2 /* TextFieldResizeBehavior.swift */,
 				9B3941911E5656AF00F1E957 /* ViewModelProtocols.swift */,
 				9B3941931E5656FE00F1E957 /* DrawableConcept.swift */,
 				9B3941951E56572F00F1E957 /* DrawableLink.swift */,
@@ -224,6 +223,25 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
+		9B6E97E81EB5062B00D4EF86 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9BD2BF3E1C7F8B8D00E8A303 /* 2DMath */,
+				9B521F841CFB37D200A71598 /* AligmentFunctions.swift */,
+				9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		9B6E97E91EB5067B00D4EF86 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9B3941A51E56594700F1E957 /* NSEvent-Extensions.swift */,
+				9B3941A71E56596000F1E957 /* NSResponder-Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		9B8E90061E462AB900C819F7 /* CanvasViewControllerExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,21 +259,18 @@
 			name = CanvasViewControllerExtensions;
 			sourceTree = "<group>";
 		};
-		9BA63D331D74C45100EBC3AD /* NewUI */ = {
+		9BA63D331D74C45100EBC3AD /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9B6E97E91EB5067B00D4EF86 /* Extensions */,
+				9B8E90061E462AB900C819F7 /* CanvasViewControllerExtensions */,
+				9BA63D311D74C38400EBC3AD /* CanvasViewController.swift */,
+				9BA63D341D74C47800EBC3AD /* CanvasView.swift */,
+				9B0683FC1DA1A1AA00609AE5 /* StateManager.swift */,
 				9BF15C381CAC69A500C95041 /* WindowController.swift */,
 				9BA63D2F1D74C31A00EBC3AD /* DocumentViewController.swift */,
-				9BA63D311D74C38400EBC3AD /* CanvasViewController.swift */,
-				9B8E90061E462AB900C819F7 /* CanvasViewControllerExtensions */,
-				9BA63D341D74C47800EBC3AD /* CanvasView.swift */,
-				9B2F1DA11BE7CFE70090CC18 /* Document.swift */,
-				9B0683FC1DA1A1AA00609AE5 /* StateManager.swift */,
-				9B3941A51E56594700F1E957 /* NSEvent-Extensions.swift */,
-				9B3941A71E56596000F1E957 /* NSResponder-Extensions.swift */,
-				9B2FE8F21EB28F7C00DEEBA2 /* TextFieldResizeBehavior.swift */,
 			);
-			name = NewUI;
+			name = UI;
 			sourceTree = "<group>";
 		};
 		9BB8FC801CA6B7B0008CD6A2 /* Models */ = {
@@ -271,10 +286,11 @@
 		9BCA09E31C9217A900637F6D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9B48F84A1CD614460014758D /* Protocols */,
+				9B2F1DA11BE7CFE70090CC18 /* Document.swift */,
 				9B48F84C1CD614BC0014758D /* DocumentData.swift */,
 				9BDDE7381BEF9157000AAD44 /* Concept.swift */,
 				9BABB2B11C07B7F7001EC9E0 /* Link.swift */,
-				9B48F84A1CD614460014758D /* Protocols */,
 			);
 			name = Models;
 			sourceTree = "<group>";
