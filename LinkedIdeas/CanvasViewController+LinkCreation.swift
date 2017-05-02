@@ -16,7 +16,7 @@ extension CanvasViewController {
     } else {
       canvasView.arrowEndPoint = point
     }
-    didDragStart = true
+    startDragging()
     reRenderCanvasView()
   }
 

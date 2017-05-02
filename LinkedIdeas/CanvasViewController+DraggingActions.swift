@@ -10,29 +10,41 @@ import Cocoa
 
 // MARK: - CanvasViewController+DraggingActions
 extension CanvasViewController {
+  func didDragStart() -> Bool {
+    return dragCount > 1
+  }
+
+  func startDragging() {
+    // drags with dragCount <= 1 will be ignored.
+    dragCount = 2
+  }
+
   // MARK: Single Concept
 
   func drag(concept: Concept, toPoint dragToPoint: NSPoint) {
-    if didDragStart == false {
-      didDragStart = true
+    dragCount += 1
+
+    if dragCount > 1 {
+      concept.point = dragToPoint
+    } else {
       concept.beforeMovingPoint = concept.point
     }
-
-    concept.point = dragToPoint
   }
 
   func endDrag(forConcept concept: Concept, toPoint: NSPoint) {
-    if let originalPoint = concept.beforeMovingPoint {
-      concept.point = originalPoint
-      concept.beforeMovingPoint = nil
+    if dragCount > 1 {
+      if let originalPoint = concept.beforeMovingPoint {
+        concept.point = originalPoint
+        concept.beforeMovingPoint = nil
+      }
+      document.move(concept: concept, toPoint: toPoint)
     }
-    document.move(concept: concept, toPoint: toPoint)
   }
 
   // MARK: Multiple Concepts
 
   func drag(concepts: [Concept], toPoint dragToPoint: NSPoint) {
-    if let dragFromPoint = dragStartPoint, didDragStart {
+    if let dragFromPoint = dragStartPoint, didDragStart() {
       // Actual dragging
       let deltaX = dragToPoint.x - dragFromPoint.x
       let deltaY = dragToPoint.y - dragFromPoint.y
@@ -46,14 +58,14 @@ extension CanvasViewController {
       // Start dragging
       for concept in concepts { concept.beforeMovingPoint = concept.point }
 
-      didDragStart = true
+      startDragging()
       dragStartPoint = dragToPoint
     }
   }
 
   func endDrag(forConcepts concepts: [Concept], toPoint: NSPoint) {
     guard let oldDragStart = dragStartPoint,
-          didDragStart else { return }
+          didDragStart() else { return }
 
     for concept in concepts {
       let conceptPoint = concept.point
@@ -70,9 +82,9 @@ extension CanvasViewController {
   // MARK: Hovering Concepts
 
   func hoverConcepts(toPoint point: NSPoint) {
-    if didDragStart == false {
+    if didDragStart() == false {
       // start selecting elements
-      didDragStart = true
+      startDragging()
       canvasView.selectFromPoint = point
     } else {
       canvasView.selectToPoint = point
@@ -103,9 +115,9 @@ extension CanvasViewController {
 
   // MARK: General drag operations
   func resetDraggingConcepts() {
-    didDragStart = false
     didShiftDragStart = false
     dragStartPoint = nil
+    dragCount = 0
     canvasView.selectFromPoint = nil
     canvasView.selectToPoint = nil
     canvasView.needsDisplay = true

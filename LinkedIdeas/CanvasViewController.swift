@@ -12,7 +12,7 @@ class CanvasViewController: NSViewController {
   @IBOutlet weak var canvasView: CanvasView!
   @IBOutlet weak var scrollView: NSScrollView!
 
-  var didDragStart = false
+  var dragCount = 0
   var didShiftDragStart = false
   // to register the beginning of the drag
   // for undo purposes
