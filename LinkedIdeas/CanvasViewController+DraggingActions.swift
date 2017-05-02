@@ -10,21 +10,25 @@ import Cocoa
 
 // MARK: - CanvasViewController+DraggingActions
 extension CanvasViewController {
+  func didDragStart() -> Bool {
+    return dragCount > 1
+  }
+
+  func startDragging() {
+    // drags with dragCount <= 1 will be ignored.
+    dragCount = 2
+  }
+
   // MARK: Single Concept
 
   func drag(concept: Concept, toPoint dragToPoint: NSPoint) {
     dragCount += 1
 
     if dragCount > 1 {
-//      if didDragStart == false {
-//        didDragStart = true
-//        concept.beforeMovingPoint = concept.point
-//      }
       Swift.print(">>>> actual drag")
       concept.point = dragToPoint
     } else {
       Swift.print(">>>> delay drag")
-      didDragStart = true
       concept.beforeMovingPoint = concept.point
     }
   }
@@ -45,7 +49,7 @@ extension CanvasViewController {
   // MARK: Multiple Concepts
 
   func drag(concepts: [Concept], toPoint dragToPoint: NSPoint) {
-    if let dragFromPoint = dragStartPoint, didDragStart {
+    if let dragFromPoint = dragStartPoint, didDragStart() {
       // Actual dragging
       let deltaX = dragToPoint.x - dragFromPoint.x
       let deltaY = dragToPoint.y - dragFromPoint.y
@@ -59,14 +63,14 @@ extension CanvasViewController {
       // Start dragging
       for concept in concepts { concept.beforeMovingPoint = concept.point }
 
-      didDragStart = true
+      startDragging()
       dragStartPoint = dragToPoint
     }
   }
 
   func endDrag(forConcepts concepts: [Concept], toPoint: NSPoint) {
     guard let oldDragStart = dragStartPoint,
-          didDragStart else { return }
+          didDragStart() else { return }
 
     for concept in concepts {
       let conceptPoint = concept.point
@@ -83,9 +87,9 @@ extension CanvasViewController {
   // MARK: Hovering Concepts
 
   func hoverConcepts(toPoint point: NSPoint) {
-    if didDragStart == false {
+    if didDragStart() == false {
       // start selecting elements
-      didDragStart = true
+      startDragging()
       canvasView.selectFromPoint = point
     } else {
       canvasView.selectToPoint = point
@@ -116,7 +120,6 @@ extension CanvasViewController {
 
   // MARK: General drag operations
   func resetDraggingConcepts() {
-    didDragStart = false
     didShiftDragStart = false
     dragStartPoint = nil
     dragCount = 0
