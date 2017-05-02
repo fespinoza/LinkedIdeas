@@ -72,7 +72,7 @@ extension CanvasViewController {
   }
 
   func showTextField(atPoint point: NSPoint, text: NSAttributedString? = nil) {
-    textField.frame = NSRect(center: point, size: NSSize(width: 60, height: 40))
+    textField.frame = NSRect(center: point, size: NSSize(width: 250, height: 50))
     textField.isEditable = true
     textField.isHidden = false
     if let text = text { textField.attributedStringValue = text }
