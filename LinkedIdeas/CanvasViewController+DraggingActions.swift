@@ -25,24 +25,19 @@ extension CanvasViewController {
     dragCount += 1
 
     if dragCount > 1 {
-      Swift.print(">>>> actual drag")
       concept.point = dragToPoint
     } else {
-      Swift.print(">>>> delay drag")
       concept.beforeMovingPoint = concept.point
     }
   }
 
   func endDrag(forConcept concept: Concept, toPoint: NSPoint) {
     if dragCount > 1 {
-      Swift.print(">>> end drag")
       if let originalPoint = concept.beforeMovingPoint {
         concept.point = originalPoint
         concept.beforeMovingPoint = nil
       }
       document.move(concept: concept, toPoint: toPoint)
-    } else {
-      Swift.print(">>> end EMPTY drag")
     }
   }
 
