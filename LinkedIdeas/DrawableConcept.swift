@@ -19,12 +19,12 @@ struct DrawableConcept: DrawableElement {
 
   func drawBackground() {
     NSColor.white.set()
-    NSRectFill(concept.rect)
+    NSRectFill(conceptRect())
   }
 
   func drawConceptText() {
     NSColor.black.set()
-    concept.attributedStringValue.draw(in: concept.rect)
+    concept.attributedStringValue.draw(in: conceptRect())
   }
 
   func drawSelectedRing() {
@@ -33,6 +33,10 @@ struct DrawableConcept: DrawableElement {
     }
 
     NSColor.red.set()
-    NSBezierPath(rect: concept.rect).stroke()
+    NSBezierPath(rect: conceptRect()).stroke()
+  }
+
+  func conceptRect() -> NSRect {
+    return concept.rect
   }
 }

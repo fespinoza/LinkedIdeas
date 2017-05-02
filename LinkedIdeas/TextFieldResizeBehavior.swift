@@ -8,6 +8,9 @@
 
 import Cocoa
 
+// TODO: when creating a concept you click in a particular point and then that point is moved when the concept is saved
+
+
 struct TextFieldResizingBehavior {
   let maxHeight: CGFloat = 100000.0
   let maxWidthPadding: CGFloat = 10
@@ -25,7 +28,6 @@ struct TextFieldResizingBehavior {
     constraintBounds.size.width = textMaxWidth
     constraintBounds.size.height = maxHeight
 
-    print(constraintBounds)
     var naturalSize = textField.cell!.cellSize(forBounds: constraintBounds)
 
     // ensure minimun size of text field
@@ -40,7 +42,7 @@ struct TextFieldResizingBehavior {
       )
       textField.setFrameOrigin(newOrigin)
     }
+
     textField.setFrameSize(naturalSize)
-    print(textField.frame)
   }
 }
