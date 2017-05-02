@@ -138,7 +138,7 @@ extension CanvasViewControllerTests {
     let textField = canvasViewController.textField
     textField.stringValue = "New Concept"
 
-    let _ = canvasViewController.control(
+    _ = canvasViewController.control(
       textField,
       textView: NSTextView(),
       doCommandBy: #selector(NSResponder.insertNewline(_:))

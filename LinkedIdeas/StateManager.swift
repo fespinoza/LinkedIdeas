@@ -196,7 +196,7 @@ struct StateManager {
   ) throws {
     let oldState = currentState
 
-    if let _ = validFromStates.index(where: { $0.isSimilar(to: oldState) }) {
+    if validFromStates.index(where: { $0.isSimilar(to: oldState) }) != nil {
       currentState = toState
       onSuccess(oldState)
       delegate?.transitionSuccesfull()

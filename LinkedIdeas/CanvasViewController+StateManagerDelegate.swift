@@ -31,7 +31,7 @@ extension CanvasViewController: StateManagerDelegate {
 
   func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString) {
     dismissTextField()
-    let _ = saveConcept(text: text, atPoint: point)
+    _ = saveConcept(text: text, atPoint: point)
   }
 
   func transitionedToSelectedElement(fromState: CanvasState) {
