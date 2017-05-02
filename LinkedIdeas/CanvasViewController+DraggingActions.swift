@@ -13,20 +13,33 @@ extension CanvasViewController {
   // MARK: Single Concept
 
   func drag(concept: Concept, toPoint dragToPoint: NSPoint) {
-    if didDragStart == false {
+    dragCount += 1
+
+    if dragCount > 1 {
+//      if didDragStart == false {
+//        didDragStart = true
+//        concept.beforeMovingPoint = concept.point
+//      }
+      Swift.print(">>>> actual drag")
+      concept.point = dragToPoint
+    } else {
+      Swift.print(">>>> delay drag")
       didDragStart = true
       concept.beforeMovingPoint = concept.point
     }
-
-    concept.point = dragToPoint
   }
 
   func endDrag(forConcept concept: Concept, toPoint: NSPoint) {
-    if let originalPoint = concept.beforeMovingPoint {
-      concept.point = originalPoint
-      concept.beforeMovingPoint = nil
+    if dragCount > 1 {
+      Swift.print(">>> end drag")
+      if let originalPoint = concept.beforeMovingPoint {
+        concept.point = originalPoint
+        concept.beforeMovingPoint = nil
+      }
+      document.move(concept: concept, toPoint: toPoint)
+    } else {
+      Swift.print(">>> end EMPTY drag")
     }
-    document.move(concept: concept, toPoint: toPoint)
   }
 
   // MARK: Multiple Concepts
@@ -106,6 +119,7 @@ extension CanvasViewController {
     didDragStart = false
     didShiftDragStart = false
     dragStartPoint = nil
+    dragCount = 0
     canvasView.selectFromPoint = nil
     canvasView.selectToPoint = nil
     canvasView.needsDisplay = true

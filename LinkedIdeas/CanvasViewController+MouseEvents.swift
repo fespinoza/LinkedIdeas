@@ -12,6 +12,7 @@ import Cocoa
 
 extension CanvasViewController {
   override func mouseDown(with event: NSEvent) {
+    Swift.print("\n>>> \(#function): \(dragCount)")
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
 
     if event.isSingleClick() {
@@ -42,6 +43,7 @@ extension CanvasViewController {
   }
 
   override func mouseDragged(with event: NSEvent) {
+    Swift.print(">>> \(#function): \(dragCount)")
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
 
     switch currentState {
@@ -79,11 +81,14 @@ extension CanvasViewController {
   }
 
   override func mouseUp(with event: NSEvent) {
+    Swift.print(">>> \(#function): \(dragCount)")
+
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
 
     switch currentState {
     case .selectedElement(let element):
       guard let concept = element as? Concept, didDragStart else {
+        Swift.print(">>> early return")
         return
       }
 
