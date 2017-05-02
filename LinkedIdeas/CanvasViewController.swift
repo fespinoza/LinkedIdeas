@@ -32,6 +32,7 @@ class CanvasViewController: NSViewController {
     let textField = NSTextField()
     textField.isHidden = true
     textField.isEditable = false
+    textField.allowsEditingTextAttributes = true
     return textField
   }()
 
