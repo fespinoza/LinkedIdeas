@@ -20,14 +20,36 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
   static let padding: CGFloat = 10
 
   var rect: NSRect {
-    if stringValue != "" {
-      var size = attributedStringValue.size()
-      size.width  += Concept.padding
-      size.height += Concept.padding
-      return NSRect(center: point, size: size)
-    } else {
-      return NSRect(center: point, size: NSSize(width: 60, height: 20))
-    }
+    let defaultSize = NSSize(width: 60, height: 20)
+    let defaultRect = NSRect(center: point, size: defaultSize)
+    let textField = NSTextField(frame: defaultRect)
+    textField.attributedStringValue = attributedStringValue
+
+    let behavior = TextFieldResizingBehavior()
+
+    behavior.resize(textField)
+
+    return textField.frame
+//
+//
+//    let constrainSize = NSSize(width: 250, height: 1000000.0)
+//
+//    if stringValue == "" {
+//      return defaultRect
+//    } else {
+//      let textStorage = NSTextStorage(attributedString: attributedStringValue)
+//      let layoutManager = NSLayoutManager()
+//      let textContainer = NSTextContainer(size: constrainSize)
+//
+//      layoutManager.addTextContainer(textContainer)
+//      textStorage.addLayoutManager(layoutManager)
+//
+//      _ = layoutManager.glyphRange(for: textContainer)
+//      let newRect = layoutManager.usedRect(for: textContainer)
+//
+//      // the original rect uses center
+//      return NSRect(center: point, size: newRect.size)
+//    }
   }
   // visual element
   var isEditable: Bool = false

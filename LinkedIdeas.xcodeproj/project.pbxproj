@@ -182,10 +182,10 @@
 		9B2F1DB31BE7CFE80090CC18 /* LinkedIdeasTests */ = {
 			isa = PBXGroup;
 			children = (
+				9BB8FC801CA6B7B0008CD6A2 /* Models */,
 				9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */,
 				9B8665C51D96C9E800799678 /* StateManagerTests.swift */,
 				9BD0BD571D9B0BED0041F7ED /* TestProtocolConformance.swift */,
-				9BB8FC801CA6B7B0008CD6A2 /* Models */,
 				9B2F1DB61BE7CFE80090CC18 /* Info.plist */,
 				9B9A2EA31CF5EE5300607208 /* AlignmentTests.swift */,
 			);

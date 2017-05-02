@@ -10,6 +10,8 @@ import Cocoa
 
 protocol GraphConcept {
   var rect: NSRect { get }
+  var point: NSPoint { get }
+  var stringValue: String { get }
   var attributedStringValue: NSAttributedString { get }
   var isSelected: Bool { get set }
 }
