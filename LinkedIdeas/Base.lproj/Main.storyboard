@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16F67a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
@@ -554,8 +554,9 @@
                 <windowController storyboardIdentifier="Document Window Controller" id="E4o-oh-Qw8" customClass="WindowController" customModule="LinkedIdeas" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="3Qr-Ne-UhW">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
-                        <rect key="contentRect" x="294" y="362" width="650" height="500"/>
+                        <rect key="contentRect" x="294" y="362" width="750" height="600"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+                        <value key="minSize" type="size" width="750" height="600"/>
                     </window>
                     <connections>
                         <segue destination="9gT-PM-MLh" kind="relationship" relationship="window.shadowedContentViewController" id="mOI-bs-iEY"/>
@@ -563,7 +564,7 @@
                 </windowController>
                 <customObject id="3Xs-vk-d2X" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-70" y="24"/>
+            <point key="canvasLocation" x="-78" y="34"/>
         </scene>
         <!--Document View Controller-->
         <scene sceneID="lBn-yd-N57">
