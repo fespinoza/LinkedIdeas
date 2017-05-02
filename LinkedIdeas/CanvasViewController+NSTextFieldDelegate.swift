@@ -11,6 +11,12 @@ import Cocoa
 // MARK: - CanvasViewController+NSTextFieldDelegate
 
 extension CanvasViewController: NSTextFieldDelegate {
+  override func controlTextDidChange(_ obj: Notification) {
+    if let textField = obj.object as? NSTextField {
+      textFieldResizingBehavior.resize(textField)
+    }
+  }
+
   // Invoked when users press keys with predefined bindings in a cell of the specified control.
   func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
     switch commandSelector {
