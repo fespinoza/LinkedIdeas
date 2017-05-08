@@ -11,20 +11,23 @@ import Cocoa
 struct DrawableConcept: DrawableElement {
   let concept: GraphConcept
 
+  var drawingBounds: NSRect { return concept.rect }
+
   func draw() {
     drawBackground()
     drawConceptText()
     drawSelectedRing()
+    drawForDebug()
   }
 
   func drawBackground() {
     NSColor.white.set()
-    NSRectFill(conceptRect())
+    NSRectFill(drawingBounds)
   }
 
   func drawConceptText() {
     NSColor.black.set()
-    concept.attributedStringValue.draw(in: conceptRect())
+    concept.attributedStringValue.draw(in: drawingBounds)
   }
 
   func drawSelectedRing() {
@@ -33,10 +36,13 @@ struct DrawableConcept: DrawableElement {
     }
 
     NSColor.red.set()
-    NSBezierPath(rect: conceptRect()).stroke()
+    NSBezierPath(rect: drawingBounds).stroke()
   }
 
-  func conceptRect() -> NSRect {
-    return concept.rect
+  func drawForDebug() {
+    if isDebugging() {
+      drawDebugHelpers()
+      drawCenteredDotAtPoint(concept.point, color: NSColor.red)
+    }
   }
 }

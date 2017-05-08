@@ -8,10 +8,6 @@
 
 import Cocoa
 
-protocol DrawableElement {
-  func draw()
-}
-
 protocol CanvasViewDataSource {
   var drawableElements: [DrawableElement] { get }
 }

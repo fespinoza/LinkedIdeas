@@ -24,6 +24,7 @@ protocol GraphLink {
   var attributedStringValue: NSAttributedString { get }
 
   var point: NSPoint { get }
+  var rect: NSRect { get }
 
   var originPoint: NSPoint { get }
   var targetPoint: NSPoint { get }
