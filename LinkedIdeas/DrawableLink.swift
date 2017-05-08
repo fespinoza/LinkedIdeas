@@ -11,11 +11,16 @@ import Cocoa
 struct DrawableLink: DrawableElement {
   let link: GraphLink
 
+  var drawingBounds: NSRect {
+    return NSRect(point1: link.originPoint, point2: link.targetPoint)
+  }
+
   func draw() {
     link.color.set()
     constructArrow()?.bezierPath().fill()
     drawSelectedRing()
     drawLinkText()
+    drawForDebug()
   }
 
   func drawLinkText() {
@@ -63,6 +68,14 @@ struct DrawableLink: DrawableElement {
       return Arrow(point1: intersectionPointWithOrigin, point2: intersectionPointWithTarget)
     } else {
       return nil
+    }
+  }
+
+  func drawForDebug() {
+    if isDebugging() {
+      drawDebugHelpers()
+      NSColor.magenta.set()
+      NSBezierPath(rect: link.rect).stroke()
     }
   }
 }
