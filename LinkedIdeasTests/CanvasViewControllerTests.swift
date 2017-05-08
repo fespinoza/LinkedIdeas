@@ -43,7 +43,7 @@ class CanvasViewControllerTests: XCTestCase {
 
 extension CanvasViewControllerTests {
   func testClickedConceptsAtPointWhenIntercepsAConcept() {
-    let clickedPoint = NSPoint(x: 200, y: 300)
+    let clickedPoint = NSPoint(x: 205, y: 305)
 
     let concepts = [
       Concept(stringValue: "Foo #0", point: NSPoint(x: 210, y: 310)),

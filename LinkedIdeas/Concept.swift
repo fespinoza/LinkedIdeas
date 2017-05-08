@@ -9,48 +9,22 @@
 import Cocoa
 
 class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringElement, SquareElement {
+  static var areaManager: AreaManagerProtocol = AreaManager()
+
   // NOTE: the point value is relative to the canvas coordinate system
   var point: NSPoint
+
+  var rect: NSRect {
+    return Concept.areaManager.boundedRect(forAttributedString: attributedStringValue, atPoint: point)
+  }
+
   // element
   var identifier: String
+
   // MARK: - NSAttributedStringElement
   dynamic var attributedStringValue: NSAttributedString
   var stringValue: String { return attributedStringValue.string }
 
-  static let padding: CGFloat = 10
-
-  var rect: NSRect {
-    let defaultSize = NSSize(width: 60, height: 20)
-    let defaultRect = NSRect(center: point, size: defaultSize)
-    let textField = NSTextField(frame: defaultRect)
-    textField.attributedStringValue = attributedStringValue
-
-    let behavior = TextFieldResizingBehavior()
-
-    behavior.resize(textField)
-
-    return textField.frame
-//
-//
-//    let constrainSize = NSSize(width: 250, height: 1000000.0)
-//
-//    if stringValue == "" {
-//      return defaultRect
-//    } else {
-//      let textStorage = NSTextStorage(attributedString: attributedStringValue)
-//      let layoutManager = NSLayoutManager()
-//      let textContainer = NSTextContainer(size: constrainSize)
-//
-//      layoutManager.addTextContainer(textContainer)
-//      textStorage.addLayoutManager(layoutManager)
-//
-//      _ = layoutManager.glyphRange(for: textContainer)
-//      let newRect = layoutManager.usedRect(for: textContainer)
-//
-//      // the original rect uses center
-//      return NSRect(center: point, size: newRect.size)
-//    }
-  }
   // visual element
   var isEditable: Bool = false
   var isSelected: Bool = false
