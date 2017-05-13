@@ -17,7 +17,21 @@ extension CanvasViewController {
 
     switch event.keyCode {
     case enterKeyCode:
-      enterKeyPressed()
+      if event.modifierFlags.contains(.shift) {
+
+        let randomX = CGFloat(
+          arc4random_uniform(UInt32(canvasView.visibleRect.width)) + UInt32(canvasView.visibleRect.origin.x)
+        )
+        let randomY = CGFloat(
+          arc4random_uniform(UInt32(canvasView.visibleRect.height)) + UInt32(canvasView.visibleRect.origin.y)
+        )
+
+        let randomPoint = NSPoint(x: randomX, y: randomY)
+        Swift.print("---- random concept at point \(randomPoint)")
+        safeTransiton { try stateManager.toNewConcept(atPoint: randomPoint) }
+      } else {
+        enterKeyPressed()
+      }
     case deleteKeyCode:
       deleteKeyPressed()
     default:

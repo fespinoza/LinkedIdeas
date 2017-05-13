@@ -45,6 +45,7 @@
 		9BABB2B21C07B7F7001EC9E0 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BABB2B11C07B7F7001EC9E0 /* Link.swift */; };
 		9BB8FC831CA6B7D7008CD6A2 /* LinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */; };
 		9BB8FC891CA6B889008CD6A2 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC881CA6B889008CD6A2 /* Element.swift */; };
+		9BC8587F1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC8587E1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift */; };
 		9BD0BD581D9B0BED0041F7ED /* TestProtocolConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD0BD571D9B0BED0041F7ED /* TestProtocolConformance.swift */; };
 		9BD2BF351C7F8B1200E8A303 /* LineRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF341C7F8B1200E8A303 /* LineRange.swift */; };
 		9BD2BF371C7F8B2300E8A303 /* Interceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF361C7F8B2300E8A303 /* Interceptable.swift */; };
@@ -111,6 +112,7 @@
 		9BABB2B11C07B7F7001EC9E0 /* Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Link.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkTests.swift; sourceTree = "<group>"; };
 		9BB8FC881CA6B889008CD6A2 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
+		9BC8587E1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+MenuActions.swift"; sourceTree = "<group>"; };
 		9BD0BD571D9B0BED0041F7ED /* TestProtocolConformance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestProtocolConformance.swift; sourceTree = "<group>"; };
 		9BD2BF341C7F8B1200E8A303 /* LineRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineRange.swift; sourceTree = "<group>"; };
 		9BD2BF361C7F8B2300E8A303 /* Interceptable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interceptable.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				9B39419F1E5658C600F1E957 /* CanvasViewController+NSTextFieldDelegate.swift */,
 				9B3941A11E5658F500F1E957 /* CanvasViewController+CanvasViewDataSource.swift */,
 				9B3941A31E56591900F1E957 /* CanvasViewController+DocumentObserver.swift */,
+				9BC8587E1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift */,
 			);
 			name = CanvasViewControllerExtensions;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				9BA63D301D74C31A00EBC3AD /* DocumentViewController.swift in Sources */,
 				9BABB2B21C07B7F7001EC9E0 /* Link.swift in Sources */,
 				9B2F1DA21BE7CFE70090CC18 /* Document.swift in Sources */,
+				9BC8587F1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift in Sources */,
 				9B39419C1E56582900F1E957 /* CanvasViewController+TransitionActions.swift in Sources */,
 				9B3941A01E5658C600F1E957 /* CanvasViewController+NSTextFieldDelegate.swift in Sources */,
 				9B3941A61E56594700F1E957 /* NSEvent-Extensions.swift in Sources */,
