@@ -1,23 +1,67 @@
 #include <CoreFoundation/CoreFoundation.h>
 #include <CoreServices/CoreServices.h>
 #include <QuickLook/QuickLook.h>
+#include <Cocoa/Cocoa.h>
+// module produced of objective-c interfaces of this Target swift code.
+
+// #import "LinkedIdeas/LinkedIdeas-Swift.h"
+// #import "LinkedIdeas-Swift.h"
+// #import "LinkedIdeas-Swift.h"
+#import "LinkedIdeas-Swift.h"
+// #import <LinkedIdeas/LinkedIdeas-Swift.h>
+//#import <QLLinkedIdeas/LinkedIdeas-Swift.h>
 
 OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options);
 void CancelPreviewGeneration(void *thisInterface, QLPreviewRequestRef preview);
 
 /* -----------------------------------------------------------------------------
-   Generate a preview for file
+ Generate a preview for file
 
-   This function's job is to create preview for designated file
-   ----------------------------------------------------------------------------- */
+ This function's job is to create preview for designated file
+ ----------------------------------------------------------------------------- */
 
 OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options)
 {
-    // To complete your generator please implement the function GeneratePreviewForURL in GeneratePreviewForURL.c
-    return noErr;
+  @autoreleasepool {
+    NSSize canvasSize = NSMakeSize(800, 600);
+
+    NSLog(@"Quicklook Init! %@, contentType %@", url, contentTypeUTI);
+
+    DocumentManager *manager = [[DocumentManager alloc] init];
+
+    manager.url = (__bridge NSURL *)url;
+    manager.contentTypeUTI = (__bridge NSString *)contentTypeUTI;
+
+
+    // Preview will be drawn in a vectorized context
+    CGContextRef cgContext = QLPreviewRequestCreateContext(preview, *(CGSize *)&canvasSize, false, NULL);
+
+    NSLog(@"Quick look generator %@", url);
+
+    if(cgContext) {
+
+
+      NSGraphicsContext* context = [NSGraphicsContext graphicsContextWithGraphicsPort:(void *)cgContext flipped:YES];
+
+      if (context) {
+
+        [NSGraphicsContext saveGraphicsState];
+        [NSGraphicsContext setCurrentContext:context];
+
+        [manager processDocumentWithCanvasSize:canvasSize context:context];
+
+
+        [NSGraphicsContext restoreGraphicsState];
+
+      }
+      QLPreviewRequestFlushContext(preview, cgContext);
+      CFRelease(cgContext);
+    }
+  }
+  return noErr;
 }
 
 void CancelPreviewGeneration(void *thisInterface, QLPreviewRequestRef preview)
 {
-    // Implement only if supported
+  // Implement only if supported
 }

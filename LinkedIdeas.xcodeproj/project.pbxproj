@@ -36,6 +36,45 @@
 		9B43B88B1EDC8B5D00879507 /* CanvasViewControllerKeyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43B88A1EDC8B5D00879507 /* CanvasViewControllerKeyboardTests.swift */; };
 		9B48F8491CD614370014758D /* LinkedIdeasDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */; };
 		9B48F84D1CD614BC0014758D /* DocumentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F84C1CD614BC0014758D /* DocumentData.swift */; };
+		9B4BB60B1ECBB1C2000F326D /* DocumentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4BB60A1ECBB1C2000F326D /* DocumentManager.swift */; };
+		9B4BB60E1ECBB40B000F326D /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA63D341D74C47800EBC3AD /* CanvasView.swift */; };
+		9B4BB60F1ECBB40B000F326D /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA11BE7CFE70090CC18 /* Document.swift */; };
+		9B4BB6101ECBB434000F326D /* DocumentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F84C1CD614BC0014758D /* DocumentData.swift */; };
+		9B4BB6111ECBB434000F326D /* Concept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDDE7381BEF9157000AAD44 /* Concept.swift */; };
+		9B4BB6121ECBB434000F326D /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BABB2B11C07B7F7001EC9E0 /* Link.swift */; };
+		9B4BB6131ECBB434000F326D /* NSView+Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */; };
+		9B4BB6141ECBB434000F326D /* NSPoint+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B956CE41C1B11C200CF20DA /* NSPoint+Utilities.swift */; };
+		9B4BB6151ECBB434000F326D /* NSRect+PointHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */; };
+		9B4BB6161ECBB434000F326D /* LineRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF341C7F8B1200E8A303 /* LineRange.swift */; };
+		9B4BB6171ECBB434000F326D /* PointInterceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF381C7F8B4100E8A303 /* PointInterceptable.swift */; };
+		9B4BB6181ECBB434000F326D /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF3A1C7F8B5500E8A303 /* Line.swift */; };
+		9B4BB6191ECBB434000F326D /* FiniteLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF3C1C7F8B6A00E8A303 /* FiniteLine.swift */; };
+		9B4BB61A1ECBB434000F326D /* Interceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF361C7F8B2300E8A303 /* Interceptable.swift */; };
+		9B4BB61B1ECBB434000F326D /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF411C7F8C2000E8A303 /* Arrow.swift */; };
+		9B4BB61C1ECBB447000F326D /* ViewModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941911E5656AF00F1E957 /* ViewModelProtocols.swift */; };
+		9B4BB61D1ECBB447000F326D /* DrawableConcept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941931E5656FE00F1E957 /* DrawableConcept.swift */; };
+		9B4BB61E1ECBB447000F326D /* DrawableLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941951E56572F00F1E957 /* DrawableLink.swift */; };
+		9B4BB61F1ECBB447000F326D /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC881CA6B889008CD6A2 /* Element.swift */; };
+		9B4BB6201ECBB447000F326D /* DocumentObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8461CD613F60014758D /* DocumentObserver.swift */; };
+		9B4BB6211ECBB447000F326D /* LinkedIdeasDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */; };
+		9B4BB6221ECBB447000F326D /* SquareElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B521F861CFB380300A71598 /* SquareElement.swift */; };
+		9B4BB6231ECBB452000F326D /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF15C381CAC69A500C95041 /* WindowController.swift */; };
+		9B4BB6241ECBB45C000F326D /* NSAttributedStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */; };
+		9B4BB6251ECBB46A000F326D /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA63D2F1D74C31A00EBC3AD /* DocumentViewController.swift */; };
+		9B4BB6261ECBB475000F326D /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA63D311D74C38400EBC3AD /* CanvasViewController.swift */; };
+		9B4BB6271ECBB475000F326D /* StateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0683FC1DA1A1AA00609AE5 /* StateManager.swift */; };
+		9B4BB6281ECBB475000F326D /* NSEvent-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A51E56594700F1E957 /* NSEvent-Extensions.swift */; };
+		9B4BB6291ECBB475000F326D /* NSResponder-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A71E56596000F1E957 /* NSResponder-Extensions.swift */; };
+		9B4BB62A1ECBB483000F326D /* CanvasViewController+DraggingActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E90041E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift */; };
+		9B4BB62B1ECBB483000F326D /* CanvasViewController+LinkCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CD1C71E48D10B003F192B /* CanvasViewController+LinkCreation.swift */; };
+		9B4BB62C1ECBB483000F326D /* CanvasViewController+MouseEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941971E5657A000F1E957 /* CanvasViewController+MouseEvents.swift */; };
+		9B4BB62D1ECBB483000F326D /* CanvasViewController+StateManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941991E5657D200F1E957 /* CanvasViewController+StateManagerDelegate.swift */; };
+		9B4BB62E1ECBB483000F326D /* CanvasViewController+TransitionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39419B1E56582900F1E957 /* CanvasViewController+TransitionActions.swift */; };
+		9B4BB62F1ECBB483000F326D /* CanvasViewController+KeyboardEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39419D1E56586000F1E957 /* CanvasViewController+KeyboardEvents.swift */; };
+		9B4BB6301ECBB483000F326D /* CanvasViewController+NSTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39419F1E5658C600F1E957 /* CanvasViewController+NSTextFieldDelegate.swift */; };
+		9B4BB6311ECBB483000F326D /* CanvasViewController+CanvasViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A11E5658F500F1E957 /* CanvasViewController+CanvasViewDataSource.swift */; };
+		9B4BB6321ECBB483000F326D /* CanvasViewController+DocumentObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A31E56591900F1E957 /* CanvasViewController+DocumentObserver.swift */; };
+		9B4BB6331ECBB483000F326D /* CanvasViewController+MenuActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC8587E1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift */; };
 		9B521F851CFB37D200A71598 /* AligmentFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B521F841CFB37D200A71598 /* AligmentFunctions.swift */; };
 		9B521F871CFB380300A71598 /* SquareElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B521F861CFB380300A71598 /* SquareElement.swift */; };
 		9B66961C1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */; };
@@ -93,7 +132,7 @@
 		9B2F1DB61BE7CFE80090CC18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B2FE8F21EB28F7C00DEEBA2 /* TextFieldResizeBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldResizeBehavior.swift; sourceTree = "<group>"; };
 		9B33821E1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtensionsTest.swift; sourceTree = "<group>"; };
-		9B37F5FC1ECBB029004B2D9E /* QLLinkedIdeas.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QLLinkedIdeas.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B37F5FC1ECBB029004B2D9E /* LinkedIdeas.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinkedIdeas.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B37F6081ECBB07B004B2D9E /* GeneratePreviewForURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratePreviewForURL.m; sourceTree = "<group>"; };
 		9B37F6091ECBB07B004B2D9E /* GenerateThumbnailForURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateThumbnailForURL.m; sourceTree = "<group>"; };
 		9B37F60A1ECBB07B004B2D9E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -114,6 +153,7 @@
 		9B43B88A1EDC8B5D00879507 /* CanvasViewControllerKeyboardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewControllerKeyboardTests.swift; sourceTree = "<group>"; };
 		9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedIdeasDocument.swift; sourceTree = "<group>"; };
 		9B48F84C1CD614BC0014758D /* DocumentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentData.swift; sourceTree = "<group>"; };
+		9B4BB60A1ECBB1C2000F326D /* DocumentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentManager.swift; sourceTree = "<group>"; };
 		9B521F841CFB37D200A71598 /* AligmentFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AligmentFunctions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9B521F861CFB380300A71598 /* SquareElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareElement.swift; sourceTree = "<group>"; };
 		9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = linked_ideas_doc_icon.icns; sourceTree = "<group>"; };
@@ -188,7 +228,7 @@
 			children = (
 				9B2F1D9C1BE7CFE70090CC18 /* LinkedIdeas.app */,
 				9B2F1DB01BE7CFE80090CC18 /* LinkedIdeasTests.xctest */,
-				9B37F5FC1ECBB029004B2D9E /* QLLinkedIdeas.qlgenerator */,
+				9B37F5FC1ECBB029004B2D9E /* LinkedIdeas.qlgenerator */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -228,6 +268,7 @@
 				9B37F6091ECBB07B004B2D9E /* GenerateThumbnailForURL.m */,
 				9B37F60A1ECBB07B004B2D9E /* Info.plist */,
 				9B37F60B1ECBB07B004B2D9E /* main.c */,
+				9B4BB60A1ECBB1C2000F326D /* DocumentManager.swift */,
 			);
 			path = QLLinkedIdeas;
 			sourceTree = "<group>";
@@ -427,7 +468,7 @@
 			);
 			name = QLLinkedIdeas;
 			productName = QLLinkedIdeas;
-			productReference = 9B37F5FC1ECBB029004B2D9E /* QLLinkedIdeas.qlgenerator */;
+			productReference = 9B37F5FC1ECBB029004B2D9E /* LinkedIdeas.qlgenerator */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -437,7 +478,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Felipe Espinoza Dev";
 				TargetAttributes = {
 					9B2F1D9B1BE7CFE70090CC18 = {
@@ -453,6 +494,7 @@
 					9B37F5FB1ECBB029004B2D9E = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 2Z7R9FQBNN;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -605,9 +647,48 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B4BB6131ECBB434000F326D /* NSView+Debugging.swift in Sources */,
 				9B37F60D1ECBB07B004B2D9E /* GenerateThumbnailForURL.m in Sources */,
+				9B4BB6311ECBB483000F326D /* CanvasViewController+CanvasViewDataSource.swift in Sources */,
+				9B4BB6191ECBB434000F326D /* FiniteLine.swift in Sources */,
+				9B4BB62A1ECBB483000F326D /* CanvasViewController+DraggingActions.swift in Sources */,
+				9B4BB6301ECBB483000F326D /* CanvasViewController+NSTextFieldDelegate.swift in Sources */,
+				9B4BB62C1ECBB483000F326D /* CanvasViewController+MouseEvents.swift in Sources */,
+				9B4BB6271ECBB475000F326D /* StateManager.swift in Sources */,
+				9B4BB61C1ECBB447000F326D /* ViewModelProtocols.swift in Sources */,
+				9B4BB6331ECBB483000F326D /* CanvasViewController+MenuActions.swift in Sources */,
+				9B4BB6141ECBB434000F326D /* NSPoint+Utilities.swift in Sources */,
+				9B4BB62F1ECBB483000F326D /* CanvasViewController+KeyboardEvents.swift in Sources */,
+				9B4BB6151ECBB434000F326D /* NSRect+PointHelpers.swift in Sources */,
+				9B4BB6291ECBB475000F326D /* NSResponder-Extensions.swift in Sources */,
+				9B4BB61F1ECBB447000F326D /* Element.swift in Sources */,
+				9B4BB62D1ECBB483000F326D /* CanvasViewController+StateManagerDelegate.swift in Sources */,
+				9B4BB61E1ECBB447000F326D /* DrawableLink.swift in Sources */,
+				9B4BB6221ECBB447000F326D /* SquareElement.swift in Sources */,
 				9B37F60F1ECBB07B004B2D9E /* main.c in Sources */,
+				9B4BB60F1ECBB40B000F326D /* Document.swift in Sources */,
+				9B4BB61A1ECBB434000F326D /* Interceptable.swift in Sources */,
+				9B4BB60E1ECBB40B000F326D /* CanvasView.swift in Sources */,
+				9B4BB6171ECBB434000F326D /* PointInterceptable.swift in Sources */,
+				9B4BB6321ECBB483000F326D /* CanvasViewController+DocumentObserver.swift in Sources */,
+				9B4BB6111ECBB434000F326D /* Concept.swift in Sources */,
+				9B4BB6181ECBB434000F326D /* Line.swift in Sources */,
+				9B4BB62B1ECBB483000F326D /* CanvasViewController+LinkCreation.swift in Sources */,
+				9B4BB6101ECBB434000F326D /* DocumentData.swift in Sources */,
+				9B4BB6261ECBB475000F326D /* CanvasViewController.swift in Sources */,
+				9B4BB6211ECBB447000F326D /* LinkedIdeasDocument.swift in Sources */,
+				9B4BB6201ECBB447000F326D /* DocumentObserver.swift in Sources */,
+				9B4BB6121ECBB434000F326D /* Link.swift in Sources */,
+				9B4BB60B1ECBB1C2000F326D /* DocumentManager.swift in Sources */,
+				9B4BB6231ECBB452000F326D /* WindowController.swift in Sources */,
 				9B37F60C1ECBB07B004B2D9E /* GeneratePreviewForURL.m in Sources */,
+				9B4BB6281ECBB475000F326D /* NSEvent-Extensions.swift in Sources */,
+				9B4BB6241ECBB45C000F326D /* NSAttributedStringExtensions.swift in Sources */,
+				9B4BB6161ECBB434000F326D /* LineRange.swift in Sources */,
+				9B4BB6251ECBB46A000F326D /* DocumentViewController.swift in Sources */,
+				9B4BB61D1ECBB447000F326D /* DrawableConcept.swift in Sources */,
+				9B4BB61B1ECBB434000F326D /* Arrow.swift in Sources */,
+				9B4BB62E1ECBB483000F326D /* CanvasViewController+TransitionActions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,6 +795,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -726,6 +808,7 @@
 				INFOPLIST_FILE = LinkedIdeas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeas;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -740,6 +823,7 @@
 				INFOPLIST_FILE = LinkedIdeas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeas;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
@@ -782,14 +866,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2Z7R9FQBNN;
 				INFOPLIST_FILE = QLLinkedIdeas/Info.plist;
 				INSTALL_PATH = /Library/QuickLook;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.QLLinkedIdeas;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = qlgenerator;
 			};
 			name = Debug;
@@ -798,14 +888,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2Z7R9FQBNN;
 				INFOPLIST_FILE = QLLinkedIdeas/Info.plist;
 				INSTALL_PATH = /Library/QuickLook;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.QLLinkedIdeas;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = qlgenerator;
 			};
 			name = Release;
@@ -847,6 +942,7 @@
 				9B37F6071ECBB029004B2D9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
