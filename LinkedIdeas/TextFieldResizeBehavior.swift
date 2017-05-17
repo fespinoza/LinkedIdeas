@@ -42,11 +42,38 @@ struct TextFieldResizingBehavior {
 
     textField.setFrameSize(naturalSize)
 
+//    Swift.print(
+//      "\n\n>>>>>> text field resized " +
+//        "\nnaturalSize=\(naturalSize)" +
+//        "\noriginalFrame=\(originalFrame)-\(originalFrame.center)" +
+//        "\nnewFrame=\(textField.frame)-\(textField.frame.center)"
+//    )
+  }
+
+  func setFrame(toTextField textField: NSTextField, forContentRect contentRect: NSRect) {
+
+    let insetRect = textField.cell!.drawingRect(forBounds: contentRect)
+
+    let frameOrigin = NSPoint(
+      x: contentRect.origin.x - 5,
+      y: contentRect.origin.y - 3
+    )
+
+    let frameSize = NSSize(
+      width: contentRect.width + 5,
+      height: contentRect.height + 5
+    )
+
+    let frame = NSRect(origin: frameOrigin, size: frameSize)
+    textField.frame = frame
+
+    let afterInsect = textField.cell!.drawingRect(forBounds: frame)
     Swift.print(
       "\n\n>>>>>> text field resized " +
-        "\nnaturalSize=\(naturalSize)" +
-        "\noriginalFrame=\(originalFrame)-\(originalFrame.center)" +
-        "\nnewFrame=\(textField.frame)-\(textField.frame.center)"
+        "\nframe=\(frame)" +
+        "\ninsetRect=\(insetRect)" +
+        "\nafterInsect=\(afterInsect)" +
+      "\ncontentRect=\(contentRect)"
     )
   }
 }

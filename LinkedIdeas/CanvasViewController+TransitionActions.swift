@@ -72,7 +72,7 @@ extension CanvasViewController {
   }
 
   func showTextField(inRect rect: NSRect, text: NSAttributedString? = nil) {
-    textField.frame = rect
+    textFieldResizingBehavior.setFrame(toTextField: textField, forContentRect: rect)
     textField.isEditable = true
     textField.isHidden = false
     if let text = text {
