@@ -14,6 +14,7 @@ protocol GraphConcept {
   var stringValue: String { get }
   var attributedStringValue: NSAttributedString { get }
   var isSelected: Bool { get set }
+  var isEditable: Bool { get set }
 }
 
 protocol GraphLink {

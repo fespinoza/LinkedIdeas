@@ -26,8 +26,10 @@ struct DrawableConcept: DrawableElement {
   }
 
   func drawConceptText() {
-    NSColor.black.set()
-    concept.attributedStringValue.draw(in: drawingBounds)
+    if !concept.isEditable {
+      NSColor.black.set()
+      concept.attributedStringValue.draw(in: drawingBounds)
+    }
   }
 
   func drawSelectedRing() {
