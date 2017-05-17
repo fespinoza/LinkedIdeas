@@ -11,7 +11,7 @@
 			<string>QLGenerator</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>SUPPORTED_UTI_TYPE</string>
+				<string>com.fespinozacast.linked-ideas</string>
 			</array>
 		</dict>
 	</array>
