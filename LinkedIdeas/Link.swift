@@ -130,18 +130,19 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
   required init?(coder aDecoder: NSCoder) {
     guard let identifier = aDecoder.decodeObject(forKey: identifierKey) as? String,
       let origin = aDecoder.decodeObject(forKey: originKey) as? Concept,
-      let target = aDecoder.decodeObject(forKey: targetKey) as? Concept,
-      let attributedStringValue = aDecoder.decodeObject(
-        forKey: attributedStringValueKey
-        ) as? NSAttributedString
-      else {
+      let target = aDecoder.decodeObject(forKey: targetKey) as? Concept else {
         return nil
     }
 
     self.identifier = identifier
     self.origin = origin
     self.target = target
-    self.attributedStringValue = attributedStringValue
+
+    if let attributedStringValue = aDecoder.decodeObject(forKey: attributedStringValueKey) as? NSAttributedString {
+      self.attributedStringValue = attributedStringValue
+    } else {
+      self.attributedStringValue = NSAttributedString(string: "")
+    }
 
     if let color = aDecoder.decodeObject(forKey: colorKey) as? NSColor {
       self.color = color
