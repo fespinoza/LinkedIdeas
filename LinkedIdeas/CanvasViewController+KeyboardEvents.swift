@@ -27,7 +27,6 @@ extension CanvasViewController {
         )
 
         let randomPoint = NSPoint(x: randomX, y: randomY)
-        Swift.print("---- random concept at point \(randomPoint)")
         safeTransiton { try stateManager.toNewConcept(atPoint: randomPoint) }
       } else {
         enterKeyPressed()
