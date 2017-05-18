@@ -148,52 +148,6 @@ extension CanvasViewControllerTests {
   }
 }
 
-// MARK: - CanvasViewController: StateManagerDelegate Tests
-
-//protocol CanvasStateController {
-//  
-//}
-//
-//class CanvasViewControllerTransitionLogic: MockMethodCalls {
-//  let controller: CanvasStateController
-//  var methodCalls: [String : Int]
-//  
-//  init(controller: CanvasStateController) {
-//    self.controller = controller
-//    self.methodCalls = [String : Int]()
-//  }
-//}
-//
-//extension CanvasViewControllerTransitionLogic: StateManagerDelegate {
-//  func transitionSuccesfull() {}
-//  func transitionedToNewConcept(fromState: CanvasState) {}
-//  func transitionedToCanvasWaiting(fromState: CanvasState) {}
-//  func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString) {}
-//  func transitionedToSelectedElements(fromState: CanvasState) {}
-//  func transitionedToSelectedElementsSavingChanges(fromState: CanvasState) {}
-//}
-
-//extension CanvasViewControllerTests {
-//  func testTransitionedToNewConceptFromCanvasWaiting() {
-//    
-//    let newConceptPoint = NSPoint(x: 300, y: 400)
-//    canvasViewController.currentState = .newConcept(point: newConceptPoint)
-//    canvasViewController.transitionedToNewConcept(fromState: .canvasWaiting)
-// 
-//    
-//    
-//    // What should happen then:
-//    // From canvasWaiting
-//    // - show text field at point
-//    // From newConcept
-//    // - remove previous text field value
-//    // - show textfield to point
-//    // From selectedElement
-//    // - unselectAll elements
-//    // - show textfield at point
-//  }
-//}
-
 // MARK - CanvasViewControllers: Transition Acction Tests
 
 extension CanvasViewControllerTests {

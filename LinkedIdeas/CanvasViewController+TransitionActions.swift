@@ -79,7 +79,7 @@ extension CanvasViewController {
       textField.attributedStringValue = text
       textFieldResizingBehavior.resize(textField)
     }
-    view.window?.makeFirstResponder(textField)
+    canvasView.window?.makeFirstResponder(textField)
   }
 
   func showTextField(atPoint point: NSPoint, text: NSAttributedString? = nil) {
@@ -90,7 +90,7 @@ extension CanvasViewController {
       textField.attributedStringValue = text
       textFieldResizingBehavior.resize(textField)
     }
-    view.window?.makeFirstResponder(textField)
+    canvasView.window?.makeFirstResponder(textField)
   }
 
   func dismissTextField() {
@@ -99,6 +99,6 @@ extension CanvasViewController {
     textField.isHidden = true
     textField.stringValue = ""
 
-    view.window?.makeFirstResponder(canvasView)
+    canvasView.window?.makeFirstResponder(canvasView)
   }
 }

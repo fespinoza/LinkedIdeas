@@ -54,7 +54,7 @@ struct TextFieldResizingBehavior {
       height: contentRect.height + 5
     )
     let frame = NSRect(origin: frameOrigin, size: frameSize)
-    
+
     textField.frame = frame
   }
 }
