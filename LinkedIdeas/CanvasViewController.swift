@@ -12,6 +12,8 @@ class CanvasViewController: NSViewController {
   @IBOutlet weak var canvasView: CanvasView!
   @IBOutlet weak var scrollView: NSScrollView!
 
+  let textFieldResizingBehavior = TextFieldResizingBehavior()
+
   var dragCount = 0
   var didShiftDragStart = false
   // to register the beginning of the drag
@@ -32,6 +34,7 @@ class CanvasViewController: NSViewController {
     let textField = NSTextField()
     textField.isHidden = true
     textField.isEditable = false
+    textField.allowsEditingTextAttributes = true
     return textField
   }()
 

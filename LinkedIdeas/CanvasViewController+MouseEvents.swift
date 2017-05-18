@@ -84,7 +84,6 @@ extension CanvasViewController {
     switch currentState {
     case .selectedElement(let element):
       guard let concept = element as? Concept, didDragStart() else {
-        Swift.print(">>> early return")
         return
       }
 

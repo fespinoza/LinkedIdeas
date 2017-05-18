@@ -13,6 +13,10 @@ extension NSPoint {
     return NSPoint(x: x + deltaX, y: y + deltaY)
   }
 
+  func distanceTo(_ otherPoint: NSPoint) -> CGFloat {
+    return sqrt(pow(x - otherPoint.x, 2.0) + pow(y - otherPoint.y, 2.0))
+  }
+
   func description() -> String {
     return "(\(x), \(y))"
   }

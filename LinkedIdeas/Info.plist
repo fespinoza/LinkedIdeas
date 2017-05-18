@@ -14,13 +14,17 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>linked_ideas_doc_icon</string>
 			<key>CFBundleTypeName</key>
-			<string>DocumentType</string>
+			<string>Linked Ideas Document</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>????</string>
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.fespinozacast.linked-ideas</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -53,5 +57,27 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Linked Ideas Document</string>
+			<key>UTTypeIconFile</key>
+			<string>linked_ideas_doc_icon</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.fespinozacast.linked-ideas</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>idea</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

@@ -9,26 +9,22 @@
 import Cocoa
 
 class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringElement, SquareElement {
+  static var areaManager: AreaManagerProtocol = AreaManager()
+
   // NOTE: the point value is relative to the canvas coordinate system
   var point: NSPoint
+
+  var rect: NSRect {
+    return Concept.areaManager.boundedRect(forAttributedString: attributedStringValue, atPoint: point)
+  }
+
   // element
   var identifier: String
+
   // MARK: - NSAttributedStringElement
   dynamic var attributedStringValue: NSAttributedString
   var stringValue: String { return attributedStringValue.string }
 
-  static let padding: CGFloat = 10
-
-  var rect: NSRect {
-    if stringValue != "" {
-      var size = attributedStringValue.size()
-      size.width  += Concept.padding
-      size.height += Concept.padding
-      return NSRect(center: point, size: size)
-    } else {
-      return NSRect(center: point, size: NSSize(width: 60, height: 20))
-    }
-  }
   // visual element
   var isEditable: Bool = false
   var isSelected: Bool = false

@@ -43,7 +43,7 @@ class CanvasViewControllerTests: XCTestCase {
 
 extension CanvasViewControllerTests {
   func testClickedConceptsAtPointWhenIntercepsAConcept() {
-    let clickedPoint = NSPoint(x: 200, y: 300)
+    let clickedPoint = NSPoint(x: 205, y: 305)
 
     let concepts = [
       Concept(stringValue: "Foo #0", point: NSPoint(x: 210, y: 310)),
@@ -147,52 +147,6 @@ extension CanvasViewControllerTests {
     XCTAssertEqual(canvasViewController.currentState, .canvasWaiting)
   }
 }
-
-// MARK: - CanvasViewController: StateManagerDelegate Tests
-
-//protocol CanvasStateController {
-//  
-//}
-//
-//class CanvasViewControllerTransitionLogic: MockMethodCalls {
-//  let controller: CanvasStateController
-//  var methodCalls: [String : Int]
-//  
-//  init(controller: CanvasStateController) {
-//    self.controller = controller
-//    self.methodCalls = [String : Int]()
-//  }
-//}
-//
-//extension CanvasViewControllerTransitionLogic: StateManagerDelegate {
-//  func transitionSuccesfull() {}
-//  func transitionedToNewConcept(fromState: CanvasState) {}
-//  func transitionedToCanvasWaiting(fromState: CanvasState) {}
-//  func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString) {}
-//  func transitionedToSelectedElements(fromState: CanvasState) {}
-//  func transitionedToSelectedElementsSavingChanges(fromState: CanvasState) {}
-//}
-
-//extension CanvasViewControllerTests {
-//  func testTransitionedToNewConceptFromCanvasWaiting() {
-//    
-//    let newConceptPoint = NSPoint(x: 300, y: 400)
-//    canvasViewController.currentState = .newConcept(point: newConceptPoint)
-//    canvasViewController.transitionedToNewConcept(fromState: .canvasWaiting)
-// 
-//    
-//    
-//    // What should happen then:
-//    // From canvasWaiting
-//    // - show text field at point
-//    // From newConcept
-//    // - remove previous text field value
-//    // - show textfield to point
-//    // From selectedElement
-//    // - unselectAll elements
-//    // - show textfield at point
-//  }
-//}
 
 // MARK - CanvasViewControllers: Transition Acction Tests
 

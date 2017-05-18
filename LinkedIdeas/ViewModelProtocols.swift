@@ -10,8 +10,11 @@ import Cocoa
 
 protocol GraphConcept {
   var rect: NSRect { get }
+  var point: NSPoint { get }
+  var stringValue: String { get }
   var attributedStringValue: NSAttributedString { get }
   var isSelected: Bool { get set }
+  var isEditable: Bool { get set }
 }
 
 protocol GraphLink {
@@ -22,6 +25,7 @@ protocol GraphLink {
   var attributedStringValue: NSAttributedString { get }
 
   var point: NSPoint { get }
+  var rect: NSRect { get }
 
   var originPoint: NSPoint { get }
   var targetPoint: NSPoint { get }
