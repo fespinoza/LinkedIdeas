@@ -123,7 +123,7 @@ extension CanvasViewController {
     for concept in currentSelectedConcepts() {
       concept.attributedStringValue = NSAttributedString(
         attributedString: concept.attributedStringValue,
-        fontSize: concept.attributedStringValue.fontSize + 1
+        fontSize: concept.attributedStringValue.fontSize + 3
       )
     }
   }
@@ -132,7 +132,7 @@ extension CanvasViewController {
     for concept in currentSelectedConcepts() {
       concept.attributedStringValue = NSAttributedString(
         attributedString: concept.attributedStringValue,
-        fontSize: concept.attributedStringValue.fontSize - 1
+        fontSize: concept.attributedStringValue.fontSize - 3
       )
     }
   }
