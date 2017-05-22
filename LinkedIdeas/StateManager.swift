@@ -170,6 +170,7 @@ struct StateManager {
   public mutating func toMultipleSelectedElements(elements: [Element]) throws {
     let possibleStates: [CanvasState] = [
       .canvasWaiting,
+      .selectedElement(element: EmptyElement.example),
       .multipleSelectedElements(elements: [Element]())
     ]
 
