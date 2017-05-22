@@ -9,12 +9,26 @@
 import XCTest
 @testable import LinkedIdeas
 
+extension CanvasViewController {
+  func fullClick(event: NSEvent) {
+    self.mouseDown(with: event)
+    self.mouseDragged(with: event)
+    self.mouseUp(with: event)
+  }
+}
+
 class CanvasViewControllerTests: XCTestCase {
-  func createMouseEvent(clickCount: Int, location: NSPoint) -> NSEvent {
+  func createMouseEvent(clickCount: Int, location: NSPoint, shift: Bool = false) -> NSEvent {
+    var flags: NSEventModifierFlags = .function
+
+    if shift {
+      flags = .shift
+    }
+
     return NSEvent.mouseEvent(
       with: .leftMouseDown,
       location: location,
-      modifierFlags: .function,
+      modifierFlags: flags,
       timestamp: 2,
       windowNumber: 0,
       context: nil,
@@ -121,9 +135,97 @@ extension CanvasViewControllerTests {
 
     let clickEvent = createMouseEvent(clickCount: 1, location: clickedPoint)
 
-    canvasViewController.mouseDown(with: clickEvent)
+    canvasViewController.fullClick(event: clickEvent)
 
     XCTAssertEqual(canvasViewController.currentState, .selectedElement(element: concept))
+  }
+
+  func testShiftClickOnAnotherConcept() {
+    let oldConcept = Concept(stringValue: "Random", point: NSPoint(x: 20, y: 600))
+    document.concepts.append(oldConcept)
+
+    let clickedPoint = NSPoint(x: 200, y: 300)
+    let conceptPoint = clickedPoint
+
+    let concept = Concept(stringValue: "Foo bar", point: conceptPoint)
+    document.concepts.append(concept)
+
+    canvasViewController.currentState = .selectedElement(element: oldConcept)
+
+    let shiftClickEvent = createMouseEvent(clickCount: 1, location: clickedPoint, shift: true)
+
+    canvasViewController.fullClick(event: shiftClickEvent)
+
+    XCTAssertEqual(canvasViewController.currentState, .multipleSelectedElements(elements: [oldConcept, concept]))
+  }
+
+  func testShiftClickOnAlreadySelectedConcept() {
+    let oldConcept = Concept(stringValue: "Random", point: NSPoint(x: 20, y: 600))
+    document.concepts.append(oldConcept)
+
+    let clickedPoint = NSPoint(x: 200, y: 300)
+    let conceptPoint = clickedPoint
+
+    let concept = Concept(stringValue: "Foo bar", point: conceptPoint)
+    document.concepts.append(concept)
+
+    canvasViewController.currentState = .multipleSelectedElements(elements: [oldConcept, concept])
+
+    let shiftClickEvent = createMouseEvent(clickCount: 1, location: clickedPoint, shift: true)
+
+    canvasViewController.fullClick(event: shiftClickEvent)
+
+    XCTAssertEqual(canvasViewController.currentState, .selectedElement(element: oldConcept))
+  }
+
+  func testShiftClickOnCanvas() {
+    let oldConcept = Concept(stringValue: "Random", point: NSPoint(x: 20, y: 600))
+    document.concepts.append(oldConcept)
+
+    let clickedPoint = NSPoint(x: 200, y: 300)
+    let conceptPoint = NSPoint(x: 600, y: 800)
+
+    let concept = Concept(stringValue: "Foo bar", point: conceptPoint)
+    document.concepts.append(concept)
+
+    canvasViewController.currentState = .selectedElement(element: oldConcept)
+
+    let shiftClickEvent = createMouseEvent(clickCount: 1, location: clickedPoint, shift: true)
+
+    canvasViewController.fullClick(event: shiftClickEvent)
+
+    XCTAssertEqual(canvasViewController.currentState, .canvasWaiting)
+  }
+
+  func testShiftDragFromOneConceptToAnotherToCreateLink() {
+    let oldConcept = Concept(stringValue: "Random", point: NSPoint(x: 20, y: 600))
+    document.concepts.append(oldConcept)
+
+    let conceptPoint = NSPoint(x: 600, y: 800)
+
+    let concept = Concept(stringValue: "Foo bar", point: conceptPoint)
+    document.concepts.append(concept)
+
+    canvasViewController.mouseDown(with: createMouseEvent(clickCount: 1, location: oldConcept.point, shift: true))
+    canvasViewController.mouseDragged(
+      with: createMouseEvent(
+        clickCount: 1,
+        location: oldConcept.point.translate(deltaX: 10, deltaY: 20),
+        shift: true
+      )
+    )
+    canvasViewController.mouseDragged(with: createMouseEvent(clickCount: 1, location: concept.point, shift: true))
+    canvasViewController.mouseUp(with: createMouseEvent(clickCount: 1, location: concept.point, shift: true))
+
+    switch canvasViewController.currentState {
+    case .selectedElement(let element):
+      if (element as? Link) == nil {
+        Swift.print(element)
+        XCTFail("a link should have been created an selected")
+      }
+    default:
+      XCTFail("current state should be selected element")
+    }
   }
 }
 
