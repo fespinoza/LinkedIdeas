@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16F67a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16G8c" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
@@ -416,6 +416,18 @@
                                                                     <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                                                     <connections>
                                                                         <action selector="changeColor:" target="Ady-hI-5gd" id="buY-EZ-Kbd"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                                <menuItem title="Color #6" keyEquivalent="6" id="oju-0f-Jbv">
+                                                                    <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                                                    <connections>
+                                                                        <action selector="changeColor:" target="Ady-hI-5gd" id="I7h-NV-BKo"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                                <menuItem title="Color #7" keyEquivalent="7" id="mOP-Jd-20m">
+                                                                    <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                                                    <connections>
+                                                                        <action selector="changeColor:" target="Ady-hI-5gd" id="dzB-7k-c2s"/>
                                                                     </connections>
                                                                 </menuItem>
                                                             </items>
