@@ -47,15 +47,16 @@ extension CanvasViewController {
     document.remove(concept: concept)
   }
 
-  func saveConcept(text: NSAttributedString, atPoint point: NSPoint) -> Bool {
+  func saveConcept(text: NSAttributedString, atPoint point: NSPoint) -> Concept? {
     guard text.string != "" else {
-      return false
+      return nil
     }
 
     let newConcept = Concept(attributedStringValue: text, point: point)
 
     document.save(concept: newConcept)
-    return true
+
+    return newConcept
   }
 
   func saveLink(fromConcept: Concept, toConcept: Concept, text: NSAttributedString? = nil) -> Link {

@@ -183,12 +183,12 @@ extension CanvasViewControllerTests {
     let attributedString = NSAttributedString(string: "New Concept")
     let conceptCenterPoint = NSPoint(x: 300, y: 400)
 
-    let successfullSave = canvasViewController.saveConcept(
+    let concept = canvasViewController.saveConcept(
       text: attributedString,
       atPoint: conceptCenterPoint
     )
 
-    XCTAssert(successfullSave)
+    XCTAssert(concept != nil)
     XCTAssertEqual(document.concepts.count, 1)
   }
 
@@ -199,12 +199,12 @@ extension CanvasViewControllerTests {
     let attributedString = NSAttributedString(string: "")
     let conceptCenterPoint = NSPoint(x: 300, y: 400)
 
-    let successfullSave = canvasViewController.saveConcept(
+    let concept = canvasViewController.saveConcept(
       text: attributedString,
       atPoint: conceptCenterPoint
     )
 
-    XCTAssertFalse(successfullSave)
+    XCTAssertFalse(concept != nil)
     XCTAssertEqual(document.concepts.count, 0)
   }
 }
