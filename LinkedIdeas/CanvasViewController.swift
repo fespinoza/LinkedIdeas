@@ -14,6 +14,9 @@ class CanvasViewController: NSViewController {
 
   let textFieldResizingBehavior = TextFieldResizingBehavior()
 
+  // for handling multiple "paste" results, to move the pasting result a bit each time
+  var lastCopyIndex = 0
+
   var dragCount = 0
   var didShiftDragStart = false
   // to register the beginning of the drag
