@@ -148,4 +148,17 @@ class CanvasViewController: NSViewController {
   func isDragShiftEvent(_ event: NSEvent) -> Bool {
     return event.modifierFlags.contains(.shift) || didShiftDragStart
   }
+
+  // MARK: - current State data helpers
+
+  func selectedElements() -> [Element]? {
+    switch currentState {
+    case .selectedElement(let element):
+      return [element]
+    case .multipleSelectedElements(let elements):
+      return elements
+    default:
+      return nil
+    }
+  }
 }
