@@ -14,6 +14,9 @@ class CanvasViewController: NSViewController {
 
   let textFieldResizingBehavior = TextFieldResizingBehavior()
 
+  // for handling multiple "paste" results, to move the pasting result a bit each time
+  var lastCopyIndex = 0
+
   var dragCount = 0
   var didShiftDragStart = false
   // to register the beginning of the drag
@@ -147,5 +150,18 @@ class CanvasViewController: NSViewController {
 
   func isDragShiftEvent(_ event: NSEvent) -> Bool {
     return event.modifierFlags.contains(.shift) || didShiftDragStart
+  }
+
+  // MARK: - current State data helpers
+
+  func selectedElements() -> [Element]? {
+    switch currentState {
+    case .selectedElement(let element):
+      return [element]
+    case .multipleSelectedElements(let elements):
+      return elements
+    default:
+      return nil
+    }
   }
 }

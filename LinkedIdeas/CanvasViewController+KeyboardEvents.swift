@@ -50,17 +50,10 @@ extension CanvasViewController {
   }
 
   func deleteKeyPressed() {
-    switch currentState {
-    case .selectedElement(let element):
-      safeTransiton {
-        try stateManager.toCanvasWaiting(deletingElements: [element])
-      }
-    case .multipleSelectedElements(let elements):
+    if let elements = selectedElements() {
       safeTransiton {
         try stateManager.toCanvasWaiting(deletingElements: elements)
       }
-    default:
-      break
     }
   }
 }
