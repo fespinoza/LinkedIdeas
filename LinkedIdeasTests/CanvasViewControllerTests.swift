@@ -227,6 +227,45 @@ extension CanvasViewControllerTests {
       XCTFail("current state should be selected element")
     }
   }
+
+  func testShiftDragFromOneConceptToAnotherToCreateLinkWhenAnotherLinkIsSelected() {
+    let concepts = [
+      Concept(stringValue: "Random", point: NSPoint(x: 20, y: 600)),
+      Concept(stringValue: "Foo bar", point: NSPoint(x: 600, y: 800)),
+      Concept(stringValue: "Another", point: NSPoint(x: 300, y: 400))
+    ]
+    concepts.forEach {
+      document.concepts.append($0)
+    }
+    let link = Link(origin: concepts[0], target: concepts[1])
+    document.links.append(link)
+
+    canvasViewController.currentState = .selectedElement(element: link)
+
+    canvasViewController.mouseDown(
+      with: createMouseEvent(clickCount: 1, location: concepts[1].point, shift: true)
+    )
+    canvasViewController.mouseDragged(
+      with: createMouseEvent(
+        clickCount: 1,
+        location: concepts[1].point.translate(deltaX: 10, deltaY: 20),
+        shift: true
+      )
+    )
+    canvasViewController.mouseDragged(with: createMouseEvent(clickCount: 1, location: concepts[2].point, shift: true))
+    canvasViewController.mouseUp(with: createMouseEvent(clickCount: 1, location: concepts[2].point, shift: true))
+
+    switch canvasViewController.currentState {
+    case .selectedElement(let element):
+      if let selectedLink = element as? Link {
+        XCTAssertNotEqual(selectedLink, link)
+      } else {
+        XCTFail("a link should have been created an selected")
+      }
+    default:
+      XCTFail("current state should be selected element")
+    }
+  }
 }
 
 // MARK - CanvasViewControllers: TextField Delegate Tests

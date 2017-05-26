@@ -17,8 +17,8 @@ extension CanvasViewController {
     if event.isSingleClick() {
       if let clickedElements = clickedElements(atPoint: point) {
         switch currentState {
-        case .selectedElement:
-          if !event.modifierFlags.contains(.shift) {
+        case .selectedElement(let selectedElement):
+          if !event.modifierFlags.contains(.shift) || (selectedElement as? Link) != nil {
             // single click, select another element
             safeTransiton {
               try stateManager.toSelectedElement(element: clickedElements.first!)
