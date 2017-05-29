@@ -13,6 +13,7 @@ import Cocoa
 extension CanvasViewController {
   enum KeyCodes: UInt16 {
     case enter = 36
+    case tab = 48
     case delete = 51
   }
 
@@ -30,6 +31,8 @@ extension CanvasViewController {
       }
     case .delete:
       removeSelectedConcepts()
+    case .tab:
+      selectNextConcept()
     }
   }
 
@@ -48,6 +51,46 @@ extension CanvasViewController {
       safeTransiton {
         try stateManager.toCanvasWaiting(deletingElements: elements)
       }
+    }
+  }
+
+  private func insertConceptAtRandomPoint() {
+    let randomX = CGFloat(
+      arc4random_uniform(UInt32(canvasView.visibleRect.width)) + UInt32(canvasView.visibleRect.origin.x)
+    )
+    let randomY = CGFloat(
+      arc4random_uniform(UInt32(canvasView.visibleRect.height)) + UInt32(canvasView.visibleRect.origin.y)
+    )
+
+    let randomPoint = NSPoint(x: randomX, y: randomY)
+    safeTransiton { try stateManager.toNewConcept(atPoint: randomPoint) }
+  }
+
+  private func selectNextConcept() {
+    switch currentState {
+    case .canvasWaiting:
+      if let firstConcept = document.concepts.first {
+        safeTransiton {
+          try stateManager.toSelectedElement(element: firstConcept)
+        }
+      }
+    case .selectedElement(let element):
+      if let concept = element as? Concept {
+        let conceptIndex = document.concepts.index(of: concept)!
+        let nextConceptIndex = conceptIndex + 1
+        if document.concepts.count > nextConceptIndex {
+          let nextConcept = document.concepts[nextConceptIndex]
+          safeTransiton {
+            try stateManager.toSelectedElement(element: nextConcept)
+          }
+        } else {
+          safeTransiton {
+            try stateManager.toSelectedElement(element: document.concepts.first!)
+          }
+        }
+      }
+    default:
+      break
     }
   }
 }
