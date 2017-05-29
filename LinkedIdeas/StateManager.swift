@@ -146,7 +146,8 @@ struct StateManager {
       .canvasWaiting,
       .newConcept(point: NSPoint.zero),
       .selectedElement(element: EmptyElement.example),
-      .editingElement(element: EmptyElement.example)
+      .editingElement(element: EmptyElement.example),
+      .multipleSelectedElements(elements: [Element]())
     ]
 
     let state = CanvasState.selectedElement(element: element)
@@ -169,6 +170,7 @@ struct StateManager {
   public mutating func toMultipleSelectedElements(elements: [Element]) throws {
     let possibleStates: [CanvasState] = [
       .canvasWaiting,
+      .selectedElement(element: EmptyElement.example),
       .multipleSelectedElements(elements: [Element]())
     ]
 
