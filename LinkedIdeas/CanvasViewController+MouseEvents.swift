@@ -151,10 +151,6 @@ extension CanvasViewController {
 
   // MARK: - mouse action helpers
 
-  private func isPressingShift(event: NSEvent) -> Bool {
-    return event.modifierFlags.contains(.shift)
-  }
-
   private func createNewLinkUp(fromConcept: Concept, toConcept: Concept) {
     toConcept.isSelected = false
 
