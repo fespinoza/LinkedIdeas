@@ -149,7 +149,11 @@ class CanvasViewController: NSViewController {
   }
 
   func isDragShiftEvent(_ event: NSEvent) -> Bool {
-    return event.modifierFlags.contains(.shift) || didShiftDragStart
+    return isPressingShift(event: event) || didShiftDragStart
+  }
+
+  func isPressingShift(event: NSEvent) -> Bool {
+    return event.modifierFlags.contains(.shift)
   }
 
   // MARK: - current State data helpers
@@ -160,6 +164,15 @@ class CanvasViewController: NSViewController {
       return [element]
     case .multipleSelectedElements(let elements):
       return elements
+    default:
+      return nil
+    }
+  }
+
+  func singleSelectedElement() -> Element? {
+    switch currentState {
+    case .selectedElement(let element):
+      return element
     default:
       return nil
     }
