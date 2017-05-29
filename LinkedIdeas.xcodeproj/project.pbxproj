@@ -29,6 +29,8 @@
 		9B3941A41E56591900F1E957 /* CanvasViewController+DocumentObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A31E56591900F1E957 /* CanvasViewController+DocumentObserver.swift */; };
 		9B3941A61E56594700F1E957 /* NSEvent-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A51E56594700F1E957 /* NSEvent-Extensions.swift */; };
 		9B3941A81E56596000F1E957 /* NSResponder-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A71E56596000F1E957 /* NSResponder-Extensions.swift */; };
+		9B43B8891EDC88AC00879507 /* CanvasViewControllerMouseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43B8881EDC88AC00879507 /* CanvasViewControllerMouseTests.swift */; };
+		9B43B88B1EDC8B5D00879507 /* CanvasViewControllerKeyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43B88A1EDC8B5D00879507 /* CanvasViewControllerKeyboardTests.swift */; };
 		9B48F8491CD614370014758D /* LinkedIdeasDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */; };
 		9B48F84D1CD614BC0014758D /* DocumentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F84C1CD614BC0014758D /* DocumentData.swift */; };
 		9B521F851CFB37D200A71598 /* AligmentFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B521F841CFB37D200A71598 /* AligmentFunctions.swift */; };
@@ -100,6 +102,8 @@
 		9B3941A31E56591900F1E957 /* CanvasViewController+DocumentObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+DocumentObserver.swift"; sourceTree = "<group>"; };
 		9B3941A51E56594700F1E957 /* NSEvent-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSEvent-Extensions.swift"; sourceTree = "<group>"; };
 		9B3941A71E56596000F1E957 /* NSResponder-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSResponder-Extensions.swift"; sourceTree = "<group>"; };
+		9B43B8881EDC88AC00879507 /* CanvasViewControllerMouseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewControllerMouseTests.swift; sourceTree = "<group>"; };
+		9B43B88A1EDC8B5D00879507 /* CanvasViewControllerKeyboardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewControllerKeyboardTests.swift; sourceTree = "<group>"; };
 		9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedIdeasDocument.swift; sourceTree = "<group>"; };
 		9B48F84C1CD614BC0014758D /* DocumentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentData.swift; sourceTree = "<group>"; };
 		9B521F841CFB37D200A71598 /* AligmentFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AligmentFunctions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -191,7 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				9BB8FC801CA6B7B0008CD6A2 /* Models */,
-				9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */,
+				9B43B8871EDC888900879507 /* ViewControllers */,
 				9B8665C51D96C9E800799678 /* StateManagerTests.swift */,
 				9BD0BD571D9B0BED0041F7ED /* TestProtocolConformance.swift */,
 				9B2F1DB61BE7CFE80090CC18 /* Info.plist */,
@@ -217,6 +221,16 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9B43B8871EDC888900879507 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */,
+				9B43B88A1EDC8B5D00879507 /* CanvasViewControllerKeyboardTests.swift */,
+				9B43B8881EDC88AC00879507 /* CanvasViewControllerMouseTests.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		9B48F84A1CD614460014758D /* Protocols */ = {
@@ -506,12 +520,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B43B88B1EDC8B5D00879507 /* CanvasViewControllerKeyboardTests.swift in Sources */,
 				9B8665C61D96C9E800799678 /* StateManagerTests.swift in Sources */,
 				9BE40C211D8DD98B0025F154 /* CanvasViewControllerTests.swift in Sources */,
 				9B9A2EA41CF5EE5300607208 /* AlignmentTests.swift in Sources */,
 				9BD0BD581D9B0BED0041F7ED /* TestProtocolConformance.swift in Sources */,
 				9B33821F1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift in Sources */,
 				9BB8FC831CA6B7D7008CD6A2 /* LinkTests.swift in Sources */,
+				9B43B8891EDC88AC00879507 /* CanvasViewControllerMouseTests.swift in Sources */,
 				9B8AEF6F1EBBC8B100A58856 /* TextFieldResizeBehaviorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

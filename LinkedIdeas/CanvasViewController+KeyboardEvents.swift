@@ -32,7 +32,7 @@ extension CanvasViewController {
     case .delete:
       removeSelectedConcepts()
     case .tab:
-      selectNextConcept()
+      selectNextConcept(normalDirection: !isPressingShift(event: event))
     }
   }
 
@@ -55,18 +55,15 @@ extension CanvasViewController {
   }
 
   private func insertConceptAtRandomPoint() {
-    let randomX = CGFloat(
-      arc4random_uniform(UInt32(canvasView.visibleRect.width)) + UInt32(canvasView.visibleRect.origin.x)
-    )
-    let randomY = CGFloat(
-      arc4random_uniform(UInt32(canvasView.visibleRect.height)) + UInt32(canvasView.visibleRect.origin.y)
-    )
+    let visibleRect = canvasView.visibleRect
+    let randomX = CGFloat(arc4random_uniform(UInt32(visibleRect.width)) + UInt32(visibleRect.origin.x))
+    let randomY = CGFloat(arc4random_uniform(UInt32(visibleRect.height)) + UInt32(visibleRect.origin.y))
 
     let randomPoint = NSPoint(x: randomX, y: randomY)
     safeTransiton { try stateManager.toNewConcept(atPoint: randomPoint) }
   }
 
-  private func selectNextConcept() {
+  private func selectNextConcept(normalDirection: Bool) {
     switch currentState {
     case .canvasWaiting:
       if let firstConcept = document.concepts.first {
@@ -77,16 +74,18 @@ extension CanvasViewController {
     case .selectedElement(let element):
       if let concept = element as? Concept {
         let conceptIndex = document.concepts.index(of: concept)!
-        let nextConceptIndex = conceptIndex + 1
-        if document.concepts.count > nextConceptIndex {
-          let nextConcept = document.concepts[nextConceptIndex]
-          safeTransiton {
-            try stateManager.toSelectedElement(element: nextConcept)
-          }
+        var conceptToSelectIndex = conceptIndex
+        if normalDirection {
+          conceptToSelectIndex += 1
         } else {
-          safeTransiton {
-            try stateManager.toSelectedElement(element: document.concepts.first!)
-          }
+          conceptToSelectIndex -= 1
+        }
+        conceptToSelectIndex = conceptToSelectIndex < 0 ? document.concepts.count - 1 : conceptToSelectIndex
+        conceptToSelectIndex = conceptToSelectIndex % document.concepts.count
+
+        let conceptToSelect = document.concepts[conceptToSelectIndex]
+        safeTransiton {
+          try stateManager.toSelectedElement(element: conceptToSelect)
         }
       }
     default:

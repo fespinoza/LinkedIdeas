@@ -35,7 +35,28 @@ class CanvasViewControllerTests: XCTestCase {
       eventNumber: 0,
       clickCount: clickCount,
       pressure: 1.0
-      )!
+    )!
+  }
+
+  func createKeyboardEvent(keyCode: UInt16, shift: Bool = false) -> NSEvent {
+    var flags: NSEventModifierFlags = .function
+
+    if shift {
+      flags = .shift
+    }
+
+    return NSEvent.keyEvent(
+      with: .keyDown,
+      location: NSPoint.zero,
+      modifierFlags: flags,
+      timestamp: 2,
+      windowNumber: 0,
+      context: nil,
+      characters: "",
+      charactersIgnoringModifiers: "",
+      isARepeat: false,
+      keyCode: keyCode
+    )!
   }
 
   var canvasViewController: CanvasViewController!
