@@ -11,45 +11,39 @@ import Cocoa
 // MARK: - CanvasViewController+KeyboardEvents
 
 extension CanvasViewController {
+  enum KeyCodes: UInt16 {
+    case enter = 36
+    case delete = 51
+  }
+
   override func keyDown(with event: NSEvent) {
-    let enterKeyCode: UInt16 = 36
-    let deleteKeyCode: UInt16 = 51
+    guard let handledKeyCode = KeyCodes.init(rawValue: event.keyCode) else {
+      return
+    }
 
-    switch event.keyCode {
-    case enterKeyCode:
-      if event.modifierFlags.contains(.shift) {
-
-        let randomX = CGFloat(
-          arc4random_uniform(UInt32(canvasView.visibleRect.width)) + UInt32(canvasView.visibleRect.origin.x)
-        )
-        let randomY = CGFloat(
-          arc4random_uniform(UInt32(canvasView.visibleRect.height)) + UInt32(canvasView.visibleRect.origin.y)
-        )
-
-        let randomPoint = NSPoint(x: randomX, y: randomY)
-        safeTransiton { try stateManager.toNewConcept(atPoint: randomPoint) }
+    switch handledKeyCode {
+    case .enter:
+      if isPressingShift(event: event) {
+        insertConceptAtRandomPoint()
       } else {
-        enterKeyPressed()
+        editSelectedConcept()
       }
-    case deleteKeyCode:
-      deleteKeyPressed()
-    default:
-      break
+    case .delete:
+      removeSelectedConcepts()
     }
   }
 
-  func enterKeyPressed() {
-    switch currentState {
-    case .selectedElement(let element):
+  // MARK: - Internal implementation functions
+
+  private func editSelectedConcept() {
+    if let selectedElement = singleSelectedElement() {
       safeTransiton {
-        try stateManager.toEditingElement(element: element)
+        try stateManager.toEditingElement(element: selectedElement)
       }
-    default:
-      break
     }
   }
 
-  func deleteKeyPressed() {
+  private func removeSelectedConcepts() {
     if let elements = selectedElements() {
       safeTransiton {
         try stateManager.toCanvasWaiting(deletingElements: elements)
