@@ -92,7 +92,8 @@ struct StateManager {
   public mutating func toNewConcept(atPoint point: NSPoint) throws {
     let possibleStates: [CanvasState] = [
       .canvasWaiting,
-      .newConcept(point: NSPoint.zero)
+      .newConcept(point: NSPoint.zero),
+      .selectedElement(element: EmptyElement.example)
     ]
 
     try transition(fromPossibleStates: possibleStates, toState: .newConcept(point: point)) { (oldState) in

@@ -12,6 +12,37 @@ import XCTest
 // MARK: - CanvasViewController Keyboard Based Tests
 
 extension CanvasViewControllerTests {
+  func testShiftEnterWhenCanvasIsWaiting() {
+    canvasViewController.currentState = .canvasWaiting
+
+    let enterKeyCode: UInt16 = 36
+    canvasViewController.keyDown(with: createKeyboardEvent(keyCode: enterKeyCode, shift: true))
+
+    switch canvasViewController.currentState {
+    case .newConcept:
+      break
+    default:
+      XCTFail("current state should be new Concept with random point")
+    }
+  }
+
+  func testShiftEnterWhenConceptIsSelected() {
+    let concept = Concept(stringValue: "Random", point: NSPoint(x: 20, y: 600))
+    document.concepts.append(concept)
+
+    canvasViewController.currentState = .selectedElement(element: concept)
+
+    let enterKeyCode: UInt16 = 36
+    canvasViewController.keyDown(with: createKeyboardEvent(keyCode: enterKeyCode, shift: true))
+
+    switch canvasViewController.currentState {
+    case .newConcept:
+      break
+    default:
+      XCTFail("current state should be new Concept with random point")
+    }
+  }
+
   func testTabSelectsFirstConceptOnCanvasWaiting() {
     let concepts = [
       Concept(stringValue: "Random", point: NSPoint(x: 20, y: 600)),
