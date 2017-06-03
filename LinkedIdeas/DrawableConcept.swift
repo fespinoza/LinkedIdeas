@@ -8,12 +8,12 @@
 
 import Cocoa
 
-struct DrawableConcept: DrawableElement {
+public struct DrawableConcept: DrawableElement {
   let concept: GraphConcept
 
-  var drawingBounds: NSRect { return concept.rect }
+  public var drawingBounds: NSRect { return concept.rect }
 
-  func draw() {
+  public func draw() {
     drawBackground()
     drawConceptText()
     drawSelectedRing()
@@ -41,7 +41,7 @@ struct DrawableConcept: DrawableElement {
     NSBezierPath(rect: drawingBounds).stroke()
   }
 
-  func drawForDebug() {
+  public func drawForDebug() {
     if isDebugging() {
       drawDebugHelpers()
       drawCenteredDotAtPoint(concept.point, color: NSColor.red)

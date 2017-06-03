@@ -8,14 +8,14 @@
 
 import Cocoa
 
-struct DrawableLink: DrawableElement {
+public struct DrawableLink: DrawableElement {
   let link: GraphLink
 
-  var drawingBounds: NSRect {
+  public var drawingBounds: NSRect {
     return NSRect(point1: link.originPoint, point2: link.targetPoint)
   }
 
-  func draw() {
+  public func draw() {
     link.color.set()
     constructArrow()?.bezierPath().fill()
     drawSelectedRing()
@@ -71,7 +71,7 @@ struct DrawableLink: DrawableElement {
     }
   }
 
-  func drawForDebug() {
+  public func drawForDebug() {
     if isDebugging() {
       drawDebugHelpers()
       NSColor.magenta.set()

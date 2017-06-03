@@ -8,14 +8,14 @@
 
 import Cocoa
 
-class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement {
+public class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement {
   // own attributes
   var origin: Concept
   var target: Concept
-  var originPoint: NSPoint { return origin.point }
-  var targetPoint: NSPoint { return target.point }
+  public var originPoint: NSPoint { return origin.point }
+  public var targetPoint: NSPoint { return target.point }
 
-  var point: NSPoint {
+  public var point: NSPoint {
     return NSPoint(
       x: ((originPoint.x + targetPoint.x) / 2.0),
       y: ((originPoint.y + targetPoint.y) / 2.0)
@@ -30,27 +30,27 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
     return NSRect(center: point, size: textSizeWithPadding)
   }
 
-  dynamic var color: NSColor
+  dynamic public var color: NSColor
 
   // MARK: - NSAttributedStringElement
-  dynamic var attributedStringValue: NSAttributedString
-  var stringValue: String { return attributedStringValue.string }
+  dynamic public var attributedStringValue: NSAttributedString
+  public var stringValue: String { return attributedStringValue.string }
 
   // MARK: - VisualElement
   var isEditable: Bool = false
-  var isSelected: Bool = false
+  public var isSelected: Bool = false
 
   private let padding: CGFloat = 20
 
   static let defaultColor = NSColor.gray
 
-  override var description: String {
+  override public var description: String {
     return "'\(origin.stringValue)' '\(target.stringValue)'"
   }
 
   // Element
   var identifier: String
-  var rect: NSRect {
+  public var rect: NSRect {
     var minX = min(originPoint.x, targetPoint.x)
     if abs(originPoint.x - targetPoint.x) <= padding { minX -= padding / 2 }
     var minY = min(originPoint.y, targetPoint.y)
@@ -127,7 +127,7 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
     return origin == concept || target == concept
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  required public init?(coder aDecoder: NSCoder) {
     guard let identifier = aDecoder.decodeObject(forKey: identifierKey) as? String,
       let origin = aDecoder.decodeObject(forKey: originKey) as? Concept,
       let target = aDecoder.decodeObject(forKey: targetKey) as? Concept else {
@@ -151,7 +151,7 @@ class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement 
     }
   }
 
-  func encode(with aCoder: NSCoder) {
+  public func encode(with aCoder: NSCoder) {
     aCoder.encode(identifier, forKey: identifierKey)
     aCoder.encode(origin, forKey: originKey)
     aCoder.encode(target, forKey: targetKey)

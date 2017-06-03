@@ -8,7 +8,7 @@
 
 import Cocoa
 
-protocol DrawableElement {
+public protocol DrawableElement {
   func draw()
 
   var drawingBounds: NSRect { get }
