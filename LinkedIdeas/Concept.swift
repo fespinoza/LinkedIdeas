@@ -8,13 +8,13 @@
 
 import Cocoa
 
-class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringElement, SquareElement {
+public class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringElement, SquareElement {
   static var areaManager: AreaManagerProtocol = AreaManager()
 
   // NOTE: the point value is relative to the canvas coordinate system
-  var point: NSPoint
+  public var point: NSPoint
 
-  var rect: NSRect {
+  public var rect: NSRect {
     return Concept.areaManager.boundedRect(forAttributedString: attributedStringValue, atPoint: point)
   }
 
@@ -22,12 +22,12 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
   var identifier: String
 
   // MARK: - NSAttributedStringElement
-  dynamic var attributedStringValue: NSAttributedString
-  var stringValue: String { return attributedStringValue.string }
+  dynamic public var attributedStringValue: NSAttributedString
+  public var stringValue: String { return attributedStringValue.string }
 
   // visual element
-  var isEditable: Bool = false
-  var isSelected: Bool = false
+  public var isEditable: Bool = false
+  public var isSelected: Bool = false
 
   // KVO
   static let attributedStringValuePath = "attributedStringValue"
@@ -44,7 +44,7 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
   // Moving
   var beforeMovingPoint: NSPoint?
 
-  override var description: String {
+  override public var description: String {
     return "[\(identifier)] '\(stringValue)' \(isEditable) \(point)"
   }
 
@@ -68,7 +68,7 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
 
   // MARK: - NSCoding
 
-  required init?(coder aDecoder: NSCoder) {
+  required public init?(coder aDecoder: NSCoder) {
     guard let identifier = aDecoder.decodeObject(forKey: Concept.identifierKey) as? String,
           let attributedStringValue = aDecoder.decodeObject(
             forKey: Concept.attributedStringValueKey
@@ -82,7 +82,7 @@ class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStringEleme
     isEditable = aDecoder.decodeBool(forKey: Concept.isEditableKey)
   }
 
-  func encode(with aCoder: NSCoder) {
+  public func encode(with aCoder: NSCoder) {
     aCoder.encode(point, forKey: Concept.pointKey)
     aCoder.encode(attributedStringValue, forKey: Concept.attributedStringValueKey)
     aCoder.encode(identifier, forKey: Concept.identifierKey)

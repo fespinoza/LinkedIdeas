@@ -8,17 +8,17 @@
 
 import Foundation
 
-class DocumentData: NSObject, NSCoding {
+public class DocumentData: NSObject, NSCoding {
   var readConcepts: [Concept]?
   var readLinks: [Link]?
   var writeConcepts: [Concept]?
   var writeLinks: [Link]?
 
-  override init() {
+  override public init() {
     super.init()
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  required public init?(coder aDecoder: NSCoder) {
     guard let readConcepts = aDecoder.decodeObject(forKey: "concepts") as? [Concept]?,
           let readLinks = aDecoder.decodeObject(forKey: "links") as? [Link]?
       else {
@@ -29,7 +29,7 @@ class DocumentData: NSObject, NSCoding {
     self.readLinks = readLinks
   }
 
-  func encode(with aCoder: NSCoder) {
+  public func encode(with aCoder: NSCoder) {
     aCoder.encode(writeConcepts, forKey: "concepts")
     aCoder.encode(writeLinks, forKey: "links")
   }
