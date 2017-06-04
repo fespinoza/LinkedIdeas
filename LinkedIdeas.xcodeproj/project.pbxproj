@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B05944E1EE488E300D06CD3 /* LinkedIdeas.qlgenerator in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9B37F5FC1ECBB029004B2D9E /* LinkedIdeas.qlgenerator */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9B0683FD1DA1A1AA00609AE5 /* StateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0683FC1DA1A1AA00609AE5 /* StateManager.swift */; };
 		9B06AD131C11AD74000BC75C /* NSRect+PointHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */; };
 		9B06AD151C11AF03000BC75C /* NSView+Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */; };
@@ -112,6 +113,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9B05944F1EE4898C00D06CD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B2F1D941BE7CFE70090CC18 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B37F5FB1ECBB029004B2D9E;
+			remoteInfo = QLLinkedIdeas;
+		};
 		9B2F1DB11BE7CFE80090CC18 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9B2F1D941BE7CFE70090CC18 /* Project object */;
@@ -120,6 +128,19 @@
 			remoteInfo = LinkedIdeas;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9B05944D1EE4889F00D06CD3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = Contents/Library/QuickLook;
+			dstSubfolderSpec = 1;
+			files = (
+				9B05944E1EE488E300D06CD3 /* LinkedIdeas.qlgenerator in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9B0683FC1DA1A1AA00609AE5 /* StateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateManager.swift; sourceTree = "<group>"; };
@@ -428,10 +449,12 @@
 				9B2F1D991BE7CFE70090CC18 /* Frameworks */,
 				9B2F1D9A1BE7CFE70090CC18 /* Resources */,
 				9B39418E1E56475F00F1E957 /* ShellScript */,
+				9B05944D1EE4889F00D06CD3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9B0594501EE4898C00D06CD3 /* PBXTargetDependency */,
 			);
 			name = LinkedIdeas;
 			productName = LinkedIdeas;
@@ -703,6 +726,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9B0594501EE4898C00D06CD3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9B37F5FB1ECBB029004B2D9E /* QLLinkedIdeas */;
+			targetProxy = 9B05944F1EE4898C00D06CD3 /* PBXContainerItemProxy */;
+		};
 		9B2F1DB21BE7CFE80090CC18 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9B2F1D9B1BE7CFE70090CC18 /* LinkedIdeas */;
@@ -879,7 +907,6 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 2Z7R9FQBNN;
 				INFOPLIST_FILE = QLLinkedIdeas/Info.plist;
 				INSTALL_PATH = /Library/QuickLook;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -887,6 +914,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.QLLinkedIdeas;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = qlgenerator;
@@ -902,7 +930,6 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 2Z7R9FQBNN;
 				INFOPLIST_FILE = QLLinkedIdeas/Info.plist;
 				INSTALL_PATH = /Library/QuickLook;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -910,6 +937,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.QLLinkedIdeas;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = qlgenerator;
 			};
