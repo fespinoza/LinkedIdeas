@@ -8,13 +8,13 @@
 
 import Cocoa
 
-protocol CanvasViewDataSource {
+public protocol CanvasViewDataSource {
   var drawableElements: [DrawableElement] { get }
 }
 
-class CanvasView: NSView {
+public class CanvasView: NSView {
 
-  var dataSource: CanvasViewDataSource?
+  public var dataSource: CanvasViewDataSource?
 
   var selectFromPoint: NSPoint?
   var selectToPoint: NSPoint?
@@ -26,13 +26,13 @@ class CanvasView: NSView {
     }
   }
 
-  override var acceptsFirstResponder: Bool { return true }
+  override public var acceptsFirstResponder: Bool { return true }
 
   var arrowStartPoint: NSPoint?
   var arrowEndPoint: NSPoint?
   var arrowColor: NSColor?
 
-  override func draw(_ dirtyRect: NSRect) {
+  override public func draw(_ dirtyRect: NSRect) {
     super.draw(dirtyRect)
     drawBackground()
 
@@ -91,7 +91,7 @@ class CanvasView: NSView {
     needsDisplay = true
   }
 
-  override func keyDown(with event: NSEvent) {
+  override public func keyDown(with event: NSEvent) {
     super.keyDown(with: event)
   }
 }

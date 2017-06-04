@@ -8,7 +8,7 @@
 
 import Cocoa
 
-protocol GraphConcept {
+public protocol GraphConcept {
   var rect: NSRect { get }
   var point: NSPoint { get }
   var stringValue: String { get }
@@ -17,7 +17,7 @@ protocol GraphConcept {
   var isEditable: Bool { get set }
 }
 
-protocol GraphLink {
+public protocol GraphLink {
   var color: NSColor { get }
   var isSelected: Bool { get set }
 
@@ -37,6 +37,6 @@ protocol GraphLink {
 extension Concept: GraphConcept {}
 
 extension Link: GraphLink {
-  var originRect: NSRect { return origin.rect }
-  var targetRect: NSRect { return target.rect }
+  public var originRect: NSRect { return origin.rect }
+  public var targetRect: NSRect { return target.rect }
 }
