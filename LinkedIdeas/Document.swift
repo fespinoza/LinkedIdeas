@@ -8,11 +8,11 @@
 
 import Cocoa
 
-class Document: NSDocument {
+public class Document: NSDocument {
   var documentData = DocumentData()
   var observer: DocumentObserver?
 
-  var concepts: [Concept] = [Concept]() {
+  public var concepts: [Concept] = [Concept]() {
     willSet {
       for concept in concepts {
         stopObserving(concept: concept)
@@ -24,7 +24,7 @@ class Document: NSDocument {
       }
     }
   }
-  var links: [Link] = [Link]() {
+  public var links: [Link] = [Link]() {
     willSet {
       for link in links {
         stopObserving(link: link)
@@ -37,9 +37,21 @@ class Document: NSDocument {
     }
   }
 
+  public var rect: NSRect {
+    let minX = concepts.map { $0.rect.minX }.min() ?? 0
+    let minY = concepts.map { $0.rect.minY }.min() ?? 0
+    let maxX = concepts.map { $0.rect.maxX }.max() ?? 800
+    let maxY = concepts.map { $0.rect.maxY }.max() ?? 600
+
+    return NSRect(
+      point1: NSPoint(x: minX, y: minY),
+      point2: NSPoint(x: maxX, y: maxY)
+    )
+  }
+
   private var KVOContext: Int = 0
 
-  override func makeWindowControllers() {
+  override public func makeWindowControllers() {
     let storyboard = NSStoryboard(name: "Main", bundle: nil)
 
     if let windowController = storyboard.instantiateController(
@@ -49,18 +61,18 @@ class Document: NSDocument {
     }
   }
 
-  override class func autosavesInPlace() -> Bool {
+  override public class func autosavesInPlace() -> Bool {
     return true
   }
 
-  override func data(ofType typeName: String) throws -> Data {
+  override public func data(ofType typeName: String) throws -> Data {
     documentData.writeConcepts = concepts
     documentData.writeLinks = links
     Swift.print("write data!")
     return NSKeyedArchiver.archivedData(withRootObject: documentData)
   }
 
-  override func read(from data: Data, ofType typeName: String) throws {
+  override public func read(from data: Data, ofType typeName: String) throws {
     Swift.print("Document: -read")
     guard let documentData = NSKeyedUnarchiver.unarchiveObject(with: data) as? DocumentData else {
       return
@@ -94,7 +106,7 @@ class Document: NSDocument {
     link.removeObserver(self, forKeyPath: Link.attributedStringValuePath, context: &KVOContext)
   }
 
-  override func observeValue(
+  override public func observeValue(
     forKeyPath keyPath: String?,
     of object: Any?,
     change: [NSKeyValueChangeKey : Any]?,
@@ -179,4 +191,20 @@ extension Document: LinkedIdeasDocument {
     })
   }
 
+}
+
+extension Document: CanvasViewDataSource {
+  public var drawableElements: [DrawableElement] {
+    var elements: [DrawableElement] = []
+
+    elements += concepts.map {
+      DrawableConcept(concept: $0 as GraphConcept) as DrawableElement
+    }
+
+    elements += links.map {
+      DrawableLink(link: $0 as GraphLink) as DrawableElement
+    }
+
+    return elements
+  }
 }
