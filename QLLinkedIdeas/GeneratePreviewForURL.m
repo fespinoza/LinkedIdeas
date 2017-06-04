@@ -4,12 +4,7 @@
 #include <Cocoa/Cocoa.h>
 // module produced of objective-c interfaces of this Target swift code.
 
-// #import "LinkedIdeas/LinkedIdeas-Swift.h"
-// #import "LinkedIdeas-Swift.h"
-// #import "LinkedIdeas-Swift.h"
-#import "LinkedIdeas-Swift.h"
-// #import <LinkedIdeas/LinkedIdeas-Swift.h>
-//#import <QLLinkedIdeas/LinkedIdeas-Swift.h>
+#import "QLLinkedIdeas-Swift.h"
 
 OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options);
 void CancelPreviewGeneration(void *thisInterface, QLPreviewRequestRef preview);
@@ -32,6 +27,9 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     manager.url = (__bridge NSURL *)url;
     manager.contentTypeUTI = (__bridge NSString *)contentTypeUTI;
 
+    [NSKeyedUnarchiver setClass:[DocumentData class] forClassName:@"LinkedIdeas.DocumentData"];
+    [NSKeyedUnarchiver setClass:[Concept class] forClassName:@"LinkedIdeas.Concept"];
+    [NSKeyedUnarchiver setClass:[Link class] forClassName:@"LinkedIdeas.Link"];
 
     // Preview will be drawn in a vectorized context
     CGContextRef cgContext = QLPreviewRequestCreateContext(preview, *(CGSize *)&canvasSize, false, NULL);
