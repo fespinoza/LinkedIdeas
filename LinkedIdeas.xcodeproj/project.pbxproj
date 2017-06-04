@@ -60,6 +60,9 @@
 		9BD2BF3D1C7F8B6A00E8A303 /* FiniteLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF3C1C7F8B6A00E8A303 /* FiniteLine.swift */; };
 		9BD2BF421C7F8C2000E8A303 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF411C7F8C2000E8A303 /* Arrow.swift */; };
 		9BD435861EBA645D008A1265 /* DocumentObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD435851EBA645D008A1265 /* DocumentObserver.swift */; };
+		9BD850B31EE4C199005B89C9 /* GenerateThumbnailForURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD850B21EE4C199005B89C9 /* GenerateThumbnailForURL.m */; };
+		9BD850B51EE4C199005B89C9 /* GeneratePreviewForURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BD850B41EE4C199005B89C9 /* GeneratePreviewForURL.m */; };
+		9BD850B71EE4C199005B89C9 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 9BD850B61EE4C199005B89C9 /* main.c */; };
 		9BDDE7391BEF9157000AAD44 /* Concept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDDE7381BEF9157000AAD44 /* Concept.swift */; };
 		9BE40C211D8DD98B0025F154 /* CanvasViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */; };
 		9BF15C391CAC69A500C95041 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF15C381CAC69A500C95041 /* WindowController.swift */; };
@@ -133,6 +136,11 @@
 		9BD2BF3C1C7F8B6A00E8A303 /* FiniteLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FiniteLine.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9BD2BF411C7F8C2000E8A303 /* Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
 		9BD435851EBA645D008A1265 /* DocumentObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentObserver.swift; sourceTree = "<group>"; };
+		9BD850B01EE4C199005B89C9 /* QLLinkedIdeas.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QLLinkedIdeas.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BD850B21EE4C199005B89C9 /* GenerateThumbnailForURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenerateThumbnailForURL.m; sourceTree = "<group>"; };
+		9BD850B41EE4C199005B89C9 /* GeneratePreviewForURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeneratePreviewForURL.m; sourceTree = "<group>"; };
+		9BD850B61EE4C199005B89C9 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		9BD850B81EE4C199005B89C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BDDE7381BEF9157000AAD44 /* Concept.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Concept.swift; sourceTree = "<group>"; };
 		9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewControllerTests.swift; sourceTree = "<group>"; };
 		9BF15C381CAC69A500C95041 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
@@ -153,6 +161,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9BD850AC1EE4C199005B89C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -162,6 +177,7 @@
 				9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */,
 				9B2F1D9E1BE7CFE70090CC18 /* LinkedIdeas */,
 				9B2F1DB31BE7CFE80090CC18 /* LinkedIdeasTests */,
+				9BD850B11EE4C199005B89C9 /* QLLinkedIdeas */,
 				9B2F1D9D1BE7CFE70090CC18 /* Products */,
 				9B40CA0D1D1E960800D5EDDD /* Frameworks */,
 			);
@@ -172,6 +188,7 @@
 			children = (
 				9B2F1D9C1BE7CFE70090CC18 /* LinkedIdeas.app */,
 				9B2F1DB01BE7CFE80090CC18 /* LinkedIdeasTests.xctest */,
+				9BD850B01EE4C199005B89C9 /* QLLinkedIdeas.qlgenerator */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -334,7 +351,28 @@
 			name = 2DMath;
 			sourceTree = "<group>";
 		};
+		9BD850B11EE4C199005B89C9 /* QLLinkedIdeas */ = {
+			isa = PBXGroup;
+			children = (
+				9BD850B21EE4C199005B89C9 /* GenerateThumbnailForURL.m */,
+				9BD850B41EE4C199005B89C9 /* GeneratePreviewForURL.m */,
+				9BD850B61EE4C199005B89C9 /* main.c */,
+				9BD850B81EE4C199005B89C9 /* Info.plist */,
+			);
+			path = QLLinkedIdeas;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9BD850AD1EE4C199005B89C9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		9B2F1D9B1BE7CFE70090CC18 /* LinkedIdeas */ = {
@@ -374,6 +412,24 @@
 			productReference = 9B2F1DB01BE7CFE80090CC18 /* LinkedIdeasTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		9BD850AF1EE4C199005B89C9 /* QLLinkedIdeas */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9BD850BB1EE4C199005B89C9 /* Build configuration list for PBXNativeTarget "QLLinkedIdeas" */;
+			buildPhases = (
+				9BD850AB1EE4C199005B89C9 /* Sources */,
+				9BD850AC1EE4C199005B89C9 /* Frameworks */,
+				9BD850AD1EE4C199005B89C9 /* Headers */,
+				9BD850AE1EE4C199005B89C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QLLinkedIdeas;
+			productName = QLLinkedIdeas;
+			productReference = 9BD850B01EE4C199005B89C9 /* QLLinkedIdeas.qlgenerator */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -394,6 +450,11 @@
 						LastSwiftMigration = 0820;
 						TestTargetID = 9B2F1D9B1BE7CFE70090CC18;
 					};
+					9BD850AF1EE4C199005B89C9 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 2Z7R9FQBNN;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 9B2F1D971BE7CFE70090CC18 /* Build configuration list for PBXProject "LinkedIdeas" */;
@@ -411,6 +472,7 @@
 			targets = (
 				9B2F1D9B1BE7CFE70090CC18 /* LinkedIdeas */,
 				9B2F1DAF1BE7CFE80090CC18 /* LinkedIdeasTests */,
+				9BD850AF1EE4C199005B89C9 /* QLLinkedIdeas */,
 			);
 		};
 /* End PBXProject section */
@@ -427,6 +489,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		9B2F1DAE1BE7CFE80090CC18 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9BD850AE1EE4C199005B89C9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -529,6 +598,16 @@
 				9BB8FC831CA6B7D7008CD6A2 /* LinkTests.swift in Sources */,
 				9B43B8891EDC88AC00879507 /* CanvasViewControllerMouseTests.swift in Sources */,
 				9B8AEF6F1EBBC8B100A58856 /* TextFieldResizeBehaviorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9BD850AB1EE4C199005B89C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BD850B31EE4C199005B89C9 /* GenerateThumbnailForURL.m in Sources */,
+				9BD850B51EE4C199005B89C9 /* GeneratePreviewForURL.m in Sources */,
+				9BD850B71EE4C199005B89C9 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,6 +776,38 @@
 			};
 			name = Release;
 		};
+		9BD850B91EE4C199005B89C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 2Z7R9FQBNN;
+				INFOPLIST_FILE = QLLinkedIdeas/Info.plist;
+				INSTALL_PATH = /Library/QuickLook;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.QLLinkedIdeas;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = qlgenerator;
+			};
+			name = Debug;
+		};
+		9BD850BA1EE4C199005B89C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 2Z7R9FQBNN;
+				INFOPLIST_FILE = QLLinkedIdeas/Info.plist;
+				INSTALL_PATH = /Library/QuickLook;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.QLLinkedIdeas;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = qlgenerator;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -726,6 +837,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		9BD850BB1EE4C199005B89C9 /* Build configuration list for PBXNativeTarget "QLLinkedIdeas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9BD850B91EE4C199005B89C9 /* Debug */,
+				9BD850BA1EE4C199005B89C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
