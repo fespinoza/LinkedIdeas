@@ -12,6 +12,10 @@
 		9B06AD151C11AF03000BC75C /* NSView+Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */; };
 		9B1CCDEB1D294E0900F319EB /* NSAttributedStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */; };
 		9B1CD1C81E48D10B003F192B /* CanvasViewController+LinkCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CD1C71E48D10B003F192B /* CanvasViewController+LinkCreation.swift */; };
+		9B2595A31EE3235800CE1BF0 /* DrawableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9EC6BC1EC0F2AB0048D2AC /* DrawableElement.swift */; };
+		9B2595A41EE3237900CE1BF0 /* DocumentObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD435851EBA645D008A1265 /* DocumentObserver.swift */; };
+		9B2595A51EE3238600CE1BF0 /* AreaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9EC6BA1EC0E42C0048D2AC /* AreaManager.swift */; };
+		9B2595A61EE323A500CE1BF0 /* TextFieldResizeBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2FE8F21EB28F7C00DEEBA2 /* TextFieldResizeBehavior.swift */; };
 		9B2F1DA01BE7CFE70090CC18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */; };
 		9B2F1DA21BE7CFE70090CC18 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA11BE7CFE70090CC18 /* Document.swift */; };
 		9B2F1DA71BE7CFE70090CC18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA61BE7CFE70090CC18 /* Assets.xcassets */; };
@@ -55,7 +59,7 @@
 		9B4BB61D1ECBB447000F326D /* DrawableConcept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941931E5656FE00F1E957 /* DrawableConcept.swift */; };
 		9B4BB61E1ECBB447000F326D /* DrawableLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941951E56572F00F1E957 /* DrawableLink.swift */; };
 		9B4BB61F1ECBB447000F326D /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC881CA6B889008CD6A2 /* Element.swift */; };
-		9B4BB6201ECBB447000F326D /* DocumentObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8461CD613F60014758D /* DocumentObserver.swift */; };
+		9B4BB6201ECBB447000F326D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		9B4BB6211ECBB447000F326D /* LinkedIdeasDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */; };
 		9B4BB6221ECBB447000F326D /* SquareElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B521F861CFB380300A71598 /* SquareElement.swift */; };
 		9B4BB6231ECBB452000F326D /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF15C381CAC69A500C95041 /* WindowController.swift */; };
@@ -654,6 +658,7 @@
 				9B4BB62A1ECBB483000F326D /* CanvasViewController+DraggingActions.swift in Sources */,
 				9B4BB6301ECBB483000F326D /* CanvasViewController+NSTextFieldDelegate.swift in Sources */,
 				9B4BB62C1ECBB483000F326D /* CanvasViewController+MouseEvents.swift in Sources */,
+				9B2595A61EE323A500CE1BF0 /* TextFieldResizeBehavior.swift in Sources */,
 				9B4BB6271ECBB475000F326D /* StateManager.swift in Sources */,
 				9B4BB61C1ECBB447000F326D /* ViewModelProtocols.swift in Sources */,
 				9B4BB6331ECBB483000F326D /* CanvasViewController+MenuActions.swift in Sources */,
@@ -663,6 +668,7 @@
 				9B4BB6291ECBB475000F326D /* NSResponder-Extensions.swift in Sources */,
 				9B4BB61F1ECBB447000F326D /* Element.swift in Sources */,
 				9B4BB62D1ECBB483000F326D /* CanvasViewController+StateManagerDelegate.swift in Sources */,
+				9B2595A41EE3237900CE1BF0 /* DocumentObserver.swift in Sources */,
 				9B4BB61E1ECBB447000F326D /* DrawableLink.swift in Sources */,
 				9B4BB6221ECBB447000F326D /* SquareElement.swift in Sources */,
 				9B37F60F1ECBB07B004B2D9E /* main.c in Sources */,
@@ -677,7 +683,7 @@
 				9B4BB6101ECBB434000F326D /* DocumentData.swift in Sources */,
 				9B4BB6261ECBB475000F326D /* CanvasViewController.swift in Sources */,
 				9B4BB6211ECBB447000F326D /* LinkedIdeasDocument.swift in Sources */,
-				9B4BB6201ECBB447000F326D /* DocumentObserver.swift in Sources */,
+				9B4BB6201ECBB447000F326D /* (null) in Sources */,
 				9B4BB6121ECBB434000F326D /* Link.swift in Sources */,
 				9B4BB60B1ECBB1C2000F326D /* DocumentManager.swift in Sources */,
 				9B4BB6231ECBB452000F326D /* WindowController.swift in Sources */,
@@ -688,7 +694,9 @@
 				9B4BB6251ECBB46A000F326D /* DocumentViewController.swift in Sources */,
 				9B4BB61D1ECBB447000F326D /* DrawableConcept.swift in Sources */,
 				9B4BB61B1ECBB434000F326D /* Arrow.swift in Sources */,
+				9B2595A31EE3235800CE1BF0 /* DrawableElement.swift in Sources */,
 				9B4BB62E1ECBB483000F326D /* CanvasViewController+TransitionActions.swift in Sources */,
+				9B2595A51EE3238600CE1BF0 /* AreaManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -865,6 +873,7 @@
 		9B37F6061ECBB029004B2D9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -887,6 +896,7 @@
 		9B37F6071ECBB029004B2D9E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;

@@ -39,8 +39,6 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     NSLog(@"Quick look generator %@", url);
 
     if(cgContext) {
-
-
       NSGraphicsContext* context = [NSGraphicsContext graphicsContextWithGraphicsPort:(void *)cgContext flipped:YES];
 
       if (context) {
