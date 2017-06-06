@@ -107,7 +107,7 @@
 		9BD850E61EE4C792005B89C9 /* CanvasViewController+DocumentObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A31E56591900F1E957 /* CanvasViewController+DocumentObserver.swift */; };
 		9BD850E71EE4C792005B89C9 /* CanvasViewController+MenuActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC8587E1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift */; };
 		9BD850E81EE4C792005B89C9 /* CanvasViewController+NSPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB677671ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift */; };
-		9BD850F01EE4CDE6005B89C9 /* QLLinkedIdeas.qlgenerator in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BD850B01EE4C199005B89C9 /* QLLinkedIdeas.qlgenerator */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9BD850F01EE4CDE6005B89C9 /* QLLinkedIdeas.qlgenerator in Pack QuickLook Plugin */ = {isa = PBXBuildFile; fileRef = 9BD850B01EE4C199005B89C9 /* QLLinkedIdeas.qlgenerator */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9BDDE7391BEF9157000AAD44 /* Concept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDDE7381BEF9157000AAD44 /* Concept.swift */; };
 		9BE40C211D8DD98B0025F154 /* CanvasViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */; };
 		9BF15C391CAC69A500C95041 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF15C381CAC69A500C95041 /* WindowController.swift */; };
@@ -131,14 +131,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		9BD850EF1EE4CDDB005B89C9 /* CopyFiles */ = {
+		9BD850EF1EE4CDDB005B89C9 /* Pack QuickLook Plugin */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = Contents/Library/QuickLook;
 			dstSubfolderSpec = 1;
 			files = (
-				9BD850F01EE4CDE6005B89C9 /* QLLinkedIdeas.qlgenerator in CopyFiles */,
+				9BD850F01EE4CDE6005B89C9 /* QLLinkedIdeas.qlgenerator in Pack QuickLook Plugin */,
 			);
+			name = "Pack QuickLook Plugin";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -449,8 +450,9 @@
 				9B2F1D981BE7CFE70090CC18 /* Sources */,
 				9B2F1D991BE7CFE70090CC18 /* Frameworks */,
 				9B2F1D9A1BE7CFE70090CC18 /* Resources */,
-				9B39418E1E56475F00F1E957 /* ShellScript */,
-				9BD850EF1EE4CDDB005B89C9 /* CopyFiles */,
+				9B39418E1E56475F00F1E957 /* Run Swift Lint */,
+				9BD850EF1EE4CDDB005B89C9 /* Pack QuickLook Plugin */,
+				9B08F08E1EE7194E005658F4 /* Increment Build */,
 			);
 			buildRules = (
 			);
@@ -575,13 +577,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9B39418E1E56475F00F1E957 /* ShellScript */ = {
+		9B08F08E1EE7194E005658F4 /* Increment Build */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Increment Build";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+		};
+		9B39418E1E56475F00F1E957 /* Run Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Swift Lint";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
