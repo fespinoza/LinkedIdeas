@@ -14,69 +14,74 @@ struct RectAlignments {
     let rect: NSRect
   }
 
-  static func verticallyLeftAlign(rects: [NSRect]) -> [NSRect] {
+  private static func applyAlignment(
+    toRects rects: [NSRect],
+    calculateAligmentParam: ([NSRect]) -> CGFloat?,
+    alignRect: (NSRect, CGFloat) -> NSRect
+  ) -> [NSRect] {
     guard rects.count > 0 else {
       return rects
     }
 
-    guard let minX = rects.map({ $0.origin.x }).min() else {
-      assertionFailure("there should have been a minimun value for X within the rectangles")
+    guard let aligmentParam = calculateAligmentParam(rects) else {
+      assertionFailure("there should have been an aligment parameter for the set of rectangles")
       return rects
     }
 
     // the order of the rectangles must be preserved
     return rects.map({ (rect) -> NSRect in
-      return NSRect(x: minX, y: rect.origin.y, width: rect.width, height: rect.height)
+      return alignRect(rect, aligmentParam)
     })
+  }
+
+  static func verticallyLeftAlign(rects: [NSRect]) -> [NSRect] {
+    func calculateMinX(rects: [NSRect]) -> CGFloat? {
+      return rects.map({ $0.origin.x }).min()
+    }
+
+    func leftAlign(rect: NSRect, forMinX minX: CGFloat) -> NSRect {
+      return NSRect(x: minX, y: rect.origin.y, width: rect.width, height: rect.height)
+    }
+
+    return applyAlignment(toRects: rects, calculateAligmentParam: calculateMinX, alignRect: leftAlign)
   }
 
   static func verticallyCenterAlign(rects: [NSRect]) -> [NSRect] {
-    guard rects.count > 0 else {
-      return rects
+    func calculateCenterX(rects: [NSRect]) -> CGFloat? {
+      return rects.first?.center.x
     }
 
-    guard let centerX = rects.first?.center.x else {
-      assertionFailure("there should have been a center value for X within the rectangles")
-      return rects
-    }
-
-    // the order of the rectangles must be preserved
-    return rects.map({ (rect) -> NSRect in
+    func centerAlign(rect: NSRect, forCenterX centerX: CGFloat) -> NSRect {
       return NSRect(center: NSPoint(x: centerX, y: rect.center.y), size: rect.size)
-    })
+    }
+
+    return applyAlignment(toRects: rects, calculateAligmentParam: calculateCenterX, alignRect: centerAlign)
   }
 
   static func verticallyRightAlign(rects: [NSRect]) -> [NSRect] {
-    guard rects.count > 0 else {
-      return rects
+    func calculateMaxX(rects: [NSRect]) -> CGFloat? {
+      return rects.map({ $0.origin.x + $0.width }).max()
     }
 
-    guard let maxX = rects.map({ $0.origin.x + $0.width }).max() else {
-      assertionFailure("there should have been a maximun value for X within the rectangles")
-      return rects
-    }
-
-    // the order of the rectangles must be preserved
-    return rects.map({ (rect) -> NSRect in
+    func rightAlign(rect: NSRect, forMaxX maxX: CGFloat) -> NSRect {
       let newX = maxX - rect.width
       return NSRect(x: newX, y: rect.origin.y, width: rect.width, height: rect.height)
-    })
+    }
+
+    return applyAlignment(toRects: rects, calculateAligmentParam: calculateMaxX, alignRect: rightAlign)
   }
 
   static func horizontallyCenterAlign(rects: [NSRect]) -> [NSRect] {
-    guard !rects.isEmpty else {
-      return rects
+    func calculateAverageYCoordinate(rects: [NSRect]) -> CGFloat? {
+      return rects.map({ $0.center }).min(by: { $0.x < $1.x })?.y
     }
 
-    guard let averageYCoordinate = rects.map({ $0.center }).min(by: { $0.x < $1.x })?.y else {
-      assertionFailure("I should have been able to calculate the average Y coordinate!")
-      return rects
-    }
-
-    return rects.map({ (rect) -> NSRect in
+    func centerAlign(rect: NSRect, forAverageYCoordinate averageYCoordinate: CGFloat) -> NSRect {
       let newCenter = NSPoint(x: rect.center.x, y: averageYCoordinate)
       return NSRect(center: newCenter, size: rect.size)
-    })
+    }
+
+    return applyAlignment(toRects: rects, calculateAligmentParam: calculateAverageYCoordinate, alignRect: centerAlign)
   }
 
   static func equalVerticalSpace(rects: [NSRect]) -> [NSRect] {
