@@ -14,26 +14,6 @@ struct RectAlignments {
     let rect: NSRect
   }
 
-  private static func applyAlignment(
-    toRects rects: [NSRect],
-    calculateAligmentParam: ([NSRect]) -> CGFloat?,
-    alignRect: (NSRect, CGFloat) -> NSRect
-  ) -> [NSRect] {
-    guard rects.count > 0 else {
-      return rects
-    }
-
-    guard let aligmentParam = calculateAligmentParam(rects) else {
-      assertionFailure("there should have been an aligment parameter for the set of rectangles")
-      return rects
-    }
-
-    // the order of the rectangles must be preserved
-    return rects.map({ (rect) -> NSRect in
-      return alignRect(rect, aligmentParam)
-    })
-  }
-
   static func verticallyLeftAlign(rects: [NSRect]) -> [NSRect] {
     func calculateMinX(rects: [NSRect]) -> CGFloat? {
       return rects.map({ $0.origin.x }).min()
@@ -85,83 +65,61 @@ struct RectAlignments {
   }
 
   static func equalVerticalSpace(rects: [NSRect]) -> [NSRect] {
-    guard !rects.isEmpty else {
-      return rects
+    func byCenterY(_ rectA: OrderedRect, _ rectB: OrderedRect) -> Bool {
+      return rectA.rect.center.y < rectB.rect.center.y
     }
 
-    let containingRect = self.containingRect(forRects: rects)
-
-    let rectCount = CGFloat(rects.count)
-    let combinedHeight = rects.reduce(0, { (acc, rect) in return acc + rect.height })
-    let equalVerticalSpacing: CGFloat = (containingRect.height - combinedHeight) / (rectCount - 1)
-
-    var orderedRects = [OrderedRect]()
-    for (index, rect) in rects.enumerated() {
-      orderedRects.append(OrderedRect(index: index, rect: rect))
+    func calculateVerticalSpacing(_ rects: [NSRect]) -> CGFloat {
+      let containingRect = self.containingRect(forRects: rects)
+      let rectCount = CGFloat(rects.count)
+      let combinedHeight = rects.reduce(0, { (acc, rect) in return acc + rect.height })
+      return (containingRect.height - combinedHeight) / (rectCount - 1)
     }
 
-    let rectsSortedByYCoordinate: [OrderedRect] = orderedRects.sorted { $0.rect.center.y < $1.rect.center.y }
-
-    var previousOrderedRect = rectsSortedByYCoordinate[0]
-
-    func calculateNewOrigin(forRect rect: NSRect, withPreviousRect previousRect: NSRect) -> NSPoint {
+    func calculateNewOrigin(
+      forRect rect: NSRect,
+      withPreviousRect previousRect: NSRect,
+      andVerticalSpacing equalVerticalSpacing: CGFloat
+    ) -> NSPoint {
       let newY = equalVerticalSpacing + previousRect.height + previousRect.origin.y
       return NSPoint(x: rect.origin.x, y: newY)
     }
 
-    var modifiedOrderedRects = [previousOrderedRect]
-
-    rectsSortedByYCoordinate[1..<rectsSortedByYCoordinate.count].forEach { (orderedRect) in
-      let newRect = NSRect(
-        origin: calculateNewOrigin(forRect: orderedRect.rect, withPreviousRect: previousOrderedRect.rect),
-        size: orderedRect.rect.size
-      )
-      let newOrderedRect = OrderedRect(index: orderedRect.index, rect: newRect)
-      modifiedOrderedRects.append(newOrderedRect)
-      previousOrderedRect = newOrderedRect
-    }
-
-    return modifiedOrderedRects.sorted(by: { $0.index < $1.index }).map({ $0.rect })
+    return distribute(
+      rects: rects,
+      orderComparison: byCenterY,
+      calculateSpacing: calculateVerticalSpacing,
+      calculateNewOrigin: calculateNewOrigin
+    )
   }
 
   static func equalHorizontalSpace(rects: [NSRect]) -> [NSRect] {
-    guard !rects.isEmpty else {
-      return rects
+    func byCenterX(_ rectA: OrderedRect, _ rectB: OrderedRect) -> Bool {
+      return rectA.rect.center.x < rectB.rect.center.x
     }
 
-    let containingRect = self.containingRect(forRects: rects)
-
-    let rectCount = CGFloat(rects.count)
-    let combinedWidth = rects.reduce(0, { (acc, rect) in return acc + rect.width })
-    let equalHorizontalSpacing: CGFloat = (containingRect.width - combinedWidth) / (rectCount - 1)
-
-    var orderedRects = [OrderedRect]()
-    for (index, rect) in rects.enumerated() {
-      orderedRects.append(OrderedRect(index: index, rect: rect))
+    func calculateVerticalSpacing(_ rects: [NSRect]) -> CGFloat {
+      let containingRect = self.containingRect(forRects: rects)
+      let rectCount = CGFloat(rects.count)
+      let combinedWidth = rects.reduce(0, { (acc, rect) in return acc + rect.width })
+      return (containingRect.width - combinedWidth) / (rectCount - 1)
     }
 
-    let rectsSortedByXCoordinate: [OrderedRect] = orderedRects.sorted { $0.rect.center.x < $1.rect.center.x }
-
-    var previousOrderedRect = rectsSortedByXCoordinate[0]
-
-    func calculateNewOrigin(forRect rect: NSRect, withPreviousRect previousRect: NSRect) -> NSPoint {
+    func calculateNewOrigin(
+      forRect rect: NSRect,
+      withPreviousRect previousRect: NSRect,
+      andEqualHorizontalSpacing equalHorizontalSpacing: CGFloat
+    ) -> NSPoint {
       let newX = equalHorizontalSpacing + previousRect.width + previousRect.origin.x
       return NSPoint(x: newX, y: rect.origin.y)
     }
 
-    var modifiedOrderedRects = [previousOrderedRect]
-
-    rectsSortedByXCoordinate[1..<rectsSortedByXCoordinate.count].forEach { (orderedRect) in
-      let newRect = NSRect(
-        origin: calculateNewOrigin(forRect: orderedRect.rect, withPreviousRect: previousOrderedRect.rect),
-        size: orderedRect.rect.size
-      )
-      let newOrderedRect = OrderedRect(index: orderedRect.index, rect: newRect)
-      modifiedOrderedRects.append(newOrderedRect)
-      previousOrderedRect = newOrderedRect
-    }
-
-    return modifiedOrderedRects.sorted(by: { $0.index < $1.index }).map({ $0.rect })
+    return distribute(
+      rects: rects,
+      orderComparison: byCenterX,
+      calculateSpacing: calculateVerticalSpacing,
+      calculateNewOrigin: calculateNewOrigin
+    )
   }
 
   static func containingRect(forRects rects: [NSRect]) -> NSRect {
@@ -173,5 +131,63 @@ struct RectAlignments {
       origin: NSPoint(x: minX, y: minY),
       size: NSSize(width: maxX - minX, height: maxY - minY)
     )
+  }
+
+  // MARK: - private functions
+
+  private static func applyAlignment(
+    toRects rects: [NSRect],
+    calculateAligmentParam: ([NSRect]) -> CGFloat?,
+    alignRect: (NSRect, CGFloat) -> NSRect
+  ) -> [NSRect] {
+    guard rects.count > 0 else {
+      return rects
+    }
+
+    guard let aligmentParam = calculateAligmentParam(rects) else {
+      assertionFailure("there should have been an aligment parameter for the set of rectangles")
+      return rects
+    }
+
+    // the order of the rectangles must be preserved
+    return rects.map({ (rect) -> NSRect in
+      return alignRect(rect, aligmentParam)
+    })
+  }
+
+  private static func distribute(
+    rects: [NSRect],
+    orderComparison: (OrderedRect, OrderedRect) -> Bool,
+    calculateSpacing: ([NSRect]) -> CGFloat,
+    calculateNewOrigin: (NSRect, NSRect, CGFloat) -> NSPoint
+  ) -> [NSRect] {
+    guard !rects.isEmpty else {
+      return rects
+    }
+
+    let spacingParam = calculateSpacing(rects)
+
+    var orderedRects = [OrderedRect]()
+    for (index, rect) in rects.enumerated() {
+      orderedRects.append(OrderedRect(index: index, rect: rect))
+    }
+
+    let sortedRects: [OrderedRect] = orderedRects.sorted(by: orderComparison)
+
+    var previousOrderedRect = sortedRects[0]
+
+    var modifiedOrderedRects = [previousOrderedRect]
+
+    sortedRects[1..<sortedRects.count].forEach { (orderedRect) in
+      let newRect = NSRect(
+        origin: calculateNewOrigin(orderedRect.rect, previousOrderedRect.rect, spacingParam),
+        size: orderedRect.rect.size
+      )
+      let newOrderedRect = OrderedRect(index: orderedRect.index, rect: newRect)
+      modifiedOrderedRects.append(newOrderedRect)
+      previousOrderedRect = newOrderedRect
+    }
+
+    return modifiedOrderedRects.sorted(by: { $0.index < $1.index }).map({ $0.rect })
   }
 }
