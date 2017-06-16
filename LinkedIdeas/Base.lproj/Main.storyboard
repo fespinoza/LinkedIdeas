@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16G8c" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16G12b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
@@ -12,11 +12,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="Example" id="1Xt-HY-uBw">
+                            <menuItem title="LinkedIdeas" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Example" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="LinkedIdeas" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About Example" id="5kV-Vb-QxS">
+                                        <menuItem title="About LinkedIdeas" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -48,7 +48,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit Example" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit LinkedIdeas" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -472,6 +472,73 @@
                                                     <menuItem title="Align Right" keyEquivalent="}" id="wb2-vD-lq4">
                                                         <connections>
                                                             <action selector="alignRight:" target="Ady-hI-5gd" id="r48-bG-YeY"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                        <menuItem title="Arrangement" id="eoZ-Cg-qX1" userLabel="Arrangement">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Arrangement" id="1ei-7c-wwR">
+                                                <items>
+                                                    <menuItem title="Align vertically left" keyEquivalent="a" id="6OW-PI-i5f" userLabel="Align vertically left">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                                        <connections>
+                                                            <action selector="customAlignElements:" target="Ady-hI-5gd" id="dtn-LL-qgr"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Align vertically left + Equal Vertical Space" alternate="YES" keyEquivalent="A" id="t9A-Jn-TWf" userLabel="Align vertically left">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                                        <connections>
+                                                            <action selector="customAlignElements:" target="Ady-hI-5gd" id="cKc-bi-F5P"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Align vertically center" tag="1" keyEquivalent="s" id="eb0-2D-9td" userLabel="Align vertically center">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                                        <connections>
+                                                            <action selector="customAlignElements:" target="Ady-hI-5gd" id="3V1-Ja-yWf"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Align vertically center + Equal Vertical Space" tag="1" alternate="YES" keyEquivalent="S" id="ybp-cc-MuE" userLabel="Align vertically center">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                                        <connections>
+                                                            <action selector="customAlignElements:" target="Ady-hI-5gd" id="TxX-G3-kNv"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Align vertically right" tag="2" keyEquivalent="d" id="3uZ-JF-s1d" userLabel="Align vertically center">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                                        <connections>
+                                                            <action selector="customAlignElements:" target="Ady-hI-5gd" id="tqP-ex-WE9"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Align vertically right + Equal Vertical Space" tag="2" alternate="YES" keyEquivalent="D" id="C0M-F7-QEs" userLabel="Align vertically center">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                                        <connections>
+                                                            <action selector="customAlignElements:" target="Ady-hI-5gd" id="BwV-2B-Kup"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Align horizontally center" tag="3" keyEquivalent="f" id="DwX-sg-QnW" userLabel="Align vertically center">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                                        <connections>
+                                                            <action selector="customAlignElements:" target="Ady-hI-5gd" id="eDL-i8-A2U"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Align horizontally center + Equal Horizontal Space" tag="3" alternate="YES" keyEquivalent="F" id="Dsz-JJ-VjP" userLabel="Align vertically center">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                                        <connections>
+                                                            <action selector="customAlignElements:" target="Ady-hI-5gd" id="jOg-Cq-wvE"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Equally distribute vertically" tag="4" keyEquivalent="g" id="kjd-0d-fiZ" userLabel="Align vertically center">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                                        <connections>
+                                                            <action selector="customAlignElements:" target="Ady-hI-5gd" id="pVi-5I-XgG"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Equally distribute horizontally" tag="5" keyEquivalent="h" id="uG0-gH-YGb" userLabel="Align vertically center">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                                        <connections>
+                                                            <action selector="customAlignElements:" target="Ady-hI-5gd" id="Pfa-UI-w0V"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
