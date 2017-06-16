@@ -19,7 +19,7 @@ extension NSAttributedString {
   }
 
   var isBold: Bool {
-    return (font.fontDescriptor.symbolicTraits & UInt32(NSFontTraitMask.boldFontMask.rawValue)) != 0
+    return font.fontDescriptor.symbolicTraits.contains(.NSFontDescriptorTraitBold)
   }
 
   var defaultFont: NSFont { return NSFont(name: "Helvetica", size: 12)! }

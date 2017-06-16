@@ -12,7 +12,9 @@ public class DocumentManager: NSObject {
   public var url: URL?
   public var contentTypeUTI: String?
 
-  override public var description: String { return "DocumentManager: url=\(url) uti=\(contentTypeUTI)" }
+  override public var description: String {
+    return "DocumentManager: url=\(String(describing: url)) uti=\(String(describing: contentTypeUTI))"
+  }
 
   public func processDocument(canvasSize: NSSize, context: NSGraphicsContext) {
     guard let url = url, let contentTypeUTI = contentTypeUTI else {
