@@ -40,20 +40,8 @@ extension CanvasViewController {
     }
   }
 
-  // TODO: refactor this functions
-
   private func verticallyAlignLeftSelectedConcepts(isAlternate: Bool) {
-    let selectedConcepts = currentSelectedConcepts()
-
-    let conceptRects = selectedConcepts.map({ $0.rect })
-    print(conceptRects.description)
-    let alignedConceptRects = RectAlignments.verticallyLeftAlign(rects: conceptRects)
-    print(alignedConceptRects.description)
-
-    for (index, concept) in selectedConcepts.enumerated() {
-      let newCenterPoint = alignedConceptRects[index].center
-      document.move(concept: concept, toPoint: newCenterPoint)
-    }
+    applyToSelectedConcepts(alignmentFunction: RectAlignments.verticallyLeftAlign)
 
     if isAlternate {
       normalizeVerticalSpaceForSelectedConcepts()
@@ -61,17 +49,7 @@ extension CanvasViewController {
   }
 
   private func verticallyAlignCenterSelectedConcepts(isAlternate: Bool) {
-    let selectedConcepts = currentSelectedConcepts()
-
-    let conceptRects = selectedConcepts.map({ $0.rect })
-    print(conceptRects.description)
-    let alignedConceptRects = RectAlignments.verticallyCenterAlign(rects: conceptRects)
-    print(alignedConceptRects.description)
-
-    for (index, concept) in selectedConcepts.enumerated() {
-      let newCenterPoint = alignedConceptRects[index].center
-      document.move(concept: concept, toPoint: newCenterPoint)
-    }
+    applyToSelectedConcepts(alignmentFunction: RectAlignments.verticallyCenterAlign)
 
     if isAlternate {
       normalizeVerticalSpaceForSelectedConcepts()
@@ -79,15 +57,7 @@ extension CanvasViewController {
   }
 
   private func verticallyAlignRightSelectedConcepts(isAlternate: Bool) {
-    let selectedConcepts = currentSelectedConcepts()
-
-    let conceptRects = selectedConcepts.map({ $0.rect })
-    let alignedConceptRects = RectAlignments.verticallyRightAlign(rects: conceptRects)
-
-    for (index, concept) in selectedConcepts.enumerated() {
-      let newCenterPoint = alignedConceptRects[index].center
-      document.move(concept: concept, toPoint: newCenterPoint)
-    }
+    applyToSelectedConcepts(alignmentFunction: RectAlignments.verticallyRightAlign)
 
     if isAlternate {
       normalizeVerticalSpaceForSelectedConcepts()
@@ -95,15 +65,7 @@ extension CanvasViewController {
   }
 
   private func horizontallyAlignCenterSelectedConcepts(isAlternate: Bool) {
-    let selectedConcepts = currentSelectedConcepts()
-
-    let conceptRects = selectedConcepts.map({ $0.rect })
-    let alignedConceptRects = RectAlignments.horizontallyCenterAlign(rects: conceptRects)
-
-    for (index, concept) in selectedConcepts.enumerated() {
-      let newCenterPoint = alignedConceptRects[index].center
-      document.move(concept: concept, toPoint: newCenterPoint)
-    }
+    applyToSelectedConcepts(alignmentFunction: RectAlignments.horizontallyCenterAlign)
 
     if isAlternate {
       normalizeHorizontalSpaceForSelectedConcepts()
@@ -111,22 +73,18 @@ extension CanvasViewController {
   }
 
   private func normalizeVerticalSpaceForSelectedConcepts() {
-    let selectedConcepts = currentSelectedConcepts()
-
-    let conceptRects = selectedConcepts.map({ $0.rect })
-    let alignedConceptRects = RectAlignments.equalVerticalSpace(rects: conceptRects)
-
-    for (index, concept) in selectedConcepts.enumerated() {
-      let newCenterPoint = alignedConceptRects[index].center
-      document.move(concept: concept, toPoint: newCenterPoint)
-    }
+    applyToSelectedConcepts(alignmentFunction: RectAlignments.equalVerticalSpace)
   }
 
   private func normalizeHorizontalSpaceForSelectedConcepts() {
+    applyToSelectedConcepts(alignmentFunction: RectAlignments.equalHorizontalSpace)
+  }
+
+  private func applyToSelectedConcepts(alignmentFunction: ([NSRect]) -> [NSRect]) {
     let selectedConcepts = currentSelectedConcepts()
 
     let conceptRects = selectedConcepts.map({ $0.rect })
-    let alignedConceptRects = RectAlignments.equalHorizontalSpace(rects: conceptRects)
+    let alignedConceptRects = alignmentFunction(conceptRects)
 
     for (index, concept) in selectedConcepts.enumerated() {
       let newCenterPoint = alignedConceptRects[index].center
