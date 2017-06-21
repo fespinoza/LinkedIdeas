@@ -194,6 +194,10 @@ extension Document: LinkedIdeasDocument {
 }
 
 extension Document: CanvasViewDataSource {
+  public func selectedDrawableElements() -> [DrawableElement]? {
+    return drawableElements
+  }
+
   public var drawableElements: [DrawableElement] {
     var elements: [DrawableElement] = []
 

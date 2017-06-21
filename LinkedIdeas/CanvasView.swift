@@ -10,6 +10,8 @@ import Cocoa
 
 public protocol CanvasViewDataSource {
   var drawableElements: [DrawableElement] { get }
+
+  func selectedDrawableElements() -> [DrawableElement]?
 }
 
 public class CanvasView: NSView {
@@ -31,13 +33,27 @@ public class CanvasView: NSView {
   var arrowStartPoint: NSPoint?
   var arrowEndPoint: NSPoint?
   var arrowColor: NSColor?
+  var firstRender: Bool = true
 
   override public func draw(_ dirtyRect: NSRect) {
     super.draw(dirtyRect)
-    drawBackground()
+//    if firstRender {
+//      drawBackground()
+//      firstRender = false
+//    } else {
 
-    if let dataSource = dataSource {
-      for element in dataSource.drawableElements { element.draw() }
+      if let dataSource = dataSource {
+        if let selectedElements = dataSource.selectedDrawableElements() {
+          for element in  selectedElements {
+            element.draw()
+          }
+        } else {
+          drawBackground()
+          for element in dataSource.drawableElements {
+            element.draw()
+          }
+        }
+//      }
     }
 
     drawSelectionRect()
