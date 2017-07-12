@@ -37,7 +37,6 @@ public class CanvasView: NSView {
 
   override public func draw(_ dirtyRect: NSRect) {
     super.draw(dirtyRect)
-    Swift.print("CanvasView: draw \(dirtyRect)")
     drawBackground(dirtyRect)
     drawElements(inRect: dirtyRect)
     drawSelectionRect()
@@ -49,9 +48,7 @@ public class CanvasView: NSView {
       return
     }
 
-    let elements = dataSource.drawableElements(forRect: dirtyRect)
-    Swift.print("\(elements.count) drawn from \(dataSource.drawableElements.count)")
-    elements.forEach({ $0.draw() })
+    dataSource.drawableElements(forRect: dirtyRect).forEach({ $0.draw() })
   }
 
   func drawBackground(_ dirtyRect: NSRect) {
