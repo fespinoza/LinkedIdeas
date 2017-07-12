@@ -59,7 +59,7 @@ extension NSView {
   }
 
   func drawFullRect(_ rect: NSRect) {
-    NSRectFill(rect)
+    rect.fill()
     drawBorderForRect(rect)
     drawCenteredDotAtPoint(rect.origin, color: NSColor.red)
     drawCenteredDotAtPoint(rect.center)

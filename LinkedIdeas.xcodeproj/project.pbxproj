@@ -212,6 +212,9 @@
 		9BDDE7381BEF9157000AAD44 /* Concept.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Concept.swift; sourceTree = "<group>"; };
 		9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewControllerTests.swift; sourceTree = "<group>"; };
 		9BF15C381CAC69A500C95041 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		9BF456E21F16E8B800E1CDD3 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		9BF456E31F16E8BC00E1CDD3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9BF456E41F16E8BF00E1CDD3 /* PR.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PR.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +246,9 @@
 			isa = PBXGroup;
 			children = (
 				9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */,
+				9BF456E21F16E8B800E1CDD3 /* LICENSE */,
+				9BF456E41F16E8BF00E1CDD3 /* PR.md */,
+				9BF456E31F16E8BC00E1CDD3 /* README.md */,
 				9B2F1D9E1BE7CFE70090CC18 /* LinkedIdeas */,
 				9B2F1DB31BE7CFE80090CC18 /* LinkedIdeasTests */,
 				9BD850B11EE4C199005B89C9 /* QLLinkedIdeas */,
@@ -516,17 +522,17 @@
 					9B2F1D9B1BE7CFE70090CC18 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = 4E6CZX3H5W;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0900;
 					};
 					9B2F1DAF1BE7CFE80090CC18 = {
 						CreatedOnToolsVersion = 7.1;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0900;
 						TestTargetID = 9B2F1D9B1BE7CFE70090CC18;
 					};
 					9BD850AF1EE4C199005B89C9 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 2Z7R9FQBNN;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -878,7 +884,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -892,7 +899,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -907,7 +915,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeasTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LinkedIdeas.app/Contents/MacOS/LinkedIdeas";
 			};
 			name = Debug;
@@ -923,7 +932,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeasTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LinkedIdeas.app/Contents/MacOS/LinkedIdeas";
 			};
 			name = Release;
@@ -945,7 +955,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = qlgenerator;
 			};
 			name = Debug;
@@ -966,7 +977,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.QLLinkedIdeas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = qlgenerator;
 			};
 			name = Release;

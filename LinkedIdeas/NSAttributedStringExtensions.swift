@@ -14,19 +14,19 @@ extension NSAttributedString {
 
   var isStrikedThrough: Bool {
     var range = maxRange
-    let strikeValue = attribute(NSStrikethroughStyleAttributeName, at: 0, effectiveRange: &range) as? Int
+    let strikeValue = attribute(NSAttributedStringKey.strikethroughStyle, at: 0, effectiveRange: &range) as? Int
     return strikeValue == NSUnderlineStyle.styleSingle.rawValue
   }
 
   var isBold: Bool {
-    return font.fontDescriptor.symbolicTraits.contains(.NSFontDescriptorTraitBold)
+    return font.fontDescriptor.symbolicTraits.contains(.bold)
   }
 
   var defaultFont: NSFont { return NSFont(name: "Helvetica", size: 12)! }
 
   var font: NSFont {
     var range = maxRange
-    let _font = attribute(NSFontAttributeName, at: 0, effectiveRange: &range) as? NSFont
+    let _font = attribute(NSAttributedStringKey.font, at: 0, effectiveRange: &range) as? NSFont
     if let _font = _font {
       return _font
     } else {
@@ -38,7 +38,7 @@ extension NSAttributedString {
 
   var fontColor: NSColor {
     var range = maxRange
-    let color = attribute(NSForegroundColorAttributeName, at: 0, effectiveRange: &range) as? NSColor
+    let color = attribute(NSAttributedStringKey.foregroundColor, at: 0, effectiveRange: &range) as? NSColor
     if let color = color {
       return color
     } else {
@@ -53,7 +53,7 @@ extension NSAttributedString {
 
     if let _tempCopy = attributedString.mutableCopy() as? NSMutableAttributedString {
       _tempCopy.addAttribute(
-        NSStrikethroughStyleAttributeName,
+        NSAttributedStringKey.strikethroughStyle,
         value: strikeStyle.rawValue,
         range: attributedString.maxRange
       )
@@ -67,13 +67,13 @@ extension NSAttributedString {
     var newFont: NSFont!
 
     if bold {
-      newFont = NSFontManager.shared().convert(attributedString.font, toHaveTrait: .boldFontMask)
+      newFont = NSFontManager.shared.convert(attributedString.font, toHaveTrait: .boldFontMask)
     } else {
-      newFont = NSFontManager.shared().convert(attributedString.font, toNotHaveTrait: .boldFontMask)
+      newFont = NSFontManager.shared.convert(attributedString.font, toNotHaveTrait: .boldFontMask)
     }
 
     if let _tempCopy = attributedString.mutableCopy() as? NSMutableAttributedString {
-      _tempCopy.addAttribute(NSFontAttributeName, value: newFont, range: attributedString.maxRange)
+      _tempCopy.addAttribute(NSAttributedStringKey.font, value: newFont, range: attributedString.maxRange)
 
       self.init(attributedString: _tempCopy as NSAttributedString)
     } else {
@@ -83,7 +83,7 @@ extension NSAttributedString {
 
   convenience init(attributedString: NSAttributedString, fontColor: NSColor) {
     if let _tempCopy = attributedString.mutableCopy() as? NSMutableAttributedString {
-      _tempCopy.addAttribute(NSForegroundColorAttributeName, value: fontColor, range: attributedString.maxRange)
+      _tempCopy.addAttribute(NSAttributedStringKey.foregroundColor, value: fontColor, range: attributedString.maxRange)
 
       self.init(attributedString: _tempCopy as NSAttributedString)
     } else {
@@ -92,10 +92,10 @@ extension NSAttributedString {
   }
 
   convenience init(attributedString: NSAttributedString, fontSize: Int) {
-    let newFont: NSFont = NSFontManager.shared().convert(
+    let newFont: NSFont = NSFontManager.shared.convert(
       attributedString.font, toSize: CGFloat(fontSize))
     if let _tempCopy = attributedString.mutableCopy() as? NSMutableAttributedString {
-      _tempCopy.addAttribute(NSFontAttributeName, value: newFont, range: attributedString.maxRange)
+      _tempCopy.addAttribute(NSAttributedStringKey.font, value: newFont, range: attributedString.maxRange)
 
       self.init(attributedString: _tempCopy as NSAttributedString)
     } else {

@@ -83,7 +83,7 @@ extension CanvasViewController {
   // MARK: - Interface actions
 
   func cut(_ sender: Any?) {
-    writeToPasteboard(pasteboard: NSPasteboard.general())
+    writeToPasteboard(pasteboard: NSPasteboard.general)
     if let elements = selectedElements() {
       safeTransiton {
         try stateManager.toCanvasWaiting(deletingElements: elements)
@@ -92,14 +92,14 @@ extension CanvasViewController {
   }
 
   func copy(_ sender: Any?) {
-    writeToPasteboard(pasteboard: NSPasteboard.general())
+    writeToPasteboard(pasteboard: NSPasteboard.general)
   }
 
   func paste(_ sender: Any?) {
-    readFromPasteboard(pasteboard: NSPasteboard.general())
+    readFromPasteboard(pasteboard: NSPasteboard.general)
   }
 
   func pasteAsPlainText(_ sender: Any?) {
-    readFromPasteboardAsPlainText(pasteboard: NSPasteboard.general())
+    readFromPasteboardAsPlainText(pasteboard: NSPasteboard.general)
   }
 }

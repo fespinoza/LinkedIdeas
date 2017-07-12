@@ -22,7 +22,7 @@ public class Concept: NSObject, NSCoding, Element, VisualElement, AttributedStri
   var identifier: String
 
   // MARK: - NSAttributedStringElement
-  dynamic public var attributedStringValue: NSAttributedString
+  @objc dynamic public var attributedStringValue: NSAttributedString
   public var stringValue: String { return attributedStringValue.string }
 
   // visual element

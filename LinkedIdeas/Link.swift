@@ -30,10 +30,10 @@ public class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringE
     return NSRect(center: point, size: textSizeWithPadding)
   }
 
-  dynamic public var color: NSColor
+  @objc dynamic public var color: NSColor
 
   // MARK: - NSAttributedStringElement
-  dynamic public var attributedStringValue: NSAttributedString
+  @objc dynamic public var attributedStringValue: NSAttributedString
   public var stringValue: String { return attributedStringValue.string }
 
   // MARK: - VisualElement

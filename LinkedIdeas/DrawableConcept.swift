@@ -22,7 +22,7 @@ public struct DrawableConcept: DrawableElement {
 
   func drawBackground() {
     NSColor.white.set()
-    NSRectFill(drawingBounds)
+    drawingBounds.fill()
   }
 
   func drawConceptText() {
