@@ -10,10 +10,13 @@ import Cocoa
 
 public protocol CanvasViewDataSource {
   var drawableElements: [DrawableElement] { get }
+
+  func drawableElements(forRect: NSRect) -> [DrawableElement]
 }
 
 public class CanvasView: NSView {
 
+  public override var isOpaque: Bool { return true }
   public var dataSource: CanvasViewDataSource?
 
   var selectFromPoint: NSPoint?
@@ -34,20 +37,23 @@ public class CanvasView: NSView {
 
   override public func draw(_ dirtyRect: NSRect) {
     super.draw(dirtyRect)
-    drawBackground()
-
-    if let dataSource = dataSource {
-      for element in dataSource.drawableElements { element.draw() }
-    }
-
+    drawBackground(dirtyRect)
+    drawElements(inRect: dirtyRect)
     drawSelectionRect()
-
     drawLinkConstructionArrow()
   }
 
-  func drawBackground() {
+  func drawElements(inRect dirtyRect: NSRect) {
+    guard let dataSource = dataSource else {
+      return
+    }
+
+    dataSource.drawableElements(forRect: dirtyRect).forEach({ $0.draw() })
+  }
+
+  func drawBackground(_ dirtyRect: NSRect) {
     NSColor.white.set()
-    NSRectFill(bounds)
+    NSRectFill(dirtyRect)
   }
 
   func drawSelectionRect() {
@@ -57,7 +63,6 @@ public class CanvasView: NSView {
 
     let borderColor = NSColor(red: 0, green: 0, blue: 1, alpha: 1)
     let backgroundColor = NSColor(red: 0, green: 0, blue: 1, alpha: 0.5)
-
     let bezierPath = NSBezierPath(rect: selectionRect)
 
     borderColor.set()

@@ -120,6 +120,6 @@ extension CanvasViewController {
     dragCount = 0
     canvasView.selectFromPoint = nil
     canvasView.selectToPoint = nil
-    canvasView.needsDisplay = true
+    reRenderCanvasView()
   }
 }

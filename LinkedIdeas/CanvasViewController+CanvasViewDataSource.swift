@@ -24,4 +24,8 @@ extension CanvasViewController: CanvasViewDataSource {
 
     return elements
   }
+
+  func drawableElements(forRect containerRect: NSRect) -> [DrawableElement] {
+    return drawableElements.filter({ containerRect.intersects($0.drawingBounds) })
+  }
 }

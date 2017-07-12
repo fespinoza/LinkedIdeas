@@ -194,6 +194,10 @@ extension Document: LinkedIdeasDocument {
 }
 
 extension Document: CanvasViewDataSource {
+  public func drawableElements(forRect: NSRect) -> [DrawableElement] {
+    return drawableElements
+  }
+
   public var drawableElements: [DrawableElement] {
     var elements: [DrawableElement] = []
 
