@@ -11,13 +11,6 @@ import Foundation
 // MARK: - CanvasViewController+CanvasViewDataSource
 
 extension CanvasViewController: CanvasViewDataSource {
-  func selectedDrawableElements() -> [DrawableElement]? {
-    guard currentSelectedConcepts().count > 0 else {
-      return nil
-    }
-    return currentSelectedConcepts().map({ DrawableConcept(concept: $0) })
-  }
-
   var drawableElements: [DrawableElement] {
     var elements: [DrawableElement] = []
 
@@ -30,5 +23,9 @@ extension CanvasViewController: CanvasViewDataSource {
     }
 
     return elements
+  }
+
+  func drawableElements(forRect containerRect: NSRect) -> [DrawableElement] {
+    return drawableElements.filter({ containerRect.intersects($0.drawingBounds) })
   }
 }

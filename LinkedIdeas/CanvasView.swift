@@ -11,15 +11,12 @@ import Cocoa
 public protocol CanvasViewDataSource {
   var drawableElements: [DrawableElement] { get }
 
-  func selectedDrawableElements() -> [DrawableElement]?
+  func drawableElements(forRect: NSRect) -> [DrawableElement]
 }
 
 public class CanvasView: NSView {
 
-  public override var isOpaque: Bool {
-    return true
-  }
-
+  public override var isOpaque: Bool { return true }
   public var dataSource: CanvasViewDataSource?
 
   var selectFromPoint: NSPoint?
@@ -37,37 +34,29 @@ public class CanvasView: NSView {
   var arrowStartPoint: NSPoint?
   var arrowEndPoint: NSPoint?
   var arrowColor: NSColor?
-  var firstRender: Bool = true
 
   override public func draw(_ dirtyRect: NSRect) {
     super.draw(dirtyRect)
-//    if firstRender {
-//      drawBackground()
-//      firstRender = false
-//    } else {
-
-      if let dataSource = dataSource {
-        if let selectedElements = dataSource.selectedDrawableElements() {
-          for element in  selectedElements {
-            element.draw()
-          }
-        } else {
-          drawBackground()
-          for element in dataSource.drawableElements {
-            element.draw()
-          }
-        }
-//      }
-    }
-
+    Swift.print("CanvasView: draw \(dirtyRect)")
+    drawBackground(dirtyRect)
+    drawElements(inRect: dirtyRect)
     drawSelectionRect()
-
     drawLinkConstructionArrow()
   }
 
-  func drawBackground() {
+  func drawElements(inRect dirtyRect: NSRect) {
+    guard let dataSource = dataSource else {
+      return
+    }
+
+    let elements = dataSource.drawableElements(forRect: dirtyRect)
+    Swift.print("\(elements.count) drawn from \(dataSource.drawableElements.count)")
+    elements.forEach({ $0.draw() })
+  }
+
+  func drawBackground(_ dirtyRect: NSRect) {
     NSColor.white.set()
-    NSRectFill(bounds)
+    NSRectFill(dirtyRect)
   }
 
   func drawSelectionRect() {
@@ -77,7 +66,6 @@ public class CanvasView: NSView {
 
     let borderColor = NSColor(red: 0, green: 0, blue: 1, alpha: 1)
     let backgroundColor = NSColor(red: 0, green: 0, blue: 1, alpha: 0.5)
-
     let bezierPath = NSBezierPath(rect: selectionRect)
 
     borderColor.set()
