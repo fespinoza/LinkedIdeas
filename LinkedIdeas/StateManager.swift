@@ -79,7 +79,7 @@ extension CanvasState: Equatable {
   }
 }
 
-struct StateManager {
+class StateManager {
   var currentState: CanvasState {
     didSet { print("Transitioned to \(currentState)") }
   }
@@ -89,7 +89,7 @@ struct StateManager {
     currentState = initialState
   }
 
-  public mutating func toNewConcept(atPoint point: NSPoint) throws {
+  public func toNewConcept(atPoint point: NSPoint) throws {
     let possibleStates: [CanvasState] = [
       .canvasWaiting,
       .newConcept(point: NSPoint.zero),
@@ -101,7 +101,7 @@ struct StateManager {
     }
   }
 
-  public mutating func toCanvasWaiting() throws {
+  public func toCanvasWaiting() throws {
     let possibleStates: [CanvasState] = [
       .canvasWaiting,
       .newConcept(point: NSPoint.zero),
@@ -115,7 +115,7 @@ struct StateManager {
     }
   }
 
-  public mutating func toCanvasWaiting(savingConceptWithText text: NSAttributedString) throws {
+  public func toCanvasWaiting(savingConceptWithText text: NSAttributedString) throws {
     let oldState = currentState
 
     switch currentState {
@@ -130,7 +130,7 @@ struct StateManager {
     }
   }
 
-  public mutating func toCanvasWaiting(deletingElements elements: [Element]) throws {
+  public func toCanvasWaiting(deletingElements elements: [Element]) throws {
     let possibleStates: [CanvasState] = [
       .selectedElement(element: EmptyElement.example),
       .multipleSelectedElements(elements: [Element]())
@@ -142,7 +142,7 @@ struct StateManager {
     }
   }
 
-  public mutating func toSelectedElement(element: Element) throws {
+  public func toSelectedElement(element: Element) throws {
     let possibleStates: [CanvasState] = [
       .canvasWaiting,
       .newConcept(point: NSPoint.zero),
@@ -157,7 +157,7 @@ struct StateManager {
     }
   }
 
-  public mutating func toSelectedElementSavingChanges(element: Element) throws {
+  public func toSelectedElementSavingChanges(element: Element) throws {
     let possibleStates: [CanvasState] = [
       .editingElement(element: EmptyElement.example)
     ]
@@ -168,7 +168,7 @@ struct StateManager {
     }
   }
 
-  public mutating func toMultipleSelectedElements(elements: [Element]) throws {
+  public func toMultipleSelectedElements(elements: [Element]) throws {
     let possibleStates: [CanvasState] = [
       .canvasWaiting,
       .selectedElement(element: EmptyElement.example),
@@ -181,7 +181,7 @@ struct StateManager {
     }
   }
 
-  public mutating func toEditingElement(element: Element) throws {
+  public func toEditingElement(element: Element) throws {
     let possibleStates: [CanvasState] = [
       .selectedElement(element: EmptyElement.example)
     ]
@@ -192,7 +192,7 @@ struct StateManager {
     }
   }
 
-  private mutating func transition(
+  private func transition(
     fromPossibleStates validFromStates: [CanvasState],
     toState: CanvasState,
     onSuccess: (CanvasState) -> Void

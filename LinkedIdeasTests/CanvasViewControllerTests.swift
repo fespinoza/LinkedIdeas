@@ -19,10 +19,10 @@ extension CanvasViewController {
 
 class CanvasViewControllerTests: XCTestCase {
   func createMouseEvent(clickCount: Int, location: NSPoint, shift: Bool = false) -> NSEvent {
-    var flags: NSEventModifierFlags = .function
+    var flags: NSEvent.ModifierFlags = NSEvent.ModifierFlags.function
 
     if shift {
-      flags = .shift
+      flags = NSEvent.ModifierFlags.shift
     }
 
     return NSEvent.mouseEvent(
@@ -39,10 +39,10 @@ class CanvasViewControllerTests: XCTestCase {
   }
 
   func createKeyboardEvent(keyCode: UInt16, shift: Bool = false) -> NSEvent {
-    var flags: NSEventModifierFlags = .function
+    var flags: NSEvent.ModifierFlags = NSEvent.ModifierFlags.function
 
     if shift {
-      flags = .shift
+      flags = NSEvent.ModifierFlags.shift
     }
 
     return NSEvent.keyEvent(

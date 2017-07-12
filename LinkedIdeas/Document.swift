@@ -52,16 +52,16 @@ public class Document: NSDocument {
   private var KVOContext: Int = 0
 
   override public func makeWindowControllers() {
-    let storyboard = NSStoryboard(name: "Main", bundle: nil)
+    let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
 
     if let windowController = storyboard.instantiateController(
-                                withIdentifier: "Document Window Controller"
+                                withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "Document Window Controller")
                               ) as? WindowController {
       self.addWindowController(windowController)
     }
   }
 
-  override public class func autosavesInPlace() -> Bool {
+  override public class var autosavesInPlace: Bool {
     return true
   }
 
@@ -144,7 +144,7 @@ public class Document: NSDocument {
 }
 
 extension Document: LinkedIdeasDocument {
-  func save(concept: Concept) {
+  @objc func save(concept: Concept) {
     concepts.append(concept)
     undoManager?.registerUndo(
       withTarget: self,
@@ -153,7 +153,7 @@ extension Document: LinkedIdeasDocument {
     observer?.documentChanged(withElement: concept)
   }
 
-  func remove(concept: Concept) {
+  @objc func remove(concept: Concept) {
     concepts.remove(at: concepts.index(of: concept)!)
     undoManager?.registerUndo(
       withTarget: self,
@@ -162,7 +162,7 @@ extension Document: LinkedIdeasDocument {
     observer?.documentChanged(withElement: concept)
   }
 
-  func save(link: Link) {
+  @objc func save(link: Link) {
     links.append(link)
     undoManager?.registerUndo(
       withTarget: self,
@@ -171,7 +171,7 @@ extension Document: LinkedIdeasDocument {
     observer?.documentChanged(withElement: link)
   }
 
-  func remove(link: Link) {
+  @objc func remove(link: Link) {
     links.remove(at: links.index(of: link)!)
     undoManager?.registerUndo(
       withTarget: self,

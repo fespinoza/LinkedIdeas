@@ -36,7 +36,7 @@ public struct DrawableLink: DrawableElement {
     textSize.height += padding
 
     let textRect = NSRect(center: link.point, size: textSize)
-    NSRectFill(textRect)
+    textRect.fill()
 
     // text
     let bottomLeftTextPoint = link.point.translate(

@@ -153,7 +153,7 @@ class CanvasViewController: NSViewController {
   }
 
   func isPressingShift(event: NSEvent) -> Bool {
-    return event.modifierFlags.contains(.shift)
+    return event.modifierFlags.contains(NSEvent.ModifierFlags.shift)
   }
 
   // MARK: - current State data helpers

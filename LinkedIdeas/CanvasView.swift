@@ -53,7 +53,7 @@ public class CanvasView: NSView {
 
   func drawBackground(_ dirtyRect: NSRect) {
     NSColor.white.set()
-    NSRectFill(dirtyRect)
+    dirtyRect.fill()
   }
 
   func drawSelectionRect() {

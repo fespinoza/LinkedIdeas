@@ -9,14 +9,14 @@
 import Cocoa
 
 public class DocumentManager: NSObject {
-  public var url: URL?
-  public var contentTypeUTI: String?
+  @objc public var url: URL?
+  @objc public var contentTypeUTI: String?
 
-  override public var description: String {
+  @objc override public var description: String {
     return "DocumentManager: url=\(String(describing: url)) uti=\(String(describing: contentTypeUTI))"
   }
 
-  public func processDocument(canvasSize: NSSize, context: NSGraphicsContext) {
+  @objc public func processDocument(canvasSize: NSSize, context: NSGraphicsContext) {
     guard let url = url, let contentTypeUTI = contentTypeUTI else {
       return
     }
