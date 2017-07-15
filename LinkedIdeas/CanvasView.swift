@@ -15,6 +15,7 @@ public protocol CanvasViewDataSource {
 }
 
 public class CanvasView: NSView {
+  public override var isFlipped: Bool { return true }
 
   public override var isOpaque: Bool { return true }
   public var dataSource: CanvasViewDataSource?
