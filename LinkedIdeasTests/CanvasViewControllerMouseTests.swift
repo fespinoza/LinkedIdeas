@@ -14,6 +14,7 @@ import XCTest
 extension CanvasViewControllerTests {
   func testDoubleClickInCanvas() {
     let clickedPoint = NSPoint(x: 200, y: 300)
+
     let mouseEvent = createMouseEvent(clickCount: 2, location: clickedPoint)
 
     canvasViewController.mouseDown(with: mouseEvent)
