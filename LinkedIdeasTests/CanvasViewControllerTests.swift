@@ -18,6 +18,11 @@ extension CanvasViewController {
 }
 
 class CanvasViewControllerTests: XCTestCase {
+  // this is used because of flipping the CanvasView for working with iOS
+  func invertY(_ point: NSPoint) -> NSPoint {
+    return NSPoint(x: point.x, y: -point.y)
+  }
+
   func createMouseEvent(clickCount: Int, location: NSPoint, shift: Bool = false) -> NSEvent {
     var flags: NSEvent.ModifierFlags = NSEvent.ModifierFlags.function
 
@@ -27,7 +32,7 @@ class CanvasViewControllerTests: XCTestCase {
 
     return NSEvent.mouseEvent(
       with: .leftMouseDown,
-      location: location,
+      location: invertY(location),
       modifierFlags: flags,
       timestamp: 2,
       windowNumber: 0,
