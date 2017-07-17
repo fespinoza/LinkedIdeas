@@ -11,7 +11,7 @@ import Cocoa
 extension CanvasViewController {
   // MARK: - Pasteboard
 
-  private func writeToPasteboard(pasteboard: NSPasteboard) {
+  fileprivate func writeToPasteboard(pasteboard: NSPasteboard) {
     guard let elements = selectedElements() else {
       return
     }
@@ -20,7 +20,7 @@ extension CanvasViewController {
     pasteboard.writeObjects(elements.map { $0.attributedStringValue })
   }
 
-  private func readFromPasteboard(pasteboard: NSPasteboard) {
+  fileprivate func readFromPasteboard(pasteboard: NSPasteboard) {
     let rawObjects = pasteboard.readObjects(
       forClasses: [NSAttributedString.self], options: [:]
     ) as? [NSAttributedString]
@@ -32,7 +32,7 @@ extension CanvasViewController {
     pasteConcepts(fromAttributedStrings: objects)
   }
 
-  private func readFromPasteboardAsPlainText(pasteboard: NSPasteboard) {
+  fileprivate func readFromPasteboardAsPlainText(pasteboard: NSPasteboard) {
     let rawObjects = pasteboard.readObjects(forClasses: [NSString.self], options: [:]) as? [String]
 
     guard let objects = rawObjects, objects.count != 0 else {
@@ -42,7 +42,7 @@ extension CanvasViewController {
     pasteConcepts(fromAttributedStrings: objects.map { NSAttributedString(string: $0) })
   }
 
-  private func pasteConcepts(fromAttributedStrings attributedStrings: [NSAttributedString]) {
+  fileprivate func pasteConcepts(fromAttributedStrings attributedStrings: [NSAttributedString]) {
     safeTransiton {
       try stateManager.toCanvasWaiting()
     }
@@ -71,7 +71,7 @@ extension CanvasViewController {
     }
   }
 
-  private func createConceptFromPasteboard(attributedString: NSAttributedString, index: Int) -> Concept? {
+  fileprivate func createConceptFromPasteboard(attributedString: NSAttributedString, index: Int) -> Concept? {
     let newConceptPadding: Int = 15
     let newPoint = NSPoint(
       x: CGFloat(200 + (newConceptPadding*index)),
@@ -82,7 +82,7 @@ extension CanvasViewController {
 
   // MARK: - Interface actions
 
-  func cut(_ sender: Any?) {
+  @objc func cut(_ sender: Any?) {
     writeToPasteboard(pasteboard: NSPasteboard.general)
     if let elements = selectedElements() {
       safeTransiton {
@@ -91,15 +91,15 @@ extension CanvasViewController {
     }
   }
 
-  func copy(_ sender: Any?) {
+  @objc func copy(_ sender: Any?) {
     writeToPasteboard(pasteboard: NSPasteboard.general)
   }
 
-  func paste(_ sender: Any?) {
+  @objc func paste(_ sender: Any?) {
     readFromPasteboard(pasteboard: NSPasteboard.general)
   }
 
-  func pasteAsPlainText(_ sender: Any?) {
+  @objc func pasteAsPlainText(_ sender: Any?) {
     readFromPasteboardAsPlainText(pasteboard: NSPasteboard.general)
   }
 }
