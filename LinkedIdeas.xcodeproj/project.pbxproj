@@ -34,6 +34,8 @@
 		9B43B88B1EDC8B5D00879507 /* CanvasViewControllerKeyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43B88A1EDC8B5D00879507 /* CanvasViewControllerKeyboardTests.swift */; };
 		9B48F8491CD614370014758D /* LinkedIdeasDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */; };
 		9B48F84D1CD614BC0014758D /* DocumentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F84C1CD614BC0014758D /* DocumentData.swift */; };
+		9B4DE0A71F2BD7CE00F95AAF /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4DE0A61F2BD7CE00F95AAF /* ColorUtils.swift */; };
+		9B4DE0A81F2BD7FC00F95AAF /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4DE0A61F2BD7CE00F95AAF /* ColorUtils.swift */; };
 		9B521F871CFB380300A71598 /* SquareElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B521F861CFB380300A71598 /* SquareElement.swift */; };
 		9B66961C1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */; };
 		9B8665C61D96C9E800799678 /* StateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8665C51D96C9E800799678 /* StateManagerTests.swift */; };
@@ -177,6 +179,7 @@
 		9B43B88A1EDC8B5D00879507 /* CanvasViewControllerKeyboardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewControllerKeyboardTests.swift; sourceTree = "<group>"; };
 		9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedIdeasDocument.swift; sourceTree = "<group>"; };
 		9B48F84C1CD614BC0014758D /* DocumentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentData.swift; sourceTree = "<group>"; };
+		9B4DE0A61F2BD7CE00F95AAF /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		9B521F861CFB380300A71598 /* SquareElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareElement.swift; sourceTree = "<group>"; };
 		9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = linked_ideas_doc_icon.icns; sourceTree = "<group>"; };
 		9B8665C51D96C9E800799678 /* StateManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateManagerTests.swift; sourceTree = "<group>"; };
@@ -343,6 +346,7 @@
 				9BD2BF3E1C7F8B8D00E8A303 /* 2DMath */,
 				9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */,
 				9B24718F1EEB43BB00DC6BF2 /* RectAlignments.swift */,
+				9B4DE0A61F2BD7CE00F95AAF /* ColorUtils.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -663,6 +667,7 @@
 				9B2F1DA01BE7CFE70090CC18 /* AppDelegate.swift in Sources */,
 				9B06AD131C11AD74000BC75C /* NSRect+PointHelpers.swift in Sources */,
 				9BD2BF421C7F8C2000E8A303 /* Arrow.swift in Sources */,
+				9B4DE0A71F2BD7CE00F95AAF /* ColorUtils.swift in Sources */,
 				9BD2BF371C7F8B2300E8A303 /* Interceptable.swift in Sources */,
 				9B9EC6BD1EC0F2AB0048D2AC /* DrawableElement.swift in Sources */,
 				9B48F84D1CD614BC0014758D /* DocumentData.swift in Sources */,
@@ -712,6 +717,7 @@
 			files = (
 				9BD850CF1EE4C76E005B89C9 /* NSView+Debugging.swift in Sources */,
 				9BD850CC1EE4C74F005B89C9 /* CanvasView.swift in Sources */,
+				9B4DE0A81F2BD7FC00F95AAF /* ColorUtils.swift in Sources */,
 				9BD850DB1EE4C787005B89C9 /* CanvasViewController.swift in Sources */,
 				9BD850DC1EE4C787005B89C9 /* StateManager.swift in Sources */,
 				9BD850B31EE4C199005B89C9 /* GenerateThumbnailForURL.m in Sources */,
