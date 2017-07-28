@@ -32,7 +32,7 @@ class CanvasViewControllerTests: XCTestCase {
 
     return NSEvent.mouseEvent(
       with: .leftMouseDown,
-      location: invertY(location),
+      location: location, //invertY(location),
       modifierFlags: flags,
       timestamp: 2,
       windowNumber: 0,
