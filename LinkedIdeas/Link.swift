@@ -122,6 +122,7 @@ public class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringE
   let targetKey = "TargetKey"
   let colorKey = "colorKey"
   let attributedStringValueKey = "attributedStringValue"
+  let colorComponentsKey = "colorComponentsKey"
 
   func doesBelongTo(concept: Concept) -> Bool {
     return origin == concept || target == concept
@@ -144,10 +145,14 @@ public class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringE
       self.attributedStringValue = NSAttributedString(string: "")
     }
 
-    if let color = aDecoder.decodeObject(forKey: colorKey) as? NSColor {
-      self.color = color
+    if let colorComponents = aDecoder.decodeObject(forKey: colorComponentsKey) as? [CGFloat] {
+      self.color = ColorUtils.color(fromComponents: colorComponents)
     } else {
-      self.color = Link.defaultColor
+      if let color = aDecoder.decodeObject(forKey: colorKey) as? NSColor {
+        self.color = color
+      } else {
+        self.color = Link.defaultColor
+      }
     }
   }
 
@@ -155,7 +160,7 @@ public class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringE
     aCoder.encode(identifier, forKey: identifierKey)
     aCoder.encode(origin, forKey: originKey)
     aCoder.encode(target, forKey: targetKey)
-    aCoder.encode(color, forKey: colorKey)
+    aCoder.encode(ColorUtils.extractColorComponents(forColor: color), forKey: colorComponentsKey)
     aCoder.encode(attributedStringValue, forKey: attributedStringValueKey)
   }
 }
