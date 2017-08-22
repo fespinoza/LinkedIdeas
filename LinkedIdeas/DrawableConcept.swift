@@ -11,7 +11,7 @@ import Cocoa
 public struct DrawableConcept: DrawableElement {
   let concept: GraphConcept
 
-  public var drawingBounds: NSRect { return concept.rect }
+  public var drawingBounds: NSRect { return concept.area }
 
   public func draw() {
     drawBackground()
@@ -44,7 +44,7 @@ public struct DrawableConcept: DrawableElement {
   public func drawForDebug() {
     if isDebugging() {
       drawDebugHelpers()
-      drawCenteredDotAtPoint(concept.point, color: NSColor.red)
+      drawCenteredDotAtPoint(concept.centerPoint, color: NSColor.red)
     }
   }
 }

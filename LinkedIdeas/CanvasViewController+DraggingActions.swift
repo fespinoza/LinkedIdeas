@@ -25,16 +25,16 @@ extension CanvasViewController {
     dragCount += 1
 
     if dragCount > 1 {
-      concept.point = dragToPoint
+      concept.centerPoint = dragToPoint
     } else {
-      concept.beforeMovingPoint = concept.point
+      concept.beforeMovingPoint = concept.centerPoint
     }
   }
 
   func endDrag(forConcept concept: Concept, toPoint: NSPoint) {
     if dragCount > 1 {
       if let originalPoint = concept.beforeMovingPoint {
-        concept.point = originalPoint
+        concept.centerPoint = originalPoint
         concept.beforeMovingPoint = nil
       }
       document.move(concept: concept, toPoint: toPoint)
@@ -52,11 +52,11 @@ extension CanvasViewController {
       dragStartPoint = dragToPoint
 
       for concept in concepts {
-        concept.point = concept.point.translate(deltaX: deltaX, deltaY: deltaY)
+        concept.centerPoint = concept.centerPoint.translate(deltaX: deltaX, deltaY: deltaY)
       }
     } else {
       // Start dragging
-      for concept in concepts { concept.beforeMovingPoint = concept.point }
+      for concept in concepts { concept.beforeMovingPoint = concept.centerPoint }
 
       startDragging()
       dragStartPoint = dragToPoint
@@ -68,10 +68,10 @@ extension CanvasViewController {
           didDragStart() else { return }
 
     for concept in concepts {
-      let conceptPoint = concept.point
+      let conceptPoint = concept.centerPoint
       let deltaX = toPoint.x - oldDragStart.x
       let deltaY = toPoint.y - oldDragStart.y
-      concept.point = concept.beforeMovingPoint!
+      concept.centerPoint = concept.beforeMovingPoint!
       document.move(
         concept: concept, toPoint: conceptPoint.translate(deltaX: deltaX, deltaY: deltaY)
       )

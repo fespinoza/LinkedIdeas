@@ -63,7 +63,7 @@ extension CanvasViewController: StateManagerDelegate {
     guard case .selectedElement(var element) = currentState else {
       return
     }
-    element.attributedStringValue = textField.attributedStringValue
+//    element.attributedStringValue = textField.attributedStringValue
     dismissTextField()
 
     transitionedToSelectedElement(fromState: fromState)
@@ -80,9 +80,9 @@ extension CanvasViewController: StateManagerDelegate {
 
     switch element {
     case is Concept:
-      showTextField(inRect: element.rect, text: element.attributedStringValue)
+      showTextField(inRect: element.area, text: element.attributedStringValue)
     default:
-      showTextField(atPoint: element.point, text: element.attributedStringValue)
+      showTextField(atPoint: element.centerPoint, text: element.attributedStringValue)
     }
   }
 

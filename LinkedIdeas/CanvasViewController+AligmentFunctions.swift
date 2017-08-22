@@ -83,7 +83,7 @@ extension CanvasViewController {
   private func applyToSelectedConcepts(alignmentFunction: ([NSRect]) -> [NSRect]) {
     let selectedConcepts = currentSelectedConcepts()
 
-    let conceptRects = selectedConcepts.map({ $0.rect })
+    let conceptRects = selectedConcepts.map({ $0.area })
     let alignedConceptRects = alignmentFunction(conceptRects)
 
     for (index, concept) in selectedConcepts.enumerated() {

@@ -97,7 +97,8 @@ extension StateManagerTests {
 
     XCTAssertEqual(
       stateManager.currentState,
-      .selectedElement(element: testElement)
+      CanvasState.selectedElement(element: testElement)
+//      .selectedElement(element: testElement)
     )
   }
 

@@ -80,16 +80,17 @@ extension StateManagerTestDelegate: StateManagerDelegate {
 }
 
 struct TestElement: Element {
+  var stringValue: String { return attributedStringValue.string }
   var identifier: String
-  var rect: NSRect
+  var area: NSRect
   var isSelected: Bool = false
   var isEditable: Bool = false
-  var point: NSPoint { return rect.center }
+  var centerPoint: NSPoint { return area.center }
   var attributedStringValue: NSAttributedString
 
   static let sample = TestElement(
     identifier: "element #1",
-    rect: NSRect(x: 30, y: 40, width: 100, height: 50),
+    area: NSRect(x: 30, y: 40, width: 100, height: 50),
     isSelected: false,
     isEditable: false,
     attributedStringValue: NSAttributedString(string: "")

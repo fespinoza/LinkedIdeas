@@ -52,7 +52,7 @@ extension CanvasViewController {
       return nil
     }
 
-    let newConcept = Concept(attributedStringValue: text, point: point)
+    let newConcept = Concept(attributedStringValue: text, centerPoint: point)
 
     document.save(concept: newConcept)
 
@@ -73,33 +73,33 @@ extension CanvasViewController {
   }
 
   func showTextField(inRect rect: NSRect, text: NSAttributedString? = nil) {
-    textFieldResizingBehavior.setFrame(toTextField: textField, forContentRect: rect)
-    textField.isEditable = true
-    textField.isHidden = false
-    if let text = text {
-      textField.attributedStringValue = text
-      textFieldResizingBehavior.resize(textField)
-    }
-    canvasView.window?.makeFirstResponder(textField)
+//    textFieldResizingBehavior.setFrame(toTextField: textField, forContentRect: rect)
+//    textField.isEditable = true
+//    textField.isHidden = false
+//    if let text = text {
+//      textField.attributedStringValue = text
+//      textFieldResizingBehavior.resize(textField)
+//    }
+//    canvasView.window?.makeFirstResponder(textField)
   }
 
   func showTextField(atPoint point: NSPoint, text: NSAttributedString? = nil) {
-    textField.frame = NSRect(center: point, size: NSSize(width: 60, height: 25))
-    textField.isEditable = true
-    textField.isHidden = false
-    if let text = text {
-      textField.attributedStringValue = text
-      textFieldResizingBehavior.resize(textField)
-    }
-    canvasView.window?.makeFirstResponder(textField)
+//    textField.frame = NSRect(center: point, size: NSSize(width: 60, height: 25))
+//    textField.isEditable = true
+//    textField.isHidden = false
+//    if let text = text {
+//      textField.attributedStringValue = text
+//      textFieldResizingBehavior.resize(textField)
+//    }
+//    canvasView.window?.makeFirstResponder(textField)
   }
 
   func dismissTextField() {
-    textField.setFrameOrigin(NSPoint.zero)
-    textField.isEditable = false
-    textField.isHidden = true
-    textField.stringValue = ""
-
-    canvasView.window?.makeFirstResponder(canvasView)
+//    textField.setFrameOrigin(NSPoint.zero)
+//    textField.isEditable = false
+//    textField.isHidden = true
+//    textField.stringValue = ""
+//
+//    canvasView.window?.makeFirstResponder(canvasView)
   }
 }

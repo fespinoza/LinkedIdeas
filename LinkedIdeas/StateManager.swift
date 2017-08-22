@@ -47,16 +47,17 @@ enum CanvasState {
 }
 
 struct EmptyElement: Element {
+  var stringValue: String { return attributedStringValue.string}
   var identifier: String
-  var rect: NSRect
+  var area: NSRect
   var isEditable: Bool
   var isSelected: Bool
-  var point: NSPoint { return rect.center }
+  var centerPoint: NSPoint { return area.center }
   var attributedStringValue: NSAttributedString
 
   static let example = EmptyElement(
     identifier: "empty-element",
-    rect: NSRect(x: 0, y: 0, width: 30, height: 40),
+    area: NSRect(x: 0, y: 0, width: 30, height: 40),
     isEditable: false,
     isSelected: false,
     attributedStringValue: NSAttributedString(string: "")

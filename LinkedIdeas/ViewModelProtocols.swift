@@ -9,8 +9,8 @@
 import Cocoa
 
 public protocol GraphConcept {
-  var rect: NSRect { get }
-  var point: NSPoint { get }
+  var area: NSRect { get }
+  var centerPoint: NSPoint { get }
   var stringValue: String { get }
   var attributedStringValue: NSAttributedString { get }
   var isSelected: Bool { get set }
@@ -24,8 +24,8 @@ public protocol GraphLink {
   var stringValue: String { get }
   var attributedStringValue: NSAttributedString { get }
 
-  var point: NSPoint { get }
-  var rect: NSRect { get }
+  var centerPoint: NSPoint { get }
+  var area: NSRect { get }
 
   var originPoint: NSPoint { get }
   var targetPoint: NSPoint { get }
@@ -37,6 +37,6 @@ public protocol GraphLink {
 extension Concept: GraphConcept {}
 
 extension Link: GraphLink {
-  public var originRect: NSRect { return origin.rect }
-  public var targetRect: NSRect { return target.rect }
+  public var originRect: NSRect { return origin.area }
+  public var targetRect: NSRect { return target.area }
 }

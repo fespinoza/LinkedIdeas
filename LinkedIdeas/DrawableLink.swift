@@ -35,11 +35,11 @@ public struct DrawableLink: DrawableElement {
     textSize.width += padding
     textSize.height += padding
 
-    let textRect = NSRect(center: link.point, size: textSize)
+    let textRect = NSRect(center: link.centerPoint, size: textSize)
     textRect.fill()
 
     // text
-    let bottomLeftTextPoint = link.point.translate(
+    let bottomLeftTextPoint = link.centerPoint.translate(
       deltaX: -(textSize.width - padding) / 2.0,
       deltaY: -(textSize.height - padding) / 2.0
     )
@@ -75,7 +75,7 @@ public struct DrawableLink: DrawableElement {
     if isDebugging() {
       drawDebugHelpers()
       NSColor.magenta.set()
-      NSBezierPath(rect: link.rect).stroke()
+      NSBezierPath(rect: link.area).stroke()
     }
   }
 }

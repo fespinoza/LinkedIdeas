@@ -9,7 +9,7 @@
 import Cocoa
 
 extension NSAttributedString {
-  // Mark: - Computed Properties
+  // MARK: - Computed Properties
   var maxRange: NSRange { return NSRange(location: 0, length: length) }
 
   var isStrikedThrough: Bool {
@@ -46,7 +46,7 @@ extension NSAttributedString {
     }
   }
 
-  // Mark: - Convenience Initializers
+  // MARK: - Convenience Initializers
   convenience init(attributedString: NSAttributedString, strikeThrough: Bool) {
     var strikeStyle: NSUnderlineStyle = NSUnderlineStyle.styleNone
     if strikeThrough { strikeStyle = NSUnderlineStyle.styleSingle }
