@@ -32,11 +32,28 @@ extension CanvasViewController: NSTextViewDelegate {
 
   func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
     switch commandSelector {
+    case #selector(NSResponder.cancelOperation(_:)):
+      safeTransiton {
+        try stateManager.toCanvasWaiting()
+      }
+      return true
     case #selector(NSResponder.insertNewline(_:)):
-      dismissTextView()
+      switch currentState {
+      case .editingElement(let element):
+        safeTransiton {
+          try stateManager.toSelectedElementSavingChanges(element: element)
+        }
+      case .newConcept:
+        safeTransiton {
+          try stateManager.toCanvasWaiting(savingConceptWithText: textView.attributedString())
+        }
+      default:
+        break
+      }
       return true
     default:
       return false
     }
+
   }
 }

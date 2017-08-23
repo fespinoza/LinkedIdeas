@@ -530,13 +530,14 @@
 					};
 					9B2F1DAF1BE7CFE80090CC18 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 4E6CZX3H5W;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 9B2F1D9B1BE7CFE70090CC18;
 					};
 					9BD850AF1EE4C199005B89C9 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 2Z7R9FQBNN;
+						DevelopmentTeam = 4E6CZX3H5W;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -925,7 +926,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4E6CZX3H5W;
 				INFOPLIST_FILE = LinkedIdeasTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeasTests;
@@ -946,7 +947,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4E6CZX3H5W;
 				INFOPLIST_FILE = LinkedIdeasTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeasTests;
@@ -967,7 +968,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 2Z7R9FQBNN;
+				DEVELOPMENT_TEAM = 4E6CZX3H5W;
 				INFOPLIST_FILE = QLLinkedIdeas/Info.plist;
 				INSTALL_PATH = /Library/QuickLook;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -990,7 +991,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 2Z7R9FQBNN;
+				DEVELOPMENT_TEAM = 4E6CZX3H5W;
 				INFOPLIST_FILE = QLLinkedIdeas/Info.plist;
 				INSTALL_PATH = /Library/QuickLook;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";

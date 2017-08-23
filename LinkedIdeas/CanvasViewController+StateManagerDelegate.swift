@@ -63,7 +63,7 @@ extension CanvasViewController: StateManagerDelegate {
     guard case .selectedElement(var element) = currentState else {
       return
     }
-//    element.attributedStringValue = textField.attributedStringValue
+    element.attributedStringValue = textView.attributedString()
     dismissTextView()
 
     transitionedToSelectedElement(fromState: fromState)

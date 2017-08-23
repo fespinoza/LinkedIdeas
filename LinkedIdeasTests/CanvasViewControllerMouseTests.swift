@@ -173,7 +173,9 @@ extension CanvasViewControllerTests {
         shift: true
       )
     )
-    canvasViewController.mouseDragged(with: createMouseEvent(clickCount: 1, location: concepts[2].centerPoint, shift: true))
+    canvasViewController.mouseDragged(
+      with: createMouseEvent(clickCount: 1, location: concepts[2].centerPoint, shift: true)
+    )
     canvasViewController.mouseUp(with: createMouseEvent(clickCount: 1, location: concepts[2].centerPoint, shift: true))
 
     switch canvasViewController.currentState {
