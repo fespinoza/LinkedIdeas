@@ -141,7 +141,7 @@ extension CanvasViewControllerTests {
 extension CanvasViewControllerTests {
 //  func testShowTextFieldAt() {
 //    let clickedPoint = NSPoint(x: 400, y: 300)
-//    canvasViewController.showTextField(atPoint: clickedPoint)
+//    canvasViewController.showTextView(atPoint: clickedPoint)
 //
 //    XCTAssertFalse(canvasViewController.textField.isHidden)
 //    XCTAssert(canvasViewController.textField.isEditable)
@@ -156,7 +156,7 @@ extension CanvasViewControllerTests {
 //    textField.isHidden = false
 //    textField.isEditable = true
 //
-//    canvasViewController.dismissTextField()
+//    canvasViewController.dismissTextView()
 //
 //    XCTAssert(canvasViewController.textField.isHidden)
 //    XCTAssertFalse(canvasViewController.textField.isEditable)

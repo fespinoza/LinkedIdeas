@@ -22,7 +22,7 @@ extension CanvasViewController: StateManagerDelegate {
 
     commonTransitionBehavior(fromState)
 
-    showTextField(atPoint: point)
+    showTextView(atPoint: point)
   }
 
   func transitionedToCanvasWaiting(fromState: CanvasState) {
@@ -30,7 +30,7 @@ extension CanvasViewController: StateManagerDelegate {
   }
 
   func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString) {
-    dismissTextField()
+    dismissTextView()
 
     if let concept = saveConcept(text: text, atPoint: point) {
       safeTransiton {
@@ -64,7 +64,7 @@ extension CanvasViewController: StateManagerDelegate {
       return
     }
 //    element.attributedStringValue = textField.attributedStringValue
-    dismissTextField()
+    dismissTextView()
 
     transitionedToSelectedElement(fromState: fromState)
   }
@@ -80,9 +80,9 @@ extension CanvasViewController: StateManagerDelegate {
 
     switch element {
     case is Concept:
-      showTextField(inRect: element.area, text: element.attributedStringValue)
+      showTextView(inRect: element.area, text: element.attributedStringValue)
     default:
-      showTextField(atPoint: element.centerPoint, text: element.attributedStringValue)
+      showTextView(atPoint: element.centerPoint, text: element.attributedStringValue)
     }
   }
 
@@ -102,10 +102,10 @@ extension CanvasViewController: StateManagerDelegate {
   private func commonTransitionBehavior(_ fromState: CanvasState) {
     switch fromState {
     case .newConcept:
-      dismissTextField()
+      dismissTextView()
     case .editingElement(var element):
       element.isEditable = false
-      dismissTextField()
+      dismissTextView()
     case .selectedElement(let element):
       unselect(elements: [element])
       dismissConstructionArrow()

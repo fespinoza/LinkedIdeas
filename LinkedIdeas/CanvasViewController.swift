@@ -196,4 +196,13 @@ class CanvasViewController: NSViewController {
       return nil
     }
   }
+
+  func currentlyEditingElement() -> Element? {
+    switch currentState {
+    case .editingElement(let element):
+      return element
+    default:
+      return nil
+    }
+  }
 }

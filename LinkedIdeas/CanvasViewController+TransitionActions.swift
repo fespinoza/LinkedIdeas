@@ -72,34 +72,29 @@ extension CanvasViewController {
     return newLink
   }
 
-  func showTextField(inRect rect: NSRect, text: NSAttributedString? = nil) {
-//    textFieldResizingBehavior.setFrame(toTextField: textField, forContentRect: rect)
-//    textField.isEditable = true
-//    textField.isHidden = false
-//    if let text = text {
-//      textField.attributedStringValue = text
-//      textFieldResizingBehavior.resize(textField)
-//    }
-//    canvasView.window?.makeFirstResponder(textField)
+  func showTextView(inRect rect: NSRect, text: NSAttributedString? = nil) {
+    textStorage.setAttributedString(text ?? NSAttributedString(string: ""))
+    let textViewFrame = rect
+    textView.frame = textViewFrame
+    textView.sizeToFit()
+
+    textView.isHidden = false
+    textView.isEditable = true
+
+    canvasView.window?.makeFirstResponder(textView)
   }
 
-  func showTextField(atPoint point: NSPoint, text: NSAttributedString? = nil) {
-//    textField.frame = NSRect(center: point, size: NSSize(width: 60, height: 25))
-//    textField.isEditable = true
-//    textField.isHidden = false
-//    if let text = text {
-//      textField.attributedStringValue = text
-//      textFieldResizingBehavior.resize(textField)
-//    }
-//    canvasView.window?.makeFirstResponder(textField)
+  func showTextView(atPoint point: NSPoint, text: NSAttributedString? = nil) {
+    let textViewFrame = NSRect(center: point, size: NSSize(width: 60, height: 25))
+    showTextView(inRect: textViewFrame, text: text)
   }
 
-  func dismissTextField() {
-//    textField.setFrameOrigin(NSPoint.zero)
-//    textField.isEditable = false
-//    textField.isHidden = true
-//    textField.stringValue = ""
-//
-//    canvasView.window?.makeFirstResponder(canvasView)
+  func dismissTextView() {
+    textStorage.setAttributedString(NSAttributedString(string: ""))
+    textView.setFrameOrigin(NSPoint.zero)
+    textView.isEditable = false
+    textView.isHidden = true
+
+    canvasView.window?.makeFirstResponder(canvasView)
   }
 }
