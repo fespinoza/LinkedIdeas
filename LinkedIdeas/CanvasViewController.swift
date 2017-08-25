@@ -48,7 +48,8 @@ class CanvasViewController: NSViewController {
 
   lazy var textView: NSTextView = {
     let textView = NSTextView(frame: NSRect.zero, textContainer: textContainer)
-    textView.isEditable = true
+    textView.isHidden = true
+    textView.isEditable = false
     textView.isRichText = true
     textView.isVerticallyResizable = true
     textView.isHorizontallyResizable = true
@@ -85,6 +86,8 @@ class CanvasViewController: NSViewController {
     scrollView.scroll(canvasViewCenterForScroll)
 
     stateManager.delegate = self
+
+    canvasView.addSubview(textView)
 
     canvasView.window?.makeFirstResponder(canvasView)
   }

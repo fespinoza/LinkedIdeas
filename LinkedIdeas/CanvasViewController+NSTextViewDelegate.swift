@@ -10,24 +10,18 @@ import Cocoa
 
 extension CanvasViewController: NSTextViewDelegate {
   func textDidChange(_ notification: Notification) {
-    var textFieldCenterPoint: CGPoint
+    var textViewCenterPoint: CGPoint
 
     switch currentState {
     case .editingElement(let element):
-      textFieldCenterPoint = element.centerPoint
+      textViewCenterPoint = element.centerPoint
     case .newConcept(let point):
-      textFieldCenterPoint = point
+      textViewCenterPoint = point
     default:
       preconditionFailure("there is no point to center to")
     }
 
-    // re-center textView
-    textView.setFrameOrigin(
-      NSPoint(
-        x: textFieldCenterPoint.x - textView.frame.width / 2,
-        y: textFieldCenterPoint.y - textView.frame.height / 2
-      )
-    )
+    reCenterTextView(atPoint: textViewCenterPoint)
   }
 
   func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
@@ -44,8 +38,11 @@ extension CanvasViewController: NSTextViewDelegate {
           try stateManager.toSelectedElementSavingChanges(element: element)
         }
       case .newConcept:
+        guard let text = textView.attributedString().copy() as? NSAttributedString else {
+          preconditionFailure("uh? this should have been an attributed string")
+        }
         safeTransiton {
-          try stateManager.toCanvasWaiting(savingConceptWithText: textView.attributedString())
+          try stateManager.toCanvasWaiting(savingConceptWithText: text)
         }
       default:
         break

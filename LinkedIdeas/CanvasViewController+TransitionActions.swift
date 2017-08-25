@@ -77,6 +77,7 @@ extension CanvasViewController {
     let textViewFrame = rect
     textView.frame = textViewFrame
     textView.sizeToFit()
+    reCenterTextView(atPoint: rect.center)
 
     textView.isHidden = false
     textView.isEditable = true
@@ -96,5 +97,14 @@ extension CanvasViewController {
     textView.isHidden = true
 
     canvasView.window?.makeFirstResponder(canvasView)
+  }
+
+  func reCenterTextView(atPoint centerPoint: CGPoint) {
+    textView.setFrameOrigin(
+      NSPoint(
+        x: centerPoint.x - textView.frame.width / 2,
+        y: centerPoint.y - textView.frame.height / 2
+      )
+    )
   }
 }
