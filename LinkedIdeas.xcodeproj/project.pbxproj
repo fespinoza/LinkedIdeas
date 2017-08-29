@@ -109,6 +109,8 @@
 		9BDF4B801F4B7DA6000A1BB2 /* CanvasViewController+NSTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCD799C1F4A37FE00D310B3 /* CanvasViewController+NSTextViewDelegate.swift */; };
 		9BE40C211D8DD98B0025F154 /* CanvasViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */; };
 		9BF15C391CAC69A500C95041 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF15C381CAC69A500C95041 /* WindowController.swift */; };
+		9BFBA8951F50D8D200EA8ABE /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFBA8941F50D8D200EA8ABE /* Handler.swift */; };
+		9BFBA8961F50D99800EA8ABE /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFBA8941F50D8D200EA8ABE /* Handler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +215,7 @@
 		9BF456E21F16E8B800E1CDD3 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9BF456E31F16E8BC00E1CDD3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9BF456E41F16E8BF00E1CDD3 /* PR.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PR.md; sourceTree = "<group>"; };
+		9BFBA8941F50D8D200EA8ABE /* Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -404,6 +407,7 @@
 				9B48F84C1CD614BC0014758D /* DocumentData.swift */,
 				9BDDE7381BEF9157000AAD44 /* Concept.swift */,
 				9BABB2B11C07B7F7001EC9E0 /* Link.swift */,
+				9BFBA8941F50D8D200EA8ABE /* Handler.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -673,6 +677,7 @@
 				9BB8FC891CA6B889008CD6A2 /* Element.swift in Sources */,
 				9BF15C391CAC69A500C95041 /* WindowController.swift in Sources */,
 				9B1CCDEB1D294E0900F319EB /* NSAttributedStringExtensions.swift in Sources */,
+				9BFBA8951F50D8D200EA8ABE /* Handler.swift in Sources */,
 				9BD2BF3B1C7F8B5500E8A303 /* Line.swift in Sources */,
 				9B3941A81E56596000F1E957 /* NSResponder-Extensions.swift in Sources */,
 				9B3941941E5656FE00F1E957 /* DrawableConcept.swift in Sources */,
@@ -721,6 +726,7 @@
 				9BD850B51EE4C199005B89C9 /* GeneratePreviewForURL.m in Sources */,
 				9BD850DA1EE4C77E005B89C9 /* WindowController.swift in Sources */,
 				9BD850C81EE4C744005B89C9 /* ViewModelProtocols.swift in Sources */,
+				9BFBA8961F50D99800EA8ABE /* Handler.swift in Sources */,
 				9BD850CE1EE4C753005B89C9 /* NSResponder-Extensions.swift in Sources */,
 				9BD850C01EE4C739005B89C9 /* Concept.swift in Sources */,
 				9BD850DF1EE4C792005B89C9 /* CanvasViewController+LinkCreation.swift in Sources */,

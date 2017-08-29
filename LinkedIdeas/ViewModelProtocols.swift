@@ -15,6 +15,11 @@ public protocol GraphConcept {
   var attributedStringValue: NSAttributedString { get }
   var isSelected: Bool { get set }
   var isEditable: Bool { get set }
+
+  var leftHandler: Handler? { get }
+  var rightHandler: Handler? { get }
+
+  func draw()
 }
 
 public protocol GraphLink {

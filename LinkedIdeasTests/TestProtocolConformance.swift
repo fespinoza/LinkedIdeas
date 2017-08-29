@@ -44,6 +44,10 @@ class StateManagerTestDelegate: MockMethodCalls {
 }
 
 extension StateManagerTestDelegate: StateManagerDelegate {
+  func transitionedToResizingConcept(fromState: CanvasState) {
+    registerCall(methodName: #function)
+  }
+
   func transitionSuccesfull() {}
 
   func transitionedToNewConcept(fromState: CanvasState) {

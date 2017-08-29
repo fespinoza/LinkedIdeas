@@ -22,14 +22,15 @@ public class Concept: NSObject, NSCoding, Element, SquareElement {
     return CGRect(center: centerPoint, size: size)
   }
 
-  public var padding: CGFloat = 7
+  public var horizontalPadding: CGFloat = 6
+  public var verticalPadding: CGFloat = 3
 
   private var size: CGSize {
     switch mode {
     case .textBased:
-      return CGSize(width: textSize.width + padding * 2, height: textSize.height + padding * 2)
+      return CGSize(width: textSize.width + horizontalPadding * 2, height: textSize.height + verticalPadding * 2)
     case .modifiedWidth(let width):
-      return CGSize(width: width + padding * 2, height: textSize.height + padding * 2)
+      return CGSize(width: width + horizontalPadding * 2, height: textSize.height + verticalPadding * 2)
     }
   }
 
@@ -63,7 +64,15 @@ public class Concept: NSObject, NSCoding, Element, SquareElement {
 
   // visual element
   public var isEditable: Bool = false
-  public var isSelected: Bool = false
+  public var isSelected: Bool = false {
+    didSet {
+      self.leftHandler = isSelected ? Handler(concept: self, position: .left) : nil
+      self.rightHandler = isSelected ? Handler(concept: self, position: .right) : nil
+    }
+  }
+
+  public var leftHandler: Handler?
+  public var rightHandler: Handler?
 
   // KVO
   static let attributedStringValuePath = "attributedStringValue"
@@ -101,6 +110,10 @@ public class Concept: NSObject, NSCoding, Element, SquareElement {
   }
 
   // MARK: - Methods
+
+  public func draw() {
+    attributedStringValue.draw(in: textArea)
+  }
 
   func contains(point: NSPoint) -> Bool {
     return area.contains(point)

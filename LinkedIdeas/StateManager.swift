@@ -23,6 +23,7 @@ protocol StateManagerDelegate: class {
   func transitionedToSelectedElementSavingChanges(fromState: CanvasState)
   func transitionedToEditingElement(fromState: CanvasState)
   func transitionedToMultipleSelectedElements(fromState: CanvasState)
+  func transitionedToResizingConcept(fromState: CanvasState)
 }
 
 enum CanvasState {
@@ -31,19 +32,31 @@ enum CanvasState {
   case selectedElement(element: Element)
   case editingElement(element: Element)
   case multipleSelectedElements(elements: [Element])
+  case resizingConcept(concept: Concept, withHandler: Handler, initialArea: NSRect)
 
   func isSimilar(to state: CanvasState) -> Bool {
-    switch (self, state) {
-    case (.newConcept, .newConcept),
-         (.selectedElement, .selectedElement),
-         (.canvasWaiting, .canvasWaiting),
-         (.editingElement, .editingElement),
-         (.multipleSelectedElements, .multipleSelectedElements):
-      return true
-    default:
-      return false
+    return state.description == self.description
+  }
+}
+
+extension CanvasState: CustomStringConvertible {
+  var description: String {
+    switch self {
+    case .canvasWaiting:
+      return "canvasWaiting"
+    case .editingElement:
+      return "editingElement"
+    case .multipleSelectedElements:
+      return "multipleSelectedElements"
+    case .newConcept:
+      return "newConcept"
+    case .resizingConcept:
+      return "resizingConcept"
+    case .selectedElement:
+      return "selectedElement"
     }
   }
+
 }
 
 struct EmptyElement: Element {
@@ -75,6 +88,8 @@ extension CanvasState: Equatable {
       return a.identifier == b.identifier
     case (.multipleSelectedElements(let a), .multipleSelectedElements(let b)):
       return a.map { $0.identifier } == b.map { $0.identifier }
+    case (.resizingConcept(let a1, _, _), .resizingConcept(let a2, _, _)):
+      return a1.identifier == a2.identifier
     default: return false
     }
   }
@@ -144,12 +159,13 @@ class StateManager {
   }
 
   public func toSelectedElement(element: Element) throws {
-    let possibleStates: [CanvasState] = [
-      .canvasWaiting,
-      .newConcept(point: NSPoint.zero),
-      .selectedElement(element: EmptyElement.example),
-      .editingElement(element: EmptyElement.example),
-      .multipleSelectedElements(elements: [Element]())
+    let possibleStates = [
+      "canvasWaiting",
+      "newConcept",
+      "selectedElement",
+      "editingElement",
+      "multipleSelectedElements",
+      "resizingConcept"
     ]
 
     let state = CanvasState.selectedElement(element: element)
@@ -193,14 +209,25 @@ class StateManager {
     }
   }
 
+  public func toResizingConcept(concept: Concept, handler: Handler) throws {
+    let possibleStates: [CanvasState] = [
+      .selectedElement(element: EmptyElement.example)
+    ]
+
+    let state = CanvasState.resizingConcept(concept: concept, withHandler: handler, initialArea: concept.area)
+    try transition(fromPossibleStates: possibleStates, toState: state) { (oldState) in
+      delegate?.transitionedToResizingConcept(fromState: oldState)
+    }
+  }
+
   private func transition(
-    fromPossibleStates validFromStates: [CanvasState],
+    fromPossibleStates validFromStateDescriptions: [String],
     toState: CanvasState,
     onSuccess: (CanvasState) -> Void
   ) throws {
     let oldState = currentState
 
-    if validFromStates.index(where: { $0.isSimilar(to: oldState) }) != nil {
+    if validFromStateDescriptions.index(where: { $0 == oldState.description }) != nil {
       currentState = toState
       onSuccess(oldState)
       delegate?.transitionSuccesfull()
@@ -209,5 +236,14 @@ class StateManager {
         message: "there is no transition from \(oldState) to '\(toState)'"
       )
     }
+  }
+
+  // TODO: remove this function
+  private func transition(
+    fromPossibleStates validFromStates: [CanvasState],
+    toState: CanvasState,
+    onSuccess: (CanvasState) -> Void
+  ) throws {
+    try transition(fromPossibleStates: validFromStates.map({ $0.description }), toState: toState, onSuccess: onSuccess)
   }
 }

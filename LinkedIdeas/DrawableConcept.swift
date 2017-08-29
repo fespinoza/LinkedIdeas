@@ -15,7 +15,7 @@ public struct DrawableConcept: DrawableElement {
 
   public func draw() {
     drawBackground()
-    drawConceptText()
+    concept.draw()
     drawSelectedRing()
     drawForDebug()
   }
@@ -37,8 +37,13 @@ public struct DrawableConcept: DrawableElement {
       return
     }
 
-    NSColor.red.set()
-    NSBezierPath(rect: drawingBounds).stroke()
+    NSColor(red: 146 / 255, green: 178 / 255, blue: 254 / 255, alpha: 1).set()
+    let bezierPath = NSBezierPath(rect: drawingBounds)
+    bezierPath.lineWidth = 1
+    bezierPath.stroke()
+
+    concept.leftHandler?.draw()
+    concept.rightHandler?.draw()
   }
 
   public func drawForDebug() {
