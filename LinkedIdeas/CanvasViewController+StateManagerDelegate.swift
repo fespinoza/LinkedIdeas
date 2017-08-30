@@ -64,10 +64,11 @@ extension CanvasViewController: StateManagerDelegate {
   }
 
   func transitionedToSelectedElementSavingChanges(fromState: CanvasState) {
-    guard case .selectedElement(var element) = currentState else {
+    guard case .selectedElement(var element) = currentState,
+      let newText = textView.attributedString().copy() as? NSAttributedString else {
       return
     }
-    element.attributedStringValue = textView.attributedString()
+    element.attributedStringValue = newText
     dismissTextView()
 
     transitionedToSelectedElement(fromState: fromState)
