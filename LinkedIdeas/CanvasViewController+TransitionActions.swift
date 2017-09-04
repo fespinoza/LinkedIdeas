@@ -72,9 +72,30 @@ extension CanvasViewController {
     return newLink
   }
 
-  func showTextView(inRect rect: NSRect, text: NSAttributedString? = nil) {
+  func showTextView(inRect rect: NSRect, text: NSAttributedString? = nil, constrainedSize: NSSize? = nil) {
     textStorage.setAttributedString(text ?? NSAttributedString(string: ""))
     let textViewFrame = rect
+
+    func calculateMaxSize(forCenterPoint centerPoint: NSPoint) -> NSSize {
+      let centerPointInScrollView = scrollView.convert(centerPoint, from: canvasView)
+
+      let deltaX1 = centerPointInScrollView.x
+      let deltaX2 = scrollView.visibleRect.width - centerPointInScrollView.x
+
+      return NSSize(
+        width: min(deltaX1, deltaX2) * 2,
+        height: scrollView.visibleRect.height
+      )
+    }
+
+    // the maxSize for the textView should be the max size allowed given
+    // the centerPoint where the text view will be displayed and the visible
+    // rect that is shown by the NSScrollView
+    let maxSize = constrainedSize ?? calculateMaxSize(forCenterPoint: rect.center)
+    print(maxSize.debugDescription)
+
+    textContainer.size = maxSize
+    textView.maxSize = maxSize
     textView.frame = textViewFrame
     textView.sizeToFit()
     reCenterTextView(atPoint: rect.center)
@@ -85,9 +106,9 @@ extension CanvasViewController {
     canvasView.window?.makeFirstResponder(textView)
   }
 
-  func showTextView(atPoint point: NSPoint, text: NSAttributedString? = nil) {
+  func showTextView(atPoint point: NSPoint, text: NSAttributedString? = nil, constrainedSize: NSSize? = nil) {
     let textViewFrame = NSRect(center: point, size: NSSize(width: 60, height: 25))
-    showTextView(inRect: textViewFrame, text: text)
+    showTextView(inRect: textViewFrame, text: text, constrainedSize: constrainedSize)
   }
 
   func dismissTextView() {
