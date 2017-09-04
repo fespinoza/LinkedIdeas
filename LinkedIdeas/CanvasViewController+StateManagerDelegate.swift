@@ -34,6 +34,17 @@ extension CanvasViewController: StateManagerDelegate {
   }
 
   func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString) {
+    // extract the max Size for the textView
+    // if the text is longer than the maxSize width, it should be constrained
+    // if not, there is no constrain applied
+    var conceptMode: Concept.Mode
+    let textViewMaxWidth = textView.maxSize.width
+    if text.size().width > textViewMaxWidth {
+      conceptMode = .modifiedWidth(width: textViewMaxWidth)
+    } else {
+      conceptMode = .textBased
+    }
+
     dismissTextView()
 
     if let concept = saveConcept(text: text, atPoint: point) {
@@ -68,6 +79,18 @@ extension CanvasViewController: StateManagerDelegate {
       let newText = textView.attributedString().copy() as? NSAttributedString else {
       return
     }
+
+    var conceptMode: Concept.Mode
+    let textViewMaxWidth = textView.maxSize.width
+    if newText.size().width > textViewMaxWidth {
+      conceptMode = .modifiedWidth(width: textViewMaxWidth)
+    } else {
+      conceptMode = .textBased
+    }
+    if let concept = element as? Concept {
+      concept.mode = conceptMode
+    }
+
     element.attributedStringValue = newText
     dismissTextView()
 
