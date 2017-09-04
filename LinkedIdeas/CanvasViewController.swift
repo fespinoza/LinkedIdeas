@@ -53,11 +53,9 @@ class CanvasViewController: NSViewController {
     textView.isRichText = true
     textView.isVerticallyResizable = true
     textView.isHorizontallyResizable = true
-    textView.backgroundColor = NSColor.gray
+    textView.backgroundColor = NSColor.lightGray
 
     textView.delegate = self
-    textView.minSize = NSSize(width: 10, height: 10)
-    textView.maxSize = NSSize(width: 300, height: 300)
     return textView
   }()
 

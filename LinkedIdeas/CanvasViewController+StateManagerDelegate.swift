@@ -12,7 +12,6 @@ import Cocoa
 
 extension CanvasViewController: StateManagerDelegate {
   func transitionedToResizingConcept(fromState: CanvasState) {
-    commonTransitionBehavior(fromState)
   }
 
   func transitionSuccesfull() {

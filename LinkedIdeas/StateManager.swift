@@ -159,6 +159,7 @@ class StateManager {
   }
 
   public func toSelectedElement(element: Element) throws {
+    // switch on current states?
     let possibleStates = [
       "canvasWaiting",
       "newConcept",
