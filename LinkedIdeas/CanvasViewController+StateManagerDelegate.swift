@@ -48,6 +48,7 @@ extension CanvasViewController: StateManagerDelegate {
     dismissTextView()
 
     if let concept = saveConcept(text: text, atPoint: point) {
+      concept.mode = conceptMode
       safeTransiton {
         try stateManager.toSelectedElement(element: concept)
       }
@@ -108,7 +109,20 @@ extension CanvasViewController: StateManagerDelegate {
 
     switch element {
     case is Concept:
-      showTextView(inRect: element.area, text: element.attributedStringValue)
+      guard let concept = element as? Concept else {
+        return
+      }
+      // if the concept mode is
+      // constrained, then pass the constraint
+      // if not don't pass anything and it will be contrained to max visible area
+      var constrainedSize: NSSize?
+      switch concept.mode {
+      case .modifiedWidth(let width):
+        constrainedSize = NSSize(width: width, height: canvasView.bounds.height)
+      case .textBased:
+        constrainedSize = nil
+      }
+      showTextView(inRect: element.area, text: element.attributedStringValue, constrainedSize: constrainedSize)
     default:
       showTextView(atPoint: element.centerPoint, text: element.attributedStringValue)
     }
