@@ -25,6 +25,15 @@ public class Concept: NSObject, NSCoding, Element, SquareElement {
   public var horizontalPadding: CGFloat = 6
   public var verticalPadding: CGFloat = 3
 
+  public var constrainedSize: NSSize? {
+    switch mode {
+    case .modifiedWidth(let width):
+      return NSSize(width: width, height: 1e5)
+    case .textBased:
+      return nil
+    }
+  }
+
   private var size: CGSize {
     switch mode {
     case .textBased:

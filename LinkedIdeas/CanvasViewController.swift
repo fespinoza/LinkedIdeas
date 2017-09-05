@@ -32,7 +32,7 @@ class CanvasViewController: NSViewController {
   }
 
   // MARK: - Text Handling
-  let textContainer = NSTextContainer(size: NSSize(width: 300, height: 300))
+  let textContainer = NSTextContainer()
 
   lazy var layoutManager: NSLayoutManager = {
     let layoutManager = NSLayoutManager()

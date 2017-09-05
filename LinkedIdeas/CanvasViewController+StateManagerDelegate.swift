@@ -33,21 +33,11 @@ extension CanvasViewController: StateManagerDelegate {
   }
 
   func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString) {
-    // extract the max Size for the textView
-    // if the text is longer than the maxSize width, it should be constrained
-    // if not, there is no constrain applied
-    var conceptMode: Concept.Mode
-    let textViewMaxWidth = textView.maxSize.width
-    if text.size().width > textViewMaxWidth {
-      conceptMode = .modifiedWidth(width: textViewMaxWidth)
-    } else {
-      conceptMode = .textBased
-    }
-
+    let mode = conceptMode(from: text)
     dismissTextView()
 
     if let concept = saveConcept(text: text, atPoint: point) {
-      concept.mode = conceptMode
+      concept.mode = mode
       safeTransiton {
         try stateManager.toSelectedElement(element: concept)
       }
@@ -80,15 +70,8 @@ extension CanvasViewController: StateManagerDelegate {
       return
     }
 
-    var conceptMode: Concept.Mode
-    let textViewMaxWidth = textView.maxSize.width
-    if newText.size().width > textViewMaxWidth {
-      conceptMode = .modifiedWidth(width: textViewMaxWidth)
-    } else {
-      conceptMode = .textBased
-    }
     if let concept = element as? Concept {
-      concept.mode = conceptMode
+      concept.mode = conceptMode(from: newText)
     }
 
     element.attributedStringValue = newText
@@ -104,25 +87,13 @@ extension CanvasViewController: StateManagerDelegate {
       return
     }
 
-    element.isEditable = true
-
-    switch element {
-    case is Concept:
-      guard let concept = element as? Concept else {
-        return
-      }
-      // if the concept mode is
-      // constrained, then pass the constraint
-      // if not don't pass anything and it will be contrained to max visible area
-      var constrainedSize: NSSize?
-      switch concept.mode {
-      case .modifiedWidth(let width):
-        constrainedSize = NSSize(width: width, height: canvasView.bounds.height)
-      case .textBased:
-        constrainedSize = nil
-      }
-      showTextView(inRect: element.area, text: element.attributedStringValue, constrainedSize: constrainedSize)
-    default:
+    if let concept = element as? Concept {
+      showTextView(
+        inRect: element.area,
+        text: element.attributedStringValue,
+        constrainedSize: concept.constrainedSize
+      )
+    } else {
       showTextView(atPoint: element.centerPoint, text: element.attributedStringValue)
     }
   }
@@ -154,6 +125,18 @@ extension CanvasViewController: StateManagerDelegate {
       unselect(elements: elements)
     default:
       break
+    }
+  }
+
+  // extract the max Size for the textView
+  // if the text is longer than the maxSize width, it should be constrained
+  // if not, there is no constrain applied
+  private func conceptMode(from text: NSAttributedString) -> Concept.Mode {
+    let textViewMaxWidth = textView.maxSize.width
+    if text.size().width > textViewMaxWidth {
+      return .modifiedWidth(width: textViewMaxWidth)
+    } else {
+      return .textBased
     }
   }
 }
