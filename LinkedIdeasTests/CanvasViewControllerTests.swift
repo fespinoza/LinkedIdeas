@@ -66,6 +66,7 @@ class CanvasViewControllerTests: XCTestCase {
 
   var canvasViewController: CanvasViewController!
   var canvasView: CanvasView!
+  var scrollView: NSScrollView!
   var document: TestLinkedIdeasDocument!
 
   override func setUp() {
@@ -73,6 +74,8 @@ class CanvasViewControllerTests: XCTestCase {
 
     canvasViewController = CanvasViewController()
     canvasView = CanvasView()
+    scrollView = NSScrollView()
+    canvasViewController.scrollView = scrollView
     canvasViewController.canvasView = canvasView
     document = TestLinkedIdeasDocument()
     canvasViewController.document = document
