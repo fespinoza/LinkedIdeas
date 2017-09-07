@@ -56,25 +56,6 @@ extension CanvasState: CustomStringConvertible {
       return "selectedElement"
     }
   }
-
-}
-
-struct EmptyElement: Element {
-  var stringValue: String { return attributedStringValue.string}
-  var identifier: String
-  var area: NSRect
-  var isEditable: Bool
-  var isSelected: Bool
-  var centerPoint: NSPoint { return area.center }
-  var attributedStringValue: NSAttributedString
-
-  static let example = EmptyElement(
-    identifier: "empty-element",
-    area: NSRect(x: 0, y: 0, width: 30, height: 40),
-    isEditable: false,
-    isSelected: false,
-    attributedStringValue: NSAttributedString(string: "")
-  )
 }
 
 extension CanvasState: Equatable {
@@ -106,27 +87,37 @@ class StateManager {
   }
 
   public func toNewConcept(atPoint point: NSPoint) throws {
-    let possibleStates: [CanvasState] = [
-      .canvasWaiting,
-      .newConcept(point: NSPoint.zero),
-      .selectedElement(element: EmptyElement.example)
-    ]
+    func isValidTransition(fromState: CanvasState) -> Bool {
+      switch fromState {
+      case .canvasWaiting,
+           .newConcept,
+           .selectedElement:
+        return true
+      default:
+        return false
+      }
+    }
 
-    try transition(fromPossibleStates: possibleStates, toState: .newConcept(point: point)) { (oldState) in
+    try transition(toState: .newConcept(point: point), withValidtransitions: isValidTransition) { (oldState) in
       delegate?.transitionedToNewConcept(fromState: oldState)
     }
   }
 
   public func toCanvasWaiting() throws {
-    let possibleStates: [CanvasState] = [
-      .canvasWaiting,
-      .newConcept(point: NSPoint.zero),
-      .editingElement(element: EmptyElement.example),
-      .selectedElement(element: EmptyElement.example),
-      .multipleSelectedElements(elements: [Element]())
-    ]
+    func isValidTransition(fromState: CanvasState) -> Bool {
+      switch fromState {
+      case .canvasWaiting,
+           .newConcept,
+           .editingElement,
+           .selectedElement,
+           .multipleSelectedElements:
+        return true
+      default:
+        return false
+      }
+    }
 
-    try transition(fromPossibleStates: possibleStates, toState: .canvasWaiting) { (oldState) in
+    try transition(toState: .canvasWaiting, withValidtransitions: isValidTransition) { (oldState) in
       delegate?.transitionedToCanvasWaiting(fromState: oldState)
     }
   }
@@ -147,104 +138,123 @@ class StateManager {
   }
 
   public func toCanvasWaiting(deletingElements elements: [Element]) throws {
-    let possibleStates: [CanvasState] = [
-      .selectedElement(element: EmptyElement.example),
-      .multipleSelectedElements(elements: [Element]())
-    ]
+    func isValidTransition(fromState: CanvasState) -> Bool {
+      switch fromState {
+      case .selectedElement,
+           .multipleSelectedElements:
+        return true
+      default:
+        return false
+      }
+    }
 
-    let state = CanvasState.canvasWaiting
-    try transition(fromPossibleStates: possibleStates, toState: state) { (oldState) in
+    try transition(toState: .canvasWaiting, withValidtransitions: isValidTransition) { (oldState) in
       delegate?.transitionedToCanvasWaitingDeletingElements(fromState: oldState)
     }
   }
 
   public func toSelectedElement(element: Element) throws {
-    // switch on current states?
-    let possibleStates = [
-      "canvasWaiting",
-      "newConcept",
-      "selectedElement",
-      "editingElement",
-      "multipleSelectedElements",
-      "resizingConcept"
-    ]
+    func isValidTransition(fromState: CanvasState) -> Bool {
+      switch fromState {
+      case .canvasWaiting,
+           .newConcept,
+           .selectedElement,
+           .editingElement,
+           .multipleSelectedElements,
+           .resizingConcept:
+        return true
+      }
+    }
 
     let state = CanvasState.selectedElement(element: element)
-    try transition(fromPossibleStates: possibleStates, toState: state) { (oldState) in
+    try transition(toState: state, withValidtransitions: isValidTransition) { (oldState) in
       delegate?.transitionedToSelectedElement(fromState: oldState)
     }
   }
 
   public func toSelectedElementSavingChanges(element: Element) throws {
-    let possibleStates: [CanvasState] = [
-      .editingElement(element: EmptyElement.example)
-    ]
+    func isValidTransition(fromState: CanvasState) -> Bool {
+      switch fromState {
+      case .editingElement:
+        return true
+      default:
+        return false
+      }
+    }
 
     let state = CanvasState.selectedElement(element: element)
-    try transition(fromPossibleStates: possibleStates, toState: state) { (oldState) in
+    try transition(toState: state, withValidtransitions: isValidTransition) { (oldState) in
       delegate?.transitionedToSelectedElementSavingChanges(fromState: oldState)
     }
   }
 
   public func toMultipleSelectedElements(elements: [Element]) throws {
-    let possibleStates: [CanvasState] = [
-      .canvasWaiting,
-      .selectedElement(element: EmptyElement.example),
-      .multipleSelectedElements(elements: [Element]())
-    ]
+    func isValidTransition(fromState: CanvasState) -> Bool {
+      switch fromState {
+      case .canvasWaiting,
+           .selectedElement,
+           .multipleSelectedElements:
+        return true
+      default:
+        return false
+      }
+    }
 
     let state = CanvasState.multipleSelectedElements(elements: elements)
-    try transition(fromPossibleStates: possibleStates, toState: state) { (oldState) in
+    try transition(toState: state, withValidtransitions: isValidTransition) { (oldState) in
       delegate?.transitionedToMultipleSelectedElements(fromState: oldState)
     }
   }
 
   public func toEditingElement(element: Element) throws {
-    let possibleStates: [CanvasState] = [
-      .selectedElement(element: EmptyElement.example)
-    ]
+    func isValidTransition(fromState: CanvasState) -> Bool {
+      switch fromState {
+      case .selectedElement:
+        return true
+      default:
+        return false
+      }
+    }
 
     let state = CanvasState.editingElement(element: element)
-    try transition(fromPossibleStates: possibleStates, toState: state) { (oldState) in
+    try transition(toState: state, withValidtransitions: isValidTransition) { (oldState) in
       delegate?.transitionedToEditingElement(fromState: oldState)
     }
   }
 
   public func toResizingConcept(concept: Concept, handler: Handler) throws {
-    let possibleStates: [CanvasState] = [
-      .selectedElement(element: EmptyElement.example)
-    ]
+    func isValidTransition(fromState: CanvasState) -> Bool {
+      switch fromState {
+      case .selectedElement:
+        return true
+      default:
+        return false
+      }
+    }
 
-    let state = CanvasState.resizingConcept(concept: concept, withHandler: handler, initialArea: concept.area)
-    try transition(fromPossibleStates: possibleStates, toState: state) { (oldState) in
+    let newState = CanvasState.resizingConcept(
+      concept: concept, withHandler: handler, initialArea: concept.area
+    )
+    try transition(toState: newState, withValidtransitions: isValidTransition) { (oldState) in
       delegate?.transitionedToResizingConcept(fromState: oldState)
     }
   }
 
   private func transition(
-    fromPossibleStates validFromStateDescriptions: [String],
     toState: CanvasState,
+    withValidtransitions isValidTransition: (CanvasState) -> Bool,
     onSuccess: (CanvasState) -> Void
   ) throws {
-    let oldState = currentState
+    let fromState = currentState
 
-    if validFromStateDescriptions.index(where: { $0 == oldState.description }) != nil {
-      currentState = toState
-      onSuccess(oldState)
-      delegate?.transitionSuccesfull()
-    } else {
+    guard isValidTransition(fromState) else {
       throw CanvasTransitionError.invalidTransition(
-        message: "there is no transition from \(oldState) to '\(toState)'"
+        message: "there is no transition from \(fromState) to '\(toState)'"
       )
     }
-  }
 
-  // TODO: remove this function
-  private func transition(
-    fromPossibleStates validFromStates: [CanvasState],
-    toState: CanvasState,
-    onSuccess: (CanvasState) -> Void
-  ) throws {
-    try transition(fromPossibleStates: validFromStates.map({ $0.description }), toState: toState, onSuccess: onSuccess)
+    currentState = toState
+    onSuccess(fromState)
+    delegate?.transitionSuccesfull()
   }
 }
