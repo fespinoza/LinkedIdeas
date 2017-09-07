@@ -16,7 +16,6 @@
 		9B2F1DA01BE7CFE70090CC18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */; };
 		9B2F1DA21BE7CFE70090CC18 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA11BE7CFE70090CC18 /* Document.swift */; };
 		9B2F1DA71BE7CFE70090CC18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA61BE7CFE70090CC18 /* Assets.xcassets */; };
-		9B2FE8F31EB28F7C00DEEBA2 /* TextFieldResizeBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2FE8F21EB28F7C00DEEBA2 /* TextFieldResizeBehavior.swift */; };
 		9B33821F1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B33821E1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift */; };
 		9B3941921E5656AF00F1E957 /* ViewModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941911E5656AF00F1E957 /* ViewModelProtocols.swift */; };
 		9B3941941E5656FE00F1E957 /* DrawableConcept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941931E5656FE00F1E957 /* DrawableConcept.swift */; };
@@ -25,7 +24,6 @@
 		9B39419A1E5657D200F1E957 /* CanvasViewController+StateManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941991E5657D200F1E957 /* CanvasViewController+StateManagerDelegate.swift */; };
 		9B39419C1E56582900F1E957 /* CanvasViewController+TransitionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39419B1E56582900F1E957 /* CanvasViewController+TransitionActions.swift */; };
 		9B39419E1E56586000F1E957 /* CanvasViewController+KeyboardEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39419D1E56586000F1E957 /* CanvasViewController+KeyboardEvents.swift */; };
-		9B3941A01E5658C600F1E957 /* CanvasViewController+NSTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39419F1E5658C600F1E957 /* CanvasViewController+NSTextFieldDelegate.swift */; };
 		9B3941A21E5658F500F1E957 /* CanvasViewController+CanvasViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A11E5658F500F1E957 /* CanvasViewController+CanvasViewDataSource.swift */; };
 		9B3941A41E56591900F1E957 /* CanvasViewController+DocumentObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A31E56591900F1E957 /* CanvasViewController+DocumentObserver.swift */; };
 		9B3941A61E56594700F1E957 /* NSEvent-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A51E56594700F1E957 /* NSEvent-Extensions.swift */; };
@@ -39,12 +37,10 @@
 		9B521F871CFB380300A71598 /* SquareElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B521F861CFB380300A71598 /* SquareElement.swift */; };
 		9B66961C1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */; };
 		9B8665C61D96C9E800799678 /* StateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8665C51D96C9E800799678 /* StateManagerTests.swift */; };
-		9B8AEF6F1EBBC8B100A58856 /* TextFieldResizeBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AEF6E1EBBC8B100A58856 /* TextFieldResizeBehaviorTests.swift */; };
 		9B8E90051E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E90041E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift */; };
 		9B90227F1EE9FF9200C528AE /* CanvasViewController+AligmentFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B90227E1EE9FF9200C528AE /* CanvasViewController+AligmentFunctions.swift */; };
 		9B956CE51C1B11C200CF20DA /* NSPoint+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B956CE41C1B11C200CF20DA /* NSPoint+Utilities.swift */; };
 		9B9A2EA41CF5EE5300607208 /* RectAlignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A2EA31CF5EE5300607208 /* RectAlignmentsTests.swift */; };
-		9B9EC6BB1EC0E42C0048D2AC /* AreaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9EC6BA1EC0E42C0048D2AC /* AreaManager.swift */; };
 		9B9EC6BD1EC0F2AB0048D2AC /* DrawableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9EC6BC1EC0F2AB0048D2AC /* DrawableElement.swift */; };
 		9BA63D2E1D74C23100EBC3AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BA63D2C1D74C23100EBC3AD /* Main.storyboard */; };
 		9BA63D301D74C31A00EBC3AD /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA63D2F1D74C31A00EBC3AD /* DocumentViewController.swift */; };
@@ -55,6 +51,7 @@
 		9BB8FC831CA6B7D7008CD6A2 /* LinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */; };
 		9BB8FC891CA6B889008CD6A2 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC881CA6B889008CD6A2 /* Element.swift */; };
 		9BC8587F1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC8587E1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift */; };
+		9BCD799D1F4A37FE00D310B3 /* CanvasViewController+NSTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCD799C1F4A37FE00D310B3 /* CanvasViewController+NSTextViewDelegate.swift */; };
 		9BD0BD581D9B0BED0041F7ED /* TestProtocolConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD0BD571D9B0BED0041F7ED /* TestProtocolConformance.swift */; };
 		9BD2BF351C7F8B1200E8A303 /* LineRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF341C7F8B1200E8A303 /* LineRange.swift */; };
 		9BD2BF371C7F8B2300E8A303 /* Interceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF361C7F8B2300E8A303 /* Interceptable.swift */; };
@@ -71,12 +68,10 @@
 		9BD850BF1EE4C739005B89C9 /* DocumentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F84C1CD614BC0014758D /* DocumentData.swift */; };
 		9BD850C01EE4C739005B89C9 /* Concept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDDE7381BEF9157000AAD44 /* Concept.swift */; };
 		9BD850C11EE4C739005B89C9 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BABB2B11C07B7F7001EC9E0 /* Link.swift */; };
-		9BD850C21EE4C739005B89C9 /* AreaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9EC6BA1EC0E42C0048D2AC /* AreaManager.swift */; };
 		9BD850C31EE4C73F005B89C9 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC881CA6B889008CD6A2 /* Element.swift */; };
 		9BD850C41EE4C73F005B89C9 /* LinkedIdeasDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */; };
 		9BD850C51EE4C73F005B89C9 /* SquareElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B521F861CFB380300A71598 /* SquareElement.swift */; };
 		9BD850C61EE4C73F005B89C9 /* DocumentObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD435851EBA645D008A1265 /* DocumentObserver.swift */; };
-		9BD850C71EE4C744005B89C9 /* TextFieldResizeBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2FE8F21EB28F7C00DEEBA2 /* TextFieldResizeBehavior.swift */; };
 		9BD850C81EE4C744005B89C9 /* ViewModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941911E5656AF00F1E957 /* ViewModelProtocols.swift */; };
 		9BD850C91EE4C744005B89C9 /* DrawableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9EC6BC1EC0F2AB0048D2AC /* DrawableElement.swift */; };
 		9BD850CA1EE4C744005B89C9 /* DrawableConcept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941931E5656FE00F1E957 /* DrawableConcept.swift */; };
@@ -104,15 +99,18 @@
 		9BD850E11EE4C792005B89C9 /* CanvasViewController+StateManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941991E5657D200F1E957 /* CanvasViewController+StateManagerDelegate.swift */; };
 		9BD850E21EE4C792005B89C9 /* CanvasViewController+TransitionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39419B1E56582900F1E957 /* CanvasViewController+TransitionActions.swift */; };
 		9BD850E31EE4C792005B89C9 /* CanvasViewController+KeyboardEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39419D1E56586000F1E957 /* CanvasViewController+KeyboardEvents.swift */; };
-		9BD850E41EE4C792005B89C9 /* CanvasViewController+NSTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39419F1E5658C600F1E957 /* CanvasViewController+NSTextFieldDelegate.swift */; };
 		9BD850E51EE4C792005B89C9 /* CanvasViewController+CanvasViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A11E5658F500F1E957 /* CanvasViewController+CanvasViewDataSource.swift */; };
 		9BD850E61EE4C792005B89C9 /* CanvasViewController+DocumentObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A31E56591900F1E957 /* CanvasViewController+DocumentObserver.swift */; };
 		9BD850E71EE4C792005B89C9 /* CanvasViewController+MenuActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC8587E1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift */; };
 		9BD850E81EE4C792005B89C9 /* CanvasViewController+NSPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB677671ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift */; };
 		9BD850F01EE4CDE6005B89C9 /* QLLinkedIdeas.qlgenerator in Pack QuickLook Plugin */ = {isa = PBXBuildFile; fileRef = 9BD850B01EE4C199005B89C9 /* QLLinkedIdeas.qlgenerator */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9BDDE7391BEF9157000AAD44 /* Concept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDDE7381BEF9157000AAD44 /* Concept.swift */; };
+		9BDF4B7F1F4B7C25000A1BB2 /* ConceptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDF4B7E1F4B7C25000A1BB2 /* ConceptTests.swift */; };
+		9BDF4B801F4B7DA6000A1BB2 /* CanvasViewController+NSTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCD799C1F4A37FE00D310B3 /* CanvasViewController+NSTextViewDelegate.swift */; };
 		9BE40C211D8DD98B0025F154 /* CanvasViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */; };
 		9BF15C391CAC69A500C95041 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF15C381CAC69A500C95041 /* WindowController.swift */; };
+		9BFBA8951F50D8D200EA8ABE /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFBA8941F50D8D200EA8ABE /* Handler.swift */; };
+		9BFBA8961F50D99800EA8ABE /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFBA8941F50D8D200EA8ABE /* Handler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,7 +159,6 @@
 		9B2F1DAB1BE7CFE80090CC18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B2F1DB01BE7CFE80090CC18 /* LinkedIdeasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinkedIdeasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2F1DB61BE7CFE80090CC18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9B2FE8F21EB28F7C00DEEBA2 /* TextFieldResizeBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldResizeBehavior.swift; sourceTree = "<group>"; };
 		9B33821E1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtensionsTest.swift; sourceTree = "<group>"; };
 		9B3941911E5656AF00F1E957 /* ViewModelProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelProtocols.swift; sourceTree = "<group>"; };
 		9B3941931E5656FE00F1E957 /* DrawableConcept.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableConcept.swift; sourceTree = "<group>"; };
@@ -170,7 +167,6 @@
 		9B3941991E5657D200F1E957 /* CanvasViewController+StateManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+StateManagerDelegate.swift"; sourceTree = "<group>"; };
 		9B39419B1E56582900F1E957 /* CanvasViewController+TransitionActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+TransitionActions.swift"; sourceTree = "<group>"; };
 		9B39419D1E56586000F1E957 /* CanvasViewController+KeyboardEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+KeyboardEvents.swift"; sourceTree = "<group>"; };
-		9B39419F1E5658C600F1E957 /* CanvasViewController+NSTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+NSTextFieldDelegate.swift"; sourceTree = "<group>"; };
 		9B3941A11E5658F500F1E957 /* CanvasViewController+CanvasViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+CanvasViewDataSource.swift"; sourceTree = "<group>"; };
 		9B3941A31E56591900F1E957 /* CanvasViewController+DocumentObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+DocumentObserver.swift"; sourceTree = "<group>"; };
 		9B3941A51E56594700F1E957 /* NSEvent-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSEvent-Extensions.swift"; sourceTree = "<group>"; };
@@ -183,12 +179,10 @@
 		9B521F861CFB380300A71598 /* SquareElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareElement.swift; sourceTree = "<group>"; };
 		9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = linked_ideas_doc_icon.icns; sourceTree = "<group>"; };
 		9B8665C51D96C9E800799678 /* StateManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateManagerTests.swift; sourceTree = "<group>"; };
-		9B8AEF6E1EBBC8B100A58856 /* TextFieldResizeBehaviorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFieldResizeBehaviorTests.swift; path = ../LinkedIdeas/TextFieldResizeBehaviorTests.swift; sourceTree = "<group>"; };
 		9B8E90041E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "CanvasViewController+DraggingActions.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9B90227E1EE9FF9200C528AE /* CanvasViewController+AligmentFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+AligmentFunctions.swift"; sourceTree = "<group>"; };
 		9B956CE41C1B11C200CF20DA /* NSPoint+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPoint+Utilities.swift"; sourceTree = "<group>"; };
 		9B9A2EA31CF5EE5300607208 /* RectAlignmentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectAlignmentsTests.swift; sourceTree = "<group>"; };
-		9B9EC6BA1EC0E42C0048D2AC /* AreaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaManager.swift; sourceTree = "<group>"; };
 		9B9EC6BC1EC0F2AB0048D2AC /* DrawableElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableElement.swift; sourceTree = "<group>"; };
 		9BA63D2D1D74C23100EBC3AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9BA63D2F1D74C31A00EBC3AD /* DocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +193,7 @@
 		9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkTests.swift; sourceTree = "<group>"; };
 		9BB8FC881CA6B889008CD6A2 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		9BC8587E1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+MenuActions.swift"; sourceTree = "<group>"; };
+		9BCD799C1F4A37FE00D310B3 /* CanvasViewController+NSTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+NSTextViewDelegate.swift"; sourceTree = "<group>"; };
 		9BD0BD571D9B0BED0041F7ED /* TestProtocolConformance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestProtocolConformance.swift; sourceTree = "<group>"; };
 		9BD2BF341C7F8B1200E8A303 /* LineRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineRange.swift; sourceTree = "<group>"; };
 		9BD2BF361C7F8B2300E8A303 /* Interceptable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interceptable.swift; sourceTree = "<group>"; };
@@ -214,11 +209,13 @@
 		9BD850B81EE4C199005B89C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BD850BC1EE4C67E005B89C9 /* DocumentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentManager.swift; sourceTree = "<group>"; };
 		9BDDE7381BEF9157000AAD44 /* Concept.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Concept.swift; sourceTree = "<group>"; };
+		9BDF4B7E1F4B7C25000A1BB2 /* ConceptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConceptTests.swift; sourceTree = "<group>"; };
 		9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewControllerTests.swift; sourceTree = "<group>"; };
 		9BF15C381CAC69A500C95041 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		9BF456E21F16E8B800E1CDD3 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9BF456E31F16E8BC00E1CDD3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9BF456E41F16E8BF00E1CDD3 /* PR.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PR.md; sourceTree = "<group>"; };
+		9BFBA8941F50D8D200EA8ABE /* Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,7 +300,6 @@
 		9B3941901E5656A100F1E957 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				9B2FE8F21EB28F7C00DEEBA2 /* TextFieldResizeBehavior.swift */,
 				9B3941911E5656AF00F1E957 /* ViewModelProtocols.swift */,
 				9B9EC6BC1EC0F2AB0048D2AC /* DrawableElement.swift */,
 				9B3941931E5656FE00F1E957 /* DrawableConcept.swift */,
@@ -369,12 +365,12 @@
 				9B3941991E5657D200F1E957 /* CanvasViewController+StateManagerDelegate.swift */,
 				9B39419B1E56582900F1E957 /* CanvasViewController+TransitionActions.swift */,
 				9B39419D1E56586000F1E957 /* CanvasViewController+KeyboardEvents.swift */,
-				9B39419F1E5658C600F1E957 /* CanvasViewController+NSTextFieldDelegate.swift */,
 				9B3941A11E5658F500F1E957 /* CanvasViewController+CanvasViewDataSource.swift */,
 				9B3941A31E56591900F1E957 /* CanvasViewController+DocumentObserver.swift */,
 				9BC8587E1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift */,
 				9BB677671ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift */,
 				9B90227E1EE9FF9200C528AE /* CanvasViewController+AligmentFunctions.swift */,
+				9BCD799C1F4A37FE00D310B3 /* CanvasViewController+NSTextViewDelegate.swift */,
 			);
 			name = CanvasViewControllerExtensions;
 			sourceTree = "<group>";
@@ -396,9 +392,9 @@
 		9BB8FC801CA6B7B0008CD6A2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9B8AEF6E1EBBC8B100A58856 /* TextFieldResizeBehaviorTests.swift */,
 				9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */,
 				9B33821E1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift */,
+				9BDF4B7E1F4B7C25000A1BB2 /* ConceptTests.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -411,7 +407,7 @@
 				9B48F84C1CD614BC0014758D /* DocumentData.swift */,
 				9BDDE7381BEF9157000AAD44 /* Concept.swift */,
 				9BABB2B11C07B7F7001EC9E0 /* Link.swift */,
-				9B9EC6BA1EC0E42C0048D2AC /* AreaManager.swift */,
+				9BFBA8941F50D8D200EA8ABE /* Handler.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -538,12 +534,14 @@
 					};
 					9B2F1DAF1BE7CFE80090CC18 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 4E6CZX3H5W;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 9B2F1D9B1BE7CFE70090CC18;
 					};
 					9BD850AF1EE4C199005B89C9 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 2Z7R9FQBNN;
+						DevelopmentTeam = 4E6CZX3H5W;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -646,13 +644,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BCD799D1F4A37FE00D310B3 /* CanvasViewController+NSTextViewDelegate.swift in Sources */,
 				9BA63D301D74C31A00EBC3AD /* DocumentViewController.swift in Sources */,
 				9BABB2B21C07B7F7001EC9E0 /* Link.swift in Sources */,
 				9B2F1DA21BE7CFE70090CC18 /* Document.swift in Sources */,
 				9BC8587F1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift in Sources */,
 				9B90227F1EE9FF9200C528AE /* CanvasViewController+AligmentFunctions.swift in Sources */,
 				9B39419C1E56582900F1E957 /* CanvasViewController+TransitionActions.swift in Sources */,
-				9B3941A01E5658C600F1E957 /* CanvasViewController+NSTextFieldDelegate.swift in Sources */,
 				9B3941A61E56594700F1E957 /* NSEvent-Extensions.swift in Sources */,
 				9B3941981E5657A000F1E957 /* CanvasViewController+MouseEvents.swift in Sources */,
 				9B3941921E5656AF00F1E957 /* ViewModelProtocols.swift in Sources */,
@@ -663,7 +661,6 @@
 				9BB677681ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift in Sources */,
 				9B06AD151C11AF03000BC75C /* NSView+Debugging.swift in Sources */,
 				9BD2BF3D1C7F8B6A00E8A303 /* FiniteLine.swift in Sources */,
-				9B9EC6BB1EC0E42C0048D2AC /* AreaManager.swift in Sources */,
 				9B2F1DA01BE7CFE70090CC18 /* AppDelegate.swift in Sources */,
 				9B06AD131C11AD74000BC75C /* NSRect+PointHelpers.swift in Sources */,
 				9BD2BF421C7F8C2000E8A303 /* Arrow.swift in Sources */,
@@ -678,9 +675,9 @@
 				9BD435861EBA645D008A1265 /* DocumentObserver.swift in Sources */,
 				9B8E90051E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift in Sources */,
 				9BB8FC891CA6B889008CD6A2 /* Element.swift in Sources */,
-				9B2FE8F31EB28F7C00DEEBA2 /* TextFieldResizeBehavior.swift in Sources */,
 				9BF15C391CAC69A500C95041 /* WindowController.swift in Sources */,
 				9B1CCDEB1D294E0900F319EB /* NSAttributedStringExtensions.swift in Sources */,
+				9BFBA8951F50D8D200EA8ABE /* Handler.swift in Sources */,
 				9BD2BF3B1C7F8B5500E8A303 /* Line.swift in Sources */,
 				9B3941A81E56596000F1E957 /* NSResponder-Extensions.swift in Sources */,
 				9B3941941E5656FE00F1E957 /* DrawableConcept.swift in Sources */,
@@ -701,13 +698,13 @@
 			files = (
 				9B43B88B1EDC8B5D00879507 /* CanvasViewControllerKeyboardTests.swift in Sources */,
 				9B8665C61D96C9E800799678 /* StateManagerTests.swift in Sources */,
+				9BDF4B7F1F4B7C25000A1BB2 /* ConceptTests.swift in Sources */,
 				9BE40C211D8DD98B0025F154 /* CanvasViewControllerTests.swift in Sources */,
 				9B9A2EA41CF5EE5300607208 /* RectAlignmentsTests.swift in Sources */,
 				9BD0BD581D9B0BED0041F7ED /* TestProtocolConformance.swift in Sources */,
 				9B33821F1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift in Sources */,
 				9BB8FC831CA6B7D7008CD6A2 /* LinkTests.swift in Sources */,
 				9B43B8891EDC88AC00879507 /* CanvasViewControllerMouseTests.swift in Sources */,
-				9B8AEF6F1EBBC8B100A58856 /* TextFieldResizeBehaviorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,6 +718,7 @@
 				9BD850DB1EE4C787005B89C9 /* CanvasViewController.swift in Sources */,
 				9BD850DC1EE4C787005B89C9 /* StateManager.swift in Sources */,
 				9BD850B31EE4C199005B89C9 /* GenerateThumbnailForURL.m in Sources */,
+				9BDF4B801F4B7DA6000A1BB2 /* CanvasViewController+NSTextViewDelegate.swift in Sources */,
 				9BD850D11EE4C76E005B89C9 /* NSRect+PointHelpers.swift in Sources */,
 				9BD850C41EE4C73F005B89C9 /* LinkedIdeasDocument.swift in Sources */,
 				9BD850CD1EE4C753005B89C9 /* NSEvent-Extensions.swift in Sources */,
@@ -728,6 +726,7 @@
 				9BD850B51EE4C199005B89C9 /* GeneratePreviewForURL.m in Sources */,
 				9BD850DA1EE4C77E005B89C9 /* WindowController.swift in Sources */,
 				9BD850C81EE4C744005B89C9 /* ViewModelProtocols.swift in Sources */,
+				9BFBA8961F50D99800EA8ABE /* Handler.swift in Sources */,
 				9BD850CE1EE4C753005B89C9 /* NSResponder-Extensions.swift in Sources */,
 				9BD850C01EE4C739005B89C9 /* Concept.swift in Sources */,
 				9BD850DF1EE4C792005B89C9 /* CanvasViewController+LinkCreation.swift in Sources */,
@@ -738,7 +737,6 @@
 				9BD850D61EE4C76E005B89C9 /* Interceptable.swift in Sources */,
 				9BD850D21EE4C76E005B89C9 /* LineRange.swift in Sources */,
 				9BD850DE1EE4C792005B89C9 /* CanvasViewController+DraggingActions.swift in Sources */,
-				9BD850E41EE4C792005B89C9 /* CanvasViewController+NSTextFieldDelegate.swift in Sources */,
 				9BD850BF1EE4C739005B89C9 /* DocumentData.swift in Sources */,
 				9BD850E21EE4C792005B89C9 /* CanvasViewController+TransitionActions.swift in Sources */,
 				9BD850D51EE4C76E005B89C9 /* FiniteLine.swift in Sources */,
@@ -747,7 +745,6 @@
 				9BD850D91EE4C76E005B89C9 /* NSAttributedStringExtensions.swift in Sources */,
 				9BD850D41EE4C76E005B89C9 /* Line.swift in Sources */,
 				9BD850C61EE4C73F005B89C9 /* DocumentObserver.swift in Sources */,
-				9BD850C71EE4C744005B89C9 /* TextFieldResizeBehavior.swift in Sources */,
 				9BD850E71EE4C792005B89C9 /* CanvasViewController+MenuActions.swift in Sources */,
 				9BD850CA1EE4C744005B89C9 /* DrawableConcept.swift in Sources */,
 				9BD850B71EE4C199005B89C9 /* main.c in Sources */,
@@ -759,7 +756,6 @@
 				9BD850BE1EE4C733005B89C9 /* Document.swift in Sources */,
 				9BD850DD1EE4C787005B89C9 /* DocumentViewController.swift in Sources */,
 				9BD850D01EE4C76E005B89C9 /* NSPoint+Utilities.swift in Sources */,
-				9BD850C21EE4C739005B89C9 /* AreaManager.swift in Sources */,
 				9BD850E51EE4C792005B89C9 /* CanvasViewController+CanvasViewDataSource.swift in Sources */,
 				9BD850E01EE4C792005B89C9 /* CanvasViewController+MouseEvents.swift in Sources */,
 			);
@@ -933,11 +929,15 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 4E6CZX3H5W;
 				INFOPLIST_FILE = LinkedIdeasTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeasTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -950,11 +950,15 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 4E6CZX3H5W;
 				INFOPLIST_FILE = LinkedIdeasTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeasTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -970,7 +974,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 2Z7R9FQBNN;
+				DEVELOPMENT_TEAM = 4E6CZX3H5W;
 				INFOPLIST_FILE = QLLinkedIdeas/Info.plist;
 				INSTALL_PATH = /Library/QuickLook;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -993,7 +997,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 2Z7R9FQBNN;
+				DEVELOPMENT_TEAM = 4E6CZX3H5W;
 				INFOPLIST_FILE = QLLinkedIdeas/Info.plist;
 				INSTALL_PATH = /Library/QuickLook;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";

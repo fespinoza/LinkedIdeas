@@ -27,7 +27,7 @@ extension CanvasViewControllerTests {
   }
 
   func testShiftEnterWhenConceptIsSelected() {
-    let concept = Concept(stringValue: "Random", point: NSPoint(x: 20, y: 600))
+    let concept = Concept(stringValue: "Random", centerPoint: NSPoint(x: 20, y: 600))
     document.concepts.append(concept)
 
     canvasViewController.currentState = .selectedElement(element: concept)
@@ -45,9 +45,9 @@ extension CanvasViewControllerTests {
 
   func testTabSelectsFirstConceptOnCanvasWaiting() {
     let concepts = [
-      Concept(stringValue: "Random", point: NSPoint(x: 20, y: 600)),
-      Concept(stringValue: "Foo bar", point: NSPoint(x: 600, y: 800)),
-      Concept(stringValue: "Another", point: NSPoint(x: 300, y: 400))
+      Concept(stringValue: "Random", centerPoint: NSPoint(x: 20, y: 600)),
+      Concept(stringValue: "Foo bar", centerPoint: NSPoint(x: 600, y: 800)),
+      Concept(stringValue: "Another", centerPoint: NSPoint(x: 300, y: 400))
     ]
     concepts.forEach {
       document.concepts.append($0)
@@ -72,9 +72,9 @@ extension CanvasViewControllerTests {
 
   func testTabSelectsNextConceptOnSelectedConcept() {
     let concepts = [
-      Concept(stringValue: "Random", point: NSPoint(x: 20, y: 600)),
-      Concept(stringValue: "Foo bar", point: NSPoint(x: 600, y: 800)),
-      Concept(stringValue: "Another", point: NSPoint(x: 300, y: 400))
+      Concept(stringValue: "Random", centerPoint: NSPoint(x: 20, y: 600)),
+      Concept(stringValue: "Foo bar", centerPoint: NSPoint(x: 600, y: 800)),
+      Concept(stringValue: "Another", centerPoint: NSPoint(x: 300, y: 400))
     ]
     concepts.forEach {
       document.concepts.append($0)
@@ -99,9 +99,9 @@ extension CanvasViewControllerTests {
 
   func testTabSelectsFirstConceptOnLastSelectedConcept() {
     let concepts = [
-      Concept(stringValue: "Random", point: NSPoint(x: 20, y: 600)),
-      Concept(stringValue: "Foo bar", point: NSPoint(x: 600, y: 800)),
-      Concept(stringValue: "Another", point: NSPoint(x: 300, y: 400))
+      Concept(stringValue: "Random", centerPoint: NSPoint(x: 20, y: 600)),
+      Concept(stringValue: "Foo bar", centerPoint: NSPoint(x: 600, y: 800)),
+      Concept(stringValue: "Another", centerPoint: NSPoint(x: 300, y: 400))
     ]
     concepts.forEach {
       document.concepts.append($0)
@@ -126,9 +126,9 @@ extension CanvasViewControllerTests {
 
   func testShiftTabSelectsPreviousConceptOnSelectedConcept() {
     let concepts = [
-      Concept(stringValue: "Random", point: NSPoint(x: 20, y: 600)),
-      Concept(stringValue: "Foo bar", point: NSPoint(x: 600, y: 800)),
-      Concept(stringValue: "Another", point: NSPoint(x: 300, y: 400))
+      Concept(stringValue: "Random", centerPoint: NSPoint(x: 20, y: 600)),
+      Concept(stringValue: "Foo bar", centerPoint: NSPoint(x: 600, y: 800)),
+      Concept(stringValue: "Another", centerPoint: NSPoint(x: 300, y: 400))
     ]
     concepts.forEach {
       document.concepts.append($0)

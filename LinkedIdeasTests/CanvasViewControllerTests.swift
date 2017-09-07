@@ -66,6 +66,7 @@ class CanvasViewControllerTests: XCTestCase {
 
   var canvasViewController: CanvasViewController!
   var canvasView: CanvasView!
+  var scrollView: NSScrollView!
   var document: TestLinkedIdeasDocument!
 
   override func setUp() {
@@ -73,22 +74,24 @@ class CanvasViewControllerTests: XCTestCase {
 
     canvasViewController = CanvasViewController()
     canvasView = CanvasView()
+    scrollView = NSScrollView()
+    canvasViewController.scrollView = scrollView
     canvasViewController.canvasView = canvasView
     document = TestLinkedIdeasDocument()
     canvasViewController.document = document
   }
 }
 
-// MARK - CanvasViewController: Basic Behavior
+// MARK: - CanvasViewController: Basic Behavior
 
 extension CanvasViewControllerTests {
   func testClickedConceptsAtPointWhenIntercepsAConcept() {
     let clickedPoint = NSPoint(x: 205, y: 305)
 
     let concepts = [
-      Concept(stringValue: "Foo #0", point: NSPoint(x: 210, y: 310)),
-      Concept(stringValue: "Foo #1", point: NSPoint(x: 210, y: 110)),
-      Concept(stringValue: "Foo #2", point: NSPoint(x: 200, y: 300))
+      Concept(stringValue: "Foo #0", centerPoint: NSPoint(x: 210, y: 310)),
+      Concept(stringValue: "Foo #1", centerPoint: NSPoint(x: 210, y: 110)),
+      Concept(stringValue: "Foo #2", centerPoint: NSPoint(x: 200, y: 300))
     ]
     document.concepts = concepts
 
@@ -103,9 +106,9 @@ extension CanvasViewControllerTests {
     let clickedPoint = NSPoint(x: 1200, y: 1300)
 
     let concepts = [
-      Concept(stringValue: "Foo #0", point: NSPoint(x: 210, y: 310)),
-      Concept(stringValue: "Foo #1", point: NSPoint(x: 210, y: 110)),
-      Concept(stringValue: "Foo #2", point: NSPoint(x: 200, y: 300))
+      Concept(stringValue: "Foo #0", centerPoint: NSPoint(x: 210, y: 310)),
+      Concept(stringValue: "Foo #1", centerPoint: NSPoint(x: 210, y: 110)),
+      Concept(stringValue: "Foo #2", centerPoint: NSPoint(x: 200, y: 300))
       ]
     document.concepts = concepts
 
@@ -115,53 +118,49 @@ extension CanvasViewControllerTests {
   }
 }
 
-// MARK - CanvasViewControllers: TextField Delegate Tests
+// MARK: - CanvasViewControllers: TextView Delegate Tests
 
 extension CanvasViewControllerTests {
-  func testPressEnterKeyWhenEditingInTheTextField() {
+  func testPressEnterKeyWhenEditingInTheTextView() {
     let conceptPoint = NSPoint.zero
     canvasViewController.currentState = .newConcept(point: conceptPoint)
     canvasViewController.stateManager.delegate = StateManagerTestDelegate()
 
-    let textField = canvasViewController.textField
-    textField.stringValue = "New Concept"
+    let textView = canvasViewController.textView
+    canvasViewController.textStorage.setAttributedString(NSAttributedString(string: "New Concept"))
 
-    _ = canvasViewController.control(
-      textField,
-      textView: NSTextView(),
-      doCommandBy: #selector(NSResponder.insertNewline(_:))
-    )
+    _ = canvasViewController.textView(textView, doCommandBy: #selector(NSResponder.insertNewline(_:)))
 
     XCTAssertEqual(canvasViewController.currentState, .canvasWaiting)
   }
 }
 
-// MARK - CanvasViewControllers: Transition Acction Tests
+// MARK: - CanvasViewControllers: Transition Acction Tests
 
 extension CanvasViewControllerTests {
-  func testShowTextFieldAt() {
+  func testShowTextViewAt() {
     let clickedPoint = NSPoint(x: 400, y: 300)
-    canvasViewController.showTextField(atPoint: clickedPoint)
+    canvasViewController.showTextView(atPoint: clickedPoint)
 
-    XCTAssertFalse(canvasViewController.textField.isHidden)
-    XCTAssert(canvasViewController.textField.isEditable)
-    XCTAssertEqual(canvasViewController.textField.frame.center, clickedPoint)
+    XCTAssertFalse(canvasViewController.textView.isHidden)
+    XCTAssert(canvasViewController.textView.isEditable)
+    XCTAssertEqual(canvasViewController.textView.frame.center, clickedPoint)
   }
 
-  func testDismissTextField() {
-    let textFieldCenter = NSPoint(x: 400, y: 300)
-    let textField = canvasViewController.textField
-    textField.frame = NSRect(center: textFieldCenter, size: NSSize(width: 60, height: 40))
-    textField.stringValue = "Foo bar asdf"
-    textField.isHidden = false
-    textField.isEditable = true
+  func testDismissTextView() {
+    let textViewCenter = NSPoint(x: 400, y: 300)
+    let textView = canvasViewController.textView
+    textView.frame = NSRect(center: textViewCenter, size: NSSize(width: 60, height: 40))
+    textView.textStorage?.setAttributedString(NSAttributedString(string: "Foo bar asdf"))
+    textView.isHidden = false
+    textView.isEditable = true
 
-    canvasViewController.dismissTextField()
+    canvasViewController.dismissTextView()
 
-    XCTAssert(canvasViewController.textField.isHidden)
-    XCTAssertFalse(canvasViewController.textField.isEditable)
-    XCTAssertNotEqual(canvasViewController.textField.frame.center, textFieldCenter)
-    XCTAssertEqual(canvasViewController.textField.stringValue, "")
+    XCTAssert(canvasViewController.textView.isHidden)
+    XCTAssertFalse(canvasViewController.textView.isEditable)
+    XCTAssertNotEqual(canvasViewController.textView.frame.center, textViewCenter)
+    XCTAssertEqual(canvasViewController.textView.attributedString(), NSAttributedString(string: ""))
   }
 
   func testSaveConceptWithAppropriateData() {

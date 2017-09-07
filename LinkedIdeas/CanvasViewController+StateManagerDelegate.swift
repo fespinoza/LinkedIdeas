@@ -11,6 +11,9 @@ import Cocoa
 // MARK: - CanvasViewController+StateManagerDelegate
 
 extension CanvasViewController: StateManagerDelegate {
+  func transitionedToResizingConcept(fromState: CanvasState) {
+  }
+
   func transitionSuccesfull() {
     reRenderCanvasView()
   }
@@ -22,7 +25,7 @@ extension CanvasViewController: StateManagerDelegate {
 
     commonTransitionBehavior(fromState)
 
-    showTextField(atPoint: point)
+    showTextView(atPoint: point)
   }
 
   func transitionedToCanvasWaiting(fromState: CanvasState) {
@@ -30,9 +33,11 @@ extension CanvasViewController: StateManagerDelegate {
   }
 
   func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString) {
-    dismissTextField()
+    let mode = conceptMode(from: text)
+    dismissTextView()
 
     if let concept = saveConcept(text: text, atPoint: point) {
+      concept.mode = mode
       safeTransiton {
         try stateManager.toSelectedElement(element: concept)
       }
@@ -60,11 +65,17 @@ extension CanvasViewController: StateManagerDelegate {
   }
 
   func transitionedToSelectedElementSavingChanges(fromState: CanvasState) {
-    guard case .selectedElement(var element) = currentState else {
+    guard case .selectedElement(var element) = currentState,
+      let newText = textView.attributedString().copy() as? NSAttributedString else {
       return
     }
-    element.attributedStringValue = textField.attributedStringValue
-    dismissTextField()
+
+    if let concept = element as? Concept {
+      concept.mode = conceptMode(from: newText)
+    }
+
+    element.attributedStringValue = newText
+    dismissTextView()
 
     transitionedToSelectedElement(fromState: fromState)
   }
@@ -76,13 +87,14 @@ extension CanvasViewController: StateManagerDelegate {
       return
     }
 
-    element.isEditable = true
-
-    switch element {
-    case is Concept:
-      showTextField(inRect: element.rect, text: element.attributedStringValue)
-    default:
-      showTextField(atPoint: element.point, text: element.attributedStringValue)
+    if let concept = element as? Concept {
+      showTextView(
+        inRect: element.area,
+        text: element.attributedStringValue,
+        constrainedSize: concept.constrainedSize
+      )
+    } else {
+      showTextView(atPoint: element.centerPoint, text: element.attributedStringValue)
     }
   }
 
@@ -102,10 +114,10 @@ extension CanvasViewController: StateManagerDelegate {
   private func commonTransitionBehavior(_ fromState: CanvasState) {
     switch fromState {
     case .newConcept:
-      dismissTextField()
+      dismissTextView()
     case .editingElement(var element):
       element.isEditable = false
-      dismissTextField()
+      dismissTextView()
     case .selectedElement(let element):
       unselect(elements: [element])
       dismissConstructionArrow()
@@ -113,6 +125,18 @@ extension CanvasViewController: StateManagerDelegate {
       unselect(elements: elements)
     default:
       break
+    }
+  }
+
+  // extract the max Size for the textView
+  // if the text is longer than the maxSize width, it should be constrained
+  // if not, there is no constrain applied
+  private func conceptMode(from text: NSAttributedString) -> Concept.Mode {
+    let textViewMaxWidth = textView.maxSize.width
+    if text.size().width > textViewMaxWidth {
+      return .modifiedWidth(width: textViewMaxWidth)
+    } else {
+      return .textBased
     }
   }
 }

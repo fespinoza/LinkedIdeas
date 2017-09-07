@@ -38,10 +38,10 @@ public class Document: NSDocument {
   }
 
   public var rect: NSRect {
-    let minX = concepts.map { $0.rect.minX }.min() ?? 0
-    let minY = concepts.map { $0.rect.minY }.min() ?? 0
-    let maxX = concepts.map { $0.rect.maxX }.max() ?? 800
-    let maxY = concepts.map { $0.rect.maxY }.max() ?? 600
+    let minX = concepts.map { $0.area.minX }.min() ?? 0
+    let minY = concepts.map { $0.area.minY }.min() ?? 0
+    let maxX = concepts.map { $0.area.maxX }.max() ?? 800
+    let maxY = concepts.map { $0.area.maxY }.max() ?? 600
 
     return NSRect(
       point1: NSPoint(x: minX, y: minY),
@@ -182,8 +182,8 @@ extension Document: LinkedIdeasDocument {
 
   func move(concept: Concept, toPoint: NSPoint) {
     Swift.print("move concept \(concept) toPoint: \(toPoint)")
-    let originalPoint = concept.point
-    concept.point = toPoint
+    let originalPoint = concept.centerPoint
+    concept.centerPoint = toPoint
     observer?.documentChanged(withElement: concept)
 
     undoManager?.registerUndo(withTarget: self, handler: { (object) in

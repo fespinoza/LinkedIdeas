@@ -11,11 +11,60 @@ import Cocoa
 // MARK: - CanvasViewController+MouseEvents
 
 extension CanvasViewController {
+  fileprivate func clickedHandler(atPoint clickedPoint: NSPoint) -> Handler? {
+    switch currentState {
+    case .selectedElement(let element):
+      guard let concept = element as? Concept,
+        let leftHandler = concept.leftHandler,
+        let rightHandler = concept.rightHandler else {
+          break
+      }
+
+      if leftHandler.contains(clickedPoint) {
+        return leftHandler
+      } else if rightHandler.contains(clickedPoint) {
+        return rightHandler
+      }
+    default:
+      break
+    }
+
+    return nil
+  }
+
+  fileprivate func didClickOnHandler(atPoint clickedPoint: NSPoint) -> Bool {
+    return clickedHandler(atPoint: clickedPoint) != nil
+  }
+
+  fileprivate func resize(concept: Concept, withHandler handler: Handler, toPoint point: NSPoint) {
+    let previousConceptArea = concept.area
+
+    switch handler.position {
+    case .left:
+      let previousMinX = previousConceptArea.origin.x
+      let widthDiff = previousMinX - point.x
+
+      concept.updateWidth(withDifference: widthDiff, fromLeft: true)
+    case .right:
+      let previousMaxX = previousConceptArea.origin.x + previousConceptArea.width
+      let widthDiff = point.x - previousMaxX
+
+      concept.updateWidth(withDifference: widthDiff)
+    }
+  }
+
   // MARK: - Mouse Events
   override func mouseDown(with event: NSEvent) {
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
 
     if event.isSingleClick() {
+      if let handler = clickedHandler(atPoint: point), let concept = singleSelectedElement() as? Concept {
+        safeTransiton {
+          try stateManager.toResizingConcept(concept: concept, handler: handler)
+        }
+        return
+      }
+
       if let clickedElements = clickedElements(atPoint: point) {
         switch currentState {
         case .selectedElement(let selectedElement):
@@ -92,6 +141,8 @@ extension CanvasViewController {
     case .canvasWaiting:
       hoverConcepts(toPoint: point)
 
+    case .resizingConcept(let concept, let handler, _):
+      resize(concept: concept, withHandler: handler, toPoint: point)
     default:
       return
     }
@@ -141,6 +192,11 @@ extension CanvasViewController {
       }
     case .canvasWaiting:
       selectHoveredConcepts()
+
+    case .resizingConcept(let concept, _, _):
+      safeTransiton {
+        try stateManager.toSelectedElement(element: concept)
+      }
 
     default:
       return

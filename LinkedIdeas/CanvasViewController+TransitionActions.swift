@@ -52,7 +52,7 @@ extension CanvasViewController {
       return nil
     }
 
-    let newConcept = Concept(attributedStringValue: text, point: point)
+    let newConcept = Concept(attributedStringValue: text, centerPoint: point)
 
     document.save(concept: newConcept)
 
@@ -72,34 +72,60 @@ extension CanvasViewController {
     return newLink
   }
 
-  func showTextField(inRect rect: NSRect, text: NSAttributedString? = nil) {
-    textFieldResizingBehavior.setFrame(toTextField: textField, forContentRect: rect)
-    textField.isEditable = true
-    textField.isHidden = false
-    if let text = text {
-      textField.attributedStringValue = text
-      textFieldResizingBehavior.resize(textField)
+  func showTextView(inRect rect: NSRect, text: NSAttributedString? = nil, constrainedSize: NSSize? = nil) {
+    textStorage.setAttributedString(text ?? NSAttributedString(string: ""))
+    let textViewFrame = rect
+
+    func calculateMaxSize(forCenterPoint centerPoint: NSPoint) -> NSSize {
+      let centerPointInScrollView = scrollView.convert(centerPoint, from: canvasView)
+
+      let deltaX1 = centerPointInScrollView.x
+      let deltaX2 = scrollView.visibleRect.width - centerPointInScrollView.x
+
+      return NSSize(
+        width: min(deltaX1, deltaX2) * 2,
+        height: scrollView.visibleRect.height
+      )
     }
-    canvasView.window?.makeFirstResponder(textField)
+
+    // the maxSize for the textView should be the max size allowed given
+    // the centerPoint where the text view will be displayed and the visible
+    // rect that is shown by the NSScrollView
+    let maxSize = constrainedSize ?? calculateMaxSize(forCenterPoint: rect.center)
+    print(maxSize.debugDescription)
+
+    textContainer.size = maxSize
+    textView.maxSize = maxSize
+    textView.frame = textViewFrame
+    textView.sizeToFit()
+    reCenterTextView(atPoint: rect.center)
+
+    textView.isHidden = false
+    textView.isEditable = true
+
+    canvasView.window?.makeFirstResponder(textView)
   }
 
-  func showTextField(atPoint point: NSPoint, text: NSAttributedString? = nil) {
-    textField.frame = NSRect(center: point, size: NSSize(width: 60, height: 25))
-    textField.isEditable = true
-    textField.isHidden = false
-    if let text = text {
-      textField.attributedStringValue = text
-      textFieldResizingBehavior.resize(textField)
-    }
-    canvasView.window?.makeFirstResponder(textField)
+  func showTextView(atPoint point: NSPoint, text: NSAttributedString? = nil, constrainedSize: NSSize? = nil) {
+    let textViewFrame = NSRect(center: point, size: NSSize(width: 60, height: 25))
+    showTextView(inRect: textViewFrame, text: text, constrainedSize: constrainedSize)
   }
 
-  func dismissTextField() {
-    textField.setFrameOrigin(NSPoint.zero)
-    textField.isEditable = false
-    textField.isHidden = true
-    textField.stringValue = ""
+  func dismissTextView() {
+    textStorage.setAttributedString(NSAttributedString(string: ""))
+    textView.setFrameOrigin(NSPoint.zero)
+    textView.isEditable = false
+    textView.isHidden = true
 
     canvasView.window?.makeFirstResponder(canvasView)
+  }
+
+  func reCenterTextView(atPoint centerPoint: CGPoint) {
+    textView.setFrameOrigin(
+      NSPoint(
+        x: centerPoint.x - textView.frame.width / 2,
+        y: centerPoint.y - textView.frame.height / 2
+      )
+    )
   }
 }

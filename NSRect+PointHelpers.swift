@@ -23,6 +23,8 @@ extension NSRect {
   var bottomRightPoint: NSPoint { return NSPoint(x: origin.x + size.width, y: origin.y) }
   var topRightPoint: NSPoint { return NSPoint(x: origin.x + size.width, y: origin.y + size.height) }
   var topLeftPoint: NSPoint { return NSPoint(x: origin.x, y: origin.y + size.height) }
+  var middleLeftPoint: NSPoint { return NSPoint(x: origin.x, y: center.y) }
+  var middleRightPoint: NSPoint { return NSPoint(x: origin.x + size.width, y: center.y) }
   var center: NSPoint { return NSPoint(x: origin.x + size.width / 2, y: origin.y + size.height / 2) }
 }
 

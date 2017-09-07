@@ -8,14 +8,14 @@
 
 import Cocoa
 
-public class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringElement {
+public class Link: NSObject, NSCoding, Element {
   // own attributes
   var origin: Concept
   var target: Concept
-  public var originPoint: NSPoint { return origin.point }
-  public var targetPoint: NSPoint { return target.point }
+  public var originPoint: NSPoint { return origin.centerPoint }
+  public var targetPoint: NSPoint { return target.centerPoint }
 
-  public var point: NSPoint {
+  public var centerPoint: NSPoint {
     return NSPoint(
       x: ((originPoint.x + targetPoint.x) / 2.0),
       y: ((originPoint.y + targetPoint.y) / 2.0)
@@ -27,7 +27,7 @@ public class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringE
     var textSizeWithPadding = attributedStringValue.size()
     textSizeWithPadding.width += textRectPadding
     textSizeWithPadding.height += textRectPadding
-    return NSRect(center: point, size: textSizeWithPadding)
+    return NSRect(center: centerPoint, size: textSizeWithPadding)
   }
 
   @objc dynamic public var color: NSColor
@@ -50,7 +50,7 @@ public class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringE
 
   // Element
   var identifier: String
-  public var rect: NSRect {
+  public var area: NSRect {
     var minX = min(originPoint.x, targetPoint.x)
     if abs(originPoint.x - targetPoint.x) <= padding { minX -= padding / 2 }
     var minY = min(originPoint.y, targetPoint.y)
@@ -63,7 +63,7 @@ public class Link: NSObject, NSCoding, Element, VisualElement, AttributedStringE
   }
 
   func contains(point: NSPoint) -> Bool {
-    guard rect.contains(point) else {
+    guard area.contains(point) else {
       return false
     }
     if textRect.contains(point) {

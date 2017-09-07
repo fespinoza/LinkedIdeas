@@ -12,8 +12,6 @@ class CanvasViewController: NSViewController {
   @IBOutlet weak var canvasView: CanvasView!
   @IBOutlet weak var scrollView: NSScrollView!
 
-  let textFieldResizingBehavior = TextFieldResizingBehavior()
-
   // for handling multiple "paste" results, to move the pasting result a bit each time
   var lastCopyIndex = 0
 
@@ -33,13 +31,36 @@ class CanvasViewController: NSViewController {
     }
   }
 
-  lazy var textField: NSTextField = {
-    let textField = NSTextField()
-    textField.isHidden = true
-    textField.isEditable = false
-    textField.allowsEditingTextAttributes = true
-    return textField
+  // MARK: - Text Handling
+  let textContainer = NSTextContainer()
+
+  lazy var layoutManager: NSLayoutManager = {
+    let layoutManager = NSLayoutManager()
+    layoutManager.addTextContainer(textContainer)
+    return layoutManager
   }()
+
+  lazy var textStorage: NSTextStorage = {
+    let textStorage = NSTextStorage()
+    textStorage.addLayoutManager(layoutManager)
+    return textStorage
+  }()
+
+  lazy var textView: NSTextView = {
+    let textView = NSTextView(frame: NSRect.zero, textContainer: textContainer)
+    textView.isHidden = true
+    textView.isEditable = false
+    textView.isRichText = true
+    textView.isVerticallyResizable = true
+    textView.isHorizontallyResizable = true
+    textView.backgroundColor = NSColor.lightGray
+
+    textView.delegate = self
+    return textView
+  }()
+
+  var currentEditingConceptCenterPoint: NSPoint = NSPoint.zero
+  var editingConcept: Concept?
 
   var document: LinkedIdeasDocument! {
     didSet {
@@ -62,10 +83,9 @@ class CanvasViewController: NSViewController {
     )
     scrollView.scroll(canvasViewCenterForScroll)
 
-    textField.delegate = self
-    canvasView.addSubview(textField)
-
     stateManager.delegate = self
+
+    canvasView.addSubview(textView)
 
     canvasView.window?.makeFirstResponder(canvasView)
   }
@@ -95,7 +115,7 @@ class CanvasViewController: NSViewController {
   }
 
   func clickedConcepts(atPoint clickedPoint: NSPoint) -> [Concept]? {
-    let results = document.concepts.filter { $0.rect.contains(clickedPoint) }
+    let results = document.concepts.filter { $0.area.contains(clickedPoint) }
     guard !results.isEmpty else {
       return nil
     }
@@ -128,7 +148,7 @@ class CanvasViewController: NSViewController {
   ///   - [Concept] if there were concepts intersecting the given area
   func matchedConcepts(inRect rect: NSRect) -> [Concept]? {
     let results = document.concepts.filter { (concept) -> Bool in
-      return rect.intersects(concept.rect)
+      return rect.intersects(concept.area)
     }
     guard results.count > 0 else {
       return nil
@@ -172,6 +192,15 @@ class CanvasViewController: NSViewController {
   func singleSelectedElement() -> Element? {
     switch currentState {
     case .selectedElement(let element):
+      return element
+    default:
+      return nil
+    }
+  }
+
+  func currentlyEditingElement() -> Element? {
+    switch currentState {
+    case .editingElement(let element):
       return element
     default:
       return nil
