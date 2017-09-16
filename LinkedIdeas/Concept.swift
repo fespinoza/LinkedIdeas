@@ -94,6 +94,7 @@ public class Concept: NSObject, NSCoding, Element, SquareElement {
   static let centerPointKey = "pointKey"
   static let identifierKey = "identifierKey"
   static let isEditableKey = "isEditableKey"
+  static let constrainedWidthKey = "constrainedWidthKey"
 
   // Moving
   var beforeMovingPoint: NSPoint?
@@ -162,6 +163,13 @@ public class Concept: NSObject, NSCoding, Element, SquareElement {
     self.attributedStringValue = attributedStringValue
     centerPoint = aDecoder.decodePoint(forKey: Concept.centerPointKey)
     isEditable = aDecoder.decodeBool(forKey: Concept.isEditableKey)
+
+    if let widthObject = aDecoder.decodeObject(forKey: Concept.constrainedWidthKey) as? NSNumber {
+      let constrainedWidth = CGFloat(widthObject.floatValue)
+      self.mode = .modifiedWidth(width: constrainedWidth)
+    } else {
+      self.mode = .textBased
+    }
   }
 
   public func encode(with aCoder: NSCoder) {
@@ -169,5 +177,12 @@ public class Concept: NSObject, NSCoding, Element, SquareElement {
     aCoder.encode(attributedStringValue, forKey: Concept.attributedStringValueKey)
     aCoder.encode(identifier, forKey: Concept.identifierKey)
     aCoder.encode(isEditable, forKey: Concept.isEditableKey)
+    switch mode {
+    case .modifiedWidth(let width):
+      let widthValue = NSNumber(value: Float(width))
+      aCoder.encode(widthValue, forKey: Concept.constrainedWidthKey)
+    case .textBased:
+      break
+    }
   }
 }
