@@ -11,7 +11,7 @@ import Cocoa
 extension NSRect {
   init(point1: NSPoint, point2: NSPoint) {
     origin = NSPoint(x: min(point1.x, point2.x), y: min(point1.y, point2.y))
-    size = NSSize(width:  abs(point2.x - point1.x), height: abs(point2.y - point1.y))
+    size = NSSize(width: abs(point2.x - point1.x), height: abs(point2.y - point1.y))
   }
 
   init(center: NSPoint, size: NSSize) {

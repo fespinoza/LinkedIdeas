@@ -147,8 +147,8 @@
 /* Begin PBXFileReference section */
 		9B05541E1F1FAD2800B3F1E7 /* LinkedIdeas.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LinkedIdeas.entitlements; sourceTree = "<group>"; };
 		9B0683FC1DA1A1AA00609AE5 /* StateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateManager.swift; sourceTree = "<group>"; };
-		9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSRect+PointHelpers.swift"; path = "../NSRect+PointHelpers.swift"; sourceTree = "<group>"; };
-		9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+Debugging.swift"; path = "../NSView+Debugging.swift"; sourceTree = "<group>"; };
+		9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSRect+PointHelpers.swift"; path = "NSRect+PointHelpers.swift"; sourceTree = "<group>"; };
+		9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+Debugging.swift"; path = "NSView+Debugging.swift"; sourceTree = "<group>"; };
 		9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtensions.swift; sourceTree = "<group>"; };
 		9B1CD1C71E48D10B003F192B /* CanvasViewController+LinkCreation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+LinkCreation.swift"; sourceTree = "<group>"; };
 		9B24718F1EEB43BB00DC6BF2 /* RectAlignments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectAlignments.swift; sourceTree = "<group>"; };
@@ -246,15 +246,15 @@
 		9B2F1D931BE7CFE70090CC18 = {
 			isa = PBXGroup;
 			children = (
-				9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */,
+				9B40CA0D1D1E960800D5EDDD /* Frameworks */,
+				9B2F1D9E1BE7CFE70090CC18 /* LinkedIdeas */,
+				9B2F1DB31BE7CFE80090CC18 /* LinkedIdeasTests */,
+				9B2F1D9D1BE7CFE70090CC18 /* Products */,
+				9BD850B11EE4C199005B89C9 /* QLLinkedIdeas */,
 				9BF456E21F16E8B800E1CDD3 /* LICENSE */,
 				9BF456E41F16E8BF00E1CDD3 /* PR.md */,
 				9BF456E31F16E8BC00E1CDD3 /* README.md */,
-				9B2F1D9E1BE7CFE70090CC18 /* LinkedIdeas */,
-				9B2F1DB31BE7CFE80090CC18 /* LinkedIdeasTests */,
-				9BD850B11EE4C199005B89C9 /* QLLinkedIdeas */,
-				9B2F1D9D1BE7CFE70090CC18 /* Products */,
-				9B40CA0D1D1E960800D5EDDD /* Frameworks */,
+				9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */,
 			);
 			sourceTree = "<group>";
 		};
@@ -271,15 +271,15 @@
 		9B2F1D9E1BE7CFE70090CC18 /* LinkedIdeas */ = {
 			isa = PBXGroup;
 			children = (
-				9B05541E1F1FAD2800B3F1E7 /* LinkedIdeas.entitlements */,
-				9B2F1DAB1BE7CFE80090CC18 /* Info.plist */,
-				9BA63D2C1D74C23100EBC3AD /* Main.storyboard */,
-				9B2F1DA61BE7CFE70090CC18 /* Assets.xcassets */,
-				9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */,
-				9BA63D331D74C45100EBC3AD /* UI */,
-				9B3941901E5656A100F1E957 /* ViewModels */,
 				9BCA09E31C9217A900637F6D /* Models */,
+				9BA63D331D74C45100EBC3AD /* UI */,
 				9B6E97E81EB5062B00D4EF86 /* Utilities */,
+				9B3941901E5656A100F1E957 /* ViewModels */,
+				9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */,
+				9B2F1DA61BE7CFE70090CC18 /* Assets.xcassets */,
+				9B2F1DAB1BE7CFE80090CC18 /* Info.plist */,
+				9B05541E1F1FAD2800B3F1E7 /* LinkedIdeas.entitlements */,
+				9BA63D2C1D74C23100EBC3AD /* Main.storyboard */,
 			);
 			path = LinkedIdeas;
 			sourceTree = "<group>";
@@ -289,10 +289,10 @@
 			children = (
 				9BB8FC801CA6B7B0008CD6A2 /* Models */,
 				9B43B8871EDC888900879507 /* ViewControllers */,
-				9B8665C51D96C9E800799678 /* StateManagerTests.swift */,
-				9BD0BD571D9B0BED0041F7ED /* TestProtocolConformance.swift */,
 				9B2F1DB61BE7CFE80090CC18 /* Info.plist */,
 				9B9A2EA31CF5EE5300607208 /* RectAlignmentsTests.swift */,
+				9B8665C51D96C9E800799678 /* StateManagerTests.swift */,
+				9BD0BD571D9B0BED0041F7ED /* TestProtocolConformance.swift */,
 			);
 			path = LinkedIdeasTests;
 			sourceTree = "<group>";
@@ -300,12 +300,13 @@
 		9B3941901E5656A100F1E957 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				9B3941911E5656AF00F1E957 /* ViewModelProtocols.swift */,
-				9B9EC6BC1EC0F2AB0048D2AC /* DrawableElement.swift */,
 				9B3941931E5656FE00F1E957 /* DrawableConcept.swift */,
+				9B9EC6BC1EC0F2AB0048D2AC /* DrawableElement.swift */,
 				9B3941951E56572F00F1E957 /* DrawableLink.swift */,
+				9B3941911E5656AF00F1E957 /* ViewModelProtocols.swift */,
 			);
 			name = ViewModels;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		9B40CA0D1D1E960800D5EDDD /* Frameworks */ = {
@@ -318,33 +319,36 @@
 		9B43B8871EDC888900879507 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */,
 				9B43B88A1EDC8B5D00879507 /* CanvasViewControllerKeyboardTests.swift */,
 				9B43B8881EDC88AC00879507 /* CanvasViewControllerMouseTests.swift */,
+				9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */,
 			);
 			name = ViewControllers;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		9B48F84A1CD614460014758D /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				9BD435851EBA645D008A1265 /* DocumentObserver.swift */,
 				9BB8FC881CA6B889008CD6A2 /* Element.swift */,
 				9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */,
 				9B521F861CFB380300A71598 /* SquareElement.swift */,
-				9BD435851EBA645D008A1265 /* DocumentObserver.swift */,
 			);
 			name = Protocols;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		9B6E97E81EB5062B00D4EF86 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				9BD2BF3E1C7F8B8D00E8A303 /* 2DMath */,
+				9B4DE0A61F2BD7CE00F95AAF /* ColorUtils.swift */,
 				9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */,
 				9B24718F1EEB43BB00DC6BF2 /* RectAlignments.swift */,
-				9B4DE0A61F2BD7CE00F95AAF /* ColorUtils.swift */,
 			);
 			name = Utilities;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		9B6E97E91EB5067B00D4EF86 /* Extensions */ = {
@@ -354,88 +358,94 @@
 				9B3941A71E56596000F1E957 /* NSResponder-Extensions.swift */,
 			);
 			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		9B8E90061E462AB900C819F7 /* CanvasViewControllerExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				9B8E90041E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift */,
-				9B1CD1C71E48D10B003F192B /* CanvasViewController+LinkCreation.swift */,
-				9B3941971E5657A000F1E957 /* CanvasViewController+MouseEvents.swift */,
-				9B3941991E5657D200F1E957 /* CanvasViewController+StateManagerDelegate.swift */,
-				9B39419B1E56582900F1E957 /* CanvasViewController+TransitionActions.swift */,
-				9B39419D1E56586000F1E957 /* CanvasViewController+KeyboardEvents.swift */,
+				9B90227E1EE9FF9200C528AE /* CanvasViewController+AligmentFunctions.swift */,
 				9B3941A11E5658F500F1E957 /* CanvasViewController+CanvasViewDataSource.swift */,
 				9B3941A31E56591900F1E957 /* CanvasViewController+DocumentObserver.swift */,
+				9B8E90041E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift */,
+				9B39419D1E56586000F1E957 /* CanvasViewController+KeyboardEvents.swift */,
+				9B1CD1C71E48D10B003F192B /* CanvasViewController+LinkCreation.swift */,
 				9BC8587E1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift */,
+				9B3941971E5657A000F1E957 /* CanvasViewController+MouseEvents.swift */,
 				9BB677671ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift */,
-				9B90227E1EE9FF9200C528AE /* CanvasViewController+AligmentFunctions.swift */,
 				9BCD799C1F4A37FE00D310B3 /* CanvasViewController+NSTextViewDelegate.swift */,
+				9B3941991E5657D200F1E957 /* CanvasViewController+StateManagerDelegate.swift */,
+				9B39419B1E56582900F1E957 /* CanvasViewController+TransitionActions.swift */,
 			);
 			name = CanvasViewControllerExtensions;
+			path = CanvasViewControllerExtensions;
 			sourceTree = "<group>";
 		};
 		9BA63D331D74C45100EBC3AD /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				9B6E97E91EB5067B00D4EF86 /* Extensions */,
 				9B8E90061E462AB900C819F7 /* CanvasViewControllerExtensions */,
-				9BA63D311D74C38400EBC3AD /* CanvasViewController.swift */,
+				9B6E97E91EB5067B00D4EF86 /* Extensions */,
 				9BA63D341D74C47800EBC3AD /* CanvasView.swift */,
+				9BA63D311D74C38400EBC3AD /* CanvasViewController.swift */,
+				9BA63D2F1D74C31A00EBC3AD /* DocumentViewController.swift */,
 				9B0683FC1DA1A1AA00609AE5 /* StateManager.swift */,
 				9BF15C381CAC69A500C95041 /* WindowController.swift */,
-				9BA63D2F1D74C31A00EBC3AD /* DocumentViewController.swift */,
 			);
 			name = UI;
+			path = UI;
 			sourceTree = "<group>";
 		};
 		9BB8FC801CA6B7B0008CD6A2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9BDF4B7E1F4B7C25000A1BB2 /* ConceptTests.swift */,
 				9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */,
 				9B33821E1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift */,
-				9BDF4B7E1F4B7C25000A1BB2 /* ConceptTests.swift */,
 			);
 			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		9BCA09E31C9217A900637F6D /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				9B48F84A1CD614460014758D /* Protocols */,
+				9BDDE7381BEF9157000AAD44 /* Concept.swift */,
 				9B2F1DA11BE7CFE70090CC18 /* Document.swift */,
 				9B48F84C1CD614BC0014758D /* DocumentData.swift */,
-				9BDDE7381BEF9157000AAD44 /* Concept.swift */,
-				9BABB2B11C07B7F7001EC9E0 /* Link.swift */,
 				9BFBA8941F50D8D200EA8ABE /* Handler.swift */,
+				9BABB2B11C07B7F7001EC9E0 /* Link.swift */,
 			);
 			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		9BD2BF3E1C7F8B8D00E8A303 /* 2DMath */ = {
 			isa = PBXGroup;
 			children = (
-				9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */,
-				9B956CE41C1B11C200CF20DA /* NSPoint+Utilities.swift */,
-				9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */,
-				9BD2BF341C7F8B1200E8A303 /* LineRange.swift */,
-				9BD2BF381C7F8B4100E8A303 /* PointInterceptable.swift */,
-				9BD2BF3A1C7F8B5500E8A303 /* Line.swift */,
+				9BD2BF411C7F8C2000E8A303 /* Arrow.swift */,
 				9BD2BF3C1C7F8B6A00E8A303 /* FiniteLine.swift */,
 				9BD2BF361C7F8B2300E8A303 /* Interceptable.swift */,
-				9BD2BF411C7F8C2000E8A303 /* Arrow.swift */,
+				9BD2BF3A1C7F8B5500E8A303 /* Line.swift */,
+				9BD2BF341C7F8B1200E8A303 /* LineRange.swift */,
+				9B956CE41C1B11C200CF20DA /* NSPoint+Utilities.swift */,
+				9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */,
+				9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */,
+				9BD2BF381C7F8B4100E8A303 /* PointInterceptable.swift */,
 			);
 			name = 2DMath;
+			path = 2DMath;
 			sourceTree = "<group>";
 		};
 		9BD850B11EE4C199005B89C9 /* QLLinkedIdeas */ = {
 			isa = PBXGroup;
 			children = (
-				9BD850B21EE4C199005B89C9 /* GenerateThumbnailForURL.m */,
-				9BD850B41EE4C199005B89C9 /* GeneratePreviewForURL.m */,
-				9BD850B61EE4C199005B89C9 /* main.c */,
 				9BD850BC1EE4C67E005B89C9 /* DocumentManager.swift */,
+				9BD850B41EE4C199005B89C9 /* GeneratePreviewForURL.m */,
+				9BD850B21EE4C199005B89C9 /* GenerateThumbnailForURL.m */,
 				9BD850B81EE4C199005B89C9 /* Info.plist */,
+				9BD850B61EE4C199005B89C9 /* main.c */,
 			);
 			path = QLLinkedIdeas;
 			sourceTree = "<group>";
@@ -783,6 +793,7 @@
 				9BA63D2D1D74C23100EBC3AD /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

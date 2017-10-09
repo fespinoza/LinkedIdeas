@@ -109,7 +109,7 @@ public class Document: NSDocument {
   override public func observeValue(
     forKeyPath keyPath: String?,
     of object: Any?,
-    change: [NSKeyValueChangeKey : Any]?,
+    change: [NSKeyValueChangeKey: Any]?,
     context: UnsafeMutableRawPointer?
   ) {
     guard context == &KVOContext else {

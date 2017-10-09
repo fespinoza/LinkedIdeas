@@ -110,7 +110,7 @@ class NSAttributedStringExtensionsTest: XCTestCase {
   // NSAttributedString(attributedString:bold:)
   func testCreatingABoldString() {
     let neNSAttributedString = NSAttributedString(
-      attributedString:NSAttributedString(string: stringValue),
+      attributedString: NSAttributedString(string: stringValue),
       bold: true
     )
 
@@ -120,7 +120,7 @@ class NSAttributedStringExtensionsTest: XCTestCase {
   // NSAttributedString(attributedString:withColor:NSColor)
   func testCreatingAFontWithColor() {
     let neNSAttributedString = NSAttributedString(
-      attributedString:NSAttributedString(string: stringValue),
+      attributedString: NSAttributedString(string: stringValue),
       fontColor: NSColor.red
     )
 
@@ -130,7 +130,7 @@ class NSAttributedStringExtensionsTest: XCTestCase {
   // NSAttributedString(attributedString:withFontSize:Int)
   func testCreatingAStringWithGivenFontSize() {
     let neNSAttributedString = NSAttributedString(
-      attributedString:NSAttributedString(string: stringValue),
+      attributedString: NSAttributedString(string: stringValue),
       fontSize: 20
     )
 
