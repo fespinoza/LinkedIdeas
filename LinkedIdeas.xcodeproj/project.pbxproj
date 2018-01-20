@@ -40,6 +40,13 @@
 		9B8E90051E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E90041E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift */; };
 		9B90227F1EE9FF9200C528AE /* CanvasViewController+AligmentFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B90227E1EE9FF9200C528AE /* CanvasViewController+AligmentFunctions.swift */; };
 		9B956CE51C1B11C200CF20DA /* NSPoint+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B956CE41C1B11C200CF20DA /* NSPoint+Utilities.swift */; };
+		9B97BF812013F39000C780AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B97BF802013F39000C780AC /* AppDelegate.swift */; };
+		9B97BF832013F39000C780AC /* DocumentBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B97BF822013F39000C780AC /* DocumentBrowserViewController.swift */; };
+		9B97BF852013F39000C780AC /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B97BF842013F39000C780AC /* DocumentViewController.swift */; };
+		9B97BF872013F39000C780AC /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B97BF862013F39000C780AC /* Document.swift */; };
+		9B97BF8A2013F39000C780AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B97BF882013F39000C780AC /* Main.storyboard */; };
+		9B97BF8C2013F39000C780AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B97BF8B2013F39000C780AC /* Assets.xcassets */; };
+		9B97BF8F2013F39000C780AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B97BF8D2013F39000C780AC /* LaunchScreen.storyboard */; };
 		9B9A2EA41CF5EE5300607208 /* RectAlignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A2EA31CF5EE5300607208 /* RectAlignmentsTests.swift */; };
 		9B9EC6BD1EC0F2AB0048D2AC /* DrawableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9EC6BC1EC0F2AB0048D2AC /* DrawableElement.swift */; };
 		9BA63D2E1D74C23100EBC3AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BA63D2C1D74C23100EBC3AD /* Main.storyboard */; };
@@ -147,8 +154,8 @@
 /* Begin PBXFileReference section */
 		9B05541E1F1FAD2800B3F1E7 /* LinkedIdeas.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LinkedIdeas.entitlements; sourceTree = "<group>"; };
 		9B0683FC1DA1A1AA00609AE5 /* StateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateManager.swift; sourceTree = "<group>"; };
-		9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSRect+PointHelpers.swift"; path = "NSRect+PointHelpers.swift"; sourceTree = "<group>"; };
-		9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+Debugging.swift"; path = "NSView+Debugging.swift"; sourceTree = "<group>"; };
+		9B06AD121C11AD74000BC75C /* NSRect+PointHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRect+PointHelpers.swift"; sourceTree = "<group>"; };
+		9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSView+Debugging.swift"; sourceTree = "<group>"; };
 		9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtensions.swift; sourceTree = "<group>"; };
 		9B1CD1C71E48D10B003F192B /* CanvasViewController+LinkCreation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+LinkCreation.swift"; sourceTree = "<group>"; };
 		9B24718F1EEB43BB00DC6BF2 /* RectAlignments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectAlignments.swift; sourceTree = "<group>"; };
@@ -182,6 +189,15 @@
 		9B8E90041E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "CanvasViewController+DraggingActions.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9B90227E1EE9FF9200C528AE /* CanvasViewController+AligmentFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+AligmentFunctions.swift"; sourceTree = "<group>"; };
 		9B956CE41C1B11C200CF20DA /* NSPoint+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPoint+Utilities.swift"; sourceTree = "<group>"; };
+		9B97BF7E2013F39000C780AC /* LinkedIdeas-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LinkedIdeas-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B97BF802013F39000C780AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9B97BF822013F39000C780AC /* DocumentBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserViewController.swift; sourceTree = "<group>"; };
+		9B97BF842013F39000C780AC /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
+		9B97BF862013F39000C780AC /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		9B97BF892013F39000C780AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9B97BF8B2013F39000C780AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9B97BF8E2013F39000C780AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9B97BF902013F39000C780AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B9A2EA31CF5EE5300607208 /* RectAlignmentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectAlignmentsTests.swift; sourceTree = "<group>"; };
 		9B9EC6BC1EC0F2AB0048D2AC /* DrawableElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableElement.swift; sourceTree = "<group>"; };
 		9BA63D2D1D74C23100EBC3AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -233,6 +249,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9B97BF7B2013F39000C780AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9BD850AC1EE4C199005B89C9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -246,6 +269,7 @@
 		9B2F1D931BE7CFE70090CC18 = {
 			isa = PBXGroup;
 			children = (
+				9B97BF7F2013F39000C780AC /* LinkedIdeas-iOS */,
 				9B40CA0D1D1E960800D5EDDD /* Frameworks */,
 				9B2F1D9E1BE7CFE70090CC18 /* LinkedIdeas */,
 				9B2F1DB31BE7CFE80090CC18 /* LinkedIdeasTests */,
@@ -264,6 +288,7 @@
 				9B2F1D9C1BE7CFE70090CC18 /* LinkedIdeas.app */,
 				9B2F1DB01BE7CFE80090CC18 /* LinkedIdeasTests.xctest */,
 				9BD850B01EE4C199005B89C9 /* QLLinkedIdeas.qlgenerator */,
+				9B97BF7E2013F39000C780AC /* LinkedIdeas-iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -305,7 +330,6 @@
 				9B3941951E56572F00F1E957 /* DrawableLink.swift */,
 				9B3941911E5656AF00F1E957 /* ViewModelProtocols.swift */,
 			);
-			name = ViewModels;
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
@@ -323,7 +347,6 @@
 				9B43B8881EDC88AC00879507 /* CanvasViewControllerMouseTests.swift */,
 				9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */,
 			);
-			name = ViewControllers;
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
@@ -335,7 +358,6 @@
 				9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */,
 				9B521F861CFB380300A71598 /* SquareElement.swift */,
 			);
-			name = Protocols;
 			path = Protocols;
 			sourceTree = "<group>";
 		};
@@ -347,7 +369,6 @@
 				9B1CCDEA1D294E0900F319EB /* NSAttributedStringExtensions.swift */,
 				9B24718F1EEB43BB00DC6BF2 /* RectAlignments.swift */,
 			);
-			name = Utilities;
 			path = Utilities;
 			sourceTree = "<group>";
 		};
@@ -357,7 +378,6 @@
 				9B3941A51E56594700F1E957 /* NSEvent-Extensions.swift */,
 				9B3941A71E56596000F1E957 /* NSResponder-Extensions.swift */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -377,8 +397,22 @@
 				9B3941991E5657D200F1E957 /* CanvasViewController+StateManagerDelegate.swift */,
 				9B39419B1E56582900F1E957 /* CanvasViewController+TransitionActions.swift */,
 			);
-			name = CanvasViewControllerExtensions;
 			path = CanvasViewControllerExtensions;
+			sourceTree = "<group>";
+		};
+		9B97BF7F2013F39000C780AC /* LinkedIdeas-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				9B97BF802013F39000C780AC /* AppDelegate.swift */,
+				9B97BF822013F39000C780AC /* DocumentBrowserViewController.swift */,
+				9B97BF842013F39000C780AC /* DocumentViewController.swift */,
+				9B97BF862013F39000C780AC /* Document.swift */,
+				9B97BF882013F39000C780AC /* Main.storyboard */,
+				9B97BF8B2013F39000C780AC /* Assets.xcassets */,
+				9B97BF8D2013F39000C780AC /* LaunchScreen.storyboard */,
+				9B97BF902013F39000C780AC /* Info.plist */,
+			);
+			path = "LinkedIdeas-iOS";
 			sourceTree = "<group>";
 		};
 		9BA63D331D74C45100EBC3AD /* UI */ = {
@@ -392,7 +426,6 @@
 				9B0683FC1DA1A1AA00609AE5 /* StateManager.swift */,
 				9BF15C381CAC69A500C95041 /* WindowController.swift */,
 			);
-			name = UI;
 			path = UI;
 			sourceTree = "<group>";
 		};
@@ -403,7 +436,6 @@
 				9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */,
 				9B33821E1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -417,7 +449,6 @@
 				9BFBA8941F50D8D200EA8ABE /* Handler.swift */,
 				9BABB2B11C07B7F7001EC9E0 /* Link.swift */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -434,7 +465,6 @@
 				9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */,
 				9BD2BF381C7F8B4100E8A303 /* PointInterceptable.swift */,
 			);
-			name = 2DMath;
 			path = 2DMath;
 			sourceTree = "<group>";
 		};
@@ -503,6 +533,23 @@
 			productReference = 9B2F1DB01BE7CFE80090CC18 /* LinkedIdeasTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		9B97BF7D2013F39000C780AC /* LinkedIdeas-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9B97BF932013F39000C780AC /* Build configuration list for PBXNativeTarget "LinkedIdeas-iOS" */;
+			buildPhases = (
+				9B97BF7A2013F39000C780AC /* Sources */,
+				9B97BF7B2013F39000C780AC /* Frameworks */,
+				9B97BF7C2013F39000C780AC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LinkedIdeas-iOS";
+			productName = "LinkedIdeas-iOS";
+			productReference = 9B97BF7E2013F39000C780AC /* LinkedIdeas-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 		9BD850AF1EE4C199005B89C9 /* QLLinkedIdeas */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9BD850BB1EE4C199005B89C9 /* Build configuration list for PBXNativeTarget "QLLinkedIdeas" */;
@@ -527,7 +574,7 @@
 		9B2F1D941BE7CFE70090CC18 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Felipe Espinoza Dev";
 				TargetAttributes = {
@@ -548,6 +595,11 @@
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 9B2F1D9B1BE7CFE70090CC18;
+					};
+					9B97BF7D2013F39000C780AC = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = 2Z7R9FQBNN;
+						ProvisioningStyle = Automatic;
 					};
 					9BD850AF1EE4C199005B89C9 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -573,6 +625,7 @@
 				9B2F1D9B1BE7CFE70090CC18 /* LinkedIdeas */,
 				9B2F1DAF1BE7CFE80090CC18 /* LinkedIdeasTests */,
 				9BD850AF1EE4C199005B89C9 /* QLLinkedIdeas */,
+				9B97BF7D2013F39000C780AC /* LinkedIdeas-iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -592,6 +645,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9B97BF7C2013F39000C780AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B97BF8F2013F39000C780AC /* LaunchScreen.storyboard in Resources */,
+				9B97BF8C2013F39000C780AC /* Assets.xcassets in Resources */,
+				9B97BF8A2013F39000C780AC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -718,6 +781,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9B97BF7A2013F39000C780AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B97BF872013F39000C780AC /* Document.swift in Sources */,
+				9B97BF852013F39000C780AC /* DocumentViewController.swift in Sources */,
+				9B97BF832013F39000C780AC /* DocumentBrowserViewController.swift in Sources */,
+				9B97BF812013F39000C780AC /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9BD850AB1EE4C199005B89C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -787,6 +861,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9B97BF882013F39000C780AC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B97BF892013F39000C780AC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9B97BF8D2013F39000C780AC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B97BF8E2013F39000C780AC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		9BA63D2C1D74C23100EBC3AD /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -977,6 +1067,56 @@
 			};
 			name = Release;
 		};
+		9B97BF912013F39000C780AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2Z7R9FQBNN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "LinkedIdeas-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fespinozacast.LinkedIdeas-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9B97BF922013F39000C780AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2Z7R9FQBNN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "LinkedIdeas-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fespinozacast.LinkedIdeas-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		9BD850B91EE4C199005B89C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1048,6 +1188,15 @@
 			buildConfigurations = (
 				9B2F1DC81BE7CFE80090CC18 /* Debug */,
 				9B2F1DC91BE7CFE80090CC18 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9B97BF932013F39000C780AC /* Build configuration list for PBXNativeTarget "LinkedIdeas-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B97BF912013F39000C780AC /* Debug */,
+				9B97BF922013F39000C780AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
