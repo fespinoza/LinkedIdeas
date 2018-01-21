@@ -18,7 +18,7 @@ void CancelPreviewGeneration(void *thisInterface, QLPreviewRequestRef preview);
 OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options)
 {
   @autoreleasepool {
-    NSSize canvasSize = NSMakeSize(800, 600);
+    CGSize canvasSize = NSMakeSize(800, 600);
 
     NSLog(@"Quicklook Init! %@, contentType %@", url, contentTypeUTI);
 

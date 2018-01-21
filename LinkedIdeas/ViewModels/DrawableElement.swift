@@ -11,7 +11,7 @@ import Cocoa
 public protocol DrawableElement {
   func draw()
 
-  var drawingBounds: NSRect { get }
+  var drawingBounds: CGRect { get }
 
   func drawForDebug()
 }
@@ -35,7 +35,7 @@ extension DrawableElement {
     drawCenteredDotAtPoint(drawingBounds.center)
   }
 
-  func drawDotAtPoint(_ point: NSPoint) {
+  func drawDotAtPoint(_ point: CGPoint) {
     NSColor.red.set()
     var x: CGFloat = point.x
     var y: CGFloat = point.y
@@ -43,14 +43,14 @@ extension DrawableElement {
     if x >= drawingBounds.maxX { x = drawingBounds.maxX - area }
     if y >= drawingBounds.maxY { y = drawingBounds.maxY - area }
 
-    let rect = NSRect(
-      origin: NSPoint(x: x, y: y),
-      size: NSSize(width: area, height: area)
+    let rect = CGRect(
+      origin: CGPoint(x: x, y: y),
+      size: CGSize(width: area, height: area)
     )
     NSBezierPath(ovalIn: rect).fill()
   }
 
-  func drawCenteredDotAtPoint(_ point: NSPoint, color: NSColor = NSColor.yellow) {
+  func drawCenteredDotAtPoint(_ point: CGPoint, color: NSColor = NSColor.yellow) {
     color.set()
     var x: CGFloat = point.x - area / 2
     var y: CGFloat = point.y - area / 2
@@ -58,15 +58,15 @@ extension DrawableElement {
     if x >= drawingBounds.maxX { x = drawingBounds.maxX - area / 2 }
     if y >= drawingBounds.maxY { y = drawingBounds.maxY - area / 2 }
 
-    let rect = NSRect(
-      origin: NSPoint(x: x, y: y),
-      size: NSSize(width: area, height: area)
+    let rect = CGRect(
+      origin: CGPoint(x: x, y: y),
+      size: CGSize(width: area, height: area)
     )
     NSBezierPath(ovalIn: rect).fill()
 
   }
 
-  func drawBorderForRect(_ rect: NSRect) {
+  func drawBorderForRect(_ rect: CGRect) {
     NSColor.blue.set()
     let border = NSBezierPath()
     border.move(to: rect.bottomLeftPoint)
@@ -77,7 +77,7 @@ extension DrawableElement {
     border.stroke()
   }
 
-  func drawFullRect(_ rect: NSRect) {
+  func drawFullRect(_ rect: CGRect) {
     rect.fill()
     drawBorderForRect(rect)
     drawCenteredDotAtPoint(rect.origin, color: NSColor.red)

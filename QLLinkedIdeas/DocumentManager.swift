@@ -16,7 +16,7 @@ public class DocumentManager: NSObject {
     return "DocumentManager: url=\(String(describing: url)) uti=\(String(describing: contentTypeUTI))"
   }
 
-  @objc public func processDocument(canvasSize: NSSize, context: NSGraphicsContext) {
+  @objc public func processDocument(canvasSize: CGSize, context: NSGraphicsContext) {
     guard let url = url, let contentTypeUTI = contentTypeUTI else {
       return
     }

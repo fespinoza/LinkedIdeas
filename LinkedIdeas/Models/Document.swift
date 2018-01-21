@@ -37,15 +37,15 @@ public class Document: NSDocument {
     }
   }
 
-  public var rect: NSRect {
+  public var rect: CGRect {
     let minX = concepts.map { $0.area.minX }.min() ?? 0
     let minY = concepts.map { $0.area.minY }.min() ?? 0
     let maxX = concepts.map { $0.area.maxX }.max() ?? 800
     let maxY = concepts.map { $0.area.maxY }.max() ?? 600
 
-    return NSRect(
-      point1: NSPoint(x: minX, y: minY),
-      point2: NSPoint(x: maxX, y: maxY)
+    return CGRect(
+      point1: CGPoint(x: minX, y: minY),
+      point2: CGPoint(x: maxX, y: maxY)
     )
   }
 
@@ -180,7 +180,7 @@ extension Document: LinkedIdeasDocument {
     observer?.documentChanged(withElement: link)
   }
 
-  func move(concept: Concept, toPoint: NSPoint) {
+  func move(concept: Concept, toPoint: CGPoint) {
     Swift.print("move concept \(concept) toPoint: \(toPoint)")
     let originalPoint = concept.centerPoint
     concept.centerPoint = toPoint
@@ -194,7 +194,7 @@ extension Document: LinkedIdeasDocument {
 }
 
 extension Document: CanvasViewDataSource {
-  public func drawableElements(forRect: NSRect) -> [DrawableElement] {
+  public func drawableElements(forRect: CGRect) -> [DrawableElement] {
     return drawableElements
   }
 

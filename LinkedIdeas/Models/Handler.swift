@@ -15,7 +15,7 @@ public struct Handler {
   }
 
   weak var concept: Concept?
-  var centerPoint: NSPoint {
+  var centerPoint: CGPoint {
     guard let concept = self.concept else {
       preconditionFailure("concept was released before hand")
     }
@@ -27,8 +27,8 @@ public struct Handler {
     }
   }
 
-  var area: NSRect {
-    return NSRect(center: centerPoint, size: size)
+  var area: CGRect {
+    return CGRect(center: centerPoint, size: size)
   }
 
   let size: CGSize
@@ -48,7 +48,7 @@ public struct Handler {
     NSBezierPath(rect: area).stroke()
   }
 
-  func contains(_ point: NSPoint) -> Bool {
+  func contains(_ point: CGPoint) -> Bool {
     return area.contains(point)
   }
 }

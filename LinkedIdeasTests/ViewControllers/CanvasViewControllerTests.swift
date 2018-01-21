@@ -19,11 +19,11 @@ extension CanvasViewController {
 
 class CanvasViewControllerTests: XCTestCase {
   // this is used because of flipping the CanvasView for working with iOS
-  func invertY(_ point: NSPoint) -> NSPoint {
-    return NSPoint(x: point.x, y: -point.y)
+  func invertY(_ point: CGPoint) -> CGPoint {
+    return CGPoint(x: point.x, y: -point.y)
   }
 
-  func createMouseEvent(clickCount: Int, location: NSPoint, shift: Bool = false) -> NSEvent {
+  func createMouseEvent(clickCount: Int, location: CGPoint, shift: Bool = false) -> NSEvent {
     var flags: NSEvent.ModifierFlags = NSEvent.ModifierFlags.function
 
     if shift {
@@ -52,7 +52,7 @@ class CanvasViewControllerTests: XCTestCase {
 
     return NSEvent.keyEvent(
       with: .keyDown,
-      location: NSPoint.zero,
+      location: CGPoint.zero,
       modifierFlags: flags,
       timestamp: 2,
       windowNumber: 0,
@@ -86,12 +86,12 @@ class CanvasViewControllerTests: XCTestCase {
 
 extension CanvasViewControllerTests {
   func testClickedConceptsAtPointWhenIntercepsAConcept() {
-    let clickedPoint = NSPoint(x: 205, y: 305)
+    let clickedPoint = CGPoint(x: 205, y: 305)
 
     let concepts = [
-      Concept(stringValue: "Foo #0", centerPoint: NSPoint(x: 210, y: 310)),
-      Concept(stringValue: "Foo #1", centerPoint: NSPoint(x: 210, y: 110)),
-      Concept(stringValue: "Foo #2", centerPoint: NSPoint(x: 200, y: 300))
+      Concept(stringValue: "Foo #0", centerPoint: CGPoint(x: 210, y: 310)),
+      Concept(stringValue: "Foo #1", centerPoint: CGPoint(x: 210, y: 110)),
+      Concept(stringValue: "Foo #2", centerPoint: CGPoint(x: 200, y: 300))
     ]
     document.concepts = concepts
 
@@ -103,12 +103,12 @@ extension CanvasViewControllerTests {
   }
 
   func testClickedConceptsAtPointWithNoResults() {
-    let clickedPoint = NSPoint(x: 1200, y: 1300)
+    let clickedPoint = CGPoint(x: 1200, y: 1300)
 
     let concepts = [
-      Concept(stringValue: "Foo #0", centerPoint: NSPoint(x: 210, y: 310)),
-      Concept(stringValue: "Foo #1", centerPoint: NSPoint(x: 210, y: 110)),
-      Concept(stringValue: "Foo #2", centerPoint: NSPoint(x: 200, y: 300))
+      Concept(stringValue: "Foo #0", centerPoint: CGPoint(x: 210, y: 310)),
+      Concept(stringValue: "Foo #1", centerPoint: CGPoint(x: 210, y: 110)),
+      Concept(stringValue: "Foo #2", centerPoint: CGPoint(x: 200, y: 300))
       ]
     document.concepts = concepts
 
@@ -122,7 +122,7 @@ extension CanvasViewControllerTests {
 
 extension CanvasViewControllerTests {
   func testPressEnterKeyWhenEditingInTheTextView() {
-    let conceptPoint = NSPoint.zero
+    let conceptPoint = CGPoint.zero
     canvasViewController.currentState = .newConcept(point: conceptPoint)
     canvasViewController.stateManager.delegate = StateManagerTestDelegate()
 
@@ -139,7 +139,7 @@ extension CanvasViewControllerTests {
 
 extension CanvasViewControllerTests {
   func testShowTextViewAt() {
-    let clickedPoint = NSPoint(x: 400, y: 300)
+    let clickedPoint = CGPoint(x: 400, y: 300)
     canvasViewController.showTextView(atPoint: clickedPoint)
 
     XCTAssertFalse(canvasViewController.textView.isHidden)
@@ -148,9 +148,9 @@ extension CanvasViewControllerTests {
   }
 
   func testDismissTextView() {
-    let textViewCenter = NSPoint(x: 400, y: 300)
+    let textViewCenter = CGPoint(x: 400, y: 300)
     let textView = canvasViewController.textView
-    textView.frame = NSRect(center: textViewCenter, size: NSSize(width: 60, height: 40))
+    textView.frame = CGRect(center: textViewCenter, size: CGSize(width: 60, height: 40))
     textView.textStorage?.setAttributedString(NSAttributedString(string: "Foo bar asdf"))
     textView.isHidden = false
     textView.isEditable = true
@@ -168,7 +168,7 @@ extension CanvasViewControllerTests {
     canvasViewController.document = document
 
     let attributedString = NSAttributedString(string: "New Concept")
-    let conceptCenterPoint = NSPoint(x: 300, y: 400)
+    let conceptCenterPoint = CGPoint(x: 300, y: 400)
 
     let concept = canvasViewController.saveConcept(
       text: attributedString,
@@ -184,7 +184,7 @@ extension CanvasViewControllerTests {
     canvasViewController.document = document
 
     let attributedString = NSAttributedString(string: "")
-    let conceptCenterPoint = NSPoint(x: 300, y: 400)
+    let conceptCenterPoint = CGPoint(x: 300, y: 400)
 
     let concept = canvasViewController.saveConcept(
       text: attributedString,

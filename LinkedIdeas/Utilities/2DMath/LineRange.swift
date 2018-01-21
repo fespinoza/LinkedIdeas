@@ -31,7 +31,7 @@ struct LineRange: Interceptable {
     )
   }
 
-  func doesContain(_ point: NSPoint) -> Bool {
+  func doesContain(_ point: CGPoint) -> Bool {
     return point.x >= minX && point.x <= maxX && point.y >= minY && point.y <= maxY
   }
 }

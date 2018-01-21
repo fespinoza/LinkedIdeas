@@ -9,8 +9,8 @@
 import Cocoa
 
 struct FiniteLine: Interceptable, PointInterceptable {
-  var point1: NSPoint
-  var point2: NSPoint
+  var point1: CGPoint
+  var point2: CGPoint
 
   var line: Line {
     return Line(pointA: point1, pointB: point2)
@@ -36,7 +36,7 @@ struct FiniteLine: Interceptable, PointInterceptable {
     return path
   }
 
-  func intersectionPointWith(_ other: FiniteLine) -> NSPoint? {
+  func intersectionPointWith(_ other: FiniteLine) -> CGPoint? {
     if let intersectionPoint = line.intersectionPointWith(other.line) {
       let intersectionLineRange = lineRange.interception(other.lineRange)
       if intersectionLineRange.isValid() && intersectionLineRange.doesContain(intersectionPoint) {

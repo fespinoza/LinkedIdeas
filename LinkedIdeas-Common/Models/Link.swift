@@ -5,32 +5,37 @@
 //  Created by Felipe Espinoza Castillo on 26/11/15.
 //  Copyright © 2015 Felipe Espinoza Dev. All rights reserved.
 //
+#if os(iOS)
+  import UIKit
+  typealias Color = UIColor
+#else
+  import AppKit
+  typealias Color = NSColor
+#endif
 
-import Cocoa
-
-public class Link: NSObject, NSCoding, Element {
+public class Link: NSObject, NSCoding {
   // own attributes
   var origin: Concept
   var target: Concept
-  public var originPoint: NSPoint { return origin.centerPoint }
-  public var targetPoint: NSPoint { return target.centerPoint }
+  public var originPoint: CGPoint { return origin.centerPoint }
+  public var targetPoint: CGPoint { return target.centerPoint }
 
-  public var centerPoint: NSPoint {
-    return NSPoint(
+  public var centerPoint: CGPoint {
+    return CGPoint(
       x: ((originPoint.x + targetPoint.x) / 2.0),
       y: ((originPoint.y + targetPoint.y) / 2.0)
     )
   }
 
   let textRectPadding: CGFloat = 8.0
-  var textRect: NSRect {
+  var textRect: CGRect {
     var textSizeWithPadding = attributedStringValue.size()
     textSizeWithPadding.width += textRectPadding
     textSizeWithPadding.height += textRectPadding
-    return NSRect(center: centerPoint, size: textSizeWithPadding)
+    return CGRect(center: centerPoint, size: textSizeWithPadding)
   }
 
-  @objc dynamic public var color: NSColor
+  @objc dynamic public var color: Color
 
   // MARK: - NSAttributedStringElement
   @objc dynamic public var attributedStringValue: NSAttributedString
@@ -42,7 +47,7 @@ public class Link: NSObject, NSCoding, Element {
 
   private let padding: CGFloat = 20
 
-  static let defaultColor = NSColor.gray
+  static let defaultColor = Color.gray
 
   override public var description: String {
     return "'\(origin.stringValue)' '\(target.stringValue)'"
@@ -50,7 +55,7 @@ public class Link: NSObject, NSCoding, Element {
 
   // Element
   var identifier: String
-  public var area: NSRect {
+  public var area: CGRect {
     var minX = min(originPoint.x, targetPoint.x)
     if abs(originPoint.x - targetPoint.x) <= padding { minX -= padding / 2 }
     var minY = min(originPoint.y, targetPoint.y)
@@ -59,10 +64,10 @@ public class Link: NSObject, NSCoding, Element {
     let maxY = max(originPoint.y, targetPoint.y)
     let width = max(maxX - minX, padding)
     let height = max(maxY - minY, padding)
-    return NSRect(x: minX, y: minY, width: width, height: height)
+    return CGRect(x: minX, y: minY, width: width, height: height)
   }
 
-  func contains(point: NSPoint) -> Bool {
+  func contains(point: CGPoint) -> Bool {
     guard area.contains(point) else {
       return false
     }
@@ -70,30 +75,30 @@ public class Link: NSObject, NSCoding, Element {
       return true
     }
 
-    let extendedAreaArrow = Arrow(point1: originPoint, point2: targetPoint, arrowBodyWidth: 20)
-    let minXPoint: NSPoint! = extendedAreaArrow.arrowBodyPoints()
-      .min { (pointA, pointB) -> Bool in pointA.x < pointB.x }
-    let maxXPoint: NSPoint! = extendedAreaArrow.arrowBodyPoints()
-      .max { (pointA, pointB) -> Bool in pointA.x < pointB.x }
+//    let extendedAreaArrow = Arrow(point1: originPoint, point2: targetPoint, arrowBodyWidth: 20)
+//    let minXPoint: CGPoint! = extendedAreaArrow.arrowBodyPoints()
+//      .min { (pointA, pointB) -> Bool in pointA.x < pointB.x }
+//    let maxXPoint: CGPoint! = extendedAreaArrow.arrowBodyPoints()
+//      .max { (pointA, pointB) -> Bool in pointA.x < pointB.x }
+//
+//    let linkLine = Line(pointA: originPoint, pointB: targetPoint)
+//    let pivotPoint = CGPoint(x: linkLine.evaluateY(0), y: 0)
+//
+//    let angledLine = Line(pointA: pivotPoint, pointB: minXPoint)
+//    let a = angledLine.intersectionWithYAxis
+//    let b = angledLine.intersectionWithXAxis
+//    let c: CGFloat = sqrt(pow(a, 2) + pow(b, 2))
+//    let sin_theta = a / c
+//    let cos_theta = b / c
 
-    let linkLine = Line(pointA: originPoint, pointB: targetPoint)
-    let pivotPoint = NSPoint(x: linkLine.evaluateY(0), y: 0)
-
-    let angledLine = Line(pointA: pivotPoint, pointB: minXPoint)
-    let a = angledLine.intersectionWithYAxis
-    let b = angledLine.intersectionWithXAxis
-    let c: CGFloat = sqrt(pow(a, 2) + pow(b, 2))
-    let sin_theta = a / c
-    let cos_theta = b / c
-
-    func transformationFunction(ofPoint pointToTransform: NSPoint) -> NSPoint {
-      return NSPoint(
+    func transformationFunction(ofPoint pointToTransform: CGPoint) -> CGPoint {
+      return CGPoint(
         x: pointToTransform.x * cos_theta - sin_theta * pointToTransform.y - minXPoint.x,
         y: pointToTransform.x * sin_theta + cos_theta * pointToTransform.y - minXPoint.y
       )
     }
 
-    let transformedRect = NSRect(
+    let transformedRect = CGRect(
       point1: transformationFunction(ofPoint: minXPoint),
       point2: transformationFunction(ofPoint: maxXPoint)
     )
@@ -145,15 +150,15 @@ public class Link: NSObject, NSCoding, Element {
       self.attributedStringValue = NSAttributedString(string: "")
     }
 
-    if let colorComponents = aDecoder.decodeObject(forKey: colorComponentsKey) as? [CGFloat] {
-      self.color = ColorUtils.color(fromComponents: colorComponents)
-    } else {
+//    if let colorComponents = aDecoder.decodeObject(forKey: colorComponentsKey) as? [CGFloat] {
+//      self.color = ColorUtils.color(fromComponents: colorComponents)
+//    } else {
       if let color = aDecoder.decodeObject(forKey: colorKey) as? NSColor {
         self.color = color
       } else {
         self.color = Link.defaultColor
       }
-    }
+//    }
   }
 
   public func encode(with aCoder: NSCoder) {

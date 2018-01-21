@@ -73,7 +73,7 @@ extension CanvasViewController {
 
   fileprivate func createConceptFromPasteboard(attributedString: NSAttributedString, index: Int) -> Concept? {
     let newConceptPadding: Int = 15
-    let newPoint = NSPoint(
+    let newPoint = CGPoint(
       x: CGFloat(200 + (newConceptPadding*index)),
       y: CGFloat(200 + (newConceptPadding*index))
     )

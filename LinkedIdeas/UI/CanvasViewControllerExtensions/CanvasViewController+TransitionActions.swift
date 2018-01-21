@@ -47,7 +47,7 @@ extension CanvasViewController {
     document.remove(concept: concept)
   }
 
-  func saveConcept(text: NSAttributedString, atPoint point: NSPoint) -> Concept? {
+  func saveConcept(text: NSAttributedString, atPoint point: CGPoint) -> Concept? {
     guard text.string != "" else {
       return nil
     }
@@ -72,17 +72,17 @@ extension CanvasViewController {
     return newLink
   }
 
-  func showTextView(inRect rect: NSRect, text: NSAttributedString? = nil, constrainedSize: NSSize? = nil) {
+  func showTextView(inRect rect: CGRect, text: NSAttributedString? = nil, constrainedSize: CGSize? = nil) {
     textStorage.setAttributedString(text ?? NSAttributedString(string: ""))
     let textViewFrame = rect
 
-    func calculateMaxSize(forCenterPoint centerPoint: NSPoint) -> NSSize {
+    func calculateMaxSize(forCenterPoint centerPoint: CGPoint) -> CGSize {
       let centerPointInScrollView = scrollView.convert(centerPoint, from: canvasView)
 
       let deltaX1 = centerPointInScrollView.x
       let deltaX2 = scrollView.visibleRect.width - centerPointInScrollView.x
 
-      return NSSize(
+      return CGSize(
         width: min(deltaX1, deltaX2) * 2,
         height: scrollView.visibleRect.height
       )
@@ -106,14 +106,14 @@ extension CanvasViewController {
     canvasView.window?.makeFirstResponder(textView)
   }
 
-  func showTextView(atPoint point: NSPoint, text: NSAttributedString? = nil, constrainedSize: NSSize? = nil) {
-    let textViewFrame = NSRect(center: point, size: NSSize(width: 60, height: 25))
+  func showTextView(atPoint point: CGPoint, text: NSAttributedString? = nil, constrainedSize: CGSize? = nil) {
+    let textViewFrame = CGRect(center: point, size: CGSize(width: 60, height: 25))
     showTextView(inRect: textViewFrame, text: text, constrainedSize: constrainedSize)
   }
 
   func dismissTextView() {
     textStorage.setAttributedString(NSAttributedString(string: ""))
-    textView.setFrameOrigin(NSPoint.zero)
+    textView.setFrameOrigin(CGPoint.zero)
     textView.isEditable = false
     textView.isHidden = true
 
@@ -122,7 +122,7 @@ extension CanvasViewController {
 
   func reCenterTextView(atPoint centerPoint: CGPoint) {
     textView.setFrameOrigin(
-      NSPoint(
+      CGPoint(
         x: centerPoint.x - textView.frame.width / 2,
         y: centerPoint.y - textView.frame.height / 2
       )

@@ -59,7 +59,7 @@ extension CanvasViewController {
     let randomX = CGFloat(arc4random_uniform(UInt32(visibleRect.width)) + UInt32(visibleRect.origin.x))
     let randomY = CGFloat(arc4random_uniform(UInt32(visibleRect.height)) + UInt32(visibleRect.origin.y))
 
-    let randomPoint = NSPoint(x: randomX, y: randomY)
+    let randomPoint = CGPoint(x: randomX, y: randomY)
     safeTransiton { try stateManager.toNewConcept(atPoint: randomPoint) }
   }
 

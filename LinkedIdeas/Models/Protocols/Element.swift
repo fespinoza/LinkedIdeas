@@ -10,10 +10,10 @@ import Foundation
 
 protocol Element {
   var identifier: String { get }
-  var area: NSRect { get }
+  var area: CGRect { get }
 
   // center point of element
-  var centerPoint: NSPoint { get }
+  var centerPoint: CGPoint { get }
 
   var attributedStringValue: NSAttributedString { get  set }
   var stringValue: String { get }

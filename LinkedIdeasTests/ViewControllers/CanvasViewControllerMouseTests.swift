@@ -13,7 +13,7 @@ import XCTest
 
 extension CanvasViewControllerTests {
   func testDoubleClickInCanvas() {
-    let clickedPoint = NSPoint(x: 200, y: 300)
+    let clickedPoint = CGPoint(x: 200, y: 300)
 
     let mouseEvent = createMouseEvent(clickCount: 2, location: clickedPoint)
 
@@ -23,9 +23,9 @@ extension CanvasViewControllerTests {
   }
 
   func testSingleClickInCanvasWhenConceptIsBeingCreated() {
-    canvasViewController.currentState = .newConcept(point: NSPoint.zero)
+    canvasViewController.currentState = .newConcept(point: CGPoint.zero)
 
-    let clickedPoint = NSPoint(x: 200, y: 300)
+    let clickedPoint = CGPoint(x: 200, y: 300)
     let mouseEvent = createMouseEvent(clickCount: 1, location: clickedPoint)
 
     canvasViewController.mouseDown(with: mouseEvent)
@@ -34,12 +34,12 @@ extension CanvasViewControllerTests {
   }
 
   func testSingleClickOnCanvasWhenConceptIsSelected() {
-    let concept = Concept(stringValue: "Foo bar", centerPoint: NSPoint(x: 200, y: 300))
+    let concept = Concept(stringValue: "Foo bar", centerPoint: CGPoint(x: 200, y: 300))
     document.concepts.append(concept)
 
     canvasViewController.currentState = .selectedElement(element: concept)
 
-    let clickedPoint = NSPoint(x: 10, y: 20)
+    let clickedPoint = CGPoint(x: 10, y: 20)
     let clickEvent = createMouseEvent(clickCount: 1, location: clickedPoint)
 
     canvasViewController.mouseDown(with: clickEvent)
@@ -48,7 +48,7 @@ extension CanvasViewControllerTests {
   }
 
   func testSingleClickOnConcept() {
-    let clickedPoint = NSPoint(x: 200, y: 300)
+    let clickedPoint = CGPoint(x: 200, y: 300)
     let conceptPoint = clickedPoint
 
     let concept = Concept(stringValue: "Foo bar", centerPoint: conceptPoint)
@@ -62,10 +62,10 @@ extension CanvasViewControllerTests {
   }
 
   func testShiftClickOnAnotherConcept() {
-    let oldConcept = Concept(stringValue: "Random", centerPoint: NSPoint(x: 20, y: 600))
+    let oldConcept = Concept(stringValue: "Random", centerPoint: CGPoint(x: 20, y: 600))
     document.concepts.append(oldConcept)
 
-    let clickedPoint = NSPoint(x: 200, y: 300)
+    let clickedPoint = CGPoint(x: 200, y: 300)
     let conceptPoint = clickedPoint
 
     let concept = Concept(stringValue: "Foo bar", centerPoint: conceptPoint)
@@ -81,10 +81,10 @@ extension CanvasViewControllerTests {
   }
 
   func testShiftClickOnAlreadySelectedConcept() {
-    let oldConcept = Concept(stringValue: "Random", centerPoint: NSPoint(x: 20, y: 600))
+    let oldConcept = Concept(stringValue: "Random", centerPoint: CGPoint(x: 20, y: 600))
     document.concepts.append(oldConcept)
 
-    let clickedPoint = NSPoint(x: 200, y: 300)
+    let clickedPoint = CGPoint(x: 200, y: 300)
     let conceptPoint = clickedPoint
 
     let concept = Concept(stringValue: "Foo bar", centerPoint: conceptPoint)
@@ -100,11 +100,11 @@ extension CanvasViewControllerTests {
   }
 
   func testShiftClickOnCanvas() {
-    let oldConcept = Concept(stringValue: "Random", centerPoint: NSPoint(x: 20, y: 600))
+    let oldConcept = Concept(stringValue: "Random", centerPoint: CGPoint(x: 20, y: 600))
     document.concepts.append(oldConcept)
 
-    let clickedPoint = NSPoint(x: 200, y: 300)
-    let conceptPoint = NSPoint(x: 600, y: 800)
+    let clickedPoint = CGPoint(x: 200, y: 300)
+    let conceptPoint = CGPoint(x: 600, y: 800)
 
     let concept = Concept(stringValue: "Foo bar", centerPoint: conceptPoint)
     document.concepts.append(concept)
@@ -119,10 +119,10 @@ extension CanvasViewControllerTests {
   }
 
   func testShiftDragFromOneConceptToAnotherToCreateLink() {
-    let oldConcept = Concept(stringValue: "Random", centerPoint: NSPoint(x: 20, y: 600))
+    let oldConcept = Concept(stringValue: "Random", centerPoint: CGPoint(x: 20, y: 600))
     document.concepts.append(oldConcept)
 
-    let conceptPoint = NSPoint(x: 600, y: 800)
+    let conceptPoint = CGPoint(x: 600, y: 800)
 
     let concept = Concept(stringValue: "Foo bar", centerPoint: conceptPoint)
     document.concepts.append(concept)
@@ -150,7 +150,7 @@ extension CanvasViewControllerTests {
   }
 
   func testDragRightHandlerForASelectedConcept() {
-    let concept = Concept(stringValue: "Foo bar", centerPoint: NSPoint(x: 200, y: 300))
+    let concept = Concept(stringValue: "Foo bar", centerPoint: CGPoint(x: 200, y: 300))
     let initialConceptArea = concept.area
     document.concepts.append(concept)
 
@@ -183,7 +183,7 @@ extension CanvasViewControllerTests {
   }
 
   func testDragLeftHandlerForASelectedConcept() {
-    let concept = Concept(stringValue: "Foo bar", centerPoint: NSPoint(x: 200, y: 300))
+    let concept = Concept(stringValue: "Foo bar", centerPoint: CGPoint(x: 200, y: 300))
     let initialConceptArea = concept.area
     document.concepts.append(concept)
 
@@ -217,9 +217,9 @@ extension CanvasViewControllerTests {
 
   func testShiftDragFromOneConceptToAnotherToCreateLinkWhenAnotherLinkIsSelected() {
     let concepts = [
-      Concept(stringValue: "Random", centerPoint: NSPoint(x: 20, y: 600)),
-      Concept(stringValue: "Foo bar", centerPoint: NSPoint(x: 600, y: 800)),
-      Concept(stringValue: "Another", centerPoint: NSPoint(x: 300, y: 400))
+      Concept(stringValue: "Random", centerPoint: CGPoint(x: 20, y: 600)),
+      Concept(stringValue: "Foo bar", centerPoint: CGPoint(x: 600, y: 800)),
+      Concept(stringValue: "Another", centerPoint: CGPoint(x: 300, y: 400))
     ]
     concepts.forEach {
       document.concepts.append($0)

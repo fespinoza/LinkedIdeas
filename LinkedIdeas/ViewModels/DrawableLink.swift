@@ -11,8 +11,8 @@ import Cocoa
 public struct DrawableLink: DrawableElement {
   let link: GraphLink
 
-  public var drawingBounds: NSRect {
-    return NSRect(point1: link.originPoint, point2: link.targetPoint)
+  public var drawingBounds: CGRect {
+    return CGRect(point1: link.originPoint, point2: link.targetPoint)
   }
 
   public func draw() {
@@ -35,7 +35,7 @@ public struct DrawableLink: DrawableElement {
     textSize.width += padding
     textSize.height += padding
 
-    let textRect = NSRect(center: link.centerPoint, size: textSize)
+    let textRect = CGRect(center: link.centerPoint, size: textSize)
     textRect.fill()
 
     // text

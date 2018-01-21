@@ -6,16 +6,16 @@
 //  Copyright © 2015 Felipe Espinoza Dev. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
-public class Concept: NSObject, NSCoding, Element, SquareElement {
+public class Concept: NSObject, NSCoding {
   enum Mode {
     case textBased
     case modifiedWidth(width: CGFloat)
   }
 
   // NOTE: the point value is relative to the canvas coordinate system
-  public var centerPoint: NSPoint
+  public var centerPoint: CGPoint
   var mode: Mode = .textBased
 
   public var area: CGRect {
@@ -25,10 +25,10 @@ public class Concept: NSObject, NSCoding, Element, SquareElement {
   public var horizontalPadding: CGFloat = 6
   public var verticalPadding: CGFloat = 3
 
-  public var constrainedSize: NSSize? {
+  public var constrainedSize: CGSize? {
     switch mode {
     case .modifiedWidth(let width):
-      return NSSize(width: width, height: 1e5)
+      return CGSize(width: width, height: 1e5)
     case .textBased:
       return nil
     }
@@ -55,7 +55,7 @@ public class Concept: NSObject, NSCoding, Element, SquareElement {
   private var textSize: CGSize {
     let constrainSize = CGSize(width: width, height: 1e6)
     let value = attributedStringValue.boundingRect(
-      with: constrainSize, options: [.usesLineFragmentOrigin, .usesFontLeading]
+      with: constrainSize, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil
     ).size
     return value
   }
@@ -75,13 +75,13 @@ public class Concept: NSObject, NSCoding, Element, SquareElement {
   public var isEditable: Bool = false
   public var isSelected: Bool = false {
     didSet {
-      self.leftHandler = isSelected ? Handler(concept: self, position: .left) : nil
-      self.rightHandler = isSelected ? Handler(concept: self, position: .right) : nil
+//      self.leftHandler = isSelected ?  andler(concept: self, position: .left) : nil
+//      self.rightHandler = isSelected ? Handler(concept: self, position: .right) : nil
     }
   }
 
-  public var leftHandler: Handler?
-  public var rightHandler: Handler?
+//  public var leftHandler: Handler?
+//  public var rightHandler: Handler?
 
   // KVO
   static let attributedStringValuePath = "attributedStringValue"
@@ -97,7 +97,7 @@ public class Concept: NSObject, NSCoding, Element, SquareElement {
   static let constrainedWidthKey = "constrainedWidthKey"
 
   // Moving
-  var beforeMovingPoint: NSPoint?
+  var beforeMovingPoint: CGPoint?
 
   override public var description: String {
     return "[\(identifier)] '\(stringValue)' \(isEditable) \(centerPoint)"
@@ -105,15 +105,15 @@ public class Concept: NSObject, NSCoding, Element, SquareElement {
 
   // MARK: - Initializers
 
-  convenience init(centerPoint: NSPoint) {
+  convenience init(centerPoint: CGPoint) {
     self.init(stringValue: "", centerPoint: centerPoint)
   }
 
-  convenience init(stringValue: String, centerPoint: NSPoint) {
+  convenience init(stringValue: String, centerPoint: CGPoint) {
     self.init(attributedStringValue: NSAttributedString(string: stringValue), centerPoint: centerPoint)
   }
 
-  init(attributedStringValue: NSAttributedString, centerPoint: NSPoint) {
+  init(attributedStringValue: NSAttributedString, centerPoint: CGPoint) {
     self.centerPoint = centerPoint
     self.identifier = "\(UUID().uuidString)-concept"
     self.attributedStringValue = attributedStringValue
@@ -125,7 +125,7 @@ public class Concept: NSObject, NSCoding, Element, SquareElement {
     attributedStringValue.draw(in: textArea)
   }
 
-  func contains(point: NSPoint) -> Bool {
+  func contains(point: CGPoint) -> Bool {
     return area.contains(point)
   }
 
@@ -139,12 +139,12 @@ public class Concept: NSObject, NSCoding, Element, SquareElement {
     previousSize.width += withDifference
 
     if fromLeft {
-      centerPoint = NSRect(
+      centerPoint = CGRect(
         origin: CGPoint(x: previousArea.maxX - previousSize.width, y: previousArea.origin.y),
         size: previousSize
         ).center
     } else {
-      centerPoint = NSRect(origin: previousArea.origin, size: previousSize).center
+      centerPoint = CGRect(origin: previousArea.origin, size: previousSize).center
     }
     mode = .modifiedWidth(width: newWidth)
   }
@@ -161,7 +161,8 @@ public class Concept: NSObject, NSCoding, Element, SquareElement {
     }
     self.identifier = identifier
     self.attributedStringValue = attributedStringValue
-    centerPoint = aDecoder.decodePoint(forKey: Concept.centerPointKey)
+    centerPoint = aDecoder.decodeCGPoint(forKey: Concept.centerPointKey)
+//    centerPoint = aDecoder.decodePoint(forKey: Concept.centerPointKey)
     isEditable = aDecoder.decodeBool(forKey: Concept.isEditableKey)
 
     if let widthObject = aDecoder.decodeObject(forKey: Concept.constrainedWidthKey) as? NSNumber {

@@ -20,5 +20,5 @@ protocol LinkedIdeasDocument {
   func save(link: Link)
   func remove(link: Link)
 
-  func move(concept: Concept, toPoint: NSPoint)
+  func move(concept: Concept, toPoint: CGPoint)
 }

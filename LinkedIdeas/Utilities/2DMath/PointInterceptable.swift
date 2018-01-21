@@ -9,5 +9,5 @@
 import Foundation
 
 protocol PointInterceptable {
-  func intersectionPointWith(_ other: Self) -> NSPoint?
+  func intersectionPointWith(_ other: Self) -> CGPoint?
 }

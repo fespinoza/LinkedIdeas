@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: CanvasViewController+LinkCreation
 extension CanvasViewController {
-  func creationArrowForLink(toPoint point: NSPoint) {
+  func creationArrowForLink(toPoint point: CGPoint) {
     if canvasView.arrowStartPoint == nil {
       canvasView.arrowStartPoint = point
     } else {

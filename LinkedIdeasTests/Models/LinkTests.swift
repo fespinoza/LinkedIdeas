@@ -13,50 +13,50 @@ class LinkTests: XCTestCase {
 
   func testRectNormalCase() {
     // given
-    let concept1 = Concept(centerPoint: NSPoint(x: 20, y: 30))
-    let concept2 = Concept(centerPoint: NSPoint(x: 120, y: 130))
+    let concept1 = Concept(centerPoint: CGPoint(x: 20, y: 30))
+    let concept2 = Concept(centerPoint: CGPoint(x: 120, y: 130))
 
     // when
     let link = Link(origin: concept1, target: concept2)
 
     // then
-    XCTAssertEqual(link.area, NSRect(x: 20, y: 30, width: 100, height: 100))
+    XCTAssertEqual(link.area, CGRect(x: 20, y: 30, width: 100, height: 100))
   }
 
   func testRectWhenConceptsAreHorizontallyAligned() {
     // given
-    let concept1 = Concept(centerPoint: NSPoint(x: 300, y: 130))
-    let concept2 = Concept(centerPoint: NSPoint(x: 120, y: 130))
+    let concept1 = Concept(centerPoint: CGPoint(x: 300, y: 130))
+    let concept2 = Concept(centerPoint: CGPoint(x: 120, y: 130))
 
     // when
     let link = Link(origin: concept1, target: concept2)
 
     // then
-    XCTAssertEqual(link.area, NSRect(x: 120, y: 120, width: 180, height: 20))
+    XCTAssertEqual(link.area, CGRect(x: 120, y: 120, width: 180, height: 20))
   }
 
   func testRectWhenConceptsAreVerticallyAligned() {
     // given
-    let concept1 = Concept(centerPoint: NSPoint(x: 300, y: 50))
-    let concept2 = Concept(centerPoint: NSPoint(x: 300, y: 200))
+    let concept1 = Concept(centerPoint: CGPoint(x: 300, y: 50))
+    let concept2 = Concept(centerPoint: CGPoint(x: 300, y: 200))
 
     // when
     let link = Link(origin: concept1, target: concept2)
 
     // then
-    XCTAssertEqual(link.area, NSRect(x: 290, y: 50, width: 20, height: 150))
+    XCTAssertEqual(link.area, CGRect(x: 290, y: 50, width: 20, height: 150))
   }
 
   func testRectWhenConceptsAreAlmostVerticallyAligned() {
     // given
-    let concept1 = Concept(centerPoint: NSPoint(x: 305, y: 50))
-    let concept2 = Concept(centerPoint: NSPoint(x: 300, y: 200))
+    let concept1 = Concept(centerPoint: CGPoint(x: 305, y: 50))
+    let concept2 = Concept(centerPoint: CGPoint(x: 300, y: 200))
 
     // when
     let link = Link(origin: concept1, target: concept2)
 
     // then
-    XCTAssertEqual(link.area, NSRect(x: 290, y: 50, width: 20, height: 150))
+    XCTAssertEqual(link.area, CGRect(x: 290, y: 50, width: 20, height: 150))
   }
 
 }

@@ -32,7 +32,7 @@ extension CanvasViewController: StateManagerDelegate {
     commonTransitionBehavior(fromState)
   }
 
-  func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString) {
+  func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: CGPoint, text: NSAttributedString) {
     let mode = conceptMode(from: text)
     dismissTextView()
 

@@ -11,7 +11,7 @@ import Cocoa
 // MARK: - CanvasViewController+MouseEvents
 
 extension CanvasViewController {
-  fileprivate func clickedHandler(atPoint clickedPoint: NSPoint) -> Handler? {
+  fileprivate func clickedHandler(atPoint clickedPoint: CGPoint) -> Handler? {
     switch currentState {
     case .selectedElement(let element):
       guard let concept = element as? Concept,
@@ -32,11 +32,11 @@ extension CanvasViewController {
     return nil
   }
 
-  fileprivate func didClickOnHandler(atPoint clickedPoint: NSPoint) -> Bool {
+  fileprivate func didClickOnHandler(atPoint clickedPoint: CGPoint) -> Bool {
     return clickedHandler(atPoint: clickedPoint) != nil
   }
 
-  fileprivate func resize(concept: Concept, withHandler handler: Handler, toPoint point: NSPoint) {
+  fileprivate func resize(concept: Concept, withHandler handler: Handler, toPoint point: CGPoint) {
     let previousConceptArea = concept.area
 
     switch handler.position {
@@ -261,7 +261,7 @@ extension CanvasViewController {
   /// - Parameters:
   ///   - point: point from the click event
   ///   - thenDo: what actions you want to perform when there was actually a clicked concept
-  private func whenClickedOnSingleConcept(atPoint point: NSPoint, thenDo: (Concept) -> Void) {
+  private func whenClickedOnSingleConcept(atPoint point: CGPoint, thenDo: (Concept) -> Void) {
     if let targetConcept = clickedSingleConcept(atPoint: point) {
       thenDo(targetConcept)
     } else {

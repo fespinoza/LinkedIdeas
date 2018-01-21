@@ -4,20 +4,24 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Linked Ideas</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeIconFiles</key>
-			<array/>
+			<array>
+				<string>linked_ideas_doc_icon</string>
+			</array>
 			<key>CFBundleTypeName</key>
-			<string>Images</string>
+			<string>Linked Ideas Document</string>
 			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
+			<string>Editor</string>
 			<key>LSHandlerRank</key>
-			<string>Alternate</string>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>public.image</string>
+				<string>com.fespinozacast.linked-ideas</string>
 			</array>
 		</dict>
 	</array>
@@ -60,6 +64,31 @@
 	</array>
 	<key>UISupportsDocumentBrowser</key>
 	<true/>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Linked Ideas Document</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.fespinozacast.linked-ideas</string>
+			<key>UTTypeSize320IconFile</key>
+			<string>linked_ideas_doc_icon</string>
+			<key>UTTypeSize64IconFile</key>
+			<string>linked_ideas_doc_icon</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>idea</string>
+				</array>
+			</dict>
+		</dict>
+		<dict/>
+	</array>
 	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict/>

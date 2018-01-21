@@ -9,19 +9,19 @@
 import Cocoa
 
 struct Arrow {
-  var point1: NSPoint
-  var point2: NSPoint
+  var point1: CGPoint
+  var point2: CGPoint
   let arrowHeight: CGFloat = 20
   let arrowWidth: CGFloat = 15
   let arrowBodyWidth: CGFloat
 
-  init(point1: NSPoint, point2: NSPoint) {
+  init(point1: CGPoint, point2: CGPoint) {
     self.point1 = point1
     self.point2 = point2
     self.arrowBodyWidth = 5
   }
 
-  init(point1: NSPoint, point2: NSPoint, arrowBodyWidth: CGFloat = 5) {
+  init(point1: CGPoint, point2: CGPoint, arrowBodyWidth: CGFloat = 5) {
     self.point1 = point1
     self.point2 = point2
     self.arrowBodyWidth = arrowBodyWidth
@@ -33,18 +33,18 @@ struct Arrow {
   private var alpha: CGFloat { return atan(pendant) }
   private var direction: CGFloat { return point2.x >= point1.x ? 1 : -1 }
 
-  private var point5: NSPoint {
-    return NSPoint(x: (point2.x - direction * cos(alpha) * arrowHeight),
+  private var point5: CGPoint {
+    return CGPoint(x: (point2.x - direction * cos(alpha) * arrowHeight),
                    y: (point2.y - direction * sin(alpha) * arrowHeight))
   }
-  private var point3: NSPoint { return NSPoint(x: (point5.x - sideB * sin(alpha)), y: (point5.y + sideB * cos(alpha))) }
-  private var point4: NSPoint { return NSPoint(x: (point5.x + sideB * sin(alpha)), y: (point5.y - sideB * cos(alpha))) }
-  private var point6: NSPoint { return NSPoint(x: (point5.x - sideC * sin(alpha)), y: (point5.y + sideC * cos(alpha))) }
-  private var point7: NSPoint { return NSPoint(x: (point5.x + sideC * sin(alpha)), y: (point5.y - sideC * cos(alpha))) }
-  private var point8: NSPoint { return NSPoint(x: (point1.x - sideC * sin(alpha)), y: (point1.y + sideC * cos(alpha))) }
-  private var point9: NSPoint { return NSPoint(x: (point1.x + sideC * sin(alpha)), y: (point1.y - sideC * cos(alpha))) }
+  private var point3: CGPoint { return CGPoint(x: (point5.x - sideB * sin(alpha)), y: (point5.y + sideB * cos(alpha))) }
+  private var point4: CGPoint { return CGPoint(x: (point5.x + sideB * sin(alpha)), y: (point5.y - sideB * cos(alpha))) }
+  private var point6: CGPoint { return CGPoint(x: (point5.x - sideC * sin(alpha)), y: (point5.y + sideC * cos(alpha))) }
+  private var point7: CGPoint { return CGPoint(x: (point5.x + sideC * sin(alpha)), y: (point5.y - sideC * cos(alpha))) }
+  private var point8: CGPoint { return CGPoint(x: (point1.x - sideC * sin(alpha)), y: (point1.y + sideC * cos(alpha))) }
+  private var point9: CGPoint { return CGPoint(x: (point1.x + sideC * sin(alpha)), y: (point1.y - sideC * cos(alpha))) }
 
-  func arrowBodyPoints() -> [NSPoint] {
+  func arrowBodyPoints() -> [CGPoint] {
     return [point6, point7, point8, point9]
   }
 

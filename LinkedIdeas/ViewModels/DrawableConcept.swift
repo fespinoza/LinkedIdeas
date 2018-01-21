@@ -11,7 +11,7 @@ import Cocoa
 public struct DrawableConcept: DrawableElement {
   let concept: GraphConcept
 
-  public var drawingBounds: NSRect { return concept.area }
+  public var drawingBounds: CGRect { return concept.area }
 
   public func draw() {
     drawBackground()

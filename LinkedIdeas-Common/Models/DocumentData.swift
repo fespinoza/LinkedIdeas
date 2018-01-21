@@ -28,7 +28,7 @@ public class DocumentData: NSObject, NSCoding {
     // This code fixes the flip of the coordinate system
 //    self.readConcepts = readConcepts!.map({ (concept) -> Concept in
 //      let oldPoint = concept.point
-//      concept.point = NSPoint(x: oldPoint.x, y: 2000 - oldPoint.y)
+//      concept.point = CGPoint(x: oldPoint.x, y: 2000 - oldPoint.y)
 //      return concept
 //    })
     self.readConcepts = readConcepts
