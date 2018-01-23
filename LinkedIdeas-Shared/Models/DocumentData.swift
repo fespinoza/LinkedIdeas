@@ -8,48 +8,24 @@
 
 import Foundation
 
+private extension String {
+  static let conceptsKey = "concepts"
+  static let linksKey = "links"
+}
+
 public class DocumentData: NSObject, NSCoding {
-  public var readConcepts: [Concept]?
-  public var readLinks: [Link]?
-  public var writeConcepts: [Concept]?
-  public var writeLinks: [Link]?
+  public let concepts: [Concept]
+  public let links: [Link]
 
   override public init() {
+    self.concepts = []
+    self.links = []
     super.init()
   }
 
   required public init?(coder aDecoder: NSCoder) {
-    guard let readConcepts = aDecoder.decodeObject(forKey: "concepts") as? [Concept]?,
-          let readLinks = aDecoder.decodeObject(forKey: "links") as? [Link]?
-      else {
-        return nil
-    }
-
-    // This code fixes the flip of the coordinate system
-//    self.readConcepts = readConcepts!.map({ (concept) -> Concept in
-//      let oldPoint = concept.point
-//      concept.point = CGPoint(x: oldPoint.x, y: 2000 - oldPoint.y)
-//      return concept
-//    })
-    self.readConcepts = readConcepts
-    self.readLinks = readLinks
-  }
-
-  public func encode(with aCoder: NSCoder) {
-    aCoder.encode(writeConcepts, forKey: "concepts")
-    aCoder.encode(writeLinks, forKey: "links")
-  }
-}
-
-class Graph: NSObject, NSCoding {
-  var concepts = [Concept]()
-  var links = [Link]()
-
-  required init?(coder aDecoder: NSCoder) {
-
-    guard let concepts = aDecoder.decodeObject(forKey: "concepts") as? [Concept],
-          let links = aDecoder.decodeObject(forKey: "links") as? [Link]
-      else {
+    guard let concepts = aDecoder.decodeObject(forKey: .conceptsKey) as? [Concept],
+          let links = aDecoder.decodeObject(forKey: .linksKey) as? [Link] else {
         return nil
     }
 
@@ -57,9 +33,32 @@ class Graph: NSObject, NSCoding {
     self.links = links
   }
 
-  func encode(with aCoder: NSCoder) {
-    aCoder.encode(concepts, forKey: "concepts")
-    aCoder.encode(links, forKey: "links")
+  public func encode(with aCoder: NSCoder) {
+    aCoder.encode(self.concepts, forKey: .conceptsKey)
+    aCoder.encode(self.links, forKey: .linksKey)
   }
-
 }
+
+//class Graph: NSObject, NSCoding {
+//  var concepts = [Concept]()
+//  var links = [Link]()
+//
+//  required init?(coder aDecoder: NSCoder) {
+//
+//    guard let concepts = aDecoder.decodeObject(forKey: "concepts") as? [Concept],
+//          let links = aDecoder.decodeObject(forKey: "links") as? [Link]
+//      else {
+//        return nil
+//    }
+//
+//    self.concepts = concepts
+//    self.links = links
+//  }
+//
+//  func encode(with aCoder: NSCoder) {
+//    aCoder.encode(concepts, forKey: "concepts")
+//    aCoder.encode(links, forKey: "links")
+//  }
+//
+//}
+
