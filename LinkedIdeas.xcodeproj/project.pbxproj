@@ -106,7 +106,6 @@
 		9BD850E61EE4C792005B89C9 /* CanvasViewController+DocumentObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941A31E56591900F1E957 /* CanvasViewController+DocumentObserver.swift */; };
 		9BD850E71EE4C792005B89C9 /* CanvasViewController+MenuActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC8587E1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift */; };
 		9BD850E81EE4C792005B89C9 /* CanvasViewController+NSPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB677671ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift */; };
-		9BD850F01EE4CDE6005B89C9 /* QLLinkedIdeas.qlgenerator in Pack QuickLook Plugin */ = {isa = PBXBuildFile; fileRef = 9BD850B01EE4C199005B89C9 /* QLLinkedIdeas.qlgenerator */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9BDF4B7F1F4B7C25000A1BB2 /* ConceptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDF4B7E1F4B7C25000A1BB2 /* ConceptTests.swift */; };
 		9BDF4B801F4B7DA6000A1BB2 /* CanvasViewController+NSTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCD799C1F4A37FE00D310B3 /* CanvasViewController+NSTextViewDelegate.swift */; };
 		9BE40C211D8DD98B0025F154 /* CanvasViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */; };
@@ -120,6 +119,9 @@
 		9BF839A42017C7820094101B /* Concept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDDE7381BEF9157000AAD44 /* Concept.swift */; };
 		9BF839A52017C7820094101B /* DocumentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F84C1CD614BC0014758D /* DocumentData.swift */; };
 		9BF839A62017C7820094101B /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B97BF992013FF8100C780AC /* CGRect+Extensions.swift */; };
+		9BF839A72017CAB20094101B /* LinkedIdeas_Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF839852017C75A0094101B /* LinkedIdeas_Shared.framework */; };
+		9BF839AB2017CBB40094101B /* LinkedIdeas_Shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF839852017C75A0094101B /* LinkedIdeas_Shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9BF839AD2017CC8A0094101B /* LinkedIdeas_Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF839852017C75A0094101B /* LinkedIdeas_Shared.framework */; };
 		9BFBA8951F50D8D200EA8ABE /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFBA8941F50D8D200EA8ABE /* Handler.swift */; };
 		9BFBA8961F50D99800EA8ABE /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFBA8941F50D8D200EA8ABE /* Handler.swift */; };
 /* End PBXBuildFile section */
@@ -131,13 +133,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9B2F1D9B1BE7CFE70090CC18;
 			remoteInfo = LinkedIdeas;
-		};
-		9BD850ED1EE4CDC7005B89C9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9B2F1D941BE7CFE70090CC18 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9BD850AF1EE4C199005B89C9;
-			remoteInfo = QLLinkedIdeas;
 		};
 		9BF8398F2017C75A0094101B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -160,20 +155,16 @@
 			remoteGlobalIDString = 9BF839842017C75A0094101B;
 			remoteInfo = "LinkedIdeas-Shared";
 		};
+		9BF839A82017CABF0094101B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B2F1D941BE7CFE70090CC18 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9BF839842017C75A0094101B;
+			remoteInfo = "LinkedIdeas-Shared";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		9BD850EF1EE4CDDB005B89C9 /* Pack QuickLook Plugin */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Contents/Library/QuickLook;
-			dstSubfolderSpec = 1;
-			files = (
-				9BD850F01EE4CDE6005B89C9 /* QLLinkedIdeas.qlgenerator in Pack QuickLook Plugin */,
-			);
-			name = "Pack QuickLook Plugin";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9BF839A12017C75A0094101B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -181,6 +172,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				9BF8399B2017C75A0094101B /* LinkedIdeas_Shared.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9BF839AC2017CBB40094101B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9BF839AB2017CBB40094101B /* LinkedIdeas_Shared.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,6 +284,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BF839A72017CAB20094101B /* LinkedIdeas_Shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +307,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BF839AD2017CC8A0094101B /* LinkedIdeas_Shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,13 +611,13 @@
 				9B2F1D991BE7CFE70090CC18 /* Frameworks */,
 				9B2F1D9A1BE7CFE70090CC18 /* Resources */,
 				9B39418E1E56475F00F1E957 /* Run Swift Lint */,
-				9BD850EF1EE4CDDB005B89C9 /* Pack QuickLook Plugin */,
 				9B08F08E1EE7194E005658F4 /* Increment Build */,
+				9BF839AC2017CBB40094101B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9BD850EE1EE4CDC7005B89C9 /* PBXTargetDependency */,
+				9BF839A92017CABF0094101B /* PBXTargetDependency */,
 			);
 			name = LinkedIdeas;
 			productName = LinkedIdeas;
@@ -1039,11 +1043,6 @@
 			target = 9B2F1D9B1BE7CFE70090CC18 /* LinkedIdeas */;
 			targetProxy = 9B2F1DB11BE7CFE80090CC18 /* PBXContainerItemProxy */;
 		};
-		9BD850EE1EE4CDC7005B89C9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9BD850AF1EE4C199005B89C9 /* QLLinkedIdeas */;
-			targetProxy = 9BD850ED1EE4CDC7005B89C9 /* PBXContainerItemProxy */;
-		};
 		9BF839902017C75A0094101B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9BF839842017C75A0094101B /* LinkedIdeas-Shared */;
@@ -1058,6 +1057,11 @@
 			isa = PBXTargetDependency;
 			target = 9BF839842017C75A0094101B /* LinkedIdeas-Shared */;
 			targetProxy = 9BF839982017C75A0094101B /* PBXContainerItemProxy */;
+		};
+		9BF839A92017CABF0094101B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9BF839842017C75A0094101B /* LinkedIdeas-Shared */;
+			targetProxy = 9BF839A82017CABF0094101B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1190,6 +1194,7 @@
 		9B2F1DC51BE7CFE80090CC18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = LinkedIdeas/LinkedIdeas.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -1209,6 +1214,7 @@
 		9B2F1DC61BE7CFE80090CC18 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = LinkedIdeas/LinkedIdeas.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -1373,7 +1379,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1388,6 +1395,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fespinozacast.LinkedIdeas-Shared";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1406,7 +1414,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1421,6 +1430,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fespinozacast.LinkedIdeas-Shared";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
