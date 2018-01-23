@@ -9,10 +9,10 @@
 import Foundation
 
 public class DocumentData: NSObject, NSCoding {
-  var readConcepts: [Concept]?
-  var readLinks: [Link]?
-  var writeConcepts: [Concept]?
-  var writeLinks: [Link]?
+  public var readConcepts: [Concept]?
+  public var readLinks: [Link]?
+  public var writeConcepts: [Concept]?
+  public var writeLinks: [Link]?
 
   override public init() {
     super.init()

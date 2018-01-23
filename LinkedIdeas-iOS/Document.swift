@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LinkedIdeas_Shared
 
 class Document: UIDocument {
 
