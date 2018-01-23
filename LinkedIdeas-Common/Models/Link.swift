@@ -7,10 +7,10 @@
 //
 #if os(iOS)
   import UIKit
-  typealias Color = UIColor
+  public typealias Color = UIColor
 #else
   import AppKit
-  typealias Color = NSColor
+  public typealias Color = NSColor
 #endif
 
 public class Link: NSObject, NSCoding {
@@ -67,44 +67,44 @@ public class Link: NSObject, NSCoding {
     return CGRect(x: minX, y: minY, width: width, height: height)
   }
 
-  func contains(point: CGPoint) -> Bool {
-    guard area.contains(point) else {
-      return false
-    }
-    if textRect.contains(point) {
-      return true
-    }
-
-//    let extendedAreaArrow = Arrow(point1: originPoint, point2: targetPoint, arrowBodyWidth: 20)
-//    let minXPoint: CGPoint! = extendedAreaArrow.arrowBodyPoints()
-//      .min { (pointA, pointB) -> Bool in pointA.x < pointB.x }
-//    let maxXPoint: CGPoint! = extendedAreaArrow.arrowBodyPoints()
-//      .max { (pointA, pointB) -> Bool in pointA.x < pointB.x }
+//  func contains(point: CGPoint) -> Bool {
+//    guard area.contains(point) else {
+//      return false
+//    }
+//    if textRect.contains(point) {
+//      return true
+//    }
 //
-//    let linkLine = Line(pointA: originPoint, pointB: targetPoint)
-//    let pivotPoint = CGPoint(x: linkLine.evaluateY(0), y: 0)
+////    let extendedAreaArrow = Arrow(point1: originPoint, point2: targetPoint, arrowBodyWidth: 20)
+////    let minXPoint: CGPoint! = extendedAreaArrow.arrowBodyPoints()
+////      .min { (pointA, pointB) -> Bool in pointA.x < pointB.x }
+////    let maxXPoint: CGPoint! = extendedAreaArrow.arrowBodyPoints()
+////      .max { (pointA, pointB) -> Bool in pointA.x < pointB.x }
+////
+////    let linkLine = Line(pointA: originPoint, pointB: targetPoint)
+////    let pivotPoint = CGPoint(x: linkLine.evaluateY(0), y: 0)
+////
+////    let angledLine = Line(pointA: pivotPoint, pointB: minXPoint)
+////    let a = angledLine.intersectionWithYAxis
+////    let b = angledLine.intersectionWithXAxis
+////    let c: CGFloat = sqrt(pow(a, 2) + pow(b, 2))
+////    let sin_theta = a / c
+////    let cos_theta = b / c
 //
-//    let angledLine = Line(pointA: pivotPoint, pointB: minXPoint)
-//    let a = angledLine.intersectionWithYAxis
-//    let b = angledLine.intersectionWithXAxis
-//    let c: CGFloat = sqrt(pow(a, 2) + pow(b, 2))
-//    let sin_theta = a / c
-//    let cos_theta = b / c
-
-    func transformationFunction(ofPoint pointToTransform: CGPoint) -> CGPoint {
-      return CGPoint(
-        x: pointToTransform.x * cos_theta - sin_theta * pointToTransform.y - minXPoint.x,
-        y: pointToTransform.x * sin_theta + cos_theta * pointToTransform.y - minXPoint.y
-      )
-    }
-
-    let transformedRect = CGRect(
-      point1: transformationFunction(ofPoint: minXPoint),
-      point2: transformationFunction(ofPoint: maxXPoint)
-    )
-    let transformedPoint = transformationFunction(ofPoint: point)
-    return transformedRect.contains(transformedPoint)
-  }
+//    func transformationFunction(ofPoint pointToTransform: CGPoint) -> CGPoint {
+//      return CGPoint(
+//        x: pointToTransform.x * cos_theta - sin_theta * pointToTransform.y - minXPoint.x,
+//        y: pointToTransform.x * sin_theta + cos_theta * pointToTransform.y - minXPoint.y
+//      )
+//    }
+//
+//    let transformedRect = CGRect(
+//      point1: transformationFunction(ofPoint: minXPoint),
+//      point2: transformationFunction(ofPoint: maxXPoint)
+//    )
+//    let transformedPoint = transformationFunction(ofPoint: point)
+//    return transformedRect.contains(transformedPoint)
+//  }
 
   convenience init(origin: Concept, target: Concept) {
     self.init(origin: origin, target: target, attributedStringValue: NSAttributedString(string: ""))
@@ -153,7 +153,7 @@ public class Link: NSObject, NSCoding {
 //    if let colorComponents = aDecoder.decodeObject(forKey: colorComponentsKey) as? [CGFloat] {
 //      self.color = ColorUtils.color(fromComponents: colorComponents)
 //    } else {
-      if let color = aDecoder.decodeObject(forKey: colorKey) as? NSColor {
+      if let color = aDecoder.decodeObject(forKey: colorKey) as? Color {
         self.color = color
       } else {
         self.color = Link.defaultColor
@@ -165,7 +165,8 @@ public class Link: NSObject, NSCoding {
     aCoder.encode(identifier, forKey: identifierKey)
     aCoder.encode(origin, forKey: originKey)
     aCoder.encode(target, forKey: targetKey)
-    aCoder.encode(ColorUtils.extractColorComponents(forColor: color), forKey: colorComponentsKey)
+    aCoder.encode(Link.defaultColor, forKey: colorComponentsKey)
+//    aCoder.encode(ColorUtils.extractColorComponents(forColor: color), forKey: colorComponentsKey)
     aCoder.encode(attributedStringValue, forKey: attributedStringValueKey)
   }
 }
