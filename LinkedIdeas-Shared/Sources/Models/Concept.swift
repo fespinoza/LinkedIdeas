@@ -6,7 +6,8 @@
 //  Copyright © 2015 Felipe Espinoza Dev. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import CoreGraphics
 
 public class Concept: NSObject, NSCoding {
   enum Mode {
@@ -161,6 +162,7 @@ public class Concept: NSObject, NSCoding {
     }
     self.identifier = identifier
     self.attributedStringValue = attributedStringValue
+//    self.centerPoint = .zero
     centerPoint = aDecoder.decodeCGPoint(forKey: Concept.centerPointKey)
 //    centerPoint = aDecoder.decodePoint(forKey: Concept.centerPointKey)
     isEditable = aDecoder.decodeBool(forKey: Concept.isEditableKey)

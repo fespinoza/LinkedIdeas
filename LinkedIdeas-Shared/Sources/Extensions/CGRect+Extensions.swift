@@ -6,7 +6,7 @@
 //  Copyright © 2018 Felipe Espinoza Dev. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 
 extension CGRect {
   init(point1: CGPoint, point2: CGPoint) {
