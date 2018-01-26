@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>LinkedIdeas-iOS-Core.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>LinkedIdeas-iOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
