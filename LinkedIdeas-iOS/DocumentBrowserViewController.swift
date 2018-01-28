@@ -65,7 +65,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
 
   func presentDocument(at documentURL: URL) {
     let documentViewController = DocumentViewController()
-    documentViewController.document = Document(fileURL: documentURL)
+//    documentViewController.document = Document(fileURL: documentURL)
 
     present(documentViewController, animated: true, completion: nil)
   }

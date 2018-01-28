@@ -16,6 +16,16 @@ private extension String {
 }
 
 public class Document: UIDocument {
+  private var documentData: DocumentData!
+
+  public var concepts: [Concept] {
+    return self.documentData.concepts
+  }
+
+  public var links: [Link] {
+    return self.documentData.links
+  }
+
   override public func contents(forType typeName: String) throws -> Any {
     // Encode your document with an instance of NSData or NSFileWrapper
     return Data()
@@ -31,7 +41,9 @@ public class Document: UIDocument {
         return
       }
 
-      documentData.concepts.forEach({ Swift.print($0.description) })
+      self.documentData = documentData
+    } else {
+      print("no data :(", contents, typeName ?? "none")
     }
   }
 }
