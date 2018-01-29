@@ -4,5 +4,6 @@
         <page name='1. loading a document'/>
         <page name='2. rendering a document'/>
         <page name='3. concepts'/>
+        <page name='4. document view controller'/>
     </pages>
 </playground>
