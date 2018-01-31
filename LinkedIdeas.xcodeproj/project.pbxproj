@@ -68,6 +68,9 @@
 		9BB677681ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB677671ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift */; };
 		9BB8FC831CA6B7D7008CD6A2 /* LinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */; };
 		9BB8FC891CA6B889008CD6A2 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC881CA6B889008CD6A2 /* Element.swift */; };
+		9BBC5BD520222A4300B0EB28 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBC5BD420222A4300B0EB28 /* CanvasView.swift */; };
+		9BBC5BD620222C9B00B0EB28 /* LinkedIdeas_Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B0E2E0B2018EF9900B514AA /* LinkedIdeas_Shared.framework */; };
+		9BBC5BD720222C9B00B0EB28 /* LinkedIdeas_Shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B0E2E0B2018EF9900B514AA /* LinkedIdeas_Shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9BC8587F1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC8587E1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift */; };
 		9BCD799D1F4A37FE00D310B3 /* CanvasViewController+NSTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCD799C1F4A37FE00D310B3 /* CanvasViewController+NSTextViewDelegate.swift */; };
 		9BD0BD581D9B0BED0041F7ED /* TestProtocolConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD0BD571D9B0BED0041F7ED /* TestProtocolConformance.swift */; };
@@ -147,6 +150,13 @@
 			remoteGlobalIDString = 9B2F1D9B1BE7CFE70090CC18;
 			remoteInfo = LinkedIdeas;
 		};
+		9BBC5BD820222C9B00B0EB28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B2F1D941BE7CFE70090CC18 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B0E2E0A2018EF9900B514AA;
+			remoteInfo = LinkedIdeas_Shared_iOS;
+		};
 		9BE6A66C201A7BDF00E276BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9B2F1D941BE7CFE70090CC18 /* Project object */;
@@ -185,6 +195,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				9BE6A678201A7BDF00E276BB /* LinkedIdeas_iOS_Core.framework in Embed Frameworks */,
+				9BBC5BD720222C9B00B0EB28 /* LinkedIdeas_Shared.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,6 +278,7 @@
 		9BB677671ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+NSPasteboard.swift"; sourceTree = "<group>"; };
 		9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkTests.swift; sourceTree = "<group>"; };
 		9BB8FC881CA6B889008CD6A2 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
+		9BBC5BD420222A4300B0EB28 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		9BC8587E1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+MenuActions.swift"; sourceTree = "<group>"; };
 		9BCD799C1F4A37FE00D310B3 /* CanvasViewController+NSTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+NSTextViewDelegate.swift"; sourceTree = "<group>"; };
 		9BD0BD571D9B0BED0041F7ED /* TestProtocolConformance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestProtocolConformance.swift; sourceTree = "<group>"; };
@@ -336,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BE6A677201A7BDF00E276BB /* LinkedIdeas_iOS_Core.framework in Frameworks */,
+				9BBC5BD620222C9B00B0EB28 /* LinkedIdeas_Shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +597,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		9BBC5BD320222A2200B0EB28 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9BBC5BD420222A4300B0EB28 /* CanvasView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		9BCA09E31C9217A900637F6D /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -644,6 +665,7 @@
 		9BE6A682201A7C3A00E276BB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				9BBC5BD320222A2200B0EB28 /* Views */,
 				9B97BF862013F39000C780AC /* Document.swift */,
 				9B97BF842013F39000C780AC /* DocumentViewController.swift */,
 			);
@@ -793,6 +815,7 @@
 			);
 			dependencies = (
 				9BE6A676201A7BDF00E276BB /* PBXTargetDependency */,
+				9BBC5BD920222C9B00B0EB28 /* PBXTargetDependency */,
 			);
 			name = "LinkedIdeas-iOS";
 			productName = "LinkedIdeas-iOS";
@@ -1206,6 +1229,7 @@
 			files = (
 				9BE6A683201A7C5B00E276BB /* Document.swift in Sources */,
 				9BE6A684201A7C6800E276BB /* DocumentViewController.swift in Sources */,
+				9BBC5BD520222A4300B0EB28 /* CanvasView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1229,6 +1253,11 @@
 			isa = PBXTargetDependency;
 			target = 9B2F1D9B1BE7CFE70090CC18 /* LinkedIdeas */;
 			targetProxy = 9B2F1DB11BE7CFE80090CC18 /* PBXContainerItemProxy */;
+		};
+		9BBC5BD920222C9B00B0EB28 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9B0E2E0A2018EF9900B514AA /* LinkedIdeas_Shared_iOS */;
+			targetProxy = 9BBC5BD820222C9B00B0EB28 /* PBXContainerItemProxy */;
 		};
 		9BE6A66D201A7BDF00E276BB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

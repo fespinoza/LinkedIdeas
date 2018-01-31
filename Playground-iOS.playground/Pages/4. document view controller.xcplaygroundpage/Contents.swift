@@ -14,7 +14,7 @@ let document = Document(fileURL: url)
 try? document.load(fromContents: data, ofType: "idea")
 
 
-class DocumentViewController: UIViewController {
+public class DocumentViewController: UIViewController {
   public var document: Document! {
     didSet {
       print(#function)
@@ -32,7 +32,7 @@ class DocumentViewController: UIViewController {
   }()
 
   // MARK: - UIViewController overrides
-  override func viewDidLoad() {
+  public override func viewDidLoad() {
     self.view.backgroundColor = .purple
 
     self.view.layoutMargins = UIEdgeInsets(top: 30, left: 20, bottom: 30, right: 20)

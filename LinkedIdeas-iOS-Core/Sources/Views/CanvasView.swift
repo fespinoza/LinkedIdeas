@@ -1,4 +1,12 @@
-import LinkedIdeas_iOS_Core
+//
+//  CanvasView.swift
+//  LinkedIdeas-iOS-Core
+//
+//  Created by Felipe Espinoza on 31/01/2018.
+//  Copyright © 2018 Felipe Espinoza Dev. All rights reserved.
+//
+
+import UIKit
 import LinkedIdeas_Shared
 
 public protocol CanvasViewDataSource {
@@ -36,29 +44,5 @@ public class CanvasView: UIView {
   // MARK: - private functions
   private func setup() {
     self.backgroundColor = .white
-  }
-}
-
-public struct SimpleDataSource: CanvasViewDataSource {
-  let concepts: [Concept]
-
-  public func drawableElements(forRect rect: CGRect) -> [DrawableConcept] {
-    print(#function, rect)
-    return concepts.filter({ $0.area.intersects(rect) })
-      .flatMap({ DrawableConcept(concept: $0) })
-  }
-}
-
-
-public extension Document {
-  public func documentFocusRect() -> CGRect {
-    return concepts.map({ $0.area })
-            .reduce(nil) { (result, newRect) -> CGRect? in
-              if let result = result {
-                return result.union(newRect)
-              } else {
-                return newRect
-              }
-            } ?? CGRect.zero
   }
 }
