@@ -1,4 +1,4 @@
-//
+
 //  DocumentViewController.swift
 //  LinkedIdeas-iOS
 //
@@ -10,12 +10,7 @@ import UIKit
 import LinkedIdeas_Shared
 
 public class DocumentViewController: UIViewController {
-  public var document: Document! {
-    didSet {
-      print(#function)
-      canvasView.setNeedsDisplay()
-    }
-  }
+  public var document: Document!
 
   // MARK: - private properties
   private let canvasFrame = CGRect(x: 0, y: 0, width: 3000, height: 2000)
@@ -29,8 +24,6 @@ public class DocumentViewController: UIViewController {
   // MARK: - UIViewController overrides
   public override func viewDidLoad() {
     self.view.backgroundColor = .purple
-
-    self.view.layoutMargins = UIEdgeInsets(top: 30, left: 20, bottom: 30, right: 20)
 
     let scrollView = UIScrollView()
     scrollView.contentSize = self.canvasFrame.size
@@ -50,8 +43,8 @@ public class DocumentViewController: UIViewController {
 
     document.open { [weak self] (success) in
       print("open \(success)")
-      if let strongSelf = self, let viewBounds = self?.view.bounds {
-        self?.canvasView.setNeedsDisplay(viewBounds)
+      if let strongSelf = self {
+        strongSelf.canvasView.setNeedsDisplay()
 
         let rect = strongSelf.document.documentFocusRect()
         scrollView.setContentOffset(rect.origin, animated: false)
