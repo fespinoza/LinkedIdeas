@@ -15,7 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(
     _ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
   ) -> Bool {
-    // Override point for customization after application launch.
+    let window = UIWindow(frame: UIScreen.main.bounds)
+
+    let documentBrowserVC = DocumentBrowserViewController()
+    documentBrowserVC.view.frame = window.frame
+    let mainNavigationController = UINavigationController(rootViewController: documentBrowserVC)
+    mainNavigationController.isNavigationBarHidden = true
+
+    window.rootViewController = mainNavigationController
+    window.makeKeyAndVisible()
+
+    self.window = window
+
     return true
   }
 

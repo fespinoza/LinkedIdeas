@@ -67,6 +67,6 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     let documentViewController = DocumentViewController()
     documentViewController.document = Document(fileURL: documentURL)
 
-    present(documentViewController, animated: true, completion: nil)
+    self.navigationController?.pushViewController(documentViewController, animated: true)
   }
 }
