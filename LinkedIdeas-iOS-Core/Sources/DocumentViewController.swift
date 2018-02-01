@@ -48,8 +48,16 @@ public class DocumentViewController: UIViewController {
 
         let rect = strongSelf.document.documentFocusRect()
         scrollView.setContentOffset(rect.origin, animated: false)
+
+        strongSelf.navigationItem.title = strongSelf.document.localizedName
       }
     }
+  }
+
+  public override func viewWillAppear(_ animated: Bool) {
+    self.navigationController?.isNavigationBarHidden = false
+    self.navigationItem.largeTitleDisplayMode = .always
+    self.canvasView.setNeedsDisplay()
   }
 }
 
