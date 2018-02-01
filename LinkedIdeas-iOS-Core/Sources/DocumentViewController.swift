@@ -23,7 +23,7 @@ public class DocumentViewController: UIViewController {
 
   // MARK: - UIViewController overrides
   public override func viewDidLoad() {
-    self.view.backgroundColor = .purple
+    self.view.backgroundColor = .white
 
     let scrollView = UIScrollView()
     scrollView.contentSize = self.canvasFrame.size
@@ -36,8 +36,8 @@ public class DocumentViewController: UIViewController {
     // autolayout
     NSLayoutConstraint.activate([
       scrollView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor),
-      scrollView.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor),
-      scrollView.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor),
+      scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+      scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
       scrollView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor),
     ])
 

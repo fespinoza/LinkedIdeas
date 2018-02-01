@@ -53,7 +53,6 @@ public class Document: UIDocument {
       }
 
       self.documentData = documentData
-      print(documentData)
     } else {
       print("no data :(", contents, typeName ?? "none")
     }
