@@ -40,6 +40,9 @@ public class DocumentViewController: UIViewController {
     let scrollView = UIScrollView()
     scrollView.contentSize = self.canvasFrame.size
     scrollView.translatesAutoresizingMaskIntoConstraints = false
+    scrollView.minimumZoomScale = 0.5
+    scrollView.maximumZoomScale = 3.0
+    scrollView.delegate = self
 
     // subviews
     scrollView.addSubview(canvasView)
@@ -55,6 +58,12 @@ public class DocumentViewController: UIViewController {
 
     let rect = document.documentFocusRect()
     scrollView.setContentOffset(rect.origin, animated: false)
+  }
+}
+
+extension DocumentViewController: UIScrollViewDelegate {
+  public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+    return canvasView
   }
 }
 
