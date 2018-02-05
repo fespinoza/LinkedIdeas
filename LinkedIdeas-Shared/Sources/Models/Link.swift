@@ -13,10 +13,13 @@
   public typealias Color = NSColor
 #endif
 
-public class Link: NSObject, NSCoding {
+public class Link: NSObject, NSCoding, Element {
   // own attributes
   var origin: Concept
   var target: Concept
+
+  public var originRect: CGRect { return origin.area }
+  public var targetRect: CGRect { return target.area }
   public var originPoint: CGPoint { return origin.centerPoint }
   public var targetPoint: CGPoint { return target.centerPoint }
 
@@ -42,7 +45,7 @@ public class Link: NSObject, NSCoding {
   public var stringValue: String { return attributedStringValue.string }
 
   // MARK: - VisualElement
-  var isEditable: Bool = false
+  public var isEditable: Bool = false
   public var isSelected: Bool = false
 
   private let padding: CGFloat = 20
@@ -54,7 +57,7 @@ public class Link: NSObject, NSCoding {
   }
 
   // Element
-  var identifier: String
+  public var identifier: String
   public var area: CGRect {
     var minX = min(originPoint.x, targetPoint.x)
     if abs(originPoint.x - targetPoint.x) <= padding { minX -= padding / 2 }
@@ -67,50 +70,50 @@ public class Link: NSObject, NSCoding {
     return CGRect(x: minX, y: minY, width: width, height: height)
   }
 
-//  func contains(point: CGPoint) -> Bool {
-//    guard area.contains(point) else {
-//      return false
-//    }
-//    if textRect.contains(point) {
-//      return true
-//    }
-//
-////    let extendedAreaArrow = Arrow(point1: originPoint, point2: targetPoint, arrowBodyWidth: 20)
-////    let minXPoint: CGPoint! = extendedAreaArrow.arrowBodyPoints()
-////      .min { (pointA, pointB) -> Bool in pointA.x < pointB.x }
-////    let maxXPoint: CGPoint! = extendedAreaArrow.arrowBodyPoints()
-////      .max { (pointA, pointB) -> Bool in pointA.x < pointB.x }
-////
-////    let linkLine = Line(pointA: originPoint, pointB: targetPoint)
-////    let pivotPoint = CGPoint(x: linkLine.evaluateY(0), y: 0)
-////
-////    let angledLine = Line(pointA: pivotPoint, pointB: minXPoint)
-////    let a = angledLine.intersectionWithYAxis
-////    let b = angledLine.intersectionWithXAxis
-////    let c: CGFloat = sqrt(pow(a, 2) + pow(b, 2))
-////    let sin_theta = a / c
-////    let cos_theta = b / c
-//
-//    func transformationFunction(ofPoint pointToTransform: CGPoint) -> CGPoint {
-//      return CGPoint(
-//        x: pointToTransform.x * cos_theta - sin_theta * pointToTransform.y - minXPoint.x,
-//        y: pointToTransform.x * sin_theta + cos_theta * pointToTransform.y - minXPoint.y
-//      )
-//    }
-//
-//    let transformedRect = CGRect(
-//      point1: transformationFunction(ofPoint: minXPoint),
-//      point2: transformationFunction(ofPoint: maxXPoint)
-//    )
-//    let transformedPoint = transformationFunction(ofPoint: point)
-//    return transformedRect.contains(transformedPoint)
-//  }
+  public func contains(point: CGPoint) -> Bool {
+    guard area.contains(point) else {
+      return false
+    }
+    if textRect.contains(point) {
+      return true
+    }
 
-  convenience init(origin: Concept, target: Concept) {
+    let extendedAreaArrow = Arrow(point1: originPoint, point2: targetPoint, arrowBodyWidth: 20)
+    let minXPoint: CGPoint! = extendedAreaArrow.arrowBodyPoints()
+      .min { (pointA, pointB) -> Bool in pointA.x < pointB.x }
+    let maxXPoint: CGPoint! = extendedAreaArrow.arrowBodyPoints()
+      .max { (pointA, pointB) -> Bool in pointA.x < pointB.x }
+
+    let linkLine = Line(pointA: originPoint, pointB: targetPoint)
+    let pivotPoint = CGPoint(x: linkLine.evaluateY(0), y: 0)
+
+    let angledLine = Line(pointA: pivotPoint, pointB: minXPoint)
+    let a = angledLine.intersectionWithYAxis
+    let b = angledLine.intersectionWithXAxis
+    let c: CGFloat = sqrt(pow(a, 2) + pow(b, 2))
+    let sin_theta = a / c
+    let cos_theta = b / c
+
+    func transformationFunction(ofPoint pointToTransform: CGPoint) -> CGPoint {
+      return CGPoint(
+        x: pointToTransform.x * cos_theta - sin_theta * pointToTransform.y - minXPoint.x,
+        y: pointToTransform.x * sin_theta + cos_theta * pointToTransform.y - minXPoint.y
+      )
+    }
+
+    let transformedRect = CGRect(
+      point1: transformationFunction(ofPoint: minXPoint),
+      point2: transformationFunction(ofPoint: maxXPoint)
+    )
+    let transformedPoint = transformationFunction(ofPoint: point)
+    return transformedRect.contains(transformedPoint)
+  }
+
+  public convenience init(origin: Concept, target: Concept) {
     self.init(origin: origin, target: target, attributedStringValue: NSAttributedString(string: ""))
   }
 
-  init(origin: Concept, target: Concept, attributedStringValue: NSAttributedString) {
+  public init(origin: Concept, target: Concept, attributedStringValue: NSAttributedString) {
     self.origin = origin
     self.target = target
     self.identifier = "\(UUID().uuidString)-link"
@@ -119,8 +122,8 @@ public class Link: NSObject, NSCoding {
   }
 
   // MARK: - KVO
-  static let colorPath = "color"
-  static let attributedStringValuePath = "attributedStringValue"
+  public static let colorPath = "color"
+  public static let attributedStringValuePath = "attributedStringValue"
 
   let identifierKey = "identifierKey"
   let originKey = "OriginKey"
@@ -129,7 +132,7 @@ public class Link: NSObject, NSCoding {
   let attributedStringValueKey = "attributedStringValue"
   let colorComponentsKey = "colorComponentsKey"
 
-  func doesBelongTo(concept: Concept) -> Bool {
+  public func doesBelongTo(concept: Concept) -> Bool {
     return origin == concept || target == concept
   }
 

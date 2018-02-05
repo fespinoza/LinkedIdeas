@@ -6,13 +6,11 @@
 //  Copyright © 2017 Felipe Espinoza Dev. All rights reserved.
 //
 
-import Cocoa
+import CoreGraphics
 
 public protocol DrawableElement {
-  func draw()
-
   var drawingBounds: CGRect { get }
-
+  func draw()
   func drawForDebug()
 }
 
@@ -23,8 +21,8 @@ extension DrawableElement {
 
   func drawDebugHelpers() {
     if isDebugging() {
-      NSColor.lightGray.set()
-      NSBezierPath(rect: drawingBounds).stroke()
+      Color.lightGray.set()
+      BezierPath(rect: drawingBounds).stroke()
     }
   }
 
@@ -36,7 +34,7 @@ extension DrawableElement {
   }
 
   func drawDotAtPoint(_ point: CGPoint) {
-    NSColor.red.set()
+    Color.red.set()
     var x: CGFloat = point.x
     var y: CGFloat = point.y
 
@@ -47,10 +45,10 @@ extension DrawableElement {
       origin: CGPoint(x: x, y: y),
       size: CGSize(width: area, height: area)
     )
-    NSBezierPath(ovalIn: rect).fill()
+    BezierPath(ovalIn: rect).fill()
   }
 
-  func drawCenteredDotAtPoint(_ point: CGPoint, color: NSColor = NSColor.yellow) {
+  func drawCenteredDotAtPoint(_ point: CGPoint, color: Color = Color.yellow) {
     color.set()
     var x: CGFloat = point.x - area / 2
     var y: CGFloat = point.y - area / 2
@@ -62,13 +60,13 @@ extension DrawableElement {
       origin: CGPoint(x: x, y: y),
       size: CGSize(width: area, height: area)
     )
-    NSBezierPath(ovalIn: rect).fill()
-
+    BezierPath(ovalIn: rect).fill()
   }
 
   func drawBorderForRect(_ rect: CGRect) {
-    NSColor.blue.set()
-    let border = NSBezierPath()
+    Color.blue.set()
+
+    let border = BezierPath()
     border.move(to: rect.bottomLeftPoint)
     border.line(to: rect.bottomRightPoint)
     border.line(to: rect.topRightPoint)
@@ -80,7 +78,7 @@ extension DrawableElement {
   func drawFullRect(_ rect: CGRect) {
     rect.fill()
     drawBorderForRect(rect)
-    drawCenteredDotAtPoint(rect.origin, color: NSColor.red)
+    drawCenteredDotAtPoint(rect.origin, color: Color.red)
     drawCenteredDotAtPoint(rect.center)
   }
 

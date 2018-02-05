@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import LinkedIdeas_Shared
 
 protocol LinkedIdeasDocument {
   var concepts: [Concept] { get }

@@ -6,9 +6,10 @@
 //  Copyright © 2016 Felipe Espinoza Dev. All rights reserved.
 //
 
+import CoreGraphics
 import Foundation
 
-protocol Element {
+public protocol Element {
   var identifier: String { get }
   var area: CGRect { get }
 

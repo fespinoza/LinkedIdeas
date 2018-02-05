@@ -1,21 +1,21 @@
 //
-//  CGRect+Extensions.swift
+//  CGRect+PointHelpers.swift
 //  LinkedIdeas
 //
-//  Created by Felipe Espinoza on 20/01/2018.
-//  Copyright © 2018 Felipe Espinoza Dev. All rights reserved.
+//  Created by Felipe Espinoza Castillo on 04/12/15.
+//  Copyright © 2015 Felipe Espinoza Dev. All rights reserved.
 //
 
 import CoreGraphics
 
-extension CGRect {
+public extension CGRect {
   init(point1: CGPoint, point2: CGPoint) {
-    origin = CGPoint(x: min(point1.x, point2.x), y: min(point1.y, point2.y))
-    size = CGSize(width: abs(point2.x - point1.x), height: abs(point2.y - point1.y))
+    self.origin = CGPoint(x: min(point1.x, point2.x), y: min(point1.y, point2.y))
+    self.size = CGSize(width: abs(point2.x - point1.x), height: abs(point2.y - point1.y))
   }
 
   init(center: CGPoint, size: CGSize) {
-    origin = CGPoint(x: center.x - size.width / 2, y: center.y - size.height / 2)
+    self.origin = CGPoint(x: center.x - size.width / 2, y: center.y - size.height / 2)
     self.size = size
   }
 
@@ -27,4 +27,3 @@ extension CGRect {
   var middleRightPoint: CGPoint { return CGPoint(x: origin.x + size.width, y: center.y) }
   var center: CGPoint { return CGPoint(x: origin.x + size.width / 2, y: origin.y + size.height / 2) }
 }
-

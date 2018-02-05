@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import LinkedIdeas_Shared
 
 class CanvasViewController: NSViewController {
   @IBOutlet weak var canvasView: CanvasView!

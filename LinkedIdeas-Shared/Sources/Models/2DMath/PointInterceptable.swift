@@ -6,8 +6,8 @@
 //  Copyright © 2016 Felipe Espinoza Dev. All rights reserved.
 //
 
-import Foundation
+import CoreGraphics
 
-protocol PointInterceptable {
+public protocol PointInterceptable {
   func intersectionPointWith(_ other: Self) -> CGPoint?
 }

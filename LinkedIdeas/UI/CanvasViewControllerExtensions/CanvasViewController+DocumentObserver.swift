@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import LinkedIdeas_Shared
 
 // MARK: - CanvasViewController+DocumentObserver
 

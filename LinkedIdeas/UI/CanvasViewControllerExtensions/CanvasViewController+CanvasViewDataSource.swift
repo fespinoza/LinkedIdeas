@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import LinkedIdeas_Shared
 
 // MARK: - CanvasViewController+CanvasViewDataSource
 
@@ -15,11 +16,11 @@ extension CanvasViewController: CanvasViewDataSource {
     var elements: [DrawableElement] = []
 
     elements += document.concepts.map {
-      DrawableConcept(concept: $0 as GraphConcept) as DrawableElement
+      DrawableConcept(concept: $0) as DrawableElement
     }
 
     elements += document.links.map {
-      DrawableLink(link: $0 as GraphLink) as DrawableElement
+      DrawableLink(link: $0) as DrawableElement
     }
 
     return elements

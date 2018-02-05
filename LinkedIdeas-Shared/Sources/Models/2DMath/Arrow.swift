@@ -6,22 +6,22 @@
 //  Copyright © 2016 Felipe Espinoza Dev. All rights reserved.
 //
 
-import Cocoa
+import CoreGraphics
 
-struct Arrow {
+public struct Arrow {
   var point1: CGPoint
   var point2: CGPoint
   let arrowHeight: CGFloat = 20
   let arrowWidth: CGFloat = 15
   let arrowBodyWidth: CGFloat
 
-  init(point1: CGPoint, point2: CGPoint) {
+  public init(point1: CGPoint, point2: CGPoint) {
     self.point1 = point1
     self.point2 = point2
     self.arrowBodyWidth = 5
   }
 
-  init(point1: CGPoint, point2: CGPoint, arrowBodyWidth: CGFloat = 5) {
+  public init(point1: CGPoint, point2: CGPoint, arrowBodyWidth: CGFloat = 5) {
     self.point1 = point1
     self.point2 = point2
     self.arrowBodyWidth = arrowBodyWidth
@@ -44,12 +44,12 @@ struct Arrow {
   private var point8: CGPoint { return CGPoint(x: (point1.x - sideC * sin(alpha)), y: (point1.y + sideC * cos(alpha))) }
   private var point9: CGPoint { return CGPoint(x: (point1.x + sideC * sin(alpha)), y: (point1.y - sideC * cos(alpha))) }
 
-  func arrowBodyPoints() -> [CGPoint] {
+  public func arrowBodyPoints() -> [CGPoint] {
     return [point6, point7, point8, point9]
   }
 
-  func bezierPath() -> NSBezierPath {
-    let arrowPath = NSBezierPath()
+  public func bezierPath() -> BezierPath {
+    let arrowPath = BezierPath()
     arrowPath.move(to: point1)
     arrowPath.line(to: point8)
     arrowPath.line(to: point6)

@@ -5,11 +5,10 @@
 //  Created by Felipe Espinoza Castillo on 26/08/2017.
 //  Copyright © 2017 Felipe Espinoza Dev. All rights reserved.
 //
-
-import Cocoa
+import CoreGraphics
 
 public struct Handler {
-  enum Position {
+  public enum Position {
     case left
     case right
   }
@@ -32,23 +31,23 @@ public struct Handler {
   }
 
   let size: CGSize
-  let position: Position
+  public let position: Position
   let length = 6
 
-  init(concept: Concept, position: Position) {
+  public init(concept: Concept, position: Position) {
     self.concept = concept
     self.position = position
     self.size = CGSize(width: length, height: length)
   }
 
   func draw() {
-    NSColor.white.set()
+    Color.white.set()
     area.fill()
-    NSColor.black.set()
-    NSBezierPath(rect: area).stroke()
+    Color.black.set()
+    BezierPath(rect: area).stroke()
   }
 
-  func contains(_ point: CGPoint) -> Bool {
+  public func contains(_ point: CGPoint) -> Bool {
     return area.contains(point)
   }
 }

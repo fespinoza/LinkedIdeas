@@ -7,41 +7,43 @@
 //
 
 import Cocoa
+import LinkedIdeas_Shared
 
-public protocol GraphConcept {
-  var area: CGRect { get }
-  var centerPoint: CGPoint { get }
-  var stringValue: String { get }
-  var attributedStringValue: NSAttributedString { get }
-  var isSelected: Bool { get set }
-  var isEditable: Bool { get set }
+//public protocol GraphConcept {
+//  var area: CGRect { get }
+//  var centerPoint: CGPoint { get }
+//  var stringValue: String { get }
+//  var attributedStringValue: NSAttributedString { get }
+//  var isSelected: Bool { get set }
+//  var isEditable: Bool { get set }
+//
+//  var leftHandler: Handler? { get }
+//  var rightHandler: Handler? { get }
+//
+//  func draw()
+//}
 
-  var leftHandler: Handler? { get }
-  var rightHandler: Handler? { get }
+//public protocol GraphLink {
+//  var color: NSColor { get }
+//  var isSelected: Bool { get set }
+//
+//  var stringValue: String { get }
+//  var attributedStringValue: NSAttributedString { get }
+//
+//  var centerPoint: CGPoint { get }
+//  var area: CGRect { get }
+//
+//  var originPoint: CGPoint { get }
+//  var targetPoint: CGPoint { get }
+//
+//  var originRect: CGRect { get }
+//  var targetRect: CGRect { get }
+//}
 
-  func draw()
-}
+//extension Concept: GraphConcept {}
 
-public protocol GraphLink {
-  var color: NSColor { get }
-  var isSelected: Bool { get set }
+//extension Link: GraphLink {
+//  public var originRect: CGRect { return origin.area }
+//  public var targetRect: CGRect { return target.area }
+//}
 
-  var stringValue: String { get }
-  var attributedStringValue: NSAttributedString { get }
-
-  var centerPoint: CGPoint { get }
-  var area: CGRect { get }
-
-  var originPoint: CGPoint { get }
-  var targetPoint: CGPoint { get }
-
-  var originRect: CGRect { get }
-  var targetRect: CGRect { get }
-}
-
-extension Concept: GraphConcept {}
-
-extension Link: GraphLink {
-  public var originRect: CGRect { return origin.area }
-  public var targetRect: CGRect { return target.area }
-}

@@ -9,15 +9,15 @@
 import Foundation
 import CoreGraphics
 
-public class Concept: NSObject, NSCoding {
-  enum Mode {
+public class Concept: NSObject, NSCoding, Element {
+  public enum Mode {
     case textBased
     case modifiedWidth(width: CGFloat)
   }
 
   // NOTE: the point value is relative to the canvas coordinate system
   public var centerPoint: CGPoint
-  var mode: Mode = .textBased
+  public var mode: Mode = .textBased
 
   public var area: CGRect {
     return CGRect(center: centerPoint, size: size)
@@ -66,7 +66,7 @@ public class Concept: NSObject, NSCoding {
   }
 
   // element
-  var identifier: String
+  public var identifier: String
 
   // MARK: - NSAttributedStringElement
   @objc dynamic public var attributedStringValue: NSAttributedString
@@ -76,19 +76,19 @@ public class Concept: NSObject, NSCoding {
   public var isEditable: Bool = false
   public var isSelected: Bool = false {
     didSet {
-//      self.leftHandler = isSelected ?  andler(concept: self, position: .left) : nil
-//      self.rightHandler = isSelected ? Handler(concept: self, position: .right) : nil
+      self.leftHandler = isSelected ?  Handler(concept: self, position: .left) : nil
+      self.rightHandler = isSelected ? Handler(concept: self, position: .right) : nil
     }
   }
 
-//  public var leftHandler: Handler?
-//  public var rightHandler: Handler?
+  public var leftHandler: Handler?
+  public var rightHandler: Handler?
 
   // KVO
-  static let attributedStringValuePath = "attributedStringValue"
-  static let centerPointPath = "point"
-  static let identifierPath = "identifier"
-  static let isEditablePath = "isEditable"
+  public static let attributedStringValuePath = "attributedStringValue"
+  public static let centerPointPath = "point"
+  public static let identifierPath = "identifier"
+  public static let isEditablePath = "isEditable"
 
   // NSCoding
   static let attributedStringValueKey = "stringValueKey"
@@ -98,7 +98,7 @@ public class Concept: NSObject, NSCoding {
   static let constrainedWidthKey = "constrainedWidthKey"
 
   // Moving
-  var beforeMovingPoint: CGPoint?
+  public var beforeMovingPoint: CGPoint?
 
   override public var description: String {
     return "[\(identifier)] '\(stringValue)' \(isEditable) \(centerPoint)"
@@ -106,15 +106,15 @@ public class Concept: NSObject, NSCoding {
 
   // MARK: - Initializers
 
-  convenience init(centerPoint: CGPoint) {
+  public convenience init(centerPoint: CGPoint) {
     self.init(stringValue: "", centerPoint: centerPoint)
   }
 
-  convenience init(stringValue: String, centerPoint: CGPoint) {
+  public convenience init(stringValue: String, centerPoint: CGPoint) {
     self.init(attributedStringValue: NSAttributedString(string: stringValue), centerPoint: centerPoint)
   }
 
-  init(attributedStringValue: NSAttributedString, centerPoint: CGPoint) {
+  public init(attributedStringValue: NSAttributedString, centerPoint: CGPoint) {
     self.centerPoint = centerPoint
     self.identifier = "\(UUID().uuidString)-concept"
     self.attributedStringValue = attributedStringValue
@@ -126,11 +126,11 @@ public class Concept: NSObject, NSCoding {
     attributedStringValue.draw(in: textArea)
   }
 
-  func contains(point: CGPoint) -> Bool {
+  public func contains(point: CGPoint) -> Bool {
     return area.contains(point)
   }
 
-  func updateWidth(withDifference: CGFloat, fromLeft: Bool = false) {
+  public func updateWidth(withDifference: CGFloat, fromLeft: Bool = false) {
     let previousArea = area
     let previousWidth = width
 
@@ -162,9 +162,7 @@ public class Concept: NSObject, NSCoding {
     }
     self.identifier = identifier
     self.attributedStringValue = attributedStringValue
-//    self.centerPoint = .zero
     centerPoint = aDecoder.decodeCGPoint(forKey: Concept.centerPointKey)
-//    centerPoint = aDecoder.decodePoint(forKey: Concept.centerPointKey)
     isEditable = aDecoder.decodeBool(forKey: Concept.isEditableKey)
 
     if let widthObject = aDecoder.decodeObject(forKey: Concept.constrainedWidthKey) as? NSNumber {

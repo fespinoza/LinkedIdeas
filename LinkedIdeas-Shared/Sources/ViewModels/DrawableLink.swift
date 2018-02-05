@@ -6,10 +6,15 @@
 //  Copyright © 2017 Felipe Espinoza Dev. All rights reserved.
 //
 
-import Cocoa
+import CoreGraphics
+import Foundation
 
 public struct DrawableLink: DrawableElement {
-  let link: GraphLink
+  let link: Link
+
+  public init(link: Link) {
+    self.link = link
+  }
 
   public var drawingBounds: CGRect {
     return CGRect(point1: link.originPoint, point2: link.targetPoint)
@@ -29,7 +34,7 @@ public struct DrawableLink: DrawableElement {
     }
 
     // background
-    NSColor.white.set()
+    Color.white.set()
     var textSize = link.attributedStringValue.size()
     let padding: CGFloat = 8.0
     textSize.width += padding
@@ -45,7 +50,7 @@ public struct DrawableLink: DrawableElement {
     )
     let attributedStringValue = NSAttributedString(
       attributedString: link.attributedStringValue,
-      fontColor: NSColor.gray
+      fontColor: Color.gray
     )
     attributedStringValue.draw(at: bottomLeftTextPoint)
   }
@@ -55,7 +60,7 @@ public struct DrawableLink: DrawableElement {
       return
     }
 
-    NSColor.red.set()
+    Color.red.set()
     constructArrow()?.bezierPath().stroke()
   }
 
@@ -74,8 +79,8 @@ public struct DrawableLink: DrawableElement {
   public func drawForDebug() {
     if isDebugging() {
       drawDebugHelpers()
-      NSColor.magenta.set()
-      NSBezierPath(rect: link.area).stroke()
+      Color.magenta.set()
+      BezierPath(rect: link.area).stroke()
     }
   }
 }

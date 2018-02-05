@@ -6,7 +6,7 @@
 //  Copyright © 2016 Felipe Espinoza Dev. All rights reserved.
 //
 
-import Foundation
+import CoreGraphics
 
 struct LineRange: Interceptable {
   var minX: CGFloat

@@ -23,6 +23,12 @@ public class DocumentData: NSObject, NSCoding {
     super.init()
   }
 
+  public init(concepts: [Concept], links: [Link]) {
+    self.concepts = concepts
+    self.links = links
+    super.init()
+  }
+
   required public init?(coder aDecoder: NSCoder) {
     guard let concepts = aDecoder.decodeObject(forKey: .conceptsKey) as? [Concept],
           let links = aDecoder.decodeObject(forKey: .linksKey) as? [Link] else {

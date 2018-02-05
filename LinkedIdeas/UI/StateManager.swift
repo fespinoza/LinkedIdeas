@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import LinkedIdeas_Shared
 
 enum CanvasTransitionError: Error {
   case invalidTransition(message: String)

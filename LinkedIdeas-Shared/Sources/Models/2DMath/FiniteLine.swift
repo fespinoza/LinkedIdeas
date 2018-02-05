@@ -6,9 +6,9 @@
 //  Copyright © 2016 Felipe Espinoza Dev. All rights reserved.
 //
 
-import Cocoa
+import CoreGraphics
 
-struct FiniteLine: Interceptable, PointInterceptable {
+public struct FiniteLine: Interceptable, PointInterceptable {
   var point1: CGPoint
   var point2: CGPoint
 
@@ -29,14 +29,14 @@ struct FiniteLine: Interceptable, PointInterceptable {
     return lineRange.interceptsWith(other.lineRange)
   }
 
-  func bezierPath() -> NSBezierPath {
-    let path = NSBezierPath()
+  func bezierPath() -> BezierPath {
+    let path = BezierPath()
     path.move(to: point1)
     path.line(to: point2)
     return path
   }
 
-  func intersectionPointWith(_ other: FiniteLine) -> CGPoint? {
+  public func intersectionPointWith(_ other: FiniteLine) -> CGPoint? {
     if let intersectionPoint = line.intersectionPointWith(other.line) {
       let intersectionLineRange = lineRange.interception(other.lineRange)
       if intersectionLineRange.isValid() && intersectionLineRange.doesContain(intersectionPoint) {

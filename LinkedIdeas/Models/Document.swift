@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import LinkedIdeas_Shared
 
 public class Document: NSDocument {
   var documentData = DocumentData()
@@ -66,24 +67,27 @@ public class Document: NSDocument {
   }
 
   override public func data(ofType typeName: String) throws -> Data {
-    documentData.writeConcepts = concepts
-    documentData.writeLinks = links
     Swift.print("write data!")
-    return NSKeyedArchiver.archivedData(withRootObject: documentData)
+    NSKeyedArchiver.setClassName("LinkedIdeas.DocumentData", for: DocumentData.self)
+    NSKeyedArchiver.setClassName("LinkedIdeas.Concept", for: Concept.self)
+    NSKeyedArchiver.setClassName("LinkedIdeas.Link", for: Link.self)
+
+    let writeDocumentData = DocumentData(concepts: self.concepts, links: self.links)
+    return NSKeyedArchiver.archivedData(withRootObject: writeDocumentData)
   }
 
   override public func read(from data: Data, ofType typeName: String) throws {
     Swift.print("Document: -read")
+    NSKeyedUnarchiver.setClass(DocumentData.self, forClassName: "LinkedIdeas.DocumentData")
+    NSKeyedUnarchiver.setClass(Concept.self, forClassName: "LinkedIdeas.Concept")
+    NSKeyedUnarchiver.setClass(Link.self, forClassName: "LinkedIdeas.Link")
     guard let documentData = NSKeyedUnarchiver.unarchiveObject(with: data) as? DocumentData else {
       return
     }
     self.documentData = documentData
-    if let readConcepts = documentData.readConcepts {
-      concepts = readConcepts
-    }
-    if let readLinks = documentData.readLinks {
-      links = readLinks
-    }
+    self.concepts = documentData.concepts
+    self.links = documentData.links
+
   }
 
   // MARK: - KeyValue Observing
@@ -202,11 +206,11 @@ extension Document: CanvasViewDataSource {
     var elements: [DrawableElement] = []
 
     elements += concepts.map {
-      DrawableConcept(concept: $0 as GraphConcept) as DrawableElement
+      DrawableConcept(concept: $0) as DrawableElement
     }
 
     elements += links.map {
-      DrawableLink(link: $0 as GraphLink) as DrawableElement
+      DrawableLink(link: $0) as DrawableElement
     }
 
     return elements

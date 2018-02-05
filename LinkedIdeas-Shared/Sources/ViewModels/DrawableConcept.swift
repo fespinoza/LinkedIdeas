@@ -20,7 +20,7 @@
   public typealias BezierPath = NSBezierPath
 #endif
 
-public struct DrawableConcept {
+public struct DrawableConcept: DrawableElement {
   let concept: Concept
 
   public init(concept: Concept) {
@@ -58,14 +58,14 @@ public struct DrawableConcept {
     bezierPath.lineWidth = 1
     bezierPath.stroke()
 
-//    concept.leftHandler?.draw()
-//    concept.rightHandler?.draw()
+    concept.leftHandler?.draw()
+    concept.rightHandler?.draw()
   }
 
   public func drawForDebug() {
-//    if isDebugging() {
-//      drawDebugHelpers()
-//      drawCenteredDotAtPoint(concept.centerPoint, color: NSColor.red)
-//    }
+    if isDebugging() {
+      drawDebugHelpers()
+      drawCenteredDotAtPoint(concept.centerPoint, color: Color.red)
+    }
   }
 }
