@@ -6,13 +6,8 @@
 //  Copyright © 2016 Felipe Espinoza Dev. All rights reserved.
 //
 
-#if os(iOS)
-  import UIKit
-  public typealias Font = UIFont
-#else
-  import Cocoa
-  public typealias Font = NSFont
-#endif
+import Cocoa
+public typealias Font = NSFont
 
 public extension NSAttributedString {
   // MARK: - Computed Properties

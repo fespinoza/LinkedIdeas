@@ -97,7 +97,7 @@ extension CanvasViewController {
 
       return [concept]
     case .multipleSelectedElements(let elements):
-      return elements.compactMap { $0 as? Concept }
+      return elements.flatMap { $0 as? Concept }
     default:
       return []
     }

@@ -60,7 +60,6 @@
 		9B6B3C802027921000419B02 /* CGRect+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B956CE41C1B11C200CF20DA /* CGRect+Utilities.swift */; };
 		9B6B3C812027921000419B02 /* CGRect+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B956CE41C1B11C200CF20DA /* CGRect+Utilities.swift */; };
 		9B6B3C822027924300419B02 /* NSAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CCDEA1D294E0900F319EB /* NSAttributedString+Extensions.swift */; };
-		9B6B3C832027924300419B02 /* NSAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CCDEA1D294E0900F319EB /* NSAttributedString+Extensions.swift */; };
 		9B6B3C842027931500419B02 /* LineRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF341C7F8B1200E8A303 /* LineRange.swift */; };
 		9B6B3C852027931500419B02 /* LineRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF341C7F8B1200E8A303 /* LineRange.swift */; };
 		9B6B3C862027931500419B02 /* CGRect+FiniteLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6B3C7C202791F300419B02 /* CGRect+FiniteLine.swift */; };
@@ -69,6 +68,7 @@
 		9B6B3C892027931500419B02 /* FiniteLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF3C1C7F8B6A00E8A303 /* FiniteLine.swift */; };
 		9B6B3C8A2027931500419B02 /* Interceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF361C7F8B2300E8A303 /* Interceptable.swift */; };
 		9B6B3C8B2027931500419B02 /* Interceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD2BF361C7F8B2300E8A303 /* Interceptable.swift */; };
+		9B78AE7C202A38F50093D4C1 /* UIBezierPath+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B78AE7A202A38A90093D4C1 /* UIBezierPath+Extensions.swift */; };
 		9B8665C61D96C9E800799678 /* StateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8665C51D96C9E800799678 /* StateManagerTests.swift */; };
 		9B8E90051E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E90041E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift */; };
 		9B90227F1EE9FF9200C528AE /* CanvasViewController+AligmentFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B90227E1EE9FF9200C528AE /* CanvasViewController+AligmentFunctions.swift */; };
@@ -255,6 +255,7 @@
 		9B521F861CFB380300A71598 /* SquareElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareElement.swift; sourceTree = "<group>"; };
 		9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = linked_ideas_doc_icon.icns; sourceTree = "<group>"; };
 		9B6B3C7C202791F300419B02 /* CGRect+FiniteLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+FiniteLine.swift"; sourceTree = "<group>"; };
+		9B78AE7A202A38A90093D4C1 /* UIBezierPath+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Extensions.swift"; sourceTree = "<group>"; };
 		9B8665C51D96C9E800799678 /* StateManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateManagerTests.swift; sourceTree = "<group>"; };
 		9B8E90041E45F8FE00C819F7 /* CanvasViewController+DraggingActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "CanvasViewController+DraggingActions.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9B90227E1EE9FF9200C528AE /* CanvasViewController+AligmentFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+AligmentFunctions.swift"; sourceTree = "<group>"; };
@@ -381,6 +382,7 @@
 		9B0E2E4A2018F04C00B514AA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				9B78AE79202A38940093D4C1 /* iOS-Only */,
 				9BB2A03920265C070022E6E7 /* macOS-Only */,
 				9B0E2E0D2018EF9900B514AA /* LinkedIdeas_Shared_iOS.h */,
 				9B0E2E2F2018EFD100B514AA /* LinkedIdeas_Shared_macOS.h */,
@@ -535,6 +537,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		9B78AE79202A38940093D4C1 /* iOS-Only */ = {
+			isa = PBXGroup;
+			children = (
+				9B78AE7A202A38A90093D4C1 /* UIBezierPath+Extensions.swift */,
+			);
+			path = "iOS-Only";
+			sourceTree = "<group>";
+		};
 		9B8E90061E462AB900C819F7 /* CanvasViewControllerExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -583,7 +593,6 @@
 		9B97BF982013FF6800C780AC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				9B1CCDEA1D294E0900F319EB /* NSAttributedString+Extensions.swift */,
 				9B956CE41C1B11C200CF20DA /* CGRect+Utilities.swift */,
 				9B06AD121C11AD74000BC75C /* CGRect+PointHelpers.swift */,
 			);
@@ -608,6 +617,7 @@
 			isa = PBXGroup;
 			children = (
 				9BB2A03A20265C190022E6E7 /* NSDecoder+Extensions.swift */,
+				9B1CCDEA1D294E0900F319EB /* NSAttributedString+Extensions.swift */,
 			);
 			path = "macOS-Only";
 			sourceTree = "<group>";
@@ -1099,13 +1109,13 @@
 				9B6B3C6F20278ECE00419B02 /* Handler.swift in Sources */,
 				9B0E2E4C2018F1BE00B514AA /* Link.swift in Sources */,
 				9BB2A03E20265D2C0022E6E7 /* Element.swift in Sources */,
-				9B6B3C832027924300419B02 /* NSAttributedString+Extensions.swift in Sources */,
 				9B6B3C8B2027931500419B02 /* Interceptable.swift in Sources */,
 				9B0E2E4E2018F1BE00B514AA /* DocumentData.swift in Sources */,
 				9B6B3C7120278F4000419B02 /* Line.swift in Sources */,
 				9B6B3C892027931500419B02 /* FiniteLine.swift in Sources */,
 				9B402636201DF3E900810DA1 /* DrawableConcept.swift in Sources */,
 				9B6B3C852027931500419B02 /* LineRange.swift in Sources */,
+				9B78AE7C202A38F50093D4C1 /* UIBezierPath+Extensions.swift in Sources */,
 				9B0E2E4D2018F1BE00B514AA /* Concept.swift in Sources */,
 				9B6B3C812027921000419B02 /* CGRect+Utilities.swift in Sources */,
 				9B6B3C7F2027921000419B02 /* CGRect+PointHelpers.swift in Sources */,
