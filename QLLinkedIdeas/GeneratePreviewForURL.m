@@ -37,12 +37,9 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     NSLog(@"Quick look generator %@", url);
 
     if(cgContext) {
-
-
-      NSGraphicsContext* context = [NSGraphicsContext graphicsContextWithGraphicsPort:(void *)cgContext flipped:YES];
+      NSGraphicsContext* context = [NSGraphicsContext graphicsContextWithGraphicsPort:(void *)cgContext flipped:NO];
 
       if (context) {
-
         [NSGraphicsContext saveGraphicsState];
         [NSGraphicsContext setCurrentContext:context];
 
@@ -50,7 +47,6 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
 
 
         [NSGraphicsContext restoreGraphicsState];
-
       }
       QLPreviewRequestFlushContext(preview, cgContext);
       CFRelease(cgContext);
