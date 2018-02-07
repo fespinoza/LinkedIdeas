@@ -27,10 +27,6 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     manager.url = (__bridge NSURL *)url;
     manager.contentTypeUTI = (__bridge NSString *)contentTypeUTI;
 
-    [NSKeyedUnarchiver setClass:[DocumentData class] forClassName:@"LinkedIdeas.DocumentData"];
-    [NSKeyedUnarchiver setClass:[Concept class] forClassName:@"LinkedIdeas.Concept"];
-    [NSKeyedUnarchiver setClass:[Link class] forClassName:@"LinkedIdeas.Link"];
-
     // Preview will be drawn in a vectorized context
     CGContextRef cgContext = QLPreviewRequestCreateContext(preview, *(CGSize *)&canvasSize, false, NULL);
 

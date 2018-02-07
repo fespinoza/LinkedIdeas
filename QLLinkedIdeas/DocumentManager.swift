@@ -7,6 +7,13 @@
 //
 
 import Cocoa
+import LinkedIdeas_Shared
+
+private extension String {
+  static let documentDataClassName = "LinkedIdeas.DocumentData"
+  static let conceptClassName = "LinkedIdeas.Concept"
+  static let linkClassName = "LinkedIdeas.Link"
+}
 
 public class DocumentManager: NSObject {
   @objc public var url: URL?
@@ -22,6 +29,10 @@ public class DocumentManager: NSObject {
     }
 
     do {
+      NSKeyedUnarchiver.setClass(DocumentData.self, forClassName: .documentDataClassName)
+      NSKeyedUnarchiver.setClass(Concept.self, forClassName: .conceptClassName)
+      NSKeyedUnarchiver.setClass(Link.self, forClassName: .linkClassName)
+
       let document: Document = try Document(contentsOf: url, ofType: contentTypeUTI)
       let frame = document.rect
 
