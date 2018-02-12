@@ -928,7 +928,6 @@
 					};
 					9B2F1D9B1BE7CFE70090CC18 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 4E6CZX3H5W;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1571,7 +1570,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 4E6CZX3H5W;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LinkedIdeas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeas;
@@ -1591,7 +1590,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 4E6CZX3H5W;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LinkedIdeas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeas;
@@ -1665,8 +1664,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fespinozacast.New-LinkedIdeas-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "34950e2d-ecf9-4534-89ea-6268252dc909";
-				PROVISIONING_PROFILE_SPECIFIER = "Development Linked Ideas";
+				PROVISIONING_PROFILE = "d4201e3f-7209-45d1-9593-fab0541fb534";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.fespinozacast.New-LinkedIdeas-iOS";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 4.0;
@@ -1685,7 +1684,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 4E6CZX3H5W;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1694,8 +1693,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fespinozacast.New-LinkedIdeas-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a884ff50-450c-4fa7-ac50-d4d0644912fc";
-				PROVISIONING_PROFILE_SPECIFIER = "Distribution Linked Ideas iOS";
+				PROVISIONING_PROFILE = "d4201e3f-7209-45d1-9593-fab0541fb534";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.fespinozacast.New-LinkedIdeas-iOS";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
