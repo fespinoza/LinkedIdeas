@@ -1,0 +1,7 @@
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
+
+app_identifier "com.fespinozacast.New-LinkedIdeas-iOS"
+apple_id ENV.fetch('APPLE_ID')
+itc_team_id ENV.fetch('ITUNES_CONNECT_TEAM_ID')
+team_id ENV.fetch('APPLE_DEVELOPER_TEAM_ID')

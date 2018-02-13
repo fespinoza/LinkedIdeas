@@ -1,0 +1,36 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+default_platform(:ios)
+
+data = {
+  signing_identity: 'iPhone Distribution: Felipe Espinoza (4E6CZX3H5W)',
+  provisioning_profiles: {
+    'com.fespinozacast.New-LinkedIdeas-iOS' => 'Distribution Linked Ideas iOS'
+  }
+}
+
+platform :ios do
+  desc "Push a new release build to the App Store"
+  lane :release do
+    build_app(
+      workspace: "LinkedIdeas.xcworkspace",
+      scheme: "LinkedIdeas-iOS",
+      configuration: 'Release',
+      codesigning_identity: data[:signing_identity],
+      include_bitcode: true,
+      export_options: {
+        method: "app-store",
+        provisioningProfiles: data[:provisioning_profiles]
+      }
+    )
+    upload_to_app_store(
+      skip_metadata: true,
+      skip_screenshots: true,
+    )
+  end
+end
