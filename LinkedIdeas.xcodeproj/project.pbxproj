@@ -43,6 +43,7 @@
 		9B4DE0A71F2BD7CE00F95AAF /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4DE0A61F2BD7CE00F95AAF /* ColorUtils.swift */; };
 		9B4DE0A81F2BD7FC00F95AAF /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4DE0A61F2BD7CE00F95AAF /* ColorUtils.swift */; };
 		9B521F871CFB380300A71598 /* SquareElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B521F861CFB380300A71598 /* SquareElement.swift */; };
+		9B52DD2F2034F2970023F9AD /* LinkedIdeas_Shared.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9B0E2E2D2018EFD100B514AA /* LinkedIdeas_Shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9B66961C1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */; };
 		9B6B3C6E20278ECE00419B02 /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFBA8941F50D8D200EA8ABE /* Handler.swift */; };
 		9B6B3C6F20278ECE00419B02 /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFBA8941F50D8D200EA8ABE /* Handler.swift */; };
@@ -189,6 +190,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		9B52DD2D2034F2610023F9AD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9B52DD2F2034F2970023F9AD /* LinkedIdeas_Shared.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9BF839A12017C75A0094101B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -858,6 +869,7 @@
 				9BD850AC1EE4C199005B89C9 /* Frameworks */,
 				9BD850AD1EE4C199005B89C9 /* Headers */,
 				9BD850AE1EE4C199005B89C9 /* Resources */,
+				9B52DD2D2034F2610023F9AD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -928,7 +940,7 @@
 					};
 					9B2F1D9B1BE7CFE70090CC18 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 2Z7R9FQBNN;
+						DevelopmentTeam = 4E6CZX3H5W;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1571,7 +1583,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 2Z7R9FQBNN;
+				DEVELOPMENT_TEAM = 4E6CZX3H5W;
 				INFOPLIST_FILE = LinkedIdeas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeas;
@@ -1591,7 +1603,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 2Z7R9FQBNN;
+				DEVELOPMENT_TEAM = 4E6CZX3H5W;
 				INFOPLIST_FILE = LinkedIdeas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeas;
