@@ -15,6 +15,10 @@ data = {
 }
 
 platform :ios do
+  lane :test do
+    run_tests(scheme: "LinkedIdeas-iOS")
+  end
+
   desc "Push a new release build to the App Store"
   lane :release do
     build_app(
