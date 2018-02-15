@@ -13,7 +13,6 @@ guard let url = Bundle.main.url(forResource: "sample-doc", withExtension: "idea"
 let document = Document(fileURL: url)
 try? document.load(fromContents: data, ofType: "idea")
 
-
 public class DocumentViewController: UIViewController {
   public var document: Document! {
     didSet {

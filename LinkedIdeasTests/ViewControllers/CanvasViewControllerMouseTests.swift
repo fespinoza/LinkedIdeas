@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import LinkedIdeas_Shared
 @testable import LinkedIdeas
 
 // MARK: - CanvasViewControllers: Mouse Tests

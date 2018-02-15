@@ -48,6 +48,7 @@ public struct DrawableLink: DrawableElement {
       deltaX: -(textSize.width - padding) / 2.0,
       deltaY: -(textSize.height - padding) / 2.0
     )
+    // swiftlint:disable:next force_cast
     let attributedStringValue = link.attributedStringValue.mutableCopy() as! NSMutableAttributedString
     attributedStringValue.addAttributes(
       [.foregroundColor: Color.gray],

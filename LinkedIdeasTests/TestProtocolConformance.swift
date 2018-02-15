@@ -8,6 +8,7 @@
 
 import Foundation
 @testable import LinkedIdeas
+@testable import LinkedIdeas_Shared
 
 class TestLinkedIdeasDocument: LinkedIdeasDocument {
   var concepts = [Concept]()

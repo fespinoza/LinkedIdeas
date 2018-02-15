@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import LinkedIdeas_Shared
 @testable import LinkedIdeas
 
 extension CanvasViewController {

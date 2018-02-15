@@ -127,7 +127,6 @@
 		9BDF4B801F4B7DA6000A1BB2 /* CanvasViewController+NSTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCD799C1F4A37FE00D310B3 /* CanvasViewController+NSTextViewDelegate.swift */; };
 		9BE40C211D8DD98B0025F154 /* CanvasViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */; };
 		9BE6A66B201A7BDF00E276BB /* LinkedIdeas_iOS_Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE6A662201A7BDF00E276BB /* LinkedIdeas_iOS_Core.framework */; };
-		9BE6A672201A7BDF00E276BB /* LinkedIdeas_iOS_CoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE6A671201A7BDF00E276BB /* LinkedIdeas_iOS_CoreTests.swift */; };
 		9BE6A674201A7BDF00E276BB /* LinkedIdeas_iOS_Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BE6A664201A7BDF00E276BB /* LinkedIdeas_iOS_Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9BE6A677201A7BDF00E276BB /* LinkedIdeas_iOS_Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE6A662201A7BDF00E276BB /* LinkedIdeas_iOS_Core.framework */; };
 		9BE6A678201A7BDF00E276BB /* LinkedIdeas_iOS_Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE6A662201A7BDF00E276BB /* LinkedIdeas_iOS_Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -151,6 +150,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9B2F1D9B1BE7CFE70090CC18;
 			remoteInfo = LinkedIdeas;
+		};
+		9B40F9AB20361014001C7F79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B2F1D941BE7CFE70090CC18 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B0E2E2C2018EFD100B514AA;
+			remoteInfo = LinkedIdeas_Shared_macOS;
 		};
 		9BBC5BD820222C9B00B0EB28 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -315,13 +321,11 @@
 		9BE6A664201A7BDF00E276BB /* LinkedIdeas_iOS_Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinkedIdeas_iOS_Core.h; sourceTree = "<group>"; };
 		9BE6A665201A7BDF00E276BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BE6A66A201A7BDF00E276BB /* LinkedIdeas-iOS-CoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LinkedIdeas-iOS-CoreTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9BE6A671201A7BDF00E276BB /* LinkedIdeas_iOS_CoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedIdeas_iOS_CoreTests.swift; sourceTree = "<group>"; };
 		9BE6A673201A7BDF00E276BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BF15C381CAC69A500C95041 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		9BF456E21F16E8B800E1CDD3 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9BF456E31F16E8BC00E1CDD3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9BF456E41F16E8BF00E1CDD3 /* PR.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PR.md; sourceTree = "<group>"; };
-		9BF839942017C75A0094101B /* LinkedIdeas_SharedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedIdeas_SharedTests.swift; sourceTree = "<group>"; };
 		9BF839962017C75A0094101B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BFBA8941F50D8D200EA8ABE /* Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -695,7 +699,6 @@
 		9BE6A670201A7BDF00E276BB /* LinkedIdeas-iOS-CoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				9BE6A671201A7BDF00E276BB /* LinkedIdeas_iOS_CoreTests.swift */,
 				9BE6A673201A7BDF00E276BB /* Info.plist */,
 			);
 			path = "LinkedIdeas-iOS-CoreTests";
@@ -722,7 +725,6 @@
 		9BF839932017C75A0094101B /* LinkedIdeas-SharedTests */ = {
 			isa = PBXGroup;
 			children = (
-				9BF839942017C75A0094101B /* LinkedIdeas_SharedTests.swift */,
 				9BF839962017C75A0094101B /* Info.plist */,
 			);
 			path = "LinkedIdeas-SharedTests";
@@ -834,6 +836,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9B40F9AC20361014001C7F79 /* PBXTargetDependency */,
 				9B2F1DB21BE7CFE80090CC18 /* PBXTargetDependency */,
 			);
 			name = LinkedIdeasTests;
@@ -1098,7 +1101,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#if which swiftlint >/dev/null; then\n#swiftlint\n#else\n#    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#fi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		9B39418F1E56477100F1E957 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1277,7 +1280,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BE6A672201A7BDF00E276BB /* LinkedIdeas_iOS_CoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1293,6 +1295,11 @@
 			isa = PBXTargetDependency;
 			target = 9B2F1D9B1BE7CFE70090CC18 /* LinkedIdeas */;
 			targetProxy = 9B2F1DB11BE7CFE80090CC18 /* PBXContainerItemProxy */;
+		};
+		9B40F9AC20361014001C7F79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9B0E2E2C2018EFD100B514AA /* LinkedIdeas_Shared_macOS */;
+			targetProxy = 9B40F9AB20361014001C7F79 /* PBXContainerItemProxy */;
 		};
 		9BBC5BD920222C9B00B0EB28 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
