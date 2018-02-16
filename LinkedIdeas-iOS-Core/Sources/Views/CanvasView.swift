@@ -10,7 +10,7 @@ import UIKit
 import LinkedIdeas_Shared
 
 public protocol CanvasViewDataSource {
-  func drawableElements(forRect: CGRect) -> [DrawableConcept]
+  func drawableElements(forRect: CGRect) -> [DrawableElement]
 }
 
 public class CanvasView: UIView {

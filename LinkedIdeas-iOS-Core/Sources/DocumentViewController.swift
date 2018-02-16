@@ -71,9 +71,19 @@ extension DocumentViewController: UIScrollViewDelegate {
 }
 
 extension DocumentViewController: CanvasViewDataSource {
-  public func drawableElements(forRect rect: CGRect) -> [DrawableConcept] {
-    return document.concepts
+  public func drawableElements(forRect rect: CGRect) -> [DrawableElement] {
+    var elements: [DrawableElement] = []
+
+    elements += document
+      .concepts
       .filter({ $0.area.intersects(rect) })
-      .flatMap({ DrawableConcept(concept: $0) })
+      .map { DrawableConcept(concept: $0) as DrawableElement }
+
+    elements += document
+      .links
+      .filter({ $0.area.intersects(rect) })
+      .map { DrawableLink(link: $0) as DrawableElement }
+
+    return elements
   }
 }
