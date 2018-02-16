@@ -7,38 +7,28 @@
 #
 default_platform(:ios)
 
-data = {
-  signing_identity: 'iPhone Distribution: Felipe Espinoza (4E6CZX3H5W)',
-  provisioning_profiles: {
-    'com.fespinozacast.New-LinkedIdeas-iOS' => 'Distribution Linked Ideas iOS'
-  }
-}
-
 platform :mac do
   lane :test do
-    run_tests(scheme: "LinkedIdeas")
+    run_tests(scheme: 'LinkedIdeas')
   end
 end
 
 platform :ios do
   lane :test do
-    run_tests(scheme: "LinkedIdeas-iOS")
+    run_tests(scheme: 'LinkedIdeas-iOS')
   end
 
-  desc "Push a new release build to the App Store"
+  desc 'Push a new release build to the App Store'
   lane :release do
+    app_identifier = 'com.fespinozacast.New-LinkedIdeas-iOS'
     increment_build_number
     commit_version_bump
+    sync_code_signing(type: 'appstore', app_identifier: app_identifier)
     build_app(
-      workspace: "LinkedIdeas.xcworkspace",
-      scheme: "LinkedIdeas-iOS",
+      workspace: 'LinkedIdeas.xcworkspace',
+      scheme: 'LinkedIdeas-iOS',
       configuration: 'Release',
-      codesigning_identity: data[:signing_identity],
       include_bitcode: true,
-      export_options: {
-        method: "app-store",
-        provisioningProfiles: data[:provisioning_profiles]
-      }
     )
     upload_to_app_store(
       skip_metadata: true,
