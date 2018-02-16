@@ -14,6 +14,12 @@ data = {
   }
 }
 
+platform :mac do
+  lane :test do
+    run_tests(scheme: "LinkedIdeas")
+  end
+end
+
 platform :ios do
   lane :test do
     run_tests(scheme: "LinkedIdeas-iOS")
