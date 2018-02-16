@@ -264,6 +264,7 @@
 		9B3941A31E56591900F1E957 /* CanvasViewController+DocumentObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+DocumentObserver.swift"; sourceTree = "<group>"; };
 		9B3941A51E56594700F1E957 /* NSEvent-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSEvent-Extensions.swift"; sourceTree = "<group>"; };
 		9B3941A71E56596000F1E957 /* NSResponder-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSResponder-Extensions.swift"; sourceTree = "<group>"; };
+		9B3C008820378552009C177C /* LinkedIdeas-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "LinkedIdeas-iOS.entitlements"; sourceTree = "<group>"; };
 		9B40263B201DF7ED00810DA1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9B43B8881EDC88AC00879507 /* CanvasViewControllerMouseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewControllerMouseTests.swift; sourceTree = "<group>"; };
 		9B43B88A1EDC8B5D00879507 /* CanvasViewControllerKeyboardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewControllerKeyboardTests.swift; sourceTree = "<group>"; };
@@ -584,6 +585,7 @@
 		9B97BF7F2013F39000C780AC /* LinkedIdeas-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				9B3C008820378552009C177C /* LinkedIdeas-iOS.entitlements */,
 				9B97BF802013F39000C780AC /* AppDelegate.swift */,
 				9B97BF822013F39000C780AC /* DocumentBrowserViewController.swift */,
 				9B97BF8B2013F39000C780AC /* Assets.xcassets */,
@@ -963,6 +965,11 @@
 						CreatedOnToolsVersion = 9.2;
 						DevelopmentTeam = 4E6CZX3H5W;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					9BD850AF1EE4C199005B89C9 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1674,6 +1681,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "LinkedIdeas-iOS/LinkedIdeas-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -1703,6 +1711,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "LinkedIdeas-iOS/LinkedIdeas-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
