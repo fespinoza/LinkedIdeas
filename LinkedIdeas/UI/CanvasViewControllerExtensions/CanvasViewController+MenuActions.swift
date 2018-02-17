@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import LinkedIdeas_Shared
 
 extension NSColor {
   convenience init(fullRed: CGFloat, fullGreen: CGFloat, fullBlue: CGFloat) {

@@ -18,7 +18,7 @@ void CancelPreviewGeneration(void *thisInterface, QLPreviewRequestRef preview);
 OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options)
 {
   @autoreleasepool {
-    NSSize canvasSize = NSMakeSize(800, 600);
+    CGSize canvasSize = NSMakeSize(800, 600);
 
     NSLog(@"Quicklook Init! %@, contentType %@", url, contentTypeUTI);
 
@@ -27,22 +27,15 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     manager.url = (__bridge NSURL *)url;
     manager.contentTypeUTI = (__bridge NSString *)contentTypeUTI;
 
-    [NSKeyedUnarchiver setClass:[DocumentData class] forClassName:@"LinkedIdeas.DocumentData"];
-    [NSKeyedUnarchiver setClass:[Concept class] forClassName:@"LinkedIdeas.Concept"];
-    [NSKeyedUnarchiver setClass:[Link class] forClassName:@"LinkedIdeas.Link"];
-
     // Preview will be drawn in a vectorized context
     CGContextRef cgContext = QLPreviewRequestCreateContext(preview, *(CGSize *)&canvasSize, false, NULL);
 
     NSLog(@"Quick look generator %@", url);
 
     if(cgContext) {
-
-
-      NSGraphicsContext* context = [NSGraphicsContext graphicsContextWithGraphicsPort:(void *)cgContext flipped:YES];
+      NSGraphicsContext* context = [NSGraphicsContext graphicsContextWithGraphicsPort:(void *)cgContext flipped:NO];
 
       if (context) {
-
         [NSGraphicsContext saveGraphicsState];
         [NSGraphicsContext setCurrentContext:context];
 
@@ -50,7 +43,6 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
 
 
         [NSGraphicsContext restoreGraphicsState];
-
       }
       QLPreviewRequestFlushContext(preview, cgContext);
       CFRelease(cgContext);

@@ -1,0 +1,38 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+default_platform(:ios)
+
+platform :mac do
+  lane :test do
+    run_tests(scheme: 'LinkedIdeas')
+  end
+end
+
+platform :ios do
+  lane :test do
+    run_tests(scheme: 'LinkedIdeas-iOS')
+  end
+
+  desc 'Push a new release build to the App Store'
+  lane :release do
+    app_identifier = 'com.fespinozacast.New-LinkedIdeas-iOS'
+    increment_build_number
+    commit_version_bump
+    sync_code_signing(type: 'appstore', app_identifier: app_identifier)
+    build_app(
+      workspace: 'LinkedIdeas.xcworkspace',
+      scheme: 'LinkedIdeas-iOS',
+      configuration: 'Release',
+      include_bitcode: true,
+    )
+    upload_to_app_store(
+      skip_metadata: true,
+      skip_screenshots: true,
+    )
+  end
+end

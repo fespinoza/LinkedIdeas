@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import LinkedIdeas_Shared
 
 class CanvasViewController: NSViewController {
   @IBOutlet weak var canvasView: CanvasView!
@@ -19,7 +20,7 @@ class CanvasViewController: NSViewController {
   var didShiftDragStart = false
   // to register the beginning of the drag
   // for undo purposes
-  var dragStartPoint: NSPoint?
+  var dragStartPoint: CGPoint?
 
   var stateManager = StateManager(initialState: .canvasWaiting)
   var currentState: CanvasState {
@@ -47,7 +48,7 @@ class CanvasViewController: NSViewController {
   }()
 
   lazy var textView: NSTextView = {
-    let textView = NSTextView(frame: NSRect.zero, textContainer: textContainer)
+    let textView = NSTextView(frame: CGRect.zero, textContainer: textContainer)
     textView.isHidden = true
     textView.isEditable = false
     textView.isRichText = true
@@ -59,7 +60,7 @@ class CanvasViewController: NSViewController {
     return textView
   }()
 
-  var currentEditingConceptCenterPoint: NSPoint = NSPoint.zero
+  var currentEditingConceptCenterPoint: CGPoint = CGPoint.zero
   var editingConcept: Concept?
 
   var document: LinkedIdeasDocument! {
@@ -76,8 +77,8 @@ class CanvasViewController: NSViewController {
 
     // modify canvas frame (size)
     // and scroll to center of it
-    canvasView.frame = NSRect(x: 0, y: 0, width: 3000, height: 2000)
-    let canvasViewCenterForScroll = NSPoint(
+    canvasView.frame = CGRect(x: 0, y: 0, width: 3000, height: 2000)
+    let canvasViewCenterForScroll = CGPoint(
       x: (canvasView.frame.center.x - scrollView.frame.center.x),
       y: (canvasView.frame.center.y - scrollView.frame.center.y)
     )
@@ -94,11 +95,11 @@ class CanvasViewController: NSViewController {
     print("-prepareForSegue")
   }
 
-  func convertToCanvasCoordinates(point: NSPoint) -> NSPoint {
+  func convertToCanvasCoordinates(point: CGPoint) -> CGPoint {
     return canvasView.convert(point, from: nil)
   }
 
-  func clickedSingleConcept(atPoint clickedPoint: NSPoint) -> Concept? {
+  func clickedSingleConcept(atPoint clickedPoint: CGPoint) -> Concept? {
     if let concepts = clickedConcepts(atPoint: clickedPoint), concepts.count == 1 {
       return concepts.first
     }
@@ -106,7 +107,7 @@ class CanvasViewController: NSViewController {
     return nil
   }
 
-  func clickedSingleElement(atPoint clickedPoint: NSPoint) -> Element? {
+  func clickedSingleElement(atPoint clickedPoint: CGPoint) -> Element? {
     if let elements = clickedElements(atPoint: clickedPoint), elements.count == 1 {
       return elements.first
     }
@@ -114,7 +115,7 @@ class CanvasViewController: NSViewController {
     return nil
   }
 
-  func clickedConcepts(atPoint clickedPoint: NSPoint) -> [Concept]? {
+  func clickedConcepts(atPoint clickedPoint: CGPoint) -> [Concept]? {
     let results = document.concepts.filter { $0.area.contains(clickedPoint) }
     guard !results.isEmpty else {
       return nil
@@ -122,7 +123,7 @@ class CanvasViewController: NSViewController {
     return results
   }
 
-  func clickedElements(atPoint clickedPoint: NSPoint) -> [Element]? {
+  func clickedElements(atPoint clickedPoint: CGPoint) -> [Element]? {
     var results = [Element]()
     let clickedConcepts: [Element] = document.concepts.filter { (concept) -> Bool in
       return concept.contains(point: clickedPoint)
@@ -146,7 +147,7 @@ class CanvasViewController: NSViewController {
   /// - Returns:
   ///   - nil if there were no concepts intersecting the given area
   ///   - [Concept] if there were concepts intersecting the given area
-  func matchedConcepts(inRect rect: NSRect) -> [Concept]? {
+  func matchedConcepts(inRect rect: CGRect) -> [Concept]? {
     let results = document.concepts.filter { (concept) -> Bool in
       return rect.intersects(concept.area)
     }

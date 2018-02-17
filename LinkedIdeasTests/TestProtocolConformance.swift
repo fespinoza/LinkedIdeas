@@ -8,6 +8,7 @@
 
 import Foundation
 @testable import LinkedIdeas
+@testable import LinkedIdeas_Shared
 
 class TestLinkedIdeasDocument: LinkedIdeasDocument {
   var concepts = [Concept]()
@@ -22,7 +23,7 @@ class TestLinkedIdeasDocument: LinkedIdeasDocument {
   func save(link: Link) {}
   func remove(link: Link) {}
 
-  func move(concept: Concept, toPoint: NSPoint) {}
+  func move(concept: Concept, toPoint: CGPoint) {}
 }
 
 protocol MockMethodCalls: class {
@@ -58,7 +59,7 @@ extension StateManagerTestDelegate: StateManagerDelegate {
     registerCall(methodName: #function)
   }
 
-  func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString) {
+  func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: CGPoint, text: NSAttributedString) {
     registerCall(methodName: #function)
   }
 
@@ -86,15 +87,15 @@ extension StateManagerTestDelegate: StateManagerDelegate {
 struct TestElement: Element {
   var stringValue: String { return attributedStringValue.string }
   var identifier: String
-  var area: NSRect
+  var area: CGRect
   var isSelected: Bool = false
   var isEditable: Bool = false
-  var centerPoint: NSPoint { return area.center }
+  var centerPoint: CGPoint { return area.center }
   var attributedStringValue: NSAttributedString
 
   static let sample = TestElement(
     identifier: "element #1",
-    area: NSRect(x: 30, y: 40, width: 100, height: 50),
+    area: CGRect(x: 30, y: 40, width: 100, height: 50),
     isSelected: false,
     isEditable: false,
     attributedStringValue: NSAttributedString(string: "")

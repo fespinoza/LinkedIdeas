@@ -80,7 +80,7 @@ extension CanvasViewController {
     applyToSelectedConcepts(alignmentFunction: RectAlignments.equalHorizontalSpace)
   }
 
-  private func applyToSelectedConcepts(alignmentFunction: ([NSRect]) -> [NSRect]) {
+  private func applyToSelectedConcepts(alignmentFunction: ([CGRect]) -> [CGRect]) {
     let selectedConcepts = currentSelectedConcepts()
 
     let conceptRects = selectedConcepts.map({ $0.area })

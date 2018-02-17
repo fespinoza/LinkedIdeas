@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import LinkedIdeas_Shared
 
 enum CanvasTransitionError: Error {
   case invalidTransition(message: String)
@@ -17,7 +18,7 @@ protocol StateManagerDelegate: class {
 
   func transitionedToNewConcept(fromState: CanvasState)
   func transitionedToCanvasWaiting(fromState: CanvasState)
-  func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: NSPoint, text: NSAttributedString)
+  func transitionedToCanvasWaitingSavingConcept(fromState: CanvasState, point: CGPoint, text: NSAttributedString)
   func transitionedToCanvasWaitingDeletingElements(fromState: CanvasState)
   func transitionedToSelectedElement(fromState: CanvasState)
   func transitionedToSelectedElementSavingChanges(fromState: CanvasState)
@@ -28,11 +29,11 @@ protocol StateManagerDelegate: class {
 
 enum CanvasState {
   case canvasWaiting
-  case newConcept(point: NSPoint)
+  case newConcept(point: CGPoint)
   case selectedElement(element: Element)
   case editingElement(element: Element)
   case multipleSelectedElements(elements: [Element])
-  case resizingConcept(concept: Concept, withHandler: Handler, initialArea: NSRect)
+  case resizingConcept(concept: Concept, withHandler: Handler, initialArea: CGRect)
 
   func isSimilar(to state: CanvasState) -> Bool {
     return state.description == self.description
@@ -86,7 +87,7 @@ class StateManager {
     currentState = initialState
   }
 
-  public func toNewConcept(atPoint point: NSPoint) throws {
+  public func toNewConcept(atPoint point: CGPoint) throws {
     func isValidTransition(fromState: CanvasState) -> Bool {
       switch fromState {
       case .canvasWaiting,

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios'>
+    <pages>
+        <page name='1. loading a document'/>
+        <page name='2. rendering a document'/>
+        <page name='3. concepts'/>
+        <page name='4. document view controller'/>
+        <page name='5. bezier paths'/>
+    </pages>
+</playground>

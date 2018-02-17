@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import LinkedIdeas_Shared
 
 public class Document: NSDocument {
   var documentData = DocumentData()
@@ -37,15 +38,15 @@ public class Document: NSDocument {
     }
   }
 
-  public var rect: NSRect {
+  public var rect: CGRect {
     let minX = concepts.map { $0.area.minX }.min() ?? 0
     let minY = concepts.map { $0.area.minY }.min() ?? 0
     let maxX = concepts.map { $0.area.maxX }.max() ?? 800
     let maxY = concepts.map { $0.area.maxY }.max() ?? 600
 
-    return NSRect(
-      point1: NSPoint(x: minX, y: minY),
-      point2: NSPoint(x: maxX, y: maxY)
+    return CGRect(
+      point1: CGPoint(x: minX, y: minY),
+      point2: CGPoint(x: maxX, y: maxY)
     )
   }
 
@@ -66,24 +67,27 @@ public class Document: NSDocument {
   }
 
   override public func data(ofType typeName: String) throws -> Data {
-    documentData.writeConcepts = concepts
-    documentData.writeLinks = links
     Swift.print("write data!")
-    return NSKeyedArchiver.archivedData(withRootObject: documentData)
+    NSKeyedArchiver.setClassName("LinkedIdeas.DocumentData", for: DocumentData.self)
+    NSKeyedArchiver.setClassName("LinkedIdeas.Concept", for: Concept.self)
+    NSKeyedArchiver.setClassName("LinkedIdeas.Link", for: Link.self)
+
+    let writeDocumentData = DocumentData(concepts: self.concepts, links: self.links)
+    return NSKeyedArchiver.archivedData(withRootObject: writeDocumentData)
   }
 
   override public func read(from data: Data, ofType typeName: String) throws {
     Swift.print("Document: -read")
+    NSKeyedUnarchiver.setClass(DocumentData.self, forClassName: "LinkedIdeas.DocumentData")
+    NSKeyedUnarchiver.setClass(Concept.self, forClassName: "LinkedIdeas.Concept")
+    NSKeyedUnarchiver.setClass(Link.self, forClassName: "LinkedIdeas.Link")
     guard let documentData = NSKeyedUnarchiver.unarchiveObject(with: data) as? DocumentData else {
       return
     }
     self.documentData = documentData
-    if let readConcepts = documentData.readConcepts {
-      concepts = readConcepts
-    }
-    if let readLinks = documentData.readLinks {
-      links = readLinks
-    }
+    self.concepts = documentData.concepts
+    self.links = documentData.links
+
   }
 
   // MARK: - KeyValue Observing
@@ -180,7 +184,7 @@ extension Document: LinkedIdeasDocument {
     observer?.documentChanged(withElement: link)
   }
 
-  func move(concept: Concept, toPoint: NSPoint) {
+  func move(concept: Concept, toPoint: CGPoint) {
     Swift.print("move concept \(concept) toPoint: \(toPoint)")
     let originalPoint = concept.centerPoint
     concept.centerPoint = toPoint
@@ -194,7 +198,7 @@ extension Document: LinkedIdeasDocument {
 }
 
 extension Document: CanvasViewDataSource {
-  public func drawableElements(forRect: NSRect) -> [DrawableElement] {
+  public func drawableElements(forRect: CGRect) -> [DrawableElement] {
     return drawableElements
   }
 
@@ -202,11 +206,11 @@ extension Document: CanvasViewDataSource {
     var elements: [DrawableElement] = []
 
     elements += concepts.map {
-      DrawableConcept(concept: $0 as GraphConcept) as DrawableElement
+      DrawableConcept(concept: $0) as DrawableElement
     }
 
     elements += links.map {
-      DrawableLink(link: $0 as GraphLink) as DrawableElement
+      DrawableLink(link: $0) as DrawableElement
     }
 
     return elements

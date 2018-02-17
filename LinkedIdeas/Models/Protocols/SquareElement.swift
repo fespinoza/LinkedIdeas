@@ -9,6 +9,6 @@
 import Foundation
 
 protocol SquareElement: class {
-  var centerPoint: NSPoint { get set }
-  var area: NSRect { get }
+  var centerPoint: CGPoint { get set }
+  var area: CGRect { get }
 }

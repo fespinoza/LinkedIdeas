@@ -11,65 +11,65 @@ import Foundation
 struct RectAlignments {
   private struct OrderedRect {
     let index: Int
-    let rect: NSRect
+    let rect: CGRect
   }
 
-  static func verticallyLeftAlign(rects: [NSRect]) -> [NSRect] {
-    func calculateMinX(rects: [NSRect]) -> CGFloat? {
+  static func verticallyLeftAlign(rects: [CGRect]) -> [CGRect] {
+    func calculateMinX(rects: [CGRect]) -> CGFloat? {
       return rects.map({ $0.origin.x }).min()
     }
 
-    func leftAlign(rect: NSRect, forMinX minX: CGFloat) -> NSRect {
-      return NSRect(x: minX, y: rect.origin.y, width: rect.width, height: rect.height)
+    func leftAlign(rect: CGRect, forMinX minX: CGFloat) -> CGRect {
+      return CGRect(x: minX, y: rect.origin.y, width: rect.width, height: rect.height)
     }
 
     return applyAlignment(toRects: rects, calculateAligmentParam: calculateMinX, alignRect: leftAlign)
   }
 
-  static func verticallyCenterAlign(rects: [NSRect]) -> [NSRect] {
-    func calculateCenterX(rects: [NSRect]) -> CGFloat? {
+  static func verticallyCenterAlign(rects: [CGRect]) -> [CGRect] {
+    func calculateCenterX(rects: [CGRect]) -> CGFloat? {
       return rects.first?.center.x
     }
 
-    func centerAlign(rect: NSRect, forCenterX centerX: CGFloat) -> NSRect {
-      return NSRect(center: NSPoint(x: centerX, y: rect.center.y), size: rect.size)
+    func centerAlign(rect: CGRect, forCenterX centerX: CGFloat) -> CGRect {
+      return CGRect(center: CGPoint(x: centerX, y: rect.center.y), size: rect.size)
     }
 
     return applyAlignment(toRects: rects, calculateAligmentParam: calculateCenterX, alignRect: centerAlign)
   }
 
-  static func verticallyRightAlign(rects: [NSRect]) -> [NSRect] {
-    func calculateMaxX(rects: [NSRect]) -> CGFloat? {
+  static func verticallyRightAlign(rects: [CGRect]) -> [CGRect] {
+    func calculateMaxX(rects: [CGRect]) -> CGFloat? {
       return rects.map({ $0.origin.x + $0.width }).max()
     }
 
-    func rightAlign(rect: NSRect, forMaxX maxX: CGFloat) -> NSRect {
+    func rightAlign(rect: CGRect, forMaxX maxX: CGFloat) -> CGRect {
       let newX = maxX - rect.width
-      return NSRect(x: newX, y: rect.origin.y, width: rect.width, height: rect.height)
+      return CGRect(x: newX, y: rect.origin.y, width: rect.width, height: rect.height)
     }
 
     return applyAlignment(toRects: rects, calculateAligmentParam: calculateMaxX, alignRect: rightAlign)
   }
 
-  static func horizontallyCenterAlign(rects: [NSRect]) -> [NSRect] {
-    func calculateAverageYCoordinate(rects: [NSRect]) -> CGFloat? {
+  static func horizontallyCenterAlign(rects: [CGRect]) -> [CGRect] {
+    func calculateAverageYCoordinate(rects: [CGRect]) -> CGFloat? {
       return rects.map({ $0.center }).min(by: { $0.x < $1.x })?.y
     }
 
-    func centerAlign(rect: NSRect, forAverageYCoordinate averageYCoordinate: CGFloat) -> NSRect {
-      let newCenter = NSPoint(x: rect.center.x, y: averageYCoordinate)
-      return NSRect(center: newCenter, size: rect.size)
+    func centerAlign(rect: CGRect, forAverageYCoordinate averageYCoordinate: CGFloat) -> CGRect {
+      let newCenter = CGPoint(x: rect.center.x, y: averageYCoordinate)
+      return CGRect(center: newCenter, size: rect.size)
     }
 
     return applyAlignment(toRects: rects, calculateAligmentParam: calculateAverageYCoordinate, alignRect: centerAlign)
   }
 
-  static func equalVerticalSpace(rects: [NSRect]) -> [NSRect] {
+  static func equalVerticalSpace(rects: [CGRect]) -> [CGRect] {
     func byCenterY(_ rectA: OrderedRect, _ rectB: OrderedRect) -> Bool {
       return rectA.rect.center.y < rectB.rect.center.y
     }
 
-    func calculateVerticalSpacing(_ rects: [NSRect]) -> CGFloat {
+    func calculateVerticalSpacing(_ rects: [CGRect]) -> CGFloat {
       let containingRect = self.containingRect(forRects: rects)
       let rectCount = CGFloat(rects.count)
       let combinedHeight = rects.reduce(0, { (acc, rect) in return acc + rect.height })
@@ -77,12 +77,12 @@ struct RectAlignments {
     }
 
     func calculateNewOrigin(
-      forRect rect: NSRect,
-      withPreviousRect previousRect: NSRect,
+      forRect rect: CGRect,
+      withPreviousRect previousRect: CGRect,
       andVerticalSpacing equalVerticalSpacing: CGFloat
-    ) -> NSPoint {
+    ) -> CGPoint {
       let newY = equalVerticalSpacing + previousRect.height + previousRect.origin.y
-      return NSPoint(x: rect.origin.x, y: newY)
+      return CGPoint(x: rect.origin.x, y: newY)
     }
 
     return distribute(
@@ -93,12 +93,12 @@ struct RectAlignments {
     )
   }
 
-  static func equalHorizontalSpace(rects: [NSRect]) -> [NSRect] {
+  static func equalHorizontalSpace(rects: [CGRect]) -> [CGRect] {
     func byCenterX(_ rectA: OrderedRect, _ rectB: OrderedRect) -> Bool {
       return rectA.rect.center.x < rectB.rect.center.x
     }
 
-    func calculateVerticalSpacing(_ rects: [NSRect]) -> CGFloat {
+    func calculateVerticalSpacing(_ rects: [CGRect]) -> CGFloat {
       let containingRect = self.containingRect(forRects: rects)
       let rectCount = CGFloat(rects.count)
       let combinedWidth = rects.reduce(0, { (acc, rect) in return acc + rect.width })
@@ -106,12 +106,12 @@ struct RectAlignments {
     }
 
     func calculateNewOrigin(
-      forRect rect: NSRect,
-      withPreviousRect previousRect: NSRect,
+      forRect rect: CGRect,
+      withPreviousRect previousRect: CGRect,
       andEqualHorizontalSpacing equalHorizontalSpacing: CGFloat
-    ) -> NSPoint {
+    ) -> CGPoint {
       let newX = equalHorizontalSpacing + previousRect.width + previousRect.origin.x
-      return NSPoint(x: newX, y: rect.origin.y)
+      return CGPoint(x: newX, y: rect.origin.y)
     }
 
     return distribute(
@@ -122,24 +122,24 @@ struct RectAlignments {
     )
   }
 
-  static func containingRect(forRects rects: [NSRect]) -> NSRect {
+  static func containingRect(forRects rects: [CGRect]) -> CGRect {
     let minX = (rects.map { $0.origin.x }).min()!
     let minY = (rects.map { $0.origin.y }).min()!
     let maxX = (rects.map { $0.maxX }).max()!
     let maxY = (rects.map { $0.maxY }).max()!
-    return NSRect(
-      origin: NSPoint(x: minX, y: minY),
-      size: NSSize(width: maxX - minX, height: maxY - minY)
+    return CGRect(
+      origin: CGPoint(x: minX, y: minY),
+      size: CGSize(width: maxX - minX, height: maxY - minY)
     )
   }
 
   // MARK: - private functions
 
   private static func applyAlignment(
-    toRects rects: [NSRect],
-    calculateAligmentParam: ([NSRect]) -> CGFloat?,
-    alignRect: (NSRect, CGFloat) -> NSRect
-  ) -> [NSRect] {
+    toRects rects: [CGRect],
+    calculateAligmentParam: ([CGRect]) -> CGFloat?,
+    alignRect: (CGRect, CGFloat) -> CGRect
+  ) -> [CGRect] {
     guard rects.count > 0 else {
       return rects
     }
@@ -150,17 +150,17 @@ struct RectAlignments {
     }
 
     // the order of the rectangles must be preserved
-    return rects.map({ (rect) -> NSRect in
+    return rects.map({ (rect) -> CGRect in
       return alignRect(rect, aligmentParam)
     })
   }
 
   private static func distribute(
-    rects: [NSRect],
+    rects: [CGRect],
     orderComparison: (OrderedRect, OrderedRect) -> Bool,
-    calculateSpacing: ([NSRect]) -> CGFloat,
-    calculateNewOrigin: (NSRect, NSRect, CGFloat) -> NSPoint
-  ) -> [NSRect] {
+    calculateSpacing: ([CGRect]) -> CGFloat,
+    calculateNewOrigin: (CGRect, CGRect, CGFloat) -> CGPoint
+  ) -> [CGRect] {
     guard !rects.isEmpty else {
       return rects
     }
@@ -179,7 +179,7 @@ struct RectAlignments {
     var modifiedOrderedRects = [previousOrderedRect]
 
     sortedRects[1..<sortedRects.count].forEach { (orderedRect) in
-      let newRect = NSRect(
+      let newRect = CGRect(
         origin: calculateNewOrigin(orderedRect.rect, previousOrderedRect.rect, spacingParam),
         size: orderedRect.rect.size
       )

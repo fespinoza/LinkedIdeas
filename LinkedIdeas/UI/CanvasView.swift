@@ -7,11 +7,12 @@
 //
 
 import Cocoa
+import LinkedIdeas_Shared
 
 public protocol CanvasViewDataSource {
   var drawableElements: [DrawableElement] { get }
 
-  func drawableElements(forRect: NSRect) -> [DrawableElement]
+  func drawableElements(forRect: CGRect) -> [DrawableElement]
 }
 
 public class CanvasView: NSView {
@@ -20,11 +21,11 @@ public class CanvasView: NSView {
   public override var isOpaque: Bool { return true }
   public var dataSource: CanvasViewDataSource?
 
-  var selectFromPoint: NSPoint?
-  var selectToPoint: NSPoint?
-  var selectionRect: NSRect? {
+  var selectFromPoint: CGPoint?
+  var selectToPoint: CGPoint?
+  var selectionRect: CGRect? {
     if let selectFromPoint = selectFromPoint, let selectToPoint = selectToPoint {
-      return NSRect(point1: selectFromPoint, point2: selectToPoint)
+      return CGRect(point1: selectFromPoint, point2: selectToPoint)
     } else {
       return nil
     }
@@ -32,11 +33,11 @@ public class CanvasView: NSView {
 
   override public var acceptsFirstResponder: Bool { return true }
 
-  var arrowStartPoint: NSPoint?
-  var arrowEndPoint: NSPoint?
+  var arrowStartPoint: CGPoint?
+  var arrowEndPoint: CGPoint?
   var arrowColor: NSColor?
 
-  override public func draw(_ dirtyRect: NSRect) {
+  override public func draw(_ dirtyRect: CGRect) {
     super.draw(dirtyRect)
     drawBackground(dirtyRect)
     drawElements(inRect: dirtyRect)
@@ -44,7 +45,7 @@ public class CanvasView: NSView {
     drawLinkConstructionArrow()
   }
 
-  func drawElements(inRect dirtyRect: NSRect) {
+  func drawElements(inRect dirtyRect: CGRect) {
     guard let dataSource = dataSource else {
       return
     }
@@ -52,7 +53,7 @@ public class CanvasView: NSView {
     dataSource.drawableElements(forRect: dirtyRect).forEach({ $0.draw() })
   }
 
-  func drawBackground(_ dirtyRect: NSRect) {
+  func drawBackground(_ dirtyRect: CGRect) {
     NSColor.white.set()
     dirtyRect.fill()
   }

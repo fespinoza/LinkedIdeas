@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import LinkedIdeas_Shared
 
 // MARK: - CanvasViewController+DraggingActions
 extension CanvasViewController {
@@ -21,7 +22,7 @@ extension CanvasViewController {
 
   // MARK: Single Concept
 
-  func drag(concept: Concept, toPoint dragToPoint: NSPoint) {
+  func drag(concept: Concept, toPoint dragToPoint: CGPoint) {
     dragCount += 1
 
     if dragCount > 1 {
@@ -31,7 +32,7 @@ extension CanvasViewController {
     }
   }
 
-  func endDrag(forConcept concept: Concept, toPoint: NSPoint) {
+  func endDrag(forConcept concept: Concept, toPoint: CGPoint) {
     if dragCount > 1 {
       if let originalPoint = concept.beforeMovingPoint {
         concept.centerPoint = originalPoint
@@ -43,7 +44,7 @@ extension CanvasViewController {
 
   // MARK: Multiple Concepts
 
-  func drag(concepts: [Concept], toPoint dragToPoint: NSPoint) {
+  func drag(concepts: [Concept], toPoint dragToPoint: CGPoint) {
     if let dragFromPoint = dragStartPoint, didDragStart() {
       // Actual dragging
       let deltaX = dragToPoint.x - dragFromPoint.x
@@ -63,7 +64,7 @@ extension CanvasViewController {
     }
   }
 
-  func endDrag(forConcepts concepts: [Concept], toPoint: NSPoint) {
+  func endDrag(forConcepts concepts: [Concept], toPoint: CGPoint) {
     guard let oldDragStart = dragStartPoint,
           didDragStart() else { return }
 
@@ -81,7 +82,7 @@ extension CanvasViewController {
 
   // MARK: Hovering Concepts
 
-  func hoverConcepts(toPoint point: NSPoint) {
+  func hoverConcepts(toPoint point: CGPoint) {
     if didDragStart() == false {
       // start selecting elements
       startDragging()
