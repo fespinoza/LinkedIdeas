@@ -123,7 +123,9 @@ public class Concept: NSObject, NSCoding, Element {
   // MARK: - Methods
 
   public func draw() {
-    attributedStringValue.draw(in: textArea)
+    if !isEditable {
+      attributedStringValue.draw(in: textArea)
+    }
   }
 
   public func contains(point: CGPoint) -> Bool {
