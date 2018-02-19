@@ -41,13 +41,6 @@ public struct DrawableConcept: DrawableElement {
     drawingBounds.fill()
   }
 
-  func drawConceptText() {
-    if !concept.isEditable {
-      Color.black.set()
-      concept.attributedStringValue.draw(in: drawingBounds)
-    }
-  }
-
   func drawSelectedRing() {
     guard concept.isSelected else {
       return
