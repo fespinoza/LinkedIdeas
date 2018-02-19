@@ -88,6 +88,8 @@ extension CanvasViewController: StateManagerDelegate {
       return
     }
 
+    element.isEditable = true
+
     if let concept = element as? Concept {
       showTextView(
         inRect: element.area,
