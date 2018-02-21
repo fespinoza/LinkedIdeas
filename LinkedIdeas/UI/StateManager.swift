@@ -45,16 +45,16 @@ extension CanvasState: CustomStringConvertible {
     switch self {
     case .canvasWaiting:
       return "canvasWaiting"
-    case .editingElement:
-      return "editingElement"
-    case .multipleSelectedElements:
-      return "multipleSelectedElements"
-    case .newConcept:
-      return "newConcept"
+    case .editingElement(let element):
+      return "editingElement: \(element.debugDescription)"
+    case .multipleSelectedElements(let elements):
+      return "multipleSelectedElements: \(elements)"
+    case .newConcept(let point):
+      return "newConcept: at \(point)"
     case .resizingConcept:
       return "resizingConcept"
-    case .selectedElement:
-      return "selectedElement"
+    case .selectedElement(let element):
+      return "selectedElement: \(element.debugDescription)"
     }
   }
 }
@@ -79,7 +79,7 @@ extension CanvasState: Equatable {
 
 class StateManager {
   var currentState: CanvasState {
-    didSet { print("Transitioned to \(currentState)") }
+    didSet { print(">>>>>>> Transitioned to \(currentState)") }
   }
   weak var delegate: StateManagerDelegate?
 

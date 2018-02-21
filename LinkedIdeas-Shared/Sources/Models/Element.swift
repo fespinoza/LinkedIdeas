@@ -12,6 +12,7 @@ import Foundation
 public protocol Element {
   var identifier: String { get }
   var area: CGRect { get }
+  var debugDescription: String { get }
 
   // center point of element
   var centerPoint: CGPoint { get }
