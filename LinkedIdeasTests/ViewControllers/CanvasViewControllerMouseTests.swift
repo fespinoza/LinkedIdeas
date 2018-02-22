@@ -167,6 +167,13 @@ extension CanvasViewControllerTests {
     canvasViewController.mouseDragged(
       with: createMouseEvent(
         clickCount: 1,
+        location: concepts[1].centerPoint.translate(deltaX: 2, deltaY: 2),
+        shift: true
+      )
+    )
+    canvasViewController.mouseDragged(
+      with: createMouseEvent(
+        clickCount: 1,
         location: concepts[1].centerPoint.translate(deltaX: 10, deltaY: 20),
         shift: true
       )

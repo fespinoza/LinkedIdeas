@@ -16,15 +16,23 @@ extension CanvasViewController {
     self.mouseDragged(with: event)
     self.mouseUp(with: event)
   }
+
+  func fullDrag(from fromPoint: CGPoint, to toPoint: CGPoint, shift: Bool = false) {
+    self.mouseDown(with: EventHelpers.createMouseEvent(clickCount: 1, location: fromPoint, shift: shift))
+    // TODO: try to make a range between the 2 points
+    
+
+    self.mouseUp(with: EventHelpers.createMouseEvent(clickCount: 1, location: toPoint, shift: shift))
+  }
 }
 
-class CanvasViewControllerTests: XCTestCase {
+struct EventHelpers {
   // this is used because of flipping the CanvasView for working with iOS
-  func invertY(_ point: CGPoint) -> CGPoint {
+  static func invertY(_ point: CGPoint) -> CGPoint {
     return CGPoint(x: point.x, y: -point.y)
   }
 
-  func createMouseEvent(clickCount: Int, location: CGPoint, shift: Bool = false) -> NSEvent {
+  static func createMouseEvent(clickCount: Int, location: CGPoint, shift: Bool = false) -> NSEvent {
     var flags: NSEvent.ModifierFlags = NSEvent.ModifierFlags.function
 
     if shift {
@@ -44,7 +52,7 @@ class CanvasViewControllerTests: XCTestCase {
     )!
   }
 
-  func createKeyboardEvent(keyCode: UInt16, shift: Bool = false) -> NSEvent {
+  static func createKeyboardEvent(keyCode: UInt16, shift: Bool = false) -> NSEvent {
     var flags: NSEvent.ModifierFlags = NSEvent.ModifierFlags.function
 
     if shift {
@@ -63,6 +71,16 @@ class CanvasViewControllerTests: XCTestCase {
       isARepeat: false,
       keyCode: keyCode
     )!
+  }
+}
+
+class CanvasViewControllerTests: XCTestCase {
+  func createMouseEvent(clickCount: Int, location: CGPoint, shift: Bool = false) -> NSEvent {
+    return EventHelpers.createMouseEvent(clickCount: clickCount, location: location, shift: shift)
+  }
+
+  func createKeyboardEvent(keyCode: UInt16, shift: Bool = false) -> NSEvent {
+    return EventHelpers.createKeyboardEvent(keyCode: keyCode, shift: shift)
   }
 
   var canvasViewController: CanvasViewController!

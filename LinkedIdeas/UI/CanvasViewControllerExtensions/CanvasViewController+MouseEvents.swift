@@ -56,6 +56,7 @@ extension CanvasViewController {
 
   // MARK: - Mouse Events
   override func mouseDown(with event: NSEvent) {
+    Swift.print("------- \(#function) - \(event.locationInWindow)")
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
 
     if event.isSingleClick() {
@@ -106,6 +107,7 @@ extension CanvasViewController {
   }
 
   override func mouseDragged(with event: NSEvent) {
+    Swift.print("------- \(#function) - \(event.locationInWindow)")
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
 
     switch currentState {
@@ -125,6 +127,13 @@ extension CanvasViewController {
           }
         } else {
           dragCount += 1
+//          whenClickedOnSingleConcept(atPoint: point, thenDo: { (newSelectedConcept) in
+//            if concept != newSelectedConcept {
+//              safeTransiton {
+//                try stateManager.toSelectedElement(element: newSelectedConcept)
+//              }
+//            }
+//          })
         }
       } else {
         drag(concept: concept, toPoint: point)
@@ -152,6 +161,7 @@ extension CanvasViewController {
   }
 
   override func mouseUp(with event: NSEvent) {
+    Swift.print("------- \(#function) - \(event.locationInWindow)")
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
 
     switch currentState {
