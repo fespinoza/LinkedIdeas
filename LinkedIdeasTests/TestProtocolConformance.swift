@@ -92,6 +92,9 @@ struct TestElement: Element {
   var isEditable: Bool = false
   var centerPoint: CGPoint { return area.center }
   var attributedStringValue: NSAttributedString
+  var debugDescription: String {
+    return "[Concept][\(identifier)]"
+  }
 
   static let sample = TestElement(
     identifier: "element #1",

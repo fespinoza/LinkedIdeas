@@ -104,6 +104,10 @@ public class Concept: NSObject, NSCoding, Element {
     return "[\(identifier)] '\(stringValue)' \(isEditable) \(centerPoint)"
   }
 
+  public override var debugDescription: String {
+    return "[Concept][\(stringValue)]"
+  }
+
   // MARK: - Initializers
 
   public convenience init(centerPoint: CGPoint) {

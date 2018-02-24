@@ -56,6 +56,10 @@ public class Link: NSObject, NSCoding, Element {
     return "'\(origin.stringValue)' '\(target.stringValue)'"
   }
 
+  public override var debugDescription: String {
+    return "[Link][\(origin.identifier)]-[\(target.identifier)]"
+  }
+
   // Element
   public var identifier: String
   public var area: CGRect {
