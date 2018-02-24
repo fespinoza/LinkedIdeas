@@ -56,7 +56,6 @@ extension CanvasViewController {
 
   // MARK: - Mouse Events
   override func mouseDown(with event: NSEvent) {
-    Swift.print("------- \(#function) - \(event.locationInWindow)")
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
 
     if event.isSingleClick() {
@@ -107,7 +106,6 @@ extension CanvasViewController {
   }
 
   override func mouseDragged(with event: NSEvent) {
-    Swift.print("------- \(#function) - \(event.locationInWindow)")
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
 
     switch currentState {
@@ -117,7 +115,13 @@ extension CanvasViewController {
       }
 
       if isDragShiftEvent(event) {
-        if dragCount > 1 {
+        switch shiftDragEvent(for: dragCount) {
+        case .simpleClick:
+          dragCount += 1
+        case .startDragging:
+          try? updateSelectedConcept(at: point, withCurrentSelectedConcept: concept)
+          dragCount += 1
+        case .dragging:
           creationArrowForLink(toPoint: point)
           didShiftDragStart = true
           if let hoveredConcepts = clickedConcepts(atPoint: point) {
@@ -125,15 +129,6 @@ extension CanvasViewController {
           } else {
             unselect(elements: document.concepts.filter { $0 != concept })
           }
-        } else {
-          dragCount += 1
-//          whenClickedOnSingleConcept(atPoint: point, thenDo: { (newSelectedConcept) in
-//            if concept != newSelectedConcept {
-//              safeTransiton {
-//                try stateManager.toSelectedElement(element: newSelectedConcept)
-//              }
-//            }
-//          })
         }
       } else {
         drag(concept: concept, toPoint: point)
@@ -161,7 +156,6 @@ extension CanvasViewController {
   }
 
   override func mouseUp(with event: NSEvent) {
-    Swift.print("------- \(#function) - \(event.locationInWindow)")
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
 
     switch currentState {
@@ -252,6 +246,32 @@ extension CanvasViewController {
       safeTransiton {
         try stateManager.toMultipleSelectedElements(elements: concepts)
       }
+    }
+  }
+
+  private func updateSelectedConcept(at point: CGPoint, withCurrentSelectedConcept concept: Concept) throws {
+    whenClickedOnSingleConcept(atPoint: point, thenDo: { (newSelectedConcept) in
+      if concept != newSelectedConcept {
+        safeTransiton {
+          try stateManager.toSelectedElement(element: newSelectedConcept)
+        }
+      }
+    })
+  }
+
+  private enum ShiftDragEvent {
+    case simpleClick
+    case startDragging
+    case dragging
+  }
+
+  private func shiftDragEvent(for dragCount: Int) -> ShiftDragEvent {
+    guard dragCount > 0 else { return .simpleClick }
+
+    if dragCount == 1 {
+      return .startDragging
+    } else {
+      return .dragging
     }
   }
 

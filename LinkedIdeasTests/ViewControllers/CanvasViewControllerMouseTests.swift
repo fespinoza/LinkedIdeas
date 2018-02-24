@@ -63,13 +63,13 @@ extension CanvasViewControllerTests {
   }
 
   func testShiftClickOnAnotherConcept() {
-    let oldConcept = Concept(stringValue: "Random", centerPoint: CGPoint(x: 20, y: 600))
+    let oldConcept = Concept(stringValue: "#1 selected", centerPoint: CGPoint(x: 20, y: 600))
     document.concepts.append(oldConcept)
 
     let clickedPoint = CGPoint(x: 200, y: 300)
     let conceptPoint = clickedPoint
 
-    let concept = Concept(stringValue: "Foo bar", centerPoint: conceptPoint)
+    let concept = Concept(stringValue: "#2 selected", centerPoint: conceptPoint)
     document.concepts.append(concept)
 
     canvasViewController.currentState = .selectedElement(element: oldConcept)
@@ -165,10 +165,11 @@ extension CanvasViewControllerTests {
       with: createMouseEvent(clickCount: 1, location: concepts[1].centerPoint, shift: true)
     )
     canvasViewController.mouseDragged(
+      with: createMouseEvent(clickCount: 1, location: concepts[1].centerPoint, shift: true)
+    )
+    canvasViewController.mouseDragged(
       with: createMouseEvent(
-        clickCount: 1,
-        location: concepts[1].centerPoint.translate(deltaX: 2, deltaY: 2),
-        shift: true
+        clickCount: 1, location: concepts[1].centerPoint.translate(deltaX: 1, deltaY: 2), shift: true
       )
     )
     canvasViewController.mouseDragged(
