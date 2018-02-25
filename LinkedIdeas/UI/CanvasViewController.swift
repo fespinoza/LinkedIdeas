@@ -47,6 +47,11 @@ class CanvasViewController: NSViewController {
     return textStorage
   }()
 
+  let defaultTextAttributes: [NSAttributedStringKey: Any] = [
+    .foregroundColor: Color.black,
+    .font: Font.systemFont(ofSize: 12)
+  ]
+
   lazy var textView: NSTextView = {
     let textView = NSTextView(frame: CGRect.zero, textContainer: textContainer)
     textView.isHidden = true
@@ -55,6 +60,7 @@ class CanvasViewController: NSViewController {
     textView.isVerticallyResizable = true
     textView.isHorizontallyResizable = true
     textView.backgroundColor = NSColor.lightGray
+    textView.typingAttributes = self.defaultTextAttributes
 
     textView.delegate = self
     return textView

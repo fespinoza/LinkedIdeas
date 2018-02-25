@@ -75,6 +75,10 @@ extension CanvasViewController {
 
   func showTextView(inRect rect: CGRect, text: NSAttributedString? = nil, constrainedSize: CGSize? = nil) {
     textStorage.setAttributedString(text ?? NSAttributedString(string: ""))
+    if text == nil {
+      textView.typingAttributes = self.defaultTextAttributes
+    }
+
     let textViewFrame = rect
 
     func calculateMaxSize(forCenterPoint centerPoint: CGPoint) -> CGSize {
