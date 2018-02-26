@@ -86,6 +86,10 @@ extension CanvasViewController {
     }
   }
 
+  @objc func zoomImageToActualSize(_ sender: Any?) {
+    self.scrollView.setMagnification(1.0, centeredAt: self.scrollView.visibleRect.center)
+  }
+
   // MARK: - custom methods
 
   func currentSelectedConcepts() -> [Concept] {
