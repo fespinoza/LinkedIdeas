@@ -89,6 +89,7 @@ class CanvasViewController: NSViewController {
       y: (canvasView.frame.center.y - scrollView.frame.center.y)
     )
     scrollView.scroll(canvasViewCenterForScroll)
+    scrollView.allowsMagnification = true
 
     stateManager.delegate = self
 
