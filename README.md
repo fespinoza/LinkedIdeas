@@ -1,14 +1,22 @@
 # Linked Ideas
 
+[![Swift 4.0](https://img.shields.io/badge/swift-4.0-orange.svg?style=flat)](#)
+[![GitHub license](https://img.shields.io/github/license/fespinoza/LinkedIdeas.svg)](https://github.com/fespinoza/LinkedIdeas/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/fespinoza/LinkedIdeas.svg?branch=master)](https://travis-ci.org/fespinoza/LinkedIdeas)
+[![@fespinozacast](https://img.shields.io/badge/contact-@fespinozacast-blue.svg?style=flat)](https://twitter.com/fespinozacast)
 
-A macOS application to write down and connect ideas.
 
-![ui-sample](http://i.imgur.com/uhfr5wd.png)
+A macOS application to write down and connect ideas and an iOS application to read documents.
+
+![ui-sample](https://i.imgur.com/uqb1x43.png)
+
+## Keyboard shortcuts
+
+<!-- // TODO -->
+
+## Development
 
 The new features coming to the app can be found in the [GitHub project][project]
-
-The project is not yet production ready, not present to download in the App Store, but you can download the [latest test release][latest].
 
 ## Comments
 
