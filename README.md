@@ -1,5 +1,7 @@
 # Linked Ideas
 
+[![Build Status](https://travis-ci.org/fespinoza/LinkedIdeas.svg?branch=master)](https://travis-ci.org/fespinoza/LinkedIdeas)
+
 A macOS application to write down and connect ideas.
 
 ![ui-sample](http://i.imgur.com/uhfr5wd.png)
