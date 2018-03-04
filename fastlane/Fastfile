@@ -11,6 +11,25 @@ platform :mac do
   lane :test do
     run_tests(scheme: 'LinkedIdeas')
   end
+
+  desc 'Push a new release build to the Mac App Store'
+  lane :release do
+    app_identifier = 'com.fespinozacast.LinkedIdeas'
+    # increment_build_number
+    # commit_version_bump
+    sync_code_signing(type: 'appstore', app_identifier: app_identifier)
+    build_app(
+      workspace: 'LinkedIdeas.xcworkspace',
+      scheme: 'LinkedIdeas',
+      configuration: 'Release',
+      include_bitcode: true
+    )
+    upload_to_app_store(
+      skip_metadata: true,
+      skip_screenshots: true,
+      platform: 'macos'
+    )
+  end
 end
 
 platform :ios do
@@ -28,11 +47,11 @@ platform :ios do
       workspace: 'LinkedIdeas.xcworkspace',
       scheme: 'LinkedIdeas-iOS',
       configuration: 'Release',
-      include_bitcode: true,
+      include_bitcode: true
     )
     upload_to_app_store(
       skip_metadata: true,
-      skip_screenshots: true,
+      skip_screenshots: true
     )
   end
 end

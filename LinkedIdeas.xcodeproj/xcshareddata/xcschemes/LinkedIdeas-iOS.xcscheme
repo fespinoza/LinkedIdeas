@@ -29,6 +29,16 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9BE6A669201A7BDF00E276BB"
+               BuildableName = "LinkedIdeas-iOS-CoreTests.xctest"
+               BlueprintName = "LinkedIdeas-iOS-CoreTests"
+               ReferencedContainer = "container:LinkedIdeas.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
