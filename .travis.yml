@@ -11,4 +11,3 @@ install:
   - bundle install
 script:
   - fastlane ios test
-  - fastlane mac test
