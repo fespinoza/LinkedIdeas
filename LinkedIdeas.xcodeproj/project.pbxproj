@@ -23,7 +23,6 @@
 		9B2471901EEB43BB00DC6BF2 /* RectAlignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B24718F1EEB43BB00DC6BF2 /* RectAlignments.swift */; };
 		9B2F1DA01BE7CFE70090CC18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */; };
 		9B2F1DA21BE7CFE70090CC18 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA11BE7CFE70090CC18 /* Document.swift */; };
-		9B2F1DA71BE7CFE70090CC18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2F1DA61BE7CFE70090CC18 /* Assets.xcassets */; };
 		9B30B853202B637F00FC9BF2 /* LinkedIdeas_Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B0E2E2D2018EFD100B514AA /* LinkedIdeas_Shared.framework */; };
 		9B33821F1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B33821E1D23D92F00D35086 /* NSAttributedStringExtensionsTest.swift */; };
 		9B3941921E5656AF00F1E957 /* ViewModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3941911E5656AF00F1E957 /* ViewModelProtocols.swift */; };
@@ -134,6 +133,13 @@
 		9BE6A683201A7C5B00E276BB /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B97BF862013F39000C780AC /* Document.swift */; };
 		9BE6A684201A7C6800E276BB /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B97BF842013F39000C780AC /* DocumentViewController.swift */; };
 		9BF15C391CAC69A500C95041 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF15C381CAC69A500C95041 /* WindowController.swift */; };
+		9BFE7257206FFC4D008C079A /* LinkedIdeas_macOS_Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BFE7255206FFC4D008C079A /* LinkedIdeas_macOS_Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9BFE725A206FFC4D008C079A /* LinkedIdeas_macOS_Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BFE7253206FFC4D008C079A /* LinkedIdeas_macOS_Core.framework */; };
+		9BFE725B206FFC4D008C079A /* LinkedIdeas_macOS_Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9BFE7253206FFC4D008C079A /* LinkedIdeas_macOS_Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9BFE725F206FFCBE008C079A /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7761F206E7B45004C9991 /* TutorialViewController.swift */; };
+		9BFE7261206FFD12008C079A /* NSView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF77621206E7B74004C9991 /* NSView+Extensions.swift */; };
+		9BFE7263206FFDFA008C079A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BFE7262206FFDF9008C079A /* Assets.xcassets */; };
+		9BFE726520700241008C079A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BFE726420700241008C079A /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,6 +199,13 @@
 			remoteGlobalIDString = 9B0E2E0A2018EF9900B514AA;
 			remoteInfo = LinkedIdeas_Shared_iOS;
 		};
+		9BFE7258206FFC4D008C079A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B2F1D941BE7CFE70090CC18 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9BFE7252206FFC4D008C079A;
+			remoteInfo = "LinkedIdeas-macOS-Core";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -224,6 +237,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				9BFE725B206FFC4D008C079A /* LinkedIdeas_macOS_Core.framework in Embed Frameworks */,
 				9B0E2E432018EFD100B514AA /* LinkedIdeas_Shared.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -248,7 +262,6 @@
 		9B2F1D9C1BE7CFE70090CC18 /* LinkedIdeas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkedIdeas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B2F1DA11BE7CFE70090CC18 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
-		9B2F1DA61BE7CFE70090CC18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B2F1DAB1BE7CFE80090CC18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B2F1DB01BE7CFE80090CC18 /* LinkedIdeasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinkedIdeasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2F1DB61BE7CFE80090CC18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -327,8 +340,15 @@
 		9BF456E21F16E8B800E1CDD3 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9BF456E31F16E8BC00E1CDD3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9BF456E41F16E8BF00E1CDD3 /* PR.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PR.md; sourceTree = "<group>"; };
+		9BF7761F206E7B45004C9991 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		9BF77621206E7B74004C9991 /* NSView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Extensions.swift"; sourceTree = "<group>"; };
 		9BF839962017C75A0094101B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BFBA8941F50D8D200EA8ABE /* Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handler.swift; sourceTree = "<group>"; };
+		9BFE7253206FFC4D008C079A /* LinkedIdeas_macOS_Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LinkedIdeas_macOS_Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BFE7255206FFC4D008C079A /* LinkedIdeas_macOS_Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinkedIdeas_macOS_Core.h; sourceTree = "<group>"; };
+		9BFE7256206FFC4D008C079A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BFE7262206FFDF9008C079A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9BFE726420700241008C079A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -350,6 +370,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BFE725A206FFC4D008C079A /* LinkedIdeas_macOS_Core.framework in Frameworks */,
 				9B0E2E422018EFD100B514AA /* LinkedIdeas_Shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +415,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9BFE724F206FFC4D008C079A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -420,6 +448,7 @@
 				9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */,
 				9BF456E41F16E8BF00E1CDD3 /* PR.md */,
 				9BF456E31F16E8BC00E1CDD3 /* README.md */,
+				9BFE7254206FFC4D008C079A /* LinkedIdeas-macOS-Core */,
 				9B40CA0D1D1E960800D5EDDD /* Frameworks */,
 				9B2F1D9E1BE7CFE70090CC18 /* LinkedIdeas */,
 				9B97BF7F2013F39000C780AC /* LinkedIdeas-iOS */,
@@ -444,6 +473,7 @@
 				9B0E2E2D2018EFD100B514AA /* LinkedIdeas_Shared.framework */,
 				9BE6A662201A7BDF00E276BB /* LinkedIdeas_iOS_Core.framework */,
 				9BE6A66A201A7BDF00E276BB /* LinkedIdeas-iOS-CoreTests.xctest */,
+				9BFE7253206FFC4D008C079A /* LinkedIdeas_macOS_Core.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -451,12 +481,12 @@
 		9B2F1D9E1BE7CFE70090CC18 /* LinkedIdeas */ = {
 			isa = PBXGroup;
 			children = (
+				9BFE726420700241008C079A /* Assets.xcassets */,
 				9BCA09E31C9217A900637F6D /* Models */,
 				9BA63D331D74C45100EBC3AD /* UI */,
 				9B6E97E81EB5062B00D4EF86 /* Utilities */,
 				9B3941901E5656A100F1E957 /* ViewModels */,
 				9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */,
-				9B2F1DA61BE7CFE70090CC18 /* Assets.xcassets */,
 				9B2F1DAB1BE7CFE80090CC18 /* Info.plist */,
 				9B05541E1F1FAD2800B3F1E7 /* LinkedIdeas.entitlements */,
 				9BA63D2C1D74C23100EBC3AD /* Main.storyboard */,
@@ -732,6 +762,26 @@
 			path = "LinkedIdeas-SharedTests";
 			sourceTree = "<group>";
 		};
+		9BFE7254206FFC4D008C079A /* LinkedIdeas-macOS-Core */ = {
+			isa = PBXGroup;
+			children = (
+				9BFE7262206FFDF9008C079A /* Assets.xcassets */,
+				9BFE7260206FFD03008C079A /* Extensions */,
+				9BF7761F206E7B45004C9991 /* TutorialViewController.swift */,
+				9BFE7255206FFC4D008C079A /* LinkedIdeas_macOS_Core.h */,
+				9BFE7256206FFC4D008C079A /* Info.plist */,
+			);
+			path = "LinkedIdeas-macOS-Core";
+			sourceTree = "<group>";
+		};
+		9BFE7260206FFD03008C079A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9BF77621206E7B74004C9991 /* NSView+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -763,6 +813,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BE6A674201A7BDF00E276BB /* LinkedIdeas_iOS_Core.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9BFE7250206FFC4D008C079A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BFE7257206FFC4D008C079A /* LinkedIdeas_macOS_Core.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,6 +878,7 @@
 			);
 			dependencies = (
 				9B0E2E412018EFD100B514AA /* PBXTargetDependency */,
+				9BFE7259206FFC4D008C079A /* PBXTargetDependency */,
 			);
 			name = LinkedIdeas;
 			productName = LinkedIdeas;
@@ -923,6 +982,24 @@
 			productReference = 9BE6A66A201A7BDF00E276BB /* LinkedIdeas-iOS-CoreTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		9BFE7252206FFC4D008C079A /* LinkedIdeas-macOS-Core */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9BFE725E206FFC4D008C079A /* Build configuration list for PBXNativeTarget "LinkedIdeas-macOS-Core" */;
+			buildPhases = (
+				9BFE724E206FFC4D008C079A /* Sources */,
+				9BFE724F206FFC4D008C079A /* Frameworks */,
+				9BFE7250206FFC4D008C079A /* Headers */,
+				9BFE7251206FFC4D008C079A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LinkedIdeas-macOS-Core";
+			productName = "LinkedIdeas-macOS-Core";
+			productReference = 9BFE7253206FFC4D008C079A /* LinkedIdeas_macOS_Core.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -930,7 +1007,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Felipe Espinoza Dev";
 				TargetAttributes = {
 					9B0E2E0A2018EF9900B514AA = {
@@ -991,6 +1068,11 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 9B97BF7D2013F39000C780AC;
 					};
+					9BFE7252206FFC4D008C079A = {
+						CreatedOnToolsVersion = 9.3;
+						DevelopmentTeam = 4E6CZX3H5W;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 9B2F1D971BE7CFE70090CC18 /* Build configuration list for PBXProject "LinkedIdeas" */;
@@ -1014,6 +1096,7 @@
 				9B0E2E0A2018EF9900B514AA /* LinkedIdeas_Shared_iOS */,
 				9B0E2E2C2018EFD100B514AA /* LinkedIdeas_Shared_macOS */,
 				9BE6A669201A7BDF00E276BB /* LinkedIdeas-iOS-CoreTests */,
+				9BFE7252206FFC4D008C079A /* LinkedIdeas-macOS-Core */,
 			);
 		};
 /* End PBXProject section */
@@ -1037,8 +1120,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B2F1DA71BE7CFE70090CC18 /* Assets.xcassets in Resources */,
 				9BA63D2E1D74C23100EBC3AD /* Main.storyboard in Resources */,
+				9BFE726520700241008C079A /* Assets.xcassets in Resources */,
 				9B66961C1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1081,6 +1164,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9BFE7251206FFC4D008C079A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BFE7263206FFDFA008C079A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1111,7 +1202,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "#if which swiftlint >/dev/null; then\n#    swiftlint\n#else\n#    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#fi";
 		};
 		9B39418F1E56477100F1E957 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1293,6 +1384,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9BFE724E206FFC4D008C079A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BFE725F206FFCBE008C079A /* TutorialViewController.swift in Sources */,
+				9BFE7261206FFD12008C079A /* NSView+Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1336,6 +1436,11 @@
 			target = 9B0E2E0A2018EF9900B514AA /* LinkedIdeas_Shared_iOS */;
 			targetProxy = 9BE6A680201A7BFF00E276BB /* PBXContainerItemProxy */;
 		};
+		9BFE7259206FFC4D008C079A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9BFE7252206FFC4D008C079A /* LinkedIdeas-macOS-Core */;
+			targetProxy = 9BFE7258206FFC4D008C079A /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1367,7 +1472,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
@@ -1402,7 +1507,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
@@ -1506,12 +1611,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1558,12 +1665,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1603,6 +1712,7 @@
 				DEVELOPMENT_TEAM = 4E6CZX3H5W;
 				INFOPLIST_FILE = LinkedIdeas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1623,6 +1733,7 @@
 				DEVELOPMENT_TEAM = 4E6CZX3H5W;
 				INFOPLIST_FILE = LinkedIdeas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fespinozacast.LinkedIdeas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1787,7 +1898,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
@@ -1822,7 +1933,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
@@ -1898,6 +2009,73 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LinkedIdeas-iOS.app/LinkedIdeas-iOS";
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9BFE725C206FFC4D008C079A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4E6CZX3H5W;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "LinkedIdeas-macOS-Core/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fespinozacast.LinkedIdeas-macOS-Core";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9BFE725D206FFC4D008C079A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4E6CZX3H5W;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "LinkedIdeas-macOS-Core/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fespinozacast.LinkedIdeas-macOS-Core";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -1981,6 +2159,15 @@
 			buildConfigurations = (
 				9BE6A67B201A7BDF00E276BB /* Debug */,
 				9BE6A67C201A7BDF00E276BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9BFE725E206FFC4D008C079A /* Build configuration list for PBXNativeTarget "LinkedIdeas-macOS-Core" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9BFE725C206FFC4D008C079A /* Debug */,
+				9BFE725D206FFC4D008C079A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

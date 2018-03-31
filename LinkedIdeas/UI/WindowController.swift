@@ -31,5 +31,4 @@ class WindowController: NSWindowController {
   override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
     print("-prepareForSegue")
   }
-
 }

@@ -10,13 +10,15 @@ import CoreGraphics
 
 public extension CGRect {
   init(point1: CGPoint, point2: CGPoint) {
-    self.origin = CGPoint(x: min(point1.x, point2.x), y: min(point1.y, point2.y))
-    self.size = CGSize(width: abs(point2.x - point1.x), height: abs(point2.y - point1.y))
+    let origin = CGPoint(x: min(point1.x, point2.x), y: min(point1.y, point2.y))
+    let size = CGSize(width: abs(point2.x - point1.x), height: abs(point2.y - point1.y))
+
+    self.init(origin: origin, size: size)
   }
 
   init(center: CGPoint, size: CGSize) {
-    self.origin = CGPoint(x: center.x - size.width / 2, y: center.y - size.height / 2)
-    self.size = size
+    let origin = CGPoint(x: center.x - size.width / 2, y: center.y - size.height / 2)
+    self.init(origin: origin, size: size)
   }
 
   var bottomLeftPoint: CGPoint { return origin }

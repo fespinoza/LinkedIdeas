@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import LinkedIdeas_macOS_Core
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -17,4 +18,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func applicationWillTerminate(_ aNotification: Notification) {
   }
 
+  @IBAction func showTutorial(_ sender: Any?) {
+    let viewController = TutorialViewController()
+    let window = NSWindow(contentViewController: viewController)
+    window.title = "Linked Ideas Tutorial"
+    let windowController = NSWindowController(window: window)
+    windowController.showWindow(self)
+  }
 }
