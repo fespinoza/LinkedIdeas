@@ -4,6 +4,6 @@
         <page name='Hello World'/>
         <page name='NSTextView - Resetting Attributes'/>
         <page name='NSView'/>
-        <page name='Tutorial v2'/>
+        <page name='Tutorial'/>
     </pages>
 </playground>

@@ -10,7 +10,7 @@ import Cocoa
 
 public class TutorialViewController: NSViewController {
   public override func loadView() {
-    self.view = NSView(frame: CGRect(x: 0, y: 0, width: 800, height: 600))
+    self.view = NSView(frame: CGRect(x: 0, y: 0, width: 800, height: 570))
     self.view.wantsLayer = true
   }
 
@@ -26,7 +26,6 @@ public class TutorialViewController: NSViewController {
 
     pageController.view = view
     pageController.delegate = self
-    pageController.arrangedObjects = Array(0...3)
     pageController.transitionStyle = .horizontalStrip
 
     self.view.addSubview(view)
@@ -35,7 +34,7 @@ public class TutorialViewController: NSViewController {
       view.topAnchor.constraint(equalTo: self.view.topAnchor),
       view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
       view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-      view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50)
+      view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -70)
     ])
 
 
@@ -80,6 +79,12 @@ public class TutorialViewController: NSViewController {
     ])
   }
 
+  public override func viewWillAppear() {
+    super.viewWillAppear()
+
+    self.pageController.arrangedObjects = Array(0...3)
+  }
+
   @objc func next(_ sender: NSButton) {
     pageController.navigateForward(sender)
   }
@@ -89,14 +94,14 @@ public class TutorialViewController: NSViewController {
   }
 
   @objc func close(_ sender: NSButton) {
-    self.close(sender)
+    self.view.window?.close()
   }
 }
 
 extension TutorialViewController: NSPageControllerDelegate {
   public func pageController(
     _ pageController: NSPageController, identifierFor object: Any
-    ) -> NSPageController.ObjectIdentifier {
+  ) -> NSPageController.ObjectIdentifier {
     // swiftlint:disable:next force_cast
     let string = String(object as! Int)
 
@@ -116,13 +121,12 @@ extension TutorialViewController: NSPageControllerDelegate {
 
     let imageView = NSImageView()
     imageView.imageScaling = .scaleProportionallyUpOrDown
-    imageView.translatesAutoresizingMaskIntoConstraints = false
 
     let imageName = NSImage.Name(identifier.rawValue)
     imageView.image = bundle.image(forResource: imageName)
 
     view.addSubview(imageView)
-    imageView.pin(to: view)
+    imageView.frame = view.bounds
 
     return viewController
   }
