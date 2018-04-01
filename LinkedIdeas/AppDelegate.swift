@@ -21,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBAction func showTutorial(_ sender: Any?) {
     let viewController = TutorialViewController()
     let window = NSWindow(contentViewController: viewController)
+    window.styleMask = [.closable, .titled]
     window.title = "Linked Ideas Tutorial"
     let windowController = NSWindowController(window: window)
     windowController.showWindow(self)
