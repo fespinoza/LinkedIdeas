@@ -13,17 +13,25 @@ import LinkedIdeas_macOS_Core
 class AppDelegate: NSObject, NSApplicationDelegate {
 
   func applicationDidFinishLaunching(_ aNotification: Notification) {
+    if shouldOpenTutorial() {
+      showHelp(self)
+    }
   }
 
   func applicationWillTerminate(_ aNotification: Notification) {
   }
 
-  @IBAction func showTutorial(_ sender: Any?) {
+  @IBAction func showHelp(_ sender: Any?) {
     let viewController = TutorialViewController()
     let window = NSWindow(contentViewController: viewController)
     window.styleMask = [.closable, .titled]
     window.title = "Linked Ideas Tutorial"
     let windowController = NSWindowController(window: window)
     windowController.showWindow(self)
+  }
+
+  private func shouldOpenTutorial() -> Bool {
+    return UserDefaults.standard.value(forKey: "openTutorial") == nil ||
+      UserDefaults.standard.bool(forKey: "openTutorial")
   }
 }

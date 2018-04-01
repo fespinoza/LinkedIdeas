@@ -16,6 +16,13 @@ public class TutorialViewController: NSViewController {
 
   let pageController = NSPageController()
   let bundle = Bundle(for: TutorialViewController.self)
+  lazy var checkbox: NSButton = {
+    return NSButton(
+      checkboxWithTitle: "open this on app launch?",
+      target: self,
+      action: #selector(toggleCheckbox(_:))
+    )
+  }()
 
   public override func viewDidLoad() {
     super.viewDidLoad()
@@ -37,26 +44,10 @@ public class TutorialViewController: NSViewController {
       view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -70)
     ])
 
-
-    let nextImageName = NSImage.Name.init("right")
-    let nextImage = bundle.image(forResource: nextImageName)!
-    let nextButton = NSButton(image: nextImage, target: self, action: #selector(next(_:)))
-    nextButton.bezelStyle = .rounded
-    nextButton.translatesAutoresizingMaskIntoConstraints = false
-
-    self.view.addSubview(nextButton)
-
-    NSLayoutConstraint.activate([
-      nextButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-      nextButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-      nextButton.widthAnchor.constraint(equalToConstant: 40),
-      nextButton.heightAnchor.constraint(equalToConstant: 40)
-    ])
-
     let previousImageName = NSImage.Name("left")
     let previousImage = bundle.image(forResource: previousImageName)!
     let previousButton = NSButton(image: previousImage, target: self, action: #selector(previous(_:)))
-    nextButton.bezelStyle = .rounded
+    previousButton.bezelStyle = .rounded
     previousButton.translatesAutoresizingMaskIntoConstraints = false
 
     self.view.addSubview(previousButton)
@@ -68,6 +59,22 @@ public class TutorialViewController: NSViewController {
       previousButton.heightAnchor.constraint(equalToConstant: 40)
     ])
 
+    let nextImageName = NSImage.Name.init("right")
+    let nextImage = bundle.image(forResource: nextImageName)!
+    let nextButton = NSButton(image: nextImage, target: self, action: #selector(next(_:)))
+    nextButton.bezelStyle = .rounded
+    nextButton.translatesAutoresizingMaskIntoConstraints = false
+    nextButton.becomeFirstResponder()
+
+    self.view.addSubview(nextButton)
+
+    NSLayoutConstraint.activate([
+      nextButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+      nextButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+      nextButton.widthAnchor.constraint(equalToConstant: 40),
+      nextButton.heightAnchor.constraint(equalToConstant: 40)
+    ])
+
     let closeButton = NSButton(title: "Close", target: self, action: #selector(close))
     closeButton.translatesAutoresizingMaskIntoConstraints = false
 
@@ -76,6 +83,16 @@ public class TutorialViewController: NSViewController {
     NSLayoutConstraint.activate([
       closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
       closeButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20)
+    ])
+
+    if let enabledCheckbox = UserDefaults.standard.value(forKey: "openTutorial") as? Bool {
+      checkbox.integerValue = enabledCheckbox ? 1 : 0
+    }
+    checkbox.translatesAutoresizingMaskIntoConstraints = false
+    self.view.addSubview(checkbox)
+    NSLayoutConstraint.activate([
+      checkbox.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+      checkbox.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20)
     ])
   }
 
@@ -95,6 +112,10 @@ public class TutorialViewController: NSViewController {
 
   @objc func close(_ sender: NSButton) {
     self.view.window?.close()
+  }
+
+  @objc func toggleCheckbox(_ sender: NSButton) {
+    UserDefaults.standard.set(sender.integerValue == 1, forKey: "openTutorial")
   }
 }
 

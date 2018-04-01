@@ -616,13 +616,7 @@
                                     <items>
                                         <menuItem title="Linked Ideas Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
-                                                <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Tutorial" id="G7B-MB-g9H">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showTutorial:" target="Voe-Tx-rLC" id="qPJ-oI-jba"/>
+                                                <action selector="showHelp:" target="Voe-Tx-rLC" id="evx-X1-me3"/>
                                             </connections>
                                         </menuItem>
                                     </items>

@@ -481,15 +481,15 @@
 		9B2F1D9E1BE7CFE70090CC18 /* LinkedIdeas */ = {
 			isa = PBXGroup;
 			children = (
+				9B05541E1F1FAD2800B3F1E7 /* LinkedIdeas.entitlements */,
+				9B2F1DAB1BE7CFE80090CC18 /* Info.plist */,
+				9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */,
 				9BFE726420700241008C079A /* Assets.xcassets */,
+				9BA63D2C1D74C23100EBC3AD /* Main.storyboard */,
 				9BCA09E31C9217A900637F6D /* Models */,
 				9BA63D331D74C45100EBC3AD /* UI */,
 				9B6E97E81EB5062B00D4EF86 /* Utilities */,
 				9B3941901E5656A100F1E957 /* ViewModels */,
-				9B2F1D9F1BE7CFE70090CC18 /* AppDelegate.swift */,
-				9B2F1DAB1BE7CFE80090CC18 /* Info.plist */,
-				9B05541E1F1FAD2800B3F1E7 /* LinkedIdeas.entitlements */,
-				9BA63D2C1D74C23100EBC3AD /* Main.storyboard */,
 			);
 			path = LinkedIdeas;
 			sourceTree = "<group>";
