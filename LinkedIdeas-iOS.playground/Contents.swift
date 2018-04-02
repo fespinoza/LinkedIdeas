@@ -3,7 +3,7 @@
 import UIKit
 import PlaygroundSupport
 
-class MyViewController : UIViewController {
+class MyViewController: UIViewController {
   override func loadView() {
     let view = UIView()
     view.backgroundColor = .white

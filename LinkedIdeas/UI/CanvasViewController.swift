@@ -49,7 +49,7 @@ class CanvasViewController: NSViewController {
 
   let defaultTextAttributes: [NSAttributedStringKey: Any] = [
     .foregroundColor: Color.black,
-    .font: Font.systemFont(ofSize: 12)
+    .font: Font.systemFont(ofSize: 12),
   ]
 
   lazy var textView: NSTextView = {

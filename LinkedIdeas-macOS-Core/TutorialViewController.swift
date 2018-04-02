@@ -24,6 +24,7 @@ public class TutorialViewController: NSViewController {
     )
   }()
 
+  // swiftlint:disable:next function_body_length
   public override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -41,7 +42,7 @@ public class TutorialViewController: NSViewController {
       view.topAnchor.constraint(equalTo: self.view.topAnchor),
       view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
       view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-      view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -70)
+      view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -70),
     ])
 
     let previousImageName = NSImage.Name("left")
@@ -56,7 +57,7 @@ public class TutorialViewController: NSViewController {
       previousButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
       previousButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
       previousButton.widthAnchor.constraint(equalToConstant: 40),
-      previousButton.heightAnchor.constraint(equalToConstant: 40)
+      previousButton.heightAnchor.constraint(equalToConstant: 40),
     ])
 
     let nextImageName = NSImage.Name.init("right")
@@ -72,7 +73,7 @@ public class TutorialViewController: NSViewController {
       nextButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
       nextButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
       nextButton.widthAnchor.constraint(equalToConstant: 40),
-      nextButton.heightAnchor.constraint(equalToConstant: 40)
+      nextButton.heightAnchor.constraint(equalToConstant: 40),
     ])
 
     let closeButton = NSButton(title: "Close", target: self, action: #selector(close))
@@ -82,7 +83,7 @@ public class TutorialViewController: NSViewController {
 
     NSLayoutConstraint.activate([
       closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-      closeButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20)
+      closeButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20),
     ])
 
     if let enabledCheckbox = UserDefaults.standard.value(forKey: "openTutorial") as? Bool {
@@ -92,7 +93,7 @@ public class TutorialViewController: NSViewController {
     self.view.addSubview(checkbox)
     NSLayoutConstraint.activate([
       checkbox.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-      checkbox.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20)
+      checkbox.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20),
     ])
   }
 

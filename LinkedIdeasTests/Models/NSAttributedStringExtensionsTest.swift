@@ -47,7 +47,7 @@ class NSAttributedStringExtensionsTest: XCTestCase {
     let attributedString = NSAttributedString(
       string: stringValue,
       attributes: [
-        NSAttributedStringKey.strikethroughStyle: NSUnderlineStyle.styleSingle.rawValue
+        NSAttributedStringKey.strikethroughStyle: NSUnderlineStyle.styleSingle.rawValue,
       ]
     )
 
@@ -96,7 +96,7 @@ class NSAttributedStringExtensionsTest: XCTestCase {
     let attributedString = NSAttributedString(
       string: stringValue,
       attributes: [
-        NSAttributedStringKey.strikethroughStyle: NSUnderlineStyle.styleSingle.rawValue
+        NSAttributedStringKey.strikethroughStyle: NSUnderlineStyle.styleSingle.rawValue,
       ]
     )
     let neNSAttributedString = NSAttributedString(

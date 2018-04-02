@@ -155,7 +155,7 @@ extension CanvasViewControllerTests {
     let concepts = [
       Concept(stringValue: "#1", centerPoint: CGPoint(x: 20, y: 600)),
       Concept(stringValue: "#2", centerPoint: CGPoint(x: 120, y: 1600)),
-      Concept(stringValue: "#3", centerPoint: CGPoint(x: 200, y: 300))
+      Concept(stringValue: "#3", centerPoint: CGPoint(x: 200, y: 300)),
     ]
     concepts.forEach { document.concepts.append($0) }
     canvasViewController.currentState = .selectedElement(element: concepts[0])
@@ -269,7 +269,7 @@ extension CanvasViewControllerTests {
     let concepts = [
       Concept(stringValue: "Random", centerPoint: CGPoint(x: 20, y: 600)),
       Concept(stringValue: "Foo bar", centerPoint: CGPoint(x: 600, y: 800)),
-      Concept(stringValue: "Another", centerPoint: CGPoint(x: 300, y: 400))
+      Concept(stringValue: "Another", centerPoint: CGPoint(x: 300, y: 400)),
     ]
     concepts.forEach {
       document.concepts.append($0)

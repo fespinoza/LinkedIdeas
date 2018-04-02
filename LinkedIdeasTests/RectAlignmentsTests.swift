@@ -33,7 +33,7 @@ class RectAlignmentsTests: XCTestCase {
       return [
         CGRect(center: CGPoint(x: 100, y: 210), size: CGSize(width: 60, height: 20)),
         CGRect(center: CGPoint(x: 150, y: 100), size: CGSize(width: 50, height: 25)),
-        CGRect(center: CGPoint(x: 90, y: 300), size: CGSize(width: 100, height: 20))
+        CGRect(center: CGPoint(x: 90, y: 300), size: CGSize(width: 100, height: 20)),
       ]
     }
 
@@ -41,7 +41,7 @@ class RectAlignmentsTests: XCTestCase {
       return [
         CGRect(center: CGPoint(x: 100, y: 210), size: CGSize(width: 60, height: 20)),
         CGRect(center: CGPoint(x: 200, y: 200), size: CGSize(width: 50, height: 25)),
-        CGRect(center: CGPoint(x: 120, y: 200), size: CGSize(width: 100, height: 20))
+        CGRect(center: CGPoint(x: 120, y: 200), size: CGSize(width: 100, height: 20)),
       ]
     }
   }
