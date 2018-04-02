@@ -50,6 +50,7 @@ public class TutorialViewController: NSViewController {
     let previousButton = NSButton(image: previousImage, target: self, action: #selector(previous(_:)))
     previousButton.bezelStyle = .rounded
     previousButton.translatesAutoresizingMaskIntoConstraints = false
+    previousButton.focusRingType = .none
 
     self.view.addSubview(previousButton)
 
@@ -65,7 +66,7 @@ public class TutorialViewController: NSViewController {
     let nextButton = NSButton(image: nextImage, target: self, action: #selector(next(_:)))
     nextButton.bezelStyle = .rounded
     nextButton.translatesAutoresizingMaskIntoConstraints = false
-    nextButton.becomeFirstResponder()
+    nextButton.focusRingType = .none
 
     self.view.addSubview(nextButton)
 
