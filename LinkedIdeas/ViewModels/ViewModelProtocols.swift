@@ -46,4 +46,3 @@ import LinkedIdeas_Shared
 //  public var originRect: CGRect { return origin.area }
 //  public var targetRect: CGRect { return target.area }
 //}
-

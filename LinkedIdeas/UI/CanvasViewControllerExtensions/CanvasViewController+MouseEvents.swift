@@ -105,6 +105,7 @@ extension CanvasViewController {
     }
   }
 
+  // swiftlint:disable:next cyclomatic_complexity
   override func mouseDragged(with event: NSEvent) {
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
 
@@ -155,6 +156,7 @@ extension CanvasViewController {
     reRenderCanvasView()
   }
 
+  // swiftlint:disable:next cyclomatic_complexity
   override func mouseUp(with event: NSEvent) {
     let point = convertToCanvasCoordinates(point: event.locationInWindow)
 

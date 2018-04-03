@@ -110,6 +110,7 @@ public class Document: NSDocument {
     link.removeObserver(self, forKeyPath: Link.attributedStringValuePath, context: &KVOContext)
   }
 
+  // swiftlint:disable:next block_based_kvo
   override public func observeValue(
     forKeyPath keyPath: String?,
     of object: Any?,

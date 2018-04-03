@@ -20,7 +20,6 @@ extension CanvasViewController {
   func fullDrag(from fromPoint: CGPoint, to toPoint: CGPoint, shift: Bool = false) {
     self.mouseDown(with: EventHelpers.createMouseEvent(clickCount: 1, location: fromPoint, shift: shift))
     // TODO: try to make a range between the 2 points
-    
 
     self.mouseUp(with: EventHelpers.createMouseEvent(clickCount: 1, location: toPoint, shift: shift))
   }
@@ -110,7 +109,7 @@ extension CanvasViewControllerTests {
     let concepts = [
       Concept(stringValue: "Foo #0", centerPoint: CGPoint(x: 210, y: 310)),
       Concept(stringValue: "Foo #1", centerPoint: CGPoint(x: 210, y: 110)),
-      Concept(stringValue: "Foo #2", centerPoint: CGPoint(x: 200, y: 300))
+      Concept(stringValue: "Foo #2", centerPoint: CGPoint(x: 200, y: 300)),
     ]
     document.concepts = concepts
 
@@ -127,7 +126,7 @@ extension CanvasViewControllerTests {
     let concepts = [
       Concept(stringValue: "Foo #0", centerPoint: CGPoint(x: 210, y: 310)),
       Concept(stringValue: "Foo #1", centerPoint: CGPoint(x: 210, y: 110)),
-      Concept(stringValue: "Foo #2", centerPoint: CGPoint(x: 200, y: 300))
+      Concept(stringValue: "Foo #2", centerPoint: CGPoint(x: 200, y: 300)),
       ]
     document.concepts = concepts
 

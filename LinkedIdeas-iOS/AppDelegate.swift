@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func application(
-    _ app: UIApplication, open inputURL: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]
+    _ app: UIApplication, open inputURL: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]
   ) -> Bool {
     // Ensure the URL is a file URL
     guard inputURL.isFileURL else { return false }

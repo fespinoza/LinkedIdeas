@@ -1,2 +1,18 @@
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Playground-iOS.playground
+  - Playground-macOS.playground
+
+disabled_rules:
+  - identifier_name
+  - todo
+
+trailing_semicolon: error
+trailing_whitespace:
+  severity: error
+trailing_comma:
+  severity: error
+  mandatory_comma: true
+
+line_length:
+  warning: 120
+  error: 200

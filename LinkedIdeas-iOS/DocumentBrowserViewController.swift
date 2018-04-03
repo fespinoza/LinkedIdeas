@@ -27,11 +27,13 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
 
   func documentBrowser(
     _ controller: UIDocumentBrowserViewController,
-    didRequestDocumentCreationWithHandler importHandler: @escaping (URL?, UIDocumentBrowserViewController.ImportMode) -> Void
+    didRequestDocumentCreationWithHandler importHandler:
+      @escaping (URL?, UIDocumentBrowserViewController.ImportMode) -> Void
   ) {
     let newDocumentURL: URL? = nil
 
-    // Set the URL for the new document here. Optionally, you can present a template chooser before calling the importHandler.
+    // Set the URL for the new document here. Optionally, you can present a template chooser before calling the
+    // importHandler.
     // Make sure the importHandler is always called, even if the user cancels the creation request.
     if newDocumentURL != nil {
       importHandler(newDocumentURL, .move)

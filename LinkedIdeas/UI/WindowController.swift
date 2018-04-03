@@ -9,27 +9,16 @@
 import Cocoa
 
 class WindowController: NSWindowController {
-
   var documentViewController: DocumentViewController? {
     return contentViewController as? DocumentViewController
   }
 
   override var document: AnyObject? {
     didSet {
-      if let document = document as? Document {
-        documentViewController?.document = document
-        print("-didSetDocument")
+      guard let document = document as? Document else {
+        return
       }
+      documentViewController?.document = document
     }
   }
-
-  override func windowDidLoad() {
-    super.windowDidLoad()
-    print("-windowDidLoad")
-  }
-
-  override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-    print("-prepareForSegue")
-  }
-
 }
