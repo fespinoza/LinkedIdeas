@@ -53,12 +53,14 @@ extension CanvasViewController {
 
   struct DefaultColors {
     static let color1 = NSColor.black
-    static let color2 = NSColor(fullRed: 0, fullGreen: 75, fullBlue: 213)
-    static let color3 = NSColor(fullRed: 226, fullGreen: 6, fullBlue: 6)
-    static let color4 = NSColor(fullRed: 83, fullGreen: 153, fullBlue: 6)
-    static let color5 = NSColor(fullRed: 162, fullGreen: 8, fullBlue: 174)
-    static let color6 = NSColor(fullRed: 255, fullGreen: 95, fullBlue: 0)
-    static let color7 = NSColor(fullRed: 73, fullGreen: 9, fullBlue: 152)
+    static let color2 = NSColor(red: 0/255, green: 75/255, blue: 213/255, alpha: 1.0)
+    static let color3 = NSColor(red: 226/255, green: 6/255, blue: 6/255, alpha: 1.0)
+    static let color4 = NSColor(red: 83/255, green: 153/255, blue: 6/255, alpha: 1.0)
+    static let color5 = NSColor(red: 162/255, green: 8/255, blue: 174/255, alpha: 1.0)
+    static let color6 = NSColor(red: 255/255, green: 95/255, blue: 0/255, alpha: 1.0)
+    static let color7 = NSColor(red: 73/255, green: 9/255, blue: 152/255, alpha: 1.0)
+
+    static let allColors = [color1, color2, color3, color4, color5, color6, color7]
   }
 
   override func changeColor(_ sender: Any?) {
