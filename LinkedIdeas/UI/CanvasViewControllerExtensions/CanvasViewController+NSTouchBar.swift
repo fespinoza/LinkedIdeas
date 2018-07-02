@@ -21,6 +21,7 @@ extension CanvasViewController {
       let button = buttonFactory(withColor: pair.element)
       button.tag = pair.offset
       item.view = button
+      button.widthAnchor.constraint(equalToConstant: 50).isActive = true
       return item
     }
 
@@ -37,7 +38,11 @@ extension CanvasViewController {
   @available(OSX 10.12.2, *)
   private func buttonFactory(withColor color: NSColor) -> NSButton {
     let button = NSButton(title: " ", target: self, action: #selector(changeColorWithTouchbar(_:)))
+    button.wantsLayer = true
     button.bezelColor = color
+    button.layer?.borderWidth = 1
+    button.layer?.borderColor = color.blended(withFraction: 0.5, of: NSColor.white)?.cgColor
+    button.layer?.cornerRadius = 5
     return button
   }
 

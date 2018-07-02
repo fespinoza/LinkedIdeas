@@ -2,7 +2,10 @@ import AppKit
 import Foundation
 import PlaygroundSupport
 
+
+let stackViewIdentifier = NSTouchBarItem.Identifier("com.fespinozacast.linkedideas.touchbar.stackview")
 let colorGroupIdentifier = NSTouchBarItem.Identifier("com.fespinozacast.linkedideas.touchbar.colorgroup")
+let scrubberIdentifier = NSTouchBarItem.Identifier("com.fespinozacast.linkedideas.touchbar.colorgroup2")
 
 struct DefaultColors {
   static let color1 = NSColor.black
@@ -18,22 +21,83 @@ struct DefaultColors {
 
 var coloredButton: (NSColor) -> NSButton = { color in
   let button = NSButton(title: " ", target: nil, action: nil)
+  button.wantsLayer = true
   button.bezelColor = color
+  button.layer?.borderWidth = 1
+  button.layer?.borderColor = color.blended(withFraction: 0.5, of: NSColor.white)?.cgColor
+  button.layer?.cornerRadius = 5
   return button
 }
 
 let colorItems = DefaultColors.allColors.enumerated().map { pair -> NSCustomTouchBarItem in
   let identifier = NSTouchBarItem.Identifier("com.fespinozacast.linkedideas.touchbar.colorgroup.color-\(pair.offset)")
   let item = NSCustomTouchBarItem(identifier: identifier)
-  item.view = coloredButton(pair.element)
+  let button = coloredButton(pair.element)
+  item.view = button
+  button.widthAnchor.constraint(equalToConstant: 50).isActive = true
   return item
 }
 
+let coloredButtons = DefaultColors.allColors.map { color -> NSButton in
+  let button = coloredButton(color)
+  button.widthAnchor.constraint(equalToConstant: 50).isActive = true
+  return button
+}
+let stackView = NSStackView(views: coloredButtons)
+stackView.spacing = 0
+
+let stackViewItem = NSCustomTouchBarItem(identifier: stackViewIdentifier)
+stackViewItem.view = stackView
+
 let bar = NSTouchBar()
-bar.defaultItemIdentifiers = [colorGroupIdentifier]
+bar.defaultItemIdentifiers = [colorGroupIdentifier, stackViewIdentifier, scrubberIdentifier]
 
 let group = NSGroupTouchBarItem(identifier: colorGroupIdentifier, items: colorItems)
 
 bar.templateItems = [group]
+bar.templateItems = [stackViewItem]
 
-PlaygroundPage.current.liveTouchBar = bar
+class ScrubberHelper: NSObject, NSScrubberDelegate, NSScrubberDataSource {
+  public func numberOfItems(for scrubber: NSScrubber) -> Int {
+    return DefaultColors.allColors.count
+  }
+
+  public func scrubber(_ scrubber: NSScrubber, viewForItemAt index: Int) -> NSScrubberItemView {
+    let color = DefaultColors.allColors[index]
+    let view = NSScrubberItemView()
+    view.wantsLayer = true
+    view.layer?.backgroundColor = color.cgColor
+    view.layer?.borderWidth = 1
+    view.layer?.borderColor = NSColor.gray.cgColor
+    view.layer?.cornerRadius = 5
+    return view
+  }
+}
+let helper = ScrubberHelper()
+let scrubber = NSScrubber()
+let layout = NSScrubberFlowLayout()
+
+//scrubber.wantsLayer = true
+//scrubber.layer?.borderWidth = 1
+//scrubber.layer?.borderColor = NSColor.gray.cgColor
+scrubber.dataSource = helper
+scrubber.delegate = helper
+scrubber.scrubberLayout = layout
+
+let scrubberItem = NSCustomTouchBarItem(identifier: scrubberIdentifier)
+scrubberItem.view = scrubber
+
+bar.templateItems = [scrubberItem]
+
+
+
+
+
+
+
+
+
+
+
+
+
