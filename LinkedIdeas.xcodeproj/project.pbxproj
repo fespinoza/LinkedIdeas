@@ -79,6 +79,7 @@
 		9B97BF8F2013F39000C780AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B97BF8D2013F39000C780AC /* LaunchScreen.storyboard */; };
 		9B97BF942013F4DF00C780AC /* linked_ideas_doc_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */; };
 		9B9A2EA41CF5EE5300607208 /* RectAlignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A2EA31CF5EE5300607208 /* RectAlignmentsTests.swift */; };
+		9B9BFD8520E0339F003E3BCA /* CanvasViewController+NSTouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9BFD8420E0339F003E3BCA /* CanvasViewController+NSTouchBar.swift */; };
 		9BA63D2E1D74C23100EBC3AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BA63D2C1D74C23100EBC3AD /* Main.storyboard */; };
 		9BA63D301D74C31A00EBC3AD /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA63D2F1D74C31A00EBC3AD /* DocumentViewController.swift */; };
 		9BA63D321D74C38400EBC3AD /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA63D311D74C38400EBC3AD /* CanvasViewController.swift */; };
@@ -301,6 +302,7 @@
 		9B97BF8E2013F39000C780AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B97BF902013F39000C780AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B9A2EA31CF5EE5300607208 /* RectAlignmentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectAlignmentsTests.swift; sourceTree = "<group>"; };
+		9B9BFD8420E0339F003E3BCA /* CanvasViewController+NSTouchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+NSTouchBar.swift"; sourceTree = "<group>"; };
 		9B9EC6BC1EC0F2AB0048D2AC /* DrawableElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableElement.swift; sourceTree = "<group>"; };
 		9BA63D2D1D74C23100EBC3AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9BA63D2F1D74C31A00EBC3AD /* DocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
@@ -608,6 +610,7 @@
 				9BCD799C1F4A37FE00D310B3 /* CanvasViewController+NSTextViewDelegate.swift */,
 				9B3941991E5657D200F1E957 /* CanvasViewController+StateManagerDelegate.swift */,
 				9B39419B1E56582900F1E957 /* CanvasViewController+TransitionActions.swift */,
+				9B9BFD8420E0339F003E3BCA /* CanvasViewController+NSTouchBar.swift */,
 			);
 			path = CanvasViewControllerExtensions;
 			sourceTree = "<group>";
@@ -1007,7 +1010,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Felipe Espinoza Dev";
 				TargetAttributes = {
 					9B0E2E0A2018EF9900B514AA = {
@@ -1278,6 +1281,7 @@
 				9BCD799D1F4A37FE00D310B3 /* CanvasViewController+NSTextViewDelegate.swift in Sources */,
 				9BA63D301D74C31A00EBC3AD /* DocumentViewController.swift in Sources */,
 				9B2F1DA21BE7CFE70090CC18 /* Document.swift in Sources */,
+				9B9BFD8520E0339F003E3BCA /* CanvasViewController+NSTouchBar.swift in Sources */,
 				9BC8587F1EC4F692003B3EFF /* CanvasViewController+MenuActions.swift in Sources */,
 				9B90227F1EE9FF9200C528AE /* CanvasViewController+AligmentFunctions.swift in Sources */,
 				9B39419C1E56582900F1E957 /* CanvasViewController+TransitionActions.swift in Sources */,
@@ -1645,7 +1649,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -1693,7 +1698,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -2021,7 +2027,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -2055,7 +2061,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
