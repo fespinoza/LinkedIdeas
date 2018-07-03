@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9BE6A669201A7BDF00E276BB"
-               BuildableName = "LinkedIdeas-iOS-CoreTests.xctest"
-               BlueprintName = "LinkedIdeas-iOS-CoreTests"
+               BlueprintIdentifier = "9B9C1BB120EC06B200C92224"
+               BuildableName = "LinkedIdeas-iOS-Tests.xctest"
+               BlueprintName = "LinkedIdeas-iOS-Tests"
                ReferencedContainer = "container:LinkedIdeas.xcodeproj">
             </BuildableReference>
          </TestableReference>
