@@ -1,4 +1,6 @@
-git_url "https://bitbucket.org/fespinozacast/linked-ideas-certs"
+repo_username = ENV.fetch('BITBUCKET_USERNAME')
+repo_password = ENV.fetch('BITBUCKET_PASSWORD')
+git_url "https://#{repo_username}:#{repo_password}@bitbucket.org/fespinozacast/linked-ideas-certs"
 
 type "development" # The default type, can be: appstore, adhoc, enterprise or development
 
