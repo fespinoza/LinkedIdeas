@@ -8,8 +8,7 @@
 
 import XCTest
 
-class
-: XCTestCase {
+class SampleTests: XCTestCase {
   func testExample() {
     XCTAssert(1 == 1)
   }
