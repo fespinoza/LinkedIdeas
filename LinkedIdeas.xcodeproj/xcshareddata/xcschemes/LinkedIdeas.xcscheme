@@ -38,16 +38,6 @@
                ReferencedContainer = "container:LinkedIdeas.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9B0E2E342018EFD100B514AA"
-               BuildableName = "LinkedIdeas_Shared_macOSTests.xctest"
-               BlueprintName = "LinkedIdeas_Shared_macOSTests"
-               ReferencedContainer = "container:LinkedIdeas.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

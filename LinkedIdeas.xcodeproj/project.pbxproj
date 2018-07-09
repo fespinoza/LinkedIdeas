@@ -80,7 +80,7 @@
 		9B97BF942013F4DF00C780AC /* linked_ideas_doc_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */; };
 		9B9A2EA41CF5EE5300607208 /* RectAlignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A2EA31CF5EE5300607208 /* RectAlignmentsTests.swift */; };
 		9B9BFD8520E0339F003E3BCA /* CanvasViewController+NSTouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9BFD8420E0339F003E3BCA /* CanvasViewController+NSTouchBar.swift */; };
-		9B9C1BB520EC06B200C92224 /* LinkedIdeas_iOS_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C1BB420EC06B200C92224 /* LinkedIdeas_iOS_Tests.swift */; };
+		9B9C1BB520EC06B200C92224 /* SampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C1BB420EC06B200C92224 /* SampleTests.swift */; };
 		9BA63D2E1D74C23100EBC3AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BA63D2C1D74C23100EBC3AD /* Main.storyboard */; };
 		9BA63D301D74C31A00EBC3AD /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA63D2F1D74C31A00EBC3AD /* DocumentViewController.swift */; };
 		9BA63D321D74C38400EBC3AD /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA63D311D74C38400EBC3AD /* CanvasViewController.swift */; };
@@ -297,7 +297,7 @@
 		9B9A2EA31CF5EE5300607208 /* RectAlignmentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectAlignmentsTests.swift; sourceTree = "<group>"; };
 		9B9BFD8420E0339F003E3BCA /* CanvasViewController+NSTouchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+NSTouchBar.swift"; sourceTree = "<group>"; };
 		9B9C1BB220EC06B200C92224 /* LinkedIdeas-iOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LinkedIdeas-iOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B9C1BB420EC06B200C92224 /* LinkedIdeas_iOS_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedIdeas_iOS_Tests.swift; sourceTree = "<group>"; };
+		9B9C1BB420EC06B200C92224 /* SampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTests.swift; sourceTree = "<group>"; };
 		9B9C1BB620EC06B200C92224 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B9EC6BC1EC0F2AB0048D2AC /* DrawableElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableElement.swift; sourceTree = "<group>"; };
 		9BA63D2D1D74C23100EBC3AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -645,7 +645,7 @@
 		9B9C1BB320EC06B200C92224 /* LinkedIdeas-iOS-Tests */ = {
 			isa = PBXGroup;
 			children = (
-				9B9C1BB420EC06B200C92224 /* LinkedIdeas_iOS_Tests.swift */,
+				9B9C1BB420EC06B200C92224 /* SampleTests.swift */,
 				9B9C1BB620EC06B200C92224 /* Info.plist */,
 			);
 			path = "LinkedIdeas-iOS-Tests";
@@ -1322,7 +1322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B9C1BB520EC06B200C92224 /* LinkedIdeas_iOS_Tests.swift in Sources */,
+				9B9C1BB520EC06B200C92224 /* SampleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

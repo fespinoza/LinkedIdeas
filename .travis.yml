@@ -10,5 +10,5 @@ cache:
 install:
   - bundle install
 script:
-  - fastlane ios test
-  - fastlane mac test
+  - bundle fastlane ios test
+  - bundle fastlane mac test

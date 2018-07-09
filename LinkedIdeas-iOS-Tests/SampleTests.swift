@@ -8,7 +8,8 @@
 
 import XCTest
 
-class LinkedIdeas_iOS_Tests: XCTestCase {
+class
+: XCTestCase {
   func testExample() {
     XCTAssert(1 == 1)
   }
