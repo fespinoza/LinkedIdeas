@@ -60,7 +60,8 @@ platform :ios do
   lane :test do
     sync_code_signing(
       type: 'development',
-      app_identifier: ios_config[:app_identifier]
+      app_identifier: ios_config[:app_identifier],
+      readonly: true
     )
     run_tests(scheme: ios_config[:scheme])
   end
