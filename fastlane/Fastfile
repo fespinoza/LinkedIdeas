@@ -1,19 +1,21 @@
 default_platform(:ios)
 
-if is_ci
-  password = SecureRandom.base64
-  keychain_name = "fastlane"
-  ENV["MATCH_KEYCHAIN_NAME"] = keychain_name
-  ENV["MATCH_KEYCHAIN_PASSWORD"] = password
+def create_ci_keychain
+  if is_ci
+    password = SecureRandom.base64
+    keychain_name = "fastlane"
+    ENV["MATCH_KEYCHAIN_NAME"] = keychain_name
+    ENV["MATCH_KEYCHAIN_PASSWORD"] = password
 
-  create_keychain(
-    name: keychain_name,
-    default_keychain: true,
-    unlock: true,
-    timeout: 3600,
-    lock_when_sleeps: true,
-    password: password
-  )
+    create_keychain(
+      name: keychain_name,
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600,
+      lock_when_sleeps: true,
+      password: password
+    )
+  end
 end
 
 mac_config = {
@@ -58,6 +60,7 @@ end
 
 platform :ios do
   lane :test do
+    create_ci_keychain
     sync_code_signing(
       type: 'development',
       app_identifier: ios_config[:app_identifier],
