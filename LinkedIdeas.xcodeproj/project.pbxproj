@@ -88,6 +88,7 @@
 		9BB2A03D20265D2C0022E6E7 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC881CA6B889008CD6A2 /* Element.swift */; };
 		9BB2A03E20265D2C0022E6E7 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC881CA6B889008CD6A2 /* Element.swift */; };
 		9BB677681ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB677671ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift */; };
+		9BB6C1352118E6700045F189 /* TruthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB6C1342118E66F0045F189 /* TruthTest.swift */; };
 		9BB8FC831CA6B7D7008CD6A2 /* LinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */; };
 		9BBC5BD520222A4300B0EB28 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBC5BD420222A4300B0EB28 /* CanvasView.swift */; };
 		9BBC5BD620222C9B00B0EB28 /* LinkedIdeas_Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B0E2E0B2018EF9900B514AA /* LinkedIdeas_Shared.framework */; };
@@ -311,6 +312,7 @@
 		9BABB2B11C07B7F7001EC9E0 /* Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Link.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9BB2A03A20265C190022E6E7 /* NSDecoder+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDecoder+Extensions.swift"; sourceTree = "<group>"; };
 		9BB677671ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+NSPasteboard.swift"; sourceTree = "<group>"; };
+		9BB6C1342118E66F0045F189 /* TruthTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TruthTest.swift; sourceTree = "<group>"; };
 		9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkTests.swift; sourceTree = "<group>"; };
 		9BB8FC881CA6B889008CD6A2 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		9BBC5BD420222A4300B0EB28 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
@@ -734,6 +736,7 @@
 		9BE6A670201A7BDF00E276BB /* LinkedIdeas-iOS-CoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				9BB6C1342118E66F0045F189 /* TruthTest.swift */,
 				9BE6A673201A7BDF00E276BB /* Info.plist */,
 			);
 			path = "LinkedIdeas-iOS-CoreTests";
@@ -1068,6 +1071,7 @@
 					9BE6A669201A7BDF00E276BB = {
 						CreatedOnToolsVersion = 9.2;
 						DevelopmentTeam = 2Z7R9FQBNN;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 9B97BF7D2013F39000C780AC;
 					};
@@ -1385,6 +1389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BB6C1352118E6700045F189 /* TruthTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1973,6 +1978,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1986,6 +1992,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LinkedIdeas-iOS.app/LinkedIdeas-iOS";
@@ -1999,6 +2006,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
