@@ -39,8 +39,6 @@
 		9B43B8891EDC88AC00879507 /* CanvasViewControllerMouseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43B8881EDC88AC00879507 /* CanvasViewControllerMouseTests.swift */; };
 		9B43B88B1EDC8B5D00879507 /* CanvasViewControllerKeyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43B88A1EDC8B5D00879507 /* CanvasViewControllerKeyboardTests.swift */; };
 		9B48F8491CD614370014758D /* LinkedIdeasDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48F8481CD614370014758D /* LinkedIdeasDocument.swift */; };
-		9B4DE0A71F2BD7CE00F95AAF /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4DE0A61F2BD7CE00F95AAF /* ColorUtils.swift */; };
-		9B4DE0A81F2BD7FC00F95AAF /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4DE0A61F2BD7CE00F95AAF /* ColorUtils.swift */; };
 		9B521F871CFB380300A71598 /* SquareElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B521F861CFB380300A71598 /* SquareElement.swift */; };
 		9B52DD2F2034F2970023F9AD /* LinkedIdeas_Shared.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9B0E2E2D2018EFD100B514AA /* LinkedIdeas_Shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9B66961C1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9B66961B1D08AF9F00CDE806 /* linked_ideas_doc_icon.icns */; };
@@ -88,6 +86,7 @@
 		9BB2A03D20265D2C0022E6E7 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC881CA6B889008CD6A2 /* Element.swift */; };
 		9BB2A03E20265D2C0022E6E7 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC881CA6B889008CD6A2 /* Element.swift */; };
 		9BB677681ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB677671ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift */; };
+		9BB6C1352118E6700045F189 /* TruthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB6C1342118E66F0045F189 /* TruthTest.swift */; };
 		9BB8FC831CA6B7D7008CD6A2 /* LinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */; };
 		9BBC5BD520222A4300B0EB28 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBC5BD420222A4300B0EB28 /* CanvasView.swift */; };
 		9BBC5BD620222C9B00B0EB28 /* LinkedIdeas_Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B0E2E0B2018EF9900B514AA /* LinkedIdeas_Shared.framework */; };
@@ -134,6 +133,8 @@
 		9BE6A683201A7C5B00E276BB /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B97BF862013F39000C780AC /* Document.swift */; };
 		9BE6A684201A7C6800E276BB /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B97BF842013F39000C780AC /* DocumentViewController.swift */; };
 		9BF15C391CAC69A500C95041 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF15C381CAC69A500C95041 /* WindowController.swift */; };
+		9BFE1FE9211A19BC006DAC58 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4DE0A61F2BD7CE00F95AAF /* ColorUtils.swift */; };
+		9BFE1FEA211A19BD006DAC58 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4DE0A61F2BD7CE00F95AAF /* ColorUtils.swift */; };
 		9BFE7257206FFC4D008C079A /* LinkedIdeas_macOS_Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BFE7255206FFC4D008C079A /* LinkedIdeas_macOS_Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9BFE725A206FFC4D008C079A /* LinkedIdeas_macOS_Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BFE7253206FFC4D008C079A /* LinkedIdeas_macOS_Core.framework */; };
 		9BFE725B206FFC4D008C079A /* LinkedIdeas_macOS_Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9BFE7253206FFC4D008C079A /* LinkedIdeas_macOS_Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -311,6 +312,7 @@
 		9BABB2B11C07B7F7001EC9E0 /* Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Link.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9BB2A03A20265C190022E6E7 /* NSDecoder+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDecoder+Extensions.swift"; sourceTree = "<group>"; };
 		9BB677671ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+NSPasteboard.swift"; sourceTree = "<group>"; };
+		9BB6C1342118E66F0045F189 /* TruthTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TruthTest.swift; sourceTree = "<group>"; };
 		9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkTests.swift; sourceTree = "<group>"; };
 		9BB8FC881CA6B889008CD6A2 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		9BBC5BD420222A4300B0EB28 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 				9B78AE79202A38940093D4C1 /* iOS-Only */,
 				9BB2A03920265C070022E6E7 /* macOS-Only */,
 				9B0E2E0D2018EF9900B514AA /* LinkedIdeas_Shared_iOS.h */,
+				9B4DE0A61F2BD7CE00F95AAF /* ColorUtils.swift */,
 				9B0E2E2F2018EFD100B514AA /* LinkedIdeas_Shared_macOS.h */,
 				9B0E2E0E2018EF9900B514AA /* Info-iOS.plist */,
 				9B0E2E302018EFD100B514AA /* Info-macOS.plist */,
@@ -572,7 +575,6 @@
 			isa = PBXGroup;
 			children = (
 				9BD2BF3E1C7F8B8D00E8A303 /* 2DMath */,
-				9B4DE0A61F2BD7CE00F95AAF /* ColorUtils.swift */,
 				9B24718F1EEB43BB00DC6BF2 /* RectAlignments.swift */,
 			);
 			path = Utilities;
@@ -734,6 +736,7 @@
 		9BE6A670201A7BDF00E276BB /* LinkedIdeas-iOS-CoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				9BB6C1342118E66F0045F189 /* TruthTest.swift */,
 				9BE6A673201A7BDF00E276BB /* Info.plist */,
 			);
 			path = "LinkedIdeas-iOS-CoreTests";
@@ -1068,6 +1071,7 @@
 					9BE6A669201A7BDF00E276BB = {
 						CreatedOnToolsVersion = 9.2;
 						DevelopmentTeam = 2Z7R9FQBNN;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 9B97BF7D2013F39000C780AC;
 					};
@@ -1228,6 +1232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B6B3C6F20278ECE00419B02 /* Handler.swift in Sources */,
+				9BFE1FEA211A19BD006DAC58 /* ColorUtils.swift in Sources */,
 				9B0E2E4C2018F1BE00B514AA /* Link.swift in Sources */,
 				9BB2A03E20265D2C0022E6E7 /* Element.swift in Sources */,
 				9B6B3C8B2027931500419B02 /* Interceptable.swift in Sources */,
@@ -1263,6 +1268,7 @@
 				9B402638201DF3EA00810DA1 /* DrawableConcept.swift in Sources */,
 				9BB2A03D20265D2C0022E6E7 /* Element.swift in Sources */,
 				9B6B3C7A2027914900419B02 /* DrawableElement.swift in Sources */,
+				9BFE1FE9211A19BC006DAC58 /* ColorUtils.swift in Sources */,
 				9B6B3C7020278F4000419B02 /* Line.swift in Sources */,
 				9B6B3C882027931500419B02 /* FiniteLine.swift in Sources */,
 				9B6B3C782027914900419B02 /* DrawableLink.swift in Sources */,
@@ -1294,7 +1300,6 @@
 				9BB677681ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift in Sources */,
 				9B06AD151C11AF03000BC75C /* NSView+Debugging.swift in Sources */,
 				9B2F1DA01BE7CFE70090CC18 /* AppDelegate.swift in Sources */,
-				9B4DE0A71F2BD7CE00F95AAF /* ColorUtils.swift in Sources */,
 				9B1CD1C81E48D10B003F192B /* CanvasViewController+LinkCreation.swift in Sources */,
 				9B48F8491CD614370014758D /* LinkedIdeasDocument.swift in Sources */,
 				9BD435861EBA645D008A1265 /* DocumentObserver.swift in Sources */,
@@ -1341,7 +1346,6 @@
 			files = (
 				9BD850CF1EE4C76E005B89C9 /* NSView+Debugging.swift in Sources */,
 				9BD850CC1EE4C74F005B89C9 /* CanvasView.swift in Sources */,
-				9B4DE0A81F2BD7FC00F95AAF /* ColorUtils.swift in Sources */,
 				9BD850DB1EE4C787005B89C9 /* CanvasViewController.swift in Sources */,
 				9BD850DC1EE4C787005B89C9 /* StateManager.swift in Sources */,
 				9BD850B31EE4C199005B89C9 /* GenerateThumbnailForURL.m in Sources */,
@@ -1385,6 +1389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BB6C1352118E6700045F189 /* TruthTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1973,6 +1978,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1986,6 +1992,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LinkedIdeas-iOS.app/LinkedIdeas-iOS";
@@ -1999,6 +2006,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

@@ -64,27 +64,27 @@ extension CanvasViewController {
   }
 
   override func changeColor(_ sender: Any?) {
-    guard let menuItem = sender as? NSMenuItem else {
-      return
-    }
-
-    switch menuItem.title {
-    case "Color #1":
-      setColorForSelectedElements(fontColor: DefaultColors.color1)
-    case "Color #2":
-      setColorForSelectedElements(fontColor: DefaultColors.color2)
-    case "Color #3":
-      setColorForSelectedElements(fontColor: DefaultColors.color3)
-    case "Color #4":
-      setColorForSelectedElements(fontColor: DefaultColors.color4)
-    case "Color #5":
-      setColorForSelectedElements(fontColor: DefaultColors.color5)
-    case "Color #6":
-      setColorForSelectedElements(fontColor: DefaultColors.color6)
-    case "Color #7":
-      setColorForSelectedElements(fontColor: DefaultColors.color7)
-    default:
-      break
+    if let colorPanel = sender as? NSColorPanel {
+      setColorForSelectedElements(fontColor: colorPanel.color)
+    } else if let menuItem = sender as? NSMenuItem {
+      switch menuItem.title {
+      case "Color #1":
+        setColorForSelectedElements(fontColor: DefaultColors.color1)
+      case "Color #2":
+        setColorForSelectedElements(fontColor: DefaultColors.color2)
+      case "Color #3":
+        setColorForSelectedElements(fontColor: DefaultColors.color3)
+      case "Color #4":
+        setColorForSelectedElements(fontColor: DefaultColors.color4)
+      case "Color #5":
+        setColorForSelectedElements(fontColor: DefaultColors.color5)
+      case "Color #6":
+        setColorForSelectedElements(fontColor: DefaultColors.color6)
+      case "Color #7":
+        setColorForSelectedElements(fontColor: DefaultColors.color7)
+      default:
+        break
+      }
     }
   }
 
@@ -107,6 +107,14 @@ extension CanvasViewController {
     default:
       return []
     }
+  }
+
+  func currentSelectedLink() -> Link? {
+    guard case let .selectedElement(element) = currentState, let link = element as? Link else {
+      return nil
+    }
+
+    return link
   }
 
   func makeSelectedElementsBold() {
@@ -145,6 +153,10 @@ extension CanvasViewController {
   }
 
   func setColorForSelectedElements(fontColor color: NSColor) {
+    if let link = currentSelectedLink() {
+      link.color = color
+    }
+
     for concept in currentSelectedConcepts() {
       concept.attributedStringValue = NSAttributedString(
         attributedString: concept.attributedStringValue,
