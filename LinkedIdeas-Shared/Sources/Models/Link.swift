@@ -157,23 +157,18 @@ public class Link: NSObject, NSCoding, Element {
       self.attributedStringValue = NSAttributedString(string: "")
     }
 
-//    if let colorComponents = aDecoder.decodeObject(forKey: colorComponentsKey) as? [CGFloat] {
-//      self.color = ColorUtils.color(fromComponents: colorComponents)
-//    } else {
-      if let color = aDecoder.decodeObject(forKey: colorKey) as? Color {
-        self.color = color
-      } else {
-        self.color = Link.defaultColor
-      }
-//    }
+    if let colorComponents = aDecoder.decodeObject(forKey: colorComponentsKey) as? [CGFloat] {
+      self.color = ColorUtils.color(fromComponents: colorComponents)
+    } else {
+      self.color = Link.defaultColor
+    }
   }
 
   public func encode(with aCoder: NSCoder) {
     aCoder.encode(identifier, forKey: identifierKey)
     aCoder.encode(origin, forKey: originKey)
     aCoder.encode(target, forKey: targetKey)
-    aCoder.encode(Link.defaultColor, forKey: colorComponentsKey)
-//    aCoder.encode(ColorUtils.extractColorComponents(forColor: color), forKey: colorComponentsKey)
+    aCoder.encode(ColorUtils.extractColorComponents(forColor: color), forKey: colorComponentsKey)
     aCoder.encode(attributedStringValue, forKey: attributedStringValueKey)
   }
 }

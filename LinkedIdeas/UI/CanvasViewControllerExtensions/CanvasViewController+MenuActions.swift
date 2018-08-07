@@ -109,6 +109,14 @@ extension CanvasViewController {
     }
   }
 
+  func currentSelectedLink() -> Link? {
+    guard case let .selectedElement(element) = currentState, let link = element as? Link else {
+      return nil
+    }
+
+    return link
+  }
+
   func makeSelectedElementsBold() {
     for concept in currentSelectedConcepts() {
       concept.attributedStringValue = NSAttributedString(
@@ -145,6 +153,10 @@ extension CanvasViewController {
   }
 
   func setColorForSelectedElements(fontColor color: NSColor) {
+    if let link = currentSelectedLink() {
+      link.color = color
+    }
+
     for concept in currentSelectedConcepts() {
       concept.attributedStringValue = NSAttributedString(
         attributedString: concept.attributedStringValue,
