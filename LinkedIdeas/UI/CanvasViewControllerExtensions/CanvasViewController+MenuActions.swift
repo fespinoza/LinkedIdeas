@@ -92,6 +92,15 @@ extension CanvasViewController {
     self.scrollView.setMagnification(1.0, centeredAt: self.scrollView.visibleRect.center)
   }
 
+  @IBAction func toCodeFont(_ sender: Any?) {
+    for concept in currentSelectedConcepts() {
+      concept.attributedStringValue = NSAttributedString(
+        attributedString: concept.attributedStringValue,
+        fontName: .codeFontName
+      )
+    }
+  }
+
   // MARK: - custom methods
 
   func currentSelectedConcepts() -> [Concept] {

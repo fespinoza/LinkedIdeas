@@ -347,6 +347,12 @@
                                             <menu key="submenu" title="Font" systemMenu="font" id="aXa-aM-Jaq">
                                                 <items>
                                                     <menuItem title="Show Fonts" keyEquivalent="t" id="Q5e-8K-NDq"/>
+                                                    <menuItem title="Code Font" keyEquivalent="x" id="vmF-YN-mdm">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                                        <connections>
+                                                            <action selector="toCodeFont:" target="Ady-hI-5gd" id="1lH-br-S7D"/>
+                                                        </connections>
+                                                    </menuItem>
                                                     <menuItem title="Bold" tag="2" keyEquivalent="b" id="GB9-OM-e27">
                                                         <connections>
                                                             <action selector="changeFont:" target="Ady-hI-5gd" id="BN7-ya-RVB"/>

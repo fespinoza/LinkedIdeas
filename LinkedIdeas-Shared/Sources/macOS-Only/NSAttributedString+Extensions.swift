@@ -9,6 +9,10 @@
 import Cocoa
 public typealias Font = NSFont
 
+public extension String {
+  static let codeFontName = "Monaco"
+}
+
 public extension NSAttributedString {
   // MARK: - Computed Properties
   public var maxRange: NSRange { return NSRange(location: 0, length: length) }
@@ -75,6 +79,17 @@ public extension NSAttributedString {
 
     if let _tempCopy = attributedString.mutableCopy() as? NSMutableAttributedString {
       _tempCopy.addAttribute(NSAttributedStringKey.font, value: newFont, range: attributedString.maxRange)
+
+      self.init(attributedString: _tempCopy as NSAttributedString)
+    } else {
+      self.init(attributedString: attributedString)
+    }
+  }
+
+  public convenience init(attributedString: NSAttributedString, fontName: String) {
+    if let _tempCopy = attributedString.mutableCopy() as? NSMutableAttributedString {
+      let newFont = NSFont(name: fontName, size: CGFloat(attributedString.fontSize))!
+      _tempCopy.addAttribute(.font, value: newFont, range: attributedString.maxRange)
 
       self.init(attributedString: _tempCopy as NSAttributedString)
     } else {
