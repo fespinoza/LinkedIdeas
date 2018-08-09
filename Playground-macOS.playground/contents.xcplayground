@@ -5,5 +5,7 @@
         <page name='NSTextView - Resetting Attributes'/>
         <page name='NSView'/>
         <page name='Tutorial'/>
+        <page name='NSTouchBar'/>
+        <page name='NSAttributes'/>
     </pages>
 </playground>
