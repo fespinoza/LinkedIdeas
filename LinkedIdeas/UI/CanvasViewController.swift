@@ -47,7 +47,7 @@ class CanvasViewController: NSViewController {
     return textStorage
   }()
 
-  let defaultTextAttributes: [NSAttributedStringKey: Any] = [
+  let defaultTextAttributes: [NSAttributedString.Key: Any] = [
     .foregroundColor: Color.black,
     .font: Font.systemFont(ofSize: 12),
   ]
@@ -71,7 +71,6 @@ class CanvasViewController: NSViewController {
 
   var document: LinkedIdeasDocument! {
     didSet {
-      print("- didSetDocument \(document)")
       document.observer = self
     }
   }

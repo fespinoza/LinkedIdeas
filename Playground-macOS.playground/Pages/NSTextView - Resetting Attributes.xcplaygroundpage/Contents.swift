@@ -13,7 +13,6 @@ import PlaygroundSupport
 
  */
 
-
 class BasicDelegate: NSObject, NSTextViewDelegate {
   func textDidChange(_ notification: Notification) {
     guard let textView = notification.object as? NSTextView else {
@@ -31,8 +30,6 @@ class BasicDelegate: NSObject, NSTextViewDelegate {
     print("------")
 
     print(textView.textStorage!)
-
-//    print(textView.attributedString())
   }
 
   func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
@@ -45,7 +42,7 @@ class BasicDelegate: NSObject, NSTextViewDelegate {
         return true
       }
 
-      let defaultAttributes: [NSAttributedStringKey: Any] = [
+      let defaultAttributes: [NSAttributedString.Key: Any] = [
         .foregroundColor: NSColor.black,
         .font: NSFont.systemFont(ofSize: 12)
       ]

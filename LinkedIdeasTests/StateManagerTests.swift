@@ -11,14 +11,13 @@ import XCTest
 
 class StateManagerTests: XCTestCase {
   var stateManager: StateManager!
-  weak var testDelegate: StateManagerTestDelegate!
+  weak let testDelegate = StateManagerTestDelegate()
   let testElement = TestElement.sample
 
   override func setUp() {
     super.setUp()
 
     stateManager = StateManager(initialState: .canvasWaiting)
-    testDelegate = StateManagerTestDelegate()
     stateManager.delegate = testDelegate
   }
 

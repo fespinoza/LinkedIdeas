@@ -22,5 +22,4 @@ let attributes = sampleAttributedString.fontAttributes(in: sampleAttributedStrin
 sampleAttributedString.font
 
 let newFont = NSFont(name: "Monaco", size: sampleAttributedString.fontSize)!
-sampleAttributedString.addAttribute(NSAttributedStringKey.font, value: newFont, range: sampleAttributedString.fullRange)
 sampleAttributedString.addAttribute(.font, value: newFont, range: sampleAttributedString.fullRange)
