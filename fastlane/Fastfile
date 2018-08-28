@@ -20,6 +20,7 @@ ios_config = {
 
 platform :mac do
   lane :test do
+    xcode_select('/Applications/Xcode-beta.app')
     run_tests(scheme: 'LinkedIdeas')
   end
 
@@ -42,6 +43,7 @@ end
 
 platform :ios do
   lane :test do
+    xcode_select('/Applications/Xcode-beta.app')
     sync_code_signing(
       type: 'development',
       app_identifier: ios_config[:app_identifier]
