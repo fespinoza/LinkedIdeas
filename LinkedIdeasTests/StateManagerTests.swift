@@ -11,7 +11,8 @@ import XCTest
 
 class StateManagerTests: XCTestCase {
   var stateManager: StateManager!
-  weak var testDelegate: StateManagerTestDelegate!
+  // swiftlint:disable:next weak_delegate
+  var testDelegate: StateManagerTestDelegate!
   let testElement = TestElement.sample
 
   override func setUp() {

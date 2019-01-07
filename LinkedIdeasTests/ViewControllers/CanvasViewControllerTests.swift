@@ -140,9 +140,10 @@ extension CanvasViewControllerTests {
 
 extension CanvasViewControllerTests {
   func testPressEnterKeyWhenEditingInTheTextView() {
+    let testDelegate = StateManagerTestDelegate()
     let conceptPoint = CGPoint.zero
     canvasViewController.currentState = .newConcept(point: conceptPoint)
-    canvasViewController.stateManager.delegate = StateManagerTestDelegate()
+    canvasViewController.stateManager.delegate = testDelegate
 
     let textView = canvasViewController.textView
     canvasViewController.textStorage.setAttributedString(NSAttributedString(string: "New Concept"))

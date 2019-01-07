@@ -21,7 +21,7 @@ class NSAttributedStringExtensionsTest: XCTestCase {
     )
     let boldText = NSAttributedString(
       string: stringValue,
-      attributes: [NSAttributedStringKey.font: boldFont]
+      attributes: [NSAttributedString.Key.font: boldFont]
     )
 
     XCTAssert(boldText.isBold)
@@ -35,7 +35,7 @@ class NSAttributedStringExtensionsTest: XCTestCase {
     )
     let text = NSAttributedString(
       string: stringValue,
-      attributes: [NSAttributedStringKey.font: boldFont]
+      attributes: [NSAttributedString.Key.font: boldFont]
     )
 
     XCTAssertFalse(text.isBold)
@@ -47,7 +47,7 @@ class NSAttributedStringExtensionsTest: XCTestCase {
     let attributedString = NSAttributedString(
       string: stringValue,
       attributes: [
-        NSAttributedStringKey.strikethroughStyle: NSUnderlineStyle.styleSingle.rawValue,
+        NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue,
       ]
     )
 
@@ -65,7 +65,7 @@ class NSAttributedStringExtensionsTest: XCTestCase {
   func testFontColor() {
     let coloredText = NSAttributedString(
       string: stringValue,
-      attributes: [NSAttributedStringKey.foregroundColor: NSColor.red]
+      attributes: [NSAttributedString.Key.foregroundColor: NSColor.red]
     )
 
     XCTAssertEqual(coloredText.fontColor, NSColor.red)
@@ -75,7 +75,7 @@ class NSAttributedStringExtensionsTest: XCTestCase {
   func testFontSize() {
     let attributedString = NSAttributedString(
       string: stringValue,
-      attributes: [NSAttributedStringKey.font: NSFont(name: "Helvetica", size: 18)!]
+      attributes: [NSAttributedString.Key.font: NSFont(name: "Helvetica", size: 18)!]
     )
 
     XCTAssertEqual(attributedString.fontSize, 18)
@@ -96,7 +96,7 @@ class NSAttributedStringExtensionsTest: XCTestCase {
     let attributedString = NSAttributedString(
       string: stringValue,
       attributes: [
-        NSAttributedStringKey.strikethroughStyle: NSUnderlineStyle.styleSingle.rawValue,
+        NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue,
       ]
     )
     let neNSAttributedString = NSAttributedString(

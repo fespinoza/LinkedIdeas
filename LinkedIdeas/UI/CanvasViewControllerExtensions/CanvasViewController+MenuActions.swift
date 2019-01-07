@@ -32,7 +32,7 @@ extension CanvasViewController {
     }
   }
 
-  override func changeFont(_ sender: Any?) {
+  func changeFont(_ sender: Any?) {
     guard let menuItem = sender as? NSMenuItem else {
       return
     }
@@ -63,7 +63,7 @@ extension CanvasViewController {
     static let allColors = [color1, color2, color3, color4, color5, color6, color7]
   }
 
-  override func changeColor(_ sender: Any?) {
+  func changeColor(_ sender: Any?) {
     if let colorPanel = sender as? NSColorPanel {
       setColorForSelectedElements(fontColor: colorPanel.color)
     } else if let menuItem = sender as? NSMenuItem {
