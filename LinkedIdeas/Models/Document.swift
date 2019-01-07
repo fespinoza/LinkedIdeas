@@ -53,10 +53,10 @@ public class Document: NSDocument {
   private var KVOContext: Int = 0
 
   override public func makeWindowControllers() {
-    let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
+    let storyboard = NSStoryboard(name: "Main", bundle: nil)
 
     if let windowController = storyboard.instantiateController(
-                                withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "Document Window Controller")
+                                withIdentifier: "Document Window Controller"
                               ) as? WindowController {
       self.addWindowController(windowController)
     }

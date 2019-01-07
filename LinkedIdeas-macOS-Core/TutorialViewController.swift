@@ -45,7 +45,7 @@ public class TutorialViewController: NSViewController {
       view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -70),
     ])
 
-    let previousImageName = NSImage.Name("left")
+    let previousImageName = "left"
     let previousImage = bundle.image(forResource: previousImageName)!
     let previousButton = NSButton(image: previousImage, target: self, action: #selector(previous(_:)))
     previousButton.bezelStyle = .rounded
@@ -61,7 +61,7 @@ public class TutorialViewController: NSViewController {
       previousButton.heightAnchor.constraint(equalToConstant: 40),
     ])
 
-    let nextImageName = NSImage.Name.init("right")
+    let nextImageName = "right"
     let nextImage = bundle.image(forResource: nextImageName)!
     let nextButton = NSButton(image: nextImage, target: self, action: #selector(next(_:)))
     nextButton.bezelStyle = .rounded
@@ -128,7 +128,7 @@ extension TutorialViewController: NSPageControllerDelegate {
     // swiftlint:disable:next force_cast
     let string = String(object as! Int)
 
-    return NSPageController.ObjectIdentifier.init("tutorial-\(string)")
+    return "tutorial-\(string)"
   }
 
   public func pageController(
@@ -145,8 +145,7 @@ extension TutorialViewController: NSPageControllerDelegate {
     let imageView = NSImageView()
     imageView.imageScaling = .scaleProportionallyUpOrDown
 
-    let imageName = NSImage.Name(identifier.rawValue)
-    imageView.image = bundle.image(forResource: imageName)
+    imageView.image = bundle.image(forResource: identifier)
 
     view.addSubview(imageView)
     imageView.frame = view.bounds

@@ -10,7 +10,7 @@ import Cocoa
 
 class DocumentViewController: NSViewController {
   var canvasViewController: CanvasViewController! {
-    return childViewControllers.lazy.first as? CanvasViewController
+    return children.lazy.first as? CanvasViewController
   }
 
   var document: Document! {
