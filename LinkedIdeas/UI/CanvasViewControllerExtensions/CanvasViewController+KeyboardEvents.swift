@@ -74,7 +74,7 @@ extension CanvasViewController {
       }
     case .selectedElement(let element):
       if let concept = element as? Concept {
-        let conceptIndex = document.concepts.index(of: concept)!
+        let conceptIndex = document.concepts.firstIndex(of: concept)!
         var conceptToSelectIndex = conceptIndex
         if normalDirection {
           conceptToSelectIndex += 1

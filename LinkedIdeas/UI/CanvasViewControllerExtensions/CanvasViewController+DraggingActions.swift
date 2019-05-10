@@ -96,7 +96,7 @@ extension CanvasViewController {
       let hoveringConcepts = matchedConcepts(inRect: selectionRect)
 
       for concept in document.concepts {
-        concept.isSelected = hoveringConcepts?.index(of: concept) != nil
+        concept.isSelected = hoveringConcepts?.firstIndex(of: concept) != nil
       }
     }
   }

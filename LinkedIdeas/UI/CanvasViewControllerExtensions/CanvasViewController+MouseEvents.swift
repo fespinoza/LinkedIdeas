@@ -231,7 +231,7 @@ extension CanvasViewController {
 
     if concepts.contains(targetConcept) {
       // unselect from group
-      concepts.remove(at: concepts.index(of: targetConcept)!)
+      concepts.remove(at: concepts.firstIndex(of: targetConcept)!)
 
       if concepts.count > 1 {
         safeTransiton {

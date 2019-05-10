@@ -15,21 +15,21 @@ public extension String {
 
 public extension NSAttributedString {
   // MARK: - Computed Properties
-  public var maxRange: NSRange { return NSRange(location: 0, length: length) }
+  var maxRange: NSRange { return NSRange(location: 0, length: length) }
 
-  public var isStrikedThrough: Bool {
+  var isStrikedThrough: Bool {
     var range = maxRange
     let strikeValue = attribute(NSAttributedString.Key.strikethroughStyle, at: 0, effectiveRange: &range) as? Int
     return strikeValue == NSUnderlineStyle.single.rawValue
   }
 
-  public var isBold: Bool {
+  var isBold: Bool {
     return font.fontDescriptor.symbolicTraits.contains(.bold)
   }
 
-  public var defaultFont: Font { return Font(name: "Helvetica", size: 12)! }
+  var defaultFont: Font { return Font(name: "Helvetica", size: 12)! }
 
-  public var font: Font {
+  var font: Font {
     var range = maxRange
     let _font = attribute(NSAttributedString.Key.font, at: 0, effectiveRange: &range) as? Font
     if let _font = _font {
@@ -39,9 +39,9 @@ public extension NSAttributedString {
     }
   }
 
-  public var fontSize: Int { return Int(font.pointSize) }
+  var fontSize: Int { return Int(font.pointSize) }
 
-  public var fontColor: Color {
+  var fontColor: Color {
     var range = maxRange
     let color = attribute(NSAttributedString.Key.foregroundColor, at: 0, effectiveRange: &range) as? Color
     if let color = color {
@@ -52,7 +52,7 @@ public extension NSAttributedString {
   }
 
   // MARK: - Convenience Initializers
-  public convenience init(attributedString: NSAttributedString, strikeThrough: Bool) {
+  convenience init(attributedString: NSAttributedString, strikeThrough: Bool) {
     var strikeStyle: NSUnderlineStyle = []
     if strikeThrough { strikeStyle = NSUnderlineStyle.single }
 
@@ -68,8 +68,8 @@ public extension NSAttributedString {
     }
   }
 
-  public convenience init(attributedString: NSAttributedString, bold: Bool) {
-    var newFont: Font!
+  convenience init(attributedString: NSAttributedString, bold: Bool) {
+    let newFont: Font
 
     if bold {
       newFont = NSFontManager.shared.convert(attributedString.font, toHaveTrait: .boldFontMask)
@@ -86,7 +86,7 @@ public extension NSAttributedString {
     }
   }
 
-  public convenience init(attributedString: NSAttributedString, fontName: String) {
+  convenience init(attributedString: NSAttributedString, fontName: String) {
     if let _tempCopy = attributedString.mutableCopy() as? NSMutableAttributedString {
       let newFont = NSFont(name: fontName, size: CGFloat(attributedString.fontSize))!
       _tempCopy.addAttribute(.font, value: newFont, range: attributedString.maxRange)
@@ -97,7 +97,7 @@ public extension NSAttributedString {
     }
   }
 
-  public convenience init(attributedString: NSAttributedString, fontColor: Color) {
+  convenience init(attributedString: NSAttributedString, fontColor: Color) {
     if let _tempCopy = attributedString.mutableCopy() as? NSMutableAttributedString {
       _tempCopy.addAttribute(NSAttributedString.Key.foregroundColor, value: fontColor, range: attributedString.maxRange)
 
@@ -107,7 +107,7 @@ public extension NSAttributedString {
     }
   }
 
-  public convenience init(attributedString: NSAttributedString, fontSize: Int) {
+  convenience init(attributedString: NSAttributedString, fontSize: Int) {
     let newFont: Font = NSFontManager.shared.convert(
       attributedString.font, toSize: CGFloat(fontSize))
     if let _tempCopy = attributedString.mutableCopy() as? NSMutableAttributedString {

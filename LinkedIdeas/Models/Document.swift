@@ -159,7 +159,7 @@ extension Document: LinkedIdeasDocument {
   }
 
   @objc func remove(concept: Concept) {
-    concepts.remove(at: concepts.index(of: concept)!)
+    concepts.remove(at: concepts.firstIndex(of: concept)!)
     undoManager?.registerUndo(
       withTarget: self,
       selector: #selector(Document.save(concept:)),
@@ -177,7 +177,7 @@ extension Document: LinkedIdeasDocument {
   }
 
   @objc func remove(link: Link) {
-    links.remove(at: links.index(of: link)!)
+    links.remove(at: links.firstIndex(of: link)!)
     undoManager?.registerUndo(
       withTarget: self,
       selector: #selector(Document.save(link:)),

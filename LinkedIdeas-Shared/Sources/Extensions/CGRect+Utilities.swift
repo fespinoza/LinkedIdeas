@@ -9,15 +9,15 @@
 import CoreGraphics
 
 public extension CGPoint {
-  public func translate(deltaX: CGFloat, deltaY: CGFloat) -> CGPoint {
+  func translate(deltaX: CGFloat, deltaY: CGFloat) -> CGPoint {
     return CGPoint(x: x + deltaX, y: y + deltaY)
   }
 
-  public func distanceTo(_ otherPoint: CGPoint) -> CGFloat {
+  func distanceTo(_ otherPoint: CGPoint) -> CGFloat {
     return sqrt(pow(x - otherPoint.x, 2.0) + pow(y - otherPoint.y, 2.0))
   }
 
-  public func description() -> String {
+  func description() -> String {
     return "(\(x), \(y))"
   }
 }

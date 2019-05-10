@@ -20,14 +20,14 @@ public extension CGRect {
     return result
   }
 
-  public func intersectionTo(_ point: CGPoint) -> [CGPoint] {
+  func intersectionTo(_ point: CGPoint) -> [CGPoint] {
     let secondLine = FiniteLine(point1: center, point2: point)
     return lines.map {
       $0.intersectionPointWith(secondLine)
       }.filter { $0 != nil }.map { $0! }
   }
 
-  public func firstIntersectionTo(_ point: CGPoint) -> CGPoint? {
+  func firstIntersectionTo(_ point: CGPoint) -> CGPoint? {
     return intersectionTo(point).first
   }
 
