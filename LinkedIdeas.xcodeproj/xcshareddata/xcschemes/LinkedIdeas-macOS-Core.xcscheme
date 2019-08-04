@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9B97BF7D2013F39000C780AC"
-               BuildableName = "LinkedIdeas-iOS.app"
-               BlueprintName = "LinkedIdeas-iOS"
+               BlueprintIdentifier = "9BFE7252206FFC4D008C079A"
+               BuildableName = "LinkedIdeas_macOS_Core.framework"
+               BlueprintName = "LinkedIdeas-macOS-Core"
                ReferencedContainer = "container:LinkedIdeas.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9BE6A669201A7BDF00E276BB"
-               BuildableName = "LinkedIdeas-iOS-CoreTests.xctest"
-               BlueprintName = "LinkedIdeas-iOS-CoreTests"
-               ReferencedContainer = "container:LinkedIdeas.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9B97BF7D2013F39000C780AC"
-            BuildableName = "LinkedIdeas-iOS.app"
-            BlueprintName = "LinkedIdeas-iOS"
-            ReferencedContainer = "container:LinkedIdeas.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -61,16 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9B97BF7D2013F39000C780AC"
-            BuildableName = "LinkedIdeas-iOS.app"
-            BlueprintName = "LinkedIdeas-iOS"
+            BlueprintIdentifier = "9BFE7252206FFC4D008C079A"
+            BuildableName = "LinkedIdeas_macOS_Core.framework"
+            BlueprintName = "LinkedIdeas-macOS-Core"
             ReferencedContainer = "container:LinkedIdeas.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -80,16 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9B97BF7D2013F39000C780AC"
-            BuildableName = "LinkedIdeas-iOS.app"
-            BlueprintName = "LinkedIdeas-iOS"
+            BlueprintIdentifier = "9BFE7252206FFC4D008C079A"
+            BuildableName = "LinkedIdeas_macOS_Core.framework"
+            BlueprintName = "LinkedIdeas-macOS-Core"
             ReferencedContainer = "container:LinkedIdeas.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
