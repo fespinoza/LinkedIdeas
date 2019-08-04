@@ -1,6 +1,6 @@
 # Linked Ideas
 
-[![Swift 4.0](https://img.shields.io/badge/swift-4.0-orange.svg?style=flat)](#)
+[![Swift 5.0](https://img.shields.io/badge/swift-5.0-orange.svg?style=flat)](#)
 [![GitHub license](https://img.shields.io/github/license/fespinoza/LinkedIdeas.svg)](https://github.com/fespinoza/LinkedIdeas/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/fespinoza/LinkedIdeas.svg?branch=master)](https://travis-ci.org/fespinoza/LinkedIdeas)
 [![@fespinozacast](https://img.shields.io/badge/contact-@fespinozacast-blue.svg?style=flat)](https://twitter.com/fespinozacast)
