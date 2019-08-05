@@ -17,7 +17,11 @@ public class Concept: NSObject, NSCoding, Element {
 
   // NOTE: the point value is relative to the canvas coordinate system
   public var centerPoint: CGPoint
-  public var mode: Mode = .textBased
+  public var mode: Mode = .textBased {
+    didSet {
+      _cachedTextSize = nil
+    }
+  }
 
   public var area: CGRect {
     return CGRect(center: centerPoint, size: size)
