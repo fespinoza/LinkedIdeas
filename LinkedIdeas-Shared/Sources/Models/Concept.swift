@@ -35,6 +35,11 @@ public class Concept: NSObject, NSCoding, Element {
     }
   }
 
+  /// Computing the size for the given text in the rectangle means a lot of repetitive
+  /// work that happened quite often, then it's better to save that calculation in this
+  /// private variable and only re-calculate when the text changes
+  private var _cachedTextSize: CGSize?
+
   private var size: CGSize {
     switch mode {
     case .textBased:
@@ -54,11 +59,16 @@ public class Concept: NSObject, NSCoding, Element {
   }
 
   private var textSize: CGSize {
-    let constrainSize = CGSize(width: width, height: 1e6)
-    let value = attributedStringValue.boundingRect(
-      with: constrainSize, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil
-    ).size
-    return value
+    if let _cachedTextSize = _cachedTextSize {
+      return _cachedTextSize
+    } else {
+      let constrainSize = CGSize(width: width, height: 1e6)
+      let value = attributedStringValue.boundingRect(
+        with: constrainSize, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil
+      ).size
+      _cachedTextSize = value
+      return value
+    }
   }
 
   private var textArea: CGRect {
@@ -69,7 +79,11 @@ public class Concept: NSObject, NSCoding, Element {
   public var identifier: String
 
   // MARK: - NSAttributedStringElement
-  @objc dynamic public var attributedStringValue: NSAttributedString
+  @objc dynamic public var attributedStringValue: NSAttributedString {
+    didSet {
+      _cachedTextSize = nil
+    }
+  }
   public var stringValue: String { return attributedStringValue.string }
 
   // visual element
