@@ -7,6 +7,7 @@
 //
 
 import AppKit
+import LinkedIdeas_Shared
 
 extension CanvasViewController {
   @available(OSX 10.12.2, *)

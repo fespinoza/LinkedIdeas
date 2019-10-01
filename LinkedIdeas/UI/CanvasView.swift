@@ -54,7 +54,7 @@ public class CanvasView: NSView {
   }
 
   func drawBackground(_ dirtyRect: CGRect) {
-    NSColor.white.set()
+    NSColor.windowBackgroundColor.set()
     dirtyRect.fill()
   }
 

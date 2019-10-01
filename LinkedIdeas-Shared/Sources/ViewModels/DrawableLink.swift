@@ -21,7 +21,12 @@ public struct DrawableLink: DrawableElement {
   }
 
   public func draw() {
-    link.color.set()
+//    link.color.set()
+//    if link.color == Link.defaultColor {
+      DefaultColors.linkColor.set()
+//    } else {
+//      link.color.set()
+//    }
     constructArrow()?.bezierPath().fill()
     drawSelectedRing()
     drawLinkText()
@@ -34,7 +39,7 @@ public struct DrawableLink: DrawableElement {
     }
 
     // background
-    Color.white.set()
+    Color.windowBackgroundColor.set()
     var textSize = link.attributedStringValue.size()
     let padding: CGFloat = 8.0
     textSize.width += padding

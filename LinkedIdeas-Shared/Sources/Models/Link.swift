@@ -38,7 +38,14 @@ public class Link: NSObject, NSCoding, Element {
     return CGRect(center: centerPoint, size: textSizeWithPadding)
   }
 
+  // TODO: how to change the link color for dark mode
   @objc dynamic public var color: Color
+
+  // A version of the link color that changes with dark/light mode
+//  public var dynamicColor: Color {
+//    if self.color == DefaultColors.linkColor
+
+//  }
 
   // MARK: - NSAttributedStringElement
   @objc dynamic public var attributedStringValue: NSAttributedString

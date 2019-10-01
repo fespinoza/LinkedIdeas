@@ -146,7 +146,11 @@ public class Concept: NSObject, NSCoding, Element {
 
   public func draw() {
     if !isEditable {
-      attributedStringValue.draw(in: textArea)
+      if attributedStringValue.fontColor == Color.black {
+        NSAttributedString(attributedString: attributedStringValue, fontColor: DefaultColors.color1).draw(in: textArea)
+      } else {
+        attributedStringValue.draw(in: textArea)
+      }
     }
   }
 

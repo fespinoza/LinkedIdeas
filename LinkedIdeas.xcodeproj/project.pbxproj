@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B039B7E2343E41700E635B7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B039B7D2343E41700E635B7 /* SettingsViewController.swift */; };
 		9B0683FD1DA1A1AA00609AE5 /* StateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0683FC1DA1A1AA00609AE5 /* StateManager.swift */; };
 		9B06AD151C11AF03000BC75C /* NSView+Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B06AD141C11AF03000BC75C /* NSView+Debugging.swift */; };
 		9B0E2E1D2018EF9A00B514AA /* LinkedIdeas_Shared_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B0E2E0D2018EF9900B514AA /* LinkedIdeas_Shared_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -85,6 +86,10 @@
 		9BB2A03C20265C630022E6E7 /* NSDecoder+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB2A03A20265C190022E6E7 /* NSDecoder+Extensions.swift */; };
 		9BB2A03D20265D2C0022E6E7 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC881CA6B889008CD6A2 /* Element.swift */; };
 		9BB2A03E20265D2C0022E6E7 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC881CA6B889008CD6A2 /* Element.swift */; };
+		9BB2E3E02334F767009CBAA1 /* DefaultColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB2E3DE2334F724009CBAA1 /* DefaultColors.swift */; };
+		9BB2E3E12334F768009CBAA1 /* DefaultColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB2E3DE2334F724009CBAA1 /* DefaultColors.swift */; };
+		9BB2E3E32334F7D5009CBAA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BB2E3E22334F7D5009CBAA1 /* Assets.xcassets */; };
+		9BB2E3E42334F7D5009CBAA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BB2E3E22334F7D5009CBAA1 /* Assets.xcassets */; };
 		9BB677681ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB677671ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift */; };
 		9BB6C1352118E6700045F189 /* TruthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB6C1342118E66F0045F189 /* TruthTest.swift */; };
 		9BB8FC831CA6B7D7008CD6A2 /* LinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */; };
@@ -248,6 +253,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9B039B7D2343E41700E635B7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9B05541E1F1FAD2800B3F1E7 /* LinkedIdeas.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LinkedIdeas.entitlements; sourceTree = "<group>"; };
 		9B0683FC1DA1A1AA00609AE5 /* StateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateManager.swift; sourceTree = "<group>"; };
 		9B06AD121C11AD74000BC75C /* CGRect+PointHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+PointHelpers.swift"; sourceTree = "<group>"; };
@@ -311,6 +317,8 @@
 		9BA63D341D74C47800EBC3AD /* CanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CanvasView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9BABB2B11C07B7F7001EC9E0 /* Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Link.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9BB2A03A20265C190022E6E7 /* NSDecoder+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDecoder+Extensions.swift"; sourceTree = "<group>"; };
+		9BB2E3DE2334F724009CBAA1 /* DefaultColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultColors.swift; sourceTree = "<group>"; };
+		9BB2E3E22334F7D5009CBAA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9BB677671ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasViewController+NSPasteboard.swift"; sourceTree = "<group>"; };
 		9BB6C1342118E66F0045F189 /* TruthTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TruthTest.swift; sourceTree = "<group>"; };
 		9BB8FC821CA6B7D7008CD6A2 /* LinkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkTests.swift; sourceTree = "<group>"; };
@@ -429,9 +437,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B039B7C2343E3FE00E635B7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9B039B7D2343E41700E635B7 /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		9B0E2E4A2018F04C00B514AA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				9BB2E3E22334F7D5009CBAA1 /* Assets.xcassets */,
+				9BB2E3DC2334F713009CBAA1 /* Colors */,
 				9B78AE79202A38940093D4C1 /* iOS-Only */,
 				9BB2A03920265C070022E6E7 /* macOS-Only */,
 				9B0E2E0D2018EF9900B514AA /* LinkedIdeas_Shared_iOS.h */,
@@ -656,6 +674,7 @@
 		9BA63D331D74C45100EBC3AD /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9B039B7C2343E3FE00E635B7 /* Settings */,
 				9B8E90061E462AB900C819F7 /* CanvasViewControllerExtensions */,
 				9B6E97E91EB5067B00D4EF86 /* Extensions */,
 				9BA63D341D74C47800EBC3AD /* CanvasView.swift */,
@@ -674,6 +693,14 @@
 				9B1CCDEA1D294E0900F319EB /* NSAttributedString+Extensions.swift */,
 			);
 			path = "macOS-Only";
+			sourceTree = "<group>";
+		};
+		9BB2E3DC2334F713009CBAA1 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				9BB2E3DE2334F724009CBAA1 /* DefaultColors.swift */,
+			);
+			path = Colors;
 			sourceTree = "<group>";
 		};
 		9BB8FC801CA6B7B0008CD6A2 /* Models */ = {
@@ -1115,6 +1142,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BB2E3E32334F7D5009CBAA1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1122,6 +1150,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BB2E3E42334F7D5009CBAA1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1238,6 +1267,7 @@
 				9B0E2E4C2018F1BE00B514AA /* Link.swift in Sources */,
 				9BB2A03E20265D2C0022E6E7 /* Element.swift in Sources */,
 				9B6B3C8B2027931500419B02 /* Interceptable.swift in Sources */,
+				9BB2E3E12334F768009CBAA1 /* DefaultColors.swift in Sources */,
 				9B0E2E4E2018F1BE00B514AA /* DocumentData.swift in Sources */,
 				9B6B3C7120278F4000419B02 /* Line.swift in Sources */,
 				9B6B3C892027931500419B02 /* FiniteLine.swift in Sources */,
@@ -1274,6 +1304,7 @@
 				9B6B3C7020278F4000419B02 /* Line.swift in Sources */,
 				9B6B3C882027931500419B02 /* FiniteLine.swift in Sources */,
 				9B6B3C782027914900419B02 /* DrawableLink.swift in Sources */,
+				9BB2E3E02334F767009CBAA1 /* DefaultColors.swift in Sources */,
 				9B6B3C6E20278ECE00419B02 /* Handler.swift in Sources */,
 				9B6B3C822027924300419B02 /* NSAttributedString+Extensions.swift in Sources */,
 				9B6B3C8A2027931500419B02 /* Interceptable.swift in Sources */,
@@ -1309,6 +1340,7 @@
 				9BF15C391CAC69A500C95041 /* WindowController.swift in Sources */,
 				9B3941A81E56596000F1E957 /* NSResponder-Extensions.swift in Sources */,
 				9B3941A41E56591900F1E957 /* CanvasViewController+DocumentObserver.swift in Sources */,
+				9B039B7E2343E41700E635B7 /* SettingsViewController.swift in Sources */,
 				9B2471901EEB43BB00DC6BF2 /* RectAlignments.swift in Sources */,
 				9B3941A21E5658F500F1E957 /* CanvasViewController+CanvasViewDataSource.swift in Sources */,
 				9BA63D351D74C47800EBC3AD /* CanvasView.swift in Sources */,
