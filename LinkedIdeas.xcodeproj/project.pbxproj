@@ -129,6 +129,8 @@
 		9BD850E81EE4C792005B89C9 /* CanvasViewController+NSPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB677671ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift */; };
 		9BDF4B7F1F4B7C25000A1BB2 /* ConceptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDF4B7E1F4B7C25000A1BB2 /* ConceptTests.swift */; };
 		9BDF4B801F4B7DA6000A1BB2 /* CanvasViewController+NSTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCD799C1F4A37FE00D310B3 /* CanvasViewController+NSTextViewDelegate.swift */; };
+		9BE37FA5234508C500C903C2 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE37FA4234508C500C903C2 /* Settings.swift */; };
+		9BE37FA7234508E100C903C2 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE37FA6234508E100C903C2 /* UserDefault.swift */; };
 		9BE40C211D8DD98B0025F154 /* CanvasViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */; };
 		9BE6A66B201A7BDF00E276BB /* LinkedIdeas_iOS_Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE6A662201A7BDF00E276BB /* LinkedIdeas_iOS_Core.framework */; };
 		9BE6A674201A7BDF00E276BB /* LinkedIdeas_iOS_Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BE6A664201A7BDF00E276BB /* LinkedIdeas_iOS_Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -342,6 +344,8 @@
 		9BD850BC1EE4C67E005B89C9 /* DocumentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentManager.swift; sourceTree = "<group>"; };
 		9BDDE7381BEF9157000AAD44 /* Concept.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Concept.swift; sourceTree = "<group>"; };
 		9BDF4B7E1F4B7C25000A1BB2 /* ConceptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConceptTests.swift; sourceTree = "<group>"; };
+		9BE37FA4234508C500C903C2 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		9BE37FA6234508E100C903C2 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		9BE40C201D8DD98B0025F154 /* CanvasViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewControllerTests.swift; sourceTree = "<group>"; };
 		9BE6A662201A7BDF00E276BB /* LinkedIdeas_iOS_Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LinkedIdeas_iOS_Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BE6A664201A7BDF00E276BB /* LinkedIdeas_iOS_Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinkedIdeas_iOS_Core.h; sourceTree = "<group>"; };
@@ -724,8 +728,10 @@
 		9BCA09E31C9217A900637F6D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9BE37FA3234508BB00C903C2 /* Settings */,
 				9B48F84A1CD614460014758D /* Protocols */,
 				9B2F1DA11BE7CFE70090CC18 /* Document.swift */,
+				9BE37FA6234508E100C903C2 /* UserDefault.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -748,6 +754,14 @@
 				9BD850B61EE4C199005B89C9 /* main.c */,
 			);
 			path = QLLinkedIdeas;
+			sourceTree = "<group>";
+		};
+		9BE37FA3234508BB00C903C2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9BE37FA4234508C500C903C2 /* Settings.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		9BE6A663201A7BDF00E276BB /* LinkedIdeas-iOS-Core */ = {
@@ -1328,6 +1342,7 @@
 				9B3941981E5657A000F1E957 /* CanvasViewController+MouseEvents.swift in Sources */,
 				9B3941921E5656AF00F1E957 /* ViewModelProtocols.swift in Sources */,
 				9B39419E1E56586000F1E957 /* CanvasViewController+KeyboardEvents.swift in Sources */,
+				9BE37FA7234508E100C903C2 /* UserDefault.swift in Sources */,
 				9B521F871CFB380300A71598 /* SquareElement.swift in Sources */,
 				9B0683FD1DA1A1AA00609AE5 /* StateManager.swift in Sources */,
 				9BB677681ED47FB500B1AF83 /* CanvasViewController+NSPasteboard.swift in Sources */,
@@ -1341,6 +1356,7 @@
 				9B3941A81E56596000F1E957 /* NSResponder-Extensions.swift in Sources */,
 				9B3941A41E56591900F1E957 /* CanvasViewController+DocumentObserver.swift in Sources */,
 				9B039B7E2343E41700E635B7 /* SettingsViewController.swift in Sources */,
+				9BE37FA5234508C500C903C2 /* Settings.swift in Sources */,
 				9B2471901EEB43BB00DC6BF2 /* RectAlignments.swift in Sources */,
 				9B3941A21E5658F500F1E957 /* CanvasViewController+CanvasViewDataSource.swift in Sources */,
 				9BA63D351D74C47800EBC3AD /* CanvasView.swift in Sources */,

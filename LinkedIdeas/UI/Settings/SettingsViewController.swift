@@ -11,16 +11,14 @@ import Cocoa
 class SettingsViewController: NSViewController {
   @IBOutlet weak var interfaceStyleSelector: NSPopUpButton!
 
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    interfaceStyleSelector.selectItem(at: Settings.savedAppearanceIndex)
+  }
+
   @IBAction func setNewInterterfaceStyle(_ sender: NSPopUpButton) {
-    switch sender.indexOfSelectedItem {
-    case 0:
-      NSApp.appearance = nil
-    case 1:
-      NSApp.appearance = NSAppearance(named: .aqua)
-    case 2:
-      NSApp.appearance = NSAppearance(named: .darkAqua)
-    default:
-      break
-    }
+    let appearance = Settings.appearance(for: sender.indexOfSelectedItem)
+    Settings.setAppAppearance(appearance)
   }
 }

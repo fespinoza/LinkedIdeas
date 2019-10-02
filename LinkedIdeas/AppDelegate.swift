@@ -16,6 +16,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     if shouldOpenTutorial() {
       showHelp(self)
     }
+
+    Settings.loadSavedAppearance()
   }
 
   func applicationWillTerminate(_ aNotification: Notification) {
