@@ -46,8 +46,7 @@ public struct DrawableConcept: DrawableElement {
       return
     }
 
-    // TODO: dark mode
-    Color(red: 146/255, green: 178/255, blue: 254/255, alpha: 1).set()
+    DefaultColors.selectionConcept.set()
     let bezierPath = BezierPath(rect: drawingBounds)
     bezierPath.lineWidth = 1
     bezierPath.stroke()

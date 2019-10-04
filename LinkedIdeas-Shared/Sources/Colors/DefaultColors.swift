@@ -14,4 +14,9 @@ public struct DefaultColors {
   public static let allColors = [color1, color2, color3, color4, color5, color6, color7]
 
   public static let linkColor = Color(named: "defaultLinkColor", bundle: bundle)!
+  public static let linkConstructionColor = Color(named: "constructionLinkColor", bundle: bundle)!
+
+  public static let selectionLink = Color(named: "selectedLink", bundle: bundle)!
+  public static let selectionConcept = Color(named: "selectedConcept", bundle: bundle)!
+  public static let selectionGroup = Color(named: "groupSelection", bundle: bundle)!
 }

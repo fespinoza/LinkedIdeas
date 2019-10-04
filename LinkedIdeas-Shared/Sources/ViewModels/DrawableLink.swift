@@ -67,7 +67,7 @@ public struct DrawableLink: DrawableElement {
       return
     }
 
-    Color.red.set()
+    DefaultColors.selectionLink.set()
     constructArrow()?.bezierPath().stroke()
   }
 
