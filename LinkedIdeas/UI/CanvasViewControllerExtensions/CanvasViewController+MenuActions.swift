@@ -24,6 +24,16 @@ extension NSColor {
   }
 }
 
+extension CanvasViewController: NSColorChanging {
+  func changeColor(_ sender: NSColorPanel?) {
+    guard let colorPanel = sender else {
+      return
+    }
+
+    setColorForSelectedElements(fontColor: colorPanel.color)
+  }
+}
+
 extension CanvasViewController {
 
   override func selectAll(_ sender: Any?) {
