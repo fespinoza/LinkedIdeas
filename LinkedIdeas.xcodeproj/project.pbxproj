@@ -140,6 +140,9 @@
 		9BE6A683201A7C5B00E276BB /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B97BF862013F39000C780AC /* Document.swift */; };
 		9BE6A684201A7C6800E276BB /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B97BF842013F39000C780AC /* DocumentViewController.swift */; };
 		9BF15C391CAC69A500C95041 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF15C381CAC69A500C95041 /* WindowController.swift */; };
+		9BF1D2CB234A748400C23405 /* NSAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF1D2C9234A746500C23405 /* NSAttributedString+Extensions.swift */; };
+		9BF1D2CE234A768100C23405 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF1D2CC234A763B00C23405 /* Color.swift */; };
+		9BF1D2CF234A768100C23405 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF1D2CC234A763B00C23405 /* Color.swift */; };
 		9BFE1FE9211A19BC006DAC58 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4DE0A61F2BD7CE00F95AAF /* ColorUtils.swift */; };
 		9BFE1FEA211A19BD006DAC58 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4DE0A61F2BD7CE00F95AAF /* ColorUtils.swift */; };
 		9BFE7257206FFC4D008C079A /* LinkedIdeas_macOS_Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BFE7255206FFC4D008C079A /* LinkedIdeas_macOS_Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -353,6 +356,8 @@
 		9BE6A66A201A7BDF00E276BB /* LinkedIdeas-iOS-CoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LinkedIdeas-iOS-CoreTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BE6A673201A7BDF00E276BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BF15C381CAC69A500C95041 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		9BF1D2C9234A746500C23405 /* NSAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extensions.swift"; sourceTree = "<group>"; };
+		9BF1D2CC234A763B00C23405 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		9BF456E21F16E8B800E1CDD3 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9BF456E31F16E8BC00E1CDD3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9BF456E41F16E8BF00E1CDD3 /* PR.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PR.md; sourceTree = "<group>"; };
@@ -615,6 +620,7 @@
 			isa = PBXGroup;
 			children = (
 				9B78AE7A202A38A90093D4C1 /* UIBezierPath+Extensions.swift */,
+				9BF1D2C9234A746500C23405 /* NSAttributedString+Extensions.swift */,
 			);
 			path = "iOS-Only";
 			sourceTree = "<group>";
@@ -703,6 +709,7 @@
 			isa = PBXGroup;
 			children = (
 				9BB2E3DE2334F724009CBAA1 /* DefaultColors.swift */,
+				9BF1D2CC234A763B00C23405 /* Color.swift */,
 			);
 			path = Colors;
 			sourceTree = "<group>";
@@ -1286,8 +1293,10 @@
 				9B6B3C7120278F4000419B02 /* Line.swift in Sources */,
 				9B6B3C892027931500419B02 /* FiniteLine.swift in Sources */,
 				9B402636201DF3E900810DA1 /* DrawableConcept.swift in Sources */,
+				9BF1D2CB234A748400C23405 /* NSAttributedString+Extensions.swift in Sources */,
 				9B6B3C852027931500419B02 /* LineRange.swift in Sources */,
 				9B78AE7C202A38F50093D4C1 /* UIBezierPath+Extensions.swift in Sources */,
+				9BF1D2CE234A768100C23405 /* Color.swift in Sources */,
 				9B0E2E4D2018F1BE00B514AA /* Concept.swift in Sources */,
 				9B6B3C812027921000419B02 /* CGRect+Utilities.swift in Sources */,
 				9B6B3C7F2027921000419B02 /* CGRect+PointHelpers.swift in Sources */,
@@ -1316,6 +1325,7 @@
 				9B6B3C7A2027914900419B02 /* DrawableElement.swift in Sources */,
 				9BFE1FE9211A19BC006DAC58 /* ColorUtils.swift in Sources */,
 				9B6B3C7020278F4000419B02 /* Line.swift in Sources */,
+				9BF1D2CF234A768100C23405 /* Color.swift in Sources */,
 				9B6B3C882027931500419B02 /* FiniteLine.swift in Sources */,
 				9B6B3C782027914900419B02 /* DrawableLink.swift in Sources */,
 				9BB2E3E02334F767009CBAA1 /* DefaultColors.swift in Sources */,

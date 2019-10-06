@@ -37,7 +37,7 @@ public struct DrawableConcept: DrawableElement {
   }
 
   func drawBackground() {
-    Color.windowBackgroundColor.set()
+    Color.bakgroundColor.set()
     drawingBounds.fill()
   }
 

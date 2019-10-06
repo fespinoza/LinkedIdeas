@@ -5,13 +5,8 @@
 //  Created by Felipe Espinoza Castillo on 26/11/15.
 //  Copyright © 2015 Felipe Espinoza Dev. All rights reserved.
 //
-#if os(iOS)
-  import UIKit
-  public typealias Color = UIColor
-#else
-  import AppKit
-  public typealias Color = NSColor
-#endif
+import Foundation
+import CoreGraphics
 
 public class Link: NSObject, NSCoding, Element {
   // own attributes

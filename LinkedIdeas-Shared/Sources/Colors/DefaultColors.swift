@@ -1,4 +1,8 @@
-import Cocoa
+#if os(iOS)
+  import UIKit
+#else
+  import AppKit
+#endif
 
 public struct DefaultColors {
   private static let bundle = Bundle(for: Concept.self)

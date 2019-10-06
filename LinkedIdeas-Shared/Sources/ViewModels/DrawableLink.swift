@@ -9,21 +9,6 @@
 import CoreGraphics
 import Foundation
 
-extension Color {
-  /// converts a given color to the same color space and does some simplified math in order to see
-  /// if the colors are close enought to be considered the same
-  func isClose(to otherColor: Color) -> Bool {
-    guard let otherColor = otherColor.usingColorSpace(self.colorSpace) else {
-      return false
-    }
-
-    return floor(self.redComponent * 255) == floor(otherColor.redComponent * 255) &&
-      floor(self.greenComponent * 255) == floor(otherColor.greenComponent * 255) &&
-      floor(self.blueComponent * 255) == floor(otherColor.blueComponent * 255) &&
-      floor(self.alphaComponent * 255) == floor(otherColor.alphaComponent * 255)
-  }
-}
-
 public struct DrawableLink: DrawableElement {
   let link: Link
 
@@ -53,7 +38,7 @@ public struct DrawableLink: DrawableElement {
     }
 
     // background
-    Color.windowBackgroundColor.set()
+    Color.bakgroundColor.set()
     var textSize = link.attributedStringValue.size()
     let padding: CGFloat = 8.0
     textSize.width += padding
