@@ -54,7 +54,7 @@ public class CanvasView: NSView {
   }
 
   func drawBackground(_ dirtyRect: CGRect) {
-    NSColor.white.set()
+    NSColor.windowBackgroundColor.set()
     dirtyRect.fill()
   }
 
@@ -63,8 +63,8 @@ public class CanvasView: NSView {
       return
     }
 
-    let borderColor = NSColor(red: 0, green: 0, blue: 1, alpha: 1)
-    let backgroundColor = NSColor(red: 0, green: 0, blue: 1, alpha: 0.5)
+    let borderColor = DefaultColors.selectionGroup
+    let backgroundColor = DefaultColors.selectionGroup.withAlphaComponent(0.5)
     let bezierPath = NSBezierPath(rect: selectionRect)
 
     borderColor.set()
@@ -84,7 +84,7 @@ public class CanvasView: NSView {
     if let arrowColor = arrowColor {
       arrowColor.set()
     } else {
-      NSColor.blue.set()
+      DefaultColors.linkConstructionColor.set()
     }
 
     arrow.bezierPath().stroke()

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,7 +23,11 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                            <connections>
+                                                <segue destination="yOf-ge-LDc" kind="show" id="otl-TD-2SB"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -579,7 +583,7 @@
                                         <menuItem title="Show Sidebar" keyEquivalent="s" id="kIP-vf-haE">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
-                                                <action selector="toggleSourceList:" target="Ady-hI-5gd" id="iwa-gc-5KM"/>
+                                                <action selector="toggleSidebar:" target="Ady-hI-5gd" id="iwa-gc-5KM"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Enter Full Screen" keyEquivalent="f" id="4J7-dP-txa">
@@ -643,7 +647,7 @@
         <scene sceneID="tNN-SC-dWO">
             <objects>
                 <windowController storyboardIdentifier="Document Window Controller" id="E4o-oh-Qw8" customClass="WindowController" customModule="LinkedIdeas" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="3Qr-Ne-UhW">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="contentWindow" animationBehavior="default" id="3Qr-Ne-UhW">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="294" y="362" width="750" height="600"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
@@ -709,11 +713,11 @@
                                     </subviews>
                                     <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="2eG-s9-L30">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="2eG-s9-L30">
                                     <rect key="frame" x="0.0" y="284" width="450" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="jKS-ae-aQ1">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="jKS-ae-aQ1">
                                     <rect key="frame" x="434" y="0.0" width="16" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -733,6 +737,77 @@
                 </viewController>
             </objects>
             <point key="canvasLocation" x="539" y="583"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="Rui-R7-MSD">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="yOf-ge-LDc" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="settings" animationBehavior="default" id="WTK-Ki-5Uj">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="425" y="461" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                        <connections>
+                            <outlet property="delegate" destination="yOf-ge-LDc" id="JkR-sc-Ymf"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="bxQ-48-arp" kind="relationship" relationship="window.shadowedContentViewController" id="jpf-tD-Iib"/>
+                    </connections>
+                </windowController>
+                <customObject id="mKF-GJ-9fq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-901" y="187"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="a88-Hc-9wr">
+            <objects>
+                <viewController id="bxQ-48-arp" customClass="SettingsViewController" customModule="LinkedIdeas" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="10q-uw-hHI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="61"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pzk-ik-ZoE">
+                                <rect key="frame" x="139" y="17" width="164" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="System" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="IF7-CE-jlG" id="2Pc-cx-bM1">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="TdJ-KN-Kaz">
+                                        <items>
+                                            <menuItem title="System" state="on" id="IF7-CE-jlG"/>
+                                            <menuItem title="Light" id="ZFQ-mg-8ri"/>
+                                            <menuItem title="Dark" id="bkL-HJ-wS8"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="setNewInterterfaceStyle:" target="bxQ-48-arp" id="hRE-eY-Nxw"/>
+                                </connections>
+                            </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="04T-cJ-eGg">
+                                <rect key="frame" x="18" y="23" width="91" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Interface style" id="ZZ6-Ii-E8A">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Pzk-ik-ZoE" firstAttribute="leading" secondItem="04T-cJ-eGg" secondAttribute="trailing" constant="34" id="Ceb-cJ-wSt"/>
+                            <constraint firstItem="04T-cJ-eGg" firstAttribute="leading" secondItem="10q-uw-hHI" secondAttribute="leading" constant="20" id="FCN-g6-k0K"/>
+                            <constraint firstItem="Pzk-ik-ZoE" firstAttribute="centerY" secondItem="04T-cJ-eGg" secondAttribute="centerY" id="NZU-RW-vyu"/>
+                            <constraint firstAttribute="trailing" secondItem="Pzk-ik-ZoE" secondAttribute="trailing" constant="20" id="U5U-CR-4eb"/>
+                            <constraint firstItem="Pzk-ik-ZoE" firstAttribute="top" secondItem="10q-uw-hHI" secondAttribute="top" constant="20" id="yOd-lb-uPH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="interfaceStyleSelector" destination="Pzk-ik-ZoE" id="dYC-5b-9Ue"/>
+                    </connections>
+                </viewController>
+                <customObject id="MS4-ae-tA7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-981" y="510.5"/>
         </scene>
     </scenes>
 </document>

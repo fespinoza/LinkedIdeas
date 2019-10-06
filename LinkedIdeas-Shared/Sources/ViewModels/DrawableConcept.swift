@@ -37,7 +37,7 @@ public struct DrawableConcept: DrawableElement {
   }
 
   func drawBackground() {
-    Color.white.set()
+    Color.windowBackgroundColor.set()
     drawingBounds.fill()
   }
 
@@ -46,7 +46,7 @@ public struct DrawableConcept: DrawableElement {
       return
     }
 
-    Color(red: 146/255, green: 178/255, blue: 254/255, alpha: 1).set()
+    DefaultColors.selectionConcept.set()
     let bezierPath = BezierPath(rect: drawingBounds)
     bezierPath.lineWidth = 1
     bezierPath.stroke()
