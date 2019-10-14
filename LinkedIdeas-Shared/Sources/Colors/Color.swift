@@ -38,14 +38,15 @@ extension Color {
     #if os(iOS)
       return true
     #else
-    guard let otherColor = otherColor.usingColorSpace(self.colorSpace) else {
+    guard let otherColor = otherColor.usingColorSpace(.deviceRGB),
+        let rgbColor = self.usingColorSpace(.deviceRGB) else {
       return false
     }
 
-    return floor(self.redComponent * 255) == floor(otherColor.redComponent * 255) &&
-      floor(self.greenComponent * 255) == floor(otherColor.greenComponent * 255) &&
-      floor(self.blueComponent * 255) == floor(otherColor.blueComponent * 255) &&
-      floor(self.alphaComponent * 255) == floor(otherColor.alphaComponent * 255)
+    return floor(rgbColor.redComponent * 255) == floor(otherColor.redComponent * 255) &&
+      floor(rgbColor.greenComponent * 255) == floor(otherColor.greenComponent * 255) &&
+      floor(rgbColor.blueComponent * 255) == floor(otherColor.blueComponent * 255) &&
+      floor(rgbColor.alphaComponent * 255) == floor(otherColor.alphaComponent * 255)
     #endif
   }
 }
