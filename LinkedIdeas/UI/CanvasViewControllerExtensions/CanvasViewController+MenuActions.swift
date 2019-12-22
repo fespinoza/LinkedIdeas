@@ -42,7 +42,7 @@ extension CanvasViewController {
     }
   }
 
-  func changeFont(_ sender: Any?) {
+  @objc func changeFont(_ sender: Any?) {
     guard let menuItem = sender as? NSMenuItem else {
       return
     }
@@ -50,6 +50,8 @@ extension CanvasViewController {
     switch menuItem.title {
     case "Bold":
       makeSelectedElementsBold()
+    case "Italic":
+      makeSelectedElementsItalic()
     case "Strikethrough":
       strikethroughSelectedElements()
     case "Bigger":
@@ -61,7 +63,7 @@ extension CanvasViewController {
     }
   }
 
-  func changeColor(_ sender: Any?) {
+  @IBAction func menuChangeColor(_ sender: Any?) {
     if let colorPanel = sender as? NSColorPanel {
       setColorForSelectedElements(fontColor: colorPanel.color)
     } else if let menuItem = sender as? NSMenuItem {
@@ -128,6 +130,14 @@ extension CanvasViewController {
     for concept in currentSelectedConcepts() {
       concept.attributedStringValue = NSAttributedString(
         attributedString: concept.attributedStringValue, bold: !concept.attributedStringValue.isBold
+      )
+    }
+  }
+
+  func makeSelectedElementsItalic() {
+    for concept in currentSelectedConcepts() {
+      concept.attributedStringValue = NSAttributedString(
+        attributedString: concept.attributedStringValue, italic: !concept.attributedStringValue.isItalic
       )
     }
   }

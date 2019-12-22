@@ -27,6 +27,10 @@ public extension NSAttributedString {
     return font.fontDescriptor.symbolicTraits.contains(.bold)
   }
 
+  var isItalic: Bool {
+    return font.fontDescriptor.symbolicTraits.contains(.italic)
+  }
+
   var defaultFont: Font { return Font(name: "Helvetica", size: 12)! }
 
   var font: Font {
@@ -75,6 +79,24 @@ public extension NSAttributedString {
       newFont = NSFontManager.shared.convert(attributedString.font, toHaveTrait: .boldFontMask)
     } else {
       newFont = NSFontManager.shared.convert(attributedString.font, toNotHaveTrait: .boldFontMask)
+    }
+
+    if let _tempCopy = attributedString.mutableCopy() as? NSMutableAttributedString {
+      _tempCopy.addAttribute(NSAttributedString.Key.font, value: newFont, range: attributedString.maxRange)
+
+      self.init(attributedString: _tempCopy as NSAttributedString)
+    } else {
+      self.init(attributedString: attributedString)
+    }
+  }
+
+  convenience init(attributedString: NSAttributedString, italic: Bool) {
+    let newFont: Font
+
+    if italic {
+      newFont = NSFontManager.shared.convert(attributedString.font, toHaveTrait: .italicFontMask)
+    } else {
+      newFont = NSFontManager.shared.convert(attributedString.font, toNotHaveTrait: .italicFontMask)
     }
 
     if let _tempCopy = attributedString.mutableCopy() as? NSMutableAttributedString {
