@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -401,43 +401,43 @@
                                                                 <menuItem title="Color #1" keyEquivalent="1" id="mbn-3k-vFZ">
                                                                     <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                                                     <connections>
-                                                                        <action selector="changeColor:" target="Ady-hI-5gd" id="Gsr-I0-8fv"/>
+                                                                        <action selector="menuChangeColor:" target="Ady-hI-5gd" id="0qo-7X-elo"/>
                                                                     </connections>
                                                                 </menuItem>
                                                                 <menuItem title="Color #2" keyEquivalent="2" id="ZhD-tl-IeU">
                                                                     <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                                                     <connections>
-                                                                        <action selector="changeColor:" target="Ady-hI-5gd" id="fGL-UG-i4N"/>
+                                                                        <action selector="menuChangeColor:" target="Ady-hI-5gd" id="M3f-gw-0pz"/>
                                                                     </connections>
                                                                 </menuItem>
                                                                 <menuItem title="Color #3" keyEquivalent="3" id="Hbf-Ii-Qem">
                                                                     <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                                                     <connections>
-                                                                        <action selector="changeColor:" target="Ady-hI-5gd" id="K9B-Vp-2oh"/>
+                                                                        <action selector="menuChangeColor:" target="Ady-hI-5gd" id="mOl-Fs-PgC"/>
                                                                     </connections>
                                                                 </menuItem>
                                                                 <menuItem title="Color #4" keyEquivalent="4" id="Gsw-10-0A8">
                                                                     <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                                                     <connections>
-                                                                        <action selector="changeColor:" target="Ady-hI-5gd" id="slr-Cm-M8f"/>
+                                                                        <action selector="menuChangeColor:" target="Ady-hI-5gd" id="YIZ-Fj-Ef8"/>
                                                                     </connections>
                                                                 </menuItem>
                                                                 <menuItem title="Color #5" keyEquivalent="5" id="4XA-vl-JDF">
                                                                     <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                                                     <connections>
-                                                                        <action selector="changeColor:" target="Ady-hI-5gd" id="buY-EZ-Kbd"/>
+                                                                        <action selector="menuChangeColor:" target="Ady-hI-5gd" id="nMy-A0-M2x"/>
                                                                     </connections>
                                                                 </menuItem>
                                                                 <menuItem title="Color #6" keyEquivalent="6" id="oju-0f-Jbv">
                                                                     <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                                                     <connections>
-                                                                        <action selector="changeColor:" target="Ady-hI-5gd" id="I7h-NV-BKo"/>
+                                                                        <action selector="menuChangeColor:" target="Ady-hI-5gd" id="qlH-l8-taQ"/>
                                                                     </connections>
                                                                 </menuItem>
                                                                 <menuItem title="Color #7" keyEquivalent="7" id="mOP-Jd-20m">
                                                                     <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                                                     <connections>
-                                                                        <action selector="changeColor:" target="Ady-hI-5gd" id="dzB-7k-c2s"/>
+                                                                        <action selector="menuChangeColor:" target="Ady-hI-5gd" id="go8-xc-Ein"/>
                                                                     </connections>
                                                                 </menuItem>
                                                             </items>
@@ -771,7 +771,7 @@
                                 <rect key="frame" x="139" y="17" width="164" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="System" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="IF7-CE-jlG" id="2Pc-cx-bM1">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" id="TdJ-KN-Kaz">
                                         <items>
                                             <menuItem title="System" state="on" id="IF7-CE-jlG"/>
