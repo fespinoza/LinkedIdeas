@@ -50,6 +50,8 @@ extension CanvasViewController {
     switch menuItem.title {
     case "Bold":
       makeSelectedElementsBold()
+    case "Italic":
+      makeSelectedElementsItalic()
     case "Strikethrough":
       strikethroughSelectedElements()
     case "Bigger":
@@ -128,6 +130,14 @@ extension CanvasViewController {
     for concept in currentSelectedConcepts() {
       concept.attributedStringValue = NSAttributedString(
         attributedString: concept.attributedStringValue, bold: !concept.attributedStringValue.isBold
+      )
+    }
+  }
+
+  func makeSelectedElementsItalic() {
+    for concept in currentSelectedConcepts() {
+      concept.attributedStringValue = NSAttributedString(
+        attributedString: concept.attributedStringValue, italic: !concept.attributedStringValue.isItalic
       )
     }
   }
