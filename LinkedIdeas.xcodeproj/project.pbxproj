@@ -492,7 +492,9 @@
 				9B2F1D9D1BE7CFE70090CC18 /* Products */,
 				9BD850B11EE4C199005B89C9 /* QLLinkedIdeas */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		9B2F1D9D1BE7CFE70090CC18 /* Products */ = {
 			isa = PBXGroup;
