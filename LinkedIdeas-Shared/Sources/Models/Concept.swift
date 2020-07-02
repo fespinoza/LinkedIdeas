@@ -178,6 +178,14 @@ public class Concept: NSObject, NSCoding, Element {
     mode = .modifiedWidth(width: newWidth)
   }
 
+  public func duplicate() -> Concept {
+    let attributedCopy = (attributedStringValue.copy() as? NSAttributedString)
+      ?? NSAttributedString(string: stringValue)
+    let concept = Concept(attributedStringValue: attributedCopy, centerPoint: centerPoint)
+    concept.mode = mode
+    return concept
+  }
+
   // MARK: - NSCoding
 
   required public init?(coder aDecoder: NSCoder) {

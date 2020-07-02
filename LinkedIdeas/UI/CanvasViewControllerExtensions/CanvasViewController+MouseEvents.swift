@@ -131,6 +131,15 @@ extension CanvasViewController {
             unselect(elements: document.concepts.filter { $0 != concept })
           }
         }
+      } else if isDragOptionEvent(event) {
+        if didOptionDragStart {
+          drag(concept: concept, toPoint: point)
+        } else {
+          didOptionDragStart = true
+          safeTransiton {
+            try stateManager.toSelectedElementDuplicating(concept: concept)
+          }
+        }
       } else {
         drag(concept: concept, toPoint: point)
       }
@@ -171,6 +180,8 @@ extension CanvasViewController {
           whenClickedOnSingleConcept(atPoint: point, thenDo: { (targetConcept) in
             createNewLinkUp(fromConcept: concept, toConcept: targetConcept)
           })
+        } else if isDragOptionEvent(event) {
+          endDrag(forConcept: concept, toPoint: point)
         } else {
           endDrag(forConcept: concept, toPoint: point)
         }

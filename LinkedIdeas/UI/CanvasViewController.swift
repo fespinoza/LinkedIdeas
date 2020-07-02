@@ -18,6 +18,7 @@ class CanvasViewController: NSViewController {
 
   var dragCount = 0
   var didShiftDragStart = false
+  var didOptionDragStart = false
   // to register the beginning of the drag
   // for undo purposes
   var dragStartPoint: CGPoint?
@@ -181,7 +182,15 @@ class CanvasViewController: NSViewController {
   }
 
   func isPressingShift(event: NSEvent) -> Bool {
-    return event.modifierFlags.contains(NSEvent.ModifierFlags.shift)
+    return event.modifierFlags.contains(.shift)
+  }
+
+  func isDragOptionEvent(_ event: NSEvent) -> Bool {
+    return isPressingOption(event: event) // || didShiftDragStart
+  }
+
+  func isPressingOption(event: NSEvent) -> Bool {
+    return event.modifierFlags.contains(.option)
   }
 
   // MARK: - current State data helpers
