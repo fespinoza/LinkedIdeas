@@ -22,6 +22,7 @@ protocol StateManagerDelegate: class {
   func transitionedToCanvasWaitingDeletingElements(fromState: CanvasState)
   func transitionedToSelectedElement(fromState: CanvasState)
   func transitionedToSelectedElementSavingChanges(fromState: CanvasState)
+  func transitionedToSelectedElementDuplicatingConcept(fromState: CanvasState)
   func transitionedToEditingElement(fromState: CanvasState)
   func transitionedToMultipleSelectedElements(fromState: CanvasState)
   func transitionedToResizingConcept(fromState: CanvasState)
@@ -186,6 +187,22 @@ class StateManager {
     let state = CanvasState.selectedElement(element: element)
     try transition(toState: state, withValidtransitions: isValidTransition) { (oldState) in
       delegate?.transitionedToSelectedElementSavingChanges(fromState: oldState)
+    }
+  }
+
+  public func toSelectedElementDuplicating(concept: Concept) throws {
+    func isValidTransition(fromState: CanvasState) -> Bool {
+      switch fromState {
+      case .selectedElement(let element):
+        return element is Concept
+      default:
+        return false
+      }
+    }
+
+    let state = CanvasState.selectedElement(element: concept.duplicate())
+    try transition(toState: state, withValidtransitions: isValidTransition) { (oldState) in
+      delegate?.transitionedToSelectedElementDuplicatingConcept(fromState: oldState)
     }
   }
 

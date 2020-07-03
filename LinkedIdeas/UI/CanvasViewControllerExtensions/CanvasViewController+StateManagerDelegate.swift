@@ -81,6 +81,21 @@ extension CanvasViewController: StateManagerDelegate {
     transitionedToSelectedElement(fromState: fromState)
   }
 
+  func transitionedToSelectedElementDuplicatingConcept(fromState: CanvasState) {
+    commonTransitionBehavior(fromState)
+
+    guard
+      case .selectedElement(let element) = currentState,
+      let concept = element as? Concept
+    else {
+      return
+    }
+
+    document.save(concept: concept)
+
+    select(elements: [concept])
+  }
+
   func transitionedToEditingElement(fromState: CanvasState) {
     commonTransitionBehavior(fromState)
 
