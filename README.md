@@ -58,7 +58,7 @@ Given a group of selected concepts:
 
 The new features coming to the app can be found in the [GitHub project][project]
 
-I also added a bit my intention and status of development of the app in [DEVELOPMENT NOTES](https://github.com/fespinoza/LinkedIdeas/blob/master/LICENSE)
+I also added a bit my intention and status of development of the app in [DEVELOPMENT NOTES](https://github.com/fespinoza/LinkedIdeas/blob/master/DEVELOPMENT_NOTES.md)
 
 [project]:https://github.com/fespinoza/linked-ideas-osx/projects/2
 [latest]:https://github.com/fespinoza/linked-ideas-osx/releases/latest
