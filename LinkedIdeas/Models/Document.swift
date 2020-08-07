@@ -157,6 +157,16 @@ extension Document: LinkedIdeasDocument {
       object: concept)
     observer?.documentChanged(with: concept)
   }
+  
+  @objc func save(concepts newConcepts: [Concept]) {
+    concepts.append(contentsOf: newConcepts)
+    undoManager?.registerUndo(
+      withTarget: self,
+      selector: #selector(Document.remove(concepts:)),
+      object: newConcepts
+    )
+    observer?.documentChanged(with: newConcepts)
+  }
 
   @objc func remove(concept: Concept) {
     concepts.remove(at: concepts.firstIndex(of: concept)!)
@@ -165,6 +175,20 @@ extension Document: LinkedIdeasDocument {
       selector: #selector(Document.save(concept:)),
       object: concept)
     observer?.documentChanged(with: concept)
+  }
+  
+  @objc func remove(concepts newConcepts: [Concept]) {
+    newConcepts.forEach { concept in
+      if let index = concepts.firstIndex(of: concept) {
+        concepts.remove(at: index)
+      }
+    }
+    undoManager?.registerUndo(
+      withTarget: self,
+      selector: #selector(Document.save(concepts:)),
+      object: newConcepts
+    )
+    observer?.documentChanged(with: newConcepts)
   }
 
   @objc func save(link: Link) {
