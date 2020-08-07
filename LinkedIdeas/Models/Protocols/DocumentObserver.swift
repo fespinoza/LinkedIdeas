@@ -9,5 +9,6 @@ import Foundation
 import LinkedIdeas_Shared
 
 protocol DocumentObserver {
-  func documentChanged(withElement element: Element)
+  func documentChanged(with element: Element)
+  func documentChanged(with elements: [Element])
 }

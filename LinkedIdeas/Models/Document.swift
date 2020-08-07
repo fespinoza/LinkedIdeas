@@ -138,9 +138,9 @@ public class Document: NSDocument {
 
       switch object {
       case let concept as Concept:
-        observer?.documentChanged(withElement: concept)
+        observer?.documentChanged(with: concept)
       case let link as Link:
-        observer?.documentChanged(withElement: link)
+        observer?.documentChanged(with: link)
       default:
         break
       }
@@ -155,7 +155,17 @@ extension Document: LinkedIdeasDocument {
       withTarget: self,
       selector: #selector(Document.remove(concept:)),
       object: concept)
-    observer?.documentChanged(withElement: concept)
+    observer?.documentChanged(with: concept)
+  }
+  
+  @objc func save(concepts newConcepts: [Concept]) {
+    concepts.append(contentsOf: newConcepts)
+    undoManager?.registerUndo(
+      withTarget: self,
+      selector: #selector(Document.remove(concepts:)),
+      object: newConcepts
+    )
+    observer?.documentChanged(with: newConcepts)
   }
 
   @objc func remove(concept: Concept) {
@@ -164,7 +174,21 @@ extension Document: LinkedIdeasDocument {
       withTarget: self,
       selector: #selector(Document.save(concept:)),
       object: concept)
-    observer?.documentChanged(withElement: concept)
+    observer?.documentChanged(with: concept)
+  }
+  
+  @objc func remove(concepts newConcepts: [Concept]) {
+    newConcepts.forEach { concept in
+      if let index = concepts.firstIndex(of: concept) {
+        concepts.remove(at: index)
+      }
+    }
+    undoManager?.registerUndo(
+      withTarget: self,
+      selector: #selector(Document.save(concepts:)),
+      object: newConcepts
+    )
+    observer?.documentChanged(with: newConcepts)
   }
 
   @objc func save(link: Link) {
@@ -173,7 +197,7 @@ extension Document: LinkedIdeasDocument {
       withTarget: self,
       selector: #selector(Document.remove(link:)),
       object: link)
-    observer?.documentChanged(withElement: link)
+    observer?.documentChanged(with: link)
   }
 
   @objc func remove(link: Link) {
@@ -182,14 +206,14 @@ extension Document: LinkedIdeasDocument {
       withTarget: self,
       selector: #selector(Document.save(link:)),
       object: link)
-    observer?.documentChanged(withElement: link)
+    observer?.documentChanged(with: link)
   }
 
   func move(concept: Concept, toPoint: CGPoint) {
     Swift.print("move concept \(concept) toPoint: \(toPoint)")
     let originalPoint = concept.centerPoint
     concept.centerPoint = toPoint
-    observer?.documentChanged(withElement: concept)
+    observer?.documentChanged(with: concept)
 
     undoManager?.registerUndo(withTarget: self, handler: { (object) in
       object.move(concept: concept, toPoint: originalPoint)
