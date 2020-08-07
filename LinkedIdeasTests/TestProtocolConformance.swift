@@ -51,6 +51,10 @@ class StateManagerTestDelegate: MockMethodCalls {
 }
 
 extension StateManagerTestDelegate: StateManagerDelegate {
+  func transitionedToMultipleSelectedElementsDuplicatingConcepts(fromState: CanvasState) {
+    registerCall(methodName: #function)
+  }
+  
   func transitionedToSelectedElementDuplicatingConcept(fromState: CanvasState) {
     registerCall(methodName: #function)
   }
