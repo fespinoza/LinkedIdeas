@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -647,7 +647,7 @@
         <scene sceneID="tNN-SC-dWO">
             <objects>
                 <windowController storyboardIdentifier="Document Window Controller" id="E4o-oh-Qw8" customClass="WindowController" customModule="LinkedIdeas" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="contentWindow" animationBehavior="default" id="3Qr-Ne-UhW">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="contentWindow" animationBehavior="default" tabbingMode="preferred" id="3Qr-Ne-UhW">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="294" y="362" width="750" height="600"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
@@ -689,7 +689,7 @@
                 </viewController>
                 <customObject id="zeF-Ne-lG1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-70" y="583"/>
+            <point key="canvasLocation" x="-202" y="710"/>
         </scene>
         <!--Canvas View Controller-->
         <scene sceneID="Xdz-jJ-g6C">
@@ -736,7 +736,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="539" y="583"/>
+            <point key="canvasLocation" x="408" y="710"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="Rui-R7-MSD">
@@ -771,7 +771,7 @@
                                 <rect key="frame" x="139" y="17" width="164" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="System" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="IF7-CE-jlG" id="2Pc-cx-bM1">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="TdJ-KN-Kaz">
                                         <items>
                                             <menuItem title="System" state="on" id="IF7-CE-jlG"/>
