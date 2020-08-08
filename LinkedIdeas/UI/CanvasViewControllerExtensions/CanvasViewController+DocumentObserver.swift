@@ -12,7 +12,11 @@ import LinkedIdeas_Shared
 // MARK: - CanvasViewController+DocumentObserver
 
 extension CanvasViewController: DocumentObserver {
-  func documentChanged(withElement element: Element) {
+  func documentChanged(with element: Element) {
+    reRenderCanvasView()
+  }
+  
+  func documentChanged(with elements: [Element]) {
     reRenderCanvasView()
   }
 }

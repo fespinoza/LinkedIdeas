@@ -25,6 +25,7 @@ protocol StateManagerDelegate: class {
   func transitionedToSelectedElementDuplicatingConcept(fromState: CanvasState)
   func transitionedToEditingElement(fromState: CanvasState)
   func transitionedToMultipleSelectedElements(fromState: CanvasState)
+  func transitionedToMultipleSelectedElementsDuplicatingConcepts(fromState: CanvasState)
   func transitionedToResizingConcept(fromState: CanvasState)
 }
 
@@ -221,6 +222,24 @@ class StateManager {
     let state = CanvasState.multipleSelectedElements(elements: elements)
     try transition(toState: state, withValidtransitions: isValidTransition) { (oldState) in
       delegate?.transitionedToMultipleSelectedElements(fromState: oldState)
+    }
+  }
+  
+  public func toMultipleSelectedElementsDuplicating(concepts: [Concept]) throws {
+    func isValidTransition(fromState: CanvasState) -> Bool {
+      switch fromState {
+      case .multipleSelectedElements(let elements):
+        return elements.compactMap({ $0 as? Concept }).count > 0
+      default:
+        return false
+      }
+    }
+    
+    let duplicates = concepts.map({ $0.duplicate() })
+    let state = CanvasState.multipleSelectedElements(elements: duplicates)
+
+    try transition(toState: state, withValidtransitions: isValidTransition) { (oldState) in
+      delegate?.transitionedToMultipleSelectedElementsDuplicatingConcepts(fromState: oldState)
     }
   }
 

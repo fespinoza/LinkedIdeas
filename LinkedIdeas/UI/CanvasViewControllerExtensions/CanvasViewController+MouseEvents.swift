@@ -167,7 +167,18 @@ extension CanvasViewController {
       }
 
       if !isPressingShift(event: event) {
-        drag(concepts: concepts, toPoint: point)
+        if isDragOptionEvent(event) {
+          if didOptionDragStart {
+            drag(concepts: concepts, toPoint: point)
+          } else {
+              didOptionDragStart = true
+              safeTransiton {
+                try stateManager.toMultipleSelectedElementsDuplicating(concepts: concepts)
+              }
+          }
+        } else {
+          drag(concepts: concepts, toPoint: point)
+        }
       }
 
     case .canvasWaiting:

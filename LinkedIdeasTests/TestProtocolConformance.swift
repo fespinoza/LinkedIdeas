@@ -18,6 +18,12 @@ class TestLinkedIdeasDocument: LinkedIdeasDocument {
   func save(concept: Concept) {
     concepts.append(concept)
   }
+  
+  func save(concepts newConcepts: [Concept]) {
+    concepts.append(contentsOf: newConcepts)
+  }
+  
+  func remove(concepts: [Concept]) {}
   func remove(concept: Concept) {}
 
   func save(link: Link) {}
@@ -45,6 +51,10 @@ class StateManagerTestDelegate: MockMethodCalls {
 }
 
 extension StateManagerTestDelegate: StateManagerDelegate {
+  func transitionedToMultipleSelectedElementsDuplicatingConcepts(fromState: CanvasState) {
+    registerCall(methodName: #function)
+  }
+  
   func transitionedToSelectedElementDuplicatingConcept(fromState: CanvasState) {
     registerCall(methodName: #function)
   }
