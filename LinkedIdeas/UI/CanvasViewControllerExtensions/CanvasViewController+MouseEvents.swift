@@ -87,6 +87,23 @@ extension CanvasViewController {
         }
 
       } else {
+        // if a concept was selected, then save before moving on
+        switch currentState {
+        case .editingElement(let element):
+          safeTransiton {
+            try stateManager.toSelectedElementSavingChanges(element: element)
+          }
+        case .newConcept:
+          guard let text = textView.attributedString().copy() as? NSAttributedString else {
+            preconditionFailure("uh? this should have been an attributed string")
+          }
+          safeTransiton {
+            try stateManager.toCanvasWaiting(savingConceptWithText: text)
+          }
+        default:
+          break
+        }
+
         // if no concepts are clicked, then go to canvasWaiting
         safeTransiton {
           try stateManager.toCanvasWaiting()

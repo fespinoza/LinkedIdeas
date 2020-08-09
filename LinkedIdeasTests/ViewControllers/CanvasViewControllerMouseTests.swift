@@ -10,6 +10,16 @@ import XCTest
 @testable import LinkedIdeas_Shared
 @testable import LinkedIdeas
 
+extension CanvasViewController {
+  /// This is a good way to "insert" text into a text view simulating user input
+  func setTestText(_ text: String) {
+    // also need to ensure that the `viewDidLoad` is called to
+    // setup the delegates correctly
+    viewDidLoad()
+    textStorage.insert(NSAttributedString(string: text), at: 0)
+  }
+}
+
 // MARK: - CanvasViewControllers: Mouse Tests
 
 extension CanvasViewControllerTests {
@@ -25,6 +35,7 @@ extension CanvasViewControllerTests {
 
   func testSingleClickInCanvasWhenConceptIsBeingCreated() {
     canvasViewController.currentState = .newConcept(point: CGPoint.zero)
+    canvasViewController.setTestText("New Foo Bar")
 
     let clickedPoint = CGPoint(x: 200, y: 300)
     let mouseEvent = createMouseEvent(clickCount: 1, location: clickedPoint)
@@ -32,6 +43,7 @@ extension CanvasViewControllerTests {
     canvasViewController.mouseDown(with: mouseEvent)
 
     XCTAssertEqual(canvasViewController.currentState, .canvasWaiting)
+    XCTAssertEqual(document.concepts.map(\.stringValue), ["New Foo Bar"])
   }
 
   func testSingleClickOnCanvasWhenConceptIsSelected() {
