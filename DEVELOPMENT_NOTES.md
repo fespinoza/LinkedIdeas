@@ -2,7 +2,7 @@ I started this project back in 2015 to start learning about swift and macOS deve
 
 It also gave me the experience of publishing an app on the App Store.
 
-Until this day this app a utility that I use to put my ideas in a visual way. That said, I just work on it sometimes when there is something I’m missing and I feel like implementing the fix/feature.
+Until this day, this app is a utility that I use to put my ideas in a visual way. That said, I just work on it sometimes when there is something I’m missing and I feel like implementing the fix/feature.
 
 The code in the project is not structured in the best way possible, CanvasViewController has way too many responsibilities and the implementation of mouse gestures is very complicated as well, so that part of the app shouldn’t be taken as an example.
 
