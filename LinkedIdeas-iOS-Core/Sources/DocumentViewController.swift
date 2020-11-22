@@ -22,7 +22,7 @@ public class DocumentViewController: UIViewController {
 
   // MARK: - UIViewController overrides
   public override func viewDidLoad() {
-    self.view.backgroundColor = .white
+    self.view.backgroundColor = UIColor.systemBackground
 
     let scrollView = UIScrollView()
     scrollView.contentSize = self.canvasFrame.size

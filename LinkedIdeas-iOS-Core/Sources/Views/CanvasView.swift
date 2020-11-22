@@ -43,6 +43,6 @@ public class CanvasView: UIView {
 
   // MARK: - private functions
   private func setup() {
-    self.backgroundColor = .white
+    self.backgroundColor = .systemBackground
   }
 }
