@@ -95,17 +95,17 @@ extension CanvasViewController: StateManagerDelegate {
 
     select(elements: [concept])
   }
-  
+
   func transitionedToMultipleSelectedElementsDuplicatingConcepts(fromState: CanvasState) {
     commonTransitionBehavior(fromState)
-    
+
     guard case .multipleSelectedElements(let elements) = currentState else {
         return
     }
-    
+
     let concepts = elements.compactMap({ $0 as? Concept })
     document.save(concepts: concepts)
-    
+
     select(elements: concepts)
   }
 

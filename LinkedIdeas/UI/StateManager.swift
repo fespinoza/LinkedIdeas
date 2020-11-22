@@ -224,7 +224,7 @@ class StateManager {
       delegate?.transitionedToMultipleSelectedElements(fromState: oldState)
     }
   }
-  
+
   public func toMultipleSelectedElementsDuplicating(concepts: [Concept]) throws {
     func isValidTransition(fromState: CanvasState) -> Bool {
       switch fromState {
@@ -234,7 +234,7 @@ class StateManager {
         return false
       }
     }
-    
+
     let duplicates = concepts.map({ $0.duplicate() })
     let state = CanvasState.multipleSelectedElements(elements: duplicates)
 

@@ -15,7 +15,7 @@ extension CanvasViewController: DocumentObserver {
   func documentChanged(with element: Element) {
     reRenderCanvasView()
   }
-  
+
   func documentChanged(with elements: [Element]) {
     reRenderCanvasView()
   }

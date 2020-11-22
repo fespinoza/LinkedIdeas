@@ -157,7 +157,7 @@ extension Document: LinkedIdeasDocument {
       object: concept)
     observer?.documentChanged(with: concept)
   }
-  
+
   @objc func save(concepts newConcepts: [Concept]) {
     concepts.append(contentsOf: newConcepts)
     undoManager?.registerUndo(
@@ -176,7 +176,7 @@ extension Document: LinkedIdeasDocument {
       object: concept)
     observer?.documentChanged(with: concept)
   }
-  
+
   @objc func remove(concepts newConcepts: [Concept]) {
     newConcepts.forEach { concept in
       if let index = concepts.firstIndex(of: concept) {
