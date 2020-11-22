@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UniformTypeIdentifiers
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   ) -> Bool {
     let window = UIWindow(frame: UIScreen.main.bounds)
 
-    let documentBrowserVC = DocumentBrowserViewController()
+    let linkedIdeasFileUTI = UTType("com.fespinozacast.linked-ideas")!
+    let documentBrowserVC = DocumentBrowserViewController(forOpening: [linkedIdeasFileUTI])
     documentBrowserVC.view.frame = window.frame
     let mainNavigationController = UINavigationController(rootViewController: documentBrowserVC)
     mainNavigationController.isNavigationBarHidden = true
